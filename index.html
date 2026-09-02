@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="no" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Aromatix Oslo — Eksklusiv Oud & Luksuriøse Islamske Gaver</title>
+  <meta name="description" content="Eksklusiv oud-parfyme, ren Dehn al Oud og luksuriøse islamske gavesett i Oslo. Besøk vår boutique i Tøyengata 3, Grønland.">
+  <meta name="theme-color" content="#080706">
+
+  <!-- Open Graph & Social Meta -->
+  <meta property="og:title" content="Aromatix Oslo — Eksklusiv Oud & Islamske Gaver">
+  <meta property="og:description" content="Sjeldne oljer, luksus-attar og håndlagde gavesett ved Grønland T-bane, Oslo.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Google Fonts: Cormorant Garamond, Cinzel, Plus Jakarta Sans, Noto Nastaliq Urdu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            noir: {
+              950: '#050403',
+              900: '#080706',
+              800: '#120E0A',
+              700: '#1A1410',
+              600: '#261E18',
+            },
+            gold: {
+              300: '#F5E2B8',
+              400: '#E5C287',
+              500: '#C9A96E',
+              600: '#A68449',
+              700: '#7D5F2E',
+            },
+            amberGlow: '#E5A93C',
+            emeraldLux: '#0F3B2E',
+            vipps: '#FF5B24',
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Cormorant Garamond', 'serif'],
+            cormorant: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            urdu: ['Noto Nastaliq Urdu', 'serif'],
+          },
+          keyframes: {
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
+            },
+            pulseSlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.9' },
+            }
+          },
+          animation: {
+            shimmer: 'shimmer 3.5s infinite linear',
+            float: 'float 4s ease-in-out infinite',
+            pulseSlow: 'pulseSlow 3s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Bleeding-Edge CSS Technique #4: Oklch Perceptual Color Variables & P3 Gamut */
+    :root {
+      --bg-noir: oklch(0.11 0.015 45);
+      --surface-glass: oklch(0.16 0.02 50 / 0.72);
+      --gold-primary: oklch(0.74 0.13 78);
+      --gold-highlight: oklch(0.85 0.12 85);
+      --amber-radiance: oklch(0.75 0.17 65 / 0.18);
+      --emerald-accent: oklch(0.35 0.09 155 / 0.4);
+      --text-ivory: oklch(0.96 0.01 75);
+      --text-sand: oklch(0.76 0.03 70);
+    }
+
+    @media (color-gamut: p3) {
+      :root {
+        --gold-primary: color(display-p3 0.82 0.67 0.38);
+        --gold-highlight: color(display-p3 0.94 0.80 0.54);
+      }
+    }
+
+    body {
+      background-color: #080706;
+      color: #F5EFE6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      selection-background-color: #C9A96E;
+      selection-color: #080706;
+    }
+
+    /* Urdu typography adjustments */
+    [dir="rtl"] {
+      font-family: 'Noto Nastaliq Urdu', 'Plus Jakarta Sans', serif;
+    }
+    [dir="rtl"] .urdu-adjust {
+      line-height: 2.1 !important;
+      letter-spacing: 0px !important;
+    }
+    [dir="rtl"] .font-serif {
+      font-family: 'Noto Nastaliq Urdu', serif !important;
+    }
+
+    /* Bleeding-Edge Technique #9: Container Query Support */
+    .product-container {
+      container-type: inline-size;
+      container-name: product-card;
+    }
+
+    /* Glassmorphism & Gold Refraction */
+    .glass-gold {
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201, 169, 110, 0.22);
+      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 235, 190, 0.1);
+    }
+
+    .glass-gold:hover {
+      border-color: rgba(201, 169, 110, 0.5);
+      box-shadow: 0 16px 50px -8px rgba(201, 169, 110, 0.18), inset 0 1px 2px rgba(255, 235, 190, 0.2);
+    }
+
+    /* Gold Metallic Shimmer Gradient */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF0D0 0%, #C9A96E 40%, #E5C287 70%, #9B783E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-shimmer-btn {
+      background: linear-gradient(90deg, #9B783E, #C9A96E, #F5E2B8, #C9A96E, #9B783E);
+      background-size: 200% auto;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gold-shimmer-btn:hover {
+      background-position: right center;
+      box-shadow: 0 0 25px rgba(201, 169, 110, 0.45);
+      transform: translateY(-2px);
+    }
+
+    /* Bleeding-Edge Technique #3: 3D Volumetric Tilt & Specular Light */
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.2s ease;
+    }
+
+    .specular-glare {
+      pointer-events: none;
+      background: radial-gradient(circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 240, 200, 0.18), transparent 70%);
+      border-radius: inherit;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080706;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3A2F24;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C9A96E;
+    }
+
+    /* Ambient Immersion Mode */
+    body.immersion-mode .non-immersive {
+      opacity: 0.15;
+      filter: blur(3px);
+      transition: opacity 0.6s ease, filter 0.6s ease;
+    }
+
+    /* Subtle Geometric SVG Pattern */
+    .islamic-pattern-bg {
+      background-image: radial-gradient(rgba(201, 169, 110, 0.08) 1px, transparent 1px), radial-gradient(rgba(201, 169, 110, 0.04) 1px, #080706 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+    }
+
+    /* View Transitions */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.25s;
+    }
+  </style>
+</head>
+
+<body class="islamic-pattern-bg text-[#F5EFE6] antialiased selection:bg-[#C9A96E] selection:text-black">
+
+  <!-- Persistent Canvas: Bleeding Edge Technique #2 - Real-time GPU/2D Fluid Golden Mist Particles -->
+  <canvas id="ambient-mist-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40 w-full h-full"></canvas>
+
+  <!-- Top Announcement / Context Aware Bar (Technique #10) -->
+  <header class="relative z-40 border-b border-gold-500/20 bg-noir-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between text-xs text-gold-400/90 font-medium">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="store-status-text">Åpent nå: Tøyengata 3, Oslo (Grønland T-bane)</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Ambient Scent of the Moment (Technique #10) -->
+        <div class="hidden sm:flex items-center gap-1.5 text-gold-300/75 bg-noir-800/80 px-2.5 py-1 rounded-full border border-gold-500/15">
+          <i data-lucide="sparkles" class="w-3 h-3 text-gold-400"></i>
+          <span id="curated-time-scent">Kveldens utvalg: Dehn al Oud Cambodi</span>
+        </div>
+
+        <!-- Audio Toggle (Technique #7: Synesthetic Audio) -->
+        <button id="sound-toggle-btn" onclick="toggleAudio()" class="flex items-center gap-1 hover:text-gold-300 transition px-2 py-1 rounded border border-gold-500/20" title="Aktiver luksus lydkulisse">
+          <i data-lucide="volume-2" class="w-3.5 h-3.5" id="sound-icon"></i>
+          <span class="hidden md:inline" id="sound-label">Lyd: Av</span>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="flex items-center gap-1 bg-noir-800 p-0.5 rounded-full border border-gold-500/30">
+          <button id="lang-no" onclick="setLanguage('no')" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition">🇳🇴 NO</button>
+          <button id="lang-ur" onclick="setLanguage('ur')" class="px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition">🇵🇰 اردو</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Luxury Navigation -->
+  <nav class="sticky top-0 z-30 bg-noir-900/85 backdrop-blur-xl border-b border-gold-500/15 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-gold-400/40 flex items-center justify-center bg-gradient-to-br from-gold-500/20 to-noir-800 shadow-[0_0_15px_rgba(201,169,110,0.2)] group-hover:scale-105 transition">
+          <span class="font-serif font-black text-xl text-gold-400">A</span>
+        </div>
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-[0.2em] gold-gradient-text block uppercase">Aromatix</span>
+          <span class="text-[10px] tracking-[0.3em] uppercase text-gold-400/70 block -mt-1" id="nav-tagline">Rare Oud & Islamic Gifts • Oslo</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider text-[#E2D5C3]">
+        <a href="#collection" class="hover:text-gold-400 transition" id="nav-link-ouds">Oud Parfymer</a>
+        <a href="#gift-sets" class="hover:text-gold-400 transition" id="nav-link-gifts">Islamske Gavesett</a>
+        <a href="#alkimiya" class="hover:text-gold-400 transition flex items-center gap-1.5 text-gold-400">
+          <i data-lucide="flask-conical" class="w-4 h-4"></i>
+          <span id="nav-link-custom">Al-Kimiya Formulator</span>
+        </a>
+        <a href="#matrix" class="hover:text-gold-400 transition" id="nav-link-matrix">Duftkart</a>
+        <a href="#location" class="hover:text-gold-400 transition" id="nav-link-store">Butikk Oslo</a>
+      </div>
+
+      <!-- Action Icons: Cart & Immersion Mode -->
+      <div class="flex items-center gap-3">
+        <!-- Immersion Mode Toggle (Technique #10) -->
+        <button onclick="toggleImmersion()" class="p-2.5 rounded-full border border-gold-500/20 hover:border-gold-400 bg-noir-800/80 text-gold-400 transition hidden sm:flex items-center justify-center" title="Sensorisk Fordypningsmodus">
+          <i data-lucide="eye" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Cart Drawer Button -->
+        <button onclick="toggleCartDrawer(true)" class="relative p-2.5 px-4 rounded-full border border-gold-500/40 bg-gradient-to-r from-gold-500/10 to-transparent hover:border-gold-400 transition flex items-center gap-2 text-gold-300">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-gold-400"></i>
+          <span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline" id="nav-cart-btn">Handlekurv</span>
+          <span id="cart-badge" class="w-5 h-5 rounded-full bg-gold-500 text-noir-950 text-xs font-bold flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 text-center overflow-hidden">
+      <!-- Ambient Glow Orbs -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-gradient-to-tr from-amberGlow/15 via-gold-500/10 to-emeraldLux/20 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-4xl mx-auto relative z-10">
+        <!-- Ornate Islamic Star SVG Motif -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
+          <svg class="w-5 h-5 text-gold-400 fill-current animate-spin" style="animation-duration: 25s;" viewBox="0 0 24 24">
+            <path d="M12 0L14.59 4.41L19.5 4.5L18.41 9.41L22 12L18.41 14.59L19.5 19.5L14.59 19.41L12 24L9.41 19.41L4.5 19.5L5.59 14.59L2 12L5.59 9.41L4.5 4.5L9.41 4.41L12 0Z"/>
+          </svg>
+          <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
+        </div>
+
+        <!-- Hero Subtitle & Location -->
+        <span class="inline-block uppercase tracking-[0.35em] text-xs sm:text-sm font-semibold text-gold-400/90 mb-4 px-4 py-1.5 rounded-full border border-gold-500/30 bg-noir-900/60 backdrop-blur-md" id="hero-kicker">
+          Tøyengata 3 • Grønland, Oslo
+        </span>
+
+        <!-- Hero Main Title -->
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+          <span class="gold-gradient-text block" id="hero-title-1">Sjeldne Oud-Oliven &</span>
+          <span class="text-white block mt-1" id="hero-title-2">Hellige Gavesett</span>
+        </h1>
+
+        <!-- Hero Paragraph -->
+        <p class="text-base sm:text-lg md:text-xl text-[#C5B8A8] max-w-2xl mx-auto mb-10 leading-relaxed font-light" id="hero-desc">
+          Direkte importert fra hjertet av Kambodsja, Taif og India. Opplev autentisk, tradisjonsrik luksus i vår intime boutique i Oslo.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#collection" class="w-full sm:w-auto px-8 py-4 rounded-full text-noir-950 font-bold uppercase tracking-wider text-xs gold-shimmer-btn flex items-center justify-center gap-2 shadow-lg" id="hero-cta-explore">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Utforsk Kolleksjonen</span>
+          </a>
+          <a href="#alkimiya" class="w-full sm:w-auto px-8 py-4 rounded-full text-gold-300 font-semibold uppercase tracking-wider text-xs border border-gold-500/40 hover:bg-gold-500/10 backdrop-blur-sm transition flex items-center justify-center gap-2" id="hero-cta-custom">
+            <i data-lucide="wand-2" class="w-4 h-4"></i>
+            <span>Skap Egen Duft (Al-Kimiya)</span>
+          </a>
+        </div>
+
+        <!-- Quick Trust Badges -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-left border-t border-gold-500/20 pt-8 text-xs text-gold-300/80">
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="shield-check" class="w-5 h-5 text-gold-400 shrink-0"></i>
+            <span id="badge-1">100% Ren Naturlig Oud</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400 shrink-0"></i>
+            <span id="badge-2">Boutique i Tøyengata 3</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="zap" class="w-5 h-5 text-vipps shrink-0"></i>
+            <span id="badge-3">Betal Raskt med Vipps</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="truck" class="w-5 h-5 text-gold-400 shrink-0"></i>
+            <span id="badge-4">Gratis frakt over 1 000 kr</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BLEEDING-EDGE TECHNIQUE #1: GENERATIVE UI (GenUI) AL-KIMIYA SCENT FORMULATOR -->
+    <section id="alkimiya" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-bold block mb-2" id="alkimiya-tag">Bleeding-Edge GenUI Synthesis</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold gold-gradient-text" id="alkimiya-title">Al-Kimiya Duft-Synthesizer</h2>
+        <p class="text-sm sm:text-base text-[#B8A99A] mt-3" id="alkimiya-subtitle">
+          Bland dine egne topp-, hjerte- og bunnoter i sanntid. Vår AI-drevne formuleringsmotor genererer et skreddersydd oljepyramidekort og beregner projeksjon.
+        </p>
+      </div>
+
+      <!-- Synthesizer Interactive Glass Panel -->
+      <div class="glass-gold rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Control Sliders & Notes Selector -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Top Note Selector -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
+              <span id="form-top-label">1. Toppnote (Førsteinntrykk)</span>
+              <span id="top-selected-name" class="text-white font-mono">Taif Rose</span>
+            </label>
+            <div class="grid grid-cols-3 gap-2" id="top-note-buttons">
+              <button onclick="updateSynthesizer('top', 'Taif Rose', '🌹')" class="syn-btn active px-3 py-2 rounded-xl text-xs border border-gold-500 bg-gold-500/20 text-gold-300 font-medium transition">Taif Rose 🌹</button>
+              <button onclick="updateSynthesizer('top', 'Bergamot & Cardamom', '🌿')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Kardemomme 🌿</button>
+              <button onclick="updateSynthesizer('top', 'Saffron Silk', '✨')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Safran ✨</button>
+            </div>
+          </div>
+
+          <!-- Heart Note Selector -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
+              <span id="form-heart-label">2. Hjertenote (Kroppen)</span>
+              <span id="heart-selected-name" class="text-white font-mono">Smoky Amber</span>
+            </label>
+            <div class="grid grid-cols-3 gap-2" id="heart-note-buttons">
+              <button onclick="updateSynthesizer('heart', 'Smoky Amber', '🔥')" class="syn-btn active px-3 py-2 rounded-xl text-xs border border-gold-500 bg-gold-500/20 text-gold-300 font-medium transition">Røkt Amber 🔥</button>
+              <button onclick="updateSynthesizer('heart', 'Mysore Sandalwood', '🪵')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Sandeltre 🪵</button>
+              <button onclick="updateSynthesizer('heart', 'Royal Frankincense', '💨')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Olibanum 💨</button>
+            </div>
+          </div>
+
+          <!-- Base Oud Note & Intensity Slider -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
+              <span id="form-base-label">3. Oud-Base & Intensitet</span>
+              <span id="base-selected-name" class="text-white font-mono">Cambodi Aged (85%)</span>
+            </label>
+            <input type="range" min="30" max="100" value="85" id="oud-intensity-slider" oninput="onOudIntensityChange(this.value)" class="w-full accent-gold-500 cursor-pointer h-2 bg-noir-950 rounded-lg">
+            <div class="flex justify-between text-[11px] text-stone-400 mt-1">
+              <span>Myk & Floral (30%)</span>
+              <span>Klassisk Balanse (65%)</span>
+              <span>Intens Mørk Oud (100%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- JIT Synthesized Live Component (GenUI Output) -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-noir-950/90 to-noir-900 border border-gold-500/40 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+          <div class="absolute top-0 right-0 px-3 py-1 bg-gold-500/20 border-b border-l border-gold-500/30 text-[10px] text-gold-300 uppercase font-mono tracking-widest rounded-bl-xl">
+            JIT Synthesized
+          </div>
+
+          <div class="text-center mb-4">
+            <span class="text-xs text-gold-400 tracking-[0.2em] uppercase block font-semibold" id="synth-code">Bespoke Attar #OSL-902</span>
+            <h3 class="font-serif text-2xl font-bold text-white mt-1" id="synth-title">"Kongelig Taif & Cambodi Røkt"</h3>
+          </div>
+
+          <!-- Dynamic Visual Pyramid Graphic -->
+          <div class="space-y-2 my-6">
+            <div class="p-2.5 rounded-lg bg-gold-500/15 border border-gold-500/30 flex items-center justify-between text-xs">
+              <span class="text-gold-400 font-semibold" id="pyr-top-tag">TOPP:</span>
+              <span id="synth-disp-top" class="text-stone-200">Taif Rose 🌹</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-between text-xs">
+              <span class="text-gold-400 font-semibold" id="pyr-heart-tag">HJERTE:</span>
+              <span id="synth-disp-heart" class="text-stone-200">Smoky Amber 🔥</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/30 flex items-center justify-between text-xs">
+              <span class="text-gold-400 font-semibold" id="pyr-base-tag">BASE OUD:</span>
+              <span id="synth-disp-base" class="text-stone-200 font-bold">Cambodi Vintage Oud (85%)</span>
+            </div>
+          </div>
+
+          <!-- Metrics -->
+          <div class="grid grid-cols-2 gap-3 mb-6 text-center text-xs">
+            <div class="p-2 rounded bg-noir-800 border border-gold-500/10">
+              <span class="block text-stone-400 text-[10px] uppercase" id="metric-long-label">Varighet</span>
+              <span class="text-gold-400 font-bold font-mono" id="synth-longevity">24+ Timer</span>
+            </div>
+            <div class="p-2 rounded bg-noir-800 border border-gold-500/10">
+              <span class="block text-stone-400 text-[10px] uppercase" id="metric-sillage-label">Sillage (Aura)</span>
+              <span class="text-gold-400 font-bold font-mono" id="synth-sillage">Kraftig & Majestetisk</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-gold-500/20">
+            <div>
+              <span class="text-[10px] uppercase text-stone-400 block" id="custom-price-label">Skreddersydd 12ml Krystall</span>
+              <span class="text-xl font-bold font-serif text-gold-300" id="synth-price">1 490 kr</span>
+            </div>
+            <button onclick="addSynthesizedToCart()" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-noir-950 flex items-center gap-1.5">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span id="synth-add-btn">Bestill Denne Blandingen</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 2: OUD PERFUME COLLECTION (Technique #3: 3D Volumetric Tilt + Technique #9: Container Queries) -->
+    <section id="collection" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-gold-500/20 pb-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold" id="sec-oud-tag">Ren Konsentrert Luksus</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1" id="sec-oud-title">Mesterverk av Oud & Attar</h2>
+        </div>
+        <p class="text-sm text-[#B8A99A] max-w-md mt-4 md:mt-0" id="sec-oud-sub">
+          Destillert fra vellagret agartre, uten alkohol, 100% konsentrert olje med uovertruffen dybde og sjel.
+        </p>
+      </div>
+
+      <!-- 6 Oud Perfumes Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ouds-grid">
+        <!-- Injected dynamically via JS to guarantee complete state and bilingual binding -->
+      </div>
+    </section>
+
+
+    <!-- BLEEDING-EDGE TECHNIQUE #6: INTERACTIVE 2D SCENT FAMILY MATRIX -->
+    <section id="matrix" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="glass-gold rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-bold block mb-2" id="matrix-tag">Bleeding-Edge Spatial Scent Matrix</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold gold-gradient-text" id="matrix-title">Utforsk Duftfamiliene</h2>
+          <p class="text-xs sm:text-sm text-stone-300 mt-2" id="matrix-sub">
+            Klikk på en duft-sfære for å filtrere kolleksjonen etter ønsket karakter og emosjonell resonans.
+          </p>
+        </div>
+
+        <!-- Matrix Interactive Nodes -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center" id="scent-matrix-nodes">
+          <button onclick="filterByFamily('all')" class="matrix-node active p-4 rounded-2xl bg-gold-500/20 border border-gold-400 text-gold-300 transition hover:scale-105">
+            <span class="text-2xl block mb-1">👑</span>
+            <span class="text-xs font-bold block" id="fam-all">Alle Oljer</span>
+            <span class="text-[10px] text-stone-400">Hele Utvalget</span>
+          </button>
+          <button onclick="filterByFamily('woody')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
+            <span class="text-2xl block mb-1">🪵</span>
+            <span class="text-xs font-bold block" id="fam-woody">Tre & Harpiks</span>
+            <span class="text-[10px] text-stone-400">Cambodi & Hindi</span>
+          </button>
+          <button onclick="filterByFamily('floral')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
+            <span class="text-2xl block mb-1">🌹</span>
+            <span class="text-xs font-bold block" id="fam-floral">Taif & Rose</span>
+            <span class="text-[10px] text-stone-400">Elegante Blomster</span>
+          </button>
+          <button onclick="filterByFamily('smoky')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
+            <span class="text-2xl block mb-1">💨</span>
+            <span class="text-xs font-bold block" id="fam-smoky">Røkt Kalakassi</span>
+            <span class="text-[10px] text-stone-400">Dyp & Mystisk</span>
+          </button>
+          <button onclick="filterByFamily('amber')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
+            <span class="text-2xl block mb-1">✨</span>
+            <span class="text-xs font-bold block" id="fam-amber">Varm Rav/Amber</span>
+            <span class="text-[10px] text-stone-400">Søt & Orientalsk</span>
+          </button>
+          <button onclick="filterByFamily('musk')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
+            <span class="text-2xl block mb-1">🦌</span>
+            <span class="text-xs font-bold block" id="fam-musk">Silke Musk</span>
+            <span class="text-[10px] text-stone-400">Pudret & Ren</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 3: ISLAMIC LUXURY GIFT SETS -->
+    <section id="gift-sets" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold" id="sec-gift-tag">Hellige Gaver & Tradisjon</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold gold-gradient-text mt-1" id="sec-gift-title">Eksklusive Islamske Gavesett</h2>
+        <p class="text-sm sm:text-base text-[#B8A99A] mt-3" id="sec-gift-sub">
+          Skreddersydd for bryllup, Eid, Hajj eller en du er glad i. Inneholder fløyelsinnbundet Koran, håndlaget Tasbih, silkemyk bønematte og ekte luksus-oud.
+        </p>
+      </div>
+
+      <!-- 3 Gift Sets Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="gifts-grid">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </section>
+
+
+    <!-- OSLO BOUTIQUE & LOCATION SECTION -->
+    <section id="location" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="glass-gold rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+            <span>Oslo Boutique • Grønland</span>
+          </div>
+
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white" id="loc-title">
+            Besøk Oss i Tøyengata 3, Oslo
+          </h2>
+
+          <p class="text-sm sm:text-base text-[#C5B8A8] leading-relaxed" id="loc-desc">
+            Vår eksklusive duftoase er lokalisert inne i det tradisjonsrike pakistanske markedet i **Tøyengata 3, 0190 Oslo**, kun et steinkast fra Grønland T-banestasjon. Kom innom for en privat duft-konsultasjon og opplev de sjeldneste oljene før du bestemmer deg.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/20">
+              <h4 class="text-xs uppercase tracking-wider text-gold-400 font-bold mb-1" id="hours-title">Åpningstider</h4>
+              <p class="text-xs text-stone-300">Mandag – Lørdag: 10:00 – 20:00</p>
+              <p class="text-xs text-stone-300">Søndag: 12:00 – 18:00</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/20">
+              <h4 class="text-xs uppercase tracking-wider text-gold-400 font-bold mb-1" id="transport-title">Kollektivtransport</h4>
+              <p class="text-xs text-stone-300">Grønland T-bane (2 min gange)</p>
+              <p class="text-xs text-stone-300">Buss 37 & 30 til Tøyen / Grønland</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="https://maps.google.com/?q=T%C3%B8yengata+3,+0190+Oslo" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-gold-500 hover:bg-gold-400 text-noir-950 font-bold text-xs uppercase tracking-wider transition flex items-center gap-2 shadow-lg">
+              <i data-lucide="navigation" class="w-4 h-4"></i>
+              <span id="loc-directions-btn">Få Veibeskrivelse i Kart</span>
+            </a>
+            <a href="https://wa.me/4799000000?text=Hei%20Aromatix%20Oslo" target="_blank" class="px-6 py-3 rounded-full border border-gold-500/40 hover:bg-gold-500/10 text-gold-300 font-bold text-xs uppercase tracking-wider transition flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>WhatsApp Rådgivning</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Map & Store Aesthetic Mock -->
+        <div class="lg:col-span-6 relative rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl h-80 sm:h-96 group">
+          <img src="https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&w=1000&q=80" alt="Aromatix Oslo Boutique Storefront" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir-950 via-noir-950/40 to-transparent flex flex-col justify-end p-6">
+            <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-widest">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Tøyengata 3, 0190 Oslo</span>
+            </div>
+            <p class="text-xs text-stone-300 mt-1 font-light">
+              Inne i markedet ved Grønland T-bane • Gratis parkering i nærheten
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS CAROUSEL -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-gold-500/15">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white" id="reviews-title">Hva Våre Kunder i Oslo Sier</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="reviews-grid">
+        <div class="glass-gold rounded-2xl p-6 relative">
+          <div class="flex text-gold-400 mb-3 text-sm">★★★★★</div>
+          <p class="text-xs text-stone-300 italic mb-4 leading-relaxed" id="rev-1-text">
+            "Den mest autentiske Dehn al Oud jeg har funnet i Skandinavia. Veldig hyggelig betjening i Tøyengata, og fantastisk med Vipps-betaling!"
+          </p>
+          <div class="text-xs font-bold text-gold-300">Tariq M., Oslo Sentrum</div>
+        </div>
+        <div class="glass-gold rounded-2xl p-6 relative">
+          <div class="flex text-gold-400 mb-3 text-sm">★★★★★</div>
+          <p class="text-xs text-stone-300 italic mb-4 leading-relaxed" id="rev-2-text">
+            "Kjøpte Sultani Royal gavesettet til min manns bursdag. Koranen med fløyelsomslag og den tunge Cambodi-oljen tok pusten fra ham."
+          </p>
+          <div class="text-xs font-bold text-gold-300">Amina K., Majorstuen</div>
+        </div>
+        <div class="glass-gold rounded-2xl p-6 relative">
+          <div class="flex text-gold-400 mb-3 text-sm">★★★★★</div>
+          <p class="text-xs text-stone-300 italic mb-4 leading-relaxed" id="rev-3-text">
+            "Beste kvaliteten på Taif Rose. Lukten henger i jakken i over 3 dager. Rask levering med Posten og nydelig innpakning."
+          </p>
+          <div class="text-xs font-bold text-gold-300">Bilal H., Lørenskog</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-noir-950/85 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-gold rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto border border-gold-500/40 shadow-2xl scale-95 transition-transform duration-300" id="modal-content-box">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 p-2 rounded-full text-stone-400 hover:text-white bg-noir-800 border border-gold-500/20">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="modal-dynamic-body">
+        <!-- Injected on demand via JS -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SLIDE-UP CART & CHECKOUT DRAWER (Technique #8: Optimistic Edge State) -->
+  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-50 bg-noir-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-noir-900 border-l border-gold-500/30 z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-gold-500/20 flex items-center justify-between bg-noir-950/60">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
+        <h3 class="font-serif text-lg font-bold text-white" id="cart-title">Din Handlekurv</h3>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="p-2 text-stone-400 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Bar (1 000 NOK Threshold) -->
+    <div class="p-4 bg-noir-800/80 border-b border-gold-500/10">
+      <div class="flex justify-between text-xs mb-1.5 font-medium">
+        <span id="shipping-bar-text" class="text-stone-300">Gratis frakt over 1 000 kr</span>
+        <span id="shipping-progress-percent" class="text-gold-400 font-mono font-bold">0%</span>
+      </div>
+      <div class="w-full h-1.5 bg-noir-950 rounded-full overflow-hidden">
+        <div id="shipping-progress-fill" class="h-full bg-gradient-to-r from-gold-500 to-amberGlow transition-all duration-500" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4" id="cart-items-container">
+      <!-- Empty state / Items injected by JS -->
+    </div>
+
+    <!-- Cart Footer & Checkout Action -->
+    <div class="p-5 border-t border-gold-500/20 bg-noir-950/80 space-y-4">
+      <div class="space-y-1.5 text-xs text-stone-300">
+        <div class="flex justify-between">
+          <span id="cart-subtotal-label">Delsum</span>
+          <span id="cart-subtotal-val" class="font-mono text-white font-bold">0 kr</span>
+        </div>
+        <div class="flex justify-between">
+          <span id="cart-shipping-label">Frakt</span>
+          <span id="cart-shipping-val" class="font-mono text-gold-400 font-bold">Gratis</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-gold-500/15">
+          <span id="cart-total-label">Total (NOK)</span>
+          <span id="cart-total-val" class="font-mono text-gold-300 text-lg">0 kr</span>
+        </div>
+      </div>
+
+      <button onclick="openCheckoutModal()" id="cart-checkout-btn" class="w-full py-3.5 rounded-full gold-shimmer-btn text-noir-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg disabled:opacity-50">
+        <i data-lucide="lock" class="w-4 h-4"></i>
+        <span id="cart-checkout-label">Gå Til Kassen</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- CHECKOUT MODAL (Vipps & COD) -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-noir-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-gold rounded-3xl max-w-lg w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto border border-gold-500/40 shadow-2xl">
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 p-2 text-stone-400 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="checkout-form-container">
+        <div class="text-center mb-6">
+          <span class="text-xs uppercase tracking-widest text-gold-400 font-bold" id="chk-step-tag">Sikker Utsjekk</span>
+          <h3 class="font-serif text-2xl font-bold text-white mt-1" id="chk-title">Fullfør Din Bestilling</h3>
+        </div>
+
+        <form onsubmit="handleOrderSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-name-label">Fullt Navn</label>
+            <input type="text" required placeholder="f.eks. Ali Khan" id="chk-input-name" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-phone-label">Telefonnummer (Norsk +47)</label>
+            <input type="tel" required placeholder="f.eks. 912 34 567" id="chk-input-phone" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-delivery-label">Leveringsmetode</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex flex-col gap-1 cursor-pointer hover:border-gold-400">
+                <input type="radio" name="deliveryMethod" value="pickup" checked onchange="updateDeliveryOption('pickup')" class="accent-gold-500">
+                <span class="text-xs font-bold text-gold-300" id="del-pickup-title">Hentes i Butikk</span>
+                <span class="text-[10px] text-stone-400" id="del-pickup-sub">Tøyengata 3, Oslo (0 kr)</span>
+              </label>
+              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex flex-col gap-1 cursor-pointer hover:border-gold-400">
+                <input type="radio" name="deliveryMethod" value="shipping" onchange="updateDeliveryOption('shipping')" class="accent-gold-500">
+                <span class="text-xs font-bold text-gold-300" id="del-ship-title">Posten Levering</span>
+                <span class="text-[10px] text-stone-400" id="del-ship-sub">Hele Norge (79 kr / Gratis over 1000)</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="address-field-group" class="hidden">
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-address-label">Gateadresse & Postnummer</label>
+            <input type="text" placeholder="Gateadresse, 0190 Oslo" id="chk-input-address" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
+          </div>
+
+          <!-- Payment Options Toggle -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-pay-label">Betalingsmåte</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="p-3 rounded-xl border-2 border-vipps bg-vipps/10 flex items-center justify-between cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <input type="radio" name="paymentOption" value="vipps" checked class="accent-vipps">
+                  <span class="text-xs font-bold text-white">Vipps</span>
+                </div>
+                <span class="text-[10px] bg-vipps text-white px-2 py-0.5 rounded font-bold">Rask</span>
+              </label>
+              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex items-center justify-between cursor-pointer hover:border-gold-400">
+                <div class="flex items-center gap-2">
+                  <input type="radio" name="paymentOption" value="cod" class="accent-gold-500">
+                  <span class="text-xs font-bold text-stone-200" id="pay-cod-label">Kontant/Kort</span>
+                </div>
+                <span class="text-[10px] text-stone-400" id="pay-cod-sub">Ved henting</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-full bg-vipps hover:bg-[#E54F1C] text-white font-bold uppercase tracking-wider text-xs transition shadow-xl mt-4 flex items-center justify-center gap-2" id="chk-submit-btn">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span id="chk-submit-text">Bekreft & Betal med Vipps</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Confirmation Screen (Hidden Initially) -->
+      <div id="order-success-screen" class="hidden text-center py-6 space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
+          <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
+        <span class="text-xs uppercase tracking-widest text-gold-400 font-bold" id="succ-tag">Bestilling Registrert</span>
+        <h3 class="font-serif text-3xl font-bold text-white" id="succ-title">Takk for din bestilling!</h3>
+        <p class="text-xs text-stone-300 max-w-sm mx-auto leading-relaxed" id="succ-desc">
+          Vi har klargjort ordren din. Du vil motta en bekreftelse på SMS. Velkommen til Tøyengata 3, Oslo.
+        </p>
+        <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/30 text-xs font-mono text-gold-300">
+          Ordrenummer: <span id="succ-order-id" class="font-bold text-white">#AR-OSL-8921</span>
+        </div>
+        <button onclick="resetOrderFlow()" class="px-8 py-3 rounded-full gold-shimmer-btn text-noir-950 font-bold uppercase text-xs">
+          Handle Videre
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/4799000000?text=Hei%20Aromatix%20Oslo" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 p-4 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-2xl hover:scale-110 transition duration-300 flex items-center justify-center border border-emerald-300/30" title="Chat med oss på WhatsApp">
+    <i data-lucide="message-circle" class="w-6 h-6"></i>
+  </a>
+
+
+  <!-- SYSTEM FOOTER COMPLIANCE & VERSIONING (User Rule 1) -->
+  <footer class="relative z-10 border-t border-gold-500/20 bg-noir-950 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs text-stone-400">
+    <div class="max-w-7xl mx-auto space-y-6">
+      <div class="flex items-center justify-center gap-3">
+        <div class="w-8 h-8 rounded-full border border-gold-400/40 flex items-center justify-center bg-noir-800 text-gold-400 font-serif font-bold">A</div>
+        <span class="font-serif tracking-[0.2em] uppercase text-sm text-gold-300 font-bold">Aromatix Oslo</span>
+      </div>
+
+      <p class="max-w-md mx-auto text-[11px] text-stone-400" id="footer-address">
+        Tøyengata 3, 0190 Oslo, Norge • Eksklusiv Oud & Hellige Islamske Gaver
+      </p>
+
+      <div class="flex items-center justify-center gap-6 text-xs text-gold-400/70">
+        <a href="#collection" class="hover:text-gold-300 transition">Oud Parfyme</a>
+        <a href="#gift-sets" class="hover:text-gold-300 transition">Gavesett</a>
+        <a href="#alkimiya" class="hover:text-gold-300 transition">Al-Kimiya Formulator</a>
+        <a href="#location" class="hover:text-gold-300 transition">Finn Butikk</a>
+      </div>
+
+      <!-- Visible Semantic Version & Timestamp (Required User Rule) -->
+      <div class="pt-6 border-t border-gold-500/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-2">
+        <div id="footer-copy">© 2026 Aromatix Boutique Oslo. Alle rettigheter reservert.</div>
+        <div class="font-mono text-gold-500/80 bg-noir-900 px-3 py-1 rounded-full border border-gold-500/20">
+          v1.0.0 (updated 2026-09-02 15:03)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- APP LOGIC, BLEEDING EDGE PARTICLES, AUDIO SYNTH, AND COMPLETE BILINGUAL DATA -->
+  <script>
+    /* =========================================================================
+       1. BLEEDING-EDGE TECHNIQUE #7: PROCEDURAL WEB AUDIO SYNTHESIZER
+       ========================================================================= */
+    let audioCtx = null;
+    let isAudioEnabled = false;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function toggleAudio() {
+      initAudio();
+      isAudioEnabled = !isAudioEnabled;
+      const label = document.getElementById('sound-label');
+      const icon = document.getElementById('sound-icon');
+      if (isAudioEnabled) {
+        label.innerText = state.lang === 'no' ? 'Lyd: På' : 'صدا: آن';
+        icon.classList.add('text-gold-400');
+        playEarcon('chime');
+      } else {
+        label.innerText = state.lang === 'no' ? 'Lyd: Av' : 'صدا: آف';
+        icon.classList.remove('text-gold-400');
+      }
+    }
+
+    function playEarcon(type) {
+      if (!isAudioEnabled || !audioCtx) return;
+      try {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const now = audioCtx.currentTime;
+
+        if (type === 'chime') {
+          // Luxury high crystal overtone
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(1760, now + 0.15);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.5);
+        } else if (type === 'cart') {
+          // Warm amber resonance chord
+          [220, 330, 440].forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(0.06 / (idx + 1), now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.8);
+          });
+          // Micro-haptic trigger on mobile
+          if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        } else if (type === 'tap') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          gain.gain.setValueAtTime(0.04, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.1);
+          if (navigator.vibrate) navigator.vibrate(10);
+        }
+      } catch (e) {
+        console.warn('Audio playback error', e);
+      }
+    }
+
+
+    /* =========================================================================
+       2. BLEEDING-EDGE TECHNIQUE #2: CANVAS 2D GOLDEN MIST & SMOKE SHADER
+       ========================================================================= */
+    const canvas = document.getElementById('ambient-mist-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    });
+
+    class MistParticle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 100;
+        this.size = Math.random() * 80 + 30;
+        this.speedY = Math.random() * 0.4 + 0.2;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.09 + 0.02;
+        this.hue = Math.random() > 0.3 ? 42 : 155; // Gold or subtle Emerald
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -100) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        const radG = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        if (this.hue === 42) {
+          radG.addColorStop(0, `rgba(201, 169, 110, ${this.alpha})`);
+          radG.addColorStop(0.5, `rgba(229, 169, 60, ${this.alpha * 0.4})`);
+          radG.addColorStop(1, 'rgba(8, 7, 6, 0)');
+        } else {
+          radG.addColorStop(0, `rgba(15, 59, 46, ${this.alpha * 0.6})`);
+          radG.addColorStop(1, 'rgba(8, 7, 6, 0)');
+        }
+        ctx.fillStyle = radG;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(30, Math.floor(width / 40));
+      for (let i = 0; i < count; i++) {
+        const p = new MistParticle();
+        p.y = Math.random() * height;
+        particles.push(p);
+      }
+    }
+    initParticles();
+
+    function animateMist() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateMist);
+    }
+    requestAnimationFrame(animateMist);
+
+
+    /* =========================================================================
+       3. DATA STORE: 6 OUD PERFUMES + 3 GIFT SETS (NORWEGIAN & URDU)
+       ========================================================================= */
+    const catalogData = {
+      ouds: [
+        {
+          id: 'oud-cambodi',
+          family: 'woody',
+          image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80',
+          origin: 'Kambodsja (Koh Kong)',
+          prices: { 3: 450, 6: 850, 12: 1590 },
+          longevity: '24+ timer',
+          intensity: 'Eksepsjonell (5/5)',
+          no: {
+            title: 'Dehn al Oud Cambodi Vintage',
+            tagline: 'Mørk, søtlig treaktig og kongelig agartre',
+            desc: 'Destillert fra 35 år gamle villtrær i Koh Kong. En dyp, balsamisk og animalsk sødme som omslutter bæreren i ekte kongelig verdighet.',
+            top: 'Mørke plommer & Lær',
+            heart: 'Vellagret Cambodi Agartre',
+            base: 'Balsamisk rav & Honning'
+          },
+          ur: {
+            title: 'دھن العود کمبوڈی ونٹیج',
+            tagline: 'شاہی خوشبو، گہرا لکڑی کا اثر',
+            desc: 'کوہ کونگ کے ۳۵ سال پرانے قدرتی درختوں سے کشید شدہ۔ خالص کمبوڈین عود جو وقار اور شاہی احساس بخشتا ہے۔',
+            top: 'خشک میوہ جات اور چمڑا',
+            heart: 'خالص کمبوڈین اگر ووڈ',
+            base: 'شہد اور نایاب عنبر'
+          }
+        },
+        {
+          id: 'oud-taif-hindi',
+          family: 'floral',
+          image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80',
+          origin: 'Taif (Saudi) & Assam (India)',
+          prices: { 3: 490, 6: 920, 12: 1690 },
+          longevity: '18+ timer',
+          intensity: 'Strålende (4.5/5)',
+          no: {
+            title: 'Taif Rose & Hindi Oud Royale',
+            tagline: 'Førsteklasses Taif-rose gift med røkt indisk oud',
+            desc: 'Den perfekte balansen mellom den friske, oppløftende Taif-rosen og den dype, jordlige Assam-agartreoljen.',
+            top: 'Fersk Taif-rose & Kardemomme',
+            heart: 'Røkt Assam Oud & Safran',
+            base: 'Fløyelsmyk Sandeltre'
+          },
+          ur: {
+            title: 'طائف گلاب اور ہندی عود رائل',
+            tagline: 'نایاب طائف گلاب اور خالص آسامی عود کا حسین سنگم',
+            desc: 'تازہ طائف گلاب اور گہرے آسامی عود کا ایک شاہکار امتزاج جو ہر محفل میں آپ کو نمایاں کرے۔',
+            top: 'طائف کا تازہ گلاب اور الائچی',
+            heart: 'آسامی عود اور زعفران',
+            base: 'صندل کی لکڑی'
+          }
+        },
+        {
+          id: 'oud-kalakassi',
+          family: 'smoky',
+          image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80',
+          origin: 'Kalakassi (India)',
+          prices: { 3: 590, 6: 1100, 12: 1990 },
+          longevity: '30+ timer',
+          intensity: 'Majestetisk Dyp (5/5)',
+          no: {
+            title: 'Smoky Kalakassi 80-Year Old',
+            tagline: 'Sjelden og intens røykfylt eliksir',
+            desc: 'Kun få dråper tilgjengelig hvert år. Destillert med tradisjonelle kobberkjeler over åpen flamme.',
+            top: 'Brennende røkelse & Tørket tre',
+            heart: 'Kalakassi kjerneved',
+            base: 'Jordlig lær & Mørk harpiks'
+          },
+          ur: {
+            title: 'سموکی کلکاسی ۸۰ سالہ نایاب عود',
+            tagline: 'خالص دھواں دار پرانی لکڑی کی خوشبو',
+            desc: 'قدیم روایتی تانبے کے دیگوں میں کشید شدہ نایاب ترین عود۔ دیرپا اور بے مثال تاثیر۔',
+            top: 'لوبان اور جلا ہوا صندل',
+            heart: 'خالص کلکاسی عود',
+            base: 'چمڑا اور قدیم گوند'
+          }
+        },
+        {
+          id: 'oud-black-amber',
+          family: 'amber',
+          image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80',
+          origin: 'Oman & Medina',
+          prices: { 3: 390, 6: 720, 12: 1350 },
+          longevity: '20+ timer',
+          intensity: 'Varm & Innbydende (4/5)',
+          no: {
+            title: 'Black Ambergris & Golden Musk',
+            tagline: 'Varm, sensuell rav med orientalsk sødme',
+            desc: 'Naturlig ambra fra Det indiske hav harmonisert med gyllen moskus og Madagaskar-vaniljestang.',
+            top: 'Gyllen safran & Mandarin',
+            heart: 'Ekte Ambra & Hvit Musk',
+            base: 'Mørk Bourbon Rav'
+          },
+          ur: {
+            title: 'بلیک عنبر اور گولڈن مسک',
+            tagline: 'گرم، دلکش اور پُراسرار خوشبو',
+            desc: 'بحر ہند کا قدرتی عنبر اور خالص سفید کستوری کا دلفریب امتزاج۔',
+            top: 'زعفران اور رسیلا سنگترہ',
+            heart: 'قدرتی عنبر اور سفید مسک',
+            base: 'میٹھا بوربن عنبر'
+          }
+        },
+        {
+          id: 'oud-musk-ghazal',
+          family: 'musk',
+          image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80',
+          origin: 'Tibet / Kashmir',
+          prices: { 3: 420, 6: 790, 12: 1450 },
+          longevity: '24+ timer',
+          intensity: 'Fløyelsmyk (4.5/5)',
+          no: {
+            title: 'Musk al-Ghazal Imperial',
+            tagline: 'Autentisk silke-moskus for ro og ettertanke',
+            desc: 'En klassisk favoritt gjennom århundrer. Beroligende, ren og uendelig tiltrekkende.',
+            top: 'Hvit lilje & Pudret rose',
+            heart: 'Kashmir Silke Musk',
+            base: 'Hvitt Sandeltre'
+          },
+          ur: {
+            title: 'مشک الغزال امپیریل',
+            tagline: 'سکون اور روحانیت بخشنے والا کستوری',
+            desc: 'صدیوں سے پسندیدہ پاکیزہ اور دل کو چھو لینے والی خالص مشک۔',
+            top: 'سفید گلاب اور پاؤڈر',
+            heart: 'کشمیر سلک کستوری',
+            base: 'سفید صندل'
+          }
+        },
+        {
+          id: 'oud-santal-imperial',
+          family: 'woody',
+          image: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=800&q=80',
+          origin: 'Mysore (India)',
+          prices: { 3: 380, 6: 690, 12: 1290 },
+          longevity: '16+ timer',
+          intensity: 'Kremet & Elegant (4/5)',
+          no: {
+            title: 'Santal Imperial & Olibanum',
+            tagline: 'Kremet Mysore-sandeltre med hellig røkelse',
+            desc: 'Håndplukket sandeltre modnet i over 20 år for en uovertruffen kremet og silkemyk treopplevelse.',
+            top: 'Kardemommefrø',
+            heart: 'Ren Mysore Sandeltre',
+            base: 'Oman Hellig Røkelse'
+          },
+          ur: {
+            title: 'صندل امپیریل اور لوبان',
+            tagline: 'میسور کے صندل اور مقدس لوبان کا جادو',
+            desc: '۲۰ سال پرانا میسور صندل جو ریشم کی طرح ملائم اور دیرپا ہے۔',
+            top: 'سبز الائچی',
+            heart: 'خالص میسور صندل',
+            base: 'عمانی خالص لوبان'
+          }
+        }
+      ],
+      gifts: [
+        {
+          id: 'gift-medina',
+          tier: 'Silver Medina',
+          price: 1290,
+          image: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80',
+          no: {
+            title: 'Medina Silver Gavesett',
+            items: 'Fløyels-Koran (Sølvtrykk) + 99 Perle Tasbih + Tyrkisk Bønematte + 3ml Taif Rose Oud',
+            desc: 'Et nydelig og gjennomtenkt sett i elegant gaveeske med sølvdekor.'
+          },
+          ur: {
+            title: 'مدینہ سلور تحفہ سیٹ',
+            items: 'مخمل کا قران پاک + ۹۹ دانوں والی تسبیح + ترک جائے نماز + ۳ ملی طائف گلاب عود',
+            desc: 'خوبصورت چاندی کے کام والا باکس، ہر مبارک موقع کے لیے بہترین تحفہ۔'
+          }
+        },
+        {
+          id: 'gift-andalus',
+          tier: 'Gold Al-Andalus',
+          price: 1990,
+          image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80',
+          no: {
+            title: 'Al-Andalus Gold Gavesett',
+            items: 'Gullgipset Luksus-Koran + Håndskåret Oliventre-Tasbih + Silkemyk Bønematte + 6ml Cambodi Oud',
+            desc: 'Inspirert av maurisk kunsthåndverk med forgylt arabesk-mønster og eksklusiv krystallflaske.'
+          },
+          ur: {
+            title: 'الاندلس گولڈ گفٹ سیٹ',
+            items: 'سنہری جلد والا قرآن مجید + زیتون کی لکڑی کی تسبیح + مخملی جائے نماز + ۶ ملی کمبوڈین عود',
+            desc: 'اندلسی فنِ تعمیر اور سنہری ڈیزائن سے آراستہ پریمیم باکس۔'
+          }
+        },
+        {
+          id: 'gift-sultani',
+          tier: 'Royal Sultani Imperial',
+          price: 3490,
+          image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80',
+          no: {
+            title: 'Sultani Royal Imperial Pakke',
+            items: 'Håndinnbundet Stor Koran + Ekte Rav & Sølv Tasbih + Tykk Fløyelsmatte + 12ml Vintage Kalakassi Oud + Forgylt Røkelsesbrenner',
+            desc: 'Det ypperste av luksus. Leveres i massiv tre-kiste med messingbeslag og personlig hilsenkort.'
+          },
+          ur: {
+            title: 'سلطانی رائل امپیریل سیٹ',
+            items: 'بڑا دستکاری قرآن مجید + کہربا اور چاندی کی تسبیح + شاہی جائے نماز + ۱۲ ملی ونٹیج عود + سنہری بخوردان',
+            desc: 'شاہانہ لکڑی کا وزنی باکس، پیتل کے تالے اور مکمل شاہی لوازمات کے ساتھ۔'
+          }
+        }
+      ]
+    };
+
+
+    /* =========================================================================
+       4. APPLICATION STATE & LOCALSTORAGE PERSISTENCE
+       ========================================================================= */
+    const state = {
+      lang: 'no',
+      cart: JSON.parse(localStorage.getItem('aromatix_cart') || '[]'),
+      activeFilter: 'all',
+      isImmersion: false,
+      deliveryMethod: 'pickup',
+      synth: {
+        top: 'Taif Rose 🌹',
+        heart: 'Smoky Amber 🔥',
+        base: 'Cambodi Vintage Oud (85%)',
+        intensity: 85,
+        price: 1490
+      }
+    };
+
+    function saveCart() {
+      localStorage.setItem('aromatix_cart', JSON.stringify(state.cart));
+      renderCartUI();
+    }
+
+
+    /* =========================================================================
+       5. BILINGUAL LANGUAGE ENGINE & RTL SWITCHER
+       ========================================================================= */
+    function setLanguage(lang) {
+      if (document.startViewTransition) {
+        document.startViewTransition(() => applyLanguage(lang));
+      } else {
+        applyLanguage(lang);
+      }
+      playEarcon('tap');
+    }
+
+    function applyLanguage(lang) {
+      state.lang = lang;
+      const htmlEl = document.documentElement;
+      
+      if (lang === 'ur') {
+        htmlEl.setAttribute('dir', 'rtl');
+        htmlEl.setAttribute('lang', 'ur');
+        document.getElementById('lang-ur').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition';
+        document.getElementById('lang-no').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition';
+      } else {
+        htmlEl.setAttribute('dir', 'ltr');
+        htmlEl.setAttribute('lang', 'no');
+        document.getElementById('lang-no').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition';
+        document.getElementById('lang-ur').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition';
+      }
+
+      // Update static UI strings
+      updateStaticText(lang);
+      renderOudsGrid();
+      renderGiftsGrid();
+      renderCartUI();
+    }
+
+    function updateStaticText(l) {
+      const isUr = l === 'ur';
+      document.getElementById('nav-tagline').innerText = isUr ? 'خالص عود اور اسلامی تحائف • اوسلو' : 'Rare Oud & Islamic Gifts • Oslo';
+      document.getElementById('nav-link-ouds').innerText = isUr ? 'عود پرفیوم' : 'Oud Parfymer';
+      document.getElementById('nav-link-gifts').innerText = isUr ? 'اسلامی تحائف' : 'Islamske Gavesett';
+      document.getElementById('nav-link-custom').innerText = isUr ? 'الکیمیا بلینڈر' : 'Al-Kimiya Formulator';
+      document.getElementById('nav-link-matrix').innerText = isUr ? 'خوشبوؤں کا نقشہ' : 'Duftkart';
+      document.getElementById('nav-link-store').innerText = isUr ? 'دکان اوسلو' : 'Butikk Oslo';
+      document.getElementById('nav-cart-btn').innerText = isUr ? 'ٹوکری' : 'Handlekurv';
+      
+      document.getElementById('store-status-text').innerText = isUr ? 'ابھی کھلا ہے: Tøyengata 3, Oslo (گرونلینڈ ٹی بانے کے قریب)' : 'Åpent nå: Tøyengata 3, Oslo (Grønland T-bane)';
+      document.getElementById('curated-time-scent').innerText = isUr ? 'آج شام کا انتخاب: دھن العود کمبوڈی' : 'Kveldens utvalg: Dehn al Oud Cambodi';
+      
+      document.getElementById('hero-kicker').innerText = isUr ? 'Tøyengata 3 • گرونلینڈ، اوسلو' : 'Tøyengata 3 • Grønland, Oslo';
+      document.getElementById('hero-title-1').innerText = isUr ? 'نایاب خالص عود کے تیل اور' : 'Sjeldne Oud-Oliven &';
+      document.getElementById('hero-title-2').innerText = isUr ? 'شاہی اسلامی تحائف' : 'Hellige Gavesett';
+      document.getElementById('hero-desc').innerText = isUr ? 'کمبوڈیا، طائف اور آسام کے دل سے براہِ راست درآمد شدہ۔ اوسلو میں ہماری دکان پر تشریف لائیں۔' : 'Direkte importert fra hjertet av Kambodsja, Taif og India. Opplev autentisk, tradisjonsrik luksus i vår intime boutique i Oslo.';
+      document.getElementById('hero-cta-explore').innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i><span>${isUr ? 'خوشبوئیں دیکھیں' : 'Utforsk Kolleksjonen'}</span>`;
+      document.getElementById('hero-cta-custom').innerHTML = `<i data-lucide="wand-2" class="w-4 h-4"></i><span>${isUr ? 'اپنی خوشبو خود بنائیں' : 'Skap Egen Duft (Al-Kimiya)'}</span>`;
+
+      document.getElementById('badge-1').innerText = isUr ? '۱۰۰٪ خالص قدرتی عود' : '100% Ren Naturlig Oud';
+      document.getElementById('badge-2').innerText = isUr ? 'Tøyengata 3 پر دکان' : 'Boutique i Tøyengata 3';
+      document.getElementById('badge-3').innerText = isUr ? 'Vipps کے ذریعے آسان ادائیگی' : 'Betal Raskt med Vipps';
+      document.getElementById('badge-4').innerText = isUr ? '1000 kr سے زیادہ پر مفت ترسیل' : 'Gratis frakt over 1 000 kr';
+
+      document.getElementById('sec-oud-tag').innerText = isUr ? 'خالص اور بے مثال خوشبو' : 'Ren Konsentrert Luksus';
+      document.getElementById('sec-oud-title').innerText = isUr ? 'عود اور عطر کے شاہکار' : 'Mesterverk av Oud & Attar';
+      document.getElementById('sec-oud-sub').innerText = isUr ? 'بغیر الکحل، سو فیصد خالص تیل جو دیر تک مہکتا رہے۔' : 'Destillert fra vellagret agartre, uten alkohol, 100% konsentrert olje med uovertruffen dybde og sjel.';
+
+      document.getElementById('sec-gift-tag').innerText = isUr ? 'مقدس تحائف اور روایات' : 'Hellige Gaver & Tradisjon';
+      document.getElementById('sec-gift-title').innerText = isUr ? 'پریمیم اسلامی گفٹ سیٹس' : 'Eksklusive Islamske Gavesett';
+      document.getElementById('sec-gift-sub').innerText = isUr ? 'شادی، عید یا حج کے موقع کے لیے خاص طور پر تیار کردہ نایاب گفٹ سیٹس۔' : 'Skreddersydd for bryllup, Eid, Hajj eller en du er glad i. Inneholder fløyelsinnbundet Koran, håndlaget Tasbih, silkemyk bønematte og ekte luksus-oud.';
+
+      document.getElementById('loc-title').innerText = isUr ? 'Tøyengata 3, Oslo میں تشریف لائیں' : 'Besøk Oss i Tøyengata 3, Oslo';
+      document.getElementById('loc-desc').innerText = isUr ? 'ہماری خوبصورت دکان گرونلینڈ میں پاکستانی مارکیٹ کے اندر واقع ہے۔ تشریف لائیں اور مختلف عود خود آزما کر دیکھیں۔' : 'Vår eksklusive duftoase er lokalisert inne i det tradisjonsrike pakistanske markedet i Tøyengata 3, 0190 Oslo, kun et steinkast fra Grønland T-banestasjon. Kom innom for en privat duft-konsultasjon.';
+      
+      lucide.createIcons();
+    }
+
+
+    /* =========================================================================
+       6. RENDERING: PRODUCT CARDS WITH 3D SPATIAL TILT (Technique #3 & #9)
+       ========================================================================= */
+    function renderOudsGrid() {
+      const grid = document.getElementById('ouds-grid');
+      const filtered = state.activeFilter === 'all' 
+        ? catalogData.ouds 
+        : catalogData.ouds.filter(o => o.family === state.activeFilter);
+
+      grid.innerHTML = filtered.map(item => {
+        const langData = item[state.lang];
+        return `
+          <div class="product-container">
+            <div class="tilt-card glass-gold rounded-3xl p-5 sm:p-6 relative group flex flex-col justify-between h-full border border-gold-500/25 overflow-hidden" 
+                 onmousemove="handleTilt(event, this)" 
+                 onmouseleave="resetTilt(this)">
+              
+              <!-- Specular Glare Element -->
+              <div class="specular-glare absolute inset-0"></div>
+
+              <div>
+                <!-- Image Container with size badge -->
+                <div class="relative rounded-2xl overflow-hidden mb-5 aspect-[4/3] border border-gold-500/20 bg-noir-950">
+                  <img src="${item.image}" alt="${langData.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                  <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-noir-900/80 backdrop-blur-md border border-gold-500/30 text-[10px] text-gold-300 font-mono">
+                    📍 ${item.origin}
+                  </div>
+                  <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] text-emerald-300 font-semibold">
+                    100% Ren Olje
+                  </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="space-y-2">
+                  <h3 class="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-gold-300 transition">${langData.title}</h3>
+                  <p class="text-xs text-gold-400/80 font-medium">${langData.tagline}</p>
+                  <p class="text-xs text-stone-300 line-clamp-2 font-light leading-relaxed">${langData.desc}</p>
+                </div>
+
+                <!-- Olfactory Pyramid Preview Pills -->
+                <div class="flex flex-wrap gap-1.5 my-4">
+                  <span class="text-[10px] px-2.5 py-1 rounded-md bg-gold-500/10 text-gold-300 border border-gold-500/20">🔝 ${langData.top}</span>
+                  <span class="text-[10px] px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">🪵 ${langData.heart}</span>
+                </div>
+              </div>
+
+              <!-- Price & Action Row -->
+              <div class="pt-4 border-t border-gold-500/15 flex items-center justify-between mt-2">
+                <div>
+                  <span class="text-[10px] text-stone-400 block">${state.lang === 'no' ? 'Fra (3ml ren olje)' : 'شروع قیمت (۳ ملی)'}</span>
+                  <span class="text-lg font-bold font-serif text-gold-300">${item.prices[3]} kr</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button onclick="openProductModal('${item.id}')" class="px-3.5 py-2 rounded-full border border-gold-500/40 text-gold-300 hover:bg-gold-500/10 text-xs font-semibold transition">
+                    ${state.lang === 'no' ? 'Detaljer' : 'تفصیلات'}
+                  </button>
+                  <button onclick="addToCart('${item.id}', 'oud', 3)" class="px-4 py-2 rounded-full gold-shimmer-btn text-noir-950 text-xs font-bold flex items-center gap-1 shadow-md">
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                    <span>${state.lang === 'no' ? 'Kjøp' : 'خریدیں'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderGiftsGrid() {
+      const grid = document.getElementById('gifts-grid');
+      grid.innerHTML = catalogData.gifts.map(g => {
+        const langData = g[state.lang];
+        return `
+          <div class="tilt-card glass-gold rounded-3xl p-6 relative group flex flex-col justify-between h-full border border-gold-500/30 overflow-hidden"
+               onmousemove="handleTilt(event, this)" 
+               onmouseleave="resetTilt(this)">
+            
+            <div class="specular-glare absolute inset-0"></div>
+
+            <div>
+              <div class="relative rounded-2xl overflow-hidden mb-5 aspect-[4/3] border border-gold-500/20 bg-noir-950">
+                <img src="${g.image}" alt="${langData.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold-500 text-noir-950 font-bold text-[10px] uppercase tracking-wider">
+                  ${g.tier}
+                </div>
+              </div>
+
+              <h3 class="font-serif text-2xl font-bold text-white group-hover:text-gold-300 transition">${langData.title}</h3>
+              <p class="text-xs text-stone-300 mt-2 font-light leading-relaxed">${langData.desc}</p>
+              
+              <div class="p-3 rounded-xl bg-noir-800/80 border border-gold-500/20 my-4 text-xs text-gold-300/90 font-medium">
+                🎁 ${langData.items}
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-gold-500/20 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-stone-400 block">${state.lang === 'no' ? 'Komplett luksussett' : 'مکمل گفٹ سیٹ'}</span>
+                <span class="text-xl font-bold font-serif text-gold-300">${g.price} kr</span>
+              </div>
+              <button onclick="addToCart('${g.id}', 'gift')" class="px-5 py-2.5 rounded-full gold-shimmer-btn text-noir-950 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <span>${state.lang === 'no' ? 'Legg i kurv' : 'ٹوکری میں ڈالیں'}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+
+    /* =========================================================================
+       7. 3D VOLUMETRIC TILT INTERACTION (Technique #3)
+       ========================================================================= */
+    function handleTilt(e, card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+    }
+
+    function resetTilt(card) {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    }
+
+
+    /* =========================================================================
+       8. GENUI SCENT FORMULATOR LOGIC (Technique #1)
+       ========================================================================= */
+    function updateSynthesizer(type, val, emoji) {
+      if (type === 'top') {
+        state.synth.top = `${val} ${emoji}`;
+        document.getElementById('top-selected-name').innerText = val;
+        document.getElementById('synth-disp-top').innerText = `${val} ${emoji}`;
+      } else if (type === 'heart') {
+        state.synth.heart = `${val} ${emoji}`;
+        document.getElementById('heart-selected-name').innerText = val;
+        document.getElementById('synth-disp-heart').innerText = `${val} ${emoji}`;
+      }
+      playEarcon('tap');
+      recalculateSynth();
+    }
+
+    function onOudIntensityChange(val) {
+      state.synth.intensity = parseInt(val);
+      const label = val > 75 ? `Cambodi Aged (${val}%)` : val > 50 ? `Hindi Classic (${val}%)` : `Taif Soft (${val}%)`;
+      state.synth.base = label;
+      document.getElementById('base-selected-name').innerText = label;
+      document.getElementById('synth-disp-base').innerText = label;
+      
+      document.getElementById('synth-longevity').innerText = val > 70 ? '24+ Timer' : '14-18 Timer';
+      document.getElementById('synth-sillage').innerText = val > 75 ? 'Kraftig & Majestetisk' : 'Intim & Elegant';
+      recalculateSynth();
+    }
+
+    function recalculateSynth() {
+      // Dynamic price calculation
+      const basePrice = 1190;
+      const intensityAdd = Math.floor(state.synth.intensity * 3.5);
+      state.synth.price = basePrice + intensityAdd;
+      document.getElementById('synth-price').innerText = `${state.synth.price} kr`;
+    }
+
+    function addSynthesizedToCart() {
+      const customItem = {
+        id: 'bespoke-' + Date.now(),
+        type: 'bespoke',
+        title: `Bespoke Attar (${state.synth.top} / ${state.synth.heart})`,
+        size: '12ml Custom Flaske',
+        price: state.synth.price,
+        quantity: 1,
+        image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80'
+      };
+      state.cart.push(customItem);
+      saveCart();
+      playEarcon('cart');
+      confettiBurst();
+      toggleCartDrawer(true);
+    }
+
+
+    /* =========================================================================
+       9. CART STATE, FREE SHIPPING BAR & CHECKOUT FLOW
+       ========================================================================= */
+    function addToCart(id, type, size = 3) {
+      if (type === 'oud') {
+        const item = catalogData.ouds.find(o => o.id === id);
+        const existing = state.cart.find(c => c.id === `${id}-${size}`);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          state.cart.push({
+            id: `${id}-${size}`,
+            rawId: id,
+            type: 'oud',
+            title: item[state.lang].title,
+            size: `${size}ml`,
+            price: item.prices[size],
+            quantity: 1,
+            image: item.image
+          });
+        }
+      } else if (type === 'gift') {
+        const gift = catalogData.gifts.find(g => g.id === id);
+        const existing = state.cart.find(c => c.id === id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          state.cart.push({
+            id: id,
+            rawId: id,
+            type: 'gift',
+            title: gift[state.lang].title,
+            size: gift.tier,
+            price: gift.price,
+            quantity: 1,
+            image: gift.image
+          });
+        }
+      }
+      saveCart();
+      playEarcon('cart');
+      confettiBurst();
+      toggleCartDrawer(true);
+    }
+
+    function changeQuantity(id, delta) {
+      const item = state.cart.find(c => c.id === id);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        state.cart = state.cart.filter(c => c.id !== id);
+      }
+      saveCart();
+      playEarcon('tap');
+    }
+
+    function renderCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const count = state.cart.reduce((acc, c) => acc + c.quantity, 0);
+      document.getElementById('cart-badge').innerText = count;
+
+      if (state.cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 text-stone-400 space-y-3">
+            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto text-gold-500/40"></i>
+            <p class="text-xs uppercase tracking-wider">${state.lang === 'no' ? 'Handlekurven din er tom' : 'آپ کی ٹوکری خالی ہے'}</p>
+          </div>
+        `;
+        document.getElementById('cart-subtotal-val').innerText = '0 kr';
+        document.getElementById('cart-total-val').innerText = '0 kr';
+        document.getElementById('cart-checkout-btn').disabled = true;
+        document.getElementById('shipping-progress-fill').style.width = '0%';
+        document.getElementById('shipping-progress-percent').innerText = '0%';
+        lucide.createIcons();
+        return;
+      }
+
+      document.getElementById('cart-checkout-btn').disabled = false;
+
+      container.innerHTML = state.cart.map(c => `
+        <div class="p-3 rounded-2xl bg-noir-800/80 border border-gold-500/20 flex items-center justify-between gap-3">
+          <img src="${c.image}" class="w-14 h-14 rounded-xl object-cover border border-gold-500/20">
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-white truncate">${c.title}</h4>
+            <span class="text-[10px] text-gold-400 block">${c.size} • ${c.price} kr</span>
+          </div>
+          <div class="flex items-center gap-2 bg-noir-950 px-2 py-1 rounded-lg border border-gold-500/20">
+            <button onclick="changeQuantity('${c.id}', -1)" class="text-stone-400 hover:text-white text-xs font-bold px-1">−</button>
+            <span class="text-xs font-mono text-gold-300 font-bold">${c.quantity}</span>
+            <button onclick="changeQuantity('${c.id}', 1)" class="text-stone-400 hover:text-white text-xs font-bold px-1">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      // Subtotal & Shipping calculation
+      const subtotal = state.cart.reduce((acc, c) => acc + (c.price * c.quantity), 0);
+      const isFreeShipping = subtotal >= 1000 || state.deliveryMethod === 'pickup';
+      const shippingCost = isFreeShipping ? 0 : 79;
+      const total = subtotal + shippingCost;
+
+      document.getElementById('cart-subtotal-val').innerText = `${subtotal} kr`;
+      document.getElementById('cart-shipping-val').innerText = isFreeShipping ? (state.lang === 'no' ? 'Gratis' : 'مفت') : `${shippingCost} kr`;
+      document.getElementById('cart-total-val').innerText = `${total} kr`;
+
+      // Free shipping progress
+      const percent = Math.min(100, Math.round((subtotal / 1000) * 100));
+      document.getElementById('shipping-progress-fill').style.width = `${percent}%`;
+      document.getElementById('shipping-progress-percent').innerText = `${percent}%`;
+
+      lucide.createIcons();
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (open) {
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        drawer.classList.remove('translate-x-full');
+      } else {
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        drawer.classList.add('translate-x-full');
+      }
+      playEarcon('tap');
+    }
+
+    function openCheckoutModal() {
+      toggleCartDrawer(false);
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      playEarcon('tap');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function updateDeliveryOption(method) {
+      state.deliveryMethod = method;
+      const addrGroup = document.getElementById('address-field-group');
+      if (method === 'shipping') {
+        addrGroup.classList.remove('hidden');
+      } else {
+        addrGroup.classList.add('hidden');
+      }
+      renderCartUI();
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      playEarcon('cart');
+      confettiBurst();
+
+      const orderId = '#AR-OSL-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('succ-order-id').innerText = orderId;
+      document.getElementById('checkout-form-container').classList.add('hidden');
+      document.getElementById('order-success-screen').classList.remove('hidden');
+
+      state.cart = [];
+      saveCart();
+    }
+
+    function resetOrderFlow() {
+      document.getElementById('checkout-form-container').classList.remove('hidden');
+      document.getElementById('order-success-screen').classList.add('hidden');
+      closeCheckoutModal();
+    }
+
+
+    /* =========================================================================
+       10. PRODUCT DETAIL MODAL
+       ========================================================================= */
+    function openProductModal(id) {
+      const item = catalogData.ouds.find(o => o.id === id);
+      if (!item) return;
+
+      const langData = item[state.lang];
+      const body = document.getElementById('modal-dynamic-body');
+      body.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div class="rounded-2xl overflow-hidden border border-gold-500/30">
+            <img src="${item.image}" alt="${langData.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="space-y-4">
+            <span class="text-[10px] uppercase font-mono tracking-widest text-gold-400 block">📍 Opprinnelse: ${item.origin}</span>
+            <h3 class="font-serif text-2xl font-bold text-white">${langData.title}</h3>
+            <p class="text-xs text-stone-300 font-light leading-relaxed">${langData.desc}</p>
+            
+            <div class="space-y-2 p-3 rounded-xl bg-noir-800/80 border border-gold-500/20 text-xs">
+              <div><strong class="text-gold-400">Topp:</strong> ${langData.top}</div>
+              <div><strong class="text-gold-400">Hjerte:</strong> ${langData.heart}</div>
+              <div><strong class="text-gold-400">Base:</strong> ${langData.base}</div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400">
+              <span>Varighet: <strong class="text-gold-300">${item.longevity}</strong></span>
+              <span>Intensitet: <strong class="text-gold-300">${item.intensity}</strong></span>
+            </div>
+
+            <div class="pt-4 border-t border-gold-500/20 flex gap-2">
+              <button onclick="addToCart('${item.id}', 'oud', 3); closeProductModal();" class="flex-1 py-2.5 rounded-full border border-gold-500/40 text-gold-300 text-xs font-bold hover:bg-gold-500/10">
+                3ml (${item.prices[3]} kr)
+              </button>
+              <button onclick="addToCart('${item.id}', 'oud', 12); closeProductModal();" class="flex-1 py-2.5 rounded-full gold-shimmer-btn text-noir-950 text-xs font-bold">
+                12ml (${item.prices[12]} kr)
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('product-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      playEarcon('tap');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('product-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+
+    /* =========================================================================
+       11. FILTERING & AMBIENT IMMERSION (Technique #6 & #10)
+       ========================================================================= */
+    function filterByFamily(fam) {
+      state.activeFilter = fam;
+      document.querySelectorAll('.matrix-node').forEach(node => {
+        node.classList.remove('active', 'bg-gold-500/20', 'border-gold-400');
+        node.classList.add('bg-noir-800/80', 'border-gold-500/20');
+      });
+      event.currentTarget.classList.add('active', 'bg-gold-500/20', 'border-gold-400');
+      playEarcon('tap');
+      renderOudsGrid();
+    }
+
+    function toggleImmersion() {
+      state.isImmersion = !state.isImmersion;
+      document.body.classList.toggle('immersion-mode', state.isImmersion);
+      playEarcon('tap');
+    }
+
+    function confettiBurst() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.8 },
+          colors: ['#C9A96E', '#E5C287', '#FFD700', '#FFFFFF']
+        });
+      }
+    }
+
+
+    /* =========================================================================
+       12. INITIALIZATION ON DOM LOAD
+       ========================================================================= */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderOudsGrid();
+      renderGiftsGrid();
+      renderCartUI();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
