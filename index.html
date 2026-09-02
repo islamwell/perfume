@@ -1,1453 +1,499 @@
-<!DOCTYPE html>
-<html lang="no" dir="ltr" class="scroll-smooth">
+<!doctype html>
+<html lang="nb">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Aromatix Oslo — Eksklusiv Oud & Parfyme</title>
-  <meta name="description" content="Eksklusiv ren oud-parfyme, sjeldne oljer og kongelig attar i Oslo. Besøk vår boutique i Tøyengata 3, Grønland.">
-  <meta name="theme-color" content="#080706">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SVARTFJORD N°1 — Black Oud Extrait · Oslo</title>
+<meta name="theme-color" content="#05070b">
+<meta name="description" content="Black Oud extrait fra Oslo. Nordlys, fossefall, bre og svart oud i én flakong. Fri frakt i Norge.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Canvas Confetti CDN -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Open Graph & Social Meta -->
-  <meta property="og:title" content="Aromatix Oslo — Eksklusiv Oud & Parfyme">
-  <meta property="og:description" content="Sjeldne agartre-oljer og luksuriøs oud ved Grønland T-bane, Oslo.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=80">
+<style>
+@property --wipe{syntax:'<percentage>';inherits:false;initial-value:-10%}
+@property --glow{syntax:'<number>';inherits:true;initial-value:0}
+:root{
+  --void:#05070b;--ink:#0a0e15;--line:#ffffff1f;--ice:oklch(.93 .02 220);--dim:oklch(.72 .015 250);
+  --gold:oklch(.79 .12 78);--gold-bright:oklch(.88 .14 85);--ember:oklch(.6 .17 45);--a1:oklch(.83 .19 155);--a2:oklch(.72 .14 205);--a3:oklch(.6 .18 315);
+  --serif:'Cormorant Garamond',ui-serif,Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;
+  --pad:clamp(1.1rem,5vw,3.5rem);color-scheme:dark;interpolate-size:allow-keywords;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+*,::before,::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--void);color:var(--ice);font:300 clamp(.95rem,.4vw + .85rem,1.05rem)/1.65 var(--sans);overflow-x:clip;letter-spacing:.01em}
+body::after{content:'';position:fixed;inset:0;background:var(--grain);opacity:.04;mix-blend-mode:overlay;pointer-events:none;z-index:99}
+h1,h2,h3{font:300 1em/1.05 var(--serif);text-wrap:balance;letter-spacing:-.015em}
+p{text-wrap:pretty;color:var(--dim)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.eye{font:400 .68rem/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+section{padding:clamp(4.5rem,13vw,9rem) var(--pad);position:relative}
 
-  <!-- Google Fonts: Cormorant Garamond, Cinzel, Plus Jakarta Sans, Noto Nastaliq Urdu -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+/* ── reveals (scroll-driven) ── */
+.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 4% cover 30%}
+@keyframes rise{from{opacity:0;translate:0 2.2rem;filter:blur(8px)}to{opacity:1;translate:0;filter:none}}
+@supports not (animation-timeline:view()){.rv{animation:none}}
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Canvas Confetti CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+/* ── nav ── */
+header{position:sticky;top:0;z-index:40}
+.bar{display:flex;align-items:center;gap:1rem;padding:.9rem var(--pad);transition:.4s;border-bottom:1px solid #0000;background:rgba(5,7,11,0.75);backdrop-filter:blur(16px) saturate(1.4)}
+.brand{font:500 1.02rem/1 var(--sans);letter-spacing:.34em;margin-right:auto}
+.brand b{color:var(--gold);font-weight:500}
+nav a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:none}
+@media (width>=52rem){nav a{display:inline;margin-left:1.6rem}}
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            noir: {
-              950: '#050403',
-              900: '#080706',
-              800: '#120E0A',
-              700: '#1A1410',
-              600: '#261E18',
-            },
-            gold: {
-              300: '#F5E2B8',
-              400: '#E5C287',
-              500: '#C9A96E',
-              600: '#A68449',
-              700: '#7D5F2E',
-            },
-            waterGlow: '#89CFF0',
-            amberGlow: '#E5A93C',
-            emeraldLux: '#0F3B2E',
-            vipps: '#FF5B24',
-          },
-          fontFamily: {
-            serif: ['Cinzel', 'Cormorant Garamond', 'serif'],
-            cormorant: ['Cormorant Garamond', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            urdu: ['Noto Nastaliq Urdu', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
+.audio-btn{background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:var(--ice);font:400 .72rem/1 var(--sans);letter-spacing:.12em;padding:.55rem .95rem;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:.3s}
+.audio-btn:hover{border-color:var(--gold)}
+.audio-btn.on{border-color:var(--gold);color:var(--gold);background:oklch(.79 .12 78/.14)}
 
-  <style>
-    :root {
-      --bg-noir: oklch(0.10 0.015 45);
-      --surface-glass: oklch(0.15 0.02 50 / 0.75);
-      --gold-primary: oklch(0.74 0.13 78);
-      --gold-highlight: oklch(0.85 0.12 85);
-      --water-stream: oklch(0.88 0.08 220 / 0.5);
-    }
+.cartbtn{background:none;border:1px solid var(--line);border-radius:99px;corner-shape:squircle;color:inherit;font:400 .74rem/1 var(--sans);letter-spacing:.14em;padding:.6rem .9rem;text-transform:uppercase;cursor:pointer;transition:.3s}
+.cartbtn:hover{border-color:var(--gold)}
+.cartbtn b{view-transition-name:badge;color:var(--gold)}
 
-    body {
-      background-color: #080706;
-      color: #F5EFE6;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-      selection-background-color: #C9A96E;
-      selection-color: #080706;
-    }
+/* ── hero ── */
+.hero{min-height:100svh;padding-block:6.5rem 3rem;display:grid;align-content:center;justify-items:center;text-align:center;overflow:clip;isolation:isolate}
+.aurora{position:absolute;inset:-15% -25%;z-index:-3;filter:blur(70px) saturate(1.5);opacity:.55}
+.aurora i{position:absolute;inset:0;background:radial-gradient(45% 32% at 30% 38%,var(--a1),#0000 70%),radial-gradient(38% 26% at 68% 30%,var(--a2),#0000 70%),radial-gradient(30% 22% at 50% 55%,var(--a3),#0000 70%);animation:drift 26s ease-in-out infinite alternate}
+.aurora i:nth-child(2){animation-duration:38s;animation-direction:alternate-reverse;opacity:.7;scale:-1 1}
+.aurora i:nth-child(3){animation-duration:19s;opacity:.5;filter:hue-rotate(40deg)}
+@keyframes drift{to{translate:6% -4%;scale:1.25 .85;filter:hue-rotate(35deg)}}
+.stars{position:absolute;inset:0;z-index:-4;background:radial-gradient(1px 1px at 20% 18%,#fff9,#0000),radial-gradient(1px 1px at 74% 12%,#fff7,#0000),radial-gradient(1.4px 1.4px at 46% 26%,#fffc,#0000),radial-gradient(1px 1px at 88% 34%,#fff6,#0000),radial-gradient(1px 1px at 8% 44%,#fff5,#0000);animation:twinkle 6s ease-in-out infinite alternate}
+@keyframes twinkle{to{opacity:.45}}
+.fjord{position:absolute;bottom:-2px;left:-8%;width:116%;z-index:-2;animation:pan linear both;animation-timeline:scroll(root);animation-range:0 110svh}
+@keyframes pan{to{translate:0 14%;scale:1.12}}
 
-    [dir="rtl"] {
-      font-family: 'Noto Nastaliq Urdu', 'Plus Jakarta Sans', serif;
-    }
-    [dir="rtl"] .font-serif {
-      font-family: 'Noto Nastaliq Urdu', serif !important;
-    }
+/* Realistic Waterfall & Smoke Canvas */
+#waterfall-canvas{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.65}
+#smoke{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen}
 
-    .glass-gold {
-      background: var(--surface-glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201, 169, 110, 0.22);
-      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 235, 190, 0.1);
-    }
+.flacon{width:min(46vw,220px);margin-block:1.2rem 0;animation:dive linear both;animation-timeline:scroll(root);animation-range:0 92svh;filter:drop-shadow(0 30px 60px #000c);z-index:3}
+@keyframes dive{to{scale:.86;rotate:-3deg;opacity:.55}}
+.flacon svg{width:100%;height:auto;animation:hover 9s ease-in-out infinite;--glow:0}
+@keyframes hover{50%{translate:0 -12px}}
+.hero h1{font-size:clamp(2.9rem,13.5vw,7.2rem);line-height:.92;z-index:3}
+.hero h1 em{font-style:italic;color:var(--gold);display:block}
+.hero p{max-width:34ch;margin:1.1rem auto 0;z-index:3}
+.hold{margin-top:1.9rem;background:#ffffff08;border:1px solid var(--line);color:var(--ice);border-radius:99px;corner-shape:squircle;padding:.95rem 1.5rem;font:400 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;touch-action:none;cursor:grab;transition:.35s;backdrop-filter:blur(6px);z-index:4}
+.hold::before{content:'✳ ';color:var(--gold)}
+html.open .hold{background:oklch(.6 .17 45/.25);border-color:var(--gold);box-shadow:0 0 40px -6px var(--ember)}
+html.open .flacon svg{--glow:1}
+.plume{position:absolute;inset-block:18% auto;z-index:5;pointer-events:none;font:italic 300 1.15rem var(--serif);color:var(--gold);width:100%}
+.plume span{position:absolute;left:50%;white-space:nowrap;text-shadow:0 0 18px #000}
+.scroll{margin-top:2.4rem;font-size:.62rem;letter-spacing:.3em;color:var(--dim);animation:blink 2.6s infinite;z-index:3}
+@keyframes blink{50%{opacity:.3;translate:0 6px}}
 
-    .glass-gold:hover {
-      border-color: rgba(201, 169, 110, 0.5);
-      box-shadow: 0 16px 50px -8px rgba(201, 169, 110, 0.18), inset 0 1px 2px rgba(255, 235, 190, 0.2);
-    }
+/* ── pyramid ── */
+.pyr{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding:2rem var(--pad);scroll-padding-left:var(--pad)}
+.pyr::-webkit-scrollbar{display:none}
+.note{flex:0 0 min(78vw,22rem);scroll-snap-align:start;border:1px solid var(--line);border-radius:1.4rem;corner-shape:squircle;padding:1.6rem;position:relative;overflow:hidden;background:linear-gradient(160deg,#ffffff09,#0000);cursor:pointer;transition:border-color .5s}
+.note::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 110%,var(--c),#0000 72%);opacity:.16;transition:.9s cubic-bezier(.2,.8,.2,1)}
+.note:is(:hover,.on){border-color:color-mix(in oklch,var(--c),#fff 20%)}
+.note.on::before{opacity:.55;scale:1.9;filter:blur(14px)}
+.note h3{font-size:1.9rem;margin:.5rem 0 .4rem}
+.note ul{list-style:none;padding:0;margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.note li{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.32rem .7rem;color:var(--ice)}
+.note b{position:absolute;top:1.3rem;right:1.5rem;font:300 2.6rem var(--serif);color:var(--c);opacity:.5}
 
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #FFF0D0 0%, #C9A96E 40%, #E5C287 70%, #9B783E 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* ── morph ── */
+.art{position:relative;aspect-ratio:4/5;border-radius:1.4rem;overflow:hidden;border:1px solid var(--line);animation:wipe linear both;animation-timeline:view();animation-range:entry 20% cover 78%}
+@keyframes wipe{to{--wipe:118%}}
+@supports not (animation-timeline:view()){.art{--wipe:55%}}
+.art>div{position:absolute;inset:0}
+.ice{background:linear-gradient(#0a1a26,#04080d 60%),repeating-linear-gradient(102deg,#9fd8ec24 0 2px,#0000 2px 16px),radial-gradient(70% 40% at 30% 12%,var(--a2),#0000 70%);background-blend-mode:screen,overlay,screen}
+.oud{background:radial-gradient(80% 60% at 70% 80%,oklch(.55 .17 42/.9),#0000 70%),radial-gradient(50% 40% at 25% 30%,oklch(.4 .13 25/.85),#0000 70%),repeating-conic-gradient(from 20deg at 60% 70%,#00000000 0 4deg,#e8ba6e14 4deg 8deg),#080506;
+  mask:linear-gradient(112deg,#000 0 var(--wipe),#0000 calc(var(--wipe) + 24%))}
+.seam{background:linear-gradient(112deg,#0000 0 calc(var(--wipe) - 1.2%),var(--gold) var(--wipe),#0000 calc(var(--wipe) + 1.2%));mix-blend-mode:screen;filter:blur(3px) brightness(1.6);opacity:.9}
+.art .cap{position:absolute;inset:auto 1.2rem 1.2rem;font:italic 300 1.35rem var(--serif);text-align:center;color:#fff;text-shadow:0 2px 20px #000}
 
-    .gold-shimmer-btn {
-      background: linear-gradient(90deg, #9B783E, #C9A96E, #F5E2B8, #C9A96E, #9B783E);
-      background-size: 200% auto;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .gold-shimmer-btn:hover {
-      background-position: right center;
-      box-shadow: 0 0 25px rgba(201, 169, 110, 0.45);
-      transform: translateY(-2px);
-    }
+/* ── ticker ── */
+.ticker{border-block:1px solid var(--line);padding:1.1rem 0;overflow:hidden;display:flex;gap:2rem;mask:linear-gradient(90deg,#0000,#000 12%,#000 88%,#0000)}
+.ticker div{display:flex;gap:2rem;flex:0 0 auto;animation:slide 34s linear infinite;font:300 1.6rem var(--serif);white-space:nowrap;color:#ffffff5c}
+.ticker i{color:var(--gold);font-style:normal}
+@keyframes slide{to{translate:-100% 0}}
 
-    .tilt-card {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
-    }
+/* ── buy ── */
+.buy{display:grid;gap:2.2rem;max-width:70rem;margin-inline:auto}
+@media (width>=56rem){.buy{grid-template-columns:1fr 1fr;align-items:center;gap:4rem}}
+.stage{position:relative;display:grid;place-items:center;border-radius:1.6rem;overflow:hidden;padding:3rem 1rem;background:radial-gradient(60% 50% at 50% 30%,#12222b,#05070b 72%);border:1px solid var(--line)}
+.stage svg{width:min(52vw,240px);filter:drop-shadow(0 26px 40px #000e)}
+.price{font:300 2.1rem var(--serif);color:var(--ice);view-transition-name:price}
+.sizes{display:flex;gap:.5rem;flex-wrap:wrap}
+.sizes label{border:1px solid var(--line);border-radius:99px;corner-shape:squircle;padding:.6rem 1.05rem;font-size:.8rem;cursor:pointer;transition:.3s;letter-spacing:.06em}
+.sizes input{position:absolute;opacity:0;pointer-events:none}
+.sizes label:has(:checked){border-color:var(--gold);background:oklch(.79 .12 78/.12);color:#fff}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:99px;corner-shape:squircle;width:max-content}
+.qty button{background:none;border:0;color:inherit;font-size:1.1rem;width:2.8rem;height:2.8rem;cursor:pointer}
+.cta{width:100%;background:linear-gradient(100deg,var(--gold),oklch(.62 .16 42));color:#100c06;border:0;border-radius:99px;corner-shape:squircle;padding:1.15rem;font:600 .8rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:.3s;box-shadow:0 14px 44px -14px var(--ember)}
+.cta:active{scale:.98}
+details{border-top:1px solid var(--line)}
+summary{padding:1.05rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-size:.85rem;letter-spacing:.08em}
+summary::after{content:'+';color:var(--gold);transition:.4s}
+details[open] summary::after{rotate:135deg}
+details::details-content{block-size:0;overflow:clip;opacity:0;transition:block-size .5s cubic-bezier(.2,.8,.2,1),opacity .5s,content-visibility .5s allow-discrete}
+details[open]::details-content{block-size:auto;opacity:1}
+details p{padding-bottom:1.1rem;font-size:.9rem}
+.meta{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 
-    .specular-glare {
-      pointer-events: none;
-      background: radial-gradient(circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 240, 200, 0.18), transparent 70%);
-      border-radius: inherit;
-    }
+/* ── stats ── */
+.stats{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));text-align:center;border-block:1px solid var(--line);padding-block:3rem}
+.stats b{display:block;font:300 clamp(2.6rem,9vw,4.2rem) var(--serif);color:var(--gold);line-height:1}
+.stats span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
 
-    /* Waterfall Canvas Overlay */
-    #waterfall-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.55;
-    }
-  </style>
+/* ── buybar + sheet ── */
+.buybar{position:fixed;inset:auto 0 0;z-index:30;display:flex;gap:.75rem;align-items:center;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));background:#05070be6;backdrop-filter:blur(18px);border-top:1px solid var(--line);animation:barIn linear both;animation-timeline:scroll(root);animation-range:75svh 105svh}
+@keyframes barIn{from{translate:0 130%}to{translate:0 0}}
+@supports not (animation-timeline:scroll(root)){.buybar{translate:0 0}}
+.buybar .cta{padding:.95rem 1.4rem;width:auto;flex:1}
+.buybar small{font:300 .78rem var(--sans);color:var(--dim);line-height:1.3}
+@media (width>=56rem){.buybar{display:none}}
+.sheet{width:min(30rem,100%);margin:auto auto 0;border:1px solid var(--line);border-radius:1.5rem 1.5rem 0 0;background:linear-gradient(#0d1219,#05070b);color:var(--ice);padding:1.6rem var(--pad) calc(1.6rem + env(safe-area-inset-bottom));inset:auto 0 0;transition:translate .5s cubic-bezier(.2,.9,.2,1),opacity .4s,overlay .5s allow-discrete,display .5s allow-discrete}
+.sheet:not(:popover-open){translate:0 100%;opacity:0}
+@starting-style{.sheet:popover-open{translate:0 100%;opacity:0}}
+.sheet::backdrop{background:#02040866;backdrop-filter:blur(8px)}
+.row{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.row em{font-style:normal;color:var(--dim);font-size:.78rem;display:block}
+.x{background:none;border:0;color:var(--dim);cursor:pointer;font-size:.72rem;letter-spacing:.1em}
+
+/* Checkout Form Modal */
+.checkout-modal{width:min(32rem,95vw);border:1px solid var(--line);border-radius:1.5rem;background:#090d14;color:var(--ice);padding:2rem var(--pad);margin:auto;box-shadow:0 30px 80px rgba(0,0,0,0.8);backdrop-filter:blur(24px)}
+.checkout-modal::backdrop{background:rgba(2,4,8,0.7);backdrop-filter:blur(10px)}
+.checkout-modal input{width:100%;padding:.85rem 1rem;background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:#fff;font:300 .85rem var(--sans);margin-top:.4rem;margin-bottom:1rem;outline:none}
+.checkout-modal input:focus{border-color:var(--gold)}
+
+footer{padding:3.5rem var(--pad) 7rem;border-top:1px solid var(--line);display:grid;gap:1.4rem;font-size:.82rem;color:var(--dim)}
+footer input{background:#ffffff08;border:1px solid var(--line);border-radius:99px;padding:.9rem 1.2rem;color:#fff;width:100%;font:300 .9rem var(--sans);field-sizing:content}
+::view-transition-old(price),::view-transition-new(price){animation-duration:.45s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.art{--wipe:55%}}
+</style>
 </head>
+<body>
+<header><div class="bar">
+  <a class="brand" href="#top">SVART<b>FJORD</b></a>
+  <nav><a href="#duft">Duften</a><a href="#natur">Naturen</a><a href="#kjop">Kjøp</a></nav>
+  <button class="audio-btn" id="audioToggle" aria-label="Aktiver fuglesang lydbilde">
+    <span id="audioIcon">🕊️</span> <span id="audioText">Fuglesang: Av</span>
+  </button>
+  <button class="cartbtn" popovertarget="cart">Kurv <b id="badge">0</b></button>
+</div></header>
 
-<body class="text-[#F5EFE6] antialiased selection:bg-[#C9A96E] selection:text-black">
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <canvas id="waterfall-canvas" aria-hidden="true"></canvas>
+  <svg class="fjord" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 300V150l120-58 96 44 118-96 132 118 96-64 128 96 108-72 132 90 170-58v250z" fill="#070c12"/>
+    <path d="M0 300V196l150-72 130 84 140-52 150 76 130-44 170 66 140-40 190 52v34z" fill="#04070b"/>
+    <path d="M0 300v-52l180 26 220-18 240 30 260-22 300 24v12z" fill="#020407"/>
+  </svg>
+  <p class="eye">Oslo · Extrait de Parfum · 24 %</p>
+  <h1>Nordlyset,<em>tappet i svart.</em></h1>
+  <p>Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.</p>
+  <div class="flacon" id="flacon"></div>
+  <div class="plume" id="plume" aria-hidden="true"></div>
+  <button class="hold" id="hold">Trykk og hold — åpne flakongen</button>
+  <p class="scroll">RULL NED</p>
+  <canvas id="smoke" aria-hidden="true"></canvas>
+</section>
 
-  <!-- REALISTIC WATERFALL CANVAS ANIMATION -->
-  <canvas id="waterfall-canvas"></canvas>
+<!-- PYRAMID -->
+<section id="duft">
+  <p class="eye rv">Duftpyramiden</p>
+  <h2 class="rv" style="font-size:clamp(2rem,8vw,3.6rem);margin-top:.6rem">Tre lag. Én natt.</h2>
+  <div class="pyr">
+    <article class="note rv" style="--c:var(--a1)" tabindex="0"><b>01</b><p class="eye">Topp</p><h3>Frostluft</h3><p>Knust einer, blodappelsin og kald pepper — som å puste inn ved vannkanten.</p><ul><li>Einer</li><li>Blodappelsin</li><li>Rosa pepper</li><li>Havsalt</li></ul></article>
+    <article class="note rv" style="--c:var(--a3)" tabindex="0"><b>02</b><p class="eye">Hjerte</p><h3>Bålets rose</h3><p>Damaskrose brent i safran og bjørketjære. Mørkt, harpiksaktig, levende.</p><ul><li>Damaskrose</li><li>Safran</li><li>Bjørketjære</li><li>Røkelse</li></ul></article>
+    <article class="note rv" style="--c:var(--ember)" tabindex="0"><b>03</b><p class="eye">Base</p><h3>Svart oud</h3><p>12 år modnet oud, isbremoskus, furuharpiks og ambra. Blir på huden i 14 timer.</p><ul><li>Black oud</li><li>Isbremoskus</li><li>Furuharpiks</li><li>Ambra</li></ul></article>
+  </div>
+</section>
 
-  <!-- Top Announcement & Serene Audio Bar -->
-  <header class="relative z-40 border-b border-gold-500/20 bg-noir-950/80 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between text-xs text-gold-400/90 font-medium">
-      <div class="flex items-center gap-2">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span id="store-status-text">Åpent nå: Tøyengata 3, Oslo (Grønland T-bane)</span>
-      </div>
+<!-- MORPH -->
+<section id="natur" style="display:grid;gap:2.5rem;max-width:70rem;margin-inline:auto">
+  <div class="art"><div class="ice"></div><div class="oud"></div><div class="seam"></div><p class="cap">fra bre til bål</p></div>
+  <div class="rv">
+    <p class="eye">Naturen × Ouden</p>
+    <h2 style="font-size:clamp(1.9rem,7vw,3.2rem);margin:.7rem 0 1rem">Vi destillerte Norge, og lot ouden brenne den.</h2>
+    <p>Einer fra Hardangervidda. Furuharpiks fra Nordmarka. Bjørketjære brent på gammel måte. Vi lot dem hvile 90 dager i svart oud fra Pursat — til isen luktet av glør. Blandet, tappet og forseglet i Oslo, 300 flakonger av gangen.</p>
+  </div>
+</section>
+<div class="ticker" aria-hidden="true"><div id="tick"></div><div></div></div>
 
-      <div class="flex items-center gap-4">
-        <!-- Birds Chirping Audio Toggle -->
-        <button id="sound-toggle-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 hover:text-gold-300 transition px-3 py-1 rounded-full border border-gold-500/30 bg-noir-800/80" title="Aktiver naturlig fuglesang">
-          <i data-lucide="feather" class="w-3.5 h-3.5 text-gold-400" id="sound-icon"></i>
-          <span id="sound-label">Fuglekvitter: Av</span>
-        </button>
-
-        <!-- Language Switcher -->
-        <div class="flex items-center gap-1 bg-noir-800 p-0.5 rounded-full border border-gold-500/30">
-          <button id="lang-no" onclick="setLanguage('no')" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition">🇳🇴 NO</button>
-          <button id="lang-ur" onclick="setLanguage('ur')" class="px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition">🇵🇰 اردو</button>
-        </div>
-      </div>
+<!-- BUY -->
+<section id="kjop"><div class="buy">
+  <div class="stage rv" id="stage"></div>
+  <div class="rv">
+    <p class="eye">N°1 — Serie 300</p>
+    <h2 style="font-size:clamp(2rem,7vw,3rem);margin:.6rem 0 .8rem">Black Oud Extrait</h2>
+    <p>Ekstrait med 24 % parfymeolje. Unisex. Sillage: tung. Bygget for norske vintre og lange kvelder.</p>
+    <p class="price" id="price" style="margin:1.4rem 0 .9rem">2 190 kr</p>
+    <div class="sizes" id="sizes">
+      <label><input type="radio" name="s" value="30">30 ml</label>
+      <label><input type="radio" name="s" value="50" checked>50 ml</label>
+      <label><input type="radio" name="s" value="100">100 ml</label>
     </div>
-  </header>
-
-  <!-- Sticky Luxury Navigation -->
-  <nav class="sticky top-0 z-30 bg-noir-900/85 backdrop-blur-xl border-b border-gold-500/15 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-full border border-gold-400/40 flex items-center justify-center bg-gradient-to-br from-gold-500/20 to-noir-800 shadow-[0_0_15px_rgba(201,169,110,0.2)] group-hover:scale-105 transition">
-          <span class="font-serif font-black text-xl text-gold-400">A</span>
-        </div>
-        <div>
-          <span class="font-serif text-2xl font-bold tracking-[0.2em] gold-gradient-text block uppercase">Aromatix</span>
-          <span class="text-[10px] tracking-[0.3em] uppercase text-gold-400/70 block -mt-1" id="nav-tagline">Exclusive Oud & Rare Perfumes • Oslo</span>
-        </div>
-      </a>
-
-      <!-- Navigation Links Focused on Perfumes -->
-      <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider text-[#E2D5C3]">
-        <a href="#collection" class="hover:text-gold-400 transition" id="nav-link-ouds">Oud Kolleksjon</a>
-        <a href="#alkimiya" class="hover:text-gold-400 transition flex items-center gap-1.5 text-gold-400">
-          <i data-lucide="flask-conical" class="w-4 h-4"></i>
-          <span id="nav-link-custom">Duft-Formulering</span>
-        </a>
-        <a href="#matrix" class="hover:text-gold-400 transition" id="nav-link-matrix">Duftfamilier</a>
-        <a href="#location" class="hover:text-gold-400 transition" id="nav-link-store">Boutique Oslo</a>
-      </div>
-
-      <!-- Cart Drawer Button -->
-      <button onclick="toggleCartDrawer(true)" class="relative p-2.5 px-4 rounded-full border border-gold-500/40 bg-gradient-to-r from-gold-500/10 to-transparent hover:border-gold-400 transition flex items-center gap-2 text-gold-300">
-        <i data-lucide="shopping-bag" class="w-4 h-4 text-gold-400"></i>
-        <span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline" id="nav-cart-btn">Handlekurv</span>
-        <span id="cart-badge" class="w-5 h-5 rounded-full bg-gold-500 text-noir-950 text-xs font-bold flex items-center justify-center">0</span>
-      </button>
+    <div style="display:flex;gap:.75rem;align-items:center;margin:1.2rem 0 1.4rem;flex-wrap:wrap">
+      <div class="qty"><button data-q="-1" aria-label="Færre">−</button><span id="q">1</span><button data-q="1" aria-label="Flere">+</button></div>
+      <button class="cta" id="add" style="flex:1;min-width:14rem">Legg i kurv</button>
     </div>
-  </nav>
-
-  <main class="relative z-10">
-
-    <!-- HERO SECTION -->
-    <section class="relative min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 text-center overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-gradient-to-tr from-waterGlow/10 via-gold-500/10 to-amberGlow/15 blur-[140px] rounded-full pointer-events-none"></div>
-
-      <div class="max-w-4xl mx-auto relative z-10">
-        <span class="inline-block uppercase tracking-[0.35em] text-xs sm:text-sm font-semibold text-gold-400/90 mb-4 px-4 py-1.5 rounded-full border border-gold-500/30 bg-noir-900/60 backdrop-blur-md" id="hero-kicker">
-          Tøyengata 3 • Grønland, Oslo
-        </span>
-
-        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-          <span class="gold-gradient-text block" id="hero-title-1">Sjeldne Oud-Parfymer</span>
-          <span class="text-white block mt-1" id="hero-title-2">& Kongelige Oljer</span>
-        </h1>
-
-        <p class="text-base sm:text-lg md:text-xl text-[#C5B8A8] max-w-2xl mx-auto mb-10 leading-relaxed font-light" id="hero-desc">
-          100% konsentrerte, alkoholfrie parfymer og vellagret agartre direkte fra Kambodsja, Taif og India. Opplev autentisk duftluksus i vår boutique i Oslo.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#collection" class="w-full sm:w-auto px-8 py-4 rounded-full text-noir-950 font-bold uppercase tracking-wider text-xs gold-shimmer-btn flex items-center justify-center gap-2 shadow-lg" id="hero-cta-explore">
-            <i data-lucide="sparkles" class="w-4 h-4"></i>
-            <span>Utforsk Parfymene</span>
-          </a>
-          <a href="#alkimiya" class="w-full sm:w-auto px-8 py-4 rounded-full text-gold-300 font-semibold uppercase tracking-wider text-xs border border-gold-500/40 hover:bg-gold-500/10 backdrop-blur-sm transition flex items-center justify-center gap-2" id="hero-cta-custom">
-            <i data-lucide="flask-conical" class="w-4 h-4"></i>
-            <span>Skap Egen Duftformel</span>
-          </a>
-        </div>
-
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-left border-t border-gold-500/20 pt-8 text-xs text-gold-300/80">
-          <div class="flex items-center gap-2.5">
-            <i data-lucide="droplet" class="w-5 h-5 text-gold-400 shrink-0"></i>
-            <span id="badge-1">100% Ren Konsentrert Olje</span>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400 shrink-0"></i>
-            <span id="badge-2">Boutique i Tøyengata 3</span>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <i data-lucide="zap" class="w-5 h-5 text-vipps shrink-0"></i>
-            <span id="badge-3">Betal Raskt med Vipps</span>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <i data-lucide="truck" class="w-5 h-5 text-gold-400 shrink-0"></i>
-            <span id="badge-4">Gratis frakt over 1 000 kr</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- PURE PERFUMES COLLECTION (The Core Hero Feature) -->
-    <section id="collection" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-gold-500/20 pb-6">
-        <div>
-          <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold" id="sec-oud-tag">Eksklusive Parfymer & Attar</span>
-          <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1" id="sec-oud-title">Mesterverk av Ren Oud</h2>
-        </div>
-        <p class="text-sm text-[#B8A99A] max-w-md mt-4 md:mt-0" id="sec-oud-sub">
-          Ren olje, uten alkohol. Hver dråpe utvikler seg dynamisk på huden gjennom hele døgnet.
-        </p>
-      </div>
-
-      <!-- Oud Perfumes Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ouds-grid"></div>
-    </section>
-
-
-    <!-- INTERACTIVE SCENT FAMILY WHEEL -->
-    <section id="matrix" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="glass-gold rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-bold block mb-2" id="matrix-tag">Interaktivt Duftkart</span>
-          <h2 class="font-serif text-3xl sm:text-4xl font-bold gold-gradient-text" id="matrix-title">Velg Duftkarakter</h2>
-          <p class="text-xs sm:text-sm text-stone-300 mt-2" id="matrix-sub">
-            Filtrer parfymer etter dine personlige noter og stemninger.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-          <button onclick="filterByFamily('all')" class="matrix-node active p-4 rounded-2xl bg-gold-500/20 border border-gold-400 text-gold-300 transition hover:scale-105">
-            <span class="text-2xl block mb-1">👑</span>
-            <span class="text-xs font-bold block" id="fam-all">Alle Parfymer</span>
-            <span class="text-[10px] text-stone-400">Hele Kolleksjonen</span>
-          </button>
-          <button onclick="filterByFamily('woody')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
-            <span class="text-2xl block mb-1">🪵</span>
-            <span class="text-xs font-bold block" id="fam-woody">Tre & Agartre</span>
-            <span class="text-[10px] text-stone-400">Cambodi & Mysore</span>
-          </button>
-          <button onclick="filterByFamily('floral')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
-            <span class="text-2xl block mb-1">🌹</span>
-            <span class="text-xs font-bold block" id="fam-floral">Taif Rose</span>
-            <span class="text-[10px] text-stone-400">Friske Blomster</span>
-          </button>
-          <button onclick="filterByFamily('smoky')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
-            <span class="text-2xl block mb-1">💨</span>
-            <span class="text-xs font-bold block" id="fam-smoky">Røkt & Mørk</span>
-            <span class="text-[10px] text-stone-400">Kalakassi Røkelse</span>
-          </button>
-          <button onclick="filterByFamily('amber')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
-            <span class="text-2xl block mb-1">✨</span>
-            <span class="text-xs font-bold block" id="fam-amber">Varm Rav/Amber</span>
-            <span class="text-[10px] text-stone-400">Søt & Gylden</span>
-          </button>
-          <button onclick="filterByFamily('musk')" class="matrix-node p-4 rounded-2xl bg-noir-800/80 border border-gold-500/20 text-stone-300 transition hover:scale-105 hover:border-gold-400">
-            <span class="text-2xl block mb-1">🦌</span>
-            <span class="text-xs font-bold block" id="fam-musk">Silke Moskus</span>
-            <span class="text-[10px] text-stone-400">Pudret & Ren</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- SCENT FORMULATOR (Al-Kimiya Pure Perfume Blending) -->
-    <section id="alkimiya" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-bold block mb-2" id="alkimiya-tag">Skreddersydd Parfyme</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-bold gold-gradient-text" id="alkimiya-title">Al-Kimiya Duft-Formulering</h2>
-        <p class="text-sm sm:text-base text-[#B8A99A] mt-3" id="alkimiya-subtitle">
-          Velg din personlige kombinasjon av rene essensielle oljer for en unik 12ml krystallflaske.
-        </p>
-      </div>
-
-      <div class="glass-gold rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
-              <span id="form-top-label">1. Toppnote (Førsteinntrykk)</span>
-              <span id="top-selected-name" class="text-white font-mono">Taif Rose</span>
-            </label>
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="updateSynthesizer('top', 'Taif Rose', '🌹')" class="syn-btn active px-3 py-2 rounded-xl text-xs border border-gold-500 bg-gold-500/20 text-gold-300 font-medium transition">Taif Rose 🌹</button>
-              <button onclick="updateSynthesizer('top', 'Bergamot & Kardemomme', '🌿')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Kardemomme 🌿</button>
-              <button onclick="updateSynthesizer('top', 'Gyllen Safran', '✨')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Safran ✨</button>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
-              <span id="form-heart-label">2. Hjertenote (Kroppen)</span>
-              <span id="heart-selected-name" class="text-white font-mono">Smoky Amber</span>
-            </label>
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="updateSynthesizer('heart', 'Smoky Amber', '🔥')" class="syn-btn active px-3 py-2 rounded-xl text-xs border border-gold-500 bg-gold-500/20 text-gold-300 font-medium transition">Røkt Rav 🔥</button>
-              <button onclick="updateSynthesizer('heart', 'Mysore Sandeltre', '🪵')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Sandeltre 🪵</button>
-              <button onclick="updateSynthesizer('heart', 'Kongelig Røkelse', '💨')" class="syn-btn px-3 py-2 rounded-xl text-xs border border-gold-500/20 hover:border-gold-400/60 bg-noir-800 text-stone-300 transition">Olibanum 💨</button>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-bold mb-2 flex justify-between">
-              <span id="form-base-label">3. Oud-Base & Konsentrasjon</span>
-              <span id="base-selected-name" class="text-white font-mono">Cambodi Vintage (85%)</span>
-            </label>
-            <input type="range" min="30" max="100" value="85" id="oud-intensity-slider" oninput="onOudIntensityChange(this.value)" class="w-full accent-gold-500 cursor-pointer h-2 bg-noir-950 rounded-lg">
-            <div class="flex justify-between text-[11px] text-stone-400 mt-1">
-              <span>Myk & Balansert (30%)</span>
-              <span>Klassisk (65%)</span>
-              <span>Ren Mørk Oud (100%)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 bg-gradient-to-b from-noir-950/90 to-noir-900 border border-gold-500/40 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
-          <div class="text-center mb-4">
-            <span class="text-xs text-gold-400 tracking-[0.2em] uppercase block font-semibold" id="synth-code">Bespoke Parfyme #OSL-902</span>
-            <h3 class="font-serif text-2xl font-bold text-white mt-1" id="synth-title">"Kongelig Taif & Cambodi"</h3>
-          </div>
-
-          <div class="space-y-2 my-6">
-            <div class="p-2.5 rounded-lg bg-gold-500/15 border border-gold-500/30 flex items-center justify-between text-xs">
-              <span class="text-gold-400 font-semibold">TOPP:</span>
-              <span id="synth-disp-top" class="text-stone-200">Taif Rose 🌹</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-between text-xs">
-              <span class="text-gold-400 font-semibold">HJERTE:</span>
-              <span id="synth-disp-heart" class="text-stone-200">Smoky Amber 🔥</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/30 flex items-center justify-between text-xs">
-              <span class="text-gold-400 font-semibold">BASE:</span>
-              <span id="synth-disp-base" class="text-stone-200 font-bold">Cambodi Vintage (85%)</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-4 border-t border-gold-500/20">
-            <div>
-              <span class="text-[10px] uppercase text-stone-400 block">12ml Krystallflaske</span>
-              <span class="text-xl font-bold font-serif text-gold-300" id="synth-price">1 490 kr</span>
-            </div>
-            <button onclick="addSynthesizedToCart()" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-noir-950 flex items-center gap-1.5">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i>
-              <span id="synth-add-btn">Bestill Formelen</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- OSLO BOUTIQUE & LOCATION -->
-    <section id="location" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="glass-gold rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-6 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-            <span>Oslo Boutique • Grønland</span>
-          </div>
-
-          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white" id="loc-title">
-            Besøk Oss i Tøyengata 3, Oslo
-          </h2>
-
-          <p class="text-sm sm:text-base text-[#C5B8A8] leading-relaxed" id="loc-desc">
-            Vår intime boutique er lokalisert i **Tøyengata 3, 0190 Oslo**, kun et steinkast fra Grønland T-bane. Kom innom for en privat konsultasjon og opplev de sjeldneste rene agartre-oljene før du bestemmer deg.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/20">
-              <h4 class="text-xs uppercase tracking-wider text-gold-400 font-bold mb-1" id="hours-title">Åpningstider</h4>
-              <p class="text-xs text-stone-300">Mandag – Lørdag: 10:00 – 20:00</p>
-              <p class="text-xs text-stone-300">Søndag: 12:00 – 18:00</p>
-            </div>
-
-            <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/20">
-              <h4 class="text-xs uppercase tracking-wider text-gold-400 font-bold mb-1" id="transport-title">Transport</h4>
-              <p class="text-xs text-stone-300">Grønland T-bane (2 min gange)</p>
-              <p class="text-xs text-stone-300">Buss 37 & 30 til Tøyen / Grønland</p>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-4 pt-2">
-            <a href="https://maps.google.com/?q=T%C3%B8yengata+3,+0190+Oslo" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-gold-500 hover:bg-gold-400 text-noir-950 font-bold text-xs uppercase tracking-wider transition flex items-center gap-2 shadow-lg">
-              <i data-lucide="navigation" class="w-4 h-4"></i>
-              <span id="loc-directions-btn">Veibeskrivelse</span>
-            </a>
-            <a href="https://wa.me/4799000000?text=Hei%20Aromatix%20Oslo" target="_blank" class="px-6 py-3 rounded-full border border-gold-500/40 hover:bg-gold-500/10 text-gold-300 font-bold text-xs uppercase tracking-wider transition flex items-center gap-2">
-              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
-              <span>WhatsApp Kontakt</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 relative rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl h-80 sm:h-96 group">
-          <img src="https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&w=1000&q=80" alt="Aromatix Oslo Boutique" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-noir-950 via-noir-950/40 to-transparent flex flex-col justify-end p-6">
-            <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-widest">
-              <i data-lucide="compass" class="w-4 h-4"></i>
-              <span>Tøyengata 3, 0190 Oslo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-
-  <!-- PRODUCT DETAIL MODAL -->
-  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-noir-950/85 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="glass-gold rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto border border-gold-500/40 shadow-2xl scale-95 transition-transform duration-300" id="modal-content-box">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 p-2 rounded-full text-stone-400 hover:text-white bg-noir-800 border border-gold-500/20">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-      <div id="modal-dynamic-body"></div>
+    <p class="meta"><span>Fri frakt i Norge</span><span id="eta">Levering 2–3 dager</span><span>Vipps · Klarna · Kort</span></p>
+    <div style="margin-top:1.8rem">
+      <details open><summary>Duftnoter</summary><p>Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
+      <details><summary>Om ouden</summary><p>Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
+      <details><summary>Frakt & retur</summary><p>Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
     </div>
   </div>
+</div></section>
 
+<section><div class="stats">
+  <div class="rv"><b data-n="12">0</b><span>År modnet</span></div>
+  <div class="rv"><b data-n="24" data-suf="%">0</b><span>Konsentrasjon</span></div>
+  <div class="rv"><b data-n="300">0</b><span>Flakonger</span></div>
+  <div class="rv"><b data-n="14" data-suf="t">0</b><span>På huden</span></div>
+</div></section>
+</main>
 
-  <!-- SLIDE-UP CART & CHECKOUT DRAWER -->
-  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-50 bg-noir-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300"></div>
-
-  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-noir-900 border-l border-gold-500/30 z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
-    <div class="p-5 border-b border-gold-500/20 flex items-center justify-between bg-noir-950/60">
-      <div class="flex items-center gap-2">
-        <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
-        <h3 class="font-serif text-lg font-bold text-white" id="cart-title">Din Handlekurv</h3>
-      </div>
-      <button onclick="toggleCartDrawer(false)" class="p-2 text-stone-400 hover:text-white rounded-lg">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-    </div>
-
-    <!-- Free Shipping Progress -->
-    <div class="p-4 bg-noir-800/80 border-b border-gold-500/10">
-      <div class="flex justify-between text-xs mb-1.5 font-medium">
-        <span id="shipping-bar-text" class="text-stone-300">Gratis frakt over 1 000 kr</span>
-        <span id="shipping-progress-percent" class="text-gold-400 font-mono font-bold">0%</span>
-      </div>
-      <div class="w-full h-1.5 bg-noir-950 rounded-full overflow-hidden">
-        <div id="shipping-progress-fill" class="h-full bg-gradient-to-r from-gold-500 to-amberGlow transition-all duration-500" style="width: 0%;"></div>
-      </div>
-    </div>
-
-    <div class="flex-1 overflow-y-auto p-5 space-y-4" id="cart-items-container"></div>
-
-    <div class="p-5 border-t border-gold-500/20 bg-noir-950/80 space-y-4">
-      <div class="space-y-1.5 text-xs text-stone-300">
-        <div class="flex justify-between">
-          <span id="cart-subtotal-label">Delsum</span>
-          <span id="cart-subtotal-val" class="font-mono text-white font-bold">0 kr</span>
-        </div>
-        <div class="flex justify-between">
-          <span id="cart-shipping-label">Frakt</span>
-          <span id="cart-shipping-val" class="font-mono text-gold-400 font-bold">Gratis</span>
-        </div>
-        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-gold-500/15">
-          <span id="cart-total-label">Total (NOK)</span>
-          <span id="cart-total-val" class="font-mono text-gold-300 text-lg">0 kr</span>
-        </div>
-      </div>
-
-      <button onclick="openCheckoutModal()" id="cart-checkout-btn" class="w-full py-3.5 rounded-full gold-shimmer-btn text-noir-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg disabled:opacity-50">
-        <i data-lucide="lock" class="w-4 h-4"></i>
-        <span id="cart-checkout-label">Gå Til Kassen</span>
-      </button>
+<footer>
+  <p class="brand" style="font-size:.95rem">SVART<b>FJORD</b></p>
+  <p>Parfymehus · Thorvald Meyers gate 32, 0555 Oslo · hei@svartfjord.no</p>
+  <label style="max-width:24rem;display:block"><span class="eye">Nye serier først</span><input type="email" placeholder="din@epost.no" style="margin-top:.6rem"></label>
+  
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.72rem">
+    <p>© 2026 · Laget i Oslo</p>
+    <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
+      v1.0.2 (updated 2026-09-02 15:33)
     </div>
   </div>
+</footer>
 
+<div class="buybar">
+  <small>N°1 Black Oud<br><b id="bprice" style="color:#fff">2 190 kr</b></small>
+  <button class="cta" id="add2">Legg i kurv</button>
+</div>
 
-  <!-- CHECKOUT MODAL (Vipps & COD) -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-noir-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="glass-gold rounded-3xl max-w-lg w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto border border-gold-500/40 shadow-2xl">
-      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 p-2 text-stone-400 hover:text-white rounded-lg">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div id="checkout-form-container">
-        <div class="text-center mb-6">
-          <span class="text-xs uppercase tracking-widest text-gold-400 font-bold" id="chk-step-tag">Sikker Utsjekk</span>
-          <h3 class="font-serif text-2xl font-bold text-white mt-1" id="chk-title">Fullfør Din Bestilling</h3>
-        </div>
-
-        <form onsubmit="handleOrderSubmit(event)" class="space-y-4">
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-name-label">Fullt Navn</label>
-            <input type="text" required placeholder="f.eks. Ali Khan" id="chk-input-name" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
-          </div>
-
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-phone-label">Telefonnummer (Norsk +47)</label>
-            <input type="tel" required placeholder="f.eks. 912 34 567" id="chk-input-phone" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
-          </div>
-
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-delivery-label">Leveringsmetode</label>
-            <div class="grid grid-cols-2 gap-2">
-              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex flex-col gap-1 cursor-pointer hover:border-gold-400">
-                <input type="radio" name="deliveryMethod" value="pickup" checked onchange="updateDeliveryOption('pickup')" class="accent-gold-500">
-                <span class="text-xs font-bold text-gold-300" id="del-pickup-title">Hentes i Butikk</span>
-                <span class="text-[10px] text-stone-400" id="del-pickup-sub">Tøyengata 3, Oslo (0 kr)</span>
-              </label>
-              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex flex-col gap-1 cursor-pointer hover:border-gold-400">
-                <input type="radio" name="deliveryMethod" value="shipping" onchange="updateDeliveryOption('shipping')" class="accent-gold-500">
-                <span class="text-xs font-bold text-gold-300" id="del-ship-title">Posten Levering</span>
-                <span class="text-[10px] text-stone-400" id="del-ship-sub">Hele Norge (79 kr / Gratis over 1000)</span>
-              </label>
-            </div>
-          </div>
-
-          <div id="address-field-group" class="hidden">
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-address-label">Gateadresse & Postnummer</label>
-            <input type="text" placeholder="Gateadresse, 0190 Oslo" id="chk-input-address" class="w-full px-4 py-2.5 rounded-xl bg-noir-800 border border-gold-500/20 text-white text-xs focus:outline-none focus:border-gold-400">
-          </div>
-
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1" id="chk-pay-label">Betalingsmåte</label>
-            <div class="grid grid-cols-2 gap-2">
-              <label class="p-3 rounded-xl border-2 border-vipps bg-vipps/10 flex items-center justify-between cursor-pointer">
-                <div class="flex items-center gap-2">
-                  <input type="radio" name="paymentOption" value="vipps" checked class="accent-vipps">
-                  <span class="text-xs font-bold text-white">Vipps</span>
-                </div>
-                <span class="text-[10px] bg-vipps text-white px-2 py-0.5 rounded font-bold">Rask</span>
-              </label>
-              <label class="p-3 rounded-xl border border-gold-500/30 bg-noir-800 flex items-center justify-between cursor-pointer hover:border-gold-400">
-                <div class="flex items-center gap-2">
-                  <input type="radio" name="paymentOption" value="cod" class="accent-gold-500">
-                  <span class="text-xs font-bold text-stone-200" id="pay-cod-label">Kontant/Kort</span>
-                </div>
-                <span class="text-[10px] text-stone-400" id="pay-cod-sub">Ved henting</span>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="w-full py-4 rounded-full bg-vipps hover:bg-[#E54F1C] text-white font-bold uppercase tracking-wider text-xs transition shadow-xl mt-4 flex items-center justify-center gap-2" id="chk-submit-btn">
-            <i data-lucide="check-circle" class="w-4 h-4"></i>
-            <span id="chk-submit-text">Bekreft & Betal med Vipps</span>
-          </button>
-        </form>
-      </div>
-
-      <div id="order-success-screen" class="hidden text-center py-6 space-y-4">
-        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
-          <i data-lucide="check" class="w-8 h-8"></i>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gold-400 font-bold">Bestilling Registrert</span>
-        <h3 class="font-serif text-3xl font-bold text-white">Takk for din bestilling!</h3>
-        <p class="text-xs text-stone-300 max-w-sm mx-auto leading-relaxed">
-          Vi har klargjort ordren din. Velkommen til Tøyengata 3, Oslo.
-        </p>
-        <div class="p-4 rounded-xl bg-noir-800/80 border border-gold-500/30 text-xs font-mono text-gold-300">
-          Ordrenummer: <span id="succ-order-id" class="font-bold text-white">#AR-OSL-8921</span>
-        </div>
-        <button onclick="resetOrderFlow()" class="px-8 py-3 rounded-full gold-shimmer-btn text-noir-950 font-bold uppercase text-xs">
-          Handle Videre
-        </button>
-      </div>
-    </div>
+<!-- Cart Popover Drawer -->
+<div id="cart" popover class="sheet">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+    <p class="eye">Kurven din</p><button class="x" popovertarget="cart" popovertargetaction="hide">Lukk ✕</button>
   </div>
+  <div id="lines"></div>
+  <p style="display:flex;justify-content:space-between;margin:1.1rem 0;color:#fff"><span>Total</span><b id="total">0 kr</b></p>
+  <button class="cta" id="openCheckout">Gå til kassen (Vipps / Kort)</button>
+  <p style="font-size:.7rem;text-align:center;margin-top:.8rem">Fri frakt · Vipps, Klarna, kort</p>
+</div>
 
+<!-- Checkout Modal -->
+<dialog id="checkoutModal" class="checkout-modal">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem">
+    <p class="eye">Utsjekk</p><button class="x" onclick="document.getElementById('checkoutModal').close()">✕</button>
+  </div>
+  <h3 style="font-size:1.8rem;margin-bottom:1rem">Fullfør din bestilling</h3>
+  <form id="orderForm" onsubmit="handleCheckout(event)">
+    <label class="eye" style="font-size:.62rem">Fullt navn</label>
+    <input type="text" required placeholder="f.eks. Astrid Lind">
+    
+    <label class="eye" style="font-size:.62rem">Mobilnummer (for Vipps / sporings-SMS)</label>
+    <input type="tel" required placeholder="+47 912 34 567">
+    
+    <label class="eye" style="font-size:.62rem">Leveringsadresse</label>
+    <input type="text" required placeholder="Gateadresse, Postnummer Poststed">
 
-  <!-- FLOATING WHATSAPP -->
-  <a href="https://wa.me/4799000000?text=Hei%20Aromatix%20Oslo" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 p-4 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-2xl hover:scale-110 transition duration-300 flex items-center justify-center border border-emerald-300/30" title="Chat med oss på WhatsApp">
-    <i data-lucide="message-circle" class="w-6 h-6"></i>
-  </a>
-
-
-  <!-- SYSTEM FOOTER VERSIONING (User Rule 1) -->
-  <footer class="relative z-10 border-t border-gold-500/20 bg-noir-950 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs text-stone-400">
-    <div class="max-w-7xl mx-auto space-y-6">
-      <div class="flex items-center justify-center gap-3">
-        <div class="w-8 h-8 rounded-full border border-gold-400/40 flex items-center justify-center bg-noir-800 text-gold-400 font-serif font-bold">A</div>
-        <span class="font-serif tracking-[0.2em] uppercase text-sm text-gold-300 font-bold">Aromatix Oslo</span>
-      </div>
-
-      <p class="max-w-md mx-auto text-[11px] text-stone-400" id="footer-address">
-        Tøyengata 3, 0190 Oslo, Norge • Eksklusive Oud-Parfymer & Attar
-      </p>
-
-      <div class="flex items-center justify-center gap-6 text-xs text-gold-400/70">
-        <a href="#collection" class="hover:text-gold-300 transition">Oud Kolleksjon</a>
-        <a href="#alkimiya" class="hover:text-gold-300 transition">Duft-Formulering</a>
-        <a href="#location" class="hover:text-gold-300 transition">Finn Butikk</a>
-      </div>
-
-      <!-- Visible Semantic Version & Timestamp (Required User Rule) -->
-      <div class="pt-6 border-t border-gold-500/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-2">
-        <div id="footer-copy">© 2026 Aromatix Boutique Oslo. Alle rettigheter reservert.</div>
-        <div class="font-mono text-gold-500/80 bg-noir-900 px-3 py-1 rounded-full border border-gold-500/20">
-          v1.0.1 (updated 2026-09-02 15:25)
-        </div>
-      </div>
+    <div style="display:flex;justify-content:space-between;margin:1rem 0;font-size:.9rem;padding:.8rem 0;border-block:1px solid var(--line)">
+      <span>Totalbeløp:</span>
+      <b id="modalTotal" style="color:var(--gold)">2 190 kr</b>
     </div>
-  </footer>
 
+    <button type="submit" class="cta" style="background:#ff5b24;color:#fff;box-shadow:0 10px 30px #ff5b2440">
+      Betal med Vipps
+    </button>
+  </form>
+</dialog>
 
-  <!-- SCRIPT LOGIC: REALISTIC WATERFALL ENGINE, PROCEDURAL BIRDS CHIRPING & PERFUMES STORE -->
-  <script>
-    /* =========================================================================
-       1. REALISTIC WATERFALL CANVAS SIMULATION ENGINE
-       ========================================================================= */
-    const canvas = document.getElementById('waterfall-canvas');
-    const ctx = canvas.getContext('2d');
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+<script type="module">
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const nok=n=>new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(n);
+const buzz=p=>navigator.vibrate?.(p);
+const vt=fn=>document.startViewTransition?document.startViewTransition(fn):fn();
+const P={name:'Svartfjord N°1 Black Oud',price:{30:1490,50:2190,100:3690}};
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initWaterfall();
-    });
+/* ── bottle (shared SVG) ── */
+const bottle=`<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: Svartfjord N°1 Black Oud">
+<defs>
+<linearGradient id="gl" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#222c3b"/><stop offset=".42" stop-color="#05080d"/><stop offset=".72" stop-color="#0d1420"/><stop offset="1" stop-color="#1b2331"/></linearGradient>
+<linearGradient id="lq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="oklch(.66 .17 62/.85)"/><stop offset="1" stop-color="oklch(.26 .09 28/.96)"/></linearGradient>
+<radialGradient id="au"><stop offset="0" stop-color="oklch(.85 .2 155)"/><stop offset="1" stop-color="#0000"/></radialGradient>
+<filter id="bl"><feGaussianBlur stdDeviation="9"/></filter>
+<clipPath id="cp"><path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z"/></clipPath>
+</defs>
+<ellipse cx="100" cy="316" rx="66" ry="9" fill="#e8ba6e" opacity=".14" filter="url(#bl)"/>
+<rect x="84" y="6" width="32" height="34" rx="7" fill="#0a0e15" stroke="var(--gold)" stroke-opacity=".55"/>
+<rect x="88" y="34" width="24" height="10" fill="#0a0e15"/><rect x="92" y="44" width="16" height="32" fill="#0c111a"/>
+<path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z" fill="url(#gl)" stroke="#ffffff2e"/>
+<g clip-path="url(#cp)">
+  <rect x="24" y="168" width="152" height="150" fill="url(#lq)" opacity="calc(.72 + var(--glow) * .28)"/>
+  <ellipse cx="130" cy="120" rx="70" ry="42" fill="url(#au)" opacity="calc(.16 + var(--glow) * .5)" filter="url(#bl)" style="mix-blend-mode:screen"/>
+  <ellipse cx="100" cy="250" rx="80" ry="40" fill="oklch(.8 .18 70)" opacity="calc(var(--glow) * .45)" filter="url(#bl)" style="mix-blend-mode:screen"/>
+  <path d="M50 80v210" stroke="#fff" stroke-opacity=".26" stroke-width="5" filter="url(#bl)"/>
+  <path d="M162 92v190" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+</g>
+<text x="100" y="150" text-anchor="middle" fill="#e9eef2" fill-opacity=".9" font-family="Cormorant Garamond,serif" font-size="15" letter-spacing="4.2">SVARTFJORD</text>
+<text x="100" y="168" text-anchor="middle" fill="var(--gold)" font-family="Inter Tight,sans-serif" font-size="6.5" letter-spacing="2.6">BLACK OUD · EXTRAIT</text>
+</svg>`;
+$('#flacon').innerHTML=bottle;$('#stage').innerHTML=bottle;
+$('#tick').innerHTML=['Einer','Bjørketjære','Safran','Damaskrose','Svart oud','Isbremoskus','Furuharpiks','Ambra','Havsalt','Røkelse'].map(w=>`${w} <i>✳</i>`).join(' ');
+$('#tick').nextElementSibling.innerHTML=$('#tick').innerHTML;
 
-    let streams = [];
-    let sprays = [];
+/* ── procedural birds chirping audio engine ── */
+let actx=null,birdOn=false,birdTimer=null;
+function initAudio(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)()}
+function chirp(){
+  if(!actx)return;if(actx.state==='suspended')actx.resume();
+  const now=actx.currentTime,notes=Math.floor(Math.random()*3)+2;
+  for(let i=0;i<notes;i++){
+    const t=now+i*(0.065+Math.random()*0.04),osc=actx.createOscillator(),g=actx.createGain();
+    const base=2400+Math.random()*800,peak=base+1200+Math.random()*600;
+    osc.type='sine';
+    osc.frequency.setValueAtTime(base,t);
+    osc.frequency.exponentialRampToValueAtTime(peak,t+0.025);
+    osc.frequency.exponentialRampToValueAtTime(base-180,t+0.065);
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(0.06,t+0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+0.07);
+    osc.connect(g);g.connect(actx.destination);
+    osc.start(t);osc.stop(t+0.075);
+  }
+}
+const audioToggle=$('#audioToggle');
+audioToggle.onclick=()=>{
+  initAudio();birdOn=!birdOn;
+  audioToggle.classList.toggle('on',birdOn);
+  $('#audioText').textContent=birdOn?'Fuglesang: På':'Fuglesang: Av';
+  if(birdOn){chirp();birdTimer=setInterval(()=>{if(birdOn&&Math.random()>.25)chirp()},3400)}
+  else{clearInterval(birdTimer)}
+};
 
-    class WaterStream {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = -Math.random() * height * 0.5;
-        this.length = Math.random() * 90 + 40;
-        this.speed = Math.random() * 8 + 6;
-        this.width = Math.random() * 1.8 + 0.6;
-        this.alpha = Math.random() * 0.4 + 0.15;
-        this.tintGold = Math.random() > 0.8;
-      }
-      update() {
-        this.y += this.speed;
-        if (this.y > height) {
-          // Trigger water spray particle on impact
-          if (Math.random() > 0.5 && sprays.length < 80) {
-            sprays.push(new WaterSpray(this.x, height - 10));
-          }
-          this.reset();
-        }
-      }
-      draw() {
-        ctx.beginPath();
-        const grad = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.length);
-        if (this.tintGold) {
-          grad.addColorStop(0, `rgba(201, 169, 110, 0)`);
-          grad.addColorStop(0.7, `rgba(229, 194, 135, ${this.alpha * 0.8})`);
-          grad.addColorStop(1, `rgba(255, 240, 210, ${this.alpha})`);
-        } else {
-          grad.addColorStop(0, `rgba(137, 207, 240, 0)`);
-          grad.addColorStop(0.6, `rgba(215, 240, 255, ${this.alpha * 0.7})`);
-          grad.addColorStop(1, `rgba(255, 255, 255, ${this.alpha})`);
-        }
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = this.width;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + (Math.random() - 0.5) * 0.8, this.y + this.length);
-        ctx.stroke();
-      }
+/* ── realistic waterfall canvas engine ── */
+const wcv=$('#waterfall-canvas'),wcx=wcv.getContext('2d');
+let ww=0,wh=0,streams=[],sprays=[];
+const wfit=()=>{ww=wcv.width=wcv.clientWidth;wh=wcv.height=wcv.clientHeight;initWaterfall()};
+window.addEventListener('resize',wfit);
+function initWaterfall(){
+  streams=[];sprays=[];
+  const cnt=Math.min(90,Math.floor(ww/14));
+  for(let i=0;i<cnt;i++){streams.push({x:Math.random()*ww,y:Math.random()*wh,l:Math.random()*90+40,v:Math.random()*7+5,w:Math.random()*1.8+.5,a:Math.random()*.35+.1,g:Math.random()>.75})}
+}
+function loopWaterfall(){
+  wcx.clearRect(0,0,ww,wh);
+  for(let s of streams){
+    s.y+=s.v;
+    if(s.y>wh){
+      s.y=-s.l;s.x=Math.random()*ww;
+      if(sprays.length<60&&Math.random()>.6)sprays.push({x:s.x,y:wh-8,vx:(Math.random()-.5)*2,vy:-(Math.random()*2.5+1),r:Math.random()*3+1.5,a:.3,l:0});
     }
-
-    class WaterSpray {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.vx = (Math.random() - 0.5) * 2.5;
-        this.vy = -(Math.random() * 3 + 1);
-        this.size = Math.random() * 4 + 2;
-        this.alpha = 0.35;
-        this.life = 0;
-        this.maxLife = Math.random() * 25 + 15;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.vy += 0.08; // Gravity
-        this.life++;
-        this.alpha -= 0.012;
-      }
-      draw() {
-        if (this.alpha <= 0) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(210, 235, 255, ${this.alpha})`;
-        ctx.fill();
-      }
-    }
-
-    function initWaterfall() {
-      streams = [];
-      sprays = [];
-      const streamCount = Math.min(120, Math.floor(width / 12));
-      for (let i = 0; i < streamCount; i++) {
-        const s = new WaterStream();
-        s.y = Math.random() * height;
-        streams.push(s);
-      }
-    }
-    initWaterfall();
-
-    function animateWaterfall() {
-      ctx.clearRect(0, 0, width, height);
-
-      // Render streams
-      for (let i = 0; i < streams.length; i++) {
-        streams[i].update();
-        streams[i].draw();
-      }
-
-      // Render and prune sprays
-      for (let i = sprays.length - 1; i >= 0; i--) {
-        sprays[i].update();
-        sprays[i].draw();
-        if (sprays[i].alpha <= 0 || sprays[i].life >= sprays[i].maxLife) {
-          sprays.splice(i, 1);
-        }
-      }
-
-      requestAnimationFrame(animateWaterfall);
-    }
-    requestAnimationFrame(animateWaterfall);
-
-
-    /* =========================================================================
-       2. PROCEDURAL BIRDS CHIRPING WEB AUDIO SYNTHESIZER
-       ========================================================================= */
-    let audioCtx = null;
-    let isAudioEnabled = false;
-    let ambientBirdsTimer = null;
-
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-    }
-
-    function playBirdChirp() {
-      if (!audioCtx) return;
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-
-      const now = audioCtx.currentTime;
-      const noteCount = Math.floor(Math.random() * 3) + 2; // 2 to 4 micro-chirps
-
-      for (let i = 0; i < noteCount; i++) {
-        const startTime = now + i * (0.07 + Math.random() * 0.04);
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        const baseFreq = 2200 + Math.random() * 900;
-        const peakFreq = baseFreq + 1100 + Math.random() * 700;
-
-        osc.frequency.setValueAtTime(baseFreq, startTime);
-        osc.frequency.exponentialRampToValueAtTime(peakFreq, startTime + 0.025);
-        osc.frequency.exponentialRampToValueAtTime(baseFreq - 200, startTime + 0.065);
-
-        gain.gain.setValueAtTime(0.0001, startTime);
-        gain.gain.linearRampToValueAtTime(0.07, startTime + 0.015);
-        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.07);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start(startTime);
-        osc.stop(startTime + 0.075);
-      }
-    }
-
-    function toggleAudio() {
-      initAudio();
-      isAudioEnabled = !isAudioEnabled;
-      const label = document.getElementById('sound-label');
-      const icon = document.getElementById('sound-icon');
-
-      if (isAudioEnabled) {
-        label.innerText = state.lang === 'no' ? 'Fuglekvitter: På' : 'پرندوں کی آواز: آن';
-        icon.classList.add('text-gold-400');
-        playBirdChirp();
-        if (ambientBirdsTimer) clearInterval(ambientBirdsTimer);
-        ambientBirdsTimer = setInterval(() => {
-          if (isAudioEnabled && Math.random() > 0.3) {
-            playBirdChirp();
-          }
-        }, 3200);
-      } else {
-        label.innerText = state.lang === 'no' ? 'Fuglekvitter: Av' : 'پرندوں کی آواز: آف';
-        icon.classList.remove('text-gold-400');
-        if (ambientBirdsTimer) clearInterval(ambientBirdsTimer);
-      }
-    }
-
-
-    /* =========================================================================
-       3. FOCUSED PURE PERFUME DATASET (6 Rare Artisanal Ouds)
-       ========================================================================= */
-    const catalogData = {
-      ouds: [
-        {
-          id: 'oud-cambodi',
-          family: 'woody',
-          image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80',
-          origin: 'Kambodsja (Koh Kong)',
-          prices: { 3: 450, 6: 850, 12: 1590 },
-          longevity: '24+ timer',
-          intensity: 'Eksepsjonell (5/5)',
-          no: {
-            title: 'Dehn al Oud Cambodi Vintage',
-            tagline: 'Mørk, søtlig treaktig og kongelig agartre',
-            desc: 'Destillert fra 35 år gamle villtrær i Koh Kong. En dyp, balsamisk og varm sødme som omslutter bæreren i ren verdighet.',
-            top: 'Mørke plommer & Lær',
-            heart: 'Vellagret Cambodi Agartre',
-            base: 'Balsamisk rav & Honning'
-          },
-          ur: {
-            title: 'دھن العود کمبوڈی ونٹیج',
-            tagline: 'شاہی خوشبو، گہرا لکڑی کا اثر',
-            desc: 'کوہ کونگ کے ۳۵ سال پرانے قدرتی درختوں سے کشید شدہ۔ خالص کمبوڈین عود جو وقار اور شاہی احساس بخشتا ہے۔',
-            top: 'خشک میوہ جات اور چمڑا',
-            heart: 'خالص کمبوڈین اگر ووڈ',
-            base: 'شہد اور نایاب عنبر'
-          }
-        },
-        {
-          id: 'oud-taif-hindi',
-          family: 'floral',
-          image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80',
-          origin: 'Taif (Saudi) & Assam (India)',
-          prices: { 3: 490, 6: 920, 12: 1690 },
-          longevity: '18+ timer',
-          intensity: 'Strålende (4.5/5)',
-          no: {
-            title: 'Taif Rose & Hindi Oud Royale',
-            tagline: 'Førsteklasses Taif-rose gift med indisk oud',
-            desc: 'Den perfekte balansen mellom den friske, oppløftende Taif-rosen og den dype, jordlige Assam-agartreoljen.',
-            top: 'Fersk Taif-rose & Kardemomme',
-            heart: 'Røkt Assam Oud & Safran',
-            base: 'Fløyelsmyk Sandeltre'
-          },
-          ur: {
-            title: 'طائف گلاب اور ہندی عود رائل',
-            tagline: 'نایاب طائف گلاب اور خالص آسامی عود کا سنگم',
-            desc: 'تازہ طائف گلاب اور گہرے آسامی عود کا ایک شاہکار امتزاج جو ہر محفل میں آپ کو نمایاں کرے۔',
-            top: 'طائف کا تازہ گلاب اور الائچی',
-            heart: 'آسامی عود اور زعفران',
-            base: 'صندل کی لکڑی'
-          }
-        },
-        {
-          id: 'oud-kalakassi',
-          family: 'smoky',
-          image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80',
-          origin: 'Kalakassi (India)',
-          prices: { 3: 590, 6: 1100, 12: 1990 },
-          longevity: '30+ timer',
-          intensity: 'Majestetisk Dyp (5/5)',
-          no: {
-            title: 'Smoky Kalakassi 80-Year Old',
-            tagline: 'Sjelden og intens røykfylt agartreeliksir',
-            desc: 'Kun få dråper tilgjengelig hvert år. Destillert med tradisjonelle kobberkjeler over åpen flamme.',
-            top: 'Brennende røkelse & Tørket tre',
-            heart: 'Kalakassi kjerneved',
-            base: 'Jordlig lær & Mørk harpiks'
-          },
-          ur: {
-            title: 'سموکی کلکاسی ۸۰ سالہ نایاب عود',
-            tagline: 'خالص دھواں دار پرانی لکڑی کی خوشبو',
-            desc: 'قدیم روایتی تانبے کے دیگوں میں کشید شدہ نایاب ترین عود۔ دیرپا اور بے مثال تاثیر۔',
-            top: 'لوبان اور جلا ہوا صندل',
-            heart: 'خالص کلکاسی عود',
-            base: 'چمڑا اور قدیم گوند'
-          }
-        },
-        {
-          id: 'oud-black-amber',
-          family: 'amber',
-          image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80',
-          origin: 'Oman & Medina',
-          prices: { 3: 390, 6: 720, 12: 1350 },
-          longevity: '20+ timer',
-          intensity: 'Varm & Innbydende (4/5)',
-          no: {
-            title: 'Black Ambergris & Golden Musk',
-            tagline: 'Varm, sensuell rav med orientalsk sødme',
-            desc: 'Naturlig ambra fra Det indiske hav harmonisert med gyllen moskus og Madagaskar-vaniljestang.',
-            top: 'Gyllen safran & Mandarin',
-            heart: 'Ekte Ambra & Hvit Musk',
-            base: 'Mørk Bourbon Rav'
-          },
-          ur: {
-            title: 'بلیک عنبر اور گولڈن مسک',
-            tagline: 'گرم، دلکش اور پُراسرار خوشبو',
-            desc: 'بحر ہند کا قدرتی عنبر اور خالص سفید کستوری کا دلفریب امتزاج۔',
-            top: 'زعفران اور رسیلا سنگترہ',
-            heart: 'قدرتی عنبر اور سفید مسک',
-            base: 'میٹھا بوربن عنبر'
-          }
-        },
-        {
-          id: 'oud-musk-ghazal',
-          family: 'musk',
-          image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80',
-          origin: 'Kashmir',
-          prices: { 3: 420, 6: 790, 12: 1450 },
-          longevity: '24+ timer',
-          intensity: 'Fløyelsmyk (4.5/5)',
-          no: {
-            title: 'Musk al-Ghazal Imperial',
-            tagline: 'Autentisk silke-moskus for ren harmoni',
-            desc: 'En klassisk favoritt gjennom århundrer. Beroligende, ren og uendelig tiltrekkende.',
-            top: 'Hvit lilje & Pudret rose',
-            heart: 'Kashmir Silke Musk',
-            base: 'Hvitt Sandeltre'
-          },
-          ur: {
-            title: 'مشک الغزال امپیریل',
-            tagline: 'سکون اور پاکیزگی بخشنے والی کستوری',
-            desc: 'صدیوں سے پسندیدہ پاکیزہ اور دل کو چھو لینے والی خالص مشک۔',
-            top: 'سفید گلاب اور پاؤڈر',
-            heart: 'کشمیر سلک کستوری',
-            base: 'سفید صندل'
-          }
-        },
-        {
-          id: 'oud-santal-imperial',
-          family: 'woody',
-          image: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=800&q=80',
-          origin: 'Mysore (India)',
-          prices: { 3: 380, 6: 690, 12: 1290 },
-          longevity: '16+ timer',
-          intensity: 'Kremet & Elegant (4/5)',
-          no: {
-            title: 'Santal Imperial & Olibanum',
-            tagline: 'Kremet Mysore-sandeltre med røkelse',
-            desc: 'Håndplukket sandeltre modnet i over 20 år for en uovertruffen kremet og silkemyk opplevelse.',
-            top: 'Kardemommefrø',
-            heart: 'Ren Mysore Sandeltre',
-            base: 'Oman Hellig Røkelse'
-          },
-          ur: {
-            title: 'صندل امپیریل اور لوبان',
-            tagline: 'میسور کے صندل اور مقدس لوبان کا جادو',
-            desc: '۲۰ سال پرانا میسور صندل جو ریشم کی طرح ملائم اور دیرپا ہے۔',
-            top: 'سبز الائچی',
-            heart: 'خالص میسور صندل',
-            base: 'عمانی خالص لوبان'
-          }
-        }
-      ]
-    };
-
-
-    /* =========================================================================
-       4. APPLICATION STATE & CART FLOW
-       ========================================================================= */
-    const state = {
-      lang: 'no',
-      cart: JSON.parse(localStorage.getItem('aromatix_cart') || '[]'),
-      activeFilter: 'all',
-      deliveryMethod: 'pickup',
-      synth: {
-        top: 'Taif Rose 🌹',
-        heart: 'Smoky Amber 🔥',
-        base: 'Cambodi Vintage (85%)',
-        intensity: 85,
-        price: 1490
-      }
-    };
-
-    function saveCart() {
-      localStorage.setItem('aromatix_cart', JSON.stringify(state.cart));
-      renderCartUI();
-    }
-
-
-    /* =========================================================================
-       5. BILINGUAL LANGUAGE ENGINE (Norwegian & Urdu)
-       ========================================================================= */
-    function setLanguage(lang) {
-      state.lang = lang;
-      const htmlEl = document.documentElement;
-      
-      if (lang === 'ur') {
-        htmlEl.setAttribute('dir', 'rtl');
-        htmlEl.setAttribute('lang', 'ur');
-        document.getElementById('lang-ur').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition';
-        document.getElementById('lang-no').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition';
-      } else {
-        htmlEl.setAttribute('dir', 'ltr');
-        htmlEl.setAttribute('lang', 'no');
-        document.getElementById('lang-no').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500 text-noir-950 transition';
-        document.getElementById('lang-ur').className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold text-gold-300 hover:text-white transition';
-      }
-
-      updateText(lang);
-      renderOudsGrid();
-      renderCartUI();
-      if (isAudioEnabled) playBirdChirp();
-    }
-
-    function updateText(l) {
-      const isUr = l === 'ur';
-      document.getElementById('nav-tagline').innerText = isUr ? 'خالص عود اور نایاب پرفیومز • اوسلو' : 'Exclusive Oud & Rare Perfumes • Oslo';
-      document.getElementById('nav-link-ouds').innerText = isUr ? 'عود کلیکشن' : 'Oud Kolleksjon';
-      document.getElementById('nav-link-custom').innerText = isUr ? 'خوشبو بنائیں' : 'Duft-Formulering';
-      document.getElementById('nav-link-matrix').innerText = isUr ? 'خوشبوؤں کا نقشہ' : 'Duftfamilier';
-      document.getElementById('nav-link-store').innerText = isUr ? 'دکان اوسلو' : 'Boutique Oslo';
-      document.getElementById('nav-cart-btn').innerText = isUr ? 'ٹوکری' : 'Handlekurv';
-
-      document.getElementById('store-status-text').innerText = isUr ? 'ابھی کھلا ہے: Tøyengata 3, Oslo (گرونلینڈ)' : 'Åpent nå: Tøyengata 3, Oslo (Grønland T-bane)';
-      document.getElementById('sound-label').innerText = isAudioEnabled ? (isUr ? 'پرندوں کی آواز: آن' : 'Fuglekvitter: På') : (isUr ? 'پرندوں کی آواز: آف' : 'Fuglekvitter: Av');
-
-      document.getElementById('hero-kicker').innerText = isUr ? 'Tøyengata 3 • گرونلینڈ، اوسلو' : 'Tøyengata 3 • Grønland, Oslo';
-      document.getElementById('hero-title-1').innerText = isUr ? 'نایاب خالص عود کے پرفیومز' : 'Sjeldne Oud-Parfymer';
-      document.getElementById('hero-title-2').innerText = isUr ? 'اور شاہی خالص تیل' : '& Kongelige Oljer';
-      document.getElementById('hero-desc').innerText = isUr ? '۱۰۰٪ خالص، بغیر الکحل کے پرفیومز۔ کمبوڈیا، طائف اور آسام سے براہِ راست درآمد شدہ۔' : '100% konsentrerte, alkoholfrie parfymer og vellagret agartre direkte fra Kambodsja, Taif og India. Opplev autentisk duftluksus i vår boutique i Oslo.';
-      
-      document.getElementById('hero-cta-explore').innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i><span>${isUr ? 'پرفیومز دیکھیں' : 'Utforsk Parfymene'}</span>`;
-      document.getElementById('hero-cta-custom').innerHTML = `<i data-lucide="flask-conical" class="w-4 h-4"></i><span>${isUr ? 'اپنی خوشبو بنائیں' : 'Skap Egen Duftformel'}</span>`;
-
-      document.getElementById('badge-1').innerText = isUr ? '۱۰۰٪ خالص قدرتی تیل' : '100% Ren Konsentrert Olje';
-      document.getElementById('badge-2').innerText = isUr ? 'Tøyengata 3 پر دکان' : 'Boutique i Tøyengata 3';
-      document.getElementById('badge-3').innerText = isUr ? 'Vipps ادائیگی' : 'Betal Raskt med Vipps';
-      document.getElementById('badge-4').innerText = isUr ? '1000 kr سے زیادہ پر مفت ترسیل' : 'Gratis frakt over 1 000 kr';
-
-      document.getElementById('sec-oud-tag').innerText = isUr ? 'شاہی پرفیومز اور عطر' : 'Eksklusive Parfymer & Attar';
-      document.getElementById('sec-oud-title').innerText = isUr ? 'خالص عود کے شاہکار' : 'Mesterverk av Ren Oud';
-      document.getElementById('sec-oud-sub').innerText = isUr ? 'بغیر الکحل، سو فیصد خالص تیل جو دن بھر مہکتا رہے۔' : 'Ren olje, uten alkohol. Hver dråpe utvikler seg dynamisk på huden gjennom hele døgnet.';
-
-      document.getElementById('loc-title').innerText = isUr ? 'Tøyengata 3, Oslo میں تشریف لائیں' : 'Besøk Oss i Tøyengata 3, Oslo';
-      document.getElementById('loc-desc').innerText = isUr ? 'ہماری خوبصورت دکان گرونلینڈ میں واقع ہے۔ تشریف لائیں اور مختلف خالص عود خود آزما کر دیکھیں۔' : 'Vår intime boutique er lokalisert i Tøyengata 3, 0190 Oslo, kun et steinkast fra Grønland T-bane. Kom innom for en privat konsultasjon og opplev de sjeldneste rene agartre-oljene før du bestemmer deg.';
-
-      lucide.createIcons();
-    }
-
-
-    /* =========================================================================
-       6. RENDERING: PERFUME CARDS WITH 3D TILT
-       ========================================================================= */
-    function renderOudsGrid() {
-      const grid = document.getElementById('ouds-grid');
-      const filtered = state.activeFilter === 'all' 
-        ? catalogData.ouds 
-        : catalogData.ouds.filter(o => o.family === state.activeFilter);
-
-      grid.innerHTML = filtered.map(item => {
-        const langData = item[state.lang];
-        return `
-          <div class="tilt-card glass-gold rounded-3xl p-5 sm:p-6 relative group flex flex-col justify-between h-full border border-gold-500/25 overflow-hidden" 
-               onmousemove="handleTilt(event, this)" 
-               onmouseleave="resetTilt(this)">
-            
-            <div class="specular-glare absolute inset-0"></div>
-
-            <div>
-              <div class="relative rounded-2xl overflow-hidden mb-5 aspect-[4/3] border border-gold-500/20 bg-noir-950">
-                <img src="${item.image}" alt="${langData.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-noir-900/80 backdrop-blur-md border border-gold-500/30 text-[10px] text-gold-300 font-mono">
-                  📍 ${item.origin}
-                </div>
-                <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] text-emerald-300 font-semibold">
-                  100% Ren Olje
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <h3 class="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-gold-300 transition">${langData.title}</h3>
-                <p class="text-xs text-gold-400/80 font-medium">${langData.tagline}</p>
-                <p class="text-xs text-stone-300 line-clamp-2 font-light leading-relaxed">${langData.desc}</p>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 my-4">
-                <span class="text-[10px] px-2.5 py-1 rounded-md bg-gold-500/10 text-gold-300 border border-gold-500/20">🔝 ${langData.top}</span>
-                <span class="text-[10px] px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">🪵 ${langData.heart}</span>
-              </div>
-            </div>
-
-            <div class="pt-4 border-t border-gold-500/15 flex items-center justify-between mt-2">
-              <div>
-                <span class="text-[10px] text-stone-400 block">${state.lang === 'no' ? 'Fra (3ml ren olje)' : 'شروع قیمت (۳ ملی)'}</span>
-                <span class="text-lg font-bold font-serif text-gold-300">${item.prices[3]} kr</span>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <button onclick="openProductModal('${item.id}')" class="px-3.5 py-2 rounded-full border border-gold-500/40 text-gold-300 hover:bg-gold-500/10 text-xs font-semibold transition">
-                  ${state.lang === 'no' ? 'Detaljer' : 'تفصیلات'}
-                </button>
-                <button onclick="addToCart('${item.id}', 3)" class="px-4 py-2 rounded-full gold-shimmer-btn text-noir-950 text-xs font-bold flex items-center gap-1 shadow-md">
-                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                  <span>${state.lang === 'no' ? 'Kjøp' : 'خریدیں'}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      lucide.createIcons();
-    }
-
-    function handleTilt(e, card) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-      card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-      card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-    }
-
-    function resetTilt(card) {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    }
-
-
-    /* =========================================================================
-       7. SCENT FORMULATOR LOGIC
-       ========================================================================= */
-    function updateSynthesizer(type, val, emoji) {
-      if (type === 'top') {
-        state.synth.top = `${val} ${emoji}`;
-        document.getElementById('top-selected-name').innerText = val;
-        document.getElementById('synth-disp-top').innerText = `${val} ${emoji}`;
-      } else if (type === 'heart') {
-        state.synth.heart = `${val} ${emoji}`;
-        document.getElementById('heart-selected-name').innerText = val;
-        document.getElementById('synth-disp-heart').innerText = `${val} ${emoji}`;
-      }
-      if (isAudioEnabled) playBirdChirp();
-      recalculateSynth();
-    }
-
-    function onOudIntensityChange(val) {
-      state.synth.intensity = parseInt(val);
-      const label = val > 75 ? `Cambodi Vintage (${val}%)` : val > 50 ? `Hindi Classic (${val}%)` : `Taif Soft (${val}%)`;
-      state.synth.base = label;
-      document.getElementById('base-selected-name').innerText = label;
-      document.getElementById('synth-disp-base').innerText = label;
-      recalculateSynth();
-    }
-
-    function recalculateSynth() {
-      const basePrice = 1190;
-      const intensityAdd = Math.floor(state.synth.intensity * 3.5);
-      state.synth.price = basePrice + intensityAdd;
-      document.getElementById('synth-price').innerText = `${state.synth.price} kr`;
-    }
-
-    function addSynthesizedToCart() {
-      const customItem = {
-        id: 'bespoke-' + Date.now(),
-        type: 'bespoke',
-        title: `Bespoke Parfyme (${state.synth.top} / ${state.synth.heart})`,
-        size: '12ml Krystall',
-        price: state.synth.price,
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80'
-      };
-      state.cart.push(customItem);
-      saveCart();
-      if (isAudioEnabled) playBirdChirp();
-      confettiBurst();
-      toggleCartDrawer(true);
-    }
-
-
-    /* =========================================================================
-       8. CART & CHECKOUT
-       ========================================================================= */
-    function addToCart(id, size = 3) {
-      const item = catalogData.ouds.find(o => o.id === id);
-      const existing = state.cart.find(c => c.id === `${id}-${size}`);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        state.cart.push({
-          id: `${id}-${size}`,
-          rawId: id,
-          title: item[state.lang].title,
-          size: `${size}ml`,
-          price: item.prices[size],
-          quantity: 1,
-          image: item.image
-        });
-      }
-      saveCart();
-      if (isAudioEnabled) playBirdChirp();
-      confettiBurst();
-      toggleCartDrawer(true);
-    }
-
-    function changeQuantity(id, delta) {
-      const item = state.cart.find(c => c.id === id);
-      if (!item) return;
-      item.quantity += delta;
-      if (item.quantity <= 0) {
-        state.cart = state.cart.filter(c => c.id !== id);
-      }
-      saveCart();
-      if (isAudioEnabled) playBirdChirp();
-    }
-
-    function renderCartUI() {
-      const container = document.getElementById('cart-items-container');
-      const count = state.cart.reduce((acc, c) => acc + c.quantity, 0);
-      document.getElementById('cart-badge').innerText = count;
-
-      if (state.cart.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-16 text-stone-400 space-y-3">
-            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto text-gold-500/40"></i>
-            <p class="text-xs uppercase tracking-wider">${state.lang === 'no' ? 'Handlekurven din er tom' : 'آپ کی ٹوکری خالی ہے'}</p>
-          </div>
-        `;
-        document.getElementById('cart-subtotal-val').innerText = '0 kr';
-        document.getElementById('cart-total-val').innerText = '0 kr';
-        document.getElementById('cart-checkout-btn').disabled = true;
-        document.getElementById('shipping-progress-fill').style.width = '0%';
-        document.getElementById('shipping-progress-percent').innerText = '0%';
-        lucide.createIcons();
-        return;
-      }
-
-      document.getElementById('cart-checkout-btn').disabled = false;
-
-      container.innerHTML = state.cart.map(c => `
-        <div class="p-3 rounded-2xl bg-noir-800/80 border border-gold-500/20 flex items-center justify-between gap-3">
-          <img src="${c.image}" class="w-14 h-14 rounded-xl object-cover border border-gold-500/20">
-          <div class="flex-1 min-w-0">
-            <h4 class="text-xs font-bold text-white truncate">${c.title}</h4>
-            <span class="text-[10px] text-gold-400 block">${c.size} • ${c.price} kr</span>
-          </div>
-          <div class="flex items-center gap-2 bg-noir-950 px-2 py-1 rounded-lg border border-gold-500/20">
-            <button onclick="changeQuantity('${c.id}', -1)" class="text-stone-400 hover:text-white text-xs font-bold px-1">−</button>
-            <span class="text-xs font-mono text-gold-300 font-bold">${c.quantity}</span>
-            <button onclick="changeQuantity('${c.id}', 1)" class="text-stone-400 hover:text-white text-xs font-bold px-1">+</button>
-          </div>
-        </div>
-      `).join('');
-
-      const subtotal = state.cart.reduce((acc, c) => acc + (c.price * c.quantity), 0);
-      const isFreeShipping = subtotal >= 1000 || state.deliveryMethod === 'pickup';
-      const shippingCost = isFreeShipping ? 0 : 79;
-      const total = subtotal + shippingCost;
-
-      document.getElementById('cart-subtotal-val').innerText = `${subtotal} kr`;
-      document.getElementById('cart-shipping-val').innerText = isFreeShipping ? (state.lang === 'no' ? 'Gratis' : 'مفت') : `${shippingCost} kr`;
-      document.getElementById('cart-total-val').innerText = `${total} kr`;
-
-      const percent = Math.min(100, Math.round((subtotal / 1000) * 100));
-      document.getElementById('shipping-progress-fill').style.width = `${percent}%`;
-      document.getElementById('shipping-progress-percent').innerText = `${percent}%`;
-
-      lucide.createIcons();
-    }
-
-    function toggleCartDrawer(open) {
-      const drawer = document.getElementById('cart-drawer');
-      const backdrop = document.getElementById('cart-drawer-backdrop');
-      if (open) {
-        backdrop.classList.remove('opacity-0', 'pointer-events-none');
-        drawer.classList.remove('translate-x-full');
-      } else {
-        backdrop.classList.add('opacity-0', 'pointer-events-none');
-        drawer.classList.add('translate-x-full');
-      }
-    }
-
-    function openCheckoutModal() {
-      toggleCartDrawer(false);
-      const modal = document.getElementById('checkout-modal');
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeCheckoutModal() {
-      const modal = document.getElementById('checkout-modal');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function updateDeliveryOption(method) {
-      state.deliveryMethod = method;
-      const addrGroup = document.getElementById('address-field-group');
-      if (method === 'shipping') {
-        addrGroup.classList.remove('hidden');
-      } else {
-        addrGroup.classList.add('hidden');
-      }
-      renderCartUI();
-    }
-
-    function handleOrderSubmit(e) {
-      e.preventDefault();
-      if (isAudioEnabled) playBirdChirp();
-      confettiBurst();
-
-      const orderId = '#AR-OSL-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('succ-order-id').innerText = orderId;
-      document.getElementById('checkout-form-container').classList.add('hidden');
-      document.getElementById('order-success-screen').classList.remove('hidden');
-
-      state.cart = [];
-      saveCart();
-    }
-
-    function resetOrderFlow() {
-      document.getElementById('checkout-form-container').classList.remove('hidden');
-      document.getElementById('order-success-screen').classList.add('hidden');
-      closeCheckoutModal();
-    }
-
-
-    /* =========================================================================
-       9. PRODUCT DETAIL MODAL
-       ========================================================================= */
-    function openProductModal(id) {
-      const item = catalogData.ouds.find(o => o.id === id);
-      if (!item) return;
-
-      const langData = item[state.lang];
-      const body = document.getElementById('modal-dynamic-body');
-      body.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <div class="rounded-2xl overflow-hidden border border-gold-500/30">
-            <img src="${item.image}" alt="${langData.title}" class="w-full h-full object-cover">
-          </div>
-          <div class="space-y-4">
-            <span class="text-[10px] uppercase font-mono tracking-widest text-gold-400 block">📍 ${item.origin}</span>
-            <h3 class="font-serif text-2xl font-bold text-white">${langData.title}</h3>
-            <p class="text-xs text-stone-300 font-light leading-relaxed">${langData.desc}</p>
-            
-            <div class="space-y-2 p-3 rounded-xl bg-noir-800/80 border border-gold-500/20 text-xs">
-              <div><strong class="text-gold-400">Topp:</strong> ${langData.top}</div>
-              <div><strong class="text-gold-400">Hjerte:</strong> ${langData.heart}</div>
-              <div><strong class="text-gold-400">Base:</strong> ${langData.base}</div>
-            </div>
-
-            <div class="flex items-center justify-between text-xs text-stone-400">
-              <span>Varighet: <strong class="text-gold-300">${item.longevity}</strong></span>
-              <span>Intensitet: <strong class="text-gold-300">${item.intensity}</strong></span>
-            </div>
-
-            <div class="pt-4 border-t border-gold-500/20 flex gap-2">
-              <button onclick="addToCart('${item.id}', 3); closeProductModal();" class="flex-1 py-2.5 rounded-full border border-gold-500/40 text-gold-300 text-xs font-bold hover:bg-gold-500/10">
-                3ml (${item.prices[3]} kr)
-              </button>
-              <button onclick="addToCart('${item.id}', 12); closeProductModal();" class="flex-1 py-2.5 rounded-full gold-shimmer-btn text-noir-950 text-xs font-bold">
-                12ml (${item.prices[12]} kr)
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      const modal = document.getElementById('product-modal');
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeProductModal() {
-      const modal = document.getElementById('product-modal');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function filterByFamily(fam) {
-      state.activeFilter = fam;
-      document.querySelectorAll('.matrix-node').forEach(node => {
-        node.classList.remove('active', 'bg-gold-500/20', 'border-gold-400');
-        node.classList.add('bg-noir-800/80', 'border-gold-500/20');
-      });
-      event.currentTarget.classList.add('active', 'bg-gold-500/20', 'border-gold-400');
-      if (isAudioEnabled) playBirdChirp();
-      renderOudsGrid();
-    }
-
-    function confettiBurst() {
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 50,
-          spread: 70,
-          origin: { y: 0.8 },
-          colors: ['#C9A96E', '#89CFF0', '#FFFFFF']
-        });
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderOudsGrid();
-      renderCartUI();
-      lucide.createIcons();
-    });
-  </script>
+    const grad=wcx.createLinearGradient(s.x,s.y,s.x,s.y+s.l);
+    if(s.g){grad.addColorStop(0,'rgba(201,169,110,0)');grad.addColorStop(1,`rgba(235,210,165,${s.a})`)}
+    else{grad.addColorStop(0,'rgba(137,207,240,0)');grad.addColorStop(1,`rgba(225,245,255,${s.a})`)}
+    wcx.strokeStyle=grad;wcx.lineWidth=s.w;wcx.beginPath();wcx.moveTo(s.x,s.y);wcx.lineTo(s.x,s.y+s.l);wcx.stroke();
+  }
+  for(let i=sprays.length-1;i>=0;i--){
+    const p=sprays[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.08;p.a-=.014;p.l++;
+    if(p.a<=0||p.l>30){sprays.splice(i,1);continue}
+    wcx.fillStyle=`rgba(215,240,255,${p.a})`;wcx.beginPath();wcx.arc(p.x,p.y,p.r,0,6.284);wcx.fill();
+  }
+  requestAnimationFrame(loopWaterfall);
+}
+setTimeout(()=>{wfit();loopWaterfall()},50);
+
+/* ── store & checkout ── */
+const S=new Proxy({size:'50',qty:1,lines:[]},{set(t,k,v){t[k]=v;render();return true}});
+function render(){
+  const p=P.price[S.size]*S.qty;
+  $('#price').textContent=nok(P.price[S.size]);$('#bprice').textContent=nok(P.price[S.size]);$('#q').textContent=S.qty;
+  const n=S.lines.reduce((a,l)=>a+l.qty,0);$('#badge').textContent=n;
+  $('#lines').innerHTML=S.lines.length?S.lines.map((l,i)=>`<div class="row"><span>${P.name}<em>${l.size} ml × ${l.qty}</em></span><span>${nok(P.price[l.size]*l.qty)} <button class="x" data-rm="${i}">✕</button></span></div>`).join(''):'<p class="row" style="color:var(--dim)">Kurven er tom — ennå.</p>';
+  const tot=S.lines.reduce((a,l)=>a+P.price[l.size]*l.qty,0);
+  $('#total').textContent=nok(tot);
+  $('#modalTotal').textContent=nok(tot);
+}
+$('#sizes').onchange=e=>vt(()=>S.size=e.target.value);
+$$('.qty button').forEach(b=>b.onclick=()=>S.qty=Math.max(1,S.qty+ +b.dataset.q));
+const addToCart=()=>{
+  const l=S.lines.find(l=>l.size===S.size);
+  vt(()=>{l?l.qty+=S.qty:S.lines.push({size:S.size,qty:S.qty});S.lines=[...S.lines]});
+  buzz([12,40,18]);if(birdOn)chirp();
+  if(typeof confetti==='function')confetti({particleCount:40,spread:60,origin:{y:.85},colors:['#C9A96E','#89CFF0','#FFFFFF']});
+  $('#cart').showPopover();
+};
+$('#add').onclick=addToCart;$('#add2').onclick=addToCart;
+$('#lines').onclick=e=>{const i=e.target.dataset.rm;if(i!=null)vt(()=>S.lines=S.lines.filter((_,x)=>x!=i))};
+
+$('#openCheckout').onclick=()=>{
+  if(!S.lines.length)return;
+  $('#cart').hidePopover();
+  $('#checkoutModal').showModal();
+};
+
+window.handleCheckout=e=>{
+  e.preventDefault();
+  buzz([10,60,10,60,25]);if(birdOn)chirp();
+  if(typeof confetti==='function')confetti({particleCount:70,spread:80,origin:{y:.6},colors:['#C9A96E','#FF5B24','#FFFFFF']});
+  $('#checkoutModal').close();
+  $('#cart').showPopover();
+  vt(()=>{$('#cart').innerHTML=`<p class="eye">Forseglet</p><h2 style="font-size:2rem;margin:.8rem 0">Takk. Ordren er reservert.</h2><p>Ordre <b style="color:var(--gold)">#${(Math.random()*1e5|0).toString(36).toUpperCase()}</b> — flakong reservert i Oslo. Bekreftelse sendt på SMS/e-post.</p><button class="cta" style="margin-top:1.6rem" popovertarget="cart" popovertargetaction="hide">Lukk</button>`;S.lines=[]});
+};
+render();
+
+/* ── leveringsdato ── */
+const d=new Date(Date.now()+2*864e5);
+$('#eta').textContent='Hjemme '+new Intl.DateTimeFormat('nb-NO',{weekday:'long',day:'numeric',month:'short'}).format(d);
+
+/* ── smoke canvas ── */
+const cv=$('#smoke'),cx=cv.getContext('2d',{alpha:true}),calm=matchMedia('(prefers-reduced-motion:reduce)');
+let W=0,H=0,ps=[],heat=0,live=1,raf;
+const fit=()=>{const d=Math.min(devicePixelRatio,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);cx.globalCompositeOperation='screen'};
+new ResizeObserver(fit).observe(cv);
+const puff=(x,y,s=1,g=Math.random()<.3+heat*.5)=>ps.length<150&&ps.push({x,y,r:(7+Math.random()*16)*s,vx:(Math.random()-.5)*.5,vy:-(.25+Math.random()*.7),l:0,max:110+Math.random()*90,g});
+function loop(){
+  cx.clearRect(0,0,W,H);
+  const src=$('#flacon').getBoundingClientRect(),base=cv.getBoundingClientRect();
+  for(let i=0;i<(heat?4:1);i++)puff(src.left-base.left+src.width/2+(Math.random()-.5)*src.width*.5*(1+heat),src.top-base.top+src.height*.12);
+  for(const p of ps){
+    p.l++;p.x+=p.vx;p.y+=p.vy*(1+heat*1.3);p.r+=.4;
+    const a=Math.sin(Math.PI*p.l/p.max)*(p.g?.3:.13)*(1+heat*.7);
+    const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+    g.addColorStop(0,`rgba(${p.g?'236,190,116':'168,198,210'},${a})`);g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.284);cx.fill();
+  }
+  ps=ps.filter(p=>p.l<p.max);
+  raf=live&&requestAnimationFrame(loop);
+}
+new IntersectionObserver(([e])=>{live=e.isIntersecting&&!calm.matches;live?loop():cancelAnimationFrame(raf)}).observe(cv);
+cv.parentElement.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();Math.random()<.6&&puff(e.clientX-b.left,e.clientY-b.top,.6,0)},{passive:true});
+
+/* ── press & hold: åpne flakongen ── */
+const words=['einer','bjørketjære','safran','svart oud','isbremoskus','furuharpiks','damaskrose','røkelse','ambra','havsalt'];
+let wt;
+const drift=()=>{
+  const s=document.createElement('span');s.textContent=words[Math.random()*words.length|0];$('#plume').append(s);
+  s.animate([{translate:`${(Math.random()-.5)*140}px 40px`,opacity:0,filter:'blur(6px)'},{opacity:.95,offset:.3},{translate:`${(Math.random()-.5)*220}px -190px`,opacity:0,filter:'blur(10px)'}],{duration:3200+Math.random()*1400,easing:'cubic-bezier(.25,.6,.3,1)'}).onfinish=()=>s.remove();
+};
+const open=on=>{
+  document.documentElement.classList.toggle('open',on);heat=on?1:0;clearInterval(wt);
+  if(on){buzz(20);if(birdOn)chirp();drift();wt=setInterval(drift,420)}
+};
+const h=$('#hold');
+h.addEventListener('pointerdown',e=>{h.setPointerCapture(e.pointerId);open(1)});
+['pointerup','pointercancel','lostpointercapture','blur'].forEach(t=>h.addEventListener(t,()=>open(0)));
+h.addEventListener('keydown',e=>e.key===' '&&open(1));h.addEventListener('keyup',()=>open(0));
+h.addEventListener('contextmenu',e=>e.preventDefault());
+
+/* ── stats animation ── */
+$$('.stats b').forEach(b=>new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;o.disconnect();const n=+b.dataset.n,s=b.dataset.suf||'';let i=0;const t=setInterval(()=>{i+=Math.ceil(n/20);if(i>=n){i=n;clearInterval(t)}b.textContent=i+s},45)},{threshold:.6}).observe(b));
+$$('.note').forEach(n=>n.addEventListener('pointerdown',()=>{$$('.note.on').forEach(o=>o!==n&&o.classList.remove('on'));n.classList.toggle('on');buzz(14);if(birdOn)chirp()}));
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Svartfjord N°1 Black Oud Extrait","brand":{"@type":"Brand","name":"Svartfjord"},"offers":{"@type":"AggregateOffer","priceCurrency":"NOK","lowPrice":1490,"highPrice":3690,"availability":"https://schema.org/InStock","areaServed":"NO"}}</script>
 </body>
 </html>

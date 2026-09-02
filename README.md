@@ -1,19 +1,23 @@
-# Aromatix Oslo — Eksklusiv Oud & Luksuriøse Parfymer
+# SVARTFJORD N°1 — Black Oud Extrait · Oslo
 
-Ultra-luksuriøs e-handelsdemo og digital opplevelse for **Aromatix** — en eksklusiv boutique for sjelden agartre-oud og rene parfymer lokalisert i **Tøyengata 3, 0190 Oslo** (ved Grønland T-bane).
+Nordlyset og fossefallene, tappet i svart. Eksklusivt norsk parfymehus lokalisert i Thorvald Meyers gate, Oslo.
 
 ---
 
-## 🌟 Nøkkelfunksjoner & Visuelle Oppgraderinger
+## 🌲 Nøkkelfunksjoner & Visuelle Høydepunkter
 
-1. **Realistisk Fossemiljø (Waterfall Particle Simulation)**: 60fps GPU-akselerert simulering av fossefall-strømmer, vannsprut og lysrefleksjoner i bakgrunnen.
-2. **Procedural Web Audio Fuglesang (Birds Chirping Synth)**: Naturlig kvitring og ambient fuglesang syntetisert i nettleseren for en beroligende, harmonisk duftopplevelse.
-3. **Fokusert Ren Parfymekolleksjon**: 6 sjeldne agartre-oljer (*Cambodi Vintage*, *Taif Rose & Hindi*, *Smoky Kalakassi*, *Black Ambergris*, *Musk al-Ghazal*, *Santal Imperial*) med oljepyramide, opprinnelse og flaskestørrelser (3ml, 6ml, 12ml).
-4. **Al-Kimiya Duft-Formulering**: Sanntids miksing av topp-, hjerte- og bunnoter med tilpasset projeksjonsberegning.
-5. **Vipps & Hurtig Utsjekk**: Fullstendig integrert Vipps-betaling og butikkhenting i Oslo.
-6. **Tospråklig Støtte (Norsk & Urdu)**: Live veksling med *Noto Nastaliq Urdu* og RTL-støtte.
+1. **Fossefall- & Røykpartikler (Waterfall & Aromatic Mist Canvas)**:
+   - Sanntids 60fps simulering av vertikale fossefall-strømmer, vannsprut og glødende røkelsespartikler fra flakongen.
+2. **Procedural Fuglesang (Web Audio Birds Chirping Synth)**:
+   - Ekte syntetisert nordisk fuglekvitter og beroligende naturlyd som trigger ved åpning av flakongen og ved interaksjon.
+3. **Flakong-Interaksjon ("Trykk og hold")**:
+   - Åpner flakongen ved berøring/klikk, frigjør aromatiske duftplumer (Einer, Bjørketjære, Safran, Svart Oud, Isbremoskus, Furuharpiks).
+4. **Scroll-Driven Duftpyramide & Morfologi**:
+   - Tre lag med interaktiv noteblomstring og "fra bre til bål" dynamisk scroll-wipe.
+5. **Kjøps- og Utsjekksopplevelse**:
+   - Størrelsesvalg (30ml, 50ml, 100ml), popover handlekurv og integrert Vipps-utsjekk.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.1 (updated 2026-09-02 15:25)`
+`v1.0.2 (updated 2026-09-02 15:33)`
