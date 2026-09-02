@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Aromatix — Eksklusiv Oud & Islamske Gaver | Tøyengata 3, Oslo</title>
-<meta name="description" content="Sjelden oud fra Østen, midt i Oslo. Eksklusive oud-parfymer, islamske gavesett, Qur'an, tasbih og bedematter. Tøyengata 3, 0190 Oslo — ved Grønland T-bane. Vipps eller kontant.">
-<meta name="keywords" content="oud, oud parfyme, Oslo, dehn al oud, islamske gaver, tasbih, quran, Grønland, Tøyengata">
+<meta name="description" content="Sjelden oud fra Østen, midt i Oslo. Eksklusive oud-parfymer, islamske gavesett, Qur'an, tasbih og bedematter. Tøyengata 3, 0190 Oslo — ved Grønland T-bane. Vipps til 442442 eller kontant.">
+<meta name="keywords" content="oud, oud parfyme, Oslo, dehn al oud, islamske gaver, tasbih, quran, Grønland, Tøyengata, Vipps 442442">
 <meta property="og:title" content="Aromatix — Sjelden Oud fra Østens Hjerte, Oslo">
-<meta property="og:description" content="Eksklusiv oud & islamske gaver i hjertet av Grønland. Tøyengata 3, 0190 Oslo.">
+<meta property="og:description" content="Eksklusiv oud & islamske gaver i hjertet av Grønland. Tøyengata 3, 0190 Oslo. Betal enkelt med Vipps til 442442.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=1200&q=80">
 <meta name="theme-color" content="#0D0A08">
@@ -16,11 +16,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{night:'#0D0A08',coal:'#151009',gold:'#C9A96E',goldhi:'#EFD9A7',golddeep:'#8A6F3E',amber2:'#E8B15C',ember:'#2E8B6A',vipps:'#FF5B24'},fontFamily:{display:['Cinzel','serif'],serif2:['"Cormorant Garamond"','serif'],body:['Jost','sans-serif'],urdu:['"Noto Nastaliq Urdu"','serif']}}}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Aromatix","address":{"@type":"PostalAddress","streetAddress":"Tøyengata 3","postalCode":"0190","addressLocality":"Oslo","addressCountry":"NO"},"openingHours":["Mo-Sa 10:00-21:00","Su 12:00-20:00"],"priceRange":"kr 239 - 2499"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Aromatix","address":{"@type":"PostalAddress","streetAddress":"Tøyengata 3","postalCode":"0190","addressLocality":"Oslo","addressCountry":"NO"},"openingHours":["Mo-Sa 10:00-21:00","Su 12:00-20:00"],"priceRange":"kr 239 - 2499","paymentAccepted":"Vipps (442442), Cash"}</script>
 
 <style>
 /* ============ BASE ============ */
-:root{--gold:#C9A96E;--gold-hi:#EFD9A7;--gold-deep:#8A6F3E;--bg:#0D0A08;--line:rgba(201,169,110,.18)}
+:root{--gold:#C9A96E;--gold-hi:#EFD9A7;--gold-deep:#8A6F3E;--bg:#0D0A08;--line:rgba(201,169,110,.18);--vipps:#FF5B24}
 *{-webkit-tap-highlight-color:transparent}
 html{scrollbar-color:#5a4a2c #0D0A08}
 body{background:var(--bg);color:#EDE3D2;font-family:'Jost',sans-serif;overflow-x:hidden}
@@ -49,6 +49,10 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .btn-gold:hover{background-position:100% 0;box-shadow:0 0 28px rgba(201,169,110,.45),0 6px 18px rgba(0,0,0,.5);transform:translateY(-2px)}
 .btn-gold::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-22deg);transition:left .7s}
 .btn-gold:hover::after{left:130%}
+
+.btn-vipps{position:relative;overflow:hidden;background:linear-gradient(115deg,#e04412,#FF5B24 45%,#ff7e54 55%,#FF5B24 70%,#e04412);background-size:250% 100%;color:#ffffff;font-weight:600;letter-spacing:.06em;transition:background-position .8s cubic-bezier(.2,.8,.2,1),transform .3s,box-shadow .3s}
+.btn-vipps:hover{background-position:100% 0;box-shadow:0 0 28px rgba(255,91,36,.55),0 6px 18px rgba(0,0,0,.5);transform:translateY(-2px)}
+
 .btn-ghost{border:1px solid rgba(201,169,110,.45);color:var(--gold-hi);transition:.35s;position:relative;overflow:hidden}
 .btn-ghost:hover{border-color:var(--gold);background:rgba(201,169,110,.1);box-shadow:0 0 22px rgba(201,169,110,.25);transform:translateY(-2px)}
 
@@ -211,7 +215,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
       </div>
       <div class="flex items-center gap-5 mt-10 text-[11px] tracking-[.18em] uppercase text-[#8d8065]" data-hero="6">
         <span class="flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="hero_m1">Fri levering over 1 000 kr</span></span>
-        <span class="hidden sm:flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="hero_m2">Vipps & kontant</span></span>
+        <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#FF5B24]"></span><span data-i18n="hero_m2">Vipps (442442) & kontant</span></span>
       </div>
       <div class="absolute -start-4 top-1/2 hidden xl:flex flex-col gap-8 -translate-y-1/2 text-[10px] tracking-[.4em] text-[#7d715c]" style="writing-mode:vertical-rl">
         <span>DEHN AL OUD</span><span class="text-[#C9A96E]">✦</span><span>MUKHALLAT</span><span class="text-[#C9A96E]">✦</span><span>BAKHOOR</span>
@@ -345,7 +349,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
           </div>
         </div>
         <div class="flex gap-4 items-start">
-          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2-2z"/></svg>
           <div><p class="text-[#F2E8D5] font-medium">+47 912 34 567</p><p class="text-xs text-[#8d8065] mt-1">WhatsApp · <span data-i18n="store_wa">svarer raskt</span></p></div>
         </div>
       </div>
@@ -401,9 +405,10 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
       </ul>
     </div>
     <div>
-      <p class="text-[11px] tracking-[.3em] uppercase text-[#C9A96E] mb-4" data-i18n="ft_contact">Kontakt</p>
+      <p class="text-[11px] tracking-[.3em] uppercase text-[#C9A96E] mb-4" data-i18n="ft_contact">Kontakt & Betaling</p>
       <ul class="space-y-2.5 text-sm text-[#a4977e]">
         <li>Tøyengata 3, 0190 Oslo</li>
+        <li class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#FF5B24]"></span>Vipps: <strong class="text-[#EFD9A7]">442442</strong></li>
         <li>+47 912 34 567</li>
         <li>salam@aromatix.no</li>
         <li class="pt-2 text-[#2E8B6A]" data-i18n="ft_hours">Man–lør 10–21 · søn 12–20</li>
@@ -415,7 +420,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
   <div class="border-t border-[#C9A96E]/10 py-6 text-center text-xs text-[#6f6350] flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-7xl mx-auto">
     <p>© 2026 Aromatix · <span data-i18n="ft_made">Laget med safran og kjærlighet i Oslo</span> · <span data-i18n="ft_demo">Demo</span></p>
     <div class="font-mono text-[#C9A96E] bg-white/[.04] px-3 py-1 rounded-full border border-[#C9A96E]/20 text-[11px]">
-      v2.0.1 (updated 2026-09-02 17:58)
+      v2.0.2 (updated 2026-09-02 18:04)
     </div>
   </div>
 </footer>
@@ -508,7 +513,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
         </div>
         <button id="mAdd" class="btn-gold w-full rounded-full py-4 mt-4 text-sm tracking-[.12em] uppercase" data-i18n="m_add">Legg i kurv</button>
         <div class="flex justify-center gap-5 mt-3 text-[11px] text-[#8d8065]">
-          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#FF5B24]"></span>Vipps</span>
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#FF5B24]"></span>Vipps <strong>442442</strong></span>
           <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#C9A96E]"></span><span data-i18n="cod_short">Kontant ved levering</span></span>
         </div>
       </div>
@@ -525,7 +530,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
     <button onclick="toggleCk(false)" class="w-9 h-9 rounded-full border border-[#C9A96E]/30 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition flex items-center justify-center" aria-label="Lukk">✕</button>
   </div>
   <div class="flex-1 overflow-y-auto px-5 py-4">
-    <!-- STEP FORM -->
+    <!-- STEP 1: FORM -->
     <form id="ckForm" class="space-y-5" novalidate>
       <div>
         <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-2" data-i18n="ck_delivery">Leveringsmetode</p>
@@ -536,18 +541,21 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
         <p class="text-[11px] text-[#8d8065] mt-2" id="ckDelNote" data-i18n="ck_shipnote">På døren i Oslo samme dag (1–3 timer)</p>
       </div>
       <div class="grid grid-cols-2 gap-3">
-        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_name">Navn</label><input id="ckName" class="inp" autocomplete="name"></div>
-        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_phone">Telefon</label><input id="ckPhone" class="inp" inputmode="tel" autocomplete="tel"></div>
+        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_name">Navn</label><input id="ckName" class="inp" autocomplete="name" required></div>
+        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_phone">Telefon</label><input id="ckPhone" class="inp" inputmode="tel" autocomplete="tel" required></div>
       </div>
       <div id="ckAddrWrap"><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_addr">Adresse</label><input id="ckAddr" class="inp" autocomplete="street-address"></div>
       <div>
-        <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-2" data-i18n="ck_pay">Betaling</p>
+        <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-2" data-i18n="ck_pay">Betalingsmåte</p>
         <div class="grid grid-cols-2 gap-3">
-          <button type="button" id="payVipps" class="pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all border-[#FF5B24] bg-[#FF5B24]/15">
-            <span class="font-bold text-[#FF5B24] tracking-wide text-sm px-3 py-0.5 rounded bg-white">Vipps</span>
-            <span class="text-[10px] text-[#8d8065]" data-i18n="pay_vipps">Betal med Vipps</span>
+          <button type="button" id="payVipps" class="pay-opt border-2 rounded-xl py-3.5 px-2 flex flex-col items-center gap-1 transition-all border-[#FF5B24] bg-[#FF5B24]/15 shadow-[0_0_15px_rgba(255,91,36,0.25)]">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-[#FF5B24] tracking-wide text-sm px-2.5 py-0.5 rounded bg-white">Vipps</span>
+              <span class="text-xs font-mono text-[#EFD9A7] font-bold">442442</span>
+            </div>
+            <span class="text-[10px] text-[#FF5B24] font-medium" data-i18n="pay_vipps">Betal direkte med Vipps</span>
           </button>
-          <button type="button" id="payCod" class="pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all border-[#C9A96E]/25 opacity-60">
+          <button type="button" id="payCod" class="pay-opt border-2 rounded-xl py-3.5 px-2 flex flex-col items-center gap-1 transition-all border-[#C9A96E]/25 opacity-60">
             <span class="text-2xl">💵</span>
             <span class="text-xs text-[#F2E8D5]" data-i18n="pay_cod">Kontant ved levering</span>
           </button>
@@ -556,12 +564,82 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
       <div class="bg-[#0f0b07] border border-[#C9A96E]/20 rounded-xl p-4 space-y-1.5 text-sm text-[#a4977e]">
         <div class="flex justify-between"><span data-i18n="cart_sub">Delsum</span><span id="ckSub" class="text-[#F2E8D5]"></span></div>
         <div class="flex justify-between"><span data-i18n="cart_del">Levering</span><span id="ckDel" class="text-[#F2E8D5]"></span></div>
-        <div class="flex justify-between pt-2 border-t border-[#C9A96E]/15"><span class="text-[#F2E8D5]" data-i18n="cart_tot">Totalt</span><span id="ckTot" class="font-display text-[#EFD9A7]"></span></div>
+        <div class="flex justify-between pt-2 border-t border-[#C9A96E]/15"><span class="text-[#F2E8D5]" data-i18n="cart_tot">Totalt</span><span id="ckTot" class="font-display text-[#EFD9A7] text-lg font-bold"></span></div>
       </div>
       <p id="ckErr" class="text-[#e0825e] text-xs hidden"></p>
-      <button type="submit" class="btn-gold w-full rounded-full py-4 text-sm tracking-[.12em] uppercase" id="ckSubmit" data-i18n="ck_place">Fullfør bestilling</button>
+      <button type="submit" class="btn-vipps w-full rounded-full py-4 text-sm tracking-[.12em] uppercase font-bold flex items-center justify-center gap-2" id="ckSubmit">
+        <span data-i18n="ck_place">Fullfør bestilling</span>
+      </button>
     </form>
-    <!-- STEP SUCCESS -->
+
+    <!-- STEP 2: VIPPS PAYMENT INTERFACE (Vipps #442442) -->
+    <div id="vippsPayScreen" class="hidden text-center py-4 space-y-5">
+      <div class="bg-gradient-to-b from-[#1f150c] to-[#120d07] border-2 border-[#FF5B24] rounded-2xl p-6 relative overflow-hidden shadow-[0_0_30px_rgba(255,91,36,0.2)]">
+        <!-- Vipps Header -->
+        <div class="flex items-center justify-between border-b border-[#FF5B24]/30 pb-4 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="bg-[#FF5B24] text-white text-xs px-3 py-1 rounded-full font-bold tracking-wider">VIPPS</span>
+            <span class="text-xs text-[#E8D9BC]">Aromatix Oslo</span>
+          </div>
+          <span class="w-3 h-3 rounded-full bg-[#31c968] animate-ping" title="Aktiv betaling"></span>
+        </div>
+
+        <p class="text-xs tracking-[.25em] uppercase text-[#C9A96E]" data-i18n="vipps_num_title">Vipps Bedriftsnummer</p>
+        
+        <!-- Big Vipps Number Pill with Copy -->
+        <div class="my-3 flex items-center justify-center gap-3">
+          <div class="bg-black/60 border border-[#FF5B24] px-6 py-2.5 rounded-xl flex items-center gap-3">
+            <span class="font-mono text-3xl font-black text-[#FF5B24] tracking-widest" id="vippsNumberDisplay">442442</span>
+            <button type="button" onclick="copyText('442442', this)" class="bg-[#FF5B24]/20 hover:bg-[#FF5B24] text-[#FF5B24] hover:text-white px-3 py-1 rounded-lg text-xs font-semibold transition-all">
+              <span class="copy-lbl" data-i18n="vipps_copy">Kopier</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Amount & Reference Box -->
+        <div class="grid grid-cols-2 gap-3 my-4 bg-black/40 border border-[#C9A96E]/20 p-3.5 rounded-xl text-start">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider text-[#8d8065] block" data-i18n="cart_tot">Beløp å betale</span>
+            <span id="vippsPayAmount" class="font-display text-xl text-[#EFD9A7] font-bold"></span>
+          </div>
+          <div>
+            <span class="text-[10px] uppercase tracking-wider text-[#8d8065] block" data-i18n="ok_order">Ordremelding (KID)</span>
+            <div class="flex items-center justify-between">
+              <span id="vippsPayRef" class="font-mono text-sm text-[#F2E8D5] font-bold"></span>
+              <button type="button" onclick="copyText($('vippsPayRef').innerText, this)" class="text-[10px] text-[#C9A96E] hover:underline" data-i18n="vipps_copy">Kopier</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR Code for Desktop or Second Device -->
+        <div class="my-4 flex flex-col items-center justify-center gap-2">
+          <div class="bg-white p-2.5 rounded-xl shadow-lg inline-block">
+            <img id="vippsQR" src="" alt="Vipps QR 442442" class="w-36 h-36 mx-auto rounded" />
+          </div>
+          <p class="text-[11px] text-[#8d8065]" data-i18n="vipps_qr_note">Skann QR-koden med Vipps eller mobilkamera</p>
+        </div>
+
+        <!-- 3 Simple Steps -->
+        <div class="text-xs text-[#a4977e] space-y-2 text-start bg-white/[.02] border border-[#C9A96E]/10 p-3.5 rounded-xl">
+          <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">1</span> <span data-i18n="vipps_step1">Åpne Vipps og send beløpet til <strong>442442</strong></span></p>
+          <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">2</span> <span data-i18n="vipps_step2">Skriv ordrenummeret som melding i Vipps</span></p>
+          <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">3</span> <span data-i18n="vipps_step3">Trykk på knappen nedenfor når du har vippet</span></p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5 mt-5">
+          <a id="vippsDeepLink" href="vipps://" class="btn-vipps w-full rounded-full py-3.5 text-sm uppercase font-bold flex items-center justify-center gap-2 shadow-lg">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <span data-i18n="vipps_btn_open">Åpne Vipps-appen</span>
+          </a>
+          <button type="button" onclick="confirmVippsPaid()" class="btn-gold w-full rounded-full py-3.5 text-sm uppercase font-bold" data-i18n="vipps_btn_done">
+            Jeg har vippet nå ✓
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: ORDER SUCCESS CONFIRMATION -->
     <div id="ckSuccess" class="hidden text-center py-6">
       <div class="relative w-44 h-52 mx-auto">
         <svg viewBox="0 0 60 60" class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 text-[#C9A96E] z-10" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -578,8 +656,13 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
         <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065]" data-i18n="ok_order">Ordrenummer</p>
         <p id="okNum" class="font-display text-2xl text-[#EFD9A7] tracking-[.2em] mt-1"></p>
       </div>
-      <p id="okNote" class="text-xs text-[#8d8065] mt-4"></p>
-      <button onclick="finishOrder()" class="btn-ghost rounded-full px-8 py-3 mt-6 text-sm" data-i18n="ok_close">Fortsett å handle</button>
+      <p id="okNote" class="text-xs text-[#8d8065] mt-4 leading-relaxed"></p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+        <a id="waReceipt" href="#" target="_blank" rel="noopener" class="btn-ghost rounded-full px-6 py-3 text-xs tracking-wider uppercase inline-flex items-center justify-center gap-2">
+          <span>💬 Varsle oss på WhatsApp</span>
+        </a>
+        <button onclick="finishOrder()" class="btn-gold rounded-full px-8 py-3 text-sm tracking-wider uppercase" data-i18n="ok_close">Fortsett å handle</button>
+      </div>
     </div>
   </div>
 </aside>
@@ -597,7 +680,7 @@ no:{
  loading:"Duftene våkner…",
  hero_kicker:"Est. Grønland · Oslo",hero_sub:"Sjelden oud fra Østens hjerte — Oslo",
  hero_desc:"Håndplukkede oljer fra Cambodias dype skoger og Indias eldgamle destillerier. Destillert i tolv år, flaskelagt for hånd — nå i hjertet av Grønland.",
- hero_cta1:"Utforsk oudene",hero_cta2:"Besøk oss i Tøyengata 3",hero_m1:"Fri levering over 1 000 kr",hero_m2:"Vipps & kontant",
+ hero_cta1:"Utforsk oudene",hero_cta2:"Besøk oss i Tøyengata 3",hero_m1:"Fri levering over 1 000 kr",hero_m2:"Vipps (442442) & kontant",
  hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVERT UTGAVE · 12 ÅR",
  col_kicker:"Oud-kolleksjonen",col_title:"Oud-kolleksjonen",col_sub:"Fra lette, lyse dråper til dype, mørke harpiks — hver flaske er destillert for hånd.",col_sub2:" signaturdufter",
  f_all:"Alle",f_soft:"Milde",f_deep:"Dype",f_floral:"Blomster",
@@ -614,13 +697,18 @@ no:{
  d_monsat:"Man – Lør",d_sun:"Søndag",d_closed:"Stengt",
  rev_kicker:"Fra våre gjester",rev_title:"Ord fra hjertet",rev_note:"— les flere i butikkens gjestebok",
  cart_title:"DIN KURV",cart_empty:"Kurven din venter på sin første dråpe…",cart_sub:"Delsum",cart_del:"Levering",cart_tot:"Totalt",cart_free:"Fri frakt!",cart_need:"{n} kr igjen til fri levering",cart_pickup:"Hent i butikk — gratis",cart_go:"Gå til kassen",cart_add:"Lagt i kurven ✓",
- ck_title:"KASSE",ck_delivery:"Leveringsmetode",ck_ship:"Levering",ck_pickup:"Hent i butikk",ck_shipnote:"På døren i Oslo samme dag (1–3 timer)",ck_pickupnote:"Tøyengata 3, inne i Matbørsen — klar i dag",ck_name:"Navn",ck_phone:"Telefon",ck_addr:"Adresse",ck_pay:"Betaling",ck_place:"Fullfør bestilling",
- pay_vipps:"Betal med Vipps",pay_cod:"Kontant ved levering",cod_short:"Kontant ved levering",
- err_fill:"Vennligst fyll ut alle feltene",
- ok_title:"Takk for bestillingen!",ok_sub:"Vi kontakter deg på telefon innen én time for å bekrefte.",ok_order:"Ordrenummer",ok_close:"Fortsett å handle",ok_pickup:"Vis ordrenummeret i kassen når du henter.",ok_del:"Sjåføren vår ringer når han er fremme.",ok_vipps:"Vipps-forespørsel er sendt til telefonen din (demo).",ok_cod:"Betal kontant ved levering.",
- ft_tag:"Sjelden oud og islamske gaver, håndplukket fra Østen og pakket med kjærlighet på Grønland.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Snarveier",ft_contact:"Kontakt",ft_hours:"Man–lør 10–21 · søn 12–20",ft_made:"Laget med safran og kjærlighet i Oslo",ft_demo:"Demo",
+ ck_title:"KASSE",ck_delivery:"Leveringsmetode",ck_ship:"Levering",ck_pickup:"Hent i butikk",ck_shipnote:"På døren i Oslo samme dag (1–3 timer)",ck_pickupnote:"Tøyengata 3, inne i Matbørsen — klar i dag",ck_name:"Navn",ck_phone:"Telefon",ck_addr:"Adresse",ck_pay:"Betalingsmåte",ck_place:"Gå til Vipps-betaling (442442)",
+ pay_vipps:"Betal direkte med Vipps",pay_cod:"Kontant ved levering",cod_short:"Kontant ved levering",
+ vipps_num_title:"Vipps Bedriftsnummer",vipps_copy:"Kopier",vipps_copied:"Kopiert!",vipps_qr_note:"Skann QR-koden med Vipps eller mobilkamera",
+ vipps_step1:"Åpne Vipps og send beløpet til bedriftsnummer 442442",
+ vipps_step2:"Skriv ordrenummeret som melding i Vipps",
+ vipps_step3:"Trykk 'Jeg har vippet nå' når betalingen er fullført",
+ vipps_btn_open:"Åpne Vipps-appen",vipps_btn_done:"Jeg har vippet nå ✓",
+ err_fill:"Vennligst fyll ut alle påkrevde felter",
+ ok_title:"Takk for bestillingen!",ok_sub:"Vi kontakter deg på telefon innen én time for å bekrefte.",ok_order:"Ordrenummer",ok_close:"Fortsett å handle",ok_pickup:"Vis ordrenummeret i kassen i Tøyengata 3.",ok_del:"Sjåføren vår ringer når han er fremme.",ok_vipps:"Vipps-betaling registrert til nummer 442442.",ok_cod:"Betal kontant ved levering.",
+ ft_tag:"Sjelden oud og islamske gaver, håndplukket fra Østen og pakket med kjærlighet på Grønland.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Snarveier",ft_contact:"Kontakt & Betaling",ft_hours:"Man–lør 10–21 · søn 12–20",ft_made:"Laget med safran og kjærlighet i Oslo",ft_demo:"Demo",
  mnav_home:"Hjem",mnav_shop:"Butikk",mnav_gifts:"Gaver",mnav_store:"Finn oss",
- ticker:["Ren Dehn al Oud","Cambodisk oud","Taifi-rose","Hvit musk","Håndskåret sandeltre","Vipps & kontant","Fri levering over 1 000 kr","Tøyengata 3 · Oslo"],
+ ticker:["Ren Dehn al Oud","Cambodisk oud","Taifi-rose","Hvit musk","Håndskåret sandeltre","Vipps 442442 & kontant","Fri levering over 1 000 kr","Tøyengata 3 · Oslo"],
  inc:"Intensitet ",long_h:" t"
 },
 en:{
@@ -628,7 +716,7 @@ en:{
  loading:"Awakening the scents…",
  hero_kicker:"Est. Grønland · Oslo",hero_sub:"Rare Oud from the Heart of the East — Oslo",
  hero_desc:"Hand-selected oils from the deep forests of Cambodia and ancient distilleries of India. Aged for twelve years, bottled by hand — now in the heart of Grønland.",
- hero_cta1:"Explore the Ouds",hero_cta2:"Visit us at Tøyengata 3",hero_m1:"Free delivery over 1,000 NOK",hero_m2:"Vipps & Cash on Delivery",
+ hero_cta1:"Explore the Ouds",hero_cta2:"Visit us at Tøyengata 3",hero_m1:"Free delivery over 1,000 NOK",hero_m2:"Vipps (442442) & Cash",
  hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVE EDITION · 12 YEARS",
  col_kicker:"The Oud Collection",col_title:"The Oud Collection",col_sub:"From light, ethereal drops to deep, dark resins — each bottle is distilled by hand.",col_sub2:" signature scents",
  f_all:"All",f_soft:"Gentle",f_deep:"Deep",f_floral:"Floral",
@@ -645,13 +733,18 @@ en:{
  d_monsat:"Mon – Sat",d_sun:"Sunday",d_closed:"Closed",
  rev_kicker:"From Our Guests",rev_title:"Words from the Heart",rev_note:"— read more in the store guestbook",
  cart_title:"YOUR CART",cart_empty:"Your cart is awaiting its first drop…",cart_sub:"Subtotal",cart_del:"Delivery",cart_tot:"Total",cart_free:"Free Delivery!",cart_need:"{n} kr away from free delivery",cart_pickup:"Store Pickup — Free",cart_go:"Proceed to Checkout",cart_add:"Added to Cart ✓",
- ck_title:"CHECKOUT",ck_delivery:"Delivery Method",ck_ship:"Delivery",ck_pickup:"Store Pickup",ck_shipnote:"Same-day delivery in Oslo (1–3 hours)",ck_pickupnote:"Tøyengata 3, inside Matbørsen — ready today",ck_name:"Full Name",ck_phone:"Phone Number",ck_addr:"Delivery Address",ck_pay:"Payment Method",ck_place:"Complete Order",
- pay_vipps:"Pay with Vipps",pay_cod:"Cash on Delivery",cod_short:"Cash on Delivery",
- err_fill:"Please fill in all fields",
- ok_title:"Thank you for your order!",ok_sub:"We will contact you by phone within one hour to confirm.",ok_order:"Order Number",ok_close:"Continue Shopping",ok_pickup:"Show this order number at checkout when picking up.",ok_del:"Our courier will call upon arrival.",ok_vipps:"Vipps request sent to your phone (demo).",ok_cod:"Pay with cash or card upon delivery.",
- ft_tag:"Rare oud and Islamic gifts, handpicked from the East and packaged with love in Grønland, Oslo.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Quick Links",ft_contact:"Contact",ft_hours:"Mon–Sat 10–21 · Sun 12–20",ft_made:"Crafted with saffron and love in Oslo",ft_demo:"Demo",
+ ck_title:"CHECKOUT",ck_delivery:"Delivery Method",ck_ship:"Delivery",ck_pickup:"Store Pickup",ck_shipnote:"Same-day delivery in Oslo (1–3 hours)",ck_pickupnote:"Tøyengata 3, inside Matbørsen — ready today",ck_name:"Full Name",ck_phone:"Phone Number",ck_addr:"Delivery Address",ck_pay:"Payment Method",ck_place:"Proceed to Vipps (442442)",
+ pay_vipps:"Pay directly with Vipps",pay_cod:"Cash on Delivery",cod_short:"Cash on Delivery",
+ vipps_num_title:"Vipps Merchant Number",vipps_copy:"Copy",vipps_copied:"Copied!",vipps_qr_note:"Scan QR code with Vipps or mobile camera",
+ vipps_step1:"Open Vipps and send the amount to merchant 442442",
+ vipps_step2:"Add your order number in the message field in Vipps",
+ vipps_step3:"Click 'I Have Sent Payment' once complete",
+ vipps_btn_open:"Open Vipps App",vipps_btn_done:"I Have Sent Payment ✓",
+ err_fill:"Please fill in all required fields",
+ ok_title:"Thank you for your order!",ok_sub:"We will contact you by phone within one hour to confirm.",ok_order:"Order Number",ok_close:"Continue Shopping",ok_pickup:"Show this order number at checkout at Tøyengata 3.",ok_del:"Our courier will call upon arrival.",ok_vipps:"Vipps payment registered to merchant 442442.",ok_cod:"Pay with cash or card upon delivery.",
+ ft_tag:"Rare oud and Islamic gifts, handpicked from the East and packaged with love in Grønland, Oslo.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Quick Links",ft_contact:"Contact & Payment",ft_hours:"Mon–Sat 10–21 · Sun 12–20",ft_made:"Crafted with saffron and love in Oslo",ft_demo:"Demo",
  mnav_home:"Home",mnav_shop:"Shop",mnav_gifts:"Gifts",mnav_store:"Find Us",
- ticker:["Pure Dehn al Oud","Cambodian Oud","Taif Rose","White Musk","Handcarved Sandalwood","Vipps & Cash","Free Delivery over 1,000 NOK","Tøyengata 3 · Oslo"],
+ ticker:["Pure Dehn al Oud","Cambodian Oud","Taif Rose","White Musk","Handcarved Sandalwood","Vipps 442442 & Cash","Free Delivery over 1,000 NOK","Tøyengata 3 · Oslo"],
  inc:"Intensity ",long_h:" hrs"
 },
 ur:{
@@ -659,7 +752,7 @@ ur:{
  loading:"خوشبیدار ہو رہی ہے…",
  hero_kicker:"گرونلینڈ، اوسلو سے",hero_sub:"مشرق کے دل سے نایاب عود — اوسلو",
  hero_desc:"کمبوڈیا کے گھنے جنگلوں اور ہندوستان کی قدیم بھٹیوں سے چنی گئی خالص عود کی خوشبوئیں۔ بارہ سال کی کشید، ہاتھ سے بوتل بند — اب گرونلینڈ کے دل میں۔",
- hero_cta1:"عود کا مجموعہ دیکھیں",hero_cta2:"تویینگاتا ۳ پر ملیں",hero_m1:"ہزار کرون پر مفت ترسیل",hero_m2:"وِپس اور نقد",
+ hero_cta1:"عود کا مجموعہ دیکھیں",hero_cta2:"تویینگاتا ۳ پر ملیں",hero_m1:"ہزار کرون پر مفت ترسیل",hero_m2:"وِپس (442442) اور نقد",
  hero_feat_name:"دہن العود ملکی",hero_feat_sub:"مخصوص ایڈیشن · ۱۲ سال",
  col_kicker:"عود کا مجموعہ",col_title:"عود کا مجموعہ",col_sub:"ہلکی نرم بوندوں سے لے کر گہرے سیاہ رال تک — ہر بوتل ہاتھ سے کشید کی گئی ہے۔",col_sub2:" خصوصی خوشبوئیں",
  f_all:"تمام",f_soft:"نرم",f_deep:"گہری",f_floral:"پھولوں والی",
@@ -676,13 +769,18 @@ ur:{
  d_monsat:"پیر تا ہفتہ",d_sun:"اتوار",d_closed:"بند",
  rev_kicker:"ہمارے مہمانوں سے",rev_title:"دل کے الفاظ",rev_note:"— مزید دکان کی مہمان کتاب میں",
  cart_title:"آپ کی ٹوکری",cart_empty:"آپ کی ٹوکری پہلی بوند کی منتظر ہے…",cart_sub:"ذیلی کل",cart_del:"ترسیل",cart_tot:"کل رقم",cart_free:"مفت ترسیل!",cart_need:"مفت ترسیل کے لیے {n} کرون مزید",cart_pickup:"دکان سے وصولی — مفت",cart_go:"چیک آؤٹ کریں",cart_add:"ٹوکری میں شامل ✓",
- ck_title:"ادائیگی",ck_delivery:"ترسیل کا طریقہ",ck_ship:"ہوم ڈیلیوری",ck_pickup:"دکان سے وصولی",ck_shipnote:"اوسلو میں اسی دن (۱–۳ گھنٹے)",ck_pickupnote:"تویینگاتا ۳، ماتھبورسن کے اندر — آج ہی تیار",ck_name:"نام",ck_phone:"فون",ck_addr:"پتہ",ck_pay:"ادائیگی",ck_place:"آرڈر مکمل کریں",
- pay_vipps:"وِپس سے ادائیگی",pay_cod:"ترسیل پر نقد",cod_short:"ترسیل پر نقد",
- err_fill:"براہ کرم تمام خانے پُر کریں",
- ok_title:"شکریہ! آرڈر موصول ہو گیا",ok_sub:"ہم ایک گھنٹے کے اندر فون پر رابطہ کریں گے۔",ok_order:"آرڈر نمبر",ok_close:"خریداری جاری رکھیں",ok_pickup:"وصولی پر یہ نمبر دکھائیں۔",ok_del:"ہمارا ڈرائیور پہنچنے پر کال کرے گا۔",ok_vipps:"وِپس کی درخواست آپ کے فون پر بھیج دی گئی (ڈیمو)۔",ok_cod:"ترسیل پر نقد ادائیگی کریں۔",
- ft_tag:"نایاب عود اور اسلامی تحائف — مشرق سے چن کر گرونلینڈ میں محبت سے پیک کیے گئے۔",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"فوری روابط",ft_contact:"رابطہ",ft_hours:"پیر تا ہفتہ ۱۰–۲۱ · اتوار ۱۲–۲۰",ft_made:"اوسلو میں زعفران اور محبت سے بنایا گیا",ft_demo:"ڈیمو",
+ ck_title:"ادائیگی",ck_delivery:"ترسیل کا طریقہ",ck_ship:"ہوم ڈیلیوری",ck_pickup:"دکان سے وصولی",ck_shipnote:"اوسلو میں اسی دن (۱–۳ گھنٹے)",ck_pickupnote:"تویینگاتا ۳، ماتھبورسن کے اندر — آج ہی تیار",ck_name:"نام",ck_phone:"فون",ck_addr:"پتہ",ck_pay:"ادائیگی کا طریقہ",ck_place:"وِپس ادائیگی (442442)",
+ pay_vipps:"وِپس سے براہِ راست ادائیگی",pay_cod:"ترسیل پر نقد",cod_short:"ترسیل پر نقد",
+ vipps_num_title:"وِپس بزنس نمبر",vipps_copy:"کاپی",vipps_copied:"کاپی ہو گیا!",vipps_qr_note:"وِپس یا موبائل کیمرے سے کیو آر کوڈ اسکین کریں",
+ vipps_step1:"وِپس کھولیں اور رقم بزنس نمبر 442442 پر بھیجیں",
+ vipps_step2:"وِپس میں آرڈر نمبر میسج میں لکھیں",
+ vipps_step3:"رقم بھیجنے کے بعد نیچے دیے گئے بٹن پر کلک کریں",
+ vipps_btn_open:"وِپس ایپ کھولیں",vipps_btn_done:"میں نے رقم بھیج دی ہے ✓",
+ err_fill:"براہ کرم تمام مطلوبہ خانے پُر کریں",
+ ok_title:"شکریہ! آرڈر موصول ہو گیا",ok_sub:"ہم ایک گھنٹے کے اندر فون پر رابطہ کریں گے۔",ok_order:"آرڈر نمبر",ok_close:"خریداری جاری رکھیں",ok_pickup:"تویینگاتا ۳ پر وصولی کے وقت یہ نمبر دکھائیں۔",ok_del:"ہمارا ڈرائیور پہنچنے پر کال کرے گا۔",ok_vipps:"وِپس ادائیگی نمبر 442442 پر درج ہو چکی ہے۔",ok_cod:"ترسیل پر نقد ادائیگی کریں۔",
+ ft_tag:"نایاب عود اور اسلامی تحائف — مشرق سے چن کر گرونلینڈ میں محبت سے پیک کیے گئے۔",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"فوری روابط",ft_contact:"رابطہ اور ادائیگی",ft_hours:"پیر تا ہفتہ ۱۰–۲۱ · اتوار ۱۲–۲۰",ft_made:"اوسلو میں زعفران اور محبت سے بنایا گیا",ft_demo:"ڈیمو",
  mnav_home:"ہوم",mnav_shop:"دکان",mnav_gifts:"تحفے",mnav_store:"پتہ",
- ticker:["خالص دہن العود","کمبوڈین عود","طائفی گلاب","سفید مشک","صندل کی لکڑی","وِپس اور نقد","ہزار کرون پر مفت ترسیل","تویینگاتا ۳ · اوسلو"],
+ ticker:["خالص دہن العود","کمبوڈین عود","طائفی گلاب","سفید مشک","صندل کی لکڑی","وِپس 442442 اور نقد","ہزار کرون پر مفت ترسیل","تویینگاتا ۳ · اوسلو"],
  inc:"شدت ",long_h:" گھنٹے"
 }};
 
@@ -763,7 +861,7 @@ const REVIEWS=[
 let lang=localStorage.getItem('arx_lang')||'no';
 let cart=JSON.parse(localStorage.getItem('arx_cart')||'{}');
 let filter='all', mProduct=null, mSize='6', mQ=1;
-let ckDel='ship', ckPay='vipps';
+let ckDel='ship', ckPay='vipps', currentOrderId='', currentTotal=0;
 const $=id=>document.getElementById(id);
 const t=k=>(STR[lang]&&STR[lang][k])||(STR.no&&STR.no[k])||k;
 const money=n=>n.toLocaleString(lang==='en'?'en-US':'no-NO')+' kr';
@@ -1009,13 +1107,16 @@ function closeModal(){$('pModal').classList.remove('open');document.body.style.o
  $('mIntBar').style.width='0%';$('mLongBar').style.width='0%';}
 $('mAdd').onclick=e=>{addToCart(mProduct.id+'-'+mSize,mQ);confetti(e.clientX,e.clientY);closeModal();toggleCart(true);};
 
-/* ═══════════════════════ CHECKOUT ═══════════════════════ */
+/* ═══════════════════════ CHECKOUT & VIPPS 442442 ═══════════════════════ */
 function openCk(){
- $('ckForm').classList.remove('hidden');$('ckSuccess').classList.add('hidden');
+ $('ckForm').classList.remove('hidden');
+ $('vippsPayScreen').classList.add('hidden');
+ $('ckSuccess').classList.add('hidden');
  const sub=cartSub(),free=sub>=1000,del=(ckDel==='pickup'||free)?0:79;
+ currentTotal=sub+del;
  $('ckSub').textContent=money(sub);
  $('ckDel').innerHTML=ckDel==='pickup'?`<span class="text-[#7dd8b4]">${t('cart_pickup')}</span>`:(del===0?`<span class="text-[#7dd8b4]">${t('cart_free')}</span>`:money(del));
- $('ckTot').textContent=money(sub+del);
+ $('ckTot').textContent=money(currentTotal);
  $('ckSheet').classList.add('open');$('ckMask').style.opacity=1;$('ckMask').style.pointerEvents='auto';document.body.style.overflow='hidden';
 }
 function toggleCk(o){$('ckSheet').classList.toggle('open',o);$('ckMask').style.opacity=o?1:0;$('ckMask').style.pointerEvents=o?'auto':'none';if(!o)document.body.style.overflow='';}
@@ -1028,9 +1129,21 @@ document.querySelectorAll('#ckDelSeg button').forEach(b=>b.onclick=()=>{
  openCk();
 });
 function setPay(p){ckPay=p;
- $('payVipps').className='pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all '+(p==='vipps'?'border-[#FF5B24] bg-[#FF5B24]/15':'border-[#C9A96E]/25 opacity-60');
- $('payCod').className='pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all '+(p==='cod'?'border-[#C9A96E] bg-[#C9A96E]/15':'border-[#C9A96E]/25 opacity-60');}
+ $('payVipps').className='pay-opt border-2 rounded-xl py-3.5 px-2 flex flex-col items-center gap-1 transition-all '+(p==='vipps'?'border-[#FF5B24] bg-[#FF5B24]/15 shadow-[0_0_15px_rgba(255,91,36,0.25)]':'border-[#C9A96E]/25 opacity-60');
+ $('payCod').className='pay-opt border-2 rounded-xl py-3.5 px-2 flex flex-col items-center gap-1 transition-all '+(p==='cod'?'border-[#C9A96E] bg-[#C9A96E]/15 shadow-[0_0_15px_rgba(201,169,110,0.25)]':'border-[#C9A96E]/25 opacity-60');
+ $('ckSubmit').querySelector('span').textContent=p==='vipps'?t('ck_place'):t('ck_place').replace('Vipps (442442)','kontant');
+}
 $('payVipps').onclick=()=>setPay('vipps');$('payCod').onclick=()=>setPay('cod');
+
+function copyText(text, btn){
+ navigator.clipboard.writeText(text).then(()=>{
+  const lbl=btn.querySelector('.copy-lbl')||btn;
+  const old=lbl.innerText;
+  lbl.innerText=t('vipps_copied')||'Kopiert!';
+  setTimeout(()=>{lbl.innerText=old;},1400);
+ });
+}
+
 $('ckForm').onsubmit=e=>{
  e.preventDefault();
  const name=$('ckName'),phone=$('ckPhone'),addr=$('ckAddr');
@@ -1039,15 +1152,48 @@ $('ckForm').onsubmit=e=>{
  if(ckDel==='ship'){addr.classList.toggle('err',!addr.value.trim());if(!addr.value.trim())ok=false;}
  if(!ok){$('ckErr').textContent=t('err_fill');$('ckErr').classList.remove('hidden');return;}
  $('ckErr').classList.add('hidden');
- $('ckSubmit').textContent='⏳ …';
- setTimeout(()=>{
-  $('ckForm').classList.add('hidden');$('ckSuccess').classList.remove('hidden');
-  $('okNum').textContent='ARX-'+Math.floor(10000+Math.random()*89999);
-  $('okNote').innerHTML=(ckDel==='pickup'?t('ok_pickup'):t('ok_del'))+'<br>'+(ckPay==='vipps'?t('ok_vipps'):t('ok_cod'));
-  $('ckSubmit').textContent=t('ck_place');
-  confetti(innerWidth/2,innerHeight/2,26);
- },900);
+
+ currentOrderId='ARX-'+Math.floor(10000+Math.random()*89999);
+
+ if(ckPay==='vipps'){
+  // Show VIPPS 442442 Payment Screen
+  $('ckForm').classList.add('hidden');
+  $('vippsPayScreen').classList.remove('hidden');
+  $('vippsPayAmount').textContent=money(currentTotal);
+  $('vippsPayRef').textContent=currentOrderId;
+  
+  // Generate Vipps QR Code pointing to Vipps Number 442442 with amount and reference
+  const vippsData = `vipps://pay?recipient=442442&amount=${currentTotal}&message=${encodeURIComponent('Aromatix ' + currentOrderId)}`;
+  $('vippsQR').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(vippsData)}&color=151009`;
+  $('vippsDeepLink').href = vippsData;
+  confetti(innerWidth/2,innerHeight/2,16);
+ } else {
+  // Show Cash / Store Pickup Confirmation
+  showFinalSuccess();
+ }
 };
+
+function confirmVippsPaid(){
+ showFinalSuccess(true);
+}
+
+function showFinalSuccess(isVipps=false){
+ $('ckForm').classList.add('hidden');
+ $('vippsPayScreen').classList.add('hidden');
+ $('ckSuccess').classList.remove('hidden');
+ $('okNum').textContent=currentOrderId;
+ 
+ const deliveryMsg = ckDel==='pickup'?t('ok_pickup'):t('ok_del');
+ const payMsg = isVipps || ckPay==='vipps' ? t('ok_vipps') : t('ok_cod');
+ $('okNote').innerHTML=`${deliveryMsg}<br><strong class="text-[#EFD9A7]">${payMsg}</strong>`;
+
+ // Prepare WhatsApp Confirmation Link
+ const waMsg = encodeURIComponent(`Hei Aromatix! Jeg har lagt inn bestilling ${currentOrderId} på ${money(currentTotal)} via nettsiden. ${ckPay==='vipps'?'Betaling sendt til Vipps 442442.':''}`);
+ $('waReceipt').href = `https://wa.me/4791234567?text=${waMsg}`;
+
+ confetti(innerWidth/2,innerHeight/2,32);
+}
+
 function finishOrder(){cart={};saveCart();updateBadge();renderCart();toggleCk(false);}
 
 /* ═══════════════════════ FX: SMOKE & PARTICLES CANVAS ═══════════════════════ */
@@ -1078,7 +1224,7 @@ function drawSmoke(t){
  }
 }
 function confetti(x,y,n=14){
- const cols=['#EFD9A7','#C9A96E','#8A6F3E','#2E8B6A','#fff3d6'];
+ const cols=['#FF5B24','#EFD9A7','#C9A96E','#8A6F3E','#2E8B6A','#fff3d6'];
  for(let i=0;i<n;i++){const a=Math.random()*6.28,s=2+Math.random()*4.5;
   confettiP.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-2.5,r:2+Math.random()*3.2,rot:Math.random()*6.28,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],l:1,shape:Math.random()<.4?0:1});}
 }
