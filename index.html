@@ -19,7 +19,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Aromatix","address":{"@type":"PostalAddress","streetAddress":"Tøyengata 3","postalCode":"0190","addressLocality":"Oslo","addressCountry":"NO"},"openingHours":["Mo-Sa 10:00-21:00","Su 12:00-20:00"],"priceRange":"kr 239 - 2499","paymentAccepted":"Vipps (442442), Cash"}</script>
 
 <style>
-/* ============ BASE ============ */
+/* ============ BASE & PROPERTIES ============ */
 :root{--gold:#C9A96E;--gold-hi:#EFD9A7;--gold-deep:#8A6F3E;--bg:#0D0A08;--line:rgba(201,169,110,.18);--vipps:#FF5B24}
 *{-webkit-tap-highlight-color:transparent}
 html{scrollbar-color:#5a4a2c #0D0A08}
@@ -56,15 +56,85 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .btn-ghost{border:1px solid rgba(201,169,110,.45);color:var(--gold-hi);transition:.35s;position:relative;overflow:hidden}
 .btn-ghost:hover{border-color:var(--gold);background:rgba(201,169,110,.1);box-shadow:0 0 22px rgba(201,169,110,.25);transform:translateY(-2px)}
 
-/* ============ CARDS ============ */
-.p-card{background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012) 55%,rgba(201,169,110,.05));border:1px solid var(--line);backdrop-filter:blur(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .5s}
-.p-card:hover{transform:translateY(-8px);border-color:rgba(201,169,110,.6);box-shadow:0 0 0 1px rgba(201,169,110,.25),0 24px 50px -18px rgba(0,0,0,.85),0 0 42px -8px rgba(201,169,110,.28)}
+/* ============ 3D HOLOGRAPHIC CARDS ============ */
+.p-card{
+  position:relative;
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015) 55%,rgba(201,169,110,.05));
+  border:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  transform-style:preserve-3d;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .45s;
+}
+.p-card:hover{
+  border-color:rgba(201,169,110,.75);
+  box-shadow:0 0 0 1px rgba(201,169,110,.3),0 28px 56px -18px rgba(0,0,0,.9),0 0 45px -8px rgba(201,169,110,.35);
+}
+.card-glint{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle 280px at var(--mx,50%) var(--my,50%),rgba(239,217,167,.32),rgba(201,169,110,.12) 42%,transparent 75%);
+  mix-blend-mode:screen;opacity:0;transition:opacity .35s ease;z-index:15;
+}
+.p-card:hover .card-glint{opacity:1}
 .img-zoom img,.img-zoom svg{transition:transform 7s cubic-bezier(.2,.6,.2,1)}
 .p-card:hover .img-zoom img,.p-card:hover .img-zoom svg{transform:scale(1.07)}
 .kb-loop{animation:kb 22s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
 .rating-pulse{animation:rpulse 2.6s ease-in-out infinite}
 @keyframes rpulse{0%,100%{text-shadow:0 0 0 rgba(201,169,110,0)}50%{text-shadow:0 0 14px rgba(201,169,110,.8)}}
+
+/* ============ 3D FLACON & UNCORK INTERACTION ============ */
+.flacon-3d-wrap{
+  perspective:1000px;transform-style:preserve-3d;cursor:pointer;
+}
+.flacon-body{
+  transition:transform .25s ease-out,filter .3s ease;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+}
+.bottle-stopper{
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1);
+  will-change:transform;
+}
+.uncorked .bottle-stopper{
+  transform:translateY(-32px) rotate(4deg);
+}
+.uncorked .liquid-glow{
+  filter:drop-shadow(0 0 18px rgba(239,217,167,.85)) drop-shadow(0 0 35px rgba(201,169,110,.6));
+}
+
+/* Scent Plume Tags Rising */
+.scent-plume-wrap{
+  position:absolute;top:10%;left:50%;transform:translateX(-50%);
+  pointer-events:none;z-index:25;display:none;width:100%;text-align:center;
+}
+.uncorked .scent-plume-wrap{display:block}
+.scent-note-tag{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  background:rgba(13,10,8,.85);border:1px solid rgba(239,217,167,.6);
+  color:#EFD9A7;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  animation:plumeFloat 3.2s cubic-bezier(.2,.8,.2,1) infinite;
+  box-shadow:0 0 15px rgba(201,169,110,.4);
+}
+@keyframes plumeFloat{
+  0%{opacity:0;transform:translateY(16px) scale(.8)}
+  30%{opacity:1;transform:translateY(-8px) scale(1.05)}
+  100%{opacity:0;transform:translateY(-55px) scale(1.15)}
+}
+.scent-note-tag:nth-child(2){animation-delay:.45s}
+.scent-note-tag:nth-child(3){animation-delay:.9s}
+.scent-note-tag:nth-child(4){animation-delay:1.35s}
+
+/* ============ CONSTELLATION PYRAMID ============ */
+.constellation-node{
+  cursor:pointer;transition:transform .3s ease,filter .3s ease;
+}
+.constellation-node:hover{
+  transform:scale(1.25);
+  filter:drop-shadow(0 0 12px #EFD9A7) drop-shadow(0 0 24px #C9A96E);
+}
+.constellation-line{
+  stroke-dasharray:6 4;animation:dashPulse 14s linear infinite;
+}
+@keyframes dashPulse{to{stroke-dashoffset:-100}}
 
 /* ============ NAV ============ */
 .nav-link{position:relative;color:#c9bda5;transition:color .3s;padding:.25rem 0}
@@ -76,12 +146,10 @@ html[dir=rtl] .nav-link::after{transform-origin:right}
 .mobnav-link.on{color:var(--gold-hi)}
 .mobnav-link.on::before{content:'';position:absolute;top:-11px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 10px var(--gold)}
 
-/* ============ MARQUEE ============ */
+/* ============ MARQUEE & CAROUSEL ============ */
 .mq-track{display:flex;gap:0;width:max-content;animation:mq 38s linear infinite}
 @keyframes mq{to{transform:translateX(calc(-50% * var(--mqd,1)))}}
 html[dir=rtl] .mq-track{animation-name:mq-rtl}@keyframes mq-rtl{from{transform:translateX(calc(-50% * var(--mqd,1)))}to{transform:translateX(0)}}
-
-/* ============ CAROUSEL ============ */
 .car-track{display:flex;gap:1.25rem;width:max-content;animation:car 46s linear infinite}
 @keyframes car{to{transform:translateX(calc(-50% * var(--card,1)))}}
 html[dir=rtl] .car-track{animation-name:car-r}@keyframes car-r{from{transform:translateX(calc(-50% * var(--card,1)))}to{transform:translateX(0)}}
@@ -150,7 +218,8 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
   <p class="text-[11px] tracking-[.5em] text-[#8d8065] uppercase font-light" data-i18n="loading">Duftene våkner…</p>
 </div>
 
-<!-- ================= FX LAYERS ================= -->
+<!-- ================= LIVING WATERFALL & FX LAYERS ================= -->
+<canvas id="waterfall-canvas" class="fixed inset-0 z-[1] pointer-events-none opacity-40"></canvas>
 <canvas id="smoke" class="fixed inset-0 z-[2] pointer-events-none"></canvas>
 <canvas id="sparks" class="fixed inset-0 z-[150] pointer-events-none"></canvas>
 <div class="noise"></div>
@@ -172,12 +241,18 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
       <a href="#historie" class="nav-link" data-i18n="nav_story">Historien</a>
       <a href="#butikk" class="nav-link" data-i18n="nav_store">Butikk</a>
     </nav>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <!-- Nature Soundscape Toggle -->
+      <button id="audioToggle" onclick="toggleAudio()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#C9A96E]/35 text-xs text-[#EFD9A7] hover:border-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all" aria-label="Naturlyd og fuglesang">
+        <span id="audioIcon">🕊️</span>
+        <span id="audioLbl" class="hidden sm:inline font-medium text-[11px]" data-i18n="audio_off">Lyd: Av</span>
+      </button>
+
       <!-- 3-Way Language Selector: NO / EN / UR -->
       <div class="flex items-center bg-[#151009] border border-[#C9A96E]/30 rounded-full p-0.5 text-xs shadow-inner">
-        <button onclick="setLang('no')" id="btnLangNo" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="Norsk">🇳🇴 NO</button>
-        <button onclick="setLang('en')" id="btnLangEn" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="English">🇬🇧 EN</button>
-        <button onclick="setLang('ur')" id="btnLangUr" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white font-urdu" style="font-family:'Noto Nastaliq Urdu'" aria-label="اردو">🇵🇰 اردو</button>
+        <button onclick="setLang('no')" id="btnLangNo" class="px-2 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="Norsk">🇳🇴</button>
+        <button onclick="setLang('en')" id="btnLangEn" class="px-2 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="English">🇬🇧</button>
+        <button onclick="setLang('ur')" id="btnLangUr" class="px-2 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white font-urdu" style="font-family:'Noto Nastaliq Urdu'" aria-label="اردو">🇵🇰</button>
       </div>
 
       <button id="cartBtn" class="relative p-2 hover:scale-110 transition-transform" aria-label="Handlevogn">
@@ -221,21 +296,41 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
         <span>DEHN AL OUD</span><span class="text-[#C9A96E]">✦</span><span>MUKHALLAT</span><span class="text-[#C9A96E]">✦</span><span>BAKHOOR</span>
       </div>
     </div>
-    <!-- Right: featured bottle -->
-    <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end py-8" data-hero="7">
-      <div class="relative bob">
+    <!-- Right: 3D Interactive Flacon -->
+    <div class="relative order-1 lg:order-2 flex flex-col items-center justify-center lg:justify-end py-8" data-hero="7">
+      <div class="relative flacon-3d-wrap" id="heroFlaconWrap">
         <div class="arch w-[230px] sm:w-[300px] lg:w-[340px] p-[1px]" style="background:linear-gradient(180deg,rgba(239,217,167,.7),rgba(201,169,110,.15) 60%,rgba(201,169,110,.5))">
           <div class="arch overflow-hidden bg-gradient-to-b from-[#1c1409] via-[#0D0A08] to-[#171006] aspect-[3/4.4] flex items-end justify-center relative">
             <div class="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full" style="background:radial-gradient(circle,rgba(201,169,110,.28),transparent 70%)"></div>
-            <div id="heroBottle" class="kb-loop w-[78%] drop-shadow-[0_30px_40px_rgba(0,0,0,.7)]"></div>
-            <div class="absolute bottom-6 inset-x-6 text-center">
+            
+            <!-- Scent Plume Tags -->
+            <div class="scent-plume-wrap" id="heroPlume">
+              <span class="scent-note-tag">✦ Safran</span>
+              <span class="scent-note-tag">✦ Svart Oud</span>
+              <span class="scent-note-tag">✦ Lær</span>
+              <span class="scent-note-tag">✦ Amber</span>
+            </div>
+
+            <!-- 3D Bottle SVG -->
+            <div id="heroBottle" class="flacon-body w-[78%] drop-shadow-[0_30px_40px_rgba(0,0,0,.75)] relative z-10"></div>
+            
+            <div class="absolute bottom-5 inset-x-6 text-center z-20">
               <p class="font-display text-[#EFD9A7] text-sm tracking-[.25em]" data-i18n="hero_feat_name">DEHN AL OUD MALAKI</p>
-              <p class="text-[10px] tracking-[.3em] text-[#8d8065] mt-1" data-i18n="hero_feat_sub">RESERVERT UTGAVE · 12 ÅR</p>
+              <p class="text-[10px] tracking-[.3em] text-[#8d8065] mt-0.5" data-i18n="hero_feat_sub">RESERVERT UTGAVE · 12 ÅR</p>
             </div>
           </div>
         </div>
         <span class="absolute -top-3 -start-3 w-6 h-6 border-t border-s border-[#EFD9A7]"></span>
         <span class="absolute -bottom-3 -end-3 w-6 h-6 border-b border-e border-[#EFD9A7]"></span>
+      </div>
+
+      <!-- Tactile Uncork Trigger -->
+      <div class="mt-4 flex flex-col items-center select-none">
+        <button id="uncorkBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#C9A96E]/40 bg-[#0D0A08]/85 text-xs text-[#EFD9A7] hover:border-[#C9A96E] hover:bg-[#C9A96E]/15 transition-all shadow-[0_0_22px_rgba(201,169,110,0.18)] active:scale-95" aria-label="Trykk og hold for å dufte">
+          <span class="w-2 h-2 rounded-full bg-[#C9A96E] animate-pulse"></span>
+          <span data-i18n="hero_uncork">✦ Trykk og hold for å åpne flakongen</span>
+        </button>
+        <p class="text-[10px] text-[#8d8065] mt-1 tracking-wider" data-i18n="hero_uncork_sub">Frigjør aroma og flytende duftnoter</p>
       </div>
     </div>
   </div>
@@ -349,7 +444,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
           </div>
         </div>
         <div class="flex gap-4 items-start">
-          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2-2z"/></svg>
+          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
           <div><p class="text-[#F2E8D5] font-medium">+47 912 34 567</p><p class="text-xs text-[#8d8065] mt-1">WhatsApp · <span data-i18n="store_wa">svarer raskt</span></p></div>
         </div>
       </div>
@@ -420,7 +515,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
   <div class="border-t border-[#C9A96E]/10 py-6 text-center text-xs text-[#6f6350] flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-7xl mx-auto">
     <p>© 2026 Aromatix · <span data-i18n="ft_made">Laget med safran og kjærlighet i Oslo</span> · <span data-i18n="ft_demo">Demo</span></p>
     <div class="font-mono text-[#C9A96E] bg-white/[.04] px-3 py-1 rounded-full border border-[#C9A96E]/20 text-[11px]">
-      v2.0.2 (updated 2026-09-02 18:04)
+      v2.1.0 (updated 2026-09-02 18:12)
     </div>
   </div>
 </footer>
@@ -466,31 +561,88 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
   </div>
 </aside>
 
-<!-- ================= PRODUCT MODAL ================= -->
+<!-- ================= PRODUCT MODAL WITH SCENT CONSTELLATION ================= -->
 <div id="pModal" class="modal-wrap" role="dialog" aria-modal="true">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal()"></div>
   <div class="modal-panel relative w-full md:max-w-4xl max-h-[92dvh] overflow-y-auto bg-[#141009] border border-[#C9A96E]/35 rounded-t-3xl md:rounded-3xl">
     <button onclick="closeModal()" class="absolute top-4 end-4 z-20 w-10 h-10 rounded-full bg-black/40 border border-[#C9A96E]/40 text-[#EFD9A7] hover:bg-[#C9A96E]/15 transition flex items-center justify-center" aria-label="Lukk">✕</button>
     <div class="grid md:grid-cols-2">
-      <div class="relative bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex items-center justify-center p-8 min-h-[300px] md:min-h-[520px] overflow-hidden">
+      <div class="relative bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[520px] overflow-hidden">
         <div class="absolute top-10 left-1/2 -translate-x-1/2 w-52 h-52 rounded-full" style="background:radial-gradient(circle,rgba(201,169,110,.22),transparent 70%)"></div>
         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-40 h-3 rounded-[50%] bg-black/60 blur-sm"></div>
-        <div id="mVisual" class="w-full max-w-[240px] kb-loop drop-shadow-[0_35px_45px_rgba(0,0,0,.7)]"></div>
-        <svg viewBox="0 0 60 60" class="absolute top-14 left-1/2 -translate-x-1/2 w-14 h-14 text-[#C9A96E]" fill="none" stroke="currentColor" stroke-width="1.2">
+        
+        <!-- Interactive Modal Flacon -->
+        <div id="mVisual" class="w-full max-w-[240px] drop-shadow-[0_35px_45px_rgba(0,0,0,.75)] relative z-10 transition-transform"></div>
+        
+        <!-- Scent Whisps -->
+        <svg viewBox="0 0 60 60" class="absolute top-12 left-1/2 -translate-x-1/2 w-14 h-14 text-[#C9A96E] pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.2">
           <g><path class="frag-wisp" d="M30 40 q-5 -8 0 -14 q5 -6 0 -12"/><path class="frag-wisp" d="M24 42 q-4 -7 1 -12"/><path class="frag-wisp" d="M36 42 q4 -7 -1 -12"/></g>
         </svg>
+
+        <!-- Uncork Hint -->
+        <button onclick="triggerModalUncork()" class="mt-4 text-[10px] tracking-[.25em] uppercase text-[#EFD9A7] border border-[#C9A96E]/40 px-3 py-1 rounded-full hover:bg-[#C9A96E]/10 transition-all">
+          <span data-i18n="modal_sample">✦ Klikk for å frigjøre aroma</span>
+        </button>
       </div>
+
       <div class="p-6 md:p-8">
         <p id="mBadge" class="inline-block text-[10px] tracking-[.25em] uppercase text-[#EFD9A7] border border-[#C9A96E]/50 rounded-full px-3 py-1 mb-3 bg-[#C9A96E]/10"></p>
         <h3 id="mName" class="font-display text-3xl text-[#F2E8D5] leading-tight"></h3>
         <p id="mOrigin" class="font-serif2 italic text-[#C9A96E] mt-1"></p>
         <p id="mStory" class="text-sm text-[#a4977e] leading-relaxed mt-4"></p>
-        <!-- pyramid -->
-        <div class="mt-6">
-          <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-3" data-i18n="m_pyr">Duftpyramiden</p>
-          <div id="mPyramid" class="space-y-2"></div>
+        
+        <!-- Interactive Olfactory Constellation Tree -->
+        <div class="mt-6 border border-[#C9A96E]/20 rounded-2xl p-4 bg-white/[.02]">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065]" data-i18n="m_pyr">Duftkonstellasjon</p>
+            <span class="text-[9px] text-[#C9A96E]/80 tracking-wider">Trykk på nodene</span>
+          </div>
+          
+          <!-- Visual Constellation Canvas/SVG -->
+          <div id="mConstellation" class="w-full h-32 relative flex items-center justify-center">
+            <svg viewBox="0 0 300 120" class="w-full h-full" fill="none">
+              <!-- Geometric connecting lines -->
+              <line x1="150" y1="20" x2="80" y2="70" stroke="#C9A96E" stroke-width="1" opacity=".4" class="constellation-line"/>
+              <line x1="150" y1="20" x2="220" y2="70" stroke="#C9A96E" stroke-width="1" opacity=".4" class="constellation-line"/>
+              <line x1="80" y1="70" x2="150" y2="105" stroke="#C9A96E" stroke-width="1" opacity=".4" class="constellation-line"/>
+              <line x1="220" y1="70" x2="150" y2="105" stroke="#C9A96E" stroke-width="1" opacity=".4" class="constellation-line"/>
+              <line x1="80" y1="70" x2="220" y2="70" stroke="#EFD9A7" stroke-width=".8" opacity=".25"/>
+
+              <!-- Top Node -->
+              <g class="constellation-node" onclick="playChime(660); showNoteDetail('top')">
+                <circle cx="150" cy="20" r="14" fill="#141009" stroke="#EFD9A7" stroke-width="1.5"/>
+                <circle cx="150" cy="20" r="5" fill="#EFD9A7"/>
+                <text x="150" y="44" text-anchor="middle" font-size="9" fill="#C9A96E" letter-spacing="1">TOPP</text>
+              </g>
+
+              <!-- Heart Left Node -->
+              <g class="constellation-node" onclick="playChime(528); showNoteDetail('heart')">
+                <circle cx="80" cy="70" r="14" fill="#141009" stroke="#C9A96E" stroke-width="1.5"/>
+                <circle cx="80" cy="70" r="5" fill="#C9A96E"/>
+                <text x="80" y="94" text-anchor="middle" font-size="9" fill="#C9A96E" letter-spacing="1">HJERTE</text>
+              </g>
+
+              <!-- Heart Right Node -->
+              <g class="constellation-node" onclick="playChime(528); showNoteDetail('heart')">
+                <circle cx="220" cy="70" r="14" fill="#141009" stroke="#C9A96E" stroke-width="1.5"/>
+                <circle cx="220" cy="70" r="5" fill="#C9A96E"/>
+                <text x="220" y="94" text-anchor="middle" font-size="9" fill="#C9A96E" letter-spacing="1">HARPIKS</text>
+              </g>
+
+              <!-- Base Anchor Node -->
+              <g class="constellation-node" onclick="playChime(396); showNoteDetail('base')">
+                <circle cx="150" cy="105" r="13" fill="#141009" stroke="#8A6F3E" stroke-width="1.5"/>
+                <circle cx="150" cy="105" r="5" fill="#8A6F3E"/>
+                <text x="150" y="119" text-anchor="middle" font-size="8" fill="#a4977e" letter-spacing="1">BUNN</text>
+              </g>
+            </svg>
+          </div>
+          <div id="mNoteActiveDesc" class="text-xs text-center text-[#EFD9A7] font-serif2 italic mt-2 min-h-[20px]">
+            Velg en duftnode for å utforske notene
+          </div>
         </div>
-        <!-- bars -->
+
+        <!-- intensity / longevity bars -->
         <div class="grid grid-cols-2 gap-5 mt-6">
           <div><div class="flex justify-between text-[11px] uppercase tracking-wider text-[#8d8065] mb-1.5"><span data-i18n="m_int">Intensitet</span><span id="mIntV" class="text-[#EFD9A7]"></span></div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div id="mIntBar" class="h-full bg-gradient-to-r from-[#8A6F3E] to-[#EFD9A7] rounded-full transition-all duration-1000" style="width:0%"></div></div></div>
           <div><div class="flex justify-between text-[11px] uppercase tracking-wider text-[#8d8065] mb-1.5"><span data-i18n="m_long">Varighet</span><span id="mLongV" class="text-[#EFD9A7]"></span></div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div id="mLongBar" class="h-full bg-gradient-to-r from-[#2E8B6A] to-[#7dd8b4] rounded-full transition-all duration-1000" style="width:0%"></div></div></div>
@@ -575,7 +727,6 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
     <!-- STEP 2: VIPPS PAYMENT INTERFACE (Vipps #442442) -->
     <div id="vippsPayScreen" class="hidden text-center py-4 space-y-5">
       <div class="bg-gradient-to-b from-[#1f150c] to-[#120d07] border-2 border-[#FF5B24] rounded-2xl p-6 relative overflow-hidden shadow-[0_0_30px_rgba(255,91,36,0.2)]">
-        <!-- Vipps Header -->
         <div class="flex items-center justify-between border-b border-[#FF5B24]/30 pb-4 mb-4">
           <div class="flex items-center gap-2">
             <span class="bg-[#FF5B24] text-white text-xs px-3 py-1 rounded-full font-bold tracking-wider">VIPPS</span>
@@ -586,7 +737,6 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
 
         <p class="text-xs tracking-[.25em] uppercase text-[#C9A96E]" data-i18n="vipps_num_title">Vipps Bedriftsnummer</p>
         
-        <!-- Big Vipps Number Pill with Copy -->
         <div class="my-3 flex items-center justify-center gap-3">
           <div class="bg-black/60 border border-[#FF5B24] px-6 py-2.5 rounded-xl flex items-center gap-3">
             <span class="font-mono text-3xl font-black text-[#FF5B24] tracking-widest" id="vippsNumberDisplay">442442</span>
@@ -596,7 +746,6 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
           </div>
         </div>
 
-        <!-- Amount & Reference Box -->
         <div class="grid grid-cols-2 gap-3 my-4 bg-black/40 border border-[#C9A96E]/20 p-3.5 rounded-xl text-start">
           <div>
             <span class="text-[10px] uppercase tracking-wider text-[#8d8065] block" data-i18n="cart_tot">Beløp å betale</span>
@@ -611,7 +760,6 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
           </div>
         </div>
 
-        <!-- QR Code for Desktop or Second Device -->
         <div class="my-4 flex flex-col items-center justify-center gap-2">
           <div class="bg-white p-2.5 rounded-xl shadow-lg inline-block">
             <img id="vippsQR" src="" alt="Vipps QR 442442" class="w-36 h-36 mx-auto rounded" />
@@ -619,14 +767,12 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
           <p class="text-[11px] text-[#8d8065]" data-i18n="vipps_qr_note">Skann QR-koden med Vipps eller mobilkamera</p>
         </div>
 
-        <!-- 3 Simple Steps -->
         <div class="text-xs text-[#a4977e] space-y-2 text-start bg-white/[.02] border border-[#C9A96E]/10 p-3.5 rounded-xl">
           <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">1</span> <span data-i18n="vipps_step1">Åpne Vipps og send beløpet til <strong>442442</strong></span></p>
           <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">2</span> <span data-i18n="vipps_step2">Skriv ordrenummeret som melding i Vipps</span></p>
           <p class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-[#FF5B24]/20 text-[#FF5B24] flex items-center justify-center font-bold text-[11px]">3</span> <span data-i18n="vipps_step3">Trykk på knappen nedenfor når du har vippet</span></p>
         </div>
 
-        <!-- Action Buttons -->
         <div class="space-y-2.5 mt-5">
           <a id="vippsDeepLink" href="vipps://" class="btn-vipps w-full rounded-full py-3.5 text-sm uppercase font-bold flex items-center justify-center gap-2 shadow-lg">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
@@ -682,6 +828,10 @@ no:{
  hero_desc:"Håndplukkede oljer fra Cambodias dype skoger og Indias eldgamle destillerier. Destillert i tolv år, flaskelagt for hånd — nå i hjertet av Grønland.",
  hero_cta1:"Utforsk oudene",hero_cta2:"Besøk oss i Tøyengata 3",hero_m1:"Fri levering over 1 000 kr",hero_m2:"Vipps (442442) & kontant",
  hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVERT UTGAVE · 12 ÅR",
+ hero_uncork:"✦ Trykk og hold for å åpne flakongen",
+ hero_uncork_sub:"Frigjør aroma og flytende duftnoter",
+ modal_sample:"✦ Klikk for å frigjøre aroma",
+ audio_on:"Lyd: På 🕊️",audio_off:"Lyd: Av",
  col_kicker:"Oud-kolleksjonen",col_title:"Oud-kolleksjonen",col_sub:"Fra lette, lyse dråper til dype, mørke harpiks — hver flaske er destillert for hånd.",col_sub2:" signaturdufter",
  f_all:"Alle",f_soft:"Milde",f_deep:"Dype",f_floral:"Blomster",
  story_kicker:"Vår historie",story_title:"Fra Østens hjerter til Tøyengata",
@@ -691,7 +841,7 @@ no:{
  story_imgcap:"Agarwood — det flytende gullet",story_s1:" års fatlagring",story_s2:" ren olje, ingen alkohol",
  gift_kicker:"Gi en velsignet gave",gift_title:"Islamske gavesett",gift_sub:"For Eid, bryllup, dåp eller bare fordi. Hvert sett pakkes for hånd i butikken — med duft, omtanke og en håndskrevet hilsen.",
  gift_cta:"Se innholdet",gift_pop:"Mest valgt",
- m_pyr:"Duftpyramiden",m_top:"Topp",m_heart:"Hjerte",m_base:"Bunn",m_int:"Intensitet",m_long:"Varighet",m_rev:"Anmeldelser",m_add:"Legg i kurv",
+ m_pyr:"Duftkonstellasjon",m_top:"Topp",m_heart:"Hjerte",m_base:"Bunn",m_int:"Intensitet",m_long:"Varighet",m_rev:"Anmeldelser",m_add:"Legg i kurv",
  store_kicker:"Finn oss",store_title:"Butikken",store_intro:"Du finner Aromatix inne i Matbørsen — den pakistanske dagligvarebutikken på Grønland, to minutter fra T-banen. Følg duften.",
  store_addrsub:"Inne i Matbørsen pakistanske dagligvare · nær Grønland T-bane",store_hours:"Åpningstider",store_wa:"svarer raskt",store_mapbtn:"Åpne i Google Maps",store_call:"Ring oss",store_open:"Åpent i dag",
  d_monsat:"Man – Lør",d_sun:"Søndag",d_closed:"Stengt",
@@ -718,6 +868,10 @@ en:{
  hero_desc:"Hand-selected oils from the deep forests of Cambodia and ancient distilleries of India. Aged for twelve years, bottled by hand — now in the heart of Grønland.",
  hero_cta1:"Explore the Ouds",hero_cta2:"Visit us at Tøyengata 3",hero_m1:"Free delivery over 1,000 NOK",hero_m2:"Vipps (442442) & Cash",
  hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVE EDITION · 12 YEARS",
+ hero_uncork:"✦ Press and hold to uncork bottle",
+ hero_uncork_sub:"Releases perfume mist and floating scent notes",
+ modal_sample:"✦ Click to sample aroma",
+ audio_on:"Sound: On 🕊️",audio_off:"Sound: Off",
  col_kicker:"The Oud Collection",col_title:"The Oud Collection",col_sub:"From light, ethereal drops to deep, dark resins — each bottle is distilled by hand.",col_sub2:" signature scents",
  f_all:"All",f_soft:"Gentle",f_deep:"Deep",f_floral:"Floral",
  story_kicker:"Our Story",story_title:"From Eastern Forests to Tøyengata",
@@ -727,7 +881,7 @@ en:{
  story_imgcap:"Agarwood — Liquid Gold",story_s1:" Years of Cask Aging",story_s2:" Pure Oil, Zero Alcohol",
  gift_kicker:"Give a Blessed Gift",gift_title:"Islamic Gift Sets",gift_sub:"For Eid, weddings, blessings, or simply because. Each set is wrapped by hand in the boutique — with fragrance, care, and a handwritten card.",
  gift_cta:"View Contents",gift_pop:"Most Popular",
- m_pyr:"Fragrance Pyramid",m_top:"Top",m_heart:"Heart",m_base:"Base",m_int:"Intensity",m_long:"Longevity",m_rev:"Reviews",m_add:"Add to Cart",
+ m_pyr:"Scent Constellation",m_top:"Top",m_heart:"Heart",m_base:"Base",m_int:"Intensity",m_long:"Longevity",m_rev:"Reviews",m_add:"Add to Cart",
  store_kicker:"Find Us",store_title:"The Boutique",store_intro:"You'll find Aromatix inside Matbørsen — the Pakistani market in Grønland, two minutes from the metro. Follow the scent.",
  store_addrsub:"Inside Matbørsen Pakistani Grocery · near Grønland metro",store_hours:"Opening Hours",store_wa:"quick replies",store_mapbtn:"Open in Google Maps",store_call:"Call us",store_open:"Open Today",
  d_monsat:"Mon – Sat",d_sun:"Sunday",d_closed:"Closed",
@@ -754,6 +908,10 @@ ur:{
  hero_desc:"کمبوڈیا کے گھنے جنگلوں اور ہندوستان کی قدیم بھٹیوں سے چنی گئی خالص عود کی خوشبوئیں۔ بارہ سال کی کشید، ہاتھ سے بوتل بند — اب گرونلینڈ کے دل میں۔",
  hero_cta1:"عود کا مجموعہ دیکھیں",hero_cta2:"تویینگاتا ۳ پر ملیں",hero_m1:"ہزار کرون پر مفت ترسیل",hero_m2:"وِپس (442442) اور نقد",
  hero_feat_name:"دہن العود ملکی",hero_feat_sub:"مخصوص ایڈیشن · ۱۲ سال",
+ hero_uncork:"✦ بوتل کھولنے کے لیے دبا کر رکھیں",
+ hero_uncork_sub:"خوشبو کا جھونکا اور معطر نوٹس خارج کرتا ہے",
+ modal_sample:"✦ خوشبو آزمانے کے لیے کلک کریں",
+ audio_on:"آواز: آن 🕊️",audio_off:"آواز: آف",
  col_kicker:"عود کا مجموعہ",col_title:"عود کا مجموعہ",col_sub:"ہلکی نرم بوندوں سے لے کر گہرے سیاہ رال تک — ہر بوتل ہاتھ سے کشید کی گئی ہے۔",col_sub2:" خصوصی خوشبوئیں",
  f_all:"تمام",f_soft:"نرم",f_deep:"گہری",f_floral:"پھولوں والی",
  story_kicker:"ہماری کہانی",story_title:"مشرق کے دل سے تویینگاتا تک",
@@ -763,7 +921,7 @@ ur:{
  story_imgcap:"اگیلریا — پگھلا ہوا سونا",story_s1:" سال پرانی کشید",story_s2:" خالص تیل، بغیر الکحل",
  gift_kicker:"بابرکت تحفہ دیں",gift_title:"اسلامی تحفہ سیٹ",gift_sub:"عید، نکاح، عقیقہ یا بس یونہی۔ ہر سیٹ دکان میں ہاتھ سے پیک کیا جاتا ہے — خوشبو، توجہ اور ہاتھ سے لکھے گئے پیغام کے ساتھ۔",
  gift_cta:"تفصیل دیکھیں",gift_pop:"مقبول ترین",
- m_pyr:"خوشبو کا ہرم",m_top:"آغاز",m_heart:"قلب",m_base:"بنیاد",m_int:"شدت",m_long:"دوام",m_rev:"تاثرات",m_add:"ٹوکری میں ڈالیں",
+ m_pyr:"خوشبو کا جھرمٹ",m_top:"آغاز",m_heart:"قلب",m_base:"بنیاد",m_int:"شدت",m_long:"دوام",m_rev:"تاثرات",m_add:"ٹوکری میں ڈالیں",
  store_kicker:"ہم تک پہنچیں",store_title:"دکان",store_intro:"ارومیٹکس آپ کو ماتھبورسن پاکستانی اسٹور کے اندر ملے گا — گرونلینڈ میں، ٹی-بینے سے دو منٹ۔ خوشبو کا پیچھا کریں۔",
  store_addrsub:"پاکستانی کریانہ اسٹور کے اندر · گرونلینڈ ٹی-بینے کے قریب",store_hours:"اوقاتِ کار",store_wa:"جلد جواب",store_mapbtn:"گوگل میپس میں کھولیں",store_call:"کال کریں",store_open:"آج کھلا ہے",
  d_monsat:"پیر تا ہفتہ",d_sun:"اتوار",d_closed:"بند",
@@ -862,38 +1020,161 @@ let lang=localStorage.getItem('arx_lang')||'no';
 let cart=JSON.parse(localStorage.getItem('arx_cart')||'{}');
 let filter='all', mProduct=null, mSize='6', mQ=1;
 let ckDel='ship', ckPay='vipps', currentOrderId='', currentTotal=0;
+let audioActive=false, audioCtx=null, streamSource=null, birdInterval=null;
 const $=id=>document.getElementById(id);
 const t=k=>(STR[lang]&&STR[lang][k])||(STR.no&&STR.no[k])||k;
 const money=n=>n.toLocaleString(lang==='en'?'en-US':'no-NO')+' kr';
 const sizeMult={'3':.6,'6':1,'12':1.85};
 const sizePrice=p=>Math.round(p*sizeMult[mSize]/5)*5;
 
-/* ═══════════════════════ BOTTLE SVG ═══════════════════════ */
-function bottleSVG(p,w=160){
+/* ═══════════════════════ PROCEDURAL AUDIO ENGINE ═══════════════════════ */
+function initAudio(){
+  if(audioCtx)return;
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if(!AudioContext)return;
+  audioCtx = new AudioContext();
+}
+
+function playChime(freq=528, duration=1.2){
+  try{
+    initAudio();
+    if(audioCtx.state==='suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(freq*0.98, audioCtx.currentTime + duration);
+    gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }catch(e){}
+}
+
+function playBirdTrill(){
+  if(!audioActive || !audioCtx)return;
+  try{
+    const now = audioCtx.currentTime;
+    const baseFreq = 2600 + Math.random()*1200;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(baseFreq, now);
+    osc.frequency.linearRampToValueAtTime(baseFreq + 600, now + 0.08);
+    osc.frequency.linearRampToValueAtTime(baseFreq - 300, now + 0.16);
+    osc.frequency.linearRampToValueAtTime(baseFreq + 400, now + 0.24);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.linearRampToValueAtTime(0.04, now + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.35);
+  }catch(e){}
+}
+
+function startStreamAudio(){
+  if(!audioCtx)return;
+  try{
+    // Gentle pink/brownian low-pass stream
+    const bufferSize = audioCtx.sampleRate * 2;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99 * b0 + white * 0.05;
+      b1 = 0.96 * b1 + white * 0.1;
+      b2 = 0.86 * b2 + white * 0.25;
+      output[i] = (b0 + b1 + b2) * 0.15;
+    }
+    const whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(650, audioCtx.currentTime);
+    const gain = audioCtx.createGain();
+    gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.035, audioCtx.currentTime + 1.5);
+    whiteNoise.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
+    whiteNoise.start();
+    streamSource = { noise: whiteNoise, gain: gain };
+  }catch(e){}
+}
+
+function toggleAudio(){
+  initAudio();
+  if(!audioActive){
+    if(audioCtx.state==='suspended') audioCtx.resume();
+    audioActive = true;
+    startStreamAudio();
+    playChime(528, 1);
+    birdInterval = setInterval(()=>{
+      if(Math.random()<0.7) playBirdTrill();
+    }, 4200);
+    $('audioLbl').textContent = t('audio_on');
+    $('audioToggle').classList.add('border-[#C9A96E]', 'bg-[#C9A96E]/20');
+  } else {
+    audioActive = false;
+    if(birdInterval) clearInterval(birdInterval);
+    if(streamSource && streamSource.gain){
+      streamSource.gain.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+      setTimeout(()=>{ try{streamSource.noise.stop();}catch(e){} }, 600);
+    }
+    $('audioLbl').textContent = t('audio_off');
+    $('audioToggle').classList.remove('border-[#C9A96E]', 'bg-[#C9A96E]/20');
+  }
+}
+
+/* ═══════════════════════ BOTTLE SVG WITH 3D FACETS & UNCORKS ═══════════════════════ */
+function bottleSVG(p,w=160,idPrefix='b'){
  const c1=p.hue,c2=p.hi,s=p.shape;
  let body,liquid,lid;
- if(s==='dome'){body=`M55 78 Q100 48 145 78 L145 198 Q100 212 55 198 Z`;liquid=`M60 108 Q100 92 140 108 L140 195 Q100 208 60 195 Z`;}
- else if(s==='round'){body=`M60 82 Q38 130 60 186 Q100 210 140 186 Q162 130 140 82 Q100 62 60 82 Z`;liquid=`M56 120 Q48 145 60 182 Q100 204 140 182 Q152 145 144 120 Q100 138 56 120 Z`;}
- else{body=`M72 58 L128 58 L136 190 Q100 204 64 190 Z`;liquid=`M69 105 L131 105 L134 187 Q100 199 66 187 Z`;}
+ if(s==='dome'){
+   body=`M55 78 Q100 48 145 78 L145 198 Q100 212 55 198 Z`;
+   liquid=`M60 108 Q100 92 140 108 L140 195 Q100 208 60 195 Z`;
+ } else if(s==='round'){
+   body=`M60 82 Q38 130 60 186 Q100 210 140 186 Q162 130 140 82 Q100 62 60 82 Z`;
+   liquid=`M56 120 Q48 145 60 182 Q100 204 140 182 Q152 145 144 120 Q100 138 56 120 Z`;
+ } else{
+   body=`M72 58 L128 58 L136 190 Q100 204 64 190 Z`;
+   liquid=`M69 105 L131 105 L134 187 Q100 199 66 187 Z`;
+ }
  lid=s==='round'?`M88 44 h24 v22 h-24z M84 36 h32 v10 h-32z`:`M86 40 h28 v24 h-28z M82 30 h36 v12 h-36z`;
  const neckY=s==='round'?62:(s==='tall'?56:74);
- return `<svg viewBox="0 0 200 240" width="${w}" xmlns="http://www.w3.org/2000/svg">
+
+ return `<svg viewBox="0 0 200 240" width="${w}" xmlns="http://www.w3.org/2000/svg" class="bottle-svg select-none">
  <defs>
-  <linearGradient id="lg${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c2}" stop-opacity=".95"/><stop offset=".5" stop-color="${c1}"/><stop offset="1" stop-color="${c2}" stop-opacity=".8"/></linearGradient>
-  <linearGradient id="gl${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".35" stop-color="#fff" stop-opacity=".02"/><stop offset=".75" stop-color="#fff" stop-opacity=".12"/></linearGradient>
-  <linearGradient id="au${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFD9A7"/><stop offset="1" stop-color="#8A6F3E"/></linearGradient>
+  <linearGradient id="lg${idPrefix}${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c2}" stop-opacity=".95"/><stop offset=".5" stop-color="${c1}"/><stop offset="1" stop-color="${c2}" stop-opacity=".8"/></linearGradient>
+  <linearGradient id="gl${idPrefix}${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".24"/><stop offset=".35" stop-color="#fff" stop-opacity=".02"/><stop offset=".75" stop-color="#fff" stop-opacity=".15"/></linearGradient>
+  <linearGradient id="au${idPrefix}${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFD9A7"/><stop offset="1" stop-color="#8A6F3E"/></linearGradient>
+  <linearGradient id="facet${idPrefix}${p.id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset=".5" stop-color="transparent"/><stop offset="1" stop-color="#C9A96E" stop-opacity=".2"/></linearGradient>
  </defs>
- <path d="${lid}" fill="url(#au${p.id})"/>
+ <!-- Crystal Stopper Group -->
+ <g class="bottle-stopper">
+   <path d="${lid}" fill="url(#au${idPrefix}${p.id})" stroke="#EFD9A7" stroke-width=".8"/>
+   <circle cx="100" cy="42" r="5" fill="#EFD9A7" opacity=".7"/>
+ </g>
  <rect x="92" y="52" width="16" height="${neckY-48}" fill="#2a2119"/>
  <path d="${body}" fill="#16110b" stroke="#C9A96E" stroke-width="1.4"/>
- <path d="${liquid}" fill="url(#lg${p.id})" opacity=".92"/>
- <path d="${body}" fill="url(#gl${p.id})"/>
- <path d="M68 ${neckY+6} Q64 120 68 180" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none" stroke-linecap="round"/>
- <ellipse cx="100" cy="150" rx="30" ry="24" fill="#0D0A08" stroke="#C9A96E" stroke-width=".8" opacity=".92"/>
+ <!-- Glowing Liquid with Sloshing -->
+ <path d="${liquid}" fill="url(#lg${idPrefix}${p.id})" class="liquid-glow" opacity=".92"/>
+ <path d="${body}" fill="url(#gl${idPrefix}${p.id})"/>
+ <path d="${body}" fill="url(#facet${idPrefix}${p.id})" opacity=".6"/>
+ <!-- Refractive Highlight Line -->
+ <path d="M68 ${neckY+6} Q64 120 68 180" stroke="#fff" stroke-opacity=".32" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+ <ellipse cx="100" cy="150" rx="30" ry="24" fill="#0D0A08" stroke="#C9A96E" stroke-width=".9" opacity=".95"/>
  <text x="100" y="156" text-anchor="middle" font-size="26" fill="#C9A96E" font-family="serif">✦</text>
- <path d="M70 150 Q100 140 130 150 M70 150 Q100 160 130 150" stroke="#C9A96E" stroke-width=".5" fill="none" opacity=".6"/>
+ <path d="M70 150 Q100 140 130 150 M70 150 Q100 160 130 150" stroke="#C9A96E" stroke-width=".6" fill="none" opacity=".7"/>
  </svg>`;
 }
+
 function boxSVG(s,w=180){
  const cols={silver:['#b9bdc4','#7d838d'],gold:['#E3C479','#9c7b36'],royal:['#2E8B6A','#175540']};
  const[a,b]=cols[s.tier];
@@ -910,16 +1191,17 @@ function boxSVG(s,w=180){
  </svg>`;
 }
 
-/* ═══════════════════════ RENDER: CARDS ═══════════════════════ */
+/* ═══════════════════════ RENDER: CARDS WITH 3D GLINT ═══════════════════════ */
 function stars(r){const f=Math.floor(r);return '★'.repeat(f)+(r-f>=.5?'½':'');}
 function oudCard(p,i){
- return `<article class="p-card rounded-2xl overflow-hidden group" data-reveal data-id="${p.id}" style="transition-delay:${i*60}ms">
+ return `<article class="p-card rounded-2xl overflow-hidden group" data-reveal data-id="${p.id}" style="transition-delay:${i*60}ms" onmousemove="handleCardGlint(event, this)" onmouseleave="resetCardGlint(this)">
+  <div class="card-glint"></div>
   <div class="relative img-zoom cursor-pointer" onclick="openModal('${p.id}')">
    <div class="aspect-[4/5] bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex items-end justify-center relative overflow-hidden">
     <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full" style="background:radial-gradient(circle,${p.hue}55,transparent 70%)"></div>
     <span class="absolute top-2.5 start-2.5 text-[9px] tracking-[.2em] uppercase px-2.5 py-1 rounded-full bg-[#0D0A08]/80 border border-[#C9A96E]/40 text-[#EFD9A7] z-10">${p.tag[lang]||p.tag.no}</span>
     <span class="absolute top-2.5 end-2.5 text-[10px] text-[#EFD9A7] bg-[#C9A96E]/15 border border-[#C9A96E]/30 rounded-full px-2 py-0.5 rating-pulse z-10">★ ${p.rating}</span>
-    <div class="w-[68%] translate-y-3 group-hover:translate-y-0 transition-transform duration-700 drop-shadow-[0_18px_24px_rgba(0,0,0,.65)]">${bottleSVG(p)}</div>
+    <div class="w-[68%] translate-y-3 group-hover:translate-y-0 transition-transform duration-700 drop-shadow-[0_18px_24px_rgba(0,0,0,.65)]">${bottleSVG(p,160,'cd')}</div>
    </div>
    <div class="absolute inset-0 bg-gradient-to-t from-[#0D0A08]/85 via-transparent opacity-90 pointer-events-none"></div>
   </div>
@@ -939,7 +1221,8 @@ function oudCard(p,i){
 }
 function setCard(s,i){
  const royal=s.tier==='royal';
- return `<article class="p-card rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden ${s.pop?'md:scale-[1.04] md:-my-3 md:z-10 md:border-[#C9A96E]/50':''} ${royal?'bg-gradient-to-b from-[#0f1a14]/60':''}" data-reveal style="transition-delay:${i*90}ms">
+ return `<article class="p-card rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden ${s.pop?'md:scale-[1.04] md:-my-3 md:z-10 md:border-[#C9A96E]/50':''} ${royal?'bg-gradient-to-b from-[#0f1a14]/60':''}" data-reveal style="transition-delay:${i*90}ms" onmousemove="handleCardGlint(event, this)" onmouseleave="resetCardGlint(this)">
+  <div class="card-glint"></div>
   ${s.pop?`<span class="absolute top-4 end-4 text-[9px] tracking-[.2em] uppercase px-3 py-1 rounded-full bg-[#C9A96E] text-[#1a1206] font-semibold">${t('gift_pop')}</span>`:''}
   <span class="text-[10px] tracking-[.35em] uppercase ${royal?'text-[#7dd8b4]':'text-[#C9A96E]'}">${s.tag[lang]||s.tag.no}</span>
   <h3 class="font-display text-2xl text-[#F2E8D5] mt-2">${s.name[lang]||s.name.no}</h3>
@@ -951,6 +1234,23 @@ function setCard(s,i){
    <button class="add-btn relative btn-ghost rounded-full px-5 py-2.5 text-xs tracking-wider uppercase overflow-hidden" onclick="quickAdd(event,'${s.id}')">${t('m_add')}<span class="ic-check absolute inset-0 hidden items-center justify-center">✓</span></button>
   </div></article>`;
 }
+
+function handleCardGlint(e, card){
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const dx = (x / rect.width) * 100;
+  const dy = (y / rect.height) * 100;
+  card.style.setProperty('--mx', dx + '%');
+  card.style.setProperty('--my', dy + '%');
+  const rx = (0.5 - y / rect.height) * 8;
+  const ry = (x / rect.width - 0.5) * 8;
+  card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+}
+function resetCardGlint(card){
+  card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+}
+
 function renderGrids(){
  const f={all:()=>true,soft:p=>p.tier==='soft'||p.intensity<=5,deep:p=>p.tier==='deep'||p.intensity>=8,floral:p=>p.tier==='floral'||p.tier==='modern'};
  $('oudGrid').innerHTML=PRODUCTS.filter(f[filter]).map(oudCard).join('');
@@ -962,7 +1262,8 @@ function setFilter(f){filter=f;renderGrids();sparkleAt(event.clientX,event.clien
 
 /* ═══════════════════════ RENDER: OTHER ═══════════════════════ */
 function renderCarousel(){
- const card=r=>`<div class="w-[280px] sm:w-[340px] shrink-0 p-card rounded-2xl p-6">
+ const card=r=>`<div class="w-[280px] sm:w-[340px] shrink-0 p-card rounded-2xl p-6" onmousemove="handleCardGlint(event, this)" onmouseleave="resetCardGlint(this)">
+  <div class="card-glint"></div>
   <p class="text-[#C9A96E] rating-pulse text-sm tracking-wider">${stars(r.r)}</p>
   <p class="font-serif2 italic text-[#E8D9BC] leading-relaxed mt-3 text-[15px]">“${r.t[lang]||r.t.no}”</p>
   <div class="flex items-center gap-3 mt-5 pt-4 border-t border-[#C9A96E]/15">
@@ -998,9 +1299,10 @@ function applyLang(){
  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=L[el.dataset.i18nPh]||''});
  
  // Update Header Buttons
- $('btnLangNo').className='px-2.5 py-1 rounded-full font-medium transition-all '+(lang==='no'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
- $('btnLangEn').className='px-2.5 py-1 rounded-full font-medium transition-all '+(lang==='en'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
- $('btnLangUr').className='px-2.5 py-1 rounded-full font-medium transition-all font-urdu '+(lang==='ur'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('btnLangNo').className='px-2 py-1 rounded-full font-medium transition-all '+(lang==='no'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('btnLangEn').className='px-2 py-1 rounded-full font-medium transition-all '+(lang==='en'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('btnLangUr').className='px-2 py-1 rounded-full font-medium transition-all font-urdu '+(lang==='ur'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('audioLbl').textContent = audioActive ? t('audio_on') : t('audio_off');
 
  renderGrids();renderCarousel();renderMarquee();renderHours();renderCart();
  if(mProduct)openModal(mProduct.id);
@@ -1017,6 +1319,7 @@ const cartSub=()=>Object.entries(cart).reduce((s,[id,q])=>s+itemInfo(id).price*q
 function saveCart(){localStorage.setItem('arx_cart',JSON.stringify(cart));}
 function addToCart(id,qty=1){
  cart[id]=(cart[id]||0)+qty;saveCart();updateBadge(true);renderCart();
+ playChime(784, 0.8);
 }
 function quickAdd(e,id){
  e.stopPropagation();
@@ -1041,7 +1344,7 @@ function changeQty(id,d){cart[id]+=d;if(cart[id]<=0)delete cart[id];saveCart();u
 function renderCart(){
  const box=$('cartItems'),entries=Object.entries(cart);
  if(!entries.length){box.innerHTML=`<div class="text-center py-16 opacity-70">
-   <div class="w-20 mx-auto opacity-60">${bottleSVG({id:'emp',hue:'#C9A96E',hi:'#EFD9A7',shape:'round'},120)}</div>
+   <div class="w-20 mx-auto opacity-60">${bottleSVG({id:'emp',hue:'#C9A96E',hi:'#EFD9A7',shape:'round'},120,'emp')}</div>
    <p class="font-serif2 italic text-[#a4977e] mt-3">${t('cart_empty')}</p></div>`;
  }else{
   box.innerHTML=entries.map(([id,q])=>{const it=itemInfo(id);return `
@@ -1079,17 +1382,14 @@ $('checkoutBtn').onclick=()=>{if(cartCount()===0)return;toggleCart(false);openCk
 function openModal(id){
  mProduct=PRODUCTS.find(p=>p.id===id);if(!mProduct)return;
  mSize='6';mQ=1;$('mQty').textContent=1;
- $('mVisual').innerHTML=bottleSVG(mProduct,230);
+ $('mVisual').innerHTML=bottleSVG(mProduct,230,'mdl');
  $('mBadge').textContent=mProduct.tag[lang]||mProduct.tag.no;
  $('mName').textContent=mProduct.name[lang]||mProduct.name.no;
  $('mOrigin').textContent=mProduct.origin[lang]||mProduct.origin.no;
  $('mStory').textContent=mProduct.story[lang]||mProduct.story.no;
  $('mIntV').textContent=mProduct.intensity+'/10';
  $('mLongV').textContent=mProduct.longevity+t('long_h');
- $('mPyramid').innerHTML=[['m_top',mProduct.notes.top],['m_heart',mProduct.notes.heart],['m_base',mProduct.notes.base]].map(([k,n],i)=>`
-  <div class="flex items-center gap-3"><span class="text-[9px] tracking-[.25em] uppercase text-[#8d8065] w-14 shrink-0">${t(k)}</span>
-  <div class="flex-1 h-px bg-gradient-to-r from-[#C9A96E]/50 to-transparent"></div>
-  <span class="text-xs text-[#E8D9BC] font-serif2 italic">${n[lang]||n.no}</span></div>`).join('');
+ showNoteDetail('top');
  $('mSizes').innerHTML=['3','6','12'].map(s=>`<button onclick="setSize('${s}')" data-sz="${s}" class="${s==='6'?'on':''}">${s} ML · ${money(Math.round(mProduct.price*sizeMult[s]/5)*5)}</button>`).join('');
  $('mReviews').innerHTML=mProduct.revs.map(r=>`
   <div class="p-3 rounded-xl bg-white/[.03] border border-[#C9A96E]/12 flex gap-3">
@@ -1100,6 +1400,27 @@ function openModal(id){
  $('pModal').classList.add('open');document.body.style.overflow='hidden';
  setTimeout(()=>{$('mIntBar').style.width=mProduct.intensity*10+'%';$('mLongBar').style.width=Math.min(mProduct.longevity/14*100,100)+'%';},150);
 }
+
+function showNoteDetail(tier){
+  if(!mProduct)return;
+  const desc = $('mNoteActiveDesc');
+  if(tier==='top'){
+    desc.innerHTML = `<strong>Toppnoter:</strong> ${mProduct.notes.top[lang]||mProduct.notes.top.no}`;
+  } else if(tier==='heart'){
+    desc.innerHTML = `<strong>Hjertenoter:</strong> ${mProduct.notes.heart[lang]||mProduct.notes.heart.no}`;
+  } else {
+    desc.innerHTML = `<strong>Bunnoter:</strong> ${mProduct.notes.base[lang]||mProduct.notes.base.no}`;
+  }
+}
+
+function triggerModalUncork(){
+  const bottle = $('mVisual');
+  bottle.classList.add('uncorked');
+  playChime(660, 1.2);
+  sparkleAt(innerWidth/2, innerHeight/2, 20);
+  setTimeout(()=>bottle.classList.remove('uncorked'), 2400);
+}
+
 function setSize(s){mSize=s;$('mSizes').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.sz===s));updateMPrice();}
 function updateMPrice(){$('mPrice').textContent=money(sizePrice(mProduct)*mQ);}
 function mQty(d){mQ=Math.max(1,mQ+d);$('mQty').textContent=mQ;updateMPrice();}
@@ -1156,19 +1477,16 @@ $('ckForm').onsubmit=e=>{
  currentOrderId='ARX-'+Math.floor(10000+Math.random()*89999);
 
  if(ckPay==='vipps'){
-  // Show VIPPS 442442 Payment Screen
   $('ckForm').classList.add('hidden');
   $('vippsPayScreen').classList.remove('hidden');
   $('vippsPayAmount').textContent=money(currentTotal);
   $('vippsPayRef').textContent=currentOrderId;
   
-  // Generate Vipps QR Code pointing to Vipps Number 442442 with amount and reference
   const vippsData = `vipps://pay?recipient=442442&amount=${currentTotal}&message=${encodeURIComponent('Aromatix ' + currentOrderId)}`;
   $('vippsQR').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(vippsData)}&color=151009`;
   $('vippsDeepLink').href = vippsData;
   confetti(innerWidth/2,innerHeight/2,16);
  } else {
-  // Show Cash / Store Pickup Confirmation
   showFinalSuccess();
  }
 };
@@ -1187,7 +1505,6 @@ function showFinalSuccess(isVipps=false){
  const payMsg = isVipps || ckPay==='vipps' ? t('ok_vipps') : t('ok_cod');
  $('okNote').innerHTML=`${deliveryMsg}<br><strong class="text-[#EFD9A7]">${payMsg}</strong>`;
 
- // Prepare WhatsApp Confirmation Link
  const waMsg = encodeURIComponent(`Hei Aromatix! Jeg har lagt inn bestilling ${currentOrderId} på ${money(currentTotal)} via nettsiden. ${ckPay==='vipps'?'Betaling sendt til Vipps 442442.':''}`);
  $('waReceipt').href = `https://wa.me/4791234567?text=${waMsg}`;
 
@@ -1196,19 +1513,79 @@ function showFinalSuccess(isVipps=false){
 
 function finishOrder(){cart={};saveCart();updateBadge();renderCart();toggleCk(false);}
 
-/* ═══════════════════════ FX: SMOKE & PARTICLES CANVAS ═══════════════════════ */
+/* ═══════════════════════ FX: LIVING WATERFALL & PARTICLES ═══════════════════════ */
+const waterCv=$('waterfall-canvas'),wctx=waterCv.getContext('2d');
 const smokeCv=$('smoke'),sctx=smokeCv.getContext('2d');
 const sparkCv=$('sparks'),pctx=sparkCv.getContext('2d');
-let W,H,DPR,smoke=[],confettiP=[];
+let W,H,DPR,smoke=[],confettiP=[],waterDrops=[];
 let mx=0,my=0,tmx=0,tmy=0;
-function sizeCanvas(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
- [smokeCv,sparkCv].forEach(c=>{c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';});
- sctx.setTransform(DPR,0,0,DPR,0,0);pctx.setTransform(DPR,0,0,DPR,0,0);}
+
+function sizeCanvas(){
+  DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+  [waterCv,smokeCv,sparkCv].forEach(c=>{
+    c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';
+  });
+  wctx.setTransform(DPR,0,0,DPR,0,0);
+  sctx.setTransform(DPR,0,0,DPR,0,0);
+  pctx.setTransform(DPR,0,0,DPR,0,0);
+}
 addEventListener('resize',sizeCanvas);sizeCanvas();
+
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function makeSmoke(init){return{x:Math.random()*W,y:init?Math.random()*H:H+40,r:30+Math.random()*90,vy:.12+Math.random()*.28,vx:(Math.random()-.5)*.18,a:.028+Math.random()*.05,ph:Math.random()*6.28,layer:Math.random()<.5?0:1};}
+
+// Waterfall physics
+function makeWaterDrop(init){
+  return {
+    x: (W * 0.45) + (Math.random() * W * 0.55),
+    y: init ? Math.random() * H : -20,
+    speed: 4 + Math.random() * 8,
+    length: 12 + Math.random() * 22,
+    opacity: 0.15 + Math.random() * 0.25,
+    width: 0.8 + Math.random() * 1.4
+  };
+}
+for(let i=0;i<(reduceMotion?0:75);i++) waterDrops.push(makeWaterDrop(true));
+
+function drawWaterfall(){
+  wctx.clearRect(0,0,W,H);
+  wctx.lineCap = 'round';
+  for(const d of waterDrops){
+    d.y += d.speed;
+    if(d.y > H + 30){
+      Object.assign(d, makeWaterDrop(false));
+    }
+    const grad = wctx.createLinearGradient(d.x, d.y - d.length, d.x, d.y);
+    grad.addColorStop(0, 'rgba(239,217,167,0)');
+    grad.addColorStop(1, `rgba(201,169,110,${d.opacity})`);
+    wctx.strokeStyle = grad;
+    wctx.lineWidth = d.width;
+    wctx.beginPath();
+    wctx.moveTo(d.x, d.y - d.length);
+    wctx.lineTo(d.x, d.y);
+    wctx.stroke();
+  }
+}
+
+function makeSmoke(init){
+  return{x:Math.random()*W,y:init?Math.random()*H:H+40,r:30+Math.random()*90,vy:.12+Math.random()*.28,vx:(Math.random()-.5)*.18,a:.028+Math.random()*.05,ph:Math.random()*6.28,layer:Math.random()<.5?0:1};
+}
 for(let i=0;i<(reduceMotion?0:46);i++)smoke.push(makeSmoke(true));
-addEventListener('pointermove',e=>{tmx=(e.clientX/W-.5);tmy=(e.clientY/H-.5);},{passive:true});
+
+addEventListener('pointermove',e=>{
+  tmx=(e.clientX/W-.5);tmy=(e.clientY/H-.5);
+  // Dynamic 3D tilt on hero flacon
+  const flacon = $('heroFlaconWrap');
+  if(flacon){
+    const r = flacon.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+    const rx = ((cy - e.clientY)/r.height) * 14;
+    const ry = ((e.clientX - cx)/r.width) * 14;
+    flacon.querySelector('.flacon-body').style.setProperty('--rx', rx + 'deg');
+    flacon.querySelector('.flacon-body').style.setProperty('--ry', ry + 'deg');
+  }
+},{passive:true});
+
 function drawSmoke(t){
  sctx.clearRect(0,0,W,H);
  mx+=(tmx-mx)*.04;my+=(tmy-my)*.04;
@@ -1223,6 +1600,7 @@ function drawSmoke(t){
   sctx.fillStyle=g;sctx.beginPath();sctx.arc(px,py,p.r,0,6.28);sctx.fill();
  }
 }
+
 function confetti(x,y,n=14){
  const cols=['#FF5B24','#EFD9A7','#C9A96E','#8A6F3E','#2E8B6A','#fff3d6'];
  for(let i=0;i<n;i++){const a=Math.random()*6.28,s=2+Math.random()*4.5;
@@ -1245,14 +1623,42 @@ function drawParticles(){
   pctx.restore();}
  pctx.globalAlpha=1;
 }
+
 function loop(t){
- if(!reduceMotion)drawSmoke(t);
+ if(!reduceMotion && !document.hidden){
+   drawWaterfall();
+   drawSmoke(t);
+ }
  drawParticles();
  requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
 
-/* ═══════════════════════ GSAP ═══════════════════════ */
+/* ═══════════════════════ UNCORK INTERACTION (HERO) ═══════════════════════ */
+const uncorkBtn = $('uncorkBtn');
+let uncorkHoldTimer = null;
+
+function handleUncorkStart(e){
+  e.preventDefault();
+  const wrap = $('heroFlaconWrap');
+  if(!wrap)return;
+  wrap.classList.add('uncorked');
+  playChime(660, 1.4);
+  const r = wrap.getBoundingClientRect();
+  sparkleAt(r.left + r.width/2, r.top + 50, 18);
+}
+function handleUncorkEnd(){
+  const wrap = $('heroFlaconWrap');
+  if(!wrap)return;
+  wrap.classList.remove('uncorked');
+}
+
+if(uncorkBtn){
+  uncorkBtn.addEventListener('pointerdown', handleUncorkStart);
+  window.addEventListener('pointerup', handleUncorkEnd);
+}
+
+/* ═══════════════════════ GSAP & SCROLL ═══════════════════════ */
 gsap.registerPlugin(ScrollTrigger);
 function refreshReveals(){
  ScrollTrigger.getAll().forEach(s=>s.kill());
@@ -1307,8 +1713,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
  const el=$(a.getAttribute('href').slice(1));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}}));
 
 /* ═══════════════════════ INIT ═══════════════════════ */
-$('heroBottle').innerHTML=bottleSVG(PRODUCTS[0],240);
-$('okBottle').innerHTML=bottleSVG(PRODUCTS[0],110);
+$('heroBottle').innerHTML=bottleSVG(PRODUCTS[0],240,'hero');
+$('okBottle').innerHTML=bottleSVG(PRODUCTS[0],110,'ok');
 applyLang();
 updateBadge();
 // loader
