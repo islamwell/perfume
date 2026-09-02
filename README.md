@@ -1,33 +1,19 @@
-# Aromatix Oslo — Eksklusiv Oud & Luksuriøse Islamske Gaver
+# Aromatix Oslo — Eksklusiv Oud & Luksuriøse Parfymer
 
-Ultra-luksuriøs e-handelsdemo og digital opplevelse for **Aromatix** — en eksklusiv boutique for sjelden agartre-oud og islamske gaver lokalisert i **Tøyengata 3, 0190 Oslo** (ved Grønland T-bane).
-
----
-
-## 🌟 10 Bleeding-Edge Tech Design Techniques Implemented
-
-1. **Generative UI (GenUI / JIT Component Synthesis)**: Sanntids *Al-Kimiya Duft-Synthesizer* som mikser topp-, hjerte- og base-noter, beregner duftpyramide og projeksjon, og genererer skreddersydde bestillingskort på sparket.
-2. **WebGPU & Canvas Procedural Particle Shaders**: 60fps GPU-akselerert simulering av gyllen røkelse og amber-tåke med dynamisk lys og partikkelfysikk.
-3. **Spatial 3D Volumetric Tilt & Specular Glare**: Gyroskop- og markør-reaktiv 3D-perspektiv og dynamisk lysrefleksjon på produktkort.
-4. **Perceptual Oklch Color Spaces & Wide-Gamut (P3)**: Ingen gråskjær i gradienter — dyp obsidian, ekte keisergull (`oklch(0.74 0.13 78)`), varm ambra og smaragdtone.
-5. **Native CSS View Transitions & Scroll-Driven Timelines**: Sømløse tilstandsoverganger mellom språk og visninger.
-6. **2D Spatial Scent Family Matrix**: Interaktivt duftkart (Treaktig, Røkt, Blomster, Rav, Silke Musk) for intuitiv navigering.
-7. **Synesthetic UX (Micro-Haptics & Procedural Web Audio Synthesizer)**: Skreddersydde akkorder og krystallklang ved interaksjon og utsjekk, samt taktil vibrasjon på mobil.
-8. **Sub-16ms Predictive & Optimistic Edge State**: Umiddelbare handlekurvoppdateringer og lokal synkronisering mot LocalStorage.
-9. **Fluid Typography & Container Queries (`@container`, `clamp()`)**: Responssikker arkitektur fra 320px mobilskjermer til 4K-skjermer.
-10. **Ambient Context-Aware Zero-UI (Calm Technology)**: Tidsbasert duftanbefaling (frisk rose på dagtid vs. dyp Cambodi-oud på kveldstid) og sensorisk fordypningsmodus.
+Ultra-luksuriøs e-handelsdemo og digital opplevelse for **Aromatix** — en eksklusiv boutique for sjelden agartre-oud og rene parfymer lokalisert i **Tøyengata 3, 0190 Oslo** (ved Grønland T-bane).
 
 ---
 
-## 🇳🇴 🇵🇰 Tospråklig Støtte (Bilingual Engine)
-- **Norsk (Bokmål)** & **Urdu (اردو)** med full `dir="rtl"`-håndtering og *Noto Nastaliq Urdu* typografi.
+## 🌟 Nøkkelfunksjoner & Visuelle Oppgraderinger
 
-## 📍 Butikkinformasjon i Oslo
-- **Adresse:** Tøyengata 3, 0190 Oslo (Inne i det pakistanske markedet ved Grønland T-bane).
-- **Åpningstider:** Man–Lør: 10:00–20:00, Søn: 12:00–18:00.
-- **Betaling:** Vipps (`#FF5B24`) & Kontant / Kort ved henting.
+1. **Realistisk Fossemiljø (Waterfall Particle Simulation)**: 60fps GPU-akselerert simulering av fossefall-strømmer, vannsprut og lysrefleksjoner i bakgrunnen.
+2. **Procedural Web Audio Fuglesang (Birds Chirping Synth)**: Naturlig kvitring og ambient fuglesang syntetisert i nettleseren for en beroligende, harmonisk duftopplevelse.
+3. **Fokusert Ren Parfymekolleksjon**: 6 sjeldne agartre-oljer (*Cambodi Vintage*, *Taif Rose & Hindi*, *Smoky Kalakassi*, *Black Ambergris*, *Musk al-Ghazal*, *Santal Imperial*) med oljepyramide, opprinnelse og flaskestørrelser (3ml, 6ml, 12ml).
+4. **Al-Kimiya Duft-Formulering**: Sanntids miksing av topp-, hjerte- og bunnoter med tilpasset projeksjonsberegning.
+5. **Vipps & Hurtig Utsjekk**: Fullstendig integrert Vipps-betaling og butikkhenting i Oslo.
+6. **Tospråklig Støtte (Norsk & Urdu)**: Live veksling med *Noto Nastaliq Urdu* og RTL-støtte.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.0 (updated 2026-09-02 15:03)`
+`v1.0.1 (updated 2026-09-02 15:25)`
