@@ -1,23 +1,29 @@
-# SVARTFJORD N°1 — Black Oud Extrait · Oslo
+# Aromatix Oslo (v2.0.0) — Eksklusiv Oud & Islamske Gaver
 
-Nordlyset og fossefallene, tappet i svart. Eksklusivt norsk parfymehus lokalisert i Thorvald Meyers gate, Oslo.
+Ultra-luksuriøs e-handelsdemo for **Aromatix** — lokalisert i **Tøyengata 3, 0190 Oslo** (ved Grønland T-bane).
 
 ---
 
-## 🌲 Nøkkelfunksjoner & Visuelle Høydepunkter
+## 🌟 Versjon 2.0.0 Høydepunkter
 
-1. **Fossefall- & Røykpartikler (Waterfall & Aromatic Mist Canvas)**:
-   - Sanntids 60fps simulering av vertikale fossefall-strømmer, vannsprut og glødende røkelsespartikler fra flakongen.
-2. **Procedural Fuglesang (Web Audio Birds Chirping Synth)**:
-   - Ekte syntetisert nordisk fuglekvitter og beroligende naturlyd som trigger ved åpning av flakongen og ved interaksjon.
-3. **Flakong-Interaksjon ("Trykk og hold")**:
-   - Åpner flakongen ved berøring/klikk, frigjør aromatiske duftplumer (Einer, Bjørketjære, Safran, Svart Oud, Isbremoskus, Furuharpiks).
-4. **Scroll-Driven Duftpyramide & Morfologi**:
-   - Tre lag med interaktiv noteblomstring og "fra bre til bål" dynamisk scroll-wipe.
-5. **Kjøps- og Utsjekksopplevelse**:
-   - Størrelsesvalg (30ml, 50ml, 100ml), popover handlekurv og integrert Vipps-utsjekk.
+1. **Autentisk Mørk & Gull Midtøsten-estetikk**:
+   - Dyp obsidian-noir (`#0D0A08`), keisergull (`#C9A96E`), glødende rav og smaragdtoner.
+   - Typografi: *Cinzel*, *Cormorant Garamond*, *Jost* og *Noto Nastaliq Urdu*.
+2. **GSAP & ScrollTrigger Mikranimasjoner**:
+   - Magnetiske knapper, korthevning med gullkant-glød, partikkel-røyk og stjernestøv.
+   - Parallakse lys-auroraer og flytende flakong.
+3. **Fullverdig Tospråklig Motor (Norsk 🇳🇴 / Urdu 🇵🇰)**:
+   - Sømløs veksling mellom Norsk og Nastaliq Urdu med full RTL-støtte.
+4. **Oud-Kolleksjon & Islamske Gavesett**:
+   - 6 sjeldne ouds (*Dehn al Oud Malaki*, *Cambodi Classic*, *Mukhallat Taifi*, *Safwan White Musk*, *Amber Hind*, *Layali Oud*).
+   - 3 gavesett (*Sølv*, *Gull*, *Royal*) med fløyels-Qur'an, tasbih og bedematte.
+5. **Interaktiv Produktmodal & Rask Utsjekk**:
+   - Detaljert duftpyramide, intensitets- og varighetsmålere, størrelsesvelger (3ml, 6ml, 12ml).
+   - Bunnskuff-handlekurv, gratis frakt over 1 000 kr og Vipps / Kontant utsjekk.
+6. **Lokal Forankring**:
+   - Butikkinfo, åpningstider og veibeskrivelse til Tøyengata 3, Oslo (nær Grønland T-bane).
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.2 (updated 2026-09-02 15:33)`
+`v2.0.0 (updated 2026-09-02 15:44)`

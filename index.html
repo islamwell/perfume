@@ -1,499 +1,1133 @@
-<!doctype html>
-<html lang="nb">
+<!DOCTYPE html>
+<html lang="no" dir="ltr" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SVARTFJORD N°1 — Black Oud Extrait · Oslo</title>
-<meta name="theme-color" content="#05070b">
-<meta name="description" content="Black Oud extrait fra Oslo. Nordlys, fossefall, bre og svart oud i én flakong. Fri frakt i Norge.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<!-- Canvas Confetti CDN -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Aromatix — Eksklusiv Oud & Islamske Gaver | Tøyengata 3, Oslo</title>
+<meta name="description" content="Sjelden oud fra Østen, midt i Oslo. Eksklusive oud-parfymer, islamske gavesett, Qur'an, tasbih og bedematter. Tøyengata 3, 0190 Oslo — ved Grønland T-bane. Vipps eller kontant.">
+<meta name="keywords" content="oud, oud parfyme, Oslo, dehn al oud, islamske gaver, tasbih, quran, Grønland, Tøyengata">
+<meta property="og:title" content="Aromatix — Sjelden Oud fra Østens Hjerte, Oslo">
+<meta property="og:description" content="Eksklusiv oud & islamske gaver i hjertet av Grønland. Tøyengata 3, 0190 Oslo.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=1200&q=80">
+<meta name="theme-color" content="#0D0A08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{night:'#0D0A08',coal:'#151009',gold:'#C9A96E',goldhi:'#EFD9A7',golddeep:'#8A6F3E',amber2:'#E8B15C',ember:'#2E8B6A',vipps:'#FF5B24'},fontFamily:{display:['Cinzel','serif'],serif2:['"Cormorant Garamond"','serif'],body:['Jost','sans-serif'],urdu:['"Noto Nastaliq Urdu"','serif']}}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Aromatix","address":{"@type":"PostalAddress","streetAddress":"Tøyengata 3","postalCode":"0190","addressLocality":"Oslo","addressCountry":"NO"},"openingHours":["Mo-Sa 10:00-21:00","Su 12:00-20:00"],"priceRange":"kr 239 - 2499"}</script>
 
 <style>
-@property --wipe{syntax:'<percentage>';inherits:false;initial-value:-10%}
-@property --glow{syntax:'<number>';inherits:true;initial-value:0}
-:root{
-  --void:#05070b;--ink:#0a0e15;--line:#ffffff1f;--ice:oklch(.93 .02 220);--dim:oklch(.72 .015 250);
-  --gold:oklch(.79 .12 78);--gold-bright:oklch(.88 .14 85);--ember:oklch(.6 .17 45);--a1:oklch(.83 .19 155);--a2:oklch(.72 .14 205);--a3:oklch(.6 .18 315);
-  --serif:'Cormorant Garamond',ui-serif,Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;
-  --pad:clamp(1.1rem,5vw,3.5rem);color-scheme:dark;interpolate-size:allow-keywords;
-  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-*,::before,::after{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--void);color:var(--ice);font:300 clamp(.95rem,.4vw + .85rem,1.05rem)/1.65 var(--sans);overflow-x:clip;letter-spacing:.01em}
-body::after{content:'';position:fixed;inset:0;background:var(--grain);opacity:.04;mix-blend-mode:overlay;pointer-events:none;z-index:99}
-h1,h2,h3{font:300 1em/1.05 var(--serif);text-wrap:balance;letter-spacing:-.015em}
-p{text-wrap:pretty;color:var(--dim)}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
-.eye{font:400 .68rem/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-section{padding:clamp(4.5rem,13vw,9rem) var(--pad);position:relative}
+/* ============ BASE ============ */
+:root{--gold:#C9A96E;--gold-hi:#EFD9A7;--gold-deep:#8A6F3E;--bg:#0D0A08;--line:rgba(201,169,110,.18)}
+*{-webkit-tap-highlight-color:transparent}
+html{scrollbar-color:#5a4a2c #0D0A08}
+body{background:var(--bg);color:#EDE3D2;font-family:'Jost',sans-serif;overflow-x:hidden}
+html.urdu body{font-family:'Noto Nastaliq Urdu',serif;line-height:2.15}
+html.urdu .font-display,html.urdu .font-serif2{font-family:'Noto Nastaliq Urdu',serif!important}
+html.urdu{font-size:15.5px}
+::selection{background:rgba(201,169,110,.35);color:#fff}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:#0D0A08}
+::-webkit-scrollbar-thumb{background:linear-gradient(#8A6F3E,#5a4a2c);border-radius:8px}
+button{font-family:inherit}
 
-/* ── reveals (scroll-driven) ── */
-.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 4% cover 30%}
-@keyframes rise{from{opacity:0;translate:0 2.2rem;filter:blur(8px)}to{opacity:1;translate:0;filter:none}}
-@supports not (animation-timeline:view()){.rv{animation:none}}
+/* ============ TEXTURE / GLOW ============ */
+.noise{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.glow-amb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;opacity:.16}
+.g1{width:60vw;height:60vw;top:-20vw;left:-15vw;background:radial-gradient(circle,#C9A96E 0%,transparent 65%)}
+.g2{width:50vw;height:50vw;bottom:-18vw;right:-12vw;background:radial-gradient(circle,#8a5a1f 0%,transparent 65%);opacity:.12}
+.g3{width:34vw;height:34vw;top:38%;left:60%;background:radial-gradient(circle,#1f6b52 0%,transparent 65%);opacity:.10}
 
-/* ── nav ── */
-header{position:sticky;top:0;z-index:40}
-.bar{display:flex;align-items:center;gap:1rem;padding:.9rem var(--pad);transition:.4s;border-bottom:1px solid #0000;background:rgba(5,7,11,0.75);backdrop-filter:blur(16px) saturate(1.4)}
-.brand{font:500 1.02rem/1 var(--sans);letter-spacing:.34em;margin-right:auto}
-.brand b{color:var(--gold);font-weight:500}
-nav a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:none}
-@media (width>=52rem){nav a{display:inline;margin-left:1.6rem}}
+/* ============ GOLD SHIMMER TITLE ============ */
+.gold-shimmer{background:linear-gradient(105deg,#6b552f 0%,#C9A96E 22%,#F7EBC8 40%,#C9A96E 58%,#6b552f 80%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 5.5s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
 
-.audio-btn{background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:var(--ice);font:400 .72rem/1 var(--sans);letter-spacing:.12em;padding:.55rem .95rem;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:.3s}
-.audio-btn:hover{border-color:var(--gold)}
-.audio-btn.on{border-color:var(--gold);color:var(--gold);background:oklch(.79 .12 78/.14)}
+/* ============ BUTTONS ============ */
+.btn-gold{position:relative;overflow:hidden;background:linear-gradient(115deg,#8A6F3E,#C9A96E 45%,#EFD9A7 55%,#C9A96E 70%,#8A6F3E);background-size:250% 100%;color:#1a1206;font-weight:600;letter-spacing:.08em;transition:background-position .8s cubic-bezier(.2,.8,.2,1),transform .3s,box-shadow .3s}
+.btn-gold:hover{background-position:100% 0;box-shadow:0 0 28px rgba(201,169,110,.45),0 6px 18px rgba(0,0,0,.5);transform:translateY(-2px)}
+.btn-gold::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-22deg);transition:left .7s}
+.btn-gold:hover::after{left:130%}
+.btn-ghost{border:1px solid rgba(201,169,110,.45);color:var(--gold-hi);transition:.35s;position:relative;overflow:hidden}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,169,110,.1);box-shadow:0 0 22px rgba(201,169,110,.25);transform:translateY(-2px)}
 
-.cartbtn{background:none;border:1px solid var(--line);border-radius:99px;corner-shape:squircle;color:inherit;font:400 .74rem/1 var(--sans);letter-spacing:.14em;padding:.6rem .9rem;text-transform:uppercase;cursor:pointer;transition:.3s}
-.cartbtn:hover{border-color:var(--gold)}
-.cartbtn b{view-transition-name:badge;color:var(--gold)}
+/* ============ CARDS ============ */
+.p-card{background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012) 55%,rgba(201,169,110,.05));border:1px solid var(--line);backdrop-filter:blur(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .5s}
+.p-card:hover{transform:translateY(-8px);border-color:rgba(201,169,110,.6);box-shadow:0 0 0 1px rgba(201,169,110,.25),0 24px 50px -18px rgba(0,0,0,.85),0 0 42px -8px rgba(201,169,110,.28)}
+.img-zoom img,.img-zoom svg{transition:transform 7s cubic-bezier(.2,.6,.2,1)}
+.p-card:hover .img-zoom img,.p-card:hover .img-zoom svg{transform:scale(1.07)}
+.kb-loop{animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+.rating-pulse{animation:rpulse 2.6s ease-in-out infinite}
+@keyframes rpulse{0%,100%{text-shadow:0 0 0 rgba(201,169,110,0)}50%{text-shadow:0 0 14px rgba(201,169,110,.8)}}
 
-/* ── hero ── */
-.hero{min-height:100svh;padding-block:6.5rem 3rem;display:grid;align-content:center;justify-items:center;text-align:center;overflow:clip;isolation:isolate}
-.aurora{position:absolute;inset:-15% -25%;z-index:-3;filter:blur(70px) saturate(1.5);opacity:.55}
-.aurora i{position:absolute;inset:0;background:radial-gradient(45% 32% at 30% 38%,var(--a1),#0000 70%),radial-gradient(38% 26% at 68% 30%,var(--a2),#0000 70%),radial-gradient(30% 22% at 50% 55%,var(--a3),#0000 70%);animation:drift 26s ease-in-out infinite alternate}
-.aurora i:nth-child(2){animation-duration:38s;animation-direction:alternate-reverse;opacity:.7;scale:-1 1}
-.aurora i:nth-child(3){animation-duration:19s;opacity:.5;filter:hue-rotate(40deg)}
-@keyframes drift{to{translate:6% -4%;scale:1.25 .85;filter:hue-rotate(35deg)}}
-.stars{position:absolute;inset:0;z-index:-4;background:radial-gradient(1px 1px at 20% 18%,#fff9,#0000),radial-gradient(1px 1px at 74% 12%,#fff7,#0000),radial-gradient(1.4px 1.4px at 46% 26%,#fffc,#0000),radial-gradient(1px 1px at 88% 34%,#fff6,#0000),radial-gradient(1px 1px at 8% 44%,#fff5,#0000);animation:twinkle 6s ease-in-out infinite alternate}
-@keyframes twinkle{to{opacity:.45}}
-.fjord{position:absolute;bottom:-2px;left:-8%;width:116%;z-index:-2;animation:pan linear both;animation-timeline:scroll(root);animation-range:0 110svh}
-@keyframes pan{to{translate:0 14%;scale:1.12}}
+/* ============ NAV ============ */
+.nav-link{position:relative;color:#c9bda5;transition:color .3s;padding:.25rem 0}
+.nav-link::after{content:'';position:absolute;bottom:-3px;inset-inline-start:0;width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+html[dir=rtl] .nav-link::after{transform-origin:right}
+.nav-link:hover,.nav-link.on{color:var(--gold-hi)}
+.nav-link:hover::after,.nav-link.on::after{transform:scaleX(1)}
+.mobnav-link{color:#8d8065;transition:.3s;position:relative}
+.mobnav-link.on{color:var(--gold-hi)}
+.mobnav-link.on::before{content:'';position:absolute;top:-11px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 10px var(--gold)}
 
-/* Realistic Waterfall & Smoke Canvas */
-#waterfall-canvas{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.65}
-#smoke{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen}
+/* ============ MARQUEE ============ */
+.mq-track{display:flex;gap:0;width:max-content;animation:mq 38s linear infinite}
+@keyframes mq{to{transform:translateX(calc(-50% * var(--mqd,1)))}}
+html[dir=rtl] .mq-track{animation-name:mq-rtl}@keyframes mq-rtl{from{transform:translateX(calc(-50% * var(--mqd,1)))}to{transform:translateX(0)}}
 
-.flacon{width:min(46vw,220px);margin-block:1.2rem 0;animation:dive linear both;animation-timeline:scroll(root);animation-range:0 92svh;filter:drop-shadow(0 30px 60px #000c);z-index:3}
-@keyframes dive{to{scale:.86;rotate:-3deg;opacity:.55}}
-.flacon svg{width:100%;height:auto;animation:hover 9s ease-in-out infinite;--glow:0}
-@keyframes hover{50%{translate:0 -12px}}
-.hero h1{font-size:clamp(2.9rem,13.5vw,7.2rem);line-height:.92;z-index:3}
-.hero h1 em{font-style:italic;color:var(--gold);display:block}
-.hero p{max-width:34ch;margin:1.1rem auto 0;z-index:3}
-.hold{margin-top:1.9rem;background:#ffffff08;border:1px solid var(--line);color:var(--ice);border-radius:99px;corner-shape:squircle;padding:.95rem 1.5rem;font:400 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;touch-action:none;cursor:grab;transition:.35s;backdrop-filter:blur(6px);z-index:4}
-.hold::before{content:'✳ ';color:var(--gold)}
-html.open .hold{background:oklch(.6 .17 45/.25);border-color:var(--gold);box-shadow:0 0 40px -6px var(--ember)}
-html.open .flacon svg{--glow:1}
-.plume{position:absolute;inset-block:18% auto;z-index:5;pointer-events:none;font:italic 300 1.15rem var(--serif);color:var(--gold);width:100%}
-.plume span{position:absolute;left:50%;white-space:nowrap;text-shadow:0 0 18px #000}
-.scroll{margin-top:2.4rem;font-size:.62rem;letter-spacing:.3em;color:var(--dim);animation:blink 2.6s infinite;z-index:3}
-@keyframes blink{50%{opacity:.3;translate:0 6px}}
+/* ============ CAROUSEL ============ */
+.car-track{display:flex;gap:1.25rem;width:max-content;animation:car 46s linear infinite}
+@keyframes car{to{transform:translateX(calc(-50% * var(--card,1)))}}
+html[dir=rtl] .car-track{animation-name:car-r}@keyframes car-r{from{transform:translateX(calc(-50% * var(--card,1)))}to{transform:translateX(0)}}
+#carWrap:hover .car-track,#carWrap:active .car-track{animation-play-state:paused}
 
-/* ── pyramid ── */
-.pyr{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding:2rem var(--pad);scroll-padding-left:var(--pad)}
-.pyr::-webkit-scrollbar{display:none}
-.note{flex:0 0 min(78vw,22rem);scroll-snap-align:start;border:1px solid var(--line);border-radius:1.4rem;corner-shape:squircle;padding:1.6rem;position:relative;overflow:hidden;background:linear-gradient(160deg,#ffffff09,#0000);cursor:pointer;transition:border-color .5s}
-.note::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 110%,var(--c),#0000 72%);opacity:.16;transition:.9s cubic-bezier(.2,.8,.2,1)}
-.note:is(:hover,.on){border-color:color-mix(in oklch,var(--c),#fff 20%)}
-.note.on::before{opacity:.55;scale:1.9;filter:blur(14px)}
-.note h3{font-size:1.9rem;margin:.5rem 0 .4rem}
-.note ul{list-style:none;padding:0;margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
-.note li{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.32rem .7rem;color:var(--ice)}
-.note b{position:absolute;top:1.3rem;right:1.5rem;font:300 2.6rem var(--serif);color:var(--c);opacity:.5}
+/* ============ GOLD DOTS ============ */
+.gold-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);animation:dotp 3s ease-in-out infinite}
+@keyframes dotp{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
 
-/* ── morph ── */
-.art{position:relative;aspect-ratio:4/5;border-radius:1.4rem;overflow:hidden;border:1px solid var(--line);animation:wipe linear both;animation-timeline:view();animation-range:entry 20% cover 78%}
-@keyframes wipe{to{--wipe:118%}}
-@supports not (animation-timeline:view()){.art{--wipe:55%}}
-.art>div{position:absolute;inset:0}
-.ice{background:linear-gradient(#0a1a26,#04080d 60%),repeating-linear-gradient(102deg,#9fd8ec24 0 2px,#0000 2px 16px),radial-gradient(70% 40% at 30% 12%,var(--a2),#0000 70%);background-blend-mode:screen,overlay,screen}
-.oud{background:radial-gradient(80% 60% at 70% 80%,oklch(.55 .17 42/.9),#0000 70%),radial-gradient(50% 40% at 25% 30%,oklch(.4 .13 25/.85),#0000 70%),repeating-conic-gradient(from 20deg at 60% 70%,#00000000 0 4deg,#e8ba6e14 4deg 8deg),#080506;
-  mask:linear-gradient(112deg,#000 0 var(--wipe),#0000 calc(var(--wipe) + 24%))}
-.seam{background:linear-gradient(112deg,#0000 0 calc(var(--wipe) - 1.2%),var(--gold) var(--wipe),#0000 calc(var(--wipe) + 1.2%));mix-blend-mode:screen;filter:blur(3px) brightness(1.6);opacity:.9}
-.art .cap{position:absolute;inset:auto 1.2rem 1.2rem;font:italic 300 1.35rem var(--serif);text-align:center;color:#fff;text-shadow:0 2px 20px #000}
+/* ============ SHEETS / MODALS ============ */
+.sheet{position:fixed;z-index:110;transition:transform .55s cubic-bezier(.22,.9,.26,1);will-change:transform}
+.sheet-b{left:0;right:0;bottom:0;transform:translateY(102%);max-height:92dvh;border-radius:22px 22px 0 0}
+.sheet-b.open{transform:translateY(0)}
+.modal-wrap{position:fixed;inset:0;z-index:120;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+.modal-wrap.open{opacity:1;pointer-events:auto}
+.modal-panel{transform:translateY(46px) scale(.98);transition:transform .5s cubic-bezier(.22,.9,.26,1)}
+.modal-wrap.open .modal-panel{transform:none}
+@media(min-width:768px){.modal-wrap{align-items:center;padding:2rem}.sheet-b{left:50%;right:auto;transform:translate(-50%,102%);width:600px;border-radius:22px 22px 0 0}.sheet-b.open{transform:translate(-50%,0)}}
+.grab{touch-action:none;cursor:grab}
 
-/* ── ticker ── */
-.ticker{border-block:1px solid var(--line);padding:1.1rem 0;overflow:hidden;display:flex;gap:2rem;mask:linear-gradient(90deg,#0000,#000 12%,#000 88%,#0000)}
-.ticker div{display:flex;gap:2rem;flex:0 0 auto;animation:slide 34s linear infinite;font:300 1.6rem var(--serif);white-space:nowrap;color:#ffffff5c}
-.ticker i{color:var(--gold);font-style:normal}
-@keyframes slide{to{translate:-100% 0}}
+/* ============ FORMS ============ */
+.inp{background:rgba(255,255,255,.035);border:1px solid rgba(201,169,110,.28);color:#F2E8D5;padding:.8rem 1rem;border-radius:10px;width:100%;transition:.3s;font-family:inherit}
+.inp:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.14),0 0 18px rgba(201,169,110,.12)}
+.inp.err{border-color:#c0552f;box-shadow:0 0 0 3px rgba(192,85,47,.18)}
+.inp::placeholder{color:#7d715c}
+html.urdu .inp{padding:.55rem 1rem}
+.seg{border:1px solid rgba(201,169,110,.3);border-radius:12px;overflow:hidden;display:flex}
+.seg button{flex:1;padding:.7rem .4rem;font-size:.82rem;color:#b8a888;transition:.3s;background:transparent}
+.seg button.on{background:linear-gradient(120deg,rgba(201,169,110,.22),rgba(201,169,110,.08));color:var(--gold-hi)}
 
-/* ── buy ── */
-.buy{display:grid;gap:2.2rem;max-width:70rem;margin-inline:auto}
-@media (width>=56rem){.buy{grid-template-columns:1fr 1fr;align-items:center;gap:4rem}}
-.stage{position:relative;display:grid;place-items:center;border-radius:1.6rem;overflow:hidden;padding:3rem 1rem;background:radial-gradient(60% 50% at 50% 30%,#12222b,#05070b 72%);border:1px solid var(--line)}
-.stage svg{width:min(52vw,240px);filter:drop-shadow(0 26px 40px #000e)}
-.price{font:300 2.1rem var(--serif);color:var(--ice);view-transition-name:price}
-.sizes{display:flex;gap:.5rem;flex-wrap:wrap}
-.sizes label{border:1px solid var(--line);border-radius:99px;corner-shape:squircle;padding:.6rem 1.05rem;font-size:.8rem;cursor:pointer;transition:.3s;letter-spacing:.06em}
-.sizes input{position:absolute;opacity:0;pointer-events:none}
-.sizes label:has(:checked){border-color:var(--gold);background:oklch(.79 .12 78/.12);color:#fff}
-.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:99px;corner-shape:squircle;width:max-content}
-.qty button{background:none;border:0;color:inherit;font-size:1.1rem;width:2.8rem;height:2.8rem;cursor:pointer}
-.cta{width:100%;background:linear-gradient(100deg,var(--gold),oklch(.62 .16 42));color:#100c06;border:0;border-radius:99px;corner-shape:squircle;padding:1.15rem;font:600 .8rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:.3s;box-shadow:0 14px 44px -14px var(--ember)}
-.cta:active{scale:.98}
-details{border-top:1px solid var(--line)}
-summary{padding:1.05rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-size:.85rem;letter-spacing:.08em}
-summary::after{content:'+';color:var(--gold);transition:.4s}
-details[open] summary::after{rotate:135deg}
-details::details-content{block-size:0;overflow:clip;opacity:0;transition:block-size .5s cubic-bezier(.2,.8,.2,1),opacity .5s,content-visibility .5s allow-discrete}
-details[open]::details-content{block-size:auto;opacity:1}
-details p{padding-bottom:1.1rem;font-size:.9rem}
-.meta{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-
-/* ── stats ── */
-.stats{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));text-align:center;border-block:1px solid var(--line);padding-block:3rem}
-.stats b{display:block;font:300 clamp(2.6rem,9vw,4.2rem) var(--serif);color:var(--gold);line-height:1}
-.stats span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-
-/* ── buybar + sheet ── */
-.buybar{position:fixed;inset:auto 0 0;z-index:30;display:flex;gap:.75rem;align-items:center;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));background:#05070be6;backdrop-filter:blur(18px);border-top:1px solid var(--line);animation:barIn linear both;animation-timeline:scroll(root);animation-range:75svh 105svh}
-@keyframes barIn{from{translate:0 130%}to{translate:0 0}}
-@supports not (animation-timeline:scroll(root)){.buybar{translate:0 0}}
-.buybar .cta{padding:.95rem 1.4rem;width:auto;flex:1}
-.buybar small{font:300 .78rem var(--sans);color:var(--dim);line-height:1.3}
-@media (width>=56rem){.buybar{display:none}}
-.sheet{width:min(30rem,100%);margin:auto auto 0;border:1px solid var(--line);border-radius:1.5rem 1.5rem 0 0;background:linear-gradient(#0d1219,#05070b);color:var(--ice);padding:1.6rem var(--pad) calc(1.6rem + env(safe-area-inset-bottom));inset:auto 0 0;transition:translate .5s cubic-bezier(.2,.9,.2,1),opacity .4s,overlay .5s allow-discrete,display .5s allow-discrete}
-.sheet:not(:popover-open){translate:0 100%;opacity:0}
-@starting-style{.sheet:popover-open{translate:0 100%;opacity:0}}
-.sheet::backdrop{background:#02040866;backdrop-filter:blur(8px)}
-.row{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
-.row em{font-style:normal;color:var(--dim);font-size:.78rem;display:block}
-.x{background:none;border:0;color:var(--dim);cursor:pointer;font-size:.72rem;letter-spacing:.1em}
-
-/* Checkout Form Modal */
-.checkout-modal{width:min(32rem,95vw);border:1px solid var(--line);border-radius:1.5rem;background:#090d14;color:var(--ice);padding:2rem var(--pad);margin:auto;box-shadow:0 30px 80px rgba(0,0,0,0.8);backdrop-filter:blur(24px)}
-.checkout-modal::backdrop{background:rgba(2,4,8,0.7);backdrop-filter:blur(10px)}
-.checkout-modal input{width:100%;padding:.85rem 1rem;background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:#fff;font:300 .85rem var(--sans);margin-top:.4rem;margin-bottom:1rem;outline:none}
-.checkout-modal input:focus{border-color:var(--gold)}
-
-footer{padding:3.5rem var(--pad) 7rem;border-top:1px solid var(--line);display:grid;gap:1.4rem;font-size:.82rem;color:var(--dim)}
-footer input{background:#ffffff08;border:1px solid var(--line);border-radius:99px;padding:.9rem 1.2rem;color:#fff;width:100%;font:300 .9rem var(--sans);field-sizing:content}
-::view-transition-old(price),::view-transition-new(price){animation-duration:.45s}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.art{--wipe:55%}}
+/* ============ MISC ============ */
+.arch{border-radius:999px 999px 14px 14px}
+.spin-slow{animation:spin 40s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.badge-pop{animation:bpop .45s cubic-bezier(.34,1.56,.64,1)}@keyframes bpop{0%{transform:scale(.4)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.bob{animation:bob 5s ease-in-out infinite}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.pulse-ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(201,169,110,.7);animation:pring 2.2s ease-out infinite}
+@keyframes pring{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.55);opacity:0}}
+.frag-line{stroke-dasharray:220;stroke-dashoffset:220;transition:stroke-dashoffset 1.4s ease .3s}
+.modal-wrap.open .frag-line,.sheet-b.open .frag-line{stroke-dashoffset:0}
+.frag-wisp{animation:wisp 4s ease-in-out infinite;opacity:0}@keyframes wisp{0%{opacity:0;transform:translateY(6px)}35%{opacity:.8}100%{opacity:0;transform:translateY(-14px)}}
+.frag-wisp:nth-child(2){animation-delay:1.3s}.frag-wisp:nth-child(3){animation-delay:2.5s}
+html.urdu .flip-rtl{transform:scaleX(-1)}
+html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
+.confetti{position:fixed;width:7px;height:7px;pointer-events:none;z-index:200;border-radius:1px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}}
 </style>
 </head>
-<body>
-<header><div class="bar">
-  <a class="brand" href="#top">SVART<b>FJORD</b></a>
-  <nav><a href="#duft">Duften</a><a href="#natur">Naturen</a><a href="#kjop">Kjøp</a></nav>
-  <button class="audio-btn" id="audioToggle" aria-label="Aktiver fuglesang lydbilde">
-    <span id="audioIcon">🕊️</span> <span id="audioText">Fuglesang: Av</span>
-  </button>
-  <button class="cartbtn" popovertarget="cart">Kurv <b id="badge">0</b></button>
-</div></header>
 
-<main id="top">
-<!-- HERO -->
-<section class="hero">
-  <div class="stars" aria-hidden="true"></div>
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <canvas id="waterfall-canvas" aria-hidden="true"></canvas>
-  <svg class="fjord" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 300V150l120-58 96 44 118-96 132 118 96-64 128 96 108-72 132 90 170-58v250z" fill="#070c12"/>
-    <path d="M0 300V196l150-72 130 84 140-52 150 76 130-44 170 66 140-40 190 52v34z" fill="#04070b"/>
-    <path d="M0 300v-52l180 26 220-18 240 30 260-22 300 24v12z" fill="#020407"/>
+<body class="font-body antialiased">
+
+<!-- ================= LOADER ================= -->
+<div id="loader" class="fixed inset-0 z-[300] bg-[#0D0A08] flex flex-col items-center justify-center gap-6">
+  <div class="relative w-40 h-40">
+    <svg viewBox="0 0 160 160" class="w-full h-full spin-slow">
+      <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-dasharray="90 350" stroke-linecap="round"/>
+      <g fill="none" stroke="rgba(201,169,110,.5)" stroke-width="1">
+        <path d="M80 22 L94 80 L80 138 L66 80 Z"/><path d="M80 22 L94 80 L80 138 L66 80 Z" transform="rotate(45 80 80)"/><path d="M80 22 L94 80 L80 138 L66 80 Z" transform="rotate(90 80 80)"/><path d="M80 22 L94 80 L80 138 L66 80 Z" transform="rotate(135 80 80)"/>
+      </g>
+    </svg>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="font-display gold-shimmer text-3xl tracking-[.2em]" id="ldLogo">A</span>
+    </div>
+  </div>
+  <div class="overflow-hidden w-40"><div id="ldBar" class="h-px bg-gradient-to-r from-transparent via-[#C9A96E] to-transparent" style="width:0%"></div></div>
+  <p class="text-[11px] tracking-[.5em] text-[#8d8065] uppercase font-light" data-i18n="loading">Duftene våkner…</p>
+</div>
+
+<!-- ================= FX LAYERS ================= -->
+<canvas id="smoke" class="fixed inset-0 z-[2] pointer-events-none"></canvas>
+<canvas id="sparks" class="fixed inset-0 z-[150] pointer-events-none"></canvas>
+<div class="noise"></div>
+<div class="glow-amb g1"></div><div class="glow-amb g2"></div><div class="glow-amb g3"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="header" class="fixed top-0 inset-x-0 z-[90] transition-all duration-500" style="background:linear-gradient(180deg,rgba(13,10,8,.85),transparent)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 px-4 sm:px-6 h-[68px]">
+    <a href="#home" class="flex items-center gap-2.5 group">
+      <svg width="30" height="30" viewBox="0 0 40 40" class="group-hover:rotate-90 transition-transform duration-700"><path d="M20 2 L24 20 L20 38 L16 20 Z" fill="none" stroke="#C9A96E" stroke-width="1.4"/><path d="M20 2 L24 20 L20 38 L16 20 Z" fill="none" stroke="#C9A96E" stroke-width="1.4" transform="rotate(90 20 20)"/><circle cx="20" cy="20" r="3.5" fill="#C9A96E"/></svg>
+      <div class="leading-none">
+        <span class="font-display text-xl tracking-[.22em] text-[#EFD9A7]">AROMATIX</span>
+        <span class="hidden sm:block text-[9px] tracking-[.42em] text-[#8d8065] mt-1">OSLO · GRØNLAND</span>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-[13px] tracking-[.14em] uppercase">
+      <a href="#kolleksjon" class="nav-link" data-i18n="nav_shop">Oud</a>
+      <a href="#gaver" class="nav-link" data-i18n="nav_gifts">Gavesett</a>
+      <a href="#historie" class="nav-link" data-i18n="nav_story">Historien</a>
+      <a href="#butikk" class="nav-link" data-i18n="nav_store">Butikk</a>
+    </nav>
+    <div class="flex items-center gap-2.5">
+      <button id="langBtn" class="flex items-center gap-1.5 border border-[#C9A96E]/40 rounded-full px-3.5 py-1.5 text-xs hover:border-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all" aria-label="Bytt språk">
+        <span id="langFlag">🇵🇰</span><span id="langLbl" class="font-urdu leading-none" style="font-family:'Noto Nastaliq Urdu'">اردو</span>
+      </button>
+      <button id="cartBtn" class="relative p-2 hover:scale-110 transition-transform" aria-label="Handlevogn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M6 7h12l1.2 12.2a1.5 1.5 0 0 1-1.5 1.8H6.3a1.5 1.5 0 0 1-1.5-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+        <span id="cartBadge" class="absolute -top-0.5 -end-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[#C9A96E] text-[#1a1206] text-[10px] font-bold flex items-center justify-center hidden">0</span>
+      </button>
+    </div>
+  </div>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#C9A96E]/30 to-transparent"></div>
+</header>
+
+<main class="relative z-[3]">
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative min-h-[100dvh] flex flex-col overflow-hidden pt-[68px]">
+  <div class="absolute inset-0 flex items-center justify-center opacity-[.045] pointer-events-none select-none">
+    <span class="font-urdu text-[26vw] leading-none text-[#C9A96E]" style="font-family:'Noto Nastaliq Urdu'">عود</span>
+  </div>
+  <div class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 grid lg:grid-cols-[1.25fr_.9fr] gap-8 items-center">
+    <!-- Left -->
+    <div class="relative order-2 lg:order-1 pt-6 lg:pt-0">
+      <div class="flex items-center gap-3 mb-6" data-hero="1">
+        <span class="gold-dot"></span>
+        <p class="text-[11px] sm:text-xs tracking-[.34em] uppercase text-[#C9A96E]" data-i18n="hero_kicker">Est. Grønland · Oslo</p>
+        <span class="h-px flex-1 bg-gradient-to-r from-[#C9A96E]/50 to-transparent"></span>
+      </div>
+      <h1 class="font-display font-900 leading-[.92]" data-hero="2">
+        <span class="block gold-shimmer text-[17vw] sm:text-8xl lg:text-[7.5rem] tracking-[.06em]">AROMATIX</span>
+      </h1>
+      <p class="font-serif2 italic text-[#E8D9BC] text-xl sm:text-2xl lg:text-3xl mt-5 max-w-xl" data-hero="3" data-i18n="hero_sub">Sjelden oud fra Østens hjerte — Oslo</p>
+      <p class="text-sm text-[#a4977e] mt-4 max-w-md leading-relaxed" data-hero="4" data-i18n="hero_desc">Håndplukkede oljer fra Cambodias dype skoger og Indias eldgamle destillerier. Destillert i tolv år, flaskelagt for hånd — nå i hjertet av Grønland.</p>
+      <div class="flex flex-wrap items-center gap-4 mt-8" data-hero="5">
+        <button class="btn-gold magnet rounded-full px-8 py-3.5 text-sm" onclick="goTo('kolleksjon')" data-i18n="hero_cta1">Utforsk oudene</button>
+        <button class="btn-ghost magnet rounded-full px-8 py-3.5 text-sm" onclick="goTo('butikk')" data-i18n="hero_cta2">Besøk oss i Tøyengata 3</button>
+      </div>
+      <div class="flex items-center gap-5 mt-10 text-[11px] tracking-[.18em] uppercase text-[#8d8065]" data-hero="6">
+        <span class="flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="hero_m1">Fri levering over 1 000 kr</span></span>
+        <span class="hidden sm:flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="hero_m2">Vipps & kontant</span></span>
+      </div>
+      <div class="absolute -start-4 top-1/2 hidden xl:flex flex-col gap-8 -translate-y-1/2 text-[10px] tracking-[.4em] text-[#7d715c]" style="writing-mode:vertical-rl">
+        <span>DEHN AL OUD</span><span class="text-[#C9A96E]">✦</span><span>MUKHALLAT</span><span class="text-[#C9A96E]">✦</span><span>BAKHOOR</span>
+      </div>
+    </div>
+    <!-- Right: featured bottle -->
+    <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end py-8" data-hero="7">
+      <div class="relative bob">
+        <div class="arch w-[230px] sm:w-[300px] lg:w-[340px] p-[1px]" style="background:linear-gradient(180deg,rgba(239,217,167,.7),rgba(201,169,110,.15) 60%,rgba(201,169,110,.5))">
+          <div class="arch overflow-hidden bg-gradient-to-b from-[#1c1409] via-[#0D0A08] to-[#171006] aspect-[3/4.4] flex items-end justify-center relative">
+            <div class="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full" style="background:radial-gradient(circle,rgba(201,169,110,.28),transparent 70%)"></div>
+            <div id="heroBottle" class="kb-loop w-[78%] drop-shadow-[0_30px_40px_rgba(0,0,0,.7)]"></div>
+            <div class="absolute bottom-6 inset-x-6 text-center">
+              <p class="font-display text-[#EFD9A7] text-sm tracking-[.25em]" data-i18n="hero_feat_name">DEHN AL OUD MALAKI</p>
+              <p class="text-[10px] tracking-[.3em] text-[#8d8065] mt-1" data-i18n="hero_feat_sub">RESERVERT UTGAVE · 12 ÅR</p>
+            </div>
+          </div>
+        </div>
+        <span class="absolute -top-3 -start-3 w-6 h-6 border-t border-s border-[#EFD9A7]"></span>
+        <span class="absolute -bottom-3 -end-3 w-6 h-6 border-b border-e border-[#EFD9A7]"></span>
+      </div>
+    </div>
+  </div>
+  <div class="pb-8 flex justify-center"><svg class="w-5 h-9 text-[#C9A96E] animate-bounce" viewBox="0 0 20 36" fill="none" stroke="currentColor"><rect x="1" y="1" width="18" height="34" rx="9" stroke-width="1"/><circle cx="10" cy="10" r="2.5" fill="currentColor"/></svg></div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="relative border-y border-[#C9A96E]/20 bg-[#120d07] py-3 overflow-hidden" dir="ltr">
+  <div class="mq-track" id="mqTrack"></div>
+</div>
+
+<!-- ================= ORNAMENT DIVIDER ================= -->
+<div class="ornament flex items-center justify-center gap-4 py-12 px-6 select-none">
+  <span class="h-px flex-1 max-w-[180px] bg-gradient-to-r from-transparent to-[#C9A96E]/60"></span>
+  <svg width="190" height="34" viewBox="0 0 220 34" fill="none" class="shrink-0">
+    <path d="M60 17 L74 9 L88 17 L74 25 Z" stroke="#C9A96E" stroke-width=".9" opacity=".65"/>
+    <path d="M132 17 L146 9 L160 17 L146 25 Z" stroke="#C9A96E" stroke-width=".9" opacity=".65"/>
+    <circle cx="110" cy="17" r="9" stroke="#EFD9A7" stroke-width="1"/><circle cx="110" cy="17" r="4" stroke="#C9A96E" stroke-width=".8"/>
+    <path d="M110 4 v5 M110 25 v5" stroke="#C9A96E" stroke-width=".8"/>
+    <path d="M99 17 q-6 -8 -11 0 q6 8 11 0 M121 17 q6 -8 11 0 q-6 8 -11 0" stroke="#C9A96E" stroke-width=".8" opacity=".8"/>
+    <circle cx="30" cy="17" r="1.6" fill="#C9A96E"/><circle cx="190" cy="17" r="1.6" fill="#C9A96E"/>
+    <path d="M44 17 h24 M152 17 h24" stroke="#C9A96E" stroke-width=".6" opacity=".5"/>
   </svg>
-  <p class="eye">Oslo · Extrait de Parfum · 24 %</p>
-  <h1>Nordlyset,<em>tappet i svart.</em></h1>
-  <p>Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.</p>
-  <div class="flacon" id="flacon"></div>
-  <div class="plume" id="plume" aria-hidden="true"></div>
-  <button class="hold" id="hold">Trykk og hold — åpne flakongen</button>
-  <p class="scroll">RULL NED</p>
-  <canvas id="smoke" aria-hidden="true"></canvas>
+  <span class="h-px flex-1 max-w-[180px] bg-gradient-to-l from-transparent to-[#C9A96E]/60"></span>
+</div>
+
+<!-- ================= COLLECTION ================= -->
+<section id="kolleksjon" class="relative max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+  <div class="flex items-end justify-between gap-4 mb-3" data-reveal>
+    <div>
+      <p class="text-[11px] tracking-[.4em] uppercase text-[#C9A96E] mb-3 flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="col_kicker">Oud-kolleksjonen</span></p>
+      <h2 class="font-display text-4xl sm:text-5xl text-[#F2E8D5] leading-tight" data-i18n="col_title">Oud-kolleksjonen</h2>
+      <p class="text-sm text-[#a4977e] mt-3 max-w-md" data-i18n="col_sub">Fra lette, lyse dråper til dype, mørke harpiks — hver flaske er destillert for hånd.</p>
+    </div>
+    <div class="hidden sm:block text-end shrink-0">
+      <p class="font-serif2 italic text-5xl text-[#C9A96E]/40 leading-none">06</p>
+      <p class="text-[10px] tracking-[.3em] uppercase text-[#7d715c]" data-i18n="col_sub2"> signaturdufter</p>
+    </div>
+  </div>
+  <div class="seg max-w-md my-7" data-reveal id="filterSeg"></div>
+  <div id="oudGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6"></div>
 </section>
 
-<!-- PYRAMID -->
-<section id="duft">
-  <p class="eye rv">Duftpyramiden</p>
-  <h2 class="rv" style="font-size:clamp(2rem,8vw,3.6rem);margin-top:.6rem">Tre lag. Én natt.</h2>
-  <div class="pyr">
-    <article class="note rv" style="--c:var(--a1)" tabindex="0"><b>01</b><p class="eye">Topp</p><h3>Frostluft</h3><p>Knust einer, blodappelsin og kald pepper — som å puste inn ved vannkanten.</p><ul><li>Einer</li><li>Blodappelsin</li><li>Rosa pepper</li><li>Havsalt</li></ul></article>
-    <article class="note rv" style="--c:var(--a3)" tabindex="0"><b>02</b><p class="eye">Hjerte</p><h3>Bålets rose</h3><p>Damaskrose brent i safran og bjørketjære. Mørkt, harpiksaktig, levende.</p><ul><li>Damaskrose</li><li>Safran</li><li>Bjørketjære</li><li>Røkelse</li></ul></article>
-    <article class="note rv" style="--c:var(--ember)" tabindex="0"><b>03</b><p class="eye">Base</p><h3>Svart oud</h3><p>12 år modnet oud, isbremoskus, furuharpiks og ambra. Blir på huden i 14 timer.</p><ul><li>Black oud</li><li>Isbremoskus</li><li>Furuharpiks</li><li>Ambra</li></ul></article>
+<!-- ================= STORY (sticky two-column) ================= -->
+<section id="historie" class="relative border-y border-[#C9A96E]/15 bg-gradient-to-b from-[#120d07] to-[#0D0A08]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-28 grid lg:grid-cols-[.85fr_1.15fr] gap-12 lg:gap-20">
+    <div class="lg:sticky lg:top-28 self-start" data-reveal>
+      <p class="text-[11px] tracking-[.4em] uppercase text-[#C9A96E] mb-3" data-i18n="story_kicker">Vår historie</p>
+      <h2 class="font-display text-4xl sm:text-5xl text-[#F2E8D5]" data-i18n="story_title">Fra Østens hjerter til Tøyengata</h2>
+      <div class="arch overflow-hidden mt-8 aspect-[4/3] relative">
+        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?w=900&q=75" alt="Oud-tre og krydder" loading="lazy" class="w-full h-full object-cover kb-loop opacity-90">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0D0A08]/80 via-transparent to-transparent"></div>
+        <p class="absolute bottom-4 start-5 font-serif2 italic text-[#E8D9BC] text-lg" data-i18n="story_imgcap">Agarwood — det flytende gullet</p>
+      </div>
+    </div>
+    <div class="space-y-12">
+      <div class="relative ps-8 border-s border-[#C9A96E]/25" data-reveal>
+        <span class="absolute -start-[5px] top-1 w-[9px] h-[9px] rotate-45 bg-[#C9A96E]"></span>
+        <p class="font-display text-[#EFD9A7] text-lg tracking-[.2em] mb-3">01 — SKOGEN</p>
+        <h3 class="font-serif2 italic text-2xl text-[#F2E8D5] mb-3" data-i18n="story_h1">Skogen som blør gull</h3>
+        <p class="text-[#a4977e] leading-relaxed text-[15px]" data-i18n="story_p1">Ekte oud fødes av tålmodighet: når aquilaria-treet såres, forsvarer det seg med en mørk, duftende harpiks. Etter tiår i junglene i Cambodia og Assam blir denne harpiksen til verdens dyrebareste råvare — dråpe for dråpe.</p>
+      </div>
+      <div class="relative ps-8 border-s border-[#C9A96E]/25" data-reveal>
+        <span class="absolute -start-[5px] top-1 w-[9px] h-[9px] rotate-45 bg-[#C9A96E]"></span>
+        <p class="font-display text-[#EFD9A7] text-lg tracking-[.2em] mb-3">02 — DESTILLASJONEN</p>
+        <h3 class="font-serif2 italic text-2xl text-[#F2E8D5] mb-3" data-i18n="story_h2">Ilden og dampen</h3>
+        <p class="text-[#a4977e] leading-relaxed text-[15px]" data-i18n="story_p2">Hver olje destilleres over kobberkjeler i opptil førti dager, slik det er gjort i generasjoner. Ingen snarveier, ingen syntetikk — bare tre, vann, ild og tid. Resultatet er en olje som utvikler seg på huden i over tolv timer.</p>
+      </div>
+      <div class="relative ps-8 border-s border-[#C9A96E]/25" data-reveal>
+        <span class="absolute -start-[5px] top-1 w-[9px] h-[9px] rotate-45 bg-[#2E8B6A]"></span>
+        <p class="font-display text-[#EFD9A7] text-lg tracking-[.2em] mb-3">03 — GRØNLAND</p>
+        <h3 class="font-serif2 italic text-2xl text-[#F2E8D5] mb-3" data-i18n="story_h3">Møtestedet i Oslo</h3>
+        <p class="text-[#a4977e] leading-relaxed text-[15px]" data-i18n="story_p3">Du finner oss i Tøyengata 3, inne i pakistanske Matbørsen — to minutter fra Grønland T-bane. Kom inn, kjenn på duftene, prøv en dråpe på håndleddet og drikk en kopp chai med oss. Ingen handel uten tillit.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-px bg-[#C9A96E]/20 border border-[#C9A96E]/20 rounded-xl overflow-hidden" data-reveal>
+        <div class="bg-[#120d07] p-6 text-center"><p class="font-display text-4xl text-[#EFD9A7]">12</p><p class="text-[11px] tracking-[.2em] uppercase text-[#8d8065] mt-2" data-i18n="story_s1"> års fatlagring</p></div>
+        <div class="bg-[#120d07] p-6 text-center"><p class="font-display text-4xl text-[#EFD9A7]">100%</p><p class="text-[11px] tracking-[.2em] uppercase text-[#8d8065] mt-2" data-i18n="story_s2"> ren olje, ingen alkohol</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- MORPH -->
-<section id="natur" style="display:grid;gap:2.5rem;max-width:70rem;margin-inline:auto">
-  <div class="art"><div class="ice"></div><div class="oud"></div><div class="seam"></div><p class="cap">fra bre til bål</p></div>
-  <div class="rv">
-    <p class="eye">Naturen × Ouden</p>
-    <h2 style="font-size:clamp(1.9rem,7vw,3.2rem);margin:.7rem 0 1rem">Vi destillerte Norge, og lot ouden brenne den.</h2>
-    <p>Einer fra Hardangervidda. Furuharpiks fra Nordmarka. Bjørketjære brent på gammel måte. Vi lot dem hvile 90 dager i svart oud fra Pursat — til isen luktet av glør. Blandet, tappet og forseglet i Oslo, 300 flakonger av gangen.</p>
+<!-- ================= GIFT SETS ================= -->
+<section id="gaver" class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+    <p class="text-[11px] tracking-[.4em] uppercase text-[#C9A96E] mb-3" data-i18n="gift_kicker">Gi en velsignet gave</p>
+    <h2 class="font-display text-4xl sm:text-5xl text-[#F2E8D5]" data-i18n="gift_title">Islamske gavesett</h2>
+    <p class="text-sm text-[#a4977e] mt-4" data-i18n="gift_sub">For Eid, bryllup, dåp eller bare fordi. Hvert sett pakkes for hånd i butikken — med duft, omtanke og en håndskrevet hilsen.</p>
+  </div>
+  <div id="setGrid" class="grid md:grid-cols-3 gap-6 items-end"></div>
+</section>
+
+<!-- ================= STORE ================= -->
+<section id="butikk" class="relative border-y border-[#C9A96E]/15 bg-[#120d07]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-24 grid lg:grid-cols-2 gap-12">
+    <div data-reveal>
+      <p class="text-[11px] tracking-[.4em] uppercase text-[#C9A96E] mb-3 flex items-center gap-2"><span class="gold-dot"></span><span data-i18n="store_kicker">Finn oss</span></p>
+      <h2 class="font-display text-4xl sm:text-5xl text-[#F2E8D5]" data-i18n="store_title">Butikken</h2>
+      <p class="text-[#a4977e] mt-4 max-w-md leading-relaxed" data-i18n="store_intro">Du finner Aromatix inne i Matbørsen — den pakistanske dagligvarebutikken på Grønland, to minutter fra T-banen. Følg duften.</p>
+
+      <div class="mt-8 space-y-5">
+        <div class="flex gap-4 items-start">
+          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><p class="text-[#F2E8D5] font-medium">Tøyengata 3, 0190 Oslo</p><p class="text-xs text-[#8d8065] mt-1" data-i18n="store_addrsub">Inne i Matbørsen pakistanske dagligvare · nær Grønland T-bane</p></div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div class="w-full max-w-xs">
+            <p class="text-[#F2E8D5] font-medium mb-2" data-i18n="store_hours">Åpningstider</p>
+            <div class="text-sm text-[#a4977e] space-y-1.5" id="hoursList"></div>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <svg class="w-5 h-5 mt-1 shrink-0 text-[#C9A96E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <div><p class="text-[#F2E8D5] font-medium">+47 912 34 567</p><p class="text-xs text-[#8d8065] mt-1">WhatsApp · <span data-i18n="store_wa">svarer raskt</span></p></div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4 mt-9">
+        <a href="https://maps.google.com/?q=T%C3%B8yengata+3,+0190+Oslo" target="_blank" rel="noopener" class="btn-gold magnet rounded-full px-7 py-3 text-sm inline-flex items-center gap-2"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v14m0 0-5-5m5 5 5-5M5 22h14"/></svg><span data-i18n="store_mapbtn">Åpne i Google Maps</span></a>
+        <a href="tel:+4791234567" class="btn-ghost magnet rounded-full px-7 py-3 text-sm" data-i18n="store_call">Ring oss</a>
+      </div>
+    </div>
+    <div data-reveal>
+      <div class="arch overflow-hidden border border-[#C9A96E]/30 h-[380px] lg:h-full min-h-[380px] relative">
+        <iframe title="Kart — Tøyengata 3, Oslo" src="https://www.openstreetmap.org/export/embed.html?bbox=10.7660%2C59.9105%2C10.7790%2C59.9170&layer=mapnik&marker=59.9138%2C10.7725" class="w-full h-full border-0" style="filter:grayscale(1) invert(.92) sepia(.35) hue-rotate(-15deg) contrast(.9) brightness(.85)" loading="lazy"></iframe>
+        <div class="absolute bottom-4 inset-x-4 bg-[#0D0A08]/85 backdrop-blur border border-[#C9A96E]/30 rounded-xl px-5 py-3 flex items-center justify-between gap-3">
+          <div><p class="font-display text-sm tracking-[.2em] text-[#EFD9A7]">AROMATIX</p><p class="text-[11px] text-[#8d8065]">Tøyengata 3 · 0190 Oslo</p></div>
+          <span class="text-[#2E8B6A] text-xs flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#2E8B6A] animate-pulse"></span><span data-i18n="store_open">Åpent i dag</span></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<div class="ticker" aria-hidden="true"><div id="tick"></div><div></div></div>
 
-<!-- BUY -->
-<section id="kjop"><div class="buy">
-  <div class="stage rv" id="stage"></div>
-  <div class="rv">
-    <p class="eye">N°1 — Serie 300</p>
-    <h2 style="font-size:clamp(2rem,7vw,3rem);margin:.6rem 0 .8rem">Black Oud Extrait</h2>
-    <p>Ekstrait med 24 % parfymeolje. Unisex. Sillage: tung. Bygget for norske vintre og lange kvelder.</p>
-    <p class="price" id="price" style="margin:1.4rem 0 .9rem">2 190 kr</p>
-    <div class="sizes" id="sizes">
-      <label><input type="radio" name="s" value="30">30 ml</label>
-      <label><input type="radio" name="s" value="50" checked>50 ml</label>
-      <label><input type="radio" name="s" value="100">100 ml</label>
+<!-- ================= REVIEWS ================= -->
+<section id="anmeldelser" class="max-w-7xl mx-auto px-4 sm:px-6 py-20 overflow-hidden">
+  <div class="flex items-end justify-between gap-6 mb-10" data-reveal>
+    <div>
+      <p class="text-[11px] tracking-[.4em] uppercase text-[#C9A96E] mb-3" data-i18n="rev_kicker">Fra våre gjester</p>
+      <h2 class="font-display text-4xl sm:text-5xl text-[#F2E8D5]" data-i18n="rev_title">Ord fra hjertet</h2>
     </div>
-    <div style="display:flex;gap:.75rem;align-items:center;margin:1.2rem 0 1.4rem;flex-wrap:wrap">
-      <div class="qty"><button data-q="-1" aria-label="Færre">−</button><span id="q">1</span><button data-q="1" aria-label="Flere">+</button></div>
-      <button class="cta" id="add" style="flex:1;min-width:14rem">Legg i kurv</button>
+    <p class="hidden sm:block font-serif2 italic text-[#8d8065]" data-i18n="rev_note">— les flere i butikkens gjestebok</p>
+  </div>
+  <div id="carWrap" class="relative" dir="ltr">
+    <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0D0A08] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0D0A08] to-transparent z-10 pointer-events-none"></div>
+    <div class="car-track" id="carTrack"></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-[#C9A96E]/20 bg-[#0a0806]">
+  <div class="ornament flex justify-center pt-12"><svg width="120" height="26" viewBox="0 0 220 34" fill="none"><circle cx="110" cy="17" r="9" stroke="#EFD9A7"/><circle cx="110" cy="17" r="4" stroke="#C9A96E" stroke-width=".8"/><path d="M99 17 q-6 -8 -11 0 q6 8 11 0 M121 17 q6 -8 11 0 q-6 8 -11 0" stroke="#C9A96E" stroke-width=".8"/></svg></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid sm:grid-cols-3 gap-10">
+    <div>
+      <p class="font-display text-2xl tracking-[.22em] text-[#EFD9A7] mb-3">AROMATIX</p>
+      <p class="text-sm text-[#8d8065] leading-relaxed max-w-xs" data-i18n="ft_tag">Sjelden oud og islamske gaver, håndplukket fra Østen og pakket med kjærlighet på Grønland.</p>
+      <p class="font-urdu text-[#C9A96E]/70 mt-4 text-sm" style="font-family:'Noto Nastaliq Urdu'" data-i18n="ft_urdu">خوشبو — دل کی زبان ہے</p>
     </div>
-    <p class="meta"><span>Fri frakt i Norge</span><span id="eta">Levering 2–3 dager</span><span>Vipps · Klarna · Kort</span></p>
-    <div style="margin-top:1.8rem">
-      <details open><summary>Duftnoter</summary><p>Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
-      <details><summary>Om ouden</summary><p>Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
-      <details><summary>Frakt & retur</summary><p>Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
+    <div>
+      <p class="text-[11px] tracking-[.3em] uppercase text-[#C9A96E] mb-4" data-i18n="ft_links">Snarveier</p>
+      <ul class="space-y-2.5 text-sm text-[#a4977e]">
+        <li><a href="#kolleksjon" class="hover:text-[#EFD9A7] transition" data-i18n="nav_shop">Oud</a></li>
+        <li><a href="#gaver" class="hover:text-[#EFD9A7] transition" data-i18n="nav_gifts">Gavesett</a></li>
+        <li><a href="#butikk" class="hover:text-[#EFD9A7] transition" data-i18n="nav_store">Butikk</a></li>
+        <li><a href="#historie" class="hover:text-[#EFD9A7] transition" data-i18n="nav_story">Historien</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-[11px] tracking-[.3em] uppercase text-[#C9A96E] mb-4" data-i18n="ft_contact">Kontakt</p>
+      <ul class="space-y-2.5 text-sm text-[#a4977e]">
+        <li>Tøyengata 3, 0190 Oslo</li>
+        <li>+47 912 34 567</li>
+        <li>salam@aromatix.no</li>
+        <li class="pt-2 text-[#2E8B6A]" data-i18n="ft_hours">Man–lør 10–21 · søn 12–20</li>
+      </ul>
     </div>
   </div>
-</div></section>
 
-<section><div class="stats">
-  <div class="rv"><b data-n="12">0</b><span>År modnet</span></div>
-  <div class="rv"><b data-n="24" data-suf="%">0</b><span>Konsentrasjon</span></div>
-  <div class="rv"><b data-n="300">0</b><span>Flakonger</span></div>
-  <div class="rv"><b data-n="14" data-suf="t">0</b><span>På huden</span></div>
-</div></section>
-</main>
-
-<footer>
-  <p class="brand" style="font-size:.95rem">SVART<b>FJORD</b></p>
-  <p>Parfymehus · Thorvald Meyers gate 32, 0555 Oslo · hei@svartfjord.no</p>
-  <label style="max-width:24rem;display:block"><span class="eye">Nye serier først</span><input type="email" placeholder="din@epost.no" style="margin-top:.6rem"></label>
-  
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.72rem">
-    <p>© 2026 · Laget i Oslo</p>
-    <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-      v1.0.2 (updated 2026-09-02 15:33)
+  <!-- Visible Version & Timestamp (Required User Rule) -->
+  <div class="border-t border-[#C9A96E]/10 py-6 text-center text-xs text-[#6f6350] flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-7xl mx-auto">
+    <p>© 2026 Aromatix · <span data-i18n="ft_made">Laget med safran og kjærlighet i Oslo</span> · <span data-i18n="ft_demo">Demo</span></p>
+    <div class="font-mono text-[#C9A96E] bg-white/[.04] px-3 py-1 rounded-full border border-[#C9A96E]/20 text-[11px]">
+      v2.0.0 (updated 2026-09-02 15:44)
     </div>
   </div>
 </footer>
+</main>
 
-<div class="buybar">
-  <small>N°1 Black Oud<br><b id="bprice" style="color:#fff">2 190 kr</b></small>
-  <button class="cta" id="add2">Legg i kurv</button>
-</div>
-
-<!-- Cart Popover Drawer -->
-<div id="cart" popover class="sheet">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
-    <p class="eye">Kurven din</p><button class="x" popovertarget="cart" popovertargetaction="hide">Lukk ✕</button>
+<!-- ================= MOBILE BOTTOM NAV ================= -->
+<nav class="fixed bottom-0 inset-x-0 z-[95] lg:hidden pb-[env(safe-area-inset-bottom)]" style="background:rgba(16,12,8,.72);backdrop-filter:blur(18px);border-top:1px solid rgba(201,169,110,.25)">
+  <div class="grid grid-cols-4 py-2.5 px-2 text-[10px] tracking-wider">
+    <a href="#home" class="mobnav-link flex flex-col items-center gap-1 py-1" data-mnav="home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span data-i18n="mnav_home">Hjem</span></a>
+    <a href="#kolleksjon" class="mobnav-link flex flex-col items-center gap-1 py-1" data-mnav="kolleksjon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3h4v3l2.5 2.5V21h-9V8.5L10 6z"/><path d="M9 13h6"/></svg><span data-i18n="mnav_shop">Butikk</span></a>
+    <a href="#gaver" class="mobnav-link flex flex-col items-center gap-1 py-1" data-mnav="gaver">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 12h16M12 9v11M8.5 9C6 9 5.5 5 8 5c1.8 0 3 2.5 4 4-1-1.5-1.2-4-3-4"/></svg><span data-i18n="mnav_gifts">Gaver</span></a>
+    <a href="#butikk" class="mobnav-link flex flex-col items-center gap-1 py-1" data-mnav="butikk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="mnav_store">Finn oss</span></a>
   </div>
-  <div id="lines"></div>
-  <p style="display:flex;justify-content:space-between;margin:1.1rem 0;color:#fff"><span>Total</span><b id="total">0 kr</b></p>
-  <button class="cta" id="openCheckout">Gå til kassen (Vipps / Kort)</button>
-  <p style="font-size:.7rem;text-align:center;margin-top:.8rem">Fri frakt · Vipps, Klarna, kort</p>
-</div>
+</nav>
 
-<!-- Checkout Modal -->
-<dialog id="checkoutModal" class="checkout-modal">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem">
-    <p class="eye">Utsjekk</p><button class="x" onclick="document.getElementById('checkoutModal').close()">✕</button>
+<!-- ================= WHATSAPP ================= -->
+<a href="https://wa.me/4791234567" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed z-[92] bottom-24 lg:bottom-8 end-4 w-[52px] h-[52px] rounded-full flex items-center justify-center" style="background:linear-gradient(140deg,#31c968,#1f8f4c);box-shadow:0 8px 24px rgba(20,120,60,.5)">
+  <span class="pulse-ring"></span>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.1.9 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<!-- ================= CART SHEET ================= -->
+<div id="cartMask" class="fixed inset-0 z-[105] bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<aside id="cartSheet" class="sheet sheet-b bg-[#141009] border-t border-x border-[#C9A96E]/30 flex flex-col" aria-label="Handlevogn">
+  <div class="grab py-3 flex justify-center shrink-0" id="cartGrab"><span class="w-12 h-1.5 rounded-full bg-[#C9A96E]/40"></span></div>
+  <div class="px-5 pb-2 flex items-center justify-between shrink-0">
+    <h3 class="font-display text-xl tracking-[.15em] text-[#EFD9A7]" data-i18n="cart_title">DIN KURV</h3>
+    <button onclick="toggleCart(false)" class="w-9 h-9 rounded-full border border-[#C9A96E]/30 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition flex items-center justify-center" aria-label="Lukk">✕</button>
   </div>
-  <h3 style="font-size:1.8rem;margin-bottom:1rem">Fullfør din bestilling</h3>
-  <form id="orderForm" onsubmit="handleCheckout(event)">
-    <label class="eye" style="font-size:.62rem">Fullt navn</label>
-    <input type="text" required placeholder="f.eks. Astrid Lind">
-    
-    <label class="eye" style="font-size:.62rem">Mobilnummer (for Vipps / sporings-SMS)</label>
-    <input type="tel" required placeholder="+47 912 34 567">
-    
-    <label class="eye" style="font-size:.62rem">Leveringsadresse</label>
-    <input type="text" required placeholder="Gateadresse, Postnummer Poststed">
-
-    <div style="display:flex;justify-content:space-between;margin:1rem 0;font-size:.9rem;padding:.8rem 0;border-block:1px solid var(--line)">
-      <span>Totalbeløp:</span>
-      <b id="modalTotal" style="color:var(--gold)">2 190 kr</b>
+  <div class="flex-1 overflow-y-auto px-5 py-4 space-y-3" id="cartItems"></div>
+  <div class="px-5 py-4 border-t border-[#C9A96E]/20 bg-[#0f0b07] shrink-0 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+    <div id="freeBar" class="mb-4"></div>
+    <div class="space-y-1.5 text-sm text-[#a4977e]">
+      <div class="flex justify-between"><span data-i18n="cart_sub">Delsum</span><span id="cSub" class="text-[#F2E8D5]">0 kr</span></div>
+      <div class="flex justify-between"><span data-i18n="cart_del">Levering</span><span id="cDel" class="text-[#F2E8D5]">—</span></div>
+      <div class="flex justify-between pt-2 border-t border-[#C9A96E]/15 text-base"><span class="font-medium text-[#F2E8D5]" data-i18n="cart_tot">Totalt</span><span id="cTot" class="font-display text-[#EFD9A7] text-lg">0 kr</span></div>
     </div>
+    <button id="checkoutBtn" class="btn-gold w-full rounded-full py-4 mt-4 text-sm tracking-[.12em] uppercase" data-i18n="cart_go">Gå til kassen</button>
+  </div>
+</aside>
 
-    <button type="submit" class="cta" style="background:#ff5b24;color:#fff;box-shadow:0 10px 30px #ff5b2440">
-      Betal med Vipps
+<!-- ================= PRODUCT MODAL ================= -->
+<div id="pModal" class="modal-wrap" role="dialog" aria-modal="true">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal()"></div>
+  <div class="modal-panel relative w-full md:max-w-4xl max-h-[92dvh] overflow-y-auto bg-[#141009] border border-[#C9A96E]/35 rounded-t-3xl md:rounded-3xl">
+    <button onclick="closeModal()" class="absolute top-4 end-4 z-20 w-10 h-10 rounded-full bg-black/40 border border-[#C9A96E]/40 text-[#EFD9A7] hover:bg-[#C9A96E]/15 transition flex items-center justify-center" aria-label="Lukk">✕</button>
+    <div class="grid md:grid-cols-2">
+      <div class="relative bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex items-center justify-center p-8 min-h-[300px] md:min-h-[520px] overflow-hidden">
+        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-52 h-52 rounded-full" style="background:radial-gradient(circle,rgba(201,169,110,.22),transparent 70%)"></div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-40 h-3 rounded-[50%] bg-black/60 blur-sm"></div>
+        <div id="mVisual" class="w-full max-w-[240px] kb-loop drop-shadow-[0_35px_45px_rgba(0,0,0,.7)]"></div>
+        <svg viewBox="0 0 60 60" class="absolute top-14 left-1/2 -translate-x-1/2 w-14 h-14 text-[#C9A96E]" fill="none" stroke="currentColor" stroke-width="1.2">
+          <g><path class="frag-wisp" d="M30 40 q-5 -8 0 -14 q5 -6 0 -12"/><path class="frag-wisp" d="M24 42 q-4 -7 1 -12"/><path class="frag-wisp" d="M36 42 q4 -7 -1 -12"/></g>
+        </svg>
+      </div>
+      <div class="p-6 md:p-8">
+        <p id="mBadge" class="inline-block text-[10px] tracking-[.25em] uppercase text-[#EFD9A7] border border-[#C9A96E]/50 rounded-full px-3 py-1 mb-3 bg-[#C9A96E]/10"></p>
+        <h3 id="mName" class="font-display text-3xl text-[#F2E8D5] leading-tight"></h3>
+        <p id="mOrigin" class="font-serif2 italic text-[#C9A96E] mt-1"></p>
+        <p id="mStory" class="text-sm text-[#a4977e] leading-relaxed mt-4"></p>
+        <!-- pyramid -->
+        <div class="mt-6">
+          <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-3" data-i18n="m_pyr">Duftpyramiden</p>
+          <div id="mPyramid" class="space-y-2"></div>
+        </div>
+        <!-- bars -->
+        <div class="grid grid-cols-2 gap-5 mt-6">
+          <div><div class="flex justify-between text-[11px] uppercase tracking-wider text-[#8d8065] mb-1.5"><span data-i18n="m_int">Intensitet</span><span id="mIntV" class="text-[#EFD9A7]"></span></div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div id="mIntBar" class="h-full bg-gradient-to-r from-[#8A6F3E] to-[#EFD9A7] rounded-full transition-all duration-1000" style="width:0%"></div></div></div>
+          <div><div class="flex justify-between text-[11px] uppercase tracking-wider text-[#8d8065] mb-1.5"><span data-i18n="m_long">Varighet</span><span id="mLongV" class="text-[#EFD9A7]"></span></div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div id="mLongBar" class="h-full bg-gradient-to-r from-[#2E8B6A] to-[#7dd8b4] rounded-full transition-all duration-1000" style="width:0%"></div></div></div>
+        </div>
+        <!-- variants -->
+        <div class="seg mt-6" id="mSizes"></div>
+        <!-- reviews -->
+        <div class="mt-6">
+          <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-3" data-i18n="m_rev">Anmeldelser</p>
+          <div id="mReviews" class="space-y-2.5"></div>
+        </div>
+        <!-- purchase -->
+        <div class="flex items-center justify-between mt-7 pt-6 border-t border-[#C9A96E]/20">
+          <div class="flex items-center border border-[#C9A96E]/35 rounded-full overflow-hidden">
+            <button onclick="mQty(-1)" class="w-10 h-11 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition text-lg">−</button>
+            <span id="mQty" class="w-8 text-center text-[#F2E8D5]">1</span>
+            <button onclick="mQty(1)" class="w-10 h-11 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition text-lg">+</button>
+          </div>
+          <p id="mPrice" class="font-display text-2xl text-[#EFD9A7]"></p>
+        </div>
+        <button id="mAdd" class="btn-gold w-full rounded-full py-4 mt-4 text-sm tracking-[.12em] uppercase" data-i18n="m_add">Legg i kurv</button>
+        <div class="flex justify-center gap-5 mt-3 text-[11px] text-[#8d8065]">
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#FF5B24]"></span>Vipps</span>
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#C9A96E]"></span><span data-i18n="cod_short">Kontant ved levering</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CHECKOUT SHEET ================= -->
+<div id="ckMask" class="fixed inset-0 z-[115] bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<aside id="ckSheet" class="sheet sheet-b bg-[#141009] border-t border-x border-[#C9A96E]/30 flex flex-col" style="z-index:118">
+  <div class="grab py-3 flex justify-center shrink-0"><span class="w-12 h-1.5 rounded-full bg-[#C9A96E]/40"></span></div>
+  <div class="px-5 pb-2 flex items-center justify-between shrink-0">
+    <h3 class="font-display text-xl tracking-[.15em] text-[#EFD9A7]" data-i18n="ck_title">KASSE</h3>
+    <button onclick="toggleCk(false)" class="w-9 h-9 rounded-full border border-[#C9A96E]/30 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition flex items-center justify-center" aria-label="Lukk">✕</button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5 py-4">
+    <!-- STEP FORM -->
+    <form id="ckForm" class="space-y-5" novalidate>
+      <div>
+        <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-2" data-i18n="ck_delivery">Leveringsmetode</p>
+        <div class="seg" id="ckDelSeg">
+          <button type="button" data-del="ship" class="on">🚚 <span data-i18n="ck_ship">Levering</span></button>
+          <button type="button" data-del="pickup">🕌 <span data-i18n="ck_pickup">Hent i butikk</span></button>
+        </div>
+        <p class="text-[11px] text-[#8d8065] mt-2" id="ckDelNote" data-i18n="ck_shipnote">På døren i Oslo samme dag (1–3 timer)</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_name">Navn</label><input id="ckName" class="inp" autocomplete="name"></div>
+        <div><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_phone">Telefon</label><input id="ckPhone" class="inp" inputmode="tel" autocomplete="tel"></div>
+      </div>
+      <div id="ckAddrWrap"><label class="text-[11px] tracking-wider uppercase text-[#8d8065] block mb-1.5" data-i18n="ck_addr">Adresse</label><input id="ckAddr" class="inp" autocomplete="street-address"></div>
+      <div>
+        <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065] mb-2" data-i18n="ck_pay">Betaling</p>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" id="payVipps" class="pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all border-[#FF5B24] bg-[#FF5B24]/15">
+            <span class="font-bold text-[#FF5B24] tracking-wide text-sm px-3 py-0.5 rounded bg-white">Vipps</span>
+            <span class="text-[10px] text-[#8d8065]" data-i18n="pay_vipps">Betal med Vipps</span>
+          </button>
+          <button type="button" id="payCod" class="pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all border-[#C9A96E]/25 opacity-60">
+            <span class="text-2xl">💵</span>
+            <span class="text-xs text-[#F2E8D5]" data-i18n="pay_cod">Kontant ved levering</span>
+          </button>
+        </div>
+      </div>
+      <div class="bg-[#0f0b07] border border-[#C9A96E]/20 rounded-xl p-4 space-y-1.5 text-sm text-[#a4977e]">
+        <div class="flex justify-between"><span data-i18n="cart_sub">Delsum</span><span id="ckSub" class="text-[#F2E8D5]"></span></div>
+        <div class="flex justify-between"><span data-i18n="cart_del">Levering</span><span id="ckDel" class="text-[#F2E8D5]"></span></div>
+        <div class="flex justify-between pt-2 border-t border-[#C9A96E]/15"><span class="text-[#F2E8D5]" data-i18n="cart_tot">Totalt</span><span id="ckTot" class="font-display text-[#EFD9A7]"></span></div>
+      </div>
+      <p id="ckErr" class="text-[#e0825e] text-xs hidden"></p>
+      <button type="submit" class="btn-gold w-full rounded-full py-4 text-sm tracking-[.12em] uppercase" id="ckSubmit" data-i18n="ck_place">Fullfør bestilling</button>
+    </form>
+    <!-- STEP SUCCESS -->
+    <div id="ckSuccess" class="hidden text-center py-6">
+      <div class="relative w-44 h-52 mx-auto">
+        <svg viewBox="0 0 60 60" class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 text-[#C9A96E] z-10" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path class="frag-line" d="M30 52 V30 M30 30 q-8 -6 0 -12 q8 -6 0 -12" />
+          <path class="frag-line" d="M22 50 q-6 -10 0 -18" style="transition-delay:.5s"/>
+          <path class="frag-line" d="M38 50 q6 -10 0 -18" style="transition-delay:.7s"/>
+        </svg>
+        <div class="bob absolute bottom-0 left-1/2 -translate-x-1/2 w-28" id="okBottle"></div>
+        <span class="absolute top-8 left-[28%] gold-dot"></span><span class="absolute top-14 right-[24%] gold-dot" style="animation-delay:.8s"></span><span class="absolute top-4 right-[36%] gold-dot" style="animation-delay:1.6s"></span>
+      </div>
+      <h3 class="font-display text-3xl text-[#EFD9A7] mt-4" data-i18n="ok_title">Takk for bestillingen!</h3>
+      <p class="text-sm text-[#a4977e] mt-2 max-w-sm mx-auto" data-i18n="ok_sub">Vi kontakter deg på telefon innen én time for å bekrefte.</p>
+      <div class="inline-block mt-5 border border-[#C9A96E]/40 rounded-xl px-6 py-3 bg-[#C9A96E]/5">
+        <p class="text-[10px] tracking-[.3em] uppercase text-[#8d8065]" data-i18n="ok_order">Ordrenummer</p>
+        <p id="okNum" class="font-display text-2xl text-[#EFD9A7] tracking-[.2em] mt-1"></p>
+      </div>
+      <p id="okNote" class="text-xs text-[#8d8065] mt-4"></p>
+      <button onclick="finishOrder()" class="btn-ghost rounded-full px-8 py-3 mt-6 text-sm" data-i18n="ok_close">Fortsett å handle</button>
+    </div>
+  </div>
+</aside>
+
+<div class="h-20 lg:h-0"></div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ═══════════════════════ I18N ═══════════════════════ */
+const STR={
+no:{
+ nav_shop:"Oud",nav_gifts:"Gavesett",nav_story:"Historien",nav_store:"Butikk",
+ loading:"Duftene våkner…",
+ hero_kicker:"Est. Grønland · Oslo",hero_sub:"Sjelden oud fra Østens hjerte — Oslo",
+ hero_desc:"Håndplukkede oljer fra Cambodias dype skoger og Indias eldgamle destillerier. Destillert i tolv år, flaskelagt for hånd — nå i hjertet av Grønland.",
+ hero_cta1:"Utforsk oudene",hero_cta2:"Besøk oss i Tøyengata 3",hero_m1:"Fri levering over 1 000 kr",hero_m2:"Vipps & kontant",
+ hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVERT UTGAVE · 12 ÅR",
+ col_kicker:"Oud-kolleksjonen",col_title:"Oud-kolleksjonen",col_sub:"Fra lette, lyse dråper til dype, mørke harpiks — hver flaske er destillert for hånd.",col_sub2:" signaturdufter",
+ f_all:"Alle",f_soft:"Milde",f_deep:"Dype",f_floral:"Blomster",
+ story_kicker:"Vår historie",story_title:"Fra Østens hjerter til Tøyengata",
+ story_h1:"Skogen som blør gull",story_p1:"Ekte oud fødes av tålmodighet: når aquilaria-treet såres, forsvarer det seg med en mørk, duftende harpiks. Etter tiår i junglene i Cambodia og Assam blir denne harpiksen til verdens dyrebareste råvare — dråpe for dråpe.",
+ story_h2:"Ilden og dampen",story_p2:"Hver olje destilleres over kobberkjeler i opptil førti dager, slik det er gjort i generasjoner. Ingen snarveier, ingen syntetikk — bare tre, vann, ild og tid. Resultatet er en olje som utvikler seg på huden i over tolv timer.",
+ story_h3:"Møtestedet i Oslo",story_p3:"Du finner oss i Tøyengata 3, inne i pakistanske Matbørsen — to minutter fra Grønland T-bane. Kom inn, kjenn på duftene, prøv en dråpe på håndleddet og drikk en kopp chai med oss. Ingen handel uten tillit.",
+ story_imgcap:"Agarwood — det flytende gullet",story_s1:" års fatlagring",story_s2:" ren olje, ingen alkohol",
+ gift_kicker:"Gi en velsignet gave",gift_title:"Islamske gavesett",gift_sub:"For Eid, bryllup, dåp eller bare fordi. Hvert sett pakkes for hånd i butikken — med duft, omtanke og en håndskrevet hilsen.",
+ gift_cta:"Se innholdet",gift_pop:"Mest valgt",
+ m_pyr:"Duftpyramiden",m_top:"Topp",m_heart:"Hjerte",m_base:"Bunn",m_int:"Intensitet",m_long:"Varighet",m_rev:"Anmeldelser",m_add:"Legg i kurv",
+ store_kicker:"Finn oss",store_title:"Butikken",store_intro:"Du finner Aromatix inne i Matbørsen — den pakistanske dagligvarebutikken på Grønland, to minutter fra T-banen. Følg duften.",
+ store_addrsub:"Inne i Matbørsen pakistanske dagligvare · nær Grønland T-bane",store_hours:"Åpningstider",store_wa:"svarer raskt",store_mapbtn:"Åpne i Google Maps",store_call:"Ring oss",store_open:"Åpent i dag",
+ d_monsat:"Man – Lør",d_sun:"Søndag",d_closed:"Stengt",
+ rev_kicker:"Fra våre gjester",rev_title:"Ord fra hjertet",rev_note:"— les flere i butikkens gjestebok",
+ cart_title:"DIN KURV",cart_empty:"Kurven din venter på sin første dråpe…",cart_sub:"Delsum",cart_del:"Levering",cart_tot:"Totalt",cart_free:"Fri frakt!",cart_need:"{n} kr igjen til fri levering",cart_pickup:"Hent i butikk — gratis",cart_go:"Gå til kassen",cart_add:"Lagt i kurven ✓",
+ ck_title:"KASSE",ck_delivery:"Leveringsmetode",ck_ship:"Levering",ck_pickup:"Hent i butikk",ck_shipnote:"På døren i Oslo samme dag (1–3 timer)",ck_pickupnote:"Tøyengata 3, inne i Matbørsen — klar i dag",ck_name:"Navn",ck_phone:"Telefon",ck_addr:"Adresse",ck_pay:"Betaling",ck_place:"Fullfør bestilling",
+ pay_vipps:"Betal med Vipps",pay_cod:"Kontant ved levering",cod_short:"Kontant ved levering",
+ err_fill:"Vennligst fyll ut alle feltene",
+ ok_title:"Takk for bestillingen!",ok_sub:"Vi kontakter deg på telefon innen én time for å bekrefte.",ok_order:"Ordrenummer",ok_close:"Fortsett å handle",ok_pickup:"Vis ordrenummeret i kassen når du henter.",ok_del:"Sjåføren vår ringer når han er fremme.",ok_vipps:"Vipps-forespørsel er sendt til telefonen din (demo).",ok_cod:"Betal kontant ved levering.",
+ ft_tag:"Sjelden oud og islamske gaver, håndplukket fra Østen og pakket med kjærlighet på Grønland.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Snarveier",ft_contact:"Kontakt",ft_hours:"Man–lør 10–21 · søn 12–20",ft_made:"Laget med safran og kjærlighet i Oslo",ft_demo:"Demo",
+ mnav_home:"Hjem",mnav_shop:"Butikk",mnav_gifts:"Gaver",mnav_store:"Finn oss",
+ ticker:["Ren Dehn al Oud","Cambodisk oud","Taifi-rose","Hvit musk","Håndskåret sandeltre","Vipps & kontant","Fri levering over 1 000 kr","Tøyengata 3 · Oslo"],
+ inc:"Intensitet ",long_h:" t"
+},
+ur:{
+ nav_shop:"عود",nav_gifts:"تحفے",nav_story:"کہانی",nav_store:"دکان",
+ loading:"خوشبیدار ہو رہی ہے…",
+ hero_kicker:"گرونلینڈ، اوسلو سے",hero_sub:"مشرق کے دل سے نایاب عود — اوسلو",
+ hero_desc:"کمبوڈیا کے گھنے جنگلوں اور ہندوستان کی قدیم بھٹیوں سے چنی گئی خالص عود کی خوشبوئیں۔ بارہ سال کی کشید، ہاتھ سے بوتل بند — اب گرونلینڈ کے دل میں۔",
+ hero_cta1:"عود کا مجموعہ دیکھیں",hero_cta2:"تویینگاتا ۳ پر ملیں",hero_m1:"ہزار کرون پر مفت ترسیل",hero_m2:"وِپس اور نقد",
+ hero_feat_name:"دہن العود ملکی",hero_feat_sub:"مخصوص ایڈیشن · ۱۲ سال",
+ col_kicker:"عود کا مجموعہ",col_title:"عود کا مجموعہ",col_sub:"ہلکی نرم بوندوں سے لے کر گہرے سیاہ رال تک — ہر بوتل ہاتھ سے کشید کی گئی ہے۔",col_sub2:" خصوصی خوشبوئیں",
+ f_all:"تمام",f_soft:"نرم",f_deep:"گہری",f_floral:"پھولوں والی",
+ story_kicker:"ہماری کہانی",story_title:"مشرق کے دل سے تویینگاتا تک",
+ story_h1:"سونے والا درخت",story_p1:"اصل عود صبر سے پیدا ہوتا ہے: جب اگیلریا کا درخت زخمی ہوتا ہے تو وہ خود کو ایک سیاہ معطر رال سے بچاتا ہے۔ کمبوڈیا اور آسام کے جنگلوں میں دہائیوں بعد یہ رال دنیا کی قیمتی ترین شے بن جاتا ہے — بوند بوند۔",
+ story_h2:"آگ اور بھاپ",story_p2:"ہر تیل تانبے کے دیگوں پر چالیس دن تک کشید کیا جاتا ہے، بالکل اسی طرح جیسے پشتوں سے ہوتا آیا ہے۔ کوئی شارٹ کٹ نہیں، کوئی مصنوعی آمیزش نہیں — صرف لکڑی، پانی، آگ اور وقت۔",
+ story_h3:"اوسلو کا سنگم",story_p3:"ہمیں تویینگاتا ۳ پر پاکستانی کریانہ اسٹور کے اندر ملیے — گرونلینڈ ٹی-بینے سے دو منٹ۔ آئیے، خوشبو محسوس کریں، کلائی پر ایک بوند لگائیں اور ہمارے ساتھ چائے پئیں۔",
+ story_imgcap:"اگیلریا — پگھلا ہوا سونا",story_s1:" سال پرانی کشید",story_s2:" خالص تیل، بغیر الکحل",
+ gift_kicker:"بابرکت تحفہ دیں",gift_title:"اسلامی تحفہ سیٹ",gift_sub:"عید، نکاح، عقیقہ یا بس یونہی۔ ہر سیٹ دکان میں ہاتھ سے پیک کیا جاتا ہے — خوشبو، توجہ اور ہاتھ سے لکھے گئے پیغام کے ساتھ۔",
+ gift_cta:"تفصیل دیکھیں",gift_pop:"مقبول ترین",
+ m_pyr:"خوشبو کا ہرم",m_top:"آغاز",m_heart:"قلب",m_base:"بنیاد",m_int:"شدت",m_long:"دوام",m_rev:"تاثرات",m_add:"ٹوکری میں ڈالیں",
+ store_kicker:"ہم تک پہنچیں",store_title:"دکان",store_intro:"ارومیٹکس آپ کو ماتھبورسن پاکستانی اسٹور کے اندر ملے گا — گرونلینڈ میں، ٹی-بینے سے دو منٹ۔ خوشبو کا پیچھا کریں۔",
+ store_addrsub:"پاکستانی کریانہ اسٹور کے اندر · گرونلینڈ ٹی-بینے کے قریب",store_hours:"اوقاتِ کار",store_wa:"جلد جواب",store_mapbtn:"گوگل میپس میں کھولیں",store_call:"کال کریں",store_open:"آج کھلا ہے",
+ d_monsat:"پیر تا ہفتہ",d_sun:"اتوار",d_closed:"بند",
+ rev_kicker:"ہمارے مہمانوں سے",rev_title:"دل کے الفاظ",rev_note:"— مزید دکان کی مہمان کتاب میں",
+ cart_title:"آپ کی ٹوکری",cart_empty:"آپ کی ٹوکری پہلی بوند کی منتظر ہے…",cart_sub:"ذیلی کل",cart_del:"ترسیل",cart_tot:"کل رقم",cart_free:"مفت ترسیل!",cart_need:"مفت ترسیل کے لیے {n} کرون مزید",cart_pickup:"دکان سے وصولی — مفت",cart_go:"چیک آؤٹ کریں",cart_add:"ٹوکری میں شامل ✓",
+ ck_title:"ادائیگی",ck_delivery:"ترسیل کا طریقہ",ck_ship:"ہوم ڈیلیوری",ck_pickup:"دکان سے وصولی",ck_shipnote:"اوسلو میں اسی دن (۱–۳ گھنٹے)",ck_pickupnote:"تویینگاتا ۳، ماتھبورسن کے اندر — آج ہی تیار",ck_name:"نام",ck_phone:"فون",ck_addr:"پتہ",ck_pay:"ادائیگی",ck_place:"آرڈر مکمل کریں",
+ pay_vipps:"وِپس سے ادائیگی",pay_cod:"ترسیل پر نقد",cod_short:"ترسیل پر نقد",
+ err_fill:"براہ کرم تمام خانے پُر کریں",
+ ok_title:"شکریہ! آرڈر موصول ہو گیا",ok_sub:"ہم ایک گھنٹے کے اندر فون پر رابطہ کریں گے۔",ok_order:"آرڈر نمبر",ok_close:"خریداری جاری رکھیں",ok_pickup:"وصولی پر یہ نمبر دکھائیں۔",ok_del:"ہمارا ڈرائیور پہنچنے پر کال کرے گا۔",ok_vipps:"وِپس کی درخواست آپ کے فون پر بھیج دی گئی (ڈیمو)۔",ok_cod:"ترسیل پر نقد ادائیگی کریں۔",
+ ft_tag:"نایاب عود اور اسلامی تحائف — مشرق سے چن کر گرونلینڈ میں محبت سے پیک کیے گئے۔",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"فوری روابط",ft_contact:"رابطہ",ft_hours:"پیر تا ہفتہ ۱۰–۲۱ · اتوار ۱۲–۲۰",ft_made:"اوسلو میں زعفران اور محبت سے بنایا گیا",ft_demo:"ڈیمو",
+ mnav_home:"ہوم",mnav_shop:"دکان",mnav_gifts:"تحفے",mnav_store:"پتہ",
+ ticker:["خالص دہن العود","کمبوڈین عود","طائفی گلاب","سفید مشک","صندل کی لکڑی","وِپس اور نقد","ہزار کرون پر مفت ترسیل","تویینگاتا ۳ · اوسلو"],
+ inc:"شدت ",long_h:" گھنٹے"
+}};
+
+/* ═══════════════════════ DATA ═══════════════════════ */
+const PRODUCTS=[
+{id:"o1",cat:"oud",tier:"signature",tag:{no:"Reservert",ur:"مخصوص"},price:649,rating:4.9,revCount:41,intensity:9,longevity:12,
+ hue:"#7A3B12",hi:"#B0622B",shape:"dome",
+ name:{no:"Dehn al Oud Malaki",ur:"دہن العود ملکی"},
+ origin:{no:"Destillert i Assam, India",ur:"آسام، ہندوستان میں کشید"},
+ desc:{no:"Mørk, harpiksaktig oud med lær og safran — kongenes olje.",ur:"چمڑے اور زعفران کے ساتھ گہرا رال جیسا عود — بادشاہوں کا تیل۔"},
+ story:{no:"Tolv år i fat. Én dråpe varer fra morgenbønn til natt. Dette er oljen sjeiker spør etter ved navn.",ur:"بارہ سال پرانی کشید۔ ایک بوند صبح کی نماز سے رات تک۔ یہ وہ تیل ہے جسے سردار نام سے مانگتے ہیں۔"},
+ notes:{top:{no:"Safran · Bergamott",ur:"زعفران · بیلاموت"},heart:{no:"Mørk oud · Lær",ur:"گہرا عود · چمڑا"},base:{no:"Amber · Moskus",ur:"عنبر · مشک"}},
+ revs:[{n:"Yousef A.",r:5,t:{no:"Varte i 14 timer. Helt utrolig kvalitet.",ur:"چودہ گھنٹے رہی۔ زبردست معیار۔"}},{n:"Fatima R.",r:5,t:{no:"Den ekte varen — ingenting ligner.",ur:"اصل چیز — کوئی مقابلہ نہیں۔"}}]},
+{id:"o2",cat:"oud",tier:"classic",tag:{no:"Bestselger",ur:"بیست سیلر"},price:449,rating:4.8,revCount:63,intensity:7,longevity:9,
+ hue:"#8B5E1E",hi:"#C79A3F",shape:"round",
+ name:{no:"Cambodi Classic",ur:"کمبوڈی کلاسیک"},
+ origin:{no:"Pursat-provinsen, Cambodia",ur:"پورسات، کمبوڈیا"},
+ desc:{no:"Varm, søt og rund — honning, mørk sjokolade og soltørket tre.",ur:"گرم، میٹھا اور ملائم — شہد، سیاہ چاکلیٹ اور دھوپ میں سکھی لکڑی۔"},
+ story:{no:"Fra eldgamle jungler i Pursat. Myk nok for hverdagen, dyp nok for kvelden.",ur:"پورسات کے قدیم جنگلوں سے۔ روزمرہ کے لیے نرم، رات کے لیے گہرا۔"},
+ notes:{top:{no:"Honning · Tørket frukt",ur:"شہد · خشک میوے"},heart:{no:"Kambodsjansk oud",ur:"کمبوڈین عود"},base:{no:"Sjokolade · Vanilje",ur:"چاکلیٹ · ونیلا"}},
+ revs:[{n:"Aisha K.",r:5,t:{no:"Min tredje flaske. Blir aldri lei.",ur:"میری تیسری بوتل۔ کبھی بور نہیں ہوتی۔"}},{n:"Magnus L.",r:4.5,t:{no:"Kjøpte til far — han elsker den.",ur:"ابو کے لیے لی — وہ بہت پسند کرتے ہیں۔"}}]},
+{id:"o3",cat:"oud",tier:"floral",tag:{no:"Rose",ur:"گلاب"},price:529,rating:4.7,revCount:38,intensity:6,longevity:8,
+ hue:"#7E2740",hi:"#B4506E",shape:"tall",
+ name:{no:"Mukhallat Taifi",ur:"مخلت طائفی"},
+ origin:{no:"Taif-roser, Hijaz",ur:"گلابِ طائف، حجاز"},
+ desc:{no:"Taif-rose over hvit oud og rav — romantikk på flaske.",ur:"سفید عود اور عنبر پر گلابِ طائف — بوتل میں رومانس۔"},
+ story:{no:"Ti tusen roser gir én liten flaske. En hilsen fra Profetens ﷺ dal.",ur:"دس ہزار گلاب سے ایک چھوٹی بوتل۔ وادیِ طائف کا سلام۔"},
+ notes:{top:{no:"Taifi-rose",ur:"گلابِ طائف"},heart:{no:"Hvit oud · Amber",ur:"سفید عود · عنبر"},base:{no:"Musk · Sandeltre",ur:"مشک · صندل"}},
+ revs:[{n:"Noor S.",r:5,t:{no:"Rosen er helt ekte og levende.",ur:"گلاب بالکل اصلی اور تازہ ہے۔"}},{n:"Ibrahim H.",r:4.5,t:{no:"Perfekt bryllupsgave.",ur:"شادی کے لیے بہترین تحفہ۔"}}]},
+{id:"o4",cat:"oud",tier:"soft",tag:{no:"Ren",ur:"پاکیزہ"},price:399,rating:4.8,revCount:57,intensity:4,longevity:7,
+ hue:"#C8B98E",hi:"#EFDFAF",shape:"round",
+ name:{no:"Safwan White Musk",ur:"صفواں سفید مشک"},
+ origin:{no:"Hvit musk, Hijaz-stil",ur:"سفید مشک، حجازی طرز"},
+ desc:{no:"Ren, såpelignende musk med hvite blomster — stillheten selv.",ur:"صابن جیسی پاکیزہ مشک اور سفید پھول — سکوت کی تصویر۔"},
+ story:{no:"Duften av nyvasket klede og fredag morgen. Diskré, ren, uforglemmelig.",ur:"نہانے کے بعد کپڑوں اور جمعہ کی صبح کی خوشبو۔"},
+ notes:{top:{no:"Aldehyder · Bomull",ur:"الڈیہائیڈ · روئی"},heart:{no:"Hvit musk · Jasmin",ur:"سفید مشک · چمیلی"},base:{no:"Ambergris · Sedertre",ur:"عنبر · دیودار"}},
+ revs:[{n:"Sara M.",r:5,t:{no:"Elegant og diskré. Alle spør hva jeg bruker.",ur:"نفاست اور نرمی۔ سب پوچھتے ہیں کیا لگایا ہے۔"}},{n:"Ali R.",r:4.5,t:{no:"Perfekt for kontoret.",ur:"دفتر کے لیے بہترین۔"}}]},
+{id:"o5",cat:"oud",tier:"deep",tag:{no:"Røkelse",ur:"اگر بتی"},price:479,rating:4.6,revCount:29,intensity:8,longevity:11,
+ hue:"#5A3418",hi:"#8A5B2B",shape:"dome",
+ name:{no:"Amber Hind",ur:"عنبرِ ہند"},
+ origin:{no:"Rajasthan, India",ur:"راجستھان، ہندوستان"},
+ desc:{no:"Røkelse, amber og krydder — en varm natt i Delhi.",ur:"اگر بتی، عنبر اور مصالھے — دہلی کی گرم رات۔"},
+ story:{no:"Fra basarene i gamlebyen. Røkelsens røyk, rugenes varme, kardemommens puls.",ur:"پرانی دہلی کے بازاروں سے۔ دھوئیں کی گرمجوشی اور الائچی کی دھڑکن۔"},
+ notes:{top:{no:"Kardemomme · Nellik",ur:"الائچی · لونگ"},heart:{no:"Røkelse · Rav",ur:"اگر بتی · عنبر"},base:{no:"Oud · Labdanum",ur:"عود · لبدان"}},
+ revs:[{n:"Karim B.",r:4.5,t:{no:"Varm og mystisk. Vinterens duft.",ur:"گرم اور پراسرار۔ سردیوں کی خوشبو۔"}},{n:"Emil T.",r:4.5,t:{no:"Dyp og unik.",ur:"گہری اور منفرد۔"}}]},
+{id:"o6",cat:"oud",tier:"modern",tag:{no:"Ny",ur:"نیا"},price:549,rating:4.9,revCount:22,intensity:7,longevity:10,
+ hue:"#4A2A14",hi:"#7E4E22",shape:"tall",
+ name:{no:"Layali Oud",ur:"لیالی عود"},
+ origin:{no:"Oslo-blanding, husets egen",ur:"اوسلو کا اپنا امتزاج"},
+ desc:{no:"Oud møter mørk rose og safran — husets nattsignatur.",ur:"عود، گہرا گلاب اور زعفران — رات کی خصوصی خوشبو۔"},
+ story:{no:"Skapt i butikken vår på Grønland, etter ønske fra kundene. Mørk, fløyelsmyk, forførende.",ur:"گاہکوں کی فرمائش پر گرونلینڈ میں تیار کی گئی۔"},
+ notes:{top:{no:"Safran · Rosa pepper",ur:"زعفران · گلابی مرچ"},heart:{no:"Oud · Mørk rose",ur:"عود · گہرا گلاب"},base:{no:"Tonka · Moskus",ur:"تونکا · مشک"}},
+ revs:[{n:"Zainab W.",r:5,t:{no:"Nydelig. Folk snur seg på gata.",ur:"لافانی خوشبو۔ لوگ سڑک پر مڑ کر دیکھتے ہیں۔"}},{n:"Jonas P.",r:5,t:{no:"Husets beste, uten tvil.",ur:"بے شک گھر کی بہترین۔"}}]}];
+
+const SETS=[
+{id:"s1",tier:"silver",price:899,tag:{no:"Sølv",ur:"سلور"},
+ name:{no:"Sølvsettet",ur:"سلور سیٹ"},
+ desc:{no:"Bedematte (grå), 33-korn tasbih, 3 ml svart oud, ajwa-dadler.",ur:"نماز کی چادر، ۳۳ دانوں کی تسبیح، ۳ ملی سیاہ عود، عجوہ کھجوریں۔"},
+ incl:{no:["Bedematte · grå","33-korn tasbih","3 ml svart oud","Ajwa-dadler"],ur:["نماز کی چادر","۳۳ دانوں کی تسبیح","۳ ملی سیاہ عود","عجوہ کھجوریں"]}},
+{id:"s2",tier:"gold",price:1499,pop:true,tag:{no:"Gull",ur:"گولڈ"},
+ name:{no:"Gullsettet",ur:"گولڈ سیٹ"},
+ desc:{no:"Premium matte, Qur'an med grønt omslag, 6 ml oud, miswak & bakhoor.",ur:"اعلیٰ چادر، سبز غلاف والا قرآن، ۶ ملی عود، مسواک اور بخور۔"},
+ incl:{no:["Premium bedematte","Qur'an · grønt omslag","6 ml husets oud","Miswak & bakhoor","Gaveeske med bånd"],ur:["اعلیٰ نماز چادر","سبز غلاف والا قرآن","۶ ملی عود","مسواک اور بخور","ربن والی تحفہ پیٹی"]}},
+{id:"s3",tier:"royal",price:2499,tag:{no:"Royal",ur:"شاہی"},
+ name:{no:"Royal-settet",ur:"شاہی سیٹ"},
+ desc:{no:"Qur'an i royal-etui, 12 ml Dehn al Oud, amber-tasbih, luksuseske.",ur:"شاہی جلد میں قرآن، ۱۲ ملی دہن العود، عنبر تسبیح، اعلیٰ پیٹی۔"},
+ incl:{no:["Qur'an · royal-etui","12 ml Dehn al Oud","Tasbih i rav","Håndbrodert matte","Luxus gaveeske"],ur:["شاہی جلد والا قرآن","۱۲ ملی دہن العود","عنبر کی تسبیح","ہاتھ سے کڑھی چادر","اعلیٰ تحفہ پیٹی"]}}];
+
+const REVIEWS=[
+{n:"Amir H.",city:"Oslo",r:5,t:{no:"Beste oud jeg har kjent i Norge. Duften sitter i over tolv timer.",ur:"ناروے کی بہترین عود۔ بارہ گھنٹے سے زیادہ رہتی ہے۔"}},
+{n:"Fatima R.",city:"Grønland",r:5,t:{no:"Kjøpte Royal-settet til bryllupet vårt — alle spurte hvor det var fra.",ur:"شادی پر شاہی سیٹ لیا — سب نے پوچھا کہاں سے لیا۔"}},
+{n:"Yousef A.",city:"Lørenskog",r:5,t:{no:"Dehn al Oud Malaki er ren magi. Ekte vare, ingen juks.",ur:"دہن العود ملکی خالص جادو ہے۔"}},
+{n:"Sara M.",city:"Oslo",r:4.5,t:{no:"Hvit musk er så elegant. Service i verdensklasse, de lar deg prøve alt.",ur:"سفید مشک بہت نفیس ہے۔ خدمت لاجواب۔"}},
+{n:"Ibrahim K.",city:"Drammen",r:5,t:{no:"Kjørte fra Drammen bare for dette. Verdt hver kilometer.",ur:"صرف اس کے لیے ڈرامن سے آیا۔ ہر کلومیٹر حلال تھا۔"}},
+{n:"Aisha B.",city:"Oslo",r:5,t:{no:"Gavesettet var nydelig pakket — til og med med håndskrevet kort.",ur:"تحفہ اتنی خوبصورتی سے پیک تھا کہ ہاتھ کا لکھا کارڈ بھی تھا۔"}}];
+
+/* ═══════════════════════ STATE ═══════════════════════ */
+let lang=localStorage.getItem('arx_lang')||'no';
+let cart=JSON.parse(localStorage.getItem('arx_cart')||'{}');
+let filter='all', mProduct=null, mSize='6', mQ=1;
+let ckDel='ship', ckPay='vipps';
+const $=id=>document.getElementById(id);
+const t=k=>STR[lang][k]||k;
+const money=n=>n.toLocaleString('no-NO')+' kr';
+const sizeMult={'3':.6,'6':1,'12':1.85};
+const sizePrice=p=>Math.round(p*sizeMult[mSize]/5)*5;
+
+/* ═══════════════════════ BOTTLE SVG ═══════════════════════ */
+function bottleSVG(p,w=160){
+ const c1=p.hue,c2=p.hi,s=p.shape;
+ let body,liquid,lid;
+ if(s==='dome'){body=`M55 78 Q100 48 145 78 L145 198 Q100 212 55 198 Z`;liquid=`M60 108 Q100 92 140 108 L140 195 Q100 208 60 195 Z`;}
+ else if(s==='round'){body=`M60 82 Q38 130 60 186 Q100 210 140 186 Q162 130 140 82 Q100 62 60 82 Z`;liquid=`M56 120 Q48 145 60 182 Q100 204 140 182 Q152 145 144 120 Q100 138 56 120 Z`;}
+ else{body=`M72 58 L128 58 L136 190 Q100 204 64 190 Z`;liquid=`M69 105 L131 105 L134 187 Q100 199 66 187 Z`;}
+ lid=s==='round'?`M88 44 h24 v22 h-24z M84 36 h32 v10 h-32z`:`M86 40 h28 v24 h-28z M82 30 h36 v12 h-36z`;
+ const neckY=s==='round'?62:(s==='tall'?56:74);
+ return `<svg viewBox="0 0 200 240" width="${w}" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="lg${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c2}" stop-opacity=".95"/><stop offset=".5" stop-color="${c1}"/><stop offset="1" stop-color="${c2}" stop-opacity=".8"/></linearGradient>
+  <linearGradient id="gl${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".35" stop-color="#fff" stop-opacity=".02"/><stop offset=".75" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+  <linearGradient id="au${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFD9A7"/><stop offset="1" stop-color="#8A6F3E"/></linearGradient>
+ </defs>
+ <path d="${lid}" fill="url(#au${p.id})"/>
+ <rect x="92" y="52" width="16" height="${neckY-48}" fill="#2a2119"/>
+ <path d="${body}" fill="#16110b" stroke="#C9A96E" stroke-width="1.4"/>
+ <path d="${liquid}" fill="url(#lg${p.id})" opacity=".92"/>
+ <path d="${body}" fill="url(#gl${p.id})"/>
+ <path d="M68 ${neckY+6} Q64 120 68 180" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <ellipse cx="100" cy="150" rx="30" ry="24" fill="#0D0A08" stroke="#C9A96E" stroke-width=".8" opacity=".92"/>
+ <text x="100" y="156" text-anchor="middle" font-size="26" fill="#C9A96E" font-family="serif">✦</text>
+ <path d="M70 150 Q100 140 130 150 M70 150 Q100 160 130 150" stroke="#C9A96E" stroke-width=".5" fill="none" opacity=".6"/>
+ </svg>`;
+}
+function boxSVG(s,w=180){
+ const cols={silver:['#b9bdc4','#7d838d'],gold:['#E3C479','#9c7b36'],royal:['#2E8B6A','#175540']};
+ const[a,b]=cols[s.tier];
+ return `<svg viewBox="0 0 220 180" width="${w}">
+ <defs><linearGradient id="bx${s.id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>
+ <linearGradient id="bd${s.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFD9A7"/><stop offset="1" stop-color="#8A6F3E"/></linearGradient></defs>
+ <rect x="30" y="52" width="160" height="104" rx="8" fill="url(#bx${s.id})" stroke="#C9A96E" stroke-width="1"/>
+ <rect x="30" y="34" width="160" height="26" rx="6" fill="url(#bx${s.id})" stroke="#C9A96E" stroke-width="1" filter="brightness(1.15)"/>
+ <rect x="102" y="34" width="16" height="122" fill="url(#bd${s.id})" opacity=".9"/>
+ <path d="M110 34 q-14 -14 0 -22 q14 8 0 22" fill="none" stroke="#EFD9A7" stroke-width="2.5"/>
+ <circle cx="110" cy="96" r="17" fill="#0D0A08" stroke="#EFD9A7" stroke-width="1"/>
+ <path d="M110 86 l3 7 7 1 -5 5 1 7 -6 -3 -6 3 1 -7 -5 -5 7 -1z" fill="#C9A96E"/>
+ <path d="M40 62 h30 M150 62 h30" stroke="#fff" stroke-opacity=".3"/>
+ </svg>`;
+}
+
+/* ═══════════════════════ RENDER: CARDS ═══════════════════════ */
+function stars(r){const f=Math.floor(r);return '★'.repeat(f)+(r-f>=.5?'½':'');}
+function oudCard(p,i){
+ return `<article class="p-card rounded-2xl overflow-hidden group" data-reveal data-id="${p.id}" style="transition-delay:${i*60}ms">
+  <div class="relative img-zoom cursor-pointer" onclick="openModal('${p.id}')">
+   <div class="aspect-[4/5] bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex items-end justify-center relative overflow-hidden">
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full" style="background:radial-gradient(circle,${p.hue}55,transparent 70%)"></div>
+    <span class="absolute top-2.5 start-2.5 text-[9px] tracking-[.2em] uppercase px-2.5 py-1 rounded-full bg-[#0D0A08]/80 border border-[#C9A96E]/40 text-[#EFD9A7] z-10">${p.tag[lang]}</span>
+    <span class="absolute top-2.5 end-2.5 text-[10px] text-[#EFD9A7] bg-[#C9A96E]/15 border border-[#C9A96E]/30 rounded-full px-2 py-0.5 rating-pulse z-10">★ ${p.rating}</span>
+    <div class="w-[68%] translate-y-3 group-hover:translate-y-0 transition-transform duration-700 drop-shadow-[0_18px_24px_rgba(0,0,0,.65)]">${bottleSVG(p)}</div>
+   </div>
+   <div class="absolute inset-0 bg-gradient-to-t from-[#0D0A08]/85 via-transparent opacity-90 pointer-events-none"></div>
+  </div>
+  <div class="p-4 sm:p-5 relative -mt-10 z-10">
+   <h3 class="font-display text-base sm:text-lg text-[#F2E8D5] leading-tight">${p.name[lang]}</h3>
+   <p class="font-serif2 italic text-[11px] sm:text-xs text-[#C9A96E] mt-0.5">${p.origin[lang]}</p>
+   <p class="text-[11px] sm:text-xs text-[#8d8065] mt-2 line-clamp-2 leading-relaxed">${p.desc[lang]}</p>
+   <div class="flex flex-wrap gap-1 mt-3">${p.notes.top[lang].split('·').slice(0,2).map(n=>`<span class="text-[9px] tracking-wider uppercase border border-[#C9A96E]/25 text-[#b8a888] rounded-full px-2 py-0.5">${n.trim()}</span>`).join('')}</div>
+   <div class="flex items-center justify-between mt-4 pt-3 border-t border-[#C9A96E]/15">
+    <div><p class="font-display text-[#EFD9A7] text-lg">${money(p.price)}</p><p class="text-[9px] text-[#7d715c] tracking-wider">6 ML · ${p.intensity}/10 ${t('inc').trim()}</p></div>
+    <button class="add-btn relative w-11 h-11 rounded-full btn-gold flex items-center justify-center overflow-hidden" onclick="quickAdd(event,'${p.id}')" aria-label="Legg i kurv">
+     <svg class="ic-cart w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="#1a1206" stroke-width="2"><path d="M6 7h12l1.2 12.2a1.5 1.5 0 0 1-1.5 1.8H6.3a1.5 1.5 0 0 1-1.5-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+     <svg class="ic-check absolute w-5 h-5 opacity-0 scale-50" viewBox="0 0 24 24" fill="none" stroke="#1a1206" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>
     </button>
-  </form>
-</dialog>
-
-<script type="module">
-const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const nok=n=>new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(n);
-const buzz=p=>navigator.vibrate?.(p);
-const vt=fn=>document.startViewTransition?document.startViewTransition(fn):fn();
-const P={name:'Svartfjord N°1 Black Oud',price:{30:1490,50:2190,100:3690}};
-
-/* ── bottle (shared SVG) ── */
-const bottle=`<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: Svartfjord N°1 Black Oud">
-<defs>
-<linearGradient id="gl" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#222c3b"/><stop offset=".42" stop-color="#05080d"/><stop offset=".72" stop-color="#0d1420"/><stop offset="1" stop-color="#1b2331"/></linearGradient>
-<linearGradient id="lq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="oklch(.66 .17 62/.85)"/><stop offset="1" stop-color="oklch(.26 .09 28/.96)"/></linearGradient>
-<radialGradient id="au"><stop offset="0" stop-color="oklch(.85 .2 155)"/><stop offset="1" stop-color="#0000"/></radialGradient>
-<filter id="bl"><feGaussianBlur stdDeviation="9"/></filter>
-<clipPath id="cp"><path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z"/></clipPath>
-</defs>
-<ellipse cx="100" cy="316" rx="66" ry="9" fill="#e8ba6e" opacity=".14" filter="url(#bl)"/>
-<rect x="84" y="6" width="32" height="34" rx="7" fill="#0a0e15" stroke="var(--gold)" stroke-opacity=".55"/>
-<rect x="88" y="34" width="24" height="10" fill="#0a0e15"/><rect x="92" y="44" width="16" height="32" fill="#0c111a"/>
-<path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z" fill="url(#gl)" stroke="#ffffff2e"/>
-<g clip-path="url(#cp)">
-  <rect x="24" y="168" width="152" height="150" fill="url(#lq)" opacity="calc(.72 + var(--glow) * .28)"/>
-  <ellipse cx="130" cy="120" rx="70" ry="42" fill="url(#au)" opacity="calc(.16 + var(--glow) * .5)" filter="url(#bl)" style="mix-blend-mode:screen"/>
-  <ellipse cx="100" cy="250" rx="80" ry="40" fill="oklch(.8 .18 70)" opacity="calc(var(--glow) * .45)" filter="url(#bl)" style="mix-blend-mode:screen"/>
-  <path d="M50 80v210" stroke="#fff" stroke-opacity=".26" stroke-width="5" filter="url(#bl)"/>
-  <path d="M162 92v190" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
-</g>
-<text x="100" y="150" text-anchor="middle" fill="#e9eef2" fill-opacity=".9" font-family="Cormorant Garamond,serif" font-size="15" letter-spacing="4.2">SVARTFJORD</text>
-<text x="100" y="168" text-anchor="middle" fill="var(--gold)" font-family="Inter Tight,sans-serif" font-size="6.5" letter-spacing="2.6">BLACK OUD · EXTRAIT</text>
-</svg>`;
-$('#flacon').innerHTML=bottle;$('#stage').innerHTML=bottle;
-$('#tick').innerHTML=['Einer','Bjørketjære','Safran','Damaskrose','Svart oud','Isbremoskus','Furuharpiks','Ambra','Havsalt','Røkelse'].map(w=>`${w} <i>✳</i>`).join(' ');
-$('#tick').nextElementSibling.innerHTML=$('#tick').innerHTML;
-
-/* ── procedural birds chirping audio engine ── */
-let actx=null,birdOn=false,birdTimer=null;
-function initAudio(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)()}
-function chirp(){
-  if(!actx)return;if(actx.state==='suspended')actx.resume();
-  const now=actx.currentTime,notes=Math.floor(Math.random()*3)+2;
-  for(let i=0;i<notes;i++){
-    const t=now+i*(0.065+Math.random()*0.04),osc=actx.createOscillator(),g=actx.createGain();
-    const base=2400+Math.random()*800,peak=base+1200+Math.random()*600;
-    osc.type='sine';
-    osc.frequency.setValueAtTime(base,t);
-    osc.frequency.exponentialRampToValueAtTime(peak,t+0.025);
-    osc.frequency.exponentialRampToValueAtTime(base-180,t+0.065);
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(0.06,t+0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001,t+0.07);
-    osc.connect(g);g.connect(actx.destination);
-    osc.start(t);osc.stop(t+0.075);
-  }
+   </div>
+  </div></article>`;
 }
-const audioToggle=$('#audioToggle');
-audioToggle.onclick=()=>{
-  initAudio();birdOn=!birdOn;
-  audioToggle.classList.toggle('on',birdOn);
-  $('#audioText').textContent=birdOn?'Fuglesang: På':'Fuglesang: Av';
-  if(birdOn){chirp();birdTimer=setInterval(()=>{if(birdOn&&Math.random()>.25)chirp()},3400)}
-  else{clearInterval(birdTimer)}
-};
-
-/* ── realistic waterfall canvas engine ── */
-const wcv=$('#waterfall-canvas'),wcx=wcv.getContext('2d');
-let ww=0,wh=0,streams=[],sprays=[];
-const wfit=()=>{ww=wcv.width=wcv.clientWidth;wh=wcv.height=wcv.clientHeight;initWaterfall()};
-window.addEventListener('resize',wfit);
-function initWaterfall(){
-  streams=[];sprays=[];
-  const cnt=Math.min(90,Math.floor(ww/14));
-  for(let i=0;i<cnt;i++){streams.push({x:Math.random()*ww,y:Math.random()*wh,l:Math.random()*90+40,v:Math.random()*7+5,w:Math.random()*1.8+.5,a:Math.random()*.35+.1,g:Math.random()>.75})}
+function setCard(s,i){
+ const royal=s.tier==='royal';
+ return `<article class="p-card rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden ${s.pop?'md:scale-[1.04] md:-my-3 md:z-10 md:border-[#C9A96E]/50':''} ${royal?'bg-gradient-to-b from-[#0f1a14]/60':''}" data-reveal style="transition-delay:${i*90}ms">
+  ${s.pop?`<span class="absolute top-4 end-4 text-[9px] tracking-[.2em] uppercase px-3 py-1 rounded-full bg-[#C9A96E] text-[#1a1206] font-semibold">${t('gift_pop')}</span>`:''}
+  <span class="text-[10px] tracking-[.35em] uppercase ${royal?'text-[#7dd8b4]':'text-[#C9A96E]'}">${s.tag[lang]}</span>
+  <h3 class="font-display text-2xl text-[#F2E8D5] mt-2">${s.name[lang]}</h3>
+  <div class="my-5 flex justify-center py-2"><div class="bob">${boxSVG(s)}</div></div>
+  <p class="text-sm text-[#a4977e] leading-relaxed">${s.desc[lang]}</p>
+  <ul class="mt-4 space-y-1.5 flex-1">${s.incl[lang].map(x=>`<li class="text-[13px] text-[#cbbfa5] flex gap-2 items-start"><span class="text-[#C9A96E] mt-0.5 text-[9px]">✦</span>${x}</li>`).join('')}</ul>
+  <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#C9A96E]/15">
+   <p class="font-display text-xl text-[#EFD9A7]">${money(s.price)}</p>
+   <button class="add-btn relative btn-ghost rounded-full px-5 py-2.5 text-xs tracking-wider uppercase overflow-hidden" onclick="quickAdd(event,'${s.id}')">${t('m_add')}<span class="ic-check absolute inset-0 hidden items-center justify-center">✓</span></button>
+  </div></article>`;
 }
-function loopWaterfall(){
-  wcx.clearRect(0,0,ww,wh);
-  for(let s of streams){
-    s.y+=s.v;
-    if(s.y>wh){
-      s.y=-s.l;s.x=Math.random()*ww;
-      if(sprays.length<60&&Math.random()>.6)sprays.push({x:s.x,y:wh-8,vx:(Math.random()-.5)*2,vy:-(Math.random()*2.5+1),r:Math.random()*3+1.5,a:.3,l:0});
-    }
-    const grad=wcx.createLinearGradient(s.x,s.y,s.x,s.y+s.l);
-    if(s.g){grad.addColorStop(0,'rgba(201,169,110,0)');grad.addColorStop(1,`rgba(235,210,165,${s.a})`)}
-    else{grad.addColorStop(0,'rgba(137,207,240,0)');grad.addColorStop(1,`rgba(225,245,255,${s.a})`)}
-    wcx.strokeStyle=grad;wcx.lineWidth=s.w;wcx.beginPath();wcx.moveTo(s.x,s.y);wcx.lineTo(s.x,s.y+s.l);wcx.stroke();
-  }
-  for(let i=sprays.length-1;i>=0;i--){
-    const p=sprays[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.08;p.a-=.014;p.l++;
-    if(p.a<=0||p.l>30){sprays.splice(i,1);continue}
-    wcx.fillStyle=`rgba(215,240,255,${p.a})`;wcx.beginPath();wcx.arc(p.x,p.y,p.r,0,6.284);wcx.fill();
-  }
-  requestAnimationFrame(loopWaterfall);
+function renderGrids(){
+ const f={all:()=>true,soft:p=>p.tier==='soft'||p.intensity<=5,deep:p=>p.tier==='deep'||p.intensity>=8,floral:p=>p.tier==='floral'||p.tier==='modern'};
+ $('oudGrid').innerHTML=PRODUCTS.filter(f[filter]).map(oudCard).join('');
+ $('setGrid').innerHTML=SETS.map(setCard).join('');
+ $('filterSeg').innerHTML=['all','soft','deep','floral'].map(k=>`<button onclick="setFilter('${k}')" class="${filter===k?'on':''}">${t('f_'+k)}</button>`).join('');
+ refreshReveals();
 }
-setTimeout(()=>{wfit();loopWaterfall()},50);
+function setFilter(f){filter=f;renderGrids();sparkleAt(event.clientX,event.clientY);}
 
-/* ── store & checkout ── */
-const S=new Proxy({size:'50',qty:1,lines:[]},{set(t,k,v){t[k]=v;render();return true}});
-function render(){
-  const p=P.price[S.size]*S.qty;
-  $('#price').textContent=nok(P.price[S.size]);$('#bprice').textContent=nok(P.price[S.size]);$('#q').textContent=S.qty;
-  const n=S.lines.reduce((a,l)=>a+l.qty,0);$('#badge').textContent=n;
-  $('#lines').innerHTML=S.lines.length?S.lines.map((l,i)=>`<div class="row"><span>${P.name}<em>${l.size} ml × ${l.qty}</em></span><span>${nok(P.price[l.size]*l.qty)} <button class="x" data-rm="${i}">✕</button></span></div>`).join(''):'<p class="row" style="color:var(--dim)">Kurven er tom — ennå.</p>';
-  const tot=S.lines.reduce((a,l)=>a+P.price[l.size]*l.qty,0);
-  $('#total').textContent=nok(tot);
-  $('#modalTotal').textContent=nok(tot);
+/* ═══════════════════════ RENDER: OTHER ═══════════════════════ */
+function renderCarousel(){
+ const card=r=>`<div class="w-[280px] sm:w-[340px] shrink-0 p-card rounded-2xl p-6">
+  <p class="text-[#C9A96E] rating-pulse text-sm tracking-wider">${stars(r.r)}</p>
+  <p class="font-serif2 italic text-[#E8D9BC] leading-relaxed mt-3 text-[15px]">“${r.t[lang]}”</p>
+  <div class="flex items-center gap-3 mt-5 pt-4 border-t border-[#C9A96E]/15">
+   <span class="w-9 h-9 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#5a4426] flex items-center justify-center font-display text-[#0D0A08] text-sm">${r.n[0]}</span>
+   <div><p class="text-sm text-[#F2E8D5]">${r.n}</p><p class="text-[10px] tracking-wider uppercase text-[#7d715c]">${r.city}</p></div>
+  </div></div>`;
+ const items=REVIEWS.map(card).join('');
+ $('carTrack').innerHTML=items+items;
 }
-$('#sizes').onchange=e=>vt(()=>S.size=e.target.value);
-$$('.qty button').forEach(b=>b.onclick=()=>S.qty=Math.max(1,S.qty+ +b.dataset.q));
-const addToCart=()=>{
-  const l=S.lines.find(l=>l.size===S.size);
-  vt(()=>{l?l.qty+=S.qty:S.lines.push({size:S.size,qty:S.qty});S.lines=[...S.lines]});
-  buzz([12,40,18]);if(birdOn)chirp();
-  if(typeof confetti==='function')confetti({particleCount:40,spread:60,origin:{y:.85},colors:['#C9A96E','#89CFF0','#FFFFFF']});
-  $('#cart').showPopover();
-};
-$('#add').onclick=addToCart;$('#add2').onclick=addToCart;
-$('#lines').onclick=e=>{const i=e.target.dataset.rm;if(i!=null)vt(()=>S.lines=S.lines.filter((_,x)=>x!=i))};
-
-$('#openCheckout').onclick=()=>{
-  if(!S.lines.length)return;
-  $('#cart').hidePopover();
-  $('#checkoutModal').showModal();
-};
-
-window.handleCheckout=e=>{
-  e.preventDefault();
-  buzz([10,60,10,60,25]);if(birdOn)chirp();
-  if(typeof confetti==='function')confetti({particleCount:70,spread:80,origin:{y:.6},colors:['#C9A96E','#FF5B24','#FFFFFF']});
-  $('#checkoutModal').close();
-  $('#cart').showPopover();
-  vt(()=>{$('#cart').innerHTML=`<p class="eye">Forseglet</p><h2 style="font-size:2rem;margin:.8rem 0">Takk. Ordren er reservert.</h2><p>Ordre <b style="color:var(--gold)">#${(Math.random()*1e5|0).toString(36).toUpperCase()}</b> — flakong reservert i Oslo. Bekreftelse sendt på SMS/e-post.</p><button class="cta" style="margin-top:1.6rem" popovertarget="cart" popovertargetaction="hide">Lukk</button>`;S.lines=[]});
-};
-render();
-
-/* ── leveringsdato ── */
-const d=new Date(Date.now()+2*864e5);
-$('#eta').textContent='Hjemme '+new Intl.DateTimeFormat('nb-NO',{weekday:'long',day:'numeric',month:'short'}).format(d);
-
-/* ── smoke canvas ── */
-const cv=$('#smoke'),cx=cv.getContext('2d',{alpha:true}),calm=matchMedia('(prefers-reduced-motion:reduce)');
-let W=0,H=0,ps=[],heat=0,live=1,raf;
-const fit=()=>{const d=Math.min(devicePixelRatio,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);cx.globalCompositeOperation='screen'};
-new ResizeObserver(fit).observe(cv);
-const puff=(x,y,s=1,g=Math.random()<.3+heat*.5)=>ps.length<150&&ps.push({x,y,r:(7+Math.random()*16)*s,vx:(Math.random()-.5)*.5,vy:-(.25+Math.random()*.7),l:0,max:110+Math.random()*90,g});
-function loop(){
-  cx.clearRect(0,0,W,H);
-  const src=$('#flacon').getBoundingClientRect(),base=cv.getBoundingClientRect();
-  for(let i=0;i<(heat?4:1);i++)puff(src.left-base.left+src.width/2+(Math.random()-.5)*src.width*.5*(1+heat),src.top-base.top+src.height*.12);
-  for(const p of ps){
-    p.l++;p.x+=p.vx;p.y+=p.vy*(1+heat*1.3);p.r+=.4;
-    const a=Math.sin(Math.PI*p.l/p.max)*(p.g?.3:.13)*(1+heat*.7);
-    const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
-    g.addColorStop(0,`rgba(${p.g?'236,190,116':'168,198,210'},${a})`);g.addColorStop(1,'rgba(0,0,0,0)');
-    cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.284);cx.fill();
-  }
-  ps=ps.filter(p=>p.l<p.max);
-  raf=live&&requestAnimationFrame(loop);
+function renderMarquee(){
+ const seg=t('ticker').map(x=>`<span class="flex items-center gap-6 px-6 text-[11px] tracking-[.35em] uppercase text-[#C9A96E]/80 whitespace-nowrap">${x}<span class="text-[#EFD9A7]">✦</span></span>`).join('');
+ $('mqTrack').innerHTML=seg+seg;
 }
-new IntersectionObserver(([e])=>{live=e.isIntersecting&&!calm.matches;live?loop():cancelAnimationFrame(raf)}).observe(cv);
-cv.parentElement.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();Math.random()<.6&&puff(e.clientX-b.left,e.clientY-b.top,.6,0)},{passive:true});
+function renderHours(){
+ $('hoursList').innerHTML=`
+ <div class="flex justify-between border-b border-[#C9A96E]/10 pb-1.5"><span>${t('d_monsat')}</span><span class="text-[#EFD9A7]">10:00 – 21:00</span></div>
+ <div class="flex justify-between"><span>${t('d_sun')}</span><span class="text-[#EFD9A7]">12:00 – 20:00</span></div>`;
+}
 
-/* ── press & hold: åpne flakongen ── */
-const words=['einer','bjørketjære','safran','svart oud','isbremoskus','furuharpiks','damaskrose','røkelse','ambra','havsalt'];
-let wt;
-const drift=()=>{
-  const s=document.createElement('span');s.textContent=words[Math.random()*words.length|0];$('#plume').append(s);
-  s.animate([{translate:`${(Math.random()-.5)*140}px 40px`,opacity:0,filter:'blur(6px)'},{opacity:.95,offset:.3},{translate:`${(Math.random()-.5)*220}px -190px`,opacity:0,filter:'blur(10px)'}],{duration:3200+Math.random()*1400,easing:'cubic-bezier(.25,.6,.3,1)'}).onfinish=()=>s.remove();
-};
-const open=on=>{
-  document.documentElement.classList.toggle('open',on);heat=on?1:0;clearInterval(wt);
-  if(on){buzz(20);if(birdOn)chirp();drift();wt=setInterval(drift,420)}
-};
-const h=$('#hold');
-h.addEventListener('pointerdown',e=>{h.setPointerCapture(e.pointerId);open(1)});
-['pointerup','pointercancel','lostpointercapture','blur'].forEach(t=>h.addEventListener(t,()=>open(0)));
-h.addEventListener('keydown',e=>e.key===' '&&open(1));h.addEventListener('keyup',()=>open(0));
-h.addEventListener('contextmenu',e=>e.preventDefault());
+/* ═══════════════════════ LANGUAGE ═══════════════════════ */
+function applyLang(){
+ const L=STR[lang];
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==='ur'?'rtl':'ltr';
+ document.documentElement.classList.toggle('urdu',lang==='ur');
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(L[k])el.innerHTML=L[k];});
+ document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=L[el.dataset.i18nPh]||''});
+ $('langFlag').textContent=lang==='no'?'🇵🇰':'🇳🇴';
+ $('langLbl').textContent=lang==='no'?'اردو':'Norsk';
+ $('langLbl').style.fontFamily=lang==='no'?'"Noto Nastaliq Urdu"':'Jost';
+ renderGrids();renderCarousel();renderMarquee();renderHours();renderCart();
+ if(mProduct)openModal(mProduct.id);
+ localStorage.setItem('arx_lang',lang);
+}
+$('langBtn').onclick=e=>{lang=lang==='no'?'ur':'no';applyLang();sparkleAt(e.clientX,e.clientY);};
 
-/* ── stats animation ── */
-$$('.stats b').forEach(b=>new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;o.disconnect();const n=+b.dataset.n,s=b.dataset.suf||'';let i=0;const t=setInterval(()=>{i+=Math.ceil(n/20);if(i>=n){i=n;clearInterval(t)}b.textContent=i+s},45)},{threshold:.6}).observe(b));
-$$('.note').forEach(n=>n.addEventListener('pointerdown',()=>{$$('.note.on').forEach(o=>o!==n&&o.classList.remove('on'));n.classList.toggle('on');buzz(14);if(birdOn)chirp()}));
+/* ═══════════════════════ CART ═══════════════════════ */
+function itemInfo(id){
+ if(id.startsWith('s')){const s=SETS.find(x=>x.id===id);return{name:s.name[lang],price:s.price,unit:''};}
+ const p=PRODUCTS.find(x=>x.id===id.split('-')[0]);const sz=id.split('-')[1]||'6';
+ return{name:p.name[lang],price:Math.round(p.price*sizeMult[sz]/5)*5,unit:sz+' ml'};
+}
+const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const cartSub=()=>Object.entries(cart).reduce((s,[id,q])=>s+itemInfo(id).price*q,0);
+function saveCart(){localStorage.setItem('arx_cart',JSON.stringify(cart));}
+function addToCart(id,qty=1){
+ cart[id]=(cart[id]||0)+qty;saveCart();updateBadge(true);renderCart();
+}
+function quickAdd(e,id){
+ e.stopPropagation();
+ const btn=e.currentTarget;
+ const base=id.startsWith('s')?id:id+'-6';
+ addToCart(base,1);
+ confetti(e.clientX,e.clientY);
+ btn.classList.add('added');
+ btn.querySelectorAll('.ic-cart').forEach(i=>{i.style.transition='.3s';i.style.opacity=0;i.style.transform='scale(.3)';});
+ const chk=btn.querySelector('.ic-check');
+ if(chk){chk.style.transition='.35s cubic-bezier(.34,1.56,.64,1)';chk.style.opacity=1;chk.style.transform='scale(1)';if(chk.classList.contains('hidden')){chk.classList.remove('hidden');chk.classList.add('flex');}}
+ setTimeout(()=>{btn.classList.remove('added');
+  btn.querySelectorAll('.ic-cart').forEach(i=>{i.style.opacity=1;i.style.transform='scale(1)';});
+  if(chk){chk.style.opacity=0;chk.style.transform='scale(.4)';}},1300);
+}
+function updateBadge(pop){
+ const n=cartCount(),b=$('cartBadge');
+ b.textContent=n;b.classList.toggle('hidden',n===0);
+ if(pop){b.classList.remove('badge-pop');void b.offsetWidth;b.classList.add('badge-pop');}
+}
+function changeQty(id,d){cart[id]+=d;if(cart[id]<=0)delete cart[id];saveCart();updateBadge();renderCart();}
+function renderCart(){
+ const box=$('cartItems'),entries=Object.entries(cart);
+ if(!entries.length){box.innerHTML=`<div class="text-center py-16 opacity-70">
+   <div class="w-20 mx-auto opacity-60">${bottleSVG({id:'emp',hue:'#C9A96E',hi:'#EFD9A7',shape:'round'},120)}</div>
+   <p class="font-serif2 italic text-[#a4977e] mt-3">${t('cart_empty')}</p></div>`;
+ }else{
+  box.innerHTML=entries.map(([id,q])=>{const it=itemInfo(id);return `
+  <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[.03] border border-[#C9A96E]/15">
+   <div class="w-12 h-14 rounded-lg bg-gradient-to-b from-[#1e1509] to-[#120d07] flex items-center justify-center shrink-0 text-[#C9A96E] text-lg">✦</div>
+   <div class="flex-1 min-w-0"><p class="text-sm text-[#F2E8D5] truncate">${it.name}</p><p class="text-[11px] text-[#8d8065]">${it.unit||t('nav_gifts')} · ${money(it.price)}</p></div>
+   <div class="flex items-center border border-[#C9A96E]/30 rounded-full overflow-hidden shrink-0">
+    <button onclick="changeQty('${id}',-1)" class="w-8 h-8 text-[#C9A96E] hover:bg-[#C9A96E]/10">−</button>
+    <span class="w-6 text-center text-sm text-[#F2E8D5]">${q}</span>
+    <button onclick="changeQty('${id}',1)" class="w-8 h-8 text-[#C9A96E] hover:bg-[#C9A96E]/10">+</button>
+   </div>
+   <button onclick="delete cart['${id}'];saveCart();renderCart();updateBadge()" class="text-[#7d715c] hover:text-[#e0825e] transition shrink-0 p-1" aria-label="Fjern"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M9 7V5h6v2m-8 0 1 13h8l1-13"/></svg></button>
+  </div>`}).join('');
+ }
+ const sub=cartSub(),free=sub>=1000,del=sub===0?0:(free?0:79);
+ $('cSub').textContent=money(sub);
+ $('cDel').innerHTML=del===0?(sub===0?'—':`<span class="text-[#7dd8b4]">${t('cart_free')}</span>`):money(del);
+ $('cTot').textContent=money(sub+del);
+ const pct=Math.min(sub/1000*100,100);
+ $('freeBar').innerHTML=sub===0?'':`
+  <div class="flex justify-between text-[11px] mb-1.5"><span class="text-[#8d8065]">${free?'✦ '+t('cart_free'):t('cart_need').replace('{n}',(1000-sub))}</span><span class="text-[#C9A96E]">${money(1000)}</span></div>
+  <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all duration-700 ${free?'bg-[#2E8B6A]':'bg-gradient-to-r from-[#8A6F3E] to-[#EFD9A7]'}" style="width:${pct}%"></div></div>`;
+}
+function toggleCart(open){
+ $('cartSheet').classList.toggle('open',open);
+ $('cartMask').style.opacity=open?1:0;
+ $('cartMask').style.pointerEvents=open?'auto':'none';
+ document.body.style.overflow=open?'hidden':'';
+}
+$('cartBtn').onclick=()=>{renderCart();toggleCart(true);};
+$('cartMask').onclick=()=>toggleCart(false);
+$('checkoutBtn').onclick=()=>{if(cartCount()===0)return;toggleCart(false);openCk();};
+
+/* ═══════════════════════ PRODUCT MODAL ═══════════════════════ */
+function openModal(id){
+ mProduct=PRODUCTS.find(p=>p.id===id);if(!mProduct)return;
+ mSize='6';mQ=1;$('mQty').textContent=1;
+ $('mVisual').innerHTML=bottleSVG(mProduct,230);
+ $('mBadge').textContent=mProduct.tag[lang];
+ $('mName').textContent=mProduct.name[lang];
+ $('mOrigin').textContent=mProduct.origin[lang];
+ $('mStory').textContent=mProduct.story[lang];
+ $('mIntV').textContent=mProduct.intensity+'/10';
+ $('mLongV').textContent=mProduct.longevity+t('long_h');
+ $('mPyramid').innerHTML=[['m_top',mProduct.notes.top],['m_heart',mProduct.notes.heart],['m_base',mProduct.notes.base]].map(([k,n],i)=>`
+  <div class="flex items-center gap-3"><span class="text-[9px] tracking-[.25em] uppercase text-[#8d8065] w-14 shrink-0">${t(k)}</span>
+  <div class="flex-1 h-px bg-gradient-to-r from-[#C9A96E]/50 to-transparent"></div>
+  <span class="text-xs text-[#E8D9BC] font-serif2 italic">${n[lang]}</span></div>`).join('');
+ $('mSizes').innerHTML=['3','6','12'].map(s=>`<button onclick="setSize('${s}')" data-sz="${s}" class="${s==='6'?'on':''}">${s} ML · ${money(Math.round(mProduct.price*sizeMult[s]/5)*5)}</button>`).join('');
+ $('mReviews').innerHTML=mProduct.revs.map(r=>`
+  <div class="p-3 rounded-xl bg-white/[.03] border border-[#C9A96E]/12 flex gap-3">
+   <span class="w-8 h-8 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#5a4426] flex items-center justify-center font-display text-[#0D0A08] text-xs shrink-0">${r.n[0]}</span>
+   <div><p class="text-xs text-[#C9A96E]">${'★'.repeat(r.r)} <span class="text-[#8d8065] font-normal">· ${r.n}</span></p><p class="text-xs text-[#a4977e] mt-0.5">${r.t[lang]}</p></div>
+  </div>`).join('');
+ updateMPrice();
+ $('pModal').classList.add('open');document.body.style.overflow='hidden';
+ setTimeout(()=>{$('mIntBar').style.width=mProduct.intensity*10+'%';$('mLongBar').style.width=Math.min(mProduct.longevity/14*100,100)+'%';},150);
+}
+function setSize(s){mSize=s;$('mSizes').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.sz===s));updateMPrice();}
+function updateMPrice(){$('mPrice').textContent=money(sizePrice(mProduct)*mQ);}
+function mQty(d){mQ=Math.max(1,mQ+d);$('mQty').textContent=mQ;updateMPrice();}
+function closeModal(){$('pModal').classList.remove('open');document.body.style.overflow='';
+ $('mIntBar').style.width='0%';$('mLongBar').style.width='0%';}
+$('mAdd').onclick=e=>{addToCart(mProduct.id+'-'+mSize,mQ);confetti(e.clientX,e.clientY);closeModal();toggleCart(true);};
+
+/* ═══════════════════════ CHECKOUT ═══════════════════════ */
+function openCk(){
+ $('ckForm').classList.remove('hidden');$('ckSuccess').classList.add('hidden');
+ const sub=cartSub(),free=sub>=1000,del=(ckDel==='pickup'||free)?0:79;
+ $('ckSub').textContent=money(sub);
+ $('ckDel').innerHTML=ckDel==='pickup'?`<span class="text-[#7dd8b4]">${t('cart_pickup')}</span>`:(del===0?`<span class="text-[#7dd8b4]">${t('cart_free')}</span>`:money(del));
+ $('ckTot').textContent=money(sub+del);
+ $('ckSheet').classList.add('open');$('ckMask').style.opacity=1;$('ckMask').style.pointerEvents='auto';document.body.style.overflow='hidden';
+}
+function toggleCk(o){$('ckSheet').classList.toggle('open',o);$('ckMask').style.opacity=o?1:0;$('ckMask').style.pointerEvents=o?'auto':'none';if(!o)document.body.style.overflow='';}
+$('ckMask').onclick=()=>toggleCk(false);
+document.querySelectorAll('#ckDelSeg button').forEach(b=>b.onclick=()=>{
+ ckDel=b.dataset.del;
+ document.querySelectorAll('#ckDelSeg button').forEach(x=>x.classList.toggle('on',x===b));
+ $('ckAddrWrap').style.display=ckDel==='pickup'?'none':'block';
+ $('ckDelNote').textContent=ckDel==='pickup'?t('ck_pickupnote'):t('ck_shipnote');
+ openCk();
+});
+function setPay(p){ckPay=p;
+ $('payVipps').className='pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all '+(p==='vipps'?'border-[#FF5B24] bg-[#FF5B24]/15':'border-[#C9A96E]/25 opacity-60');
+ $('payCod').className='pay-opt border rounded-xl py-3.5 flex flex-col items-center gap-1 transition-all '+(p==='cod'?'border-[#C9A96E] bg-[#C9A96E]/15':'border-[#C9A96E]/25 opacity-60');}
+$('payVipps').onclick=()=>setPay('vipps');$('payCod').onclick=()=>setPay('cod');
+$('ckForm').onsubmit=e=>{
+ e.preventDefault();
+ const name=$('ckName'),phone=$('ckPhone'),addr=$('ckAddr');
+ let ok=true;
+ [name,phone].forEach(f=>{f.classList.toggle('err',!f.value.trim());if(!f.value.trim())ok=false;});
+ if(ckDel==='ship'){addr.classList.toggle('err',!addr.value.trim());if(!addr.value.trim())ok=false;}
+ if(!ok){$('ckErr').textContent=t('err_fill');$('ckErr').classList.remove('hidden');return;}
+ $('ckErr').classList.add('hidden');
+ $('ckSubmit').textContent='⏳ …';
+ setTimeout(()=>{
+  $('ckForm').classList.add('hidden');$('ckSuccess').classList.remove('hidden');
+  $('okNum').textContent='ARX-'+Math.floor(10000+Math.random()*89999);
+  $('okNote').innerHTML=(ckDel==='pickup'?t('ok_pickup'):t('ok_del'))+'<br>'+(ckPay==='vipps'?t('ok_vipps'):t('ok_cod'));
+  $('ckSubmit').textContent=t('ck_place');
+  confetti(innerWidth/2,innerHeight/2,26);
+ },900);
+};
+function finishOrder(){cart={};saveCart();updateBadge();renderCart();toggleCk(false);}
+
+/* ═══════════════════════ FX: SMOKE & PARTICLES CANVAS ═══════════════════════ */
+const smokeCv=$('smoke'),sctx=smokeCv.getContext('2d');
+const sparkCv=$('sparks'),pctx=sparkCv.getContext('2d');
+let W,H,DPR,smoke=[],confettiP=[];
+let mx=0,my=0,tmx=0,tmy=0;
+function sizeCanvas(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+ [smokeCv,sparkCv].forEach(c=>{c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';});
+ sctx.setTransform(DPR,0,0,DPR,0,0);pctx.setTransform(DPR,0,0,DPR,0,0);}
+addEventListener('resize',sizeCanvas);sizeCanvas();
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function makeSmoke(init){return{x:Math.random()*W,y:init?Math.random()*H:H+40,r:30+Math.random()*90,vy:.12+Math.random()*.28,vx:(Math.random()-.5)*.18,a:.028+Math.random()*.05,ph:Math.random()*6.28,layer:Math.random()<.5?0:1};}
+for(let i=0;i<(reduceMotion?0:46);i++)smoke.push(makeSmoke(true));
+addEventListener('pointermove',e=>{tmx=(e.clientX/W-.5);tmy=(e.clientY/H-.5);},{passive:true});
+function drawSmoke(t){
+ sctx.clearRect(0,0,W,H);
+ mx+=(tmx-mx)*.04;my+=(tmy-my)*.04;
+ for(const p of smoke){
+  p.y-=p.vy;p.x+=p.vx+Math.sin(t*.0004+p.ph)*.12;
+  if(p.y<-p.r*2){Object.assign(p,makeSmoke(false));}
+  const px=p.x+mx*(p.layer?26:12),py=p.y+my*(p.layer?16:8);
+  const g=sctx.createRadialGradient(px,py,0,px,py,p.r);
+  g.addColorStop(0,`rgba(201,169,110,${p.a})`);
+  g.addColorStop(.55,`rgba(160,120,70,${p.a*.4})`);
+  g.addColorStop(1,'rgba(160,120,70,0)');
+  sctx.fillStyle=g;sctx.beginPath();sctx.arc(px,py,p.r,0,6.28);sctx.fill();
+ }
+}
+function confetti(x,y,n=14){
+ const cols=['#EFD9A7','#C9A96E','#8A6F3E','#2E8B6A','#fff3d6'];
+ for(let i=0;i<n;i++){const a=Math.random()*6.28,s=2+Math.random()*4.5;
+  confettiP.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-2.5,r:2+Math.random()*3.2,rot:Math.random()*6.28,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],l:1,shape:Math.random()<.4?0:1});}
+}
+function sparkleAt(x,y,n=10){
+ for(let i=0;i<n;i++){const a=Math.random()*6.28,s=.5+Math.random()*2;
+  confettiP.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-1,r:1+Math.random()*2.2,rot:0,vr:.2,c:'#EFD9A7',l:1,shape:2});}
+}
+function drawParticles(){
+ pctx.clearRect(0,0,W,H);
+ for(let i=confettiP.length-1;i>=0;i--){const p=confettiP[i];
+  p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.vx*=.985;p.rot+=p.vr;p.l-=.016;
+  if(p.l<=0||p.y>H+20){confettiP.splice(i,1);continue;}
+  pctx.save();pctx.translate(p.x,p.y);pctx.rotate(p.rot);pctx.globalAlpha=Math.max(p.l,0);
+  pctx.fillStyle=p.c;
+  if(p.shape===2){pctx.beginPath();for(let k=0;k<4;k++){pctx.lineTo(0,-p.r*2);pctx.rotate(Math.PI/2);pctx.lineTo(p.r*.6,-p.r*.6);}pctx.fill();}
+  else if(p.shape===1){pctx.beginPath();pctx.arc(0,0,p.r*.55,0,6.28);pctx.fill();}
+  else pctx.fillRect(-p.r/2,-p.r,p.r,p.r*2);
+  pctx.restore();}
+ pctx.globalAlpha=1;
+}
+function loop(t){
+ if(!reduceMotion)drawSmoke(t);
+ drawParticles();
+ requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+/* ═══════════════════════ GSAP ═══════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+function refreshReveals(){
+ ScrollTrigger.getAll().forEach(s=>s.kill());
+ document.querySelectorAll('[data-reveal]').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:1,ease:'power3.out',
+   scrollTrigger:{trigger:el,start:'top 88%',once:true}});});
+}
+// hero stagger
+gsap.timeline({delay:1.9})
+ .fromTo('[data-hero]',{opacity:0,y:44},{opacity:1,y:0,duration:1.05,stagger:.13,ease:'power3.out'});
+// header state
+addEventListener('scroll',()=>{
+ const h=$('header'),sc=scrollY>40;
+ h.style.background=sc?'rgba(13,10,8,.82)':'linear-gradient(180deg,rgba(13,10,8,.85),transparent)';
+ h.style.backdropFilter=sc?'blur(16px)':'none';
+ h.style.borderBottom=sc?'1px solid rgba(201,169,110,.14)':'none';
+ document.querySelectorAll('[data-mnav]').forEach(a=>{
+  const sec=$(a.dataset.mnav);if(!sec)return;
+  const r=sec.getBoundingClientRect();
+  a.classList.toggle('on',r.top<innerHeight*.5&&r.bottom>innerHeight*.4);
+ });
+},{passive:true});
+// parallax glows
+if(!reduceMotion){
+ gsap.to('.g1',{y:120,scrollTrigger:{trigger:'body',start:'top top',end:'bottom bottom',scrub:1.5}});
+ gsap.to('.g2',{y:-140,scrollTrigger:{trigger:'body',start:'top top',end:'bottom bottom',scrub:1.5}});
+ gsap.to('#home .arch',{y:40,scrollTrigger:{trigger:'#home',start:'top top',end:'bottom top',scrub:1}});
+}
+// magnetic buttons
+document.querySelectorAll('.magnet').forEach(btn=>{
+ btn.addEventListener('pointermove',e=>{
+  const r=btn.getBoundingClientRect();
+  gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.22,y:(e.clientY-r.top-r.height/2)*.22,duration:.4,ease:'power2.out'});});
+ btn.addEventListener('pointerleave',()=>gsap.to(btn,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}));
+});
+// sheet drag-to-close
+function makeDraggable(sheet,onClose){
+ let startY=0,dy=0,drag=false;
+ const grab=sheet.querySelector('.grab');if(!grab)return;
+ grab.addEventListener('pointerdown',e=>{drag=true;startY=e.clientY;sheet.style.transition='none';grab.setPointerCapture(e.pointerId);});
+ grab.addEventListener('pointermove',e=>{if(!drag)return;dy=Math.max(0,e.clientY-startY);
+  sheet.style.setProperty('transform',`translate${innerWidth>=768?'(-50%,':'Y('}${dy}px)${innerWidth>=768?'':')'}`);});
+ grab.addEventListener('pointerup',()=>{drag=false;sheet.style.transition='';sheet.style.transform='';if(dy>110)onClose();dy=0;});
+}
+makeDraggable($('cartSheet'),()=>toggleCart(false));
+makeDraggable($('ckSheet'),()=>toggleCk(false));
+// close on Escape
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();toggleCart(false);toggleCk(false);}});
+// smooth anchor
+function goTo(id){$(id)?.scrollIntoView({behavior:'smooth'});}
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+ const el=$(a.getAttribute('href').slice(1));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}}));
+
+/* ═══════════════════════ INIT ═══════════════════════ */
+$('heroBottle').innerHTML=bottleSVG(PRODUCTS[0],240);
+$('okBottle').innerHTML=bottleSVG(PRODUCTS[0],110);
+applyLang();
+updateBadge();
+// loader
+const tl=gsap.timeline();
+tl.to('#ldBar',{width:'100%',duration:1.4,ease:'power1.inOut'})
+  .to('#ldLogo',{scale:1.2,duration:.3,yoyo:true,repeat:1,ease:'power1.inOut'},'-=.4')
+  .to('#loader',{autoAlpha:0,duration:.7,ease:'power2.inOut',onComplete:()=>$('loader').remove()});
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Svartfjord N°1 Black Oud Extrait","brand":{"@type":"Brand","name":"Svartfjord"},"offers":{"@type":"AggregateOffer","priceCurrency":"NOK","lowPrice":1490,"highPrice":3690,"availability":"https://schema.org/InStock","areaServed":"NO"}}</script>
 </body>
 </html>
