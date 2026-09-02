@@ -168,10 +168,14 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
       <a href="#historie" class="nav-link" data-i18n="nav_story">Historien</a>
       <a href="#butikk" class="nav-link" data-i18n="nav_store">Butikk</a>
     </nav>
-    <div class="flex items-center gap-2.5">
-      <button id="langBtn" class="flex items-center gap-1.5 border border-[#C9A96E]/40 rounded-full px-3.5 py-1.5 text-xs hover:border-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all" aria-label="Bytt språk">
-        <span id="langFlag">🇵🇰</span><span id="langLbl" class="font-urdu leading-none" style="font-family:'Noto Nastaliq Urdu'">اردو</span>
-      </button>
+    <div class="flex items-center gap-3">
+      <!-- 3-Way Language Selector: NO / EN / UR -->
+      <div class="flex items-center bg-[#151009] border border-[#C9A96E]/30 rounded-full p-0.5 text-xs shadow-inner">
+        <button onclick="setLang('no')" id="btnLangNo" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="Norsk">🇳🇴 NO</button>
+        <button onclick="setLang('en')" id="btnLangEn" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white" aria-label="English">🇬🇧 EN</button>
+        <button onclick="setLang('ur')" id="btnLangUr" class="px-2.5 py-1 rounded-full font-medium transition-all text-[#C9A96E] hover:text-white font-urdu" style="font-family:'Noto Nastaliq Urdu'" aria-label="اردو">🇵🇰 اردو</button>
+      </div>
+
       <button id="cartBtn" class="relative p-2 hover:scale-110 transition-transform" aria-label="Handlevogn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M6 7h12l1.2 12.2a1.5 1.5 0 0 1-1.5 1.8H6.3a1.5 1.5 0 0 1-1.5-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
         <span id="cartBadge" class="absolute -top-0.5 -end-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[#C9A96E] text-[#1a1206] text-[10px] font-bold flex items-center justify-center hidden">0</span>
@@ -411,7 +415,7 @@ html:not(.urdu) .flip-ltr{transform:scaleX(-1)}
   <div class="border-t border-[#C9A96E]/10 py-6 text-center text-xs text-[#6f6350] flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-7xl mx-auto">
     <p>© 2026 Aromatix · <span data-i18n="ft_made">Laget med safran og kjærlighet i Oslo</span> · <span data-i18n="ft_demo">Demo</span></p>
     <div class="font-mono text-[#C9A96E] bg-white/[.04] px-3 py-1 rounded-full border border-[#C9A96E]/20 text-[11px]">
-      v2.0.0 (updated 2026-09-02 15:44)
+      v2.0.1 (updated 2026-09-02 17:58)
     </div>
   </div>
 </footer>
@@ -619,6 +623,37 @@ no:{
  ticker:["Ren Dehn al Oud","Cambodisk oud","Taifi-rose","Hvit musk","Håndskåret sandeltre","Vipps & kontant","Fri levering over 1 000 kr","Tøyengata 3 · Oslo"],
  inc:"Intensitet ",long_h:" t"
 },
+en:{
+ nav_shop:"Oud",nav_gifts:"Gift Sets",nav_story:"Our Story",nav_store:"Boutique",
+ loading:"Awakening the scents…",
+ hero_kicker:"Est. Grønland · Oslo",hero_sub:"Rare Oud from the Heart of the East — Oslo",
+ hero_desc:"Hand-selected oils from the deep forests of Cambodia and ancient distilleries of India. Aged for twelve years, bottled by hand — now in the heart of Grønland.",
+ hero_cta1:"Explore the Ouds",hero_cta2:"Visit us at Tøyengata 3",hero_m1:"Free delivery over 1,000 NOK",hero_m2:"Vipps & Cash on Delivery",
+ hero_feat_name:"DEHN AL OUD MALAKI",hero_feat_sub:"RESERVE EDITION · 12 YEARS",
+ col_kicker:"The Oud Collection",col_title:"The Oud Collection",col_sub:"From light, ethereal drops to deep, dark resins — each bottle is distilled by hand.",col_sub2:" signature scents",
+ f_all:"All",f_soft:"Gentle",f_deep:"Deep",f_floral:"Floral",
+ story_kicker:"Our Story",story_title:"From Eastern Forests to Tøyengata",
+ story_h1:"The Forest that Bleeds Gold",story_p1:"Authentic oud is born of patience: when the Aquilaria tree is wounded, it defends itself with a dark, fragrant resin. After decades in the jungles of Cambodia and Assam, this resin becomes the world's most precious raw material — drop by drop.",
+ story_h2:"The Fire and the Steam",story_p2:"Each oil is distilled in copper stills for up to forty days, exactly as it has been done for generations. No shortcuts, no synthetics — just wood, water, fire, and time. The result is an oil that evolves on the skin for over twelve hours.",
+ story_h3:"The Gathering Place in Oslo",story_p3:"Find us at Tøyengata 3, inside Matbørsen Pakistani Market — two minutes from Grønland metro station. Step inside, experience the scents, test a drop on your wrist, and enjoy a cup of chai with us. No transaction without trust.",
+ story_imgcap:"Agarwood — Liquid Gold",story_s1:" Years of Cask Aging",story_s2:" Pure Oil, Zero Alcohol",
+ gift_kicker:"Give a Blessed Gift",gift_title:"Islamic Gift Sets",gift_sub:"For Eid, weddings, blessings, or simply because. Each set is wrapped by hand in the boutique — with fragrance, care, and a handwritten card.",
+ gift_cta:"View Contents",gift_pop:"Most Popular",
+ m_pyr:"Fragrance Pyramid",m_top:"Top",m_heart:"Heart",m_base:"Base",m_int:"Intensity",m_long:"Longevity",m_rev:"Reviews",m_add:"Add to Cart",
+ store_kicker:"Find Us",store_title:"The Boutique",store_intro:"You'll find Aromatix inside Matbørsen — the Pakistani market in Grønland, two minutes from the metro. Follow the scent.",
+ store_addrsub:"Inside Matbørsen Pakistani Grocery · near Grønland metro",store_hours:"Opening Hours",store_wa:"quick replies",store_mapbtn:"Open in Google Maps",store_call:"Call us",store_open:"Open Today",
+ d_monsat:"Mon – Sat",d_sun:"Sunday",d_closed:"Closed",
+ rev_kicker:"From Our Guests",rev_title:"Words from the Heart",rev_note:"— read more in the store guestbook",
+ cart_title:"YOUR CART",cart_empty:"Your cart is awaiting its first drop…",cart_sub:"Subtotal",cart_del:"Delivery",cart_tot:"Total",cart_free:"Free Delivery!",cart_need:"{n} kr away from free delivery",cart_pickup:"Store Pickup — Free",cart_go:"Proceed to Checkout",cart_add:"Added to Cart ✓",
+ ck_title:"CHECKOUT",ck_delivery:"Delivery Method",ck_ship:"Delivery",ck_pickup:"Store Pickup",ck_shipnote:"Same-day delivery in Oslo (1–3 hours)",ck_pickupnote:"Tøyengata 3, inside Matbørsen — ready today",ck_name:"Full Name",ck_phone:"Phone Number",ck_addr:"Delivery Address",ck_pay:"Payment Method",ck_place:"Complete Order",
+ pay_vipps:"Pay with Vipps",pay_cod:"Cash on Delivery",cod_short:"Cash on Delivery",
+ err_fill:"Please fill in all fields",
+ ok_title:"Thank you for your order!",ok_sub:"We will contact you by phone within one hour to confirm.",ok_order:"Order Number",ok_close:"Continue Shopping",ok_pickup:"Show this order number at checkout when picking up.",ok_del:"Our courier will call upon arrival.",ok_vipps:"Vipps request sent to your phone (demo).",ok_cod:"Pay with cash or card upon delivery.",
+ ft_tag:"Rare oud and Islamic gifts, handpicked from the East and packaged with love in Grønland, Oslo.",ft_urdu:"خوشبو — دل کی زبان ہے",ft_links:"Quick Links",ft_contact:"Contact",ft_hours:"Mon–Sat 10–21 · Sun 12–20",ft_made:"Crafted with saffron and love in Oslo",ft_demo:"Demo",
+ mnav_home:"Home",mnav_shop:"Shop",mnav_gifts:"Gifts",mnav_store:"Find Us",
+ ticker:["Pure Dehn al Oud","Cambodian Oud","Taif Rose","White Musk","Handcarved Sandalwood","Vipps & Cash","Free Delivery over 1,000 NOK","Tøyengata 3 · Oslo"],
+ inc:"Intensity ",long_h:" hrs"
+},
 ur:{
  nav_shop:"عود",nav_gifts:"تحفے",nav_story:"کہانی",nav_store:"دکان",
  loading:"خوشبیدار ہو رہی ہے…",
@@ -653,76 +688,76 @@ ur:{
 
 /* ═══════════════════════ DATA ═══════════════════════ */
 const PRODUCTS=[
-{id:"o1",cat:"oud",tier:"signature",tag:{no:"Reservert",ur:"مخصوص"},price:649,rating:4.9,revCount:41,intensity:9,longevity:12,
+{id:"o1",cat:"oud",tier:"signature",tag:{no:"Reservert",en:"Reserve",ur:"مخصوص"},price:649,rating:4.9,revCount:41,intensity:9,longevity:12,
  hue:"#7A3B12",hi:"#B0622B",shape:"dome",
- name:{no:"Dehn al Oud Malaki",ur:"دہن العود ملکی"},
- origin:{no:"Destillert i Assam, India",ur:"آسام، ہندوستان میں کشید"},
- desc:{no:"Mørk, harpiksaktig oud med lær og safran — kongenes olje.",ur:"چمڑے اور زعفران کے ساتھ گہرا رال جیسا عود — بادشاہوں کا تیل۔"},
- story:{no:"Tolv år i fat. Én dråpe varer fra morgenbønn til natt. Dette er oljen sjeiker spør etter ved navn.",ur:"بارہ سال پرانی کشید۔ ایک بوند صبح کی نماز سے رات تک۔ یہ وہ تیل ہے جسے سردار نام سے مانگتے ہیں۔"},
- notes:{top:{no:"Safran · Bergamott",ur:"زعفران · بیلاموت"},heart:{no:"Mørk oud · Lær",ur:"گہرا عود · چمڑا"},base:{no:"Amber · Moskus",ur:"عنبر · مشک"}},
- revs:[{n:"Yousef A.",r:5,t:{no:"Varte i 14 timer. Helt utrolig kvalitet.",ur:"چودہ گھنٹے رہی۔ زبردست معیار۔"}},{n:"Fatima R.",r:5,t:{no:"Den ekte varen — ingenting ligner.",ur:"اصل چیز — کوئی مقابلہ نہیں۔"}}]},
-{id:"o2",cat:"oud",tier:"classic",tag:{no:"Bestselger",ur:"بیست سیلر"},price:449,rating:4.8,revCount:63,intensity:7,longevity:9,
+ name:{no:"Dehn al Oud Malaki",en:"Dehn al Oud Malaki",ur:"دہن العود ملکی"},
+ origin:{no:"Destillert i Assam, India",en:"Distilled in Assam, India",ur:"آسام، ہندوستان میں کشید"},
+ desc:{no:"Mørk, harpiksaktig oud med lær og safran — kongenes olje.",en:"Dark, resinous oud with leather and saffron — the oil of kings.",ur:"چمڑے اور زعفران کے ساتھ گہرا رال جیسا عود — بادشاہوں کا تیل۔"},
+ story:{no:"Tolv år i fat. Én dråpe varer fra morgenbønn til natt. Dette er oljen sjeiker spør etter ved navn.",en:"Twelve years in casks. One drop lasts from dawn prayer until nightfall. The oil sheikhs request by name.",ur:"بارہ سال پرانی کشید۔ ایک بوند صبح کی نماز سے رات تک۔ یہ وہ تیل ہے جسے سردار نام سے مانگتے ہیں۔"},
+ notes:{top:{no:"Safran · Bergamott",en:"Saffron · Bergamot",ur:"زعفران · بیلاموت"},heart:{no:"Mørk oud · Lær",en:"Dark Oud · Leather",ur:"گہرا عود · چمڑا"},base:{no:"Amber · Moskus",en:"Amber · Musk",ur:"عنبر · مشک"}},
+ revs:[{n:"Yousef A.",r:5,t:{no:"Varte i 14 timer. Helt utrolig kvalitet.",en:"Lasted 14 hours. Truly incredible quality.",ur:"چودہ گھنٹے رہی۔ زبردست معیار۔"}},{n:"Fatima R.",r:5,t:{no:"Den ekte varen — ingenting ligner.",en:"The genuine article — nothing else compares.",ur:"اصل چیز — کوئی مقابلہ نہیں۔"}}]},
+{id:"o2",cat:"oud",tier:"classic",tag:{no:"Bestselger",en:"Bestseller",ur:"بیست سیلر"},price:449,rating:4.8,revCount:63,intensity:7,longevity:9,
  hue:"#8B5E1E",hi:"#C79A3F",shape:"round",
- name:{no:"Cambodi Classic",ur:"کمبوڈی کلاسیک"},
- origin:{no:"Pursat-provinsen, Cambodia",ur:"پورسات، کمبوڈیا"},
- desc:{no:"Varm, søt og rund — honning, mørk sjokolade og soltørket tre.",ur:"گرم، میٹھا اور ملائم — شہد، سیاہ چاکلیٹ اور دھوپ میں سکھی لکڑی۔"},
- story:{no:"Fra eldgamle jungler i Pursat. Myk nok for hverdagen, dyp nok for kvelden.",ur:"پورسات کے قدیم جنگلوں سے۔ روزمرہ کے لیے نرم، رات کے لیے گہرا۔"},
- notes:{top:{no:"Honning · Tørket frukt",ur:"شہد · خشک میوے"},heart:{no:"Kambodsjansk oud",ur:"کمبوڈین عود"},base:{no:"Sjokolade · Vanilje",ur:"چاکلیٹ · ونیلا"}},
- revs:[{n:"Aisha K.",r:5,t:{no:"Min tredje flaske. Blir aldri lei.",ur:"میری تیسری بوتل۔ کبھی بور نہیں ہوتی۔"}},{n:"Magnus L.",r:4.5,t:{no:"Kjøpte til far — han elsker den.",ur:"ابو کے لیے لی — وہ بہت پسند کرتے ہیں۔"}}]},
-{id:"o3",cat:"oud",tier:"floral",tag:{no:"Rose",ur:"گلاب"},price:529,rating:4.7,revCount:38,intensity:6,longevity:8,
+ name:{no:"Cambodi Classic",en:"Cambodi Classic",ur:"کمبوڈی کلاسیک"},
+ origin:{no:"Pursat-provinsen, Cambodia",en:"Pursat Province, Cambodia",ur:"پورسات، کمبوڈیا"},
+ desc:{no:"Varm, søt og rund — honning, mørk sjokolade og soltørket tre.",en:"Warm, sweet, and rounded — honey, dark chocolate, and sun-dried wood.",ur:"گرم، میٹھا اور ملائم — شہد، سیاہ چاکلیٹ اور دھوپ میں سکھی لکڑی۔"},
+ story:{no:"Fra eldgamle jungler i Pursat. Myk nok for hverdagen, dyp nok for kvelden.",en:"From ancient jungles in Pursat. Soft enough for daily wear, deep enough for the evening.",ur:"پورسات کے قدیم جنگلوں سے۔ روزمرہ کے لیے نرم، رات کے لیے گہرا۔"},
+ notes:{top:{no:"Honning · Tørket frukt",en:"Honey · Dried Fruit",ur:"شہد · خشک میوے"},heart:{no:"Kambodsjansk oud",en:"Cambodian Oud",ur:"کمبوڈین عود"},base:{no:"Sjokolade · Vanilje",en:"Chocolate · Vanilla",ur:"چاکلیٹ · ونیلا"}},
+ revs:[{n:"Aisha K.",r:5,t:{no:"Min tredje flaske. Blir aldri lei.",en:"My third bottle. Never get tired of it.",ur:"میری تیسری بوتل۔ کبھی بور نہیں ہوتی۔"}},{n:"Magnus L.",r:4.5,t:{no:"Kjøpte til far — han elsker den.",en:"Bought it for my dad — he absolutely loves it.",ur:"ابو کے لیے لی — وہ بہت پسند کرتے ہیں۔"}}]},
+{id:"o3",cat:"oud",tier:"floral",tag:{no:"Rose",en:"Rose",ur:"گلاب"},price:529,rating:4.7,revCount:38,intensity:6,longevity:8,
  hue:"#7E2740",hi:"#B4506E",shape:"tall",
- name:{no:"Mukhallat Taifi",ur:"مخلت طائفی"},
- origin:{no:"Taif-roser, Hijaz",ur:"گلابِ طائف، حجاز"},
- desc:{no:"Taif-rose over hvit oud og rav — romantikk på flaske.",ur:"سفید عود اور عنبر پر گلابِ طائف — بوتل میں رومانس۔"},
- story:{no:"Ti tusen roser gir én liten flaske. En hilsen fra Profetens ﷺ dal.",ur:"دس ہزار گلاب سے ایک چھوٹی بوتل۔ وادیِ طائف کا سلام۔"},
- notes:{top:{no:"Taifi-rose",ur:"گلابِ طائف"},heart:{no:"Hvit oud · Amber",ur:"سفید عود · عنبر"},base:{no:"Musk · Sandeltre",ur:"مشک · صندل"}},
- revs:[{n:"Noor S.",r:5,t:{no:"Rosen er helt ekte og levende.",ur:"گلاب بالکل اصلی اور تازہ ہے۔"}},{n:"Ibrahim H.",r:4.5,t:{no:"Perfekt bryllupsgave.",ur:"شادی کے لیے بہترین تحفہ۔"}}]},
-{id:"o4",cat:"oud",tier:"soft",tag:{no:"Ren",ur:"پاکیزہ"},price:399,rating:4.8,revCount:57,intensity:4,longevity:7,
+ name:{no:"Mukhallat Taifi",en:"Mukhallat Taifi",ur:"مخلت طائفی"},
+ origin:{no:"Taif-roser, Hijaz",en:"Taif Roses, Hijaz",ur:"گلابِ طائف، حجاز"},
+ desc:{no:"Taif-rose over hvit oud og rav — romantikk på flaske.",en:"Taif rose layered over white oud and amber — romance in a bottle.",ur:"سفید عود اور عنبر پر گلابِ طائف — بوتل میں رومانس۔"},
+ story:{no:"Ti tusen roser gir én liten flaske. En hilsen fra Profetens ﷺ dal.",en:"Ten thousand roses yield a single flacon. A greeting from the valley of the Prophet ﷺ.",ur:"دس ہزار گلاب سے ایک چھوٹی بوتل۔ وادیِ طائف کا سلام۔"},
+ notes:{top:{no:"Taifi-rose",en:"Taif Rose",ur:"گلابِ طائف"},heart:{no:"Hvit oud · Amber",en:"White Oud · Amber",ur:"سفید عود · عنبر"},base:{no:"Musk · Sandeltre",en:"Musk · Sandalwood",ur:"مشک · صندل"}},
+ revs:[{n:"Noor S.",r:5,t:{no:"Rosen er helt ekte og levende.",en:"The rose feels so authentic and alive.",ur:"گلاب بالکل اصلی اور تازہ ہے۔"}},{n:"Ibrahim H.",r:4.5,t:{no:"Perfekt bryllupsgave.",en:"The perfect wedding gift.",ur:"شادی کے لیے بہترین تحفہ۔"}}]},
+{id:"o4",cat:"oud",tier:"soft",tag:{no:"Ren",en:"Pristine",ur:"پاکیزہ"},price:399,rating:4.8,revCount:57,intensity:4,longevity:7,
  hue:"#C8B98E",hi:"#EFDFAF",shape:"round",
- name:{no:"Safwan White Musk",ur:"صفواں سفید مشک"},
- origin:{no:"Hvit musk, Hijaz-stil",ur:"سفید مشک، حجازی طرز"},
- desc:{no:"Ren, såpelignende musk med hvite blomster — stillheten selv.",ur:"صابن جیسی پاکیزہ مشک اور سفید پھول — سکوت کی تصویر۔"},
- story:{no:"Duften av nyvasket klede og fredag morgen. Diskré, ren, uforglemmelig.",ur:"نہانے کے بعد کپڑوں اور جمعہ کی صبح کی خوشبو۔"},
- notes:{top:{no:"Aldehyder · Bomull",ur:"الڈیہائیڈ · روئی"},heart:{no:"Hvit musk · Jasmin",ur:"سفید مشک · چمیلی"},base:{no:"Ambergris · Sedertre",ur:"عنبر · دیودار"}},
- revs:[{n:"Sara M.",r:5,t:{no:"Elegant og diskré. Alle spør hva jeg bruker.",ur:"نفاست اور نرمی۔ سب پوچھتے ہیں کیا لگایا ہے۔"}},{n:"Ali R.",r:4.5,t:{no:"Perfekt for kontoret.",ur:"دفتر کے لیے بہترین۔"}}]},
-{id:"o5",cat:"oud",tier:"deep",tag:{no:"Røkelse",ur:"اگر بتی"},price:479,rating:4.6,revCount:29,intensity:8,longevity:11,
+ name:{no:"Safwan White Musk",en:"Safwan White Musk",ur:"صفواں سفید مشک"},
+ origin:{no:"Hvit musk, Hijaz-stil",en:"White Musk, Hijaz-Style",ur:"سفید مشک، حجازی طرز"},
+ desc:{no:"Ren, såpelignende musk med hvite blomster — stillheten selv.",en:"Clean, soap-soft musk with delicate white florals — pure serenity.",ur:"صابن جیسی پاکیزہ مشک اور سفید پھول — سکوت کی تصویر۔"},
+ story:{no:"Duften av nyvasket klede og fredag morgen. Diskré, ren, uforglemmelig.",en:"The scent of fresh linen and Friday morning. Subtle, pristine, unforgettable.",ur:"نہانے کے بعد کپڑوں اور جمعہ کی صبح کی خوشبو۔"},
+ notes:{top:{no:"Aldehyder · Bomull",en:"Aldehydes · Cotton",ur:"الڈیہائیڈ · روئی"},heart:{no:"Hvit musk · Jasmin",en:"White Musk · Jasmine",ur:"سفید مشک · چمیلی"},base:{no:"Ambergris · Sedertre",en:"Ambergris · Cedarwood",ur:"عنبر · دیودار"}},
+ revs:[{n:"Sara M.",r:5,t:{no:"Elegant og diskré. Alle spør hva jeg bruker.",en:"Elegant and discreet. Everyone asks what I'm wearing.",ur:"نفاست اور نرمی۔ سب پوچھتے ہیں کیا لگایا ہے۔"}},{n:"Ali R.",r:4.5,t:{no:"Perfekt for kontoret.",en:"Perfect for office wear.",ur:"دفتر کے لیے بہترین۔"}}]},
+{id:"o5",cat:"oud",tier:"deep",tag:{no:"Røkelse",en:"Incense",ur:"اگر بتی"},price:479,rating:4.6,revCount:29,intensity:8,longevity:11,
  hue:"#5A3418",hi:"#8A5B2B",shape:"dome",
- name:{no:"Amber Hind",ur:"عنبرِ ہند"},
- origin:{no:"Rajasthan, India",ur:"راجستھان، ہندوستان"},
- desc:{no:"Røkelse, amber og krydder — en varm natt i Delhi.",ur:"اگر بتی، عنبر اور مصالھے — دہلی کی گرم رات۔"},
- story:{no:"Fra basarene i gamlebyen. Røkelsens røyk, rugenes varme, kardemommens puls.",ur:"پرانی دہلی کے بازاروں سے۔ دھوئیں کی گرمجوشی اور الائچی کی دھڑکن۔"},
- notes:{top:{no:"Kardemomme · Nellik",ur:"الائچی · لونگ"},heart:{no:"Røkelse · Rav",ur:"اگر بتی · عنبر"},base:{no:"Oud · Labdanum",ur:"عود · لبدان"}},
- revs:[{n:"Karim B.",r:4.5,t:{no:"Varm og mystisk. Vinterens duft.",ur:"گرم اور پراسرار۔ سردیوں کی خوشبو۔"}},{n:"Emil T.",r:4.5,t:{no:"Dyp og unik.",ur:"گہری اور منفرد۔"}}]},
-{id:"o6",cat:"oud",tier:"modern",tag:{no:"Ny",ur:"نیا"},price:549,rating:4.9,revCount:22,intensity:7,longevity:10,
+ name:{no:"Amber Hind",en:"Amber Hind",ur:"عنبرِ ہند"},
+ origin:{no:"Rajasthan, India",en:"Rajasthan, India",ur:"راجستھان، ہندوستان"},
+ desc:{no:"Røkelse, amber og krydder — en varm natt i Delhi.",en:"Incense, amber, and rare spices — a warm evening in Delhi.",ur:"اگر بتی، عنبر اور مصالھے — دہلی کی گرم رات۔"},
+ story:{no:"Fra basarene i gamlebyen. Røkelsens røyk, rugenes varme, kardemommens puls.",en:"From the bazaars of the old city. The warmth of incense, golden amber, and cardamom's pulse.",ur:"پرانی دہلی کے بازاروں سے۔ دھوئیں کی گرمجوشی اور الائچی کی دھڑکن۔"},
+ notes:{top:{no:"Kardemomme · Nellik",en:"Cardamom · Clove",ur:"الائچی · لونگ"},heart:{no:"Røkelse · Rav",en:"Incense · Amber",ur:"اگر بتی · عنبر"},base:{no:"Oud · Labdanum",en:"Oud · Labdanum",ur:"عود · لبدان"}},
+ revs:[{n:"Karim B.",r:4.5,t:{no:"Varm og mystisk. Vinterens duft.",en:"Warm and mysterious. The scent of winter.",ur:"گرم اور پراسرار۔ سردیوں کی خوشبو۔"}},{n:"Emil T.",r:4.5,t:{no:"Dyp og unik.",en:"Deep, rich and unique.",ur:"گہری اور منفرد۔"}}]},
+{id:"o6",cat:"oud",tier:"modern",tag:{no:"Ny",en:"New",ur:"نیا"},price:549,rating:4.9,revCount:22,intensity:7,longevity:10,
  hue:"#4A2A14",hi:"#7E4E22",shape:"tall",
- name:{no:"Layali Oud",ur:"لیالی عود"},
- origin:{no:"Oslo-blanding, husets egen",ur:"اوسلو کا اپنا امتزاج"},
- desc:{no:"Oud møter mørk rose og safran — husets nattsignatur.",ur:"عود، گہرا گلاب اور زعفران — رات کی خصوصی خوشبو۔"},
- story:{no:"Skapt i butikken vår på Grønland, etter ønske fra kundene. Mørk, fløyelsmyk, forførende.",ur:"گاہکوں کی فرمائش پر گرونلینڈ میں تیار کی گئی۔"},
- notes:{top:{no:"Safran · Rosa pepper",ur:"زعفران · گلابی مرچ"},heart:{no:"Oud · Mørk rose",ur:"عود · گہرا گلاب"},base:{no:"Tonka · Moskus",ur:"تونکا · مشک"}},
- revs:[{n:"Zainab W.",r:5,t:{no:"Nydelig. Folk snur seg på gata.",ur:"لافانی خوشبو۔ لوگ سڑک پر مڑ کر دیکھتے ہیں۔"}},{n:"Jonas P.",r:5,t:{no:"Husets beste, uten tvil.",ur:"بے شک گھر کی بہترین۔"}}]}];
+ name:{no:"Layali Oud",en:"Layali Oud",ur:"لیالی عود"},
+ origin:{no:"Oslo-blanding, husets egen",en:"Oslo Blend, House Signature",ur:"اوسلو کا اپنا امتزاج"},
+ desc:{no:"Oud møter mørk rose og safran — husets nattsignatur.",en:"Oud meets dark rose and saffron — our nocturnal house signature.",ur:"عود، گہرا گلاب اور زعفران — رات کی خصوصی خوشبو۔"},
+ story:{no:"Skapt i butikken vår på Grønland, etter ønske fra kundene. Mørk, fløyelsmyk, forførende.",en:"Crafted in our Grønland boutique upon customer request. Velvet-smooth, dark, captivating.",ur:"گاہکوں کی فرمائش پر گرونلینڈ میں تیار کی گئی۔"},
+ notes:{top:{no:"Safran · Rosa pepper",en:"Saffron · Pink Pepper",ur:"زعفران · گلابی مرچ"},heart:{no:"Oud · Mørk rose",en:"Oud · Dark Rose",ur:"عود · گہرا گلاب"},base:{no:"Tonka · Moskus",en:"Tonka · Musk",ur:"تونکا · مشک"}},
+ revs:[{n:"Zainab W.",r:5,t:{no:"Nydelig. Folk snur seg på gata.",en:"Gorgeous. People literally turn heads on the street.",ur:"لافانی خوشبو۔ لوگ سڑک پر مڑ کر دیکھتے ہیں۔"}},{n:"Jonas P.",r:5,t:{no:"Husets beste, uten tvil.",en:"Best in the house, without a doubt.",ur:"بے شک گھر کی بہترین۔"}}]}];
 
 const SETS=[
-{id:"s1",tier:"silver",price:899,tag:{no:"Sølv",ur:"سلور"},
- name:{no:"Sølvsettet",ur:"سلور سیٹ"},
- desc:{no:"Bedematte (grå), 33-korn tasbih, 3 ml svart oud, ajwa-dadler.",ur:"نماز کی چادر، ۳۳ دانوں کی تسبیح، ۳ ملی سیاہ عود، عجوہ کھجوریں۔"},
- incl:{no:["Bedematte · grå","33-korn tasbih","3 ml svart oud","Ajwa-dadler"],ur:["نماز کی چادر","۳۳ دانوں کی تسبیح","۳ ملی سیاہ عود","عجوہ کھجوریں"]}},
-{id:"s2",tier:"gold",price:1499,pop:true,tag:{no:"Gull",ur:"گولڈ"},
- name:{no:"Gullsettet",ur:"گولڈ سیٹ"},
- desc:{no:"Premium matte, Qur'an med grønt omslag, 6 ml oud, miswak & bakhoor.",ur:"اعلیٰ چادر، سبز غلاف والا قرآن، ۶ ملی عود، مسواک اور بخور۔"},
- incl:{no:["Premium bedematte","Qur'an · grønt omslag","6 ml husets oud","Miswak & bakhoor","Gaveeske med bånd"],ur:["اعلیٰ نماز چادر","سبز غلاف والا قرآن","۶ ملی عود","مسواک اور بخور","ربن والی تحفہ پیٹی"]}},
-{id:"s3",tier:"royal",price:2499,tag:{no:"Royal",ur:"شاہی"},
- name:{no:"Royal-settet",ur:"شاہی سیٹ"},
- desc:{no:"Qur'an i royal-etui, 12 ml Dehn al Oud, amber-tasbih, luksuseske.",ur:"شاہی جلد میں قرآن، ۱۲ ملی دہن العود، عنبر تسبیح، اعلیٰ پیٹی۔"},
- incl:{no:["Qur'an · royal-etui","12 ml Dehn al Oud","Tasbih i rav","Håndbrodert matte","Luxus gaveeske"],ur:["شاہی جلد والا قرآن","۱۲ ملی دہن العود","عنبر کی تسبیح","ہاتھ سے کڑھی چادر","اعلیٰ تحفہ پیٹی"]}}];
+{id:"s1",tier:"silver",price:899,tag:{no:"Sølv",en:"Silver",ur:"سلور"},
+ name:{no:"Sølvsettet",en:"Silver Medina Set",ur:"سلور سیٹ"},
+ desc:{no:"Bedematte (grå), 33-korn tasbih, 3 ml svart oud, ajwa-dadler.",en:"Prayer rug (grey), 33-bead tasbih, 3 ml black oud, Ajwa dates.",ur:"نماز کی چادر، ۳۳ دانوں کی تسبیح، ۳ ملی سیاہ عود، عجوہ کھجوریں۔"},
+ incl:{no:["Bedematte · grå","33-korn tasbih","3 ml svart oud","Ajwa-dadler"],en:["Prayer rug · grey","33-bead tasbih","3 ml black oud","Ajwa dates"],ur:["نماز کی چادر","۳۳ دانوں کی تسبیح","۳ ملی سیاہ عود","عجوہ کھجوریں"]}},
+{id:"s2",tier:"gold",price:1499,pop:true,tag:{no:"Gull",en:"Gold",ur:"گولڈ"},
+ name:{no:"Gullsettet",en:"Gold Al-Andalus Set",ur:"گولڈ سیٹ"},
+ desc:{no:"Premium matte, Qur'an med grønt omslag, 6 ml oud, miswak & bakhoor.",en:"Premium prayer rug, green velvet Qur'an, 6 ml house oud, miswak & bakhoor.",ur:"اعلیٰ چادر، سبز غلاف والا قرآن، ۶ ملی عود، مسواک اور بخور۔"},
+ incl:{no:["Premium bedematte","Qur'an · grønt omslag","6 ml husets oud","Miswak & bakhoor","Gaveeske med bånd"],en:["Premium prayer rug","Qur'an · green velvet","6 ml house oud","Miswak & bakhoor","Gift box with ribbon"],ur:["اعلیٰ نماز چادر","سبز غلاف والا قرآن","۶ ملی عود","مسواک اور بخور","ربن والی تحفہ پیٹی"]}},
+{id:"s3",tier:"royal",price:2499,tag:{no:"Royal",en:"Royal",ur:"شاہی"},
+ name:{no:"Royal-settet",en:"Royal Sultani Set",ur:"شاہی سیٹ"},
+ desc:{no:"Qur'an i royal-etui, 12 ml Dehn al Oud, amber-tasbih, luksuseske.",en:"Qur'an in royal presentation case, 12 ml Dehn al Oud, amber tasbih, luxury chest.",ur:"شاہی جلد میں قرآن، ۱۲ ملی دہن العود، عنبر تسبیح، اعلیٰ پیٹی۔"},
+ incl:{no:["Qur'an · royal-etui","12 ml Dehn al Oud","Tasbih i rav","Håndbrodert matte","Luxus gaveeske"],en:["Qur'an · royal case","12 ml Dehn al Oud","Amber tasbih","Hand-embroidered rug","Luxury presentation box"],ur:["شاہی جلد والا قرآن","۱۲ ملی دہن العود","عنبر کی تسبیح","ہاتھ سے کڑھی چادر","اعلیٰ تحفہ پیٹی"]}}];
 
 const REVIEWS=[
-{n:"Amir H.",city:"Oslo",r:5,t:{no:"Beste oud jeg har kjent i Norge. Duften sitter i over tolv timer.",ur:"ناروے کی بہترین عود۔ بارہ گھنٹے سے زیادہ رہتی ہے۔"}},
-{n:"Fatima R.",city:"Grønland",r:5,t:{no:"Kjøpte Royal-settet til bryllupet vårt — alle spurte hvor det var fra.",ur:"شادی پر شاہی سیٹ لیا — سب نے پوچھا کہاں سے لیا۔"}},
-{n:"Yousef A.",city:"Lørenskog",r:5,t:{no:"Dehn al Oud Malaki er ren magi. Ekte vare, ingen juks.",ur:"دہن العود ملکی خالص جادو ہے۔"}},
-{n:"Sara M.",city:"Oslo",r:4.5,t:{no:"Hvit musk er så elegant. Service i verdensklasse, de lar deg prøve alt.",ur:"سفید مشک بہت نفیس ہے۔ خدمت لاجواب۔"}},
-{n:"Ibrahim K.",city:"Drammen",r:5,t:{no:"Kjørte fra Drammen bare for dette. Verdt hver kilometer.",ur:"صرف اس کے لیے ڈرامن سے آیا۔ ہر کلومیٹر حلال تھا۔"}},
-{n:"Aisha B.",city:"Oslo",r:5,t:{no:"Gavesettet var nydelig pakket — til og med med håndskrevet kort.",ur:"تحفہ اتنی خوبصورتی سے پیک تھا کہ ہاتھ کا لکھا کارڈ بھی تھا۔"}}];
+{n:"Amir H.",city:"Oslo",r:5,t:{no:"Beste oud jeg har kjent i Norge. Duften sitter i over tolv timer.",en:"The best oud I have experienced in Norway. Scent lasts for over twelve hours.",ur:"ناروے کی بہترین عود۔ بارہ گھنٹے سے زیادہ رہتی ہے۔"}},
+{n:"Fatima R.",city:"Grønland",r:5,t:{no:"Kjøpte Royal-settet til bryllupet vårt — alle spurte hvor det var fra.",en:"Bought the Royal set for our wedding — everyone asked where it was from.",ur:"شادی پر شاہی سیٹ لیا — سب نے پوچھا کہاں سے لیا۔"}},
+{n:"Yousef A.",city:"Lørenskog",r:5,t:{no:"Dehn al Oud Malaki er ren magi. Ekte vare, ingen juks.",en:"Dehn al Oud Malaki is pure magic. Truly authentic, no shortcuts.",ur:"دہن العود ملکی خالص جادو ہے۔"}},
+{n:"Sara M.",city:"Oslo",r:4.5,t:{no:"Hvit musk er så elegant. Service i verdensklasse, de lar deg prøve alt.",en:"White Musk is so elegant. World-class service, they let you sample everything.",ur:"سفید مشک بہت نفیس ہے۔ خدمت لاجواب۔"}},
+{n:"Ibrahim K.",city:"Drammen",r:5,t:{no:"Kjørte fra Drammen bare for dette. Verdt hver kilometer.",en:"Drove from Drammen just for this. Worth every single kilometer.",ur:"صرف اس کے لیے ڈرامن سے آیا۔ ہر کلومیٹر حلال تھا۔"}},
+{n:"Aisha B.",city:"Oslo",r:5,t:{no:"Gavesettet var nydelig pakket — til og med med håndskrevet kort.",en:"The gift set was beautifully packaged — even included a handwritten note.",ur:"تحفہ اتنی خوبصورتی سے پیک تھا کہ ہاتھ کا لکھا کارڈ بھی تھا۔"}}];
 
 /* ═══════════════════════ STATE ═══════════════════════ */
 let lang=localStorage.getItem('arx_lang')||'no';
@@ -730,8 +765,8 @@ let cart=JSON.parse(localStorage.getItem('arx_cart')||'{}');
 let filter='all', mProduct=null, mSize='6', mQ=1;
 let ckDel='ship', ckPay='vipps';
 const $=id=>document.getElementById(id);
-const t=k=>STR[lang][k]||k;
-const money=n=>n.toLocaleString('no-NO')+' kr';
+const t=k=>(STR[lang]&&STR[lang][k])||(STR.no&&STR.no[k])||k;
+const money=n=>n.toLocaleString(lang==='en'?'en-US':'no-NO')+' kr';
 const sizeMult={'3':.6,'6':1,'12':1.85};
 const sizePrice=p=>Math.round(p*sizeMult[mSize]/5)*5;
 
@@ -784,17 +819,17 @@ function oudCard(p,i){
   <div class="relative img-zoom cursor-pointer" onclick="openModal('${p.id}')">
    <div class="aspect-[4/5] bg-gradient-to-b from-[#1e1509] via-[#120d07] to-[#171006] flex items-end justify-center relative overflow-hidden">
     <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full" style="background:radial-gradient(circle,${p.hue}55,transparent 70%)"></div>
-    <span class="absolute top-2.5 start-2.5 text-[9px] tracking-[.2em] uppercase px-2.5 py-1 rounded-full bg-[#0D0A08]/80 border border-[#C9A96E]/40 text-[#EFD9A7] z-10">${p.tag[lang]}</span>
+    <span class="absolute top-2.5 start-2.5 text-[9px] tracking-[.2em] uppercase px-2.5 py-1 rounded-full bg-[#0D0A08]/80 border border-[#C9A96E]/40 text-[#EFD9A7] z-10">${p.tag[lang]||p.tag.no}</span>
     <span class="absolute top-2.5 end-2.5 text-[10px] text-[#EFD9A7] bg-[#C9A96E]/15 border border-[#C9A96E]/30 rounded-full px-2 py-0.5 rating-pulse z-10">★ ${p.rating}</span>
     <div class="w-[68%] translate-y-3 group-hover:translate-y-0 transition-transform duration-700 drop-shadow-[0_18px_24px_rgba(0,0,0,.65)]">${bottleSVG(p)}</div>
    </div>
    <div class="absolute inset-0 bg-gradient-to-t from-[#0D0A08]/85 via-transparent opacity-90 pointer-events-none"></div>
   </div>
   <div class="p-4 sm:p-5 relative -mt-10 z-10">
-   <h3 class="font-display text-base sm:text-lg text-[#F2E8D5] leading-tight">${p.name[lang]}</h3>
-   <p class="font-serif2 italic text-[11px] sm:text-xs text-[#C9A96E] mt-0.5">${p.origin[lang]}</p>
-   <p class="text-[11px] sm:text-xs text-[#8d8065] mt-2 line-clamp-2 leading-relaxed">${p.desc[lang]}</p>
-   <div class="flex flex-wrap gap-1 mt-3">${p.notes.top[lang].split('·').slice(0,2).map(n=>`<span class="text-[9px] tracking-wider uppercase border border-[#C9A96E]/25 text-[#b8a888] rounded-full px-2 py-0.5">${n.trim()}</span>`).join('')}</div>
+   <h3 class="font-display text-base sm:text-lg text-[#F2E8D5] leading-tight">${p.name[lang]||p.name.no}</h3>
+   <p class="font-serif2 italic text-[11px] sm:text-xs text-[#C9A96E] mt-0.5">${p.origin[lang]||p.origin.no}</p>
+   <p class="text-[11px] sm:text-xs text-[#8d8065] mt-2 line-clamp-2 leading-relaxed">${p.desc[lang]||p.desc.no}</p>
+   <div class="flex flex-wrap gap-1 mt-3">${(p.notes.top[lang]||p.notes.top.no).split('·').slice(0,2).map(n=>`<span class="text-[9px] tracking-wider uppercase border border-[#C9A96E]/25 text-[#b8a888] rounded-full px-2 py-0.5">${n.trim()}</span>`).join('')}</div>
    <div class="flex items-center justify-between mt-4 pt-3 border-t border-[#C9A96E]/15">
     <div><p class="font-display text-[#EFD9A7] text-lg">${money(p.price)}</p><p class="text-[9px] text-[#7d715c] tracking-wider">6 ML · ${p.intensity}/10 ${t('inc').trim()}</p></div>
     <button class="add-btn relative w-11 h-11 rounded-full btn-gold flex items-center justify-center overflow-hidden" onclick="quickAdd(event,'${p.id}')" aria-label="Legg i kurv">
@@ -808,11 +843,11 @@ function setCard(s,i){
  const royal=s.tier==='royal';
  return `<article class="p-card rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden ${s.pop?'md:scale-[1.04] md:-my-3 md:z-10 md:border-[#C9A96E]/50':''} ${royal?'bg-gradient-to-b from-[#0f1a14]/60':''}" data-reveal style="transition-delay:${i*90}ms">
   ${s.pop?`<span class="absolute top-4 end-4 text-[9px] tracking-[.2em] uppercase px-3 py-1 rounded-full bg-[#C9A96E] text-[#1a1206] font-semibold">${t('gift_pop')}</span>`:''}
-  <span class="text-[10px] tracking-[.35em] uppercase ${royal?'text-[#7dd8b4]':'text-[#C9A96E]'}">${s.tag[lang]}</span>
-  <h3 class="font-display text-2xl text-[#F2E8D5] mt-2">${s.name[lang]}</h3>
+  <span class="text-[10px] tracking-[.35em] uppercase ${royal?'text-[#7dd8b4]':'text-[#C9A96E]'}">${s.tag[lang]||s.tag.no}</span>
+  <h3 class="font-display text-2xl text-[#F2E8D5] mt-2">${s.name[lang]||s.name.no}</h3>
   <div class="my-5 flex justify-center py-2"><div class="bob">${boxSVG(s)}</div></div>
-  <p class="text-sm text-[#a4977e] leading-relaxed">${s.desc[lang]}</p>
-  <ul class="mt-4 space-y-1.5 flex-1">${s.incl[lang].map(x=>`<li class="text-[13px] text-[#cbbfa5] flex gap-2 items-start"><span class="text-[#C9A96E] mt-0.5 text-[9px]">✦</span>${x}</li>`).join('')}</ul>
+  <p class="text-sm text-[#a4977e] leading-relaxed">${s.desc[lang]||s.desc.no}</p>
+  <ul class="mt-4 space-y-1.5 flex-1">${(s.incl[lang]||s.incl.no).map(x=>`<li class="text-[13px] text-[#cbbfa5] flex gap-2 items-start"><span class="text-[#C9A96E] mt-0.5 text-[9px]">✦</span>${x}</li>`).join('')}</ul>
   <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#C9A96E]/15">
    <p class="font-display text-xl text-[#EFD9A7]">${money(s.price)}</p>
    <button class="add-btn relative btn-ghost rounded-full px-5 py-2.5 text-xs tracking-wider uppercase overflow-hidden" onclick="quickAdd(event,'${s.id}')">${t('m_add')}<span class="ic-check absolute inset-0 hidden items-center justify-center">✓</span></button>
@@ -831,7 +866,7 @@ function setFilter(f){filter=f;renderGrids();sparkleAt(event.clientX,event.clien
 function renderCarousel(){
  const card=r=>`<div class="w-[280px] sm:w-[340px] shrink-0 p-card rounded-2xl p-6">
   <p class="text-[#C9A96E] rating-pulse text-sm tracking-wider">${stars(r.r)}</p>
-  <p class="font-serif2 italic text-[#E8D9BC] leading-relaxed mt-3 text-[15px]">“${r.t[lang]}”</p>
+  <p class="font-serif2 italic text-[#E8D9BC] leading-relaxed mt-3 text-[15px]">“${r.t[lang]||r.t.no}”</p>
   <div class="flex items-center gap-3 mt-5 pt-4 border-t border-[#C9A96E]/15">
    <span class="w-9 h-9 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#5a4426] flex items-center justify-center font-display text-[#0D0A08] text-sm">${r.n[0]}</span>
    <div><p class="text-sm text-[#F2E8D5]">${r.n}</p><p class="text-[10px] tracking-wider uppercase text-[#7d715c]">${r.city}</p></div>
@@ -850,27 +885,34 @@ function renderHours(){
 }
 
 /* ═══════════════════════ LANGUAGE ═══════════════════════ */
+function setLang(l){
+ lang=l;
+ localStorage.setItem('arx_lang',lang);
+ applyLang();
+}
+
 function applyLang(){
- const L=STR[lang];
+ const L=STR[lang]||STR.no;
  document.documentElement.lang=lang;
  document.documentElement.dir=lang==='ur'?'rtl':'ltr';
  document.documentElement.classList.toggle('urdu',lang==='ur');
  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(L[k])el.innerHTML=L[k];});
  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=L[el.dataset.i18nPh]||''});
- $('langFlag').textContent=lang==='no'?'🇵🇰':'🇳🇴';
- $('langLbl').textContent=lang==='no'?'اردو':'Norsk';
- $('langLbl').style.fontFamily=lang==='no'?'"Noto Nastaliq Urdu"':'Jost';
+ 
+ // Update Header Buttons
+ $('btnLangNo').className='px-2.5 py-1 rounded-full font-medium transition-all '+(lang==='no'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('btnLangEn').className='px-2.5 py-1 rounded-full font-medium transition-all '+(lang==='en'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+ $('btnLangUr').className='px-2.5 py-1 rounded-full font-medium transition-all font-urdu '+(lang==='ur'?'bg-[#C9A96E] text-[#1a1206] font-bold shadow-sm':'text-[#C9A96E] hover:text-white');
+
  renderGrids();renderCarousel();renderMarquee();renderHours();renderCart();
  if(mProduct)openModal(mProduct.id);
- localStorage.setItem('arx_lang',lang);
 }
-$('langBtn').onclick=e=>{lang=lang==='no'?'ur':'no';applyLang();sparkleAt(e.clientX,e.clientY);};
 
 /* ═══════════════════════ CART ═══════════════════════ */
 function itemInfo(id){
- if(id.startsWith('s')){const s=SETS.find(x=>x.id===id);return{name:s.name[lang],price:s.price,unit:''};}
+ if(id.startsWith('s')){const s=SETS.find(x=>x.id===id);return{name:s.name[lang]||s.name.no,price:s.price,unit:''};}
  const p=PRODUCTS.find(x=>x.id===id.split('-')[0]);const sz=id.split('-')[1]||'6';
- return{name:p.name[lang],price:Math.round(p.price*sizeMult[sz]/5)*5,unit:sz+' ml'};
+ return{name:p.name[lang]||p.name.no,price:Math.round(p.price*sizeMult[sz]/5)*5,unit:sz+' ml'};
 }
 const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const cartSub=()=>Object.entries(cart).reduce((s,[id,q])=>s+itemInfo(id).price*q,0);
@@ -940,21 +982,21 @@ function openModal(id){
  mProduct=PRODUCTS.find(p=>p.id===id);if(!mProduct)return;
  mSize='6';mQ=1;$('mQty').textContent=1;
  $('mVisual').innerHTML=bottleSVG(mProduct,230);
- $('mBadge').textContent=mProduct.tag[lang];
- $('mName').textContent=mProduct.name[lang];
- $('mOrigin').textContent=mProduct.origin[lang];
- $('mStory').textContent=mProduct.story[lang];
+ $('mBadge').textContent=mProduct.tag[lang]||mProduct.tag.no;
+ $('mName').textContent=mProduct.name[lang]||mProduct.name.no;
+ $('mOrigin').textContent=mProduct.origin[lang]||mProduct.origin.no;
+ $('mStory').textContent=mProduct.story[lang]||mProduct.story.no;
  $('mIntV').textContent=mProduct.intensity+'/10';
  $('mLongV').textContent=mProduct.longevity+t('long_h');
  $('mPyramid').innerHTML=[['m_top',mProduct.notes.top],['m_heart',mProduct.notes.heart],['m_base',mProduct.notes.base]].map(([k,n],i)=>`
   <div class="flex items-center gap-3"><span class="text-[9px] tracking-[.25em] uppercase text-[#8d8065] w-14 shrink-0">${t(k)}</span>
   <div class="flex-1 h-px bg-gradient-to-r from-[#C9A96E]/50 to-transparent"></div>
-  <span class="text-xs text-[#E8D9BC] font-serif2 italic">${n[lang]}</span></div>`).join('');
+  <span class="text-xs text-[#E8D9BC] font-serif2 italic">${n[lang]||n.no}</span></div>`).join('');
  $('mSizes').innerHTML=['3','6','12'].map(s=>`<button onclick="setSize('${s}')" data-sz="${s}" class="${s==='6'?'on':''}">${s} ML · ${money(Math.round(mProduct.price*sizeMult[s]/5)*5)}</button>`).join('');
  $('mReviews').innerHTML=mProduct.revs.map(r=>`
   <div class="p-3 rounded-xl bg-white/[.03] border border-[#C9A96E]/12 flex gap-3">
    <span class="w-8 h-8 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#5a4426] flex items-center justify-center font-display text-[#0D0A08] text-xs shrink-0">${r.n[0]}</span>
-   <div><p class="text-xs text-[#C9A96E]">${'★'.repeat(r.r)} <span class="text-[#8d8065] font-normal">· ${r.n}</span></p><p class="text-xs text-[#a4977e] mt-0.5">${r.t[lang]}</p></div>
+   <div><p class="text-xs text-[#C9A96E]">${'★'.repeat(r.r)} <span class="text-[#8d8065] font-normal">· ${r.n}</span></p><p class="text-xs text-[#a4977e] mt-0.5">${r.t[lang]||r.t.no}</p></div>
   </div>`).join('');
  updateMPrice();
  $('pModal').classList.add('open');document.body.style.overflow='hidden';
