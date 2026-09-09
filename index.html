@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <!-- Head Guard: Instant skip on repeat visits, reduced motion, or no-JS. Force replay with ?intro=1 or ?replay=1 -->
-<script>try{if((sessionStorage.getItem('sf-seen-v1.0.4')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
+<script>try{if((sessionStorage.getItem('sf-seen-v1.0.5')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
 <noscript><style>html.booting{overflow:visible}.intro{display:none}html.booting :is(.hero .up,.flacon,#smoke){opacity:1!important}</style></noscript>
 
 <style>
@@ -73,14 +73,22 @@ nav a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(-
 #waterfall-canvas{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.65}
 #smoke{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen}
 
-.flacon{width:min(46vw,220px);margin-block:1.2rem 0;animation:dive linear both;animation-timeline:scroll(root);animation-range:0 92svh;filter:drop-shadow(0 30px 60px #000c);z-index:3}
+.flacon{width:min(46vw,220px);margin-block:1.2rem 0;animation:dive linear both;animation-timeline:scroll(root);animation-range:0 92svh;filter:drop-shadow(0 30px 60px #000c);z-index:3;cursor:pointer;-webkit-tap-highlight-color:transparent}
 @keyframes dive{to{scale:.86;rotate:-3deg;opacity:.55}}
-.flacon svg{width:100%;height:auto;animation:hover 9s ease-in-out infinite;--glow:0}
+.flacon svg{width:100%;height:auto;animation:hover 9s ease-in-out infinite;--glow:0;overflow:visible}
 @keyframes hover{50%{translate:0 -12px}}
+
+/* Bottle cap lift & uncork dynamics */
+.bottle-cap{transform-origin:100px 24px;transition:transform .75s cubic-bezier(.34,1.56,.64,1),filter .5s ease;will-change:transform}
+.throat{transition:opacity .4s ease,filter .4s ease}
+html.open .flacon .bottle-cap{transform:translateY(-48px) rotate(-4deg);filter:drop-shadow(0 14px 24px oklch(.79 .12 78/.6))}
+html.open .flacon .throat{opacity:1;filter:drop-shadow(0 0 12px var(--gold))}
+html.open .flacon{filter:drop-shadow(0 35px 70px #000e) drop-shadow(0 0 40px oklch(.79 .12 78/.4))}
+
 .hero h1{font-size:clamp(2.9rem,13.5vw,7.2rem);line-height:.92;z-index:3}
 .hero h1 em{font-style:italic;color:var(--gold);display:block}
 .hero p{max-width:34ch;margin:1.1rem auto 0;z-index:3}
-.hold{margin-top:1.9rem;background:#ffffff08;border:1px solid var(--line);color:var(--ice);border-radius:99px;corner-shape:squircle;padding:.95rem 1.5rem;font:400 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;touch-action:none;cursor:grab;transition:.35s;backdrop-filter:blur(6px);z-index:4}
+.hold{margin-top:1.9rem;background:#ffffff08;border:1px solid var(--line);color:var(--ice);border-radius:99px;corner-shape:squircle;padding:.95rem 1.5rem;font:400 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;touch-action:none;cursor:grab;transition:.35s;backdrop-filter:blur(6px);z-index:4;-webkit-user-select:none;user-select:none}
 .hold::before{content:'✳ ';color:var(--gold)}
 html.open .hold{background:oklch(.6 .17 45/.25);border-color:var(--gold);box-shadow:0 0 40px -6px var(--ember)}
 html.open .flacon svg{--glow:1}
@@ -101,16 +109,23 @@ html.open .flacon svg{--glow:1}
 .note li{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.32rem .7rem;color:var(--ice)}
 .note b{position:absolute;top:1.3rem;right:1.5rem;font:300 2.6rem var(--serif);color:var(--c);opacity:.5}
 
-/* ── morph ── */
-.art{position:relative;aspect-ratio:4/5;border-radius:1.4rem;overflow:hidden;border:1px solid var(--line);animation:wipe linear both;animation-timeline:view();animation-range:entry 20% cover 78%}
-@keyframes wipe{to{--wipe:118%}}
-@supports not (animation-timeline:view()){.art{--wipe:55%}}
+/* ── Naturen × Ouden ── */
+.natur-section{display:grid;gap:clamp(2rem,5vw,4.5rem);max-width:72rem;margin-inline:auto;align-items:center}
+@media (width>=56rem){.natur-section{grid-template-columns:1fr 1fr}}
+.art{position:relative;width:100%;aspect-ratio:16/10;border-radius:1.6rem;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.7);background:#070c12}
+@media (width>=56rem){.art{aspect-ratio:4/5}}
 .art>div{position:absolute;inset:0}
 .ice{background:linear-gradient(#0a1a26,#04080d 60%),repeating-linear-gradient(102deg,#9fd8ec24 0 2px,#0000 2px 16px),radial-gradient(70% 40% at 30% 12%,var(--a2),#0000 70%);background-blend-mode:screen,overlay,screen}
-.oud{background:radial-gradient(80% 60% at 70% 80%,oklch(.55 .17 42/.9),#0000 70%),radial-gradient(50% 40% at 25% 30%,oklch(.4 .13 25/.85),#0000 70%),repeating-conic-gradient(from 20deg at 60% 70%,#00000000 0 4deg,#e8ba6e14 4deg 8deg),#080506;
-  mask:linear-gradient(112deg,#000 0 var(--wipe),#0000 calc(var(--wipe) + 24%))}
-.seam{background:linear-gradient(112deg,#0000 0 calc(var(--wipe) - 1.2%),var(--gold) var(--wipe),#0000 calc(var(--wipe) + 1.2%));mix-blend-mode:screen;filter:blur(3px) brightness(1.6);opacity:.9}
-.art .cap{position:absolute;inset:auto 1.2rem 1.2rem;font:italic 300 1.35rem var(--serif);text-align:center;color:#fff;text-shadow:0 2px 20px #000}
+.oud{background:radial-gradient(80% 60% at 70% 80%,oklch(.55 .17 42/.85),#0000 70%),radial-gradient(50% 40% at 25% 30%,oklch(.4 .13 25/.8),#0000 70%),repeating-conic-gradient(from 20deg at 60% 70%,#00000000 0 4deg,#e8ba6e12 4deg 8deg),#080506}
+.art-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.2rem,3vw,1.8rem);z-index:2;background:radial-gradient(circle at top right,rgba(0,0,0,.15),rgba(5,7,11,.6) 80%)}
+.art-badge{align-self:flex-start;background:rgba(5,7,11,0.75);border:1px solid var(--line);border-radius:99px;padding:.35rem .9rem;backdrop-filter:blur(10px);display:inline-flex;align-items:center;gap:.6rem}
+.art-badge b{font-size:.8rem;color:var(--gold);letter-spacing:.08em}
+.art-notes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;margin-bottom:.8rem}
+.art-notes span{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(5,7,11,0.78);border:1px solid var(--line);border-radius:99px;padding:.32rem .7rem;color:var(--ice);backdrop-filter:blur(8px)}
+.art .cap{font:italic 300 clamp(1.15rem,3.5vw,1.45rem) var(--serif);color:#fff;text-shadow:0 2px 20px #000;margin:0}
+.natur-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.natur-meta b{font:300 clamp(1.4rem,4vw,1.8rem) var(--serif);color:var(--gold);display:block}
+.natur-meta span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 
 /* ── ticker ── */
 .ticker{border-block:1px solid var(--line);padding:1.1rem 0;overflow:hidden;display:flex;gap:2rem;mask:linear-gradient(90deg,#0000,#000 12%,#000 88%,#0000)}
@@ -167,10 +182,25 @@ footer input{background:none;border:0;border-bottom:1px solid var(--gold);paddin
 footer input:focus{outline:none;border-color:#fff}
 
 /* ── sticky buy-bar (mobile) ── */
-.buybar{position:fixed;bottom:0;inset-inline:0;background:rgba(5,7,11,0.85);backdrop-filter:blur(20px);padding:.8rem var(--pad);display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);z-index:30;transition:.4s}
+.buybar{position:fixed;bottom:0;inset-inline:0;background:rgba(5,7,11,0.88);backdrop-filter:blur(20px);padding:.8rem var(--pad) calc(.8rem + env(safe-area-inset-bottom, 0px));display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);z-index:30;transition:.4s}
 @media (width>=56rem){.buybar{display:none}}
 .buybar small{font-size:.78rem;line-height:1.2;color:var(--dim)}
 .buybar .cta{width:auto;padding:.75rem 1.4rem;font-size:.75rem}
+
+/* ── Mobile Responsive Optimizations ── */
+@media (max-width:480px){
+  .bar{padding:.75rem 1rem;gap:.35rem}
+  .brand{font-size:.86rem;letter-spacing:.2em}
+  #audioText{display:none}
+  #replayIntro span:last-child{display:none}
+  .audio-btn{padding:.48rem .65rem;gap:.3rem}
+  .cartbtn{padding:.48rem .7rem;font-size:.7rem;letter-spacing:.08em}
+  .hero h1{font-size:clamp(2.4rem,11.5vw,4.2rem)}
+  .hold{font-size:.66rem;padding:.85rem 1.15rem;letter-spacing:.14em;width:min(92vw,22rem)}
+  .checkout-modal{padding:1.4rem;width:95vw}
+  .natur-meta{grid-template-columns:1fr;gap:.8rem}
+}
+.checkout-modal input{font-size:16px!important} /* Prevents iOS Safari auto-zoom on input focus */
 
 /* ═══ OPENING MORPH: horisont → fjord → flakong ═══ */
 :root{--T:2.1s;--E:cubic-bezier(.62,.02,.2,1)}
@@ -316,13 +346,30 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
   </div>
 </section>
 
-<!-- MORPH -->
-<section id="natur" style="display:grid;gap:2.5rem;max-width:70rem;margin-inline:auto">
-  <div class="art"><div class="ice"></div><div class="oud"></div><div class="seam"></div><p class="cap">fra bre til bål</p></div>
+<!-- NATUREN × OUDEN -->
+<section id="natur" class="natur-section">
+  <div class="art rv">
+    <div class="ice"></div>
+    <div class="oud"></div>
+    <div class="art-overlay">
+      <div class="art-badge"><span class="eye">Oslo Maserasjon</span><b>90 Dager</b></div>
+      <div class="art-notes">
+        <span>🌲 Einer fra Vidda</span>
+        <span>🔥 Brent Bjørketjære</span>
+        <span>🪵 Pursat Svart Oud</span>
+      </div>
+      <p class="cap">Fra isbre til bål</p>
+    </div>
+  </div>
   <div class="rv">
     <p class="eye">Naturen × Ouden</p>
-    <h2 style="font-size:clamp(1.9rem,7vw,3.2rem);margin:.7rem 0 1rem">Vi destillerte Norge, og lot ouden brenne den.</h2>
+    <h2 style="font-size:clamp(1.9rem,5vw,3.2rem);margin:.7rem 0 1rem">Vi destillerte Norge, og lot ouden brenne den.</h2>
     <p>Einer fra Hardangervidda. Furuharpiks fra Nordmarka. Bjørketjære brent på gammel måte. Vi lot dem hvile 90 dager i svart oud fra Pursat — til isen luktet av glør. Blandet, tappet og forseglet i Oslo, 300 flakonger av gangen.</p>
+    <div class="natur-meta">
+      <div><b>100%</b><span>Sporbar batch</span></div>
+      <div><b>Oslo</b><span>Tappet for hånd</span></div>
+      <div><b>0%</b><span>Syntetisk fyll</span></div>
+    </div>
   </div>
 </section>
 <div class="ticker" aria-hidden="true"><div id="tick"></div><div></div></div>
@@ -373,7 +420,7 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
     <div style="display:flex;align-items:center;gap:.8rem">
       <button onclick="window.playIntro()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Se intro på nytt</button>
       <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.4 (updated 2026-09-04 19:52)
+        v1.0.5 (updated 2026-09-09 17:35)
       </div>
     </div>
   </div>
@@ -439,8 +486,13 @@ const bottle=`<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: Svartfj
 <clipPath id="cp"><path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z"/></clipPath>
 </defs>
 <ellipse cx="100" cy="316" rx="66" ry="9" fill="#e8ba6e" opacity=".14" filter="url(#bl)"/>
-<rect x="84" y="6" width="32" height="34" rx="7" fill="#0a0e15" stroke="var(--gold)" stroke-opacity=".55"/>
-<rect x="88" y="34" width="24" height="10" fill="#0a0e15"/><rect x="92" y="44" width="16" height="32" fill="#0c111a"/>
+<rect class="neck" x="92" y="44" width="16" height="32" fill="#0c111a" stroke="rgba(255,255,255,.15)" stroke-width="0.8"/>
+<ellipse class="throat" cx="100" cy="45" rx="7" ry="2.5" fill="var(--gold)" opacity="0"/>
+<g class="bottle-cap">
+  <rect class="cap-head" x="84" y="6" width="32" height="34" rx="7" fill="#0a0e15" stroke="var(--gold)" stroke-opacity=".75" stroke-width="1.2"/>
+  <line x1="87" y1="20" x2="113" y2="20" stroke="var(--gold)" stroke-opacity=".4" stroke-width="1"/>
+  <rect class="cap-plug" x="88" y="34" width="24" height="12" rx="2" fill="#151b25" stroke="var(--gold)" stroke-opacity=".35"/>
+</g>
 <path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z" fill="url(#gl)" stroke="#ffffff2e"/>
 <g clip-path="url(#cp)">
   <rect x="24" y="168" width="152" height="150" fill="url(#lq)" opacity="calc(.72 + var(--glow) * .28)"/>
@@ -583,22 +635,73 @@ function loop(){
 new IntersectionObserver(([e])=>{live=e.isIntersecting&&!calm.matches;live?loop():cancelAnimationFrame(raf)}).observe(cv);
 cv.parentElement.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();Math.random()<.6&&puff(e.clientX-b.left,e.clientY-b.top,.6,0)},{passive:true});
 
-/* ── press & hold: åpne flakongen ── */
+/* ── press & hold / tap: åpne flakongen ── */
 const words=['einer','bjørketjære','safran','svart oud','isbremoskus','furuharpiks','damaskrose','røkelse','ambra','havsalt'];
-let wt;
+let wt,openTimer=null;
+function uncorkSound(){
+  initAudio();
+  if(!actx)return;
+  if(actx.state==='suspended')actx.resume();
+  const now=actx.currentTime;
+  const osc=actx.createOscillator(),g=actx.createGain();
+  osc.type='sine';
+  osc.frequency.setValueAtTime(540,now);
+  osc.frequency.exponentialRampToValueAtTime(1080,now+0.07);
+  osc.frequency.exponentialRampToValueAtTime(720,now+0.32);
+  g.gain.setValueAtTime(0.001,now);
+  g.gain.linearRampToValueAtTime(0.15,now+0.015);
+  g.gain.exponentialRampToValueAtTime(0.0001,now+0.45);
+  osc.connect(g);g.connect(actx.destination);
+  osc.start(now);osc.stop(now+0.48);
+}
+
 const drift=()=>{
   const s=document.createElement('span');s.textContent=words[Math.random()*words.length|0];$('#plume').append(s);
   s.animate([{translate:`${(Math.random()-.5)*140}px 40px`,opacity:0,filter:'blur(6px)'},{opacity:.95,offset:.3},{translate:`${(Math.random()-.5)*220}px -190px`,opacity:0,filter:'blur(10px)'}],{duration:3200+Math.random()*1400,easing:'cubic-bezier(.25,.6,.3,1)'}).onfinish=()=>s.remove();
 };
+
 const open=on=>{
-  document.documentElement.classList.toggle('open',on);heat=on?1:0;clearInterval(wt);
-  if(on){buzz(20);if(birdOn)chirp();drift();wt=setInterval(drift,420)}
+  const wasOpen=document.documentElement.classList.contains('open');
+  document.documentElement.classList.toggle('open',on);
+  heat=on?1:0;
+  clearInterval(wt);
+  if(on){
+    buzz?.([20,35,15]);
+    if(!wasOpen)uncorkSound();
+    if(birdOn)chirp();
+    drift();
+    wt=setInterval(drift,360);
+  }
 };
+
+const bindOpen=el=>{
+  if(!el)return;
+  let downTime=0;
+  el.addEventListener('pointerdown',e=>{
+    downTime=Date.now();
+    clearTimeout(openTimer);
+    try{el.setPointerCapture(e.pointerId)}catch(_){}
+    open(1);
+  });
+  const end=()=>{
+    const holdDuration=Date.now()-downTime;
+    if(holdDuration<250){
+      // Quick tap: keep open for 1.8s so uncork lift and vapor plume play out smoothly
+      openTimer=setTimeout(()=>open(0),1800);
+    } else {
+      open(0);
+    }
+  };
+  ['pointerup','pointercancel','lostpointercapture','blur'].forEach(t=>el.addEventListener(t,end));
+  el.addEventListener('contextmenu',e=>e.preventDefault());
+};
+
+bindOpen($('#hold'));
+bindOpen($('#flacon'));
+
 const h=$('#hold');
-h.addEventListener('pointerdown',e=>{h.setPointerCapture(e.pointerId);open(1)});
-['pointerup','pointercancel','lostpointercapture','blur'].forEach(t=>h.addEventListener(t,()=>open(0)));
-h.addEventListener('keydown',e=>e.key===' '&&open(1));h.addEventListener('keyup',()=>open(0));
-h.addEventListener('contextmenu',e=>e.preventDefault());
+h.addEventListener('keydown',e=>e.key===' '&&open(1));
+h.addEventListener('keyup',()=>open(0));
 
 /* ── stats animation ── */
 $$('.stats b').forEach(b=>new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;o.disconnect();const n=+b.dataset.n,s=b.dataset.suf||'';let i=0;const t=setInterval(()=>{i+=Math.ceil(n/20);if(i>=n){i=n;clearInterval(t)}b.textContent=i+s},45)},{threshold:.6}).observe(b));
@@ -616,6 +719,7 @@ settled=el=>{
 window.playIntro=()=>{
   sessionStorage.removeItem('sf-seen');
   sessionStorage.removeItem('sf-seen-v1.0.4');
+  sessionStorage.removeItem('sf-seen-v1.0.5');
   location.href=location.pathname+'?intro=1';
 };
 $('#replayIntro')?.addEventListener('click',window.playIntro);
@@ -624,7 +728,7 @@ let hasBooted=false;
 const skip=async()=>{
   if(hasBooted)return;
   hasBooted=true;
-  sessionStorage.setItem('sf-seen-v1.0.4','1');
+  sessionStorage.setItem('sf-seen-v1.0.5','1');
   R.dataset.boot='1';
   const t=vt(()=>{
     intro?.remove();
