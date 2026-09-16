@@ -1,33 +1,35 @@
-# Aromatix Oslo (v2.1.0) — Eksklusiv Oud & Islamske Gaver
+# SVARTFJORD (v1.0.6) — Parfymehus Oslo
 
-Ultra-luksuriøs e-handelsdemo for **Aromatix** — lokalisert i **Tøyengata 3, 0190 Oslo** (ved Grønland T-bane).
+Ultra-luksuriøs e-handels- og kunstopplevelse for **SVARTFJORD** — lokalisert i Thorvald Meyers gate 32, Grünerløkka, Oslo.
 
 ---
 
-## 🌟 Versjon 2.1.0 Høydepunkter
+## 🌟 Versjon 1.0.6 Høydepunkter
 
-1. **Interaktiv 3D Flakong med Væskefysikk & "Trykk og hold for å åpne"**:
-   - Gyroskop- og markørstyrt 3D-perspektiv (`perspective: 1000px`) på parfymeflakongen.
-   - Bølgende væskefysikk og glødende oljerelasjon inni krystallen.
-   - Haptisk *"Trykk og hold for å åpne flakongen"*-interaksjon som løfter krystallproppen, spiller harmonisk klang og slipper løs en stigende røkelsessky med duftnoter (*Safran*, *Svart Oud*, *Lær*, *Amber*).
-2. **Holografisk 3D Gullglans på Produktkort**:
-   - Ekte 3D-tilt og markørfølgende speilende lysstråle (`.card-glint`) på alle oud-kort og gavesett i sanntid.
-   - Skimrende gullkant som glir over de mørke obsidian-flatene ved hover.
-3. **Levende Fossefall & Interaktiv Duftkonstellasjon**:
-   - Flerlags bakgrunnskanvas med realistisk fallende gyllent fossefall og vannsprøyt.
-   - Interaktivt *Duftkonstellasjons-tre* i produktmodalen med klikkbare noder (Topp, Hjerte, Bunn) som sender harmoniske lydbølger og viser dype akkordbeskrivelser.
-4. **Prosedyral Naturlyd & Fuglesang (Web Audio API)**:
-   - Header-knapp: `[🕊️ Lydopplevelse: På/Av]` med naturtro fjellbekk/foss, morgengry-fuglekvitring og krystallklang ved prøvetaking.
-   - 100% syntetisert i nettleseren med null eksterne lydfiler og null forsinkelse.
-5. **Fullverdig Vipps-Betaling (Vipps-nummer: `442442`)**:
-   - Integrert direkte betaling til Vipps bedriftsnummer **`442442`** (Aromatix Oslo).
-   - Generering av dynamisk Vipps QR-kode for desktop/nettbrett og direkte dypkobling (`vipps://`) på mobil.
-   - Ett-klikks kopiering av Vipps-nummer (`442442`), nøyaktig beløp og ordrereferanse (KID).
-   - Bekreftelsesflyt med direkte WhatsApp-kvitteringsvarsling til butikken.
-6. **3-Veis Språkmotor (Norsk 🇳🇴 / English 🇬🇧 / Urdu 🇵🇰)**:
-   - Sømløs veksling mellom Norsk, Engelsk og Urdu (med RTL og Nastaliq typografi).
+1. **Kurator Atelier & Admin Panel**:
+   - Sikker PIN-lås (`4424`) med rask adgang fra footer eller hurtigtast (`Alt+A` / `Shift+A` / `#admin`).
+   - Dynamisk administrasjon av hele parfymekatalogen rett fra nettleseren (`localStorage` persistens).
+   - Sanntids visuell flakong-generator med 6 eksklusive fargepaletter (Obsidian Amber, Arktisk Isbre, Midnattssol, Smaragd Skog, Nordlyslilla, Roségull) og fri hex/oklch-fargetilpasning.
+   - Live sanntids SVG-forhåndsvisning mens du skriver inn duftnoter, opplag og priser.
+   - 1-klikks JSON-eksport og -import for full sikkerhetskopi og enkel integrasjon i kildekoden.
+
+2. **Dynamisk Multi-Produkt Kolleksjonsvelger**:
+   - Interaktiv flakong-tabline (`Svartfjord N°1`, `Svartfjord N°2 Hvitbre`, `Svartfjord N°3 Midnattssol` + nyopprettede flakonger).
+   - Sømløse View Transitions ved bytte av flakong i atelieret: oppdaterer flaske, væskefarger, konsentrasjon, duftpyramide og størrelsespriser (30ml, 50ml, 100ml).
+   - Multi-produkt handlekurv som støtter ulike flakonger og størrelser samtidig med separat prising og Vipps-integrasjon.
+
+3. **Interaktiv Flakong med Væskefysikk & Krystallpropp**:
+   - Trykk og hold / klikk for å åpne flakongen med oppløftende krystallkork, harmonisk klang og stigende røkelsessky med duftnoter.
+   - Mobiloptimalisert for touch med haptisk tilbakemelding (`navigator.vibrate`).
+
+4. **Prosedyral Lyd & Fossefall-animasjon**:
+   - Ekte syntetisert morgengry-fuglesang og bekkelyd via Web Audio API.
+   - Bakgrunnskanvas med fallende fossefall og partikler.
+
+5. **Fullverdig Utsjekk & Vipps**:
+   - Integrert modal for fullføring av bestilling med automatisk beregning av totalsum for alle flakonger i kurven.
 
 ---
 
 ## 🚀 Versjonering
-`v2.1.0 (updated 2026-09-02 18:12)`
+`v1.0.6 (updated 2026-09-16 14:46)`

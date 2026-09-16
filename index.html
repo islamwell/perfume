@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <!-- Head Guard: Instant skip on repeat visits, reduced motion, or no-JS. Force replay with ?intro=1 or ?replay=1 -->
-<script>try{if((sessionStorage.getItem('sf-seen-v1.0.5')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
+<script>try{if((sessionStorage.getItem('sf-seen-v1.0.6')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
 <noscript><style>html.booting{overflow:visible}.intro{display:none}html.booting :is(.hero .up,.flacon,#smoke){opacity:1!important}</style></noscript>
 
 <style>
@@ -176,6 +176,44 @@ details p{margin-top:.7rem;font-size:.9rem}
 .checkout-modal input{width:100%;padding:.85rem 1.1rem;margin:.4rem 0 1rem;background:#ffffff0a;border:1px solid var(--line);border-radius:10px;color:var(--ice);font:inherit;font-size:.9rem}
 .checkout-modal input:focus{outline:1px solid var(--gold);border-color:var(--gold)}
 
+/* ── collection tabs ── */
+.collection-header{max-width:1100px;margin:0 auto 1.6rem;padding:0 var(--pad)}
+.product-tabs{display:flex;gap:.6rem;overflow-x:auto;padding:.6rem 0 .4rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.ptab{background:#ffffff0a;border:1px solid var(--line);color:var(--dim);padding:.55rem 1.15rem;border-radius:99px;font:inherit;font-size:.78rem;letter-spacing:.08em;white-space:nowrap;cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;gap:.55rem}
+.ptab:hover{border-color:var(--gold);color:#fff;background:#ffffff14}
+.ptab.active{background:var(--gold);color:#06090e;border-color:var(--gold);font-weight:600;box-shadow:0 4px 18px oklch(0.79 0.12 78 / .3)}
+.ptab .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+
+/* ── admin modals & atelier backoffice ── */
+.admin-modal{border:1px solid var(--line);border-radius:1.6rem;padding:2.2rem;background:#070b12fa;backdrop-filter:blur(28px);color:var(--ice);max-width:62rem;width:min(96vw,1000px);margin:auto;box-shadow:0 40px 100px #000000f5;max-height:92vh;overflow-y:auto}
+.admin-modal::backdrop{background:rgba(2,4,7,0.94);backdrop-filter:blur(20px)}
+.pin-modal{max-width:26rem;padding:2.2rem;text-align:center}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.2rem;margin-bottom:1.4rem;border-bottom:1px solid var(--line)}
+.admin-nav{display:flex;gap:.6rem;margin-bottom:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.8rem;overflow-x:auto}
+.admin-nav-btn{background:none;border:1px solid transparent;color:var(--dim);padding:.6rem 1.2rem;border-radius:99px;font:inherit;font-size:.82rem;letter-spacing:.06em;cursor:pointer;transition:all .2s;white-space:nowrap}
+.admin-nav-btn:hover{color:#fff;border-color:var(--line)}
+.admin-nav-btn.active{background:#ffffff12;border-color:var(--gold);color:var(--gold);font-weight:600}
+.admin-card{background:#04070df8;border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.3rem;display:grid;grid-template-columns:70px 1fr auto;gap:1.2rem;align-items:center;transition:border-color .2s;margin-bottom:1rem}
+.admin-card:hover{border-color:#ffffff33}
+.admin-card-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.admin-card-btn{background:#ffffff0a;border:1px solid var(--line);color:var(--ice);padding:.4rem .8rem;border-radius:8px;font-size:.74rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.3rem}
+.admin-card-btn:hover{border-color:var(--gold);color:#fff}
+.admin-card-btn.danger:hover{border-color:#ff6b6b;color:#ff6b6b}
+.admin-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:2rem}
+.admin-input,.admin-textarea,.admin-select{width:100%;padding:.75rem 1rem;background:#ffffff0a;border:1px solid var(--line);border-radius:8px;color:var(--ice);font:inherit;font-size:16px!important;margin-top:.3rem;margin-bottom:1rem;transition:border-color .2s}
+.admin-input:focus,.admin-textarea:focus,.admin-select:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+.color-presets{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0 1rem}
+.preset-btn{padding:.38rem .8rem;border-radius:99px;border:1px solid var(--line);background:#ffffff08;color:var(--ice);font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s}
+.preset-btn:hover{border-color:var(--gold);color:#fff;background:#ffffff14}
+.preset-swatch{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+@media (max-width:820px){
+  .admin-grid{grid-template-columns:1fr}
+  .admin-card{grid-template-columns:55px 1fr;gap:.8rem}
+  .admin-card-actions{grid-column:1 / -1;display:flex;justify-content:flex-end;gap:.5rem}
+  .admin-modal{padding:1.4rem;width:96vw}
+}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:4rem var(--pad) 7rem;display:grid;gap:2rem}
 footer input{background:none;border:0;border-bottom:1px solid var(--gold);padding:.6rem 0;color:var(--ice);font:inherit;width:100%}
@@ -208,8 +246,10 @@ html.booting{overflow:clip;overscroll-behavior:none}
 html.booting :is(.hero .up,.flacon,#smoke){opacity:0!important;pointer-events:none}
 html.booting #mo{view-transition-name:flacon}
 html.booting .intro .mark{view-transition-name:mark}
-html.ready .flacon{view-transition-name:flacon}
-html.ready header .brand{view-transition-name:mark}
+html[data-boot] .flacon{view-transition-name:flacon}
+html[data-boot] header .brand{view-transition-name:mark}
+dialog[open]{z-index:99999}
+dialog::backdrop{z-index:99998}
 #smoke{transition:opacity 1.8s ease .3s}
 
 .intro{position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;gap:1.1rem;text-align:center;cursor:pointer;background:radial-gradient(130% 90% at 50% 52%,#0b1219,var(--void) 72%)}
@@ -375,32 +415,44 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
 <div class="ticker" aria-hidden="true"><div id="tick"></div><div></div></div>
 
 <!-- BUY -->
-<section id="kjop"><div class="buy">
-  <div class="stage"><div id="stage"></div></div>
-  <div>
-    <p class="eye">Begrenset opplag</p>
-    <h2 style="font-size:clamp(2.4rem,8vw,3.8rem);margin:.4rem 0 1rem">Svartfjord N°1</h2>
-    <p>Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med kork i massivt messinglokk.</p>
-    <div style="margin:1.8rem 0">
-      <div class="seg" id="sizes">
-        <input type="radio" name="sz" id="s30" value="30"><label for="s30">30 ml</label>
-        <input type="radio" name="sz" id="s50" value="50" checked><label for="s50">50 ml</label>
-        <input type="radio" name="sz" id="s100" value="100"><label for="s100">100 ml</label>
+<section id="kjop">
+  <div class="collection-header">
+    <p class="eye">Kolleksjonen</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-top:.4rem;margin-bottom:.8rem">
+      <h2 style="font-size:clamp(1.8rem,5vw,2.8rem)">Våre Flakonger</h2>
+      <span id="collectionCount" style="font-size:.82rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase">3 kreasjoner</span>
+    </div>
+    <div class="product-tabs" id="productTabs" role="tablist" aria-label="Velg flakong"></div>
+  </div>
+
+  <div class="buy">
+    <div class="stage"><div id="stage"></div></div>
+    <div>
+      <p class="eye" id="prodEdition">Begrenset opplag</p>
+      <h2 id="prodName" style="font-size:clamp(2.4rem,8vw,3.8rem);margin:.4rem 0 .2rem">Svartfjord N°1</h2>
+      <p id="prodSubtitle" class="eye" style="color:var(--gold);margin-bottom:.8rem;font-size:.78rem">BLACK OUD · EXTRAIT DE PARFUM · 24 %</p>
+      <p id="prodDesc">Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med kork i massivt messinglokk.</p>
+      <div style="margin:1.8rem 0">
+        <div class="seg" id="sizes">
+          <input type="radio" name="sz" id="s30" value="30"><label for="s30">30 ml</label>
+          <input type="radio" name="sz" id="s50" value="50" checked><label for="s50">50 ml</label>
+          <input type="radio" name="sz" id="s100" value="100"><label for="s100">100 ml</label>
+        </div>
+      </div>
+      <div class="price" id="price">2 190 kr</div>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <div class="qty"><button data-q="-1">–</button><span id="q">1</span><button data-q="1">+</button></div>
+        <button class="cta" id="add" style="flex:1;min-width:14rem">Legg i kurv</button>
+      </div>
+      <p class="meta"><span>Fri frakt i Norge</span><span id="eta">Levering 2–3 dager</span><span>Vipps · Klarna · Kort</span></p>
+      <div style="margin-top:1.8rem">
+        <details open><summary>Duftnoter</summary><p id="prodNotesText">Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
+        <details><summary>Om kreasjonen</summary><p id="prodStoryText">Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
+        <details><summary>Frakt & retur</summary><p>Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
       </div>
     </div>
-    <div class="price" id="price">2 190 kr</div>
-    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-      <div class="qty"><button data-q="-1">–</button><span id="q">1</span><button data-q="1">+</button></div>
-      <button class="cta" id="add" style="flex:1;min-width:14rem">Legg i kurv</button>
-    </div>
-    <p class="meta"><span>Fri frakt i Norge</span><span id="eta">Levering 2–3 dager</span><span>Vipps · Klarna · Kort</span></p>
-    <div style="margin-top:1.8rem">
-      <details open><summary>Duftnoter</summary><p>Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
-      <details><summary>Om ouden</summary><p>Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
-      <details><summary>Frakt & retur</summary><p>Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
-    </div>
   </div>
-</div></section>
+</section>
 
 <section><div class="stats">
   <div class="rv"><b data-n="12">0</b><span>År modnet</span></div>
@@ -417,10 +469,11 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
   
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.72rem">
     <p>© 2026 · Laget i Oslo</p>
-    <div style="display:flex;align-items:center;gap:.8rem">
+    <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button onclick="window.playIntro()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Se intro på nytt</button>
+      <button id="openAdminBtn" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Kurator Atelier (Admin)</button>
       <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.5 (updated 2026-09-09 17:35)
+        v1.0.6 (updated 2026-09-16 14:46)
       </div>
     </div>
   </div>
@@ -469,42 +522,349 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
   </form>
 </dialog>
 
+<!-- Admin PIN Gate Modal -->
+<dialog id="adminPinModal" class="admin-modal pin-modal">
+  <div class="admin-header" style="justify-content:space-between">
+    <p class="eye" style="margin:0">Atelier Sikkerhet</p>
+    <button class="x" id="closeAdminPinBtn" style="font-size:1.1rem">✕</button>
+  </div>
+  <div style="font-size:2.2rem;margin:.2rem 0 .5rem">🔐</div>
+  <h3 style="font-size:1.5rem;margin:0 0 .5rem">Kurator Adgang</h3>
+  <p style="font-size:.82rem;color:var(--dim);margin-bottom:1.4rem">Tast inn atelierets 4-sifrede PIN-kode for å åpne produkt- og katalogstyring.</p>
+  
+  <form id="adminPinForm">
+    <div style="margin-bottom:1rem">
+      <input type="password" id="adminPinInput" maxlength="6" inputmode="numeric" pattern="[0-9]*" placeholder="••••" required
+        style="width:100%;text-align:center;font-size:1.8rem;letter-spacing:.5em;padding:.8rem;background:#05080d;border:1px solid var(--gold);color:#fff;border-radius:10px;font-family:monospace">
+    </div>
+    <div id="pinError" style="color:#ff7675;font-size:.8rem;text-align:center;min-height:1.3rem;margin-bottom:.8rem"></div>
+    <div style="display:flex;gap:.8rem">
+      <button type="submit" class="cta" style="flex:1">Lås opp</button>
+      <button type="button" class="cta" id="cancelPinBtn" style="background:#ffffff10;color:#fff;border:1px solid var(--line);flex:1">Avbryt</button>
+    </div>
+  </form>
+  <p style="font-size:.7rem;color:var(--dim);text-align:center;margin-top:1.2rem">Standard atelier PIN: <strong style="color:var(--gold)">4424</strong></p>
+</dialog>
+
+<!-- Admin Management Panel Modal -->
+<dialog id="adminPanelModal" class="admin-modal">
+  <div class="admin-header">
+    <div>
+      <p class="eye" style="margin:0;color:var(--gold)">SVARTFJORD ATELIER</p>
+      <h3 style="font-size:1.4rem;margin:.2rem 0 0">Produkt- og Katalogstyring</h3>
+    </div>
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <button id="adminLogoutBtn" style="background:none;border:1px solid var(--line);color:var(--dim);padding:.35rem .75rem;border-radius:99px;font-size:.72rem;cursor:pointer;transition:all .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--dim)'">Logg ut</button>
+      <button class="x" id="closeAdminPanelBtn" style="font-size:1.3rem">✕</button>
+    </div>
+  </div>
+
+  <div class="admin-nav" role="tablist">
+    <button class="admin-nav-btn active" id="tabBtnList">Mine Flakonger (<span id="adminProdCount">3</span>)</button>
+    <button class="admin-nav-btn" id="tabBtnForm">+ Legg til ny Flakong</button>
+    <button class="admin-nav-btn" id="tabBtnData">JSON / Sikkerhetskopi</button>
+  </div>
+
+  <!-- VIEW 1: Product List -->
+  <div id="adminViewList">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap;gap:.8rem">
+      <p style="font-size:.85rem;color:var(--dim)">Katalog over aktive flakonger. Rediger detaljer, duftnoter eller tilpass fargetema.</p>
+      <button class="cta" id="adminAddNewBtn" style="padding:.6rem 1.1rem;font-size:.78rem">+ Ny Flakong</button>
+    </div>
+    <div id="adminProductCards"></div>
+  </div>
+
+  <!-- VIEW 2: Add / Edit Product Form -->
+  <div id="adminViewForm" style="display:none">
+    <div class="admin-grid">
+      <div>
+        <form id="adminProductForm">
+          <input type="hidden" id="prodFormId">
+          <h4 id="prodFormHeader" style="font-size:1.15rem;margin-bottom:1.1rem;color:var(--gold)">Opprett ny Flakong</h4>
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label class="eye" style="font-size:.65rem">Produktnavn *</label>
+              <input type="text" id="prodFormName" class="admin-input" required placeholder="f.eks. Svartfjord N°4 Skogsdogg">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.65rem">Undertittel / Type *</label>
+              <input type="text" id="prodFormSubtitle" class="admin-input" required placeholder="f.eks. Skogsdogg · Extrait">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label class="eye" style="font-size:.65rem">Konsentrasjon</label>
+              <input type="text" id="prodFormConcentration" class="admin-input" placeholder="26 %" value="26 %">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.65rem">Opplag / Merke</label>
+              <input type="text" id="prodFormEdition" class="admin-input" placeholder="Begrenset opplag · 200 flakonger" value="Begrenset opplag · 200 flakonger">
+            </div>
+          </div>
+
+          <label class="eye" style="font-size:.65rem">Kort Beskrivelse</label>
+          <textarea id="prodFormDesc" class="admin-textarea" rows="2" placeholder="Extrait de parfum, 26 % konsentrasjon. Vinterfuru og fuktig mose..."></textarea>
+
+          <label class="eye" style="font-size:.65rem">Historie / Om kreasjonen</label>
+          <textarea id="prodFormStory" class="admin-textarea" rows="2" placeholder="Dypere bakgrunn om høstingen og destillasjonen..."></textarea>
+
+          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Priser for størrelser (NOK)</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">30 ml (kr)</label>
+              <input type="number" id="prodFormPrice30" class="admin-input" required min="100" step="10" value="1490">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">50 ml (kr)</label>
+              <input type="number" id="prodFormPrice50" class="admin-input" required min="100" step="10" value="2190">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">100 ml (kr)</label>
+              <input type="number" id="prodFormPrice100" class="admin-input" required min="100" step="10" value="3690">
+            </div>
+          </div>
+
+          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Duftpyramide</p>
+          <div>
+            <label class="eye" style="font-size:.62rem">Toppnoter (kommaseparert)</label>
+            <input type="text" id="prodFormNotesTop" class="admin-input" placeholder="Einer, Tindved, Frostluft">
+          </div>
+          <div>
+            <label class="eye" style="font-size:.62rem">Hjertenoter (kommaseparert)</label>
+            <input type="text" id="prodFormNotesHeart" class="admin-input" placeholder="Furunål, Røkelse, Kvae">
+          </div>
+          <div>
+            <label class="eye" style="font-size:.62rem">Bunnoter (kommaseparert)</label>
+            <input type="text" id="prodFormNotesBase" class="admin-input" placeholder="Mose, Svart oud, Sedertre">
+          </div>
+
+          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Flakongens Fargetema & Utseende</p>
+          <p style="font-size:.75rem;color:var(--dim)">Klikk en forhåndsdefinert palett eller tilpass fargetonene fritt:</p>
+          <div class="color-presets" id="colorPresets">
+            <button type="button" class="preset-btn" data-preset="amber"><span class="preset-swatch" style="background:#e8ba6e"></span> Obsidian Amber</button>
+            <button type="button" class="preset-btn" data-preset="arctic"><span class="preset-swatch" style="background:#89cff0"></span> Arktisk Isbre</button>
+            <button type="button" class="preset-btn" data-preset="sol"><span class="preset-swatch" style="background:#f5af19"></span> Midnattssol</button>
+            <button type="button" class="preset-btn" data-preset="emerald"><span class="preset-swatch" style="background:#2ecc71"></span> Smaragd Skog</button>
+            <button type="button" class="preset-btn" data-preset="aurora"><span class="preset-swatch" style="background:#a55eea"></span> Nordlyslilla</button>
+            <button type="button" class="preset-btn" data-preset="rose"><span class="preset-swatch" style="background:#ff7675"></span> Roségull</button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">Væskefarge (Øverst)</label>
+              <input type="text" id="prodFormLiquidTop" class="admin-input" value="oklch(.66 .17 62 / .85)">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">Væskefarge (Nederst)</label>
+              <input type="text" id="prodFormLiquidBottom" class="admin-input" value="oklch(.26 .09 28 / .96)">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">Krystallglød</label>
+              <input type="text" id="prodFormGlow" class="admin-input" value="oklch(.85 .2 155)">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">Kork metall</label>
+              <select id="prodFormCapFinish" class="admin-input" style="height:44px">
+                <option value="gold">Gull / Messing</option>
+                <option value="silver">Arktisk Sølv</option>
+                <option value="obsidian">Sort Obsidian</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="formFeedback" style="color:var(--gold);font-size:.85rem;margin-bottom:1rem;min-height:1.2rem"></div>
+
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <button type="submit" class="cta" style="flex:2;min-width:14rem" id="saveProdBtn">Lagre og Publiser Flakong</button>
+            <button type="button" class="cta" id="cancelFormBtn" style="background:#ffffff10;color:#fff;border:1px solid var(--line);flex:1">Avbryt</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Live Bottle Preview -->
+      <div style="background:#04060a;border:1px solid var(--line);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column;align-items:center;position:sticky;top:0;align-self:start">
+        <p class="eye" style="color:var(--gold);margin-bottom:.8rem">Sanntids Forhåndsvisning</p>
+        <div id="adminPreviewBottle" style="width:170px;height:280px;margin-bottom:1rem"></div>
+        <h4 id="previewProdName" style="font-size:1.2rem;text-align:center;margin:0 0 .2rem">Svartfjord N°1</h4>
+        <p id="previewProdSub" style="font-size:.72rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin:0 0 .8rem">BLACK OUD · 24 %</p>
+        <div style="font-size:.9rem;color:#fff;margin-bottom:.6rem"><b id="previewPrice50">2 190 kr</b> <small style="color:var(--dim)">(50 ml)</small></div>
+        <p id="previewNotes" style="font-size:.74rem;color:var(--dim);text-align:center;line-height:1.4">Einer, blodappelsin, rosa pepper / damaskrose, safran / svart oud, ambra</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 3: JSON Export / Import / Backup -->
+  <div id="adminViewData" style="display:none">
+    <p style="font-size:.85rem;color:var(--dim);margin-bottom:1rem">
+      Her kan du eksportere hele katalogen som JSON for å ta sikkerhetskopi, eller lime inn JSON for å oppdatere alle flakonger på én gang.
+    </p>
+    <label class="eye" style="font-size:.65rem">Katalog JSON Data</label>
+    <textarea id="catalogJsonArea" class="admin-textarea" rows="12" style="font-family:monospace;font-size:12px!important" spellcheck="false"></textarea>
+    
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem">
+      <button class="cta" id="copyJsonBtn" style="padding:.7rem 1.2rem;font-size:.78rem">Kopier JSON til utklippstavle</button>
+      <button class="cta" id="importJsonBtn" style="background:#ffffff14;color:#fff;border:1px solid var(--line);padding:.7rem 1.2rem;font-size:.78rem">Importer / Last inn JSON</button>
+      <button class="cta" id="resetCatalogBtn" style="background:#e74c3c22;color:#ff7675;border:1px solid #e74c3c66;padding:.7rem 1.2rem;font-size:.78rem">↺ Gjenopprett Standarder</button>
+    </div>
+
+    <div style="border-top:1px solid var(--line);padding-top:1.5rem">
+      <p class="eye" style="margin-bottom:.6rem;color:var(--gold)">Endre Sikkerhets-PIN</p>
+      <div style="display:flex;gap:.8rem;max-width:22rem">
+        <input type="password" id="newPinInput" class="admin-input" maxlength="6" inputmode="numeric" placeholder="Ny 4-sifret PIN" style="margin-bottom:0">
+        <button class="cta" id="savePinBtn" style="padding:.7rem 1.2rem;font-size:.78rem;white-space:nowrap">Lagre PIN</button>
+      </div>
+      <div id="pinChangeFeedback" style="font-size:.75rem;color:var(--gold);margin-top:.4rem"></div>
+    </div>
+  </div>
+</dialog>
+
 <script type="module">
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nok=n=>new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(n);
 const buzz=p=>navigator.vibrate?.(p);
 const vt=fn=>(document.startViewTransition?document.startViewTransition(fn):fn());
-const P={name:'Svartfjord N°1 Black Oud',price:{30:1490,50:2190,100:3690}};
+const DEFAULT_CATALOG = [
+  {
+    id: 'svartfjord-1',
+    name: 'Svartfjord N°1',
+    edition: 'Begrenset opplag · 300 flakonger',
+    subtitle: 'Black Oud · Extrait de Parfum',
+    concentration: '24 %',
+    desc: 'Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med kork i massivt messinglokk.',
+    story: 'Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.',
+    price: { 30: 1490, 50: 2190, 100: 3690 },
+    notes: {
+      top: 'Einer, blodappelsin, rosa pepper, havsalt',
+      heart: 'Damaskrose, safran, bjørketjære, røkelse',
+      base: 'Svart oud, isbremoskus, furuharpiks, ambra'
+    },
+    color: {
+      liquidTop: 'oklch(.66 .17 62 / .85)',
+      liquidBottom: 'oklch(.26 .09 28 / .96)',
+      glow: 'oklch(.85 .2 155)',
+      cap: '#0a0e15',
+      capStroke: 'var(--gold)'
+    },
+    tag: 'Flaggskip'
+  },
+  {
+    id: 'svartfjord-2',
+    name: 'Svartfjord N°2 Hvitbre',
+    edition: 'Isbre-maserasjon · 250 flakonger',
+    subtitle: 'Glacial Musk · Extrait de Parfum',
+    concentration: '28 %',
+    desc: 'Extrait de parfum, 28 % konsentrasjon. Krystallisert arktisk moskus, frossen bergamott og ren hvit einer i polarglass.',
+    story: 'Følelsen av å puste inn tindrende frostluft på toppen av Jostedalsbreen ved daggry.',
+    price: { 30: 1590, 50: 2290, 100: 3890 },
+    notes: {
+      top: 'Rimfrost, bergamott, hvit einer, tindved',
+      heart: 'Alpefiol, irisrot, ren lavendel, hvit pepper',
+      base: 'Hvit ambra, krystallmose, hvit oud, arktisk sedertre'
+    },
+    color: {
+      liquidTop: 'oklch(.75 .14 210 / .85)',
+      liquidBottom: 'oklch(.32 .12 225 / .96)',
+      glow: 'oklch(.88 .18 200)',
+      cap: '#121820',
+      capStroke: '#89cff0'
+    },
+    tag: 'Arktisk'
+  },
+  {
+    id: 'svartfjord-3',
+    name: 'Svartfjord N°3 Midnattssol',
+    edition: 'Sommersolverv · 200 flakonger',
+    subtitle: 'Solar Amber · Extrait de Parfum',
+    concentration: '26 %',
+    desc: 'Extrait de parfum, 26 % konsentrasjon. Gylden villhonning, solbær, krekling og varm kvae modnet under midnattssolen.',
+    story: 'Solen som aldri går ned bak lofotveggen. En brennende gyllen aura over kystklippene.',
+    price: { 30: 1590, 50: 2290, 100: 3890 },
+    notes: {
+      top: 'Kardemomme, solbær, krekling, vill timian',
+      heart: 'Varm honning, tørket høy, immortelle, furunål',
+      base: 'Røkt labdanum, lær, kvae, varm ambra'
+    },
+    color: {
+      liquidTop: 'oklch(.78 .19 82 / .85)',
+      liquidBottom: 'oklch(.38 .14 48 / .96)',
+      glow: 'oklch(.88 .22 75)',
+      cap: '#18120a',
+      capStroke: '#e5b364'
+    },
+    tag: 'Solgull'
+  }
+];
 
-/* ── bottle (shared SVG) ── */
-const bottle=`<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: Svartfjord N°1 Black Oud">
+function loadCatalog() {
+  try {
+    const raw = localStorage.getItem('sf_catalog_v1');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {
+    console.warn('Feil ved lesing av lokal katalog:', e);
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+}
+
+let CATALOG = loadCatalog();
+window.CATALOG = CATALOG;
+function saveCatalog() {
+  try {
+    localStorage.setItem('sf_catalog_v1', JSON.stringify(CATALOG));
+    window.CATALOG = CATALOG;
+  } catch (e) {
+    console.error('Kunne ikke lagre katalog:', e);
+  }
+}
+function getProduct(id) {
+  return CATALOG.find(p => p.id === id) || CATALOG[0];
+}
+
+/* ── dynamic SVG bottle renderer ── */
+function renderBottleSvg(p, uid = 'main') {
+  const c = p.color || DEFAULT_CATALOG[0].color;
+  const capStroke = c.capStroke || 'var(--gold)';
+  const capFill = c.cap || '#0a0e15';
+  const nameDisplay = (p.name || 'SVARTFJORD').toUpperCase();
+  const subDisplay = (p.subtitle || 'EXTRAIT DE PARFUM').toUpperCase();
+  return `<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: ${p.name}">
 <defs>
-<linearGradient id="gl" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#222c3b"/><stop offset=".42" stop-color="#05080d"/><stop offset=".72" stop-color="#0d1420"/><stop offset="1" stop-color="#1b2331"/></linearGradient>
-<linearGradient id="lq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="oklch(.66 .17 62/.85)"/><stop offset="1" stop-color="oklch(.26 .09 28/.96)"/></linearGradient>
-<radialGradient id="au"><stop offset="0" stop-color="oklch(.85 .2 155)"/><stop offset="1" stop-color="#0000"/></radialGradient>
-<filter id="bl"><feGaussianBlur stdDeviation="9"/></filter>
-<clipPath id="cp"><path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z"/></clipPath>
+<linearGradient id="gl_${uid}" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#222c3b"/><stop offset=".42" stop-color="#05080d"/><stop offset=".72" stop-color="#0d1420"/><stop offset="1" stop-color="#1b2331"/></linearGradient>
+<linearGradient id="lq_${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.liquidTop}"/><stop offset="1" stop-color="${c.liquidBottom}"/></linearGradient>
+<radialGradient id="au_${uid}"><stop offset="0" stop-color="${c.glow}"/><stop offset="1" stop-color="#0000"/></radialGradient>
+<filter id="bl_${uid}"><feGaussianBlur stdDeviation="9"/></filter>
+<clipPath id="cp_${uid}"><path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z"/></clipPath>
 </defs>
-<ellipse cx="100" cy="316" rx="66" ry="9" fill="#e8ba6e" opacity=".14" filter="url(#bl)"/>
+<ellipse cx="100" cy="316" rx="66" ry="9" fill="${capStroke}" opacity=".14" filter="url(#bl_${uid})"/>
 <rect class="neck" x="92" y="44" width="16" height="32" fill="#0c111a" stroke="rgba(255,255,255,.15)" stroke-width="0.8"/>
-<ellipse class="throat" cx="100" cy="45" rx="7" ry="2.5" fill="var(--gold)" opacity="0"/>
+<ellipse class="throat" cx="100" cy="45" rx="7" ry="2.5" fill="${capStroke}" opacity="0"/>
 <g class="bottle-cap">
-  <rect class="cap-head" x="84" y="6" width="32" height="34" rx="7" fill="#0a0e15" stroke="var(--gold)" stroke-opacity=".75" stroke-width="1.2"/>
-  <line x1="87" y1="20" x2="113" y2="20" stroke="var(--gold)" stroke-opacity=".4" stroke-width="1"/>
-  <rect class="cap-plug" x="88" y="34" width="24" height="12" rx="2" fill="#151b25" stroke="var(--gold)" stroke-opacity=".35"/>
+  <rect class="cap-head" x="84" y="6" width="32" height="34" rx="7" fill="${capFill}" stroke="${capStroke}" stroke-opacity=".8" stroke-width="1.2"/>
+  <line x1="87" y1="20" x2="113" y2="20" stroke="${capStroke}" stroke-opacity=".4" stroke-width="1"/>
+  <rect class="cap-plug" x="88" y="34" width="24" height="12" rx="2" fill="#151b25" stroke="${capStroke}" stroke-opacity=".35"/>
 </g>
-<path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z" fill="url(#gl)" stroke="#ffffff2e"/>
-<g clip-path="url(#cp)">
-  <rect x="24" y="168" width="152" height="150" fill="url(#lq)" opacity="calc(.72 + var(--glow) * .28)"/>
-  <ellipse cx="130" cy="120" rx="70" ry="42" fill="url(#au)" opacity="calc(.16 + var(--glow) * .5)" filter="url(#bl)" style="mix-blend-mode:screen"/>
-  <ellipse cx="100" cy="250" rx="80" ry="40" fill="oklch(.8 .18 70)" opacity="calc(var(--glow) * .45)" filter="url(#bl)" style="mix-blend-mode:screen"/>
-  <path d="M50 80v210" stroke="#fff" stroke-opacity=".26" stroke-width="5" filter="url(#bl)"/>
+<path d="M42 74h116a16 16 0 0116 16v196a22 22 0 01-22 22H48a22 22 0 01-22-22V90a16 16 0 0116-16z" fill="url(#gl_${uid})" stroke="#ffffff2e"/>
+<g clip-path="url(#cp_${uid})">
+  <rect x="24" y="168" width="152" height="150" fill="url(#lq_${uid})" opacity="calc(.72 + var(--glow, 0) * .28)"/>
+  <ellipse cx="130" cy="120" rx="70" ry="42" fill="url(#au_${uid})" opacity="calc(.16 + var(--glow, 0) * .5)" filter="url(#bl_${uid})" style="mix-blend-mode:screen"/>
+  <ellipse cx="100" cy="250" rx="80" ry="40" fill="${c.glow}" opacity="calc(var(--glow, 0) * .45)" filter="url(#bl_${uid})" style="mix-blend-mode:screen"/>
+  <path d="M50 80v210" stroke="#fff" stroke-opacity=".26" stroke-width="5" filter="url(#bl_${uid})"/>
   <path d="M162 92v190" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
 </g>
-<text x="100" y="150" text-anchor="middle" fill="#e9eef2" fill-opacity=".9" font-family="Cormorant Garamond,serif" font-size="15" letter-spacing="4.2">SVARTFJORD</text>
-<text x="100" y="168" text-anchor="middle" fill="var(--gold)" font-family="Inter Tight,sans-serif" font-size="6.5" letter-spacing="2.6">BLACK OUD · EXTRAIT</text>
+<text x="100" y="150" text-anchor="middle" fill="#e9eef2" fill-opacity=".9" font-family="Cormorant Garamond,serif" font-size="13" letter-spacing="3.5">${nameDisplay}</text>
+<text x="100" y="168" text-anchor="middle" fill="${capStroke}" font-family="Inter Tight,sans-serif" font-size="6.2" letter-spacing="2.2">${subDisplay}</text>
 </svg>`;
-$('#flacon').innerHTML=bottle;$('#stage').innerHTML=bottle;
+}
+
+$('#flacon').innerHTML = renderBottleSvg(CATALOG[0], 'hero');
+$('#stage').innerHTML = renderBottleSvg(CATALOG[0], 'stage');
 $('#tick').innerHTML=['Einer','Bjørketjære','Safran','Damaskrose','Svart oud','Isbremoskus','Furuharpiks','Ambra','Havsalt','Røkelse'].map(w=>`${w} <i>✳</i>`).join(' ');
 $('#tick').nextElementSibling.innerHTML=$('#tick').innerHTML;
 
@@ -569,43 +929,526 @@ function loopWaterfall(){
 }
 setTimeout(()=>{wfit();loopWaterfall()},50);
 
-/* ── store & checkout ── */
-const S=new Proxy({size:'50',qty:1,lines:[]},{set(t,k,v){t[k]=v;render();return true}});
-function render(){
-  const p=P.price[S.size]*S.qty;
-  $('#price').textContent=nok(P.price[S.size]);$('#bprice').textContent=nok(P.price[S.size]);$('#q').textContent=S.qty;
-  const n=S.lines.reduce((a,l)=>a+l.qty,0);$('#badge').textContent=n;
-  $('#lines').innerHTML=S.lines.length?S.lines.map((l,i)=>`<div class="row"><span>${P.name}<em>${l.size} ml × ${l.qty}</em></span><span>${nok(P.price[l.size]*l.qty)} <button class="x" data-rm="${i}">✕</button></span></div>`).join(''):'<p class="row" style="color:var(--dim)">Kurven er tom — ennå.</p>';
-  const tot=S.lines.reduce((a,l)=>a+P.price[l.size]*l.qty,0);
-  $('#total').textContent=nok(tot);
-  $('#modalTotal').textContent=nok(tot);
+/* ── multi-product reactive store & checkout ── */
+const S = new Proxy({
+  currentProductId: CATALOG[0]?.id || 'svartfjord-1',
+  size: '50',
+  qty: 1,
+  lines: []
+}, {
+  set(t, k, v) {
+    t[k] = v;
+    render();
+    return true;
+  }
+});
+window.S = S;
+
+function renderStore() {
+  const cur = getProduct(S.currentProductId);
+  const curPrice = (cur.price && cur.price[S.size]) || 2190;
+
+  // Update flacon displays
+  if ($('#stage')) $('#stage').innerHTML = renderBottleSvg(cur, 'stage');
+  if ($('#flacon')) $('#flacon').innerHTML = renderBottleSvg(cur, 'hero');
+
+  // Update texts
+  if ($('#prodName')) $('#prodName').textContent = cur.name;
+  if ($('#prodSubtitle')) $('#prodSubtitle').textContent = `${(cur.subtitle || '').toUpperCase()} · ${cur.concentration || ''}`;
+  if ($('#prodEdition')) $('#prodEdition').textContent = cur.edition || 'Begrenset opplag';
+  if ($('#prodDesc')) $('#prodDesc').textContent = cur.desc || '';
+
+  const notesArr = [cur.notes?.top, cur.notes?.heart, cur.notes?.base].filter(Boolean);
+  if ($('#prodNotesText')) $('#prodNotesText').textContent = notesArr.length ? notesArr.join(' / ') : 'Einer, damaskrose, svart oud, ambra.';
+  if ($('#prodStoryText')) $('#prodStoryText').textContent = cur.story || cur.desc || '';
+
+  // Update prices
+  if ($('#price')) $('#price').textContent = nok(curPrice);
+  if ($('#bprice')) $('#bprice').textContent = nok(curPrice);
+  if ($('#bname')) $('#bname').innerHTML = `${cur.name} · ${S.size} ml<br><b id="bprice" style="color:#fff">${nok(curPrice)}</b>`;
+  if ($('#q')) $('#q').textContent = S.qty;
+
+  // Collection count & tabs
+  if ($('#collectionCount')) $('#collectionCount').textContent = `${CATALOG.length} kreasjoner`;
+  if ($('#productTabs')) {
+    $('#productTabs').innerHTML = CATALOG.map(p => `
+      <button role="tab" class="ptab ${p.id === S.currentProductId ? 'active' : ''}" data-id="${p.id}" aria-selected="${p.id === S.currentProductId}">
+        <span class="dot" style="background:${p.color?.capStroke || 'var(--gold)'}"></span>
+        <span>${p.name}</span>
+      </button>
+    `).join('');
+  }
 }
-$('#sizes').onchange=e=>vt(()=>S.size=e.target.value);
-$$('.qty button').forEach(b=>b.onclick=()=>S.qty=Math.max(1,S.qty+ +b.dataset.q));
-const addToCart=()=>{
-  const l=S.lines.find(l=>l.size===S.size);
-  vt(()=>{l?l.qty+=S.qty:S.lines.push({size:S.size,qty:S.qty});S.lines=[...S.lines]});
-  buzz([12,40,18]);if(birdOn)chirp();
-  if(typeof confetti==='function')confetti({particleCount:40,spread:60,origin:{y:.85},colors:['#C9A96E','#89CFF0','#FFFFFF']});
+
+function renderCart() {
+  const n = S.lines.reduce((a, l) => a + l.qty, 0);
+  if ($('#badge')) $('#badge').textContent = n;
+
+  if ($('#lines')) {
+    $('#lines').innerHTML = S.lines.length
+      ? S.lines.map((l, i) => `
+        <div class="row" style="align-items:center">
+          <div>
+            <span style="font-weight:500;color:#fff">${l.name}</span>
+            <em>${l.size} ml × ${l.qty}</em>
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <b style="color:${l.capStroke || 'var(--gold)'}">${nok(l.price * l.qty)}</b>
+            <button class="x" data-rm="${i}" aria-label="Fjern ${l.name} fra kurv">✕</button>
+          </div>
+        </div>
+      `).join('')
+      : '<p class="row" style="color:var(--dim)">Kurven er tom — ennå.</p>';
+  }
+
+  const tot = S.lines.reduce((a, l) => a + (l.price * l.qty), 0);
+  if ($('#total')) $('#total').textContent = nok(tot);
+  if ($('#modalTotal')) $('#modalTotal').textContent = nok(tot);
+}
+
+function render() {
+  renderStore();
+  renderCart();
+}
+
+$('#sizes')?.addEventListener('change', e => vt(() => S.size = e.target.value));
+$$('.qty button').forEach(b => b.onclick = () => S.qty = Math.max(1, S.qty + +b.dataset.q));
+
+const addToCart = () => {
+  const cur = getProduct(S.currentProductId);
+  const unitPrice = (cur.price && cur.price[S.size]) || 2190;
+  const l = S.lines.find(x => x.id === cur.id && x.size === S.size);
+  vt(() => {
+    if (l) {
+      l.qty += S.qty;
+    } else {
+      S.lines.push({
+        id: cur.id,
+        name: cur.name,
+        size: S.size,
+        price: unitPrice,
+        qty: S.qty,
+        capStroke: cur.color?.capStroke || 'var(--gold)'
+      });
+    }
+    S.lines = [...S.lines];
+  });
+  buzz([12, 40, 18]);
+  if (birdOn) chirp();
+  if (typeof confetti === 'function') confetti({ particleCount: 40, spread: 60, origin: { y: .85 }, colors: ['#C9A96E', '#89CFF0', '#FFFFFF'] });
   $('#cart').showPopover();
 };
-$('#add').onclick=addToCart;$('#add2').onclick=addToCart;
-$('#lines').onclick=e=>{const i=e.target.dataset.rm;if(i!=null)vt(()=>S.lines=S.lines.filter((_,x)=>x!=i))};
 
-$('#openCheckout').onclick=()=>{
-  if(!S.lines.length)return;
+$('#add')?.addEventListener('click', addToCart);
+$('#add2')?.addEventListener('click', addToCart);
+
+$('#lines')?.addEventListener('click', e => {
+  const i = e.target.dataset.rm;
+  if (i != null) vt(() => S.lines = S.lines.filter((_, x) => x != i));
+});
+
+$('#productTabs')?.addEventListener('click', e => {
+  const btn = e.target.closest('.ptab');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id && id !== S.currentProductId) {
+    vt(() => { S.currentProductId = id; });
+    buzz([12]);
+  }
+});
+
+$('#openCheckout')?.addEventListener('click', () => {
+  if (!S.lines.length) return;
   $('#cart').hidePopover();
   $('#checkoutModal').showModal();
-};
+});
 
-window.handleCheckout=e=>{
+window.handleCheckout = e => {
   e.preventDefault();
-  buzz([10,60,10,60,25]);if(birdOn)chirp();
-  if(typeof confetti==='function')confetti({particleCount:70,spread:80,origin:{y:.6},colors:['#C9A96E','#FF5B24','#FFFFFF']});
+  buzz([10, 60, 10, 60, 25]);
+  if (birdOn) chirp();
+  if (typeof confetti === 'function') confetti({ particleCount: 70, spread: 80, origin: { y: .6 }, colors: ['#C9A96E', '#FF5B24', '#FFFFFF'] });
   $('#checkoutModal').close();
   $('#cart').showPopover();
-  vt(()=>{$('#cart').innerHTML=`<p class="eye">Forseglet</p><h2 style="font-size:2rem;margin:.8rem 0">Takk. Ordren er reservert.</h2><p>Ordre <b style="color:var(--gold)">#${(Math.random()*1e5|0).toString(36).toUpperCase()}</b> — flakong reservert i Oslo. Bekreftelse sendt på SMS/e-post.</p><button class="cta" style="margin-top:1.6rem" popovertarget="cart" popovertargetaction="hide">Lukk</button>`;S.lines=[]});
+  vt(() => {
+    $('#cart').innerHTML = `<p class="eye">Forseglet</p><h2 style="font-size:2rem;margin:.8rem 0">Takk. Ordren er reservert.</h2><p>Ordre <b style="color:var(--gold)">#${(Math.random()*1e5|0).toString(36).toUpperCase()}</b> — flakonger reservert i atelieret i Oslo. Bekreftelse sendt på SMS/e-post.</p><button class="cta" style="margin-top:1.6rem" popovertarget="cart" popovertargetaction="hide">Lukk</button>`;
+    S.lines = [];
+  });
 };
+
+/* ── Admin Portal & Product Manager ── */
+const PRESETS = {
+  amber: { liquidTop: 'oklch(.66 .17 62 / .85)', liquidBottom: 'oklch(.26 .09 28 / .96)', glow: 'oklch(.85 .2 155)', cap: '#0a0e15', capStroke: 'var(--gold)' },
+  arctic: { liquidTop: 'oklch(.75 .14 210 / .85)', liquidBottom: 'oklch(.32 .12 225 / .96)', glow: 'oklch(.88 .18 200)', cap: '#121820', capStroke: '#89cff0' },
+  sol: { liquidTop: 'oklch(.78 .19 82 / .85)', liquidBottom: 'oklch(.38 .14 48 / .96)', glow: 'oklch(.88 .22 75)', cap: '#18120a', capStroke: '#e5b364' },
+  emerald: { liquidTop: 'oklch(.70 .18 145 / .85)', liquidBottom: 'oklch(.30 .12 140 / .96)', glow: 'oklch(.85 .22 140)', cap: '#08140c', capStroke: '#2ecc71' },
+  aurora: { liquidTop: 'oklch(.68 .20 300 / .85)', liquidBottom: 'oklch(.28 .14 290 / .96)', glow: 'oklch(.85 .24 310)', cap: '#120b18', capStroke: '#a55eea' },
+  rose: { liquidTop: 'oklch(.72 .18 25 / .85)', liquidBottom: 'oklch(.34 .12 20 / .96)', glow: 'oklch(.86 .20 30)', cap: '#180d10', capStroke: '#ff7675' }
+};
+
+const getAdminPin = () => localStorage.getItem('sf_admin_pin') || '4424';
+const isAdminAuthed = () => sessionStorage.getItem('sf_admin_auth') === '1';
+
+function openAdmin() {
+  if (isAdminAuthed()) {
+    openAdminDashboard();
+  } else {
+    $('#adminPinInput').value = '';
+    $('#pinError').textContent = '';
+    $('#adminPinModal').showModal();
+    setTimeout(() => $('#adminPinInput').focus(), 100);
+  }
+}
+
+$('#openAdminBtn')?.addEventListener('click', openAdmin);
+$('#closeAdminPinBtn')?.addEventListener('click', () => $('#adminPinModal').close());
+$('#cancelPinBtn')?.addEventListener('click', () => $('#adminPinModal').close());
+$('#closeAdminPanelBtn')?.addEventListener('click', () => $('#adminPanelModal').close());
+
+$('#adminPinForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const inputPin = $('#adminPinInput').value.trim();
+  if (inputPin === getAdminPin()) {
+    sessionStorage.setItem('sf_admin_auth', '1');
+    $('#adminPinModal').close();
+    openAdminDashboard();
+    buzz([15, 30, 15]);
+  } else {
+    $('#pinError').textContent = 'Feil PIN-kode. Standard atelier-PIN er 4424.';
+    $('#adminPinInput').value = '';
+    buzz([40, 60, 40]);
+  }
+});
+
+$('#adminLogoutBtn')?.addEventListener('click', () => {
+  sessionStorage.removeItem('sf_admin_auth');
+  $('#adminPanelModal').close();
+});
+
+function switchAdminTab(tab) {
+  $('#tabBtnList')?.classList.toggle('active', tab === 'list');
+  $('#tabBtnForm')?.classList.toggle('active', tab === 'form');
+  $('#tabBtnData')?.classList.toggle('active', tab === 'data');
+  if ($('#adminViewList')) $('#adminViewList').style.display = tab === 'list' ? 'block' : 'none';
+  if ($('#adminViewForm')) $('#adminViewForm').style.display = tab === 'form' ? 'block' : 'none';
+  if ($('#adminViewData')) $('#adminViewData').style.display = tab === 'data' ? 'block' : 'none';
+  if (tab === 'data') {
+    $('#catalogJsonArea').value = JSON.stringify(CATALOG, null, 2);
+    if ($('#pinChangeFeedback')) $('#pinChangeFeedback').textContent = '';
+  }
+  if (tab === 'list') {
+    renderAdminList();
+  }
+}
+$('#tabBtnList')?.addEventListener('click', () => switchAdminTab('list'));
+$('#tabBtnForm')?.addEventListener('click', () => { resetProductForm(); switchAdminTab('form'); });
+$('#tabBtnData')?.addEventListener('click', () => switchAdminTab('data'));
+$('#adminAddNewBtn')?.addEventListener('click', () => { resetProductForm(); switchAdminTab('form'); });
+
+function openAdminDashboard() {
+  $('#adminPanelModal').showModal();
+  switchAdminTab('list');
+}
+
+function renderAdminList() {
+  if ($('#adminProdCount')) $('#adminProdCount').textContent = CATALOG.length;
+  if ($('#adminProductCards')) {
+    $('#adminProductCards').innerHTML = CATALOG.map(p => {
+      const p30 = (p.price && p.price[30]) || 1490;
+      const p50 = (p.price && p.price[50]) || 2190;
+      const p100 = (p.price && p.price[100]) || 3690;
+      return `
+        <div class="admin-card">
+          <div style="width:55px;height:90px">${renderBottleSvg(p, 'adm_card_' + p.id)}</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+              <h4 style="font-size:1.15rem;margin:0;color:#fff">${p.name}</h4>
+              <span style="font-size:.68rem;padding:.2rem .5rem;border-radius:99px;background:#ffffff10;color:var(--gold);border:1px solid var(--line)">${p.tag || p.edition || 'Flakong'}</span>
+            </div>
+            <p style="font-size:.78rem;color:var(--gold);margin:.2rem 0 .4rem">${p.subtitle || ''} · ${p.concentration || ''}</p>
+            <p style="font-size:.78rem;color:var(--dim);margin-bottom:.4rem;line-height:1.4">${p.desc || ''}</p>
+            <div style="font-size:.76rem;color:#e9eef2">
+              <b>30 ml:</b> ${nok(p30)} &nbsp;|&nbsp; <b>50 ml:</b> ${nok(p50)} &nbsp;|&nbsp; <b>100 ml:</b> ${nok(p100)}
+            </div>
+          </div>
+          <div class="admin-card-actions">
+            <button class="admin-card-btn" data-act="shop" data-id="${p.id}" title="Vis og aktiver i butikken">👁️ Vis i butikk</button>
+            <button class="admin-card-btn" data-act="edit" data-id="${p.id}" title="Rediger denne flakongen">✏️ Rediger</button>
+            <button class="admin-card-btn" data-act="dup" data-id="${p.id}" title="Dupliser denne flakongen">📋 Dupliser</button>
+            <button class="admin-card-btn danger" data-act="del" data-id="${p.id}" title="Slett denne flakongen" ${CATALOG.length <= 1 ? 'disabled style="opacity:.4;cursor:not-allowed"' : ''}>🗑️ Slett</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+$('#adminProductCards')?.addEventListener('click', e => {
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const act = btn.dataset.act;
+  const id = btn.dataset.id;
+  if (act === 'shop') {
+    S.currentProductId = id;
+    render();
+    $('#adminPanelModal').close();
+    document.getElementById('kjop').scrollIntoView({ behavior: 'smooth' });
+  } else if (act === 'edit') {
+    loadProductIntoForm(id);
+    switchAdminTab('form');
+  } else if (act === 'dup') {
+    duplicateProduct(id);
+  } else if (act === 'del') {
+    deleteProduct(id);
+  }
+});
+
+function loadProductIntoForm(id) {
+  const p = getProduct(id);
+  $('#prodFormId').value = p.id;
+  $('#prodFormHeader').textContent = `Rediger: ${p.name}`;
+  $('#prodFormName').value = p.name;
+  $('#prodFormSubtitle').value = p.subtitle || '';
+  $('#prodFormConcentration').value = p.concentration || '26 %';
+  $('#prodFormEdition').value = p.edition || '';
+  $('#prodFormDesc').value = p.desc || '';
+  $('#prodFormStory').value = p.story || '';
+  $('#prodFormPrice30').value = (p.price && p.price[30]) || 1490;
+  $('#prodFormPrice50').value = (p.price && p.price[50]) || 2190;
+  $('#prodFormPrice100').value = (p.price && p.price[100]) || 3690;
+  $('#prodFormNotesTop').value = p.notes?.top || '';
+  $('#prodFormNotesHeart').value = p.notes?.heart || '';
+  $('#prodFormNotesBase').value = p.notes?.base || '';
+  const c = p.color || DEFAULT_CATALOG[0].color;
+  $('#prodFormLiquidTop').value = c.liquidTop || 'oklch(.66 .17 62 / .85)';
+  $('#prodFormLiquidBottom').value = c.liquidBottom || 'oklch(.26 .09 28 / .96)';
+  $('#prodFormGlow').value = c.glow || 'oklch(.85 .2 155)';
+  if (c.capStroke && c.capStroke.includes('89cff0')) {
+    $('#prodFormCapFinish').value = 'silver';
+  } else if (c.capStroke && c.capStroke.includes('888')) {
+    $('#prodFormCapFinish').value = 'obsidian';
+  } else {
+    $('#prodFormCapFinish').value = 'gold';
+  }
+  $('#formFeedback').textContent = '';
+  updateAdminPreview();
+}
+
+function resetProductForm() {
+  $('#prodFormId').value = '';
+  $('#prodFormHeader').textContent = 'Opprett ny Flakong';
+  $('#prodFormName').value = `Svartfjord N°${CATALOG.length + 1}`;
+  $('#prodFormSubtitle').value = 'Extrait de Parfum';
+  $('#prodFormConcentration').value = '26 %';
+  $('#prodFormEdition').value = 'Begrenset opplag · 200 flakonger';
+  $('#prodFormDesc').value = 'Extrait de parfum, 26 % konsentrasjon. Håndfylt flakong modnet i Oslo.';
+  $('#prodFormStory').value = 'Inspirert av den nordiske villmarken og mørke fjorder.';
+  $('#prodFormPrice30').value = 1490;
+  $('#prodFormPrice50').value = 2190;
+  $('#prodFormPrice100').value = 3690;
+  $('#prodFormNotesTop').value = 'Einer, Frostluft, Tindved';
+  $('#prodFormNotesHeart').value = 'Damaskrose, Røkelse, Kvae';
+  $('#prodFormNotesBase').value = 'Svart oud, Isbremoskus, Ambra';
+  const c = PRESETS.amber;
+  $('#prodFormLiquidTop').value = c.liquidTop;
+  $('#prodFormLiquidBottom').value = c.liquidBottom;
+  $('#prodFormGlow').value = c.glow;
+  $('#prodFormCapFinish').value = 'gold';
+  $('#formFeedback').textContent = '';
+  updateAdminPreview();
+}
+
+$('#cancelFormBtn')?.addEventListener('click', () => switchAdminTab('list'));
+
+function getCapColors(finish) {
+  if (finish === 'silver') return { cap: '#121820', capStroke: '#89cff0' };
+  if (finish === 'obsidian') return { cap: '#080808', capStroke: '#888888' };
+  return { cap: '#0a0e15', capStroke: 'var(--gold)' };
+}
+
+function getFormData() {
+  const finish = $('#prodFormCapFinish').value;
+  const capData = getCapColors(finish);
+  return {
+    id: $('#prodFormId').value || `svartfjord-${Date.now()}`,
+    name: $('#prodFormName').value.trim() || 'Svartfjord Flakong',
+    subtitle: $('#prodFormSubtitle').value.trim() || 'Extrait de Parfum',
+    concentration: $('#prodFormConcentration').value.trim() || '24 %',
+    edition: $('#prodFormEdition').value.trim() || 'Begrenset opplag',
+    desc: $('#prodFormDesc').value.trim() || '',
+    story: $('#prodFormStory').value.trim() || '',
+    price: {
+      30: Number($('#prodFormPrice30').value) || 1490,
+      50: Number($('#prodFormPrice50').value) || 2190,
+      100: Number($('#prodFormPrice100').value) || 3690
+    },
+    notes: {
+      top: $('#prodFormNotesTop').value.trim(),
+      heart: $('#prodFormNotesHeart').value.trim(),
+      base: $('#prodFormNotesBase').value.trim()
+    },
+    color: {
+      liquidTop: $('#prodFormLiquidTop').value.trim() || 'oklch(.66 .17 62 / .85)',
+      liquidBottom: $('#prodFormLiquidBottom').value.trim() || 'oklch(.26 .09 28 / .96)',
+      glow: $('#prodFormGlow').value.trim() || 'oklch(.85 .2 155)',
+      cap: capData.cap,
+      capStroke: capData.capStroke
+    },
+    tag: 'Atelier'
+  };
+}
+
+function updateAdminPreview() {
+  const p = getFormData();
+  $('#adminPreviewBottle').innerHTML = renderBottleSvg(p, 'adm_prev');
+  $('#previewProdName').textContent = p.name;
+  $('#previewProdSub').textContent = `${(p.subtitle || '').toUpperCase()} · ${p.concentration || ''}`;
+  $('#previewPrice50').textContent = nok(p.price[50] || 2190);
+  const notesText = [p.notes.top, p.notes.heart, p.notes.base].filter(Boolean).join(' / ');
+  $('#previewNotes').textContent = notesText || 'Einer, Damaskrose, Svart Oud';
+}
+
+$('#adminProductForm')?.addEventListener('input', updateAdminPreview);
+$('#adminProductForm')?.addEventListener('change', updateAdminPreview);
+
+$('#colorPresets')?.addEventListener('click', e => {
+  const btn = e.target.closest('.preset-btn');
+  if (!btn) return;
+  const key = btn.dataset.preset;
+  const p = PRESETS[key];
+  if (p) {
+    $('#prodFormLiquidTop').value = p.liquidTop;
+    $('#prodFormLiquidBottom').value = p.liquidBottom;
+    $('#prodFormGlow').value = p.glow;
+    if (key === 'arctic') $('#prodFormCapFinish').value = 'silver';
+    else if (key === 'emerald') $('#prodFormCapFinish').value = 'gold';
+    else $('#prodFormCapFinish').value = 'gold';
+    updateAdminPreview();
+    buzz([8]);
+  }
+});
+
+$('#adminProductForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const prod = getFormData();
+  const existingIndex = CATALOG.findIndex(x => x.id === prod.id);
+  if (existingIndex >= 0) {
+    CATALOG[existingIndex] = prod;
+  } else {
+    CATALOG.push(prod);
+  }
+  saveCatalog();
+  render();
+  $('#formFeedback').textContent = '✓ Flakongen er lagret og publisert til butikken!';
+  buzz([15, 30, 15]);
+  setTimeout(() => {
+    switchAdminTab('list');
+  }, 700);
+});
+
+function duplicateProduct(id) {
+  const orig = getProduct(id);
+  const cloned = JSON.parse(JSON.stringify(orig));
+  cloned.id = `svartfjord-${Date.now()}`;
+  cloned.name = `${cloned.name} (Kopi)`;
+  CATALOG.push(cloned);
+  saveCatalog();
+  render();
+  renderAdminList();
+  buzz([12]);
+}
+
+function deleteProduct(id) {
+  if (CATALOG.length <= 1) {
+    alert('Du må ha minst én flakong i atelier-katalogen.');
+    return;
+  }
+  const p = getProduct(id);
+  if (!confirm(`Er du sikker på at du vil slette "${p.name}"?`)) return;
+  CATALOG = CATALOG.filter(x => x.id !== id);
+  if (S.currentProductId === id) {
+    S.currentProductId = CATALOG[0].id;
+  }
+  saveCatalog();
+  render();
+  renderAdminList();
+  buzz([20, 20]);
+}
+
+// JSON & Data Management
+$('#copyJsonBtn')?.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText($('#catalogJsonArea').value);
+    $('#copyJsonBtn').textContent = '✓ Kopiert!';
+    setTimeout(() => { $('#copyJsonBtn').textContent = 'Kopier JSON til utklippstavle'; }, 1800);
+  } catch (err) {
+    $('#catalogJsonArea').select();
+    document.execCommand('copy');
+    alert('Kopiert til utklippstavle!');
+  }
+});
+
+$('#importJsonBtn')?.addEventListener('click', () => {
+  try {
+    const raw = $('#catalogJsonArea').value.trim();
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || !parsed.length) {
+      alert('Ugyldig format: JSON må være en array med minst én flakong.');
+      return;
+    }
+    CATALOG = parsed;
+    saveCatalog();
+    if (!CATALOG.find(p => p.id === S.currentProductId)) {
+      S.currentProductId = CATALOG[0].id;
+    }
+    render();
+    alert('✓ Katalogen ble vellykket importert!');
+    switchAdminTab('list');
+  } catch (err) {
+    alert('Feil ved tolking av JSON: ' + err.message);
+  }
+});
+
+$('#resetCatalogBtn')?.addEventListener('click', () => {
+  if (confirm('Vil du tilbakestille katalogen til de opprinnelige 3 Svartfjord-flakongene?')) {
+    CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+    saveCatalog();
+    S.currentProductId = CATALOG[0].id;
+    render();
+    $('#catalogJsonArea').value = JSON.stringify(CATALOG, null, 2);
+    alert('✓ Katalogen er tilbakestilt til standard!');
+    switchAdminTab('list');
+  }
+});
+
+$('#savePinBtn')?.addEventListener('click', () => {
+  const np = $('#newPinInput').value.trim();
+  if (np.length < 4) {
+    alert('PIN-koden må være minst 4 siffer.');
+    return;
+  }
+  localStorage.setItem('sf_admin_pin', np);
+  $('#newPinInput').value = '';
+  $('#pinChangeFeedback').textContent = '✓ Sikkerhets-PIN er oppdatert!';
+  setTimeout(() => { $('#pinChangeFeedback').textContent = ''; }, 2500);
+});
+
+// Shortcut & Hash triggers
+window.addEventListener('keydown', e => {
+  if ((e.altKey || e.shiftKey) && (e.key === 'a' || e.key === 'A') && !e.target.matches('input, textarea, select')) {
+    e.preventDefault();
+    openAdmin();
+  }
+});
+if (location.hash === '#admin') {
+  setTimeout(openAdmin, 400);
+}
+
+window.openAdmin = openAdmin;
+window.switchAdminTab = switchAdminTab;
+window.render = render;
+window.renderStore = renderStore;
+
 render();
 
 /* ── leveringsdato ── */
@@ -720,6 +1563,7 @@ window.playIntro=()=>{
   sessionStorage.removeItem('sf-seen');
   sessionStorage.removeItem('sf-seen-v1.0.4');
   sessionStorage.removeItem('sf-seen-v1.0.5');
+  sessionStorage.removeItem('sf-seen-v1.0.6');
   location.href=location.pathname+'?intro=1';
 };
 $('#replayIntro')?.addEventListener('click',window.playIntro);
@@ -728,7 +1572,7 @@ let hasBooted=false;
 const skip=async()=>{
   if(hasBooted)return;
   hasBooted=true;
-  sessionStorage.setItem('sf-seen-v1.0.5','1');
+  sessionStorage.setItem('sf-seen-v1.0.6','1');
   R.dataset.boot='1';
   const t=vt(()=>{
     intro?.remove();
