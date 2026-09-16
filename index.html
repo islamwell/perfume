@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <!-- Head Guard: Instant skip on repeat visits, reduced motion, or no-JS. Force replay with ?intro=1 or ?replay=1 -->
-<script>try{if((sessionStorage.getItem('sf-seen-v1.0.6')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
+<script>try{if(location.search.includes('nointro')||(sessionStorage.getItem('sf-seen-v1.0.6')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
 <noscript><style>html.booting{overflow:visible}.intro{display:none}html.booting :is(.hero .up,.flacon,#smoke){opacity:1!important}</style></noscript>
 
 <style>
@@ -236,6 +236,230 @@ details p{margin-top:.7rem;font-size:.9rem}
   .admin-modal{padding:1.4rem;width:96vw}
 }
 
+
+/* ── product images, tabs & flacon gallery ── */
+.stage-packshot-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 380px;
+}
+.stage-packshot-img {
+  width: min(72vw, 320px);
+  max-height: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 40px rgba(0,0,0,0.92)) drop-shadow(0 0 30px rgba(229,179,100,0.18));
+  transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1), filter .5s ease;
+  will-change: transform;
+  z-index: 2;
+  animation: floatStageFlacon 6s ease-in-out infinite alternate;
+}
+@keyframes floatStageFlacon {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-8px) scale(1.02); }
+}
+.stage:hover .stage-packshot-img {
+  transform: translateY(-12px) scale(1.05);
+  filter: drop-shadow(0 35px 55px rgba(0,0,0,0.98)) drop-shadow(0 0 45px rgba(229,179,100,0.3));
+}
+.stage-shadow-pedestal {
+  position: absolute;
+  bottom: 12px;
+  width: 180px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.85) 0%, rgba(201,169,110,0.15) 45%, transparent 75%);
+  filter: blur(8px);
+  z-index: 1;
+}
+
+/* Product tabs with image thumbnails */
+.ptab {
+  padding: .4rem .9rem .4rem .45rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .65rem !important;
+}
+.ptab-thumb-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a2533, #090e15);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: all .2s ease;
+}
+.ptab.active .ptab-thumb-wrap {
+  background: #ffffff;
+  border-color: #06090e;
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+.ptab-thumb {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.ptab-info {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+.ptab-brand {
+  font-size: .62rem;
+  opacity: .7;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.ptab.active .ptab-brand {
+  color: #06090e;
+  opacity: .85;
+  font-weight: 700;
+}
+.ptab-name {
+  font-size: .78rem;
+  font-weight: 500;
+}
+.ptab.active .ptab-name {
+  color: #06090e;
+  font-weight: 700;
+}
+
+/* Cart item thumbnail */
+.cart-item-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #020407;
+  border: 1px solid var(--line);
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+/* Visual Flacon Gallery Grid */
+.flacon-gallery {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.flacon-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.4rem;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+.flacon-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+@media (max-width: 640px) {
+  .flacon-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .8rem;
+  }
+}
+.gallery-card {
+  background: #04070df0;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  padding: 1.1rem .85rem .95rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.gallery-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.8), 0 0 24px rgba(201,169,110,0.18);
+}
+.gallery-card.active {
+  border-color: var(--gold);
+  background: radial-gradient(circle at 50% 20%, rgba(201,169,110,0.16), #04070df0 85%);
+  box-shadow: 0 0 0 1.5px var(--gold), 0 10px 30px rgba(0,0,0,0.9);
+}
+.gallery-card-img-wrap {
+  width: 100%;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .8rem;
+  position: relative;
+}
+.gallery-card-img {
+  max-width: 100%;
+  max-height: 145px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.75));
+  transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover .gallery-card-img {
+  transform: scale(1.08) translateY(-4px);
+}
+.gallery-card-brand {
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gold);
+  margin-bottom: .25rem;
+  font-weight: 600;
+}
+.gallery-card-title {
+  font-family: Cormorant Garamond, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: .45rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5em;
+}
+.gallery-card-price {
+  font-size: .8rem;
+  color: var(--ice);
+  margin-top: auto;
+  font-weight: 500;
+}
+.gallery-card-btn {
+  margin-top: .6rem;
+  width: 100%;
+  background: #ffffff0a;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  padding: .35rem .6rem;
+  border-radius: 99px;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: all .2s;
+}
+.gallery-card:hover .gallery-card-btn,
+.gallery-card.active .gallery-card-btn {
+  background: var(--gold);
+  color: #06090e;
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:4rem var(--pad) 7rem;display:grid;gap:2rem}
 footer input{background:none;border:0;border-bottom:1px solid var(--gold);padding:.6rem 0;color:var(--ice);font:inherit;width:100%}
@@ -309,6 +533,7 @@ dialog::backdrop{z-index:99998}
 @keyframes bloom{0%,10%{opacity:0;scale:.25}45%{opacity:.5;scale:1}100%{opacity:.26;scale:1.18;filter:blur(30px) hue-rotate(-55deg)}}
 @keyframes enter{from{opacity:0;translate:0 1.7rem;filter:blur(10px)}to{opacity:1;translate:0;filter:none}}
 
+html.ready .intro{display:none!important}
 html.ready .hero .up{animation:enter 1s var(--E) both;animation-delay:calc(var(--i,0)*110ms + 60ms)}
 html.ready .hero .up.scroll{animation:enter 1s var(--E) .62s both,blink 2.6s 1.7s infinite}
 
@@ -493,6 +718,17 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
       </div>
     </div>
   </div>
+
+  <div class="flacon-gallery" id="flaconGallery">
+    <div class="flacon-gallery-header">
+      <div>
+        <p class="eye" id="galleryEye">Visuelt Flakong-Galleri</p>
+        <h3 id="galleryTitle" style="font-size:clamp(1.5rem,4vw,2.2rem);margin:.2rem 0 0">Utforsk Kolleksjonens Flakonger</h3>
+      </div>
+      <span id="gallerySubtitle" class="eye" style="color:var(--dim)">Klikk på en flakong for å se detaljer & handle</span>
+    </div>
+    <div class="flacon-gallery-grid" id="flaconGalleryGrid"></div>
+  </div>
 </section>
 
 <section><div class="stats">
@@ -514,7 +750,7 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
       <button onclick="window.playIntro()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Se intro på nytt</button>
       <button id="openAdminBtn" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Kurator Atelier (Admin)</button>
       <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.7 (updated 2026-09-16 21:56)
+        v1.0.9 (updated 2026-09-16 23:55)
       </div>
     </div>
   </div>
@@ -727,6 +963,12 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
             </div>
           </div>
 
+                    <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Produktbilde / Product Image</p>
+          <div>
+            <label class="eye" style="font-size:.62rem">Bilde-sti eller URL / Image Path or URL</label>
+            <input type="text" id="prodFormImage" class="admin-input" placeholder="images/lattafa-asad.png">
+          </div>
+
           <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Flakongens Fargetema & Utseende</p>
           <p style="font-size:.75rem;color:var(--dim)">Klikk en forhåndsdefinert palett eller tilpass fargetonene fritt:</p>
           <div class="color-presets" id="colorPresets">
@@ -819,6 +1061,7 @@ const DEFAULT_CATALOG = [
   // ── SVARTFJORD ATELIER (Signatur) ──
   {
     id: 'svartfjord-1',
+    image: 'images/svartfjord-1.png',
     brand: 'Svartfjord',
     name: 'Svartfjord N°1',
     edition: 'Begrenset opplag · 300 flakonger',
@@ -849,6 +1092,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'svartfjord-2',
+    image: 'images/svartfjord-2.png',
     brand: 'Svartfjord',
     name: 'Svartfjord N°2 Hvitbre',
     edition: 'Isbre-maserasjon · 250 flakonger',
@@ -879,6 +1123,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'svartfjord-3',
+    image: 'images/svartfjord-3.png',
     brand: 'Svartfjord',
     name: 'Svartfjord N°3 Midnattssol',
     edition: 'Sommersolverv · 200 flakonger',
@@ -911,6 +1156,7 @@ const DEFAULT_CATALOG = [
   // ── LATTAFA PERFUMES ──
   {
     id: 'lattafa-khamrah',
+    image: 'images/lattafa-khamrah.png',
     brand: 'Lattafa',
     name: 'Lattafa Khamrah',
     edition: 'Crystal Luxury Edition · 100 ml',
@@ -941,6 +1187,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-khamrah-qahwa',
+    image: 'images/lattafa-khamrah-qahwa.png',
     brand: 'Lattafa',
     name: 'Lattafa Khamrah Qahwa',
     edition: 'Qahwa Reserve Edition · 100 ml',
@@ -971,6 +1218,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-asad',
+    image: 'images/lattafa-asad.png',
     brand: 'Lattafa',
     name: 'Lattafa Asad',
     edition: 'Signature Noir & Gold · 100 ml',
@@ -1001,6 +1249,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-asad-zanzibar',
+    image: 'images/lattafa-asad-zanzibar.png',
     brand: 'Lattafa',
     name: 'Lattafa Asad Zanzibar',
     edition: 'Oceanic Reserve · 100 ml',
@@ -1031,6 +1280,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-yara-pink',
+    image: 'images/lattafa-yara-pink.png',
     brand: 'Lattafa',
     name: 'Lattafa Yara (Pink)',
     edition: 'Sweet Orchid Flacon · 100 ml',
@@ -1061,6 +1311,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-yara-tous',
+    image: 'images/lattafa-yara-tous.png',
     brand: 'Lattafa',
     name: 'Lattafa Yara Tous (Yellow)',
     edition: 'Sunshine Nectar · 100 ml',
@@ -1091,6 +1342,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-yara-moi',
+    image: 'images/lattafa-yara-moi.png',
     brand: 'Lattafa',
     name: 'Lattafa Yara Moi (White)',
     edition: 'White Velvet · 100 ml',
@@ -1121,6 +1373,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-badee-glory',
+    image: 'images/lattafa-badee-glory.png',
     brand: 'Lattafa',
     name: 'Bade\'e Al Oud - Oud for Glory',
     edition: 'Royal Emblem Edition · 100 ml',
@@ -1151,6 +1404,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-badee-honor',
+    image: 'images/lattafa-badee-honor.png',
     brand: 'Lattafa',
     name: 'Bade\'e Al Oud - Honor & Glory',
     edition: 'White & Gold Reserve · 100 ml',
@@ -1181,6 +1435,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-badee-amethyst',
+    image: 'images/lattafa-badee-amethyst.png',
     brand: 'Lattafa',
     name: 'Bade\'e Al Oud - Amethyst',
     edition: 'Imperial Amethyst · 100 ml',
@@ -1211,6 +1466,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-badee-sublime',
+    image: 'images/lattafa-badee-sublime.png',
     brand: 'Lattafa',
     name: 'Bade\'e Al Oud - Sublime',
     edition: 'Emerald Sublime · 100 ml',
@@ -1241,6 +1497,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'lattafa-rave-now',
+    image: 'images/lattafa-rave-now.png',
     brand: 'Lattafa',
     name: 'Rave Now Black',
     edition: 'Geometric Noir · 100 ml',
@@ -1273,6 +1530,7 @@ const DEFAULT_CATALOG = [
   // ── MAISON ALHAMBRA ──
   {
     id: 'alhambra-sceptre-malachite',
+    image: 'images/alhambra-sceptre-malachite.png',
     brand: 'Maison Alhambra',
     name: 'Sceptre Malachite',
     edition: 'Imperial Gemstone · 100 ml',
@@ -1303,6 +1561,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'alhambra-sceptre-oceana',
+    image: 'images/alhambra-sceptre-oceana.png',
     brand: 'Maison Alhambra',
     name: 'Sceptre Oceana',
     edition: 'Imperial Gemstone · 100 ml',
@@ -1333,6 +1592,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'alhambra-sceptre-amazonite',
+    image: 'images/alhambra-sceptre-amazonite.png',
     brand: 'Maison Alhambra',
     name: 'Sceptre Amazonite',
     edition: 'Imperial Gemstone · 100 ml',
@@ -1363,6 +1623,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'alhambra-sceptre-bronzite',
+    image: 'images/alhambra-sceptre-bronzite.png',
     brand: 'Maison Alhambra',
     name: 'Sceptre Bronzite',
     edition: 'Imperial Gemstone · 100 ml',
@@ -1395,6 +1656,7 @@ const DEFAULT_CATALOG = [
   // ── SWISS ARABIAN ──
   {
     id: 'swissarabian-shaghaf-oud',
+    image: 'images/swissarabian-shaghaf-oud.png',
     brand: 'Swiss Arabian',
     name: 'Shaghaf Oud',
     edition: 'Iconic Gold Flacon · 75 ml',
@@ -1425,6 +1687,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'swissarabian-shaghaf-abyad',
+    image: 'images/swissarabian-shaghaf-abyad.png',
     brand: 'Swiss Arabian',
     name: 'Shaghaf Oud Abyad',
     edition: 'Silver Textured · 75 ml',
@@ -1455,6 +1718,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'swissarabian-shaghaf-aswad',
+    image: 'images/swissarabian-shaghaf-aswad.png',
     brand: 'Swiss Arabian',
     name: 'Shaghaf Oud Aswad',
     edition: 'Midnight Noir · 75 ml',
@@ -1485,6 +1749,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'swissarabian-shaghaf-tonka',
+    image: 'images/swissarabian-shaghaf-tonka.png',
     brand: 'Swiss Arabian',
     name: 'Shaghaf Oud Tonka',
     edition: 'Golden Reserve · 75 ml',
@@ -1517,6 +1782,7 @@ const DEFAULT_CATALOG = [
   // ── IBRAQ PERFUMES ──
   {
     id: 'ibraq-jamaican-tobacco',
+    image: 'images/ibraq-jamaican-tobacco.png',
     brand: 'Ibraq',
     name: 'Ibraq Jamaican Tobacco',
     edition: 'Private Reserve · 100 ml',
@@ -1547,6 +1813,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'ibraq-black-amber',
+    image: 'images/ibraq-black-amber.png',
     brand: 'Ibraq',
     name: 'Ibraq Black Amber',
     edition: 'Haute Flacon · 100 ml',
@@ -1577,6 +1844,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'ibraq-emerald-oud',
+    image: 'images/ibraq-emerald-oud.png',
     brand: 'Ibraq',
     name: 'Ibraq Emerald Oud',
     edition: 'Jewel Collection · 100 ml',
@@ -1609,6 +1877,7 @@ const DEFAULT_CATALOG = [
   // ── VIRIDIAN (VERIDIAN) ──
   {
     id: 'viridian-forest-mist',
+    image: 'images/viridian-forest-mist.png',
     brand: 'Viridian',
     name: 'Viridian Forest Mist',
     edition: 'Nordic Art Series · 100 ml',
@@ -1639,6 +1908,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'viridian-dusk',
+    image: 'images/viridian-dusk.png',
     brand: 'Viridian',
     name: 'Viridian Dusk',
     edition: 'Nordic Art Series · 100 ml',
@@ -1671,6 +1941,7 @@ const DEFAULT_CATALOG = [
   // ── REEF PERFUMES ──
   {
     id: 'reef-33',
+    image: 'images/reef-33.png',
     brand: 'Reef',
     name: 'Reef 33',
     edition: 'Saudi Luxury Gold Crest · 100 ml',
@@ -1701,6 +1972,7 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'reef-29',
+    image: 'images/reef-29.png',
     brand: 'Reef',
     name: 'Reef 29',
     edition: 'Saudi Luxury Silver Crest · 100 ml',
@@ -1733,10 +2005,19 @@ const DEFAULT_CATALOG = [
 
 function loadCatalog() {
   try {
-    const raw = localStorage.getItem('sf_catalog_v2');
+    const raw = localStorage.getItem('sf_catalog_v3') || localStorage.getItem('sf_catalog_v2');
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length >= 10) return parsed;
+      if (Array.isArray(parsed) && parsed.length >= 10) {
+        return parsed.map(p => {
+          const def = DEFAULT_CATALOG.find(d => d.id === p.id);
+          return {
+            ...def,
+            ...p,
+            image: p.image || (def && def.image) || ('images/' + p.id + '.png')
+          };
+        });
+      }
     }
   } catch (e) {
     console.warn('Feil ved lesing av lokal katalog:', e);
@@ -1748,7 +2029,7 @@ let CATALOG = loadCatalog();
 window.CATALOG = CATALOG;
 function saveCatalog() {
   try {
-    localStorage.setItem('sf_catalog_v2', JSON.stringify(CATALOG));
+    localStorage.setItem('sf_catalog_v3', JSON.stringify(CATALOG));
     window.CATALOG = CATALOG;
   } catch (e) {
     console.error('Kunne ikke lagre katalog:', e);
@@ -1757,6 +2038,18 @@ function saveCatalog() {
 function getProduct(id) {
   return CATALOG.find(p => p.id === id) || CATALOG[0];
 }
+
+function selectProduct(id) {
+  if (!id) return;
+  const p = getProduct(id);
+  if (!p) return;
+  S.currentProductId = p.id;
+  vt(() => {
+    renderStore();
+  });
+  buzz([12]);
+}
+window.selectProduct = selectProduct;
 
 /* ── dynamic SVG bottle renderer ── */
 function renderBottleSvg(p, uid = 'main') {
@@ -1801,7 +2094,10 @@ function renderBottleSvg(p, uid = 'main') {
 }
 
 $('#flacon').innerHTML = renderBottleSvg(CATALOG[0], 'hero');
-$('#stage').innerHTML = renderBottleSvg(CATALOG[0], 'stage');
+if ($('#stage')) {
+  const p0 = CATALOG[0];
+  $('#stage').innerHTML = `<div class="stage-packshot-wrap"><img class="stage-packshot-img" src="${p0.image || ('images/' + p0.id + '.png')}" alt="${p0.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="stage-svg-fallback" style="display:none;width:min(60vw,280px)">${renderBottleSvg(p0, 'stage')}</div><div class="stage-shadow-pedestal"></div></div>`;
+}
 $('#tick').innerHTML=['Einer','Bjørketjære','Safran','Damaskrose','Svart oud','Isbremoskus','Furuharpiks','Ambra','Havsalt','Røkelse'].map(w=>`${w} <i>✳</i>`).join(' ');
 $('#tick').nextElementSibling.innerHTML=$('#tick').innerHTML;
 
@@ -1937,7 +2233,18 @@ function renderStore() {
   const isEn = LANG === 'en';
 
   // Update flacon displays
-  if ($('#stage')) $('#stage').innerHTML = renderBottleSvg(cur, 'stage');
+  if ($('#stage')) {
+    const imgSrc = cur.image || ('images/' + cur.id + '.png');
+    $('#stage').innerHTML = `
+      <div class="stage-packshot-wrap">
+        <img class="stage-packshot-img" src="${imgSrc}" alt="${cur.name}" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="stage-svg-fallback" style="display:none;width:min(60vw,280px)">
+          ${renderBottleSvg(cur, 'stage')}
+        </div>
+        <div class="stage-shadow-pedestal"></div>
+      </div>
+    `;
+  }
   if ($('#flacon')) $('#flacon').innerHTML = renderBottleSvg(cur, 'hero');
 
   // Update texts based on language
@@ -2005,14 +2312,49 @@ function renderStore() {
       `;
     } else {
       $('#productTabs').innerHTML = filtered.map(p => `
-        <button role="tab" class="ptab ${p.id === S.currentProductId ? 'active' : ''}" data-id="${p.id}" aria-selected="${p.id === S.currentProductId}">
-          <span class="dot" style="background:${p.color?.capStroke || 'var(--gold)'}"></span>
-          <span style="opacity:.65;font-size:.68rem;text-transform:uppercase">${p.brand || ''}</span>
-          <span>${p.name}</span>
+        <button role="tab" class="ptab ${p.id === S.currentProductId ? 'active' : ''}" data-id="${p.id}" aria-selected="${p.id === S.currentProductId}" title="${p.name} · ${p.brand}">
+          <span class="ptab-thumb-wrap">
+            <img class="ptab-thumb" src="${p.image || ('images/' + p.id + '.png')}" alt="" loading="lazy" onerror="this.style.display='none'">
+          </span>
+          <span class="ptab-info">
+            <span class="ptab-brand">${p.brand || ''}</span>
+            <span class="ptab-name">${p.name}</span>
+          </span>
+          ${p.tag ? `<span class="badge">${p.tag}</span>` : ''}
         </button>
       `).join('');
     }
   }
+
+  // Render Visual Flacon Gallery Grid
+  if ($('#flaconGalleryGrid')) {
+    if (filtered.length === 0) {
+      $('#flaconGalleryGrid').innerHTML = `<p style="color:var(--dim);grid-column:1/-1;text-align:center;padding:2rem">${isEn ? 'No flacons match current filter.' : 'Ingen flakonger matcher det valgte filteret.'}</p>`;
+    } else {
+      $('#flaconGalleryGrid').innerHTML = filtered.map(p => {
+        const isActive = p.id === S.currentProductId;
+        const pMinPrice = (p.price && (p.price[30] || p.price[50] || p.price[100])) || 390;
+        const priceLabel = isEn ? `From ${nok(pMinPrice)}` : `Fra ${nok(pMinPrice)}`;
+        const btnLabel = isEn ? (isActive ? 'Selected' : 'Select Flacon') : (isActive ? 'Valgt' : 'Velg flakong');
+        return `
+          <div class="gallery-card ${isActive ? 'active' : ''}" data-gallery-id="${p.id}" role="button" tabindex="0" aria-label="${p.name}">
+            <div class="gallery-card-img-wrap">
+              <img class="gallery-card-img" src="${p.image || ('images/' + p.id + '.png')}" alt="${p.name}" loading="lazy" onerror="this.src='images/lattafa-asad.png'">
+            </div>
+            <span class="gallery-card-brand">${p.brand || 'Atelier'}</span>
+            <div class="gallery-card-title">${p.name}</div>
+            <div class="gallery-card-price">${priceLabel}</div>
+            <button type="button" class="gallery-card-btn" tabindex="-1">${btnLabel}</button>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // Update gallery headers based on language
+  if ($('#galleryEye')) $('#galleryEye').textContent = isEn ? 'Visual Flacon Gallery' : 'Visuelt Flakong-Galleri';
+  if ($('#galleryTitle')) $('#galleryTitle').textContent = isEn ? 'Explore All Flacons' : 'Utforsk Kolleksjonens Flakonger';
+  if ($('#gallerySubtitle')) $('#gallerySubtitle').textContent = isEn ? 'Click any flacon to inspect notes & order' : 'Klikk på en flakong for å se detaljer & handle';
 
   renderBrandFilters();
 }
@@ -2026,12 +2368,13 @@ function renderCart() {
   if ($('#lines')) {
     $('#lines').innerHTML = S.lines.length
       ? S.lines.map((l, i) => `
-        <div class="row" style="align-items:center">
-          <div>
-            <span style="font-weight:500;color:#fff">${l.name}</span>
+        <div class="row" style="align-items:center;gap:.9rem">
+          <img src="${l.image || ('images/' + l.id + '.png')}" class="cart-item-thumb" alt="${l.name}" onerror="this.style.display='none'">
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.name}</div>
             <em>${l.size} ml × ${l.qty}</em>
           </div>
-          <div style="display:flex;align-items:center;gap:.6rem">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-shrink:0">
             <b style="color:${l.capStroke || 'var(--gold)'}">${nok(l.price * l.qty)}</b>
             <button class="x" data-rm="${i}" aria-label="Fjern ${l.name} fra kurv">✕</button>
           </div>
@@ -2131,13 +2474,21 @@ document.addEventListener('click', e => {
   }
 });
 
+
+$('#flaconGalleryGrid')?.addEventListener('click', e => {
+  const card = e.target.closest('[data-gallery-id]');
+  if (!card) return;
+  const id = card.dataset.galleryId;
+  selectProduct(id);
+  $('#kjop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 $('#productTabs')?.addEventListener('click', e => {
   const btn = e.target.closest('.ptab');
   if (!btn) return;
   const id = btn.dataset.id;
   if (id && id !== S.currentProductId) {
-    vt(() => { S.currentProductId = id; });
-    buzz([12]);
+    selectProduct(id);
   }
 });
 
@@ -2283,7 +2634,8 @@ function renderAdminProductList() {
       return `
         <div class="admin-card" data-card-id="${p.id}">
           <div style="width:60px;height:95px;display:flex;align-items:center;justify-content:center;background:#00000044;border-radius:8px;padding:4px">
-            ${renderBottleSvg(p, `adm_card_${p.id}`)}
+            <img src="${p.image || ('images/' + p.id + '.png')}" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <div style="display:none;width:100%;height:100%">${renderBottleSvg(p, `adm_card_${p.id}`)}</div>
           </div>
           <div>
             <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem">
@@ -2364,6 +2716,7 @@ function loadProductIntoForm(id) {
   $('#prodFormNotesHeartEn').value = p.notes?.heart_en || '';
   $('#prodFormNotesBase').value = p.notes?.base || '';
   $('#prodFormNotesBaseEn').value = p.notes?.base_en || '';
+  if ($('#prodFormImage')) $('#prodFormImage').value = p.image || ('images/' + p.id + '.png');
   const c = p.color || DEFAULT_CATALOG[0].color;
   $('#prodFormLiquidTop').value = c.liquidTop || 'oklch(.66 .17 62 / .85)';
   $('#prodFormLiquidBottom').value = c.liquidBottom || 'oklch(.26 .09 28 / .96)';
@@ -2401,6 +2754,7 @@ function resetProductForm() {
   $('#prodFormNotesHeartEn').value = 'Rose, Praline, Frankincense';
   $('#prodFormNotesBase').value = 'Oud, Vanilje, Ambra';
   $('#prodFormNotesBaseEn').value = 'Oud, Vanilla, Amber';
+  if ($('#prodFormImage')) $('#prodFormImage').value = '';
   const c = PRESETS.amber;
   $('#prodFormLiquidTop').value = c.liquidTop;
   $('#prodFormLiquidBottom').value = c.liquidBottom;
@@ -2454,6 +2808,7 @@ function getFormData() {
       cap: capData.cap,
       capStroke: capData.capStroke
     },
+    image: ($('#prodFormImage') ? $('#prodFormImage').value.trim() : '') || ('images/' + ($('#prodFormId').value || 'new') + '.png'),
     tag: brand
   };
 }
@@ -2603,7 +2958,61 @@ window.addEventListener('keydown', e => {
 });
 if (location.hash === '#admin') {
   setTimeout(openAdmin, 400);
+} else if (location.hash) {
+  try {
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+  } catch(e) {}
 }
+if (location.search.includes('scroll=kjop') || location.search.includes('scroll=gallery')) {
+  try {
+    const target = location.search.includes('scroll=gallery') ? document.getElementById('flaconGallery') : document.getElementById('kjop');
+    if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  } catch(e) {}
+}
+
+try {
+  const urlParams = new URLSearchParams(location.search);
+  if (urlParams.has('prod')) {
+    selectProduct(urlParams.get('prod'));
+  }
+  if (urlParams.has('brand')) {
+    activeBrand = urlParams.get('brand');
+    renderBrandFilters();
+    renderStore();
+  }
+  const viewParam = urlParams.get('view');
+  if (viewParam === 'kjop' || viewParam === 'buy') {
+    document.querySelector('.hero')?.remove();
+    document.getElementById('duft')?.remove();
+    document.getElementById('natur')?.remove();
+    document.querySelectorAll('.ticker').forEach(t => t.remove());
+  } else if (viewParam === 'gallery') {
+    document.querySelector('.hero')?.remove();
+    document.getElementById('duft')?.remove();
+    document.getElementById('natur')?.remove();
+    document.querySelectorAll('.ticker').forEach(t => t.remove());
+    document.querySelector('.buy')?.remove();
+  } else if (viewParam === 'cart') {
+    document.querySelector('.hero')?.remove();
+    if (S.lines.length === 0 && CATALOG[0]) {
+      S.lines.push({
+        id: CATALOG[0].id,
+        name: CATALOG[0].name,
+        size: 50,
+        qty: 1,
+        price: CATALOG[0].price?.[50] || 2190,
+        image: CATALOG[0].image,
+        capStroke: CATALOG[0].color?.capStroke
+      });
+      renderCart();
+    }
+    document.getElementById('cartDrawer')?.setAttribute('open', '');
+  } else if (viewParam === 'admin') {
+    document.getElementById('adminPanelModal')?.showModal();
+    renderAdminProductList();
+  }
+} catch(e) {}
 
 window.openAdmin = openAdmin;
 window.switchAdminTab = switchAdminTab;
