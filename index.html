@@ -184,6 +184,28 @@ details p{margin-top:.7rem;font-size:.9rem}
 .ptab.active{background:var(--gold);color:#06090e;border-color:var(--gold);font-weight:600;box-shadow:0 4px 18px oklch(0.79 0.12 78 / .3)}
 .ptab .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
 
+/* ── brand filter, search bar & language switcher ── */
+.collection-controls{margin:1.1rem 0 .9rem;display:flex;flex-direction:column;gap:.75rem}
+.brand-filter-bar{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.4rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.brand-btn{background:#ffffff08;border:1px solid var(--line);color:var(--dim);padding:.42rem .95rem;border-radius:99px;font:inherit;font-size:.76rem;letter-spacing:.05em;white-space:nowrap;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:.45rem}
+.brand-btn:hover{border-color:var(--gold);color:#fff;background:#ffffff14}
+.brand-btn.active{background:rgba(201,169,110,0.18);border-color:var(--gold);color:var(--gold);font-weight:600;box-shadow:0 2px 14px rgba(201,169,110,0.22)}
+.brand-btn .badge{font-size:.68rem;opacity:.75;background:#ffffff15;padding:1px 6px;border-radius:99px}
+.brand-btn.active .badge{background:var(--gold);color:#06090e;opacity:1;font-weight:700}
+
+.catalog-search-wrap{position:relative;display:flex;align-items:center}
+.catalog-search-wrap .search-icon{position:absolute;left:1rem;font-size:.85rem;color:var(--dim);pointer-events:none}
+.catalog-search-input{width:100%;padding:.7rem 2.4rem .7rem 2.6rem;background:#05080e;border:1px solid var(--line);border-radius:99px;color:var(--ice);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+.catalog-search-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 16px rgba(201,169,110,0.18)}
+.clear-search-btn{position:absolute;right:.85rem;background:none;border:0;color:var(--dim);cursor:pointer;font-size:1rem;padding:.2rem .4rem}
+.clear-search-btn:hover{color:#fff}
+
+.lang-pill-group{display:inline-flex;background:#05080e;border:1px solid var(--line);border-radius:99px;padding:2px}
+.lang-pill{background:none;border:0;color:var(--dim);padding:.35rem .75rem;border-radius:99px;font:inherit;font-size:.74rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.35rem}
+.lang-pill:hover{color:#fff}
+.lang-pill.active{background:var(--gold);color:#06090e;font-weight:600}
+.admin-brand-filters{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.6rem;margin-bottom:1rem;scrollbar-width:thin}
+
 /* ── admin modals & atelier backoffice ── */
 .admin-modal{border:1px solid var(--line);border-radius:1.6rem;padding:2.2rem;background:#070b12fa;backdrop-filter:blur(28px);color:var(--ice);max-width:62rem;width:min(96vw,1000px);margin:auto;box-shadow:0 40px 100px #000000f5;max-height:92vh;overflow-y:auto}
 .admin-modal::backdrop{background:rgba(2,4,7,0.94);backdrop-filter:blur(20px)}
@@ -344,7 +366,10 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
 
 <header><div class="bar">
   <a class="brand" href="#top">SVART<b>FJORD</b></a>
-  <nav><a href="#duft">Duften</a><a href="#natur">Naturen</a><a href="#kjop">Kjøp</a></nav>
+  <nav><a href="#duft" id="navScents">Duften</a><a href="#natur" id="navNature">Naturen</a><a href="#kjop" id="navShop">Kjøp</a></nav>
+  <button class="audio-btn" id="langToggle" aria-label="Bytt språk / Switch language" title="Norsk / English">
+    <span id="langFlag">🇳🇴</span> <span id="langText">NO</span>
+  </button>
   <button class="audio-btn" id="replayIntro" title="Se åpningsanimasjon på nytt">
     <span>✨</span> <span>Intro</span>
   </button>
@@ -417,11 +442,27 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
 <!-- BUY -->
 <section id="kjop">
   <div class="collection-header">
-    <p class="eye">Kolleksjonen</p>
+    <p class="eye" id="colEye">Kolleksjonen</p>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-top:.4rem;margin-bottom:.8rem">
-      <h2 style="font-size:clamp(1.8rem,5vw,2.8rem)">Våre Flakonger</h2>
-      <span id="collectionCount" style="font-size:.82rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase">3 kreasjoner</span>
+      <h2 id="colTitle" style="font-size:clamp(1.8rem,5vw,2.8rem)">Våre Flakonger</h2>
+      <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+        <div class="lang-pill-group" aria-label="Velg språk for duftbeskrivelser">
+          <button type="button" class="lang-pill active" data-lang="no" id="pillNo"><span>🇳🇴</span> Norsk</button>
+          <button type="button" class="lang-pill" data-lang="en" id="pillEn"><span>🇬🇧</span> English</button>
+        </div>
+        <span id="collectionCount" style="font-size:.82rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase">30 kreasjoner</span>
+      </div>
     </div>
+
+    <div class="collection-controls">
+      <div class="brand-filter-bar" id="brandFilterBar" role="tablist" aria-label="Filtrer etter merke"></div>
+      <div class="catalog-search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="catalogSearchInput" class="catalog-search-input" placeholder="Søk etter parfyme, merke eller duftnoter...">
+        <button type="button" id="clearSearchBtn" class="clear-search-btn" style="display:none" aria-label="Tøm søk">✕</button>
+      </div>
+    </div>
+
     <div class="product-tabs" id="productTabs" role="tablist" aria-label="Velg flakong"></div>
   </div>
 
@@ -446,9 +487,9 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
       </div>
       <p class="meta"><span>Fri frakt i Norge</span><span id="eta">Levering 2–3 dager</span><span>Vipps · Klarna · Kort</span></p>
       <div style="margin-top:1.8rem">
-        <details open><summary>Duftnoter</summary><p id="prodNotesText">Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
-        <details><summary>Om kreasjonen</summary><p id="prodStoryText">Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
-        <details><summary>Frakt & retur</summary><p>Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
+        <details open><summary id="sumNotes">Duftpyramide</summary><p id="prodNotesText">Einer, blodappelsin, rosa pepper, havsalt / damaskrose, safran, bjørketjære, røkelse / svart oud, isbremoskus, furuharpiks, ambra.</p></details>
+        <details><summary id="sumStory">Om kreasjonen</summary><p id="prodStoryText">Vilthøstet agartre fra Pursat, dampdestillert og modnet i 12 år. Hver batch er sporbar med nummer i bunnen av flakongen.</p></details>
+        <details><summary id="sumShipping">Frakt & retur</summary><p id="prodShippingText">Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.</p></details>
       </div>
     </div>
   </div>
@@ -473,7 +514,7 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
       <button onclick="window.playIntro()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Se intro på nytt</button>
       <button id="openAdminBtn" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">Kurator Atelier (Admin)</button>
       <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.6 (updated 2026-09-16 14:46)
+        v1.0.7 (updated 2026-09-16 21:56)
       </div>
     </div>
   </div>
@@ -568,9 +609,11 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
   <!-- VIEW 1: Product List -->
   <div id="adminViewList">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap;gap:.8rem">
-      <p style="font-size:.85rem;color:var(--dim)">Katalog over aktive flakonger. Rediger detaljer, duftnoter eller tilpass fargetema.</p>
+      <p style="font-size:.85rem;color:var(--dim)">Katalog over aktive flakonger. Rediger detaljer, duftnoter (både norsk og engelsk) eller tilpass priser.</p>
       <button class="cta" id="adminAddNewBtn" style="padding:.6rem 1.1rem;font-size:.78rem">+ Ny Flakong</button>
     </div>
+    <div class="admin-brand-filters" id="adminBrandFilters"></div>
+    <input type="search" id="adminSearchInput" class="admin-input" placeholder="Søk blant flakonger i atelieret..." style="margin-bottom:1.2rem">
     <div id="adminProductCards"></div>
   </div>
 
@@ -584,60 +627,104 @@ html[data-boot]:is(::view-transition-old(root),::view-transition-new(root)){anim
           
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
             <div>
-              <label class="eye" style="font-size:.65rem">Produktnavn *</label>
-              <input type="text" id="prodFormName" class="admin-input" required placeholder="f.eks. Svartfjord N°4 Skogsdogg">
+              <label class="eye" style="font-size:.65rem">Merke / Brand</label>
+              <input type="text" id="prodFormBrand" class="admin-input" list="brandOptions" placeholder="f.eks. Lattafa, Maison Alhambra, Swiss Arabian">
+              <datalist id="brandOptions">
+                <option value="Svartfjord">
+                <option value="Lattafa">
+                <option value="Maison Alhambra">
+                <option value="Swiss Arabian">
+                <option value="Ibraq">
+                <option value="Viridian">
+                <option value="Reef">
+              </datalist>
             </div>
             <div>
-              <label class="eye" style="font-size:.65rem">Undertittel / Type *</label>
-              <input type="text" id="prodFormSubtitle" class="admin-input" required placeholder="f.eks. Skogsdogg · Extrait">
+              <label class="eye" style="font-size:.65rem">Produktnavn *</label>
+              <input type="text" id="prodFormName" class="admin-input" required placeholder="f.eks. Lattafa Khamrah">
             </div>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
             <div>
-              <label class="eye" style="font-size:.65rem">Konsentrasjon</label>
-              <input type="text" id="prodFormConcentration" class="admin-input" placeholder="26 %" value="26 %">
+              <label class="eye" style="font-size:.65rem">Undertittel / Type *</label>
+              <input type="text" id="prodFormSubtitle" class="admin-input" required placeholder="Gourmand Warm Amber · Eau de Parfum">
             </div>
             <div>
-              <label class="eye" style="font-size:.65rem">Opplag / Merke</label>
-              <input type="text" id="prodFormEdition" class="admin-input" placeholder="Begrenset opplag · 200 flakonger" value="Begrenset opplag · 200 flakonger">
+              <label class="eye" style="font-size:.65rem">Konsentrasjon</label>
+              <input type="text" id="prodFormConcentration" class="admin-input" placeholder="22 %" value="22 %">
             </div>
           </div>
 
-          <label class="eye" style="font-size:.65rem">Kort Beskrivelse</label>
-          <textarea id="prodFormDesc" class="admin-textarea" rows="2" placeholder="Extrait de parfum, 26 % konsentrasjon. Vinterfuru og fuktig mose..."></textarea>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label class="eye" style="font-size:.65rem">Opplag / Edition (Norsk)</label>
+              <input type="text" id="prodFormEdition" class="admin-input" placeholder="Boutique Flacon · 100 ml" value="Boutique Flacon · 100 ml">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.65rem">Edition (English)</label>
+              <input type="text" id="prodFormEditionEn" class="admin-input" placeholder="Boutique Flacon · 100 ml" value="Boutique Flacon · 100 ml">
+            </div>
+          </div>
 
-          <label class="eye" style="font-size:.65rem">Historie / Om kreasjonen</label>
-          <textarea id="prodFormStory" class="admin-textarea" rows="2" placeholder="Dypere bakgrunn om høstingen og destillasjonen..."></textarea>
+          <label class="eye" style="font-size:.65rem">Kort Beskrivelse (Norsk)</label>
+          <textarea id="prodFormDesc" class="admin-textarea" rows="2" placeholder="Norsk beskrivelse..."></textarea>
 
-          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Priser for størrelser (NOK)</p>
+          <label class="eye" style="font-size:.65rem">Short Description (English)</label>
+          <textarea id="prodFormDescEn" class="admin-textarea" rows="2" placeholder="English description..."></textarea>
+
+          <label class="eye" style="font-size:.65rem">Historie / Om kreasjonen (Norsk)</label>
+          <textarea id="prodFormStory" class="admin-textarea" rows="2" placeholder="Dypere bakgrunn om kreasjonen og duftnotene..."></textarea>
+
+          <label class="eye" style="font-size:.65rem">Creation Story / Heritage (English)</label>
+          <textarea id="prodFormStoryEn" class="admin-textarea" rows="2" placeholder="English story and heritage..."></textarea>
+
+          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Priser for størrelser (NOK) <small style="color:var(--dim);font-size:.7rem">(Juster fritt når som helst)</small></p>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
             <div>
               <label class="eye" style="font-size:.62rem">30 ml (kr)</label>
-              <input type="number" id="prodFormPrice30" class="admin-input" required min="100" step="10" value="1490">
+              <input type="number" id="prodFormPrice30" class="admin-input" required min="100" step="10" value="390">
             </div>
             <div>
               <label class="eye" style="font-size:.62rem">50 ml (kr)</label>
-              <input type="number" id="prodFormPrice50" class="admin-input" required min="100" step="10" value="2190">
+              <input type="number" id="prodFormPrice50" class="admin-input" required min="100" step="10" value="590">
             </div>
             <div>
               <label class="eye" style="font-size:.62rem">100 ml (kr)</label>
-              <input type="number" id="prodFormPrice100" class="admin-input" required min="100" step="10" value="3690">
+              <input type="number" id="prodFormPrice100" class="admin-input" required min="100" step="10" value="890">
             </div>
           </div>
 
-          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Duftpyramide</p>
-          <div>
-            <label class="eye" style="font-size:.62rem">Toppnoter (kommaseparert)</label>
-            <input type="text" id="prodFormNotesTop" class="admin-input" placeholder="Einer, Tindved, Frostluft">
+          <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Duftpyramide (Norsk & English)</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">Toppnoter (NO)</label>
+              <input type="text" id="prodFormNotesTop" class="admin-input" placeholder="Kanel, Muskat, Bergamott">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">Top Notes (EN)</label>
+              <input type="text" id="prodFormNotesTopEn" class="admin-input" placeholder="Cinnamon, Nutmeg, Bergamot">
+            </div>
           </div>
-          <div>
-            <label class="eye" style="font-size:.62rem">Hjertenoter (kommaseparert)</label>
-            <input type="text" id="prodFormNotesHeart" class="admin-input" placeholder="Furunål, Røkelse, Kvae">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">Hjertenoter (NO)</label>
+              <input type="text" id="prodFormNotesHeart" class="admin-input" placeholder="Dadler, Praline, Rose">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">Heart Notes (EN)</label>
+              <input type="text" id="prodFormNotesHeartEn" class="admin-input" placeholder="Dates, Praline, Rose">
+            </div>
           </div>
-          <div>
-            <label class="eye" style="font-size:.62rem">Bunnoter (kommaseparert)</label>
-            <input type="text" id="prodFormNotesBase" class="admin-input" placeholder="Mose, Svart oud, Sedertre">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+            <div>
+              <label class="eye" style="font-size:.62rem">Bunnoter (NO)</label>
+              <input type="text" id="prodFormNotesBase" class="admin-input" placeholder="Vanilje, Tonkabønner, Ambra">
+            </div>
+            <div>
+              <label class="eye" style="font-size:.62rem">Base Notes (EN)</label>
+              <input type="text" id="prodFormNotesBaseEn" class="admin-input" placeholder="Vanilla, Tonka Bean, Amber">
+            </div>
           </div>
 
           <p class="eye" style="margin:1rem 0 .4rem;color:var(--gold)">Flakongens Fargetema & Utseende</p>
@@ -729,19 +816,27 @@ const nok=n=>new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maxi
 const buzz=p=>navigator.vibrate?.(p);
 const vt=fn=>(document.startViewTransition?document.startViewTransition(fn):fn());
 const DEFAULT_CATALOG = [
+  // ── SVARTFJORD ATELIER (Signatur) ──
   {
     id: 'svartfjord-1',
+    brand: 'Svartfjord',
     name: 'Svartfjord N°1',
     edition: 'Begrenset opplag · 300 flakonger',
+    edition_en: 'Limited Edition · 300 Flacons',
     subtitle: 'Black Oud · Extrait de Parfum',
     concentration: '24 %',
     desc: 'Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med kork i massivt messinglokk.',
+    desc_en: 'Extrait de parfum, 24% concentration. Hand-poured flacon in smoked glass with solid brass cap.',
     story: 'Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.',
+    story_en: 'Pursat black oud meets wild juniper, birch tar, and sub-zero glacial air at three in the morning.',
     price: { 30: 1490, 50: 2190, 100: 3690 },
     notes: {
       top: 'Einer, blodappelsin, rosa pepper, havsalt',
       heart: 'Damaskrose, safran, bjørketjære, røkelse',
-      base: 'Svart oud, isbremoskus, furuharpiks, ambra'
+      base: 'Svart oud, isbremoskus, furuharpiks, ambra',
+      top_en: 'Juniper, blood orange, pink pepper, sea salt',
+      heart_en: 'Damascena rose, saffron, birch tar, incense',
+      base_en: 'Black oud, glacial musk, pine resin, ambergris'
     },
     color: {
       liquidTop: 'oklch(.66 .17 62 / .85)',
@@ -754,17 +849,24 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'svartfjord-2',
+    brand: 'Svartfjord',
     name: 'Svartfjord N°2 Hvitbre',
     edition: 'Isbre-maserasjon · 250 flakonger',
+    edition_en: 'Glacial Maceration · 250 Flacons',
     subtitle: 'Glacial Musk · Extrait de Parfum',
     concentration: '28 %',
     desc: 'Extrait de parfum, 28 % konsentrasjon. Krystallisert arktisk moskus, frossen bergamott og ren hvit einer i polarglass.',
+    desc_en: 'Extrait de parfum, 28% concentration. Crystallized arctic musk, frosted bergamot, and pristine white juniper in polar glass.',
     story: 'Følelsen av å puste inn tindrende frostluft på toppen av Jostedalsbreen ved daggry.',
+    story_en: 'The sensation of inhaling sparkling crisp frost air atop the Jostedal glacier at dawn.',
     price: { 30: 1590, 50: 2290, 100: 3890 },
     notes: {
       top: 'Rimfrost, bergamott, hvit einer, tindved',
       heart: 'Alpefiol, irisrot, ren lavendel, hvit pepper',
-      base: 'Hvit ambra, krystallmose, hvit oud, arktisk sedertre'
+      base: 'Hvit ambra, krystallmose, hvit oud, arktisk sedertre',
+      top_en: 'Rime frost, bergamot, white juniper, sea buckthorn',
+      heart_en: 'Cyclamen, orris root, pure lavender, white pepper',
+      base_en: 'White amber, crystal moss, white oud, arctic cedar'
     },
     color: {
       liquidTop: 'oklch(.75 .14 210 / .85)',
@@ -777,17 +879,24 @@ const DEFAULT_CATALOG = [
   },
   {
     id: 'svartfjord-3',
+    brand: 'Svartfjord',
     name: 'Svartfjord N°3 Midnattssol',
     edition: 'Sommersolverv · 200 flakonger',
+    edition_en: 'Summer Solstice · 200 Flacons',
     subtitle: 'Solar Amber · Extrait de Parfum',
     concentration: '26 %',
     desc: 'Extrait de parfum, 26 % konsentrasjon. Gylden villhonning, solbær, krekling og varm kvae modnet under midnattssolen.',
+    desc_en: 'Extrait de parfum, 26% concentration. Golden wild honey, blackcurrant, crowberry, and sun-warmed resin aged under the midnight sun.',
     story: 'Solen som aldri går ned bak lofotveggen. En brennende gyllen aura over kystklippene.',
+    story_en: 'The sun that never sets behind the Lofoten wall. A burning golden aura over dramatic coastal fjords.',
     price: { 30: 1590, 50: 2290, 100: 3890 },
     notes: {
       top: 'Kardemomme, solbær, krekling, vill timian',
       heart: 'Varm honning, tørket høy, immortelle, furunål',
-      base: 'Røkt labdanum, lær, kvae, varm ambra'
+      base: 'Røkt labdanum, lær, kvae, varm ambra',
+      top_en: 'Cardamom, blackcurrant, crowberry, wild thyme',
+      heart_en: 'Warm honey, dried hay, immortelle, pine needle',
+      base_en: 'Smoked labdanum, leather, tree resin, warm amber'
     },
     color: {
       liquidTop: 'oklch(.78 .19 82 / .85)',
@@ -797,15 +906,837 @@ const DEFAULT_CATALOG = [
       capStroke: '#e5b364'
     },
     tag: 'Solgull'
+  },
+
+  // ── LATTAFA PERFUMES ──
+  {
+    id: 'lattafa-khamrah',
+    brand: 'Lattafa',
+    name: 'Lattafa Khamrah',
+    edition: 'Crystal Luxury Edition · 100 ml',
+    edition_en: 'Crystal Luxury Edition · 100 ml',
+    subtitle: 'Gourmand Warm Amber · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'En overdådig orientalsk gourmand med søt kanel, saftige dadler, fyldig pralin og edle tresorter.',
+    desc_en: 'A lavish oriental gourmand featuring sweet cinnamon, luscious dates, rich praline, and precious woods.',
+    story: 'Lattafas mest bejublede mesterverk. Varm, hypnotiserende og krystallaktig luksus som varer hele natten.',
+    story_en: 'Lattafa’s most celebrated masterpiece. Warm, intoxicating, and crystal-cut luxury designed to last all night.',
+    price: { 30: 390, 50: 590, 100: 890 },
+    notes: {
+      top: 'Kanel, muskatnøtt, frisk bergamott',
+      heart: 'Dadler, praline, tuberose, mahonial',
+      base: 'Madagaskar vanilje, tonkabønne, benzoin, myrra, ambertre, akigalatre',
+      top_en: 'Cinnamon, nutmeg, fresh bergamot',
+      heart_en: 'Dates, praline, tuberose, mahonial',
+      base_en: 'Madagascar vanilla, tonka bean, benzoin, myrrh, amberwood, akigalawood'
+    },
+    color: {
+      liquidTop: 'oklch(.75 .18 68 / .88)',
+      liquidBottom: 'oklch(.34 .12 45 / .96)',
+      glow: 'oklch(.88 .22 75)',
+      cap: '#2a170a',
+      capStroke: '#e5b364'
+    },
+    tag: 'Bestseller'
+  },
+  {
+    id: 'lattafa-khamrah-qahwa',
+    brand: 'Lattafa',
+    name: 'Lattafa Khamrah Qahwa',
+    edition: 'Qahwa Reserve Edition · 100 ml',
+    edition_en: 'Qahwa Reserve Edition · 100 ml',
+    subtitle: 'Roasted Arabic Coffee & Spices · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Mørk brent arabisk kaffe flettet sammen med kandisert frukt, kardemomme, ingefær og fløyelsmyk vanilje.',
+    desc_en: 'Dark roasted Arabic coffee intertwined with candied fruits, cardamom, ginger, and velvety bourbon vanilla.',
+    story: 'En hyllest til den tradisjonelle kaffeseremonien. Varm, aromatisk og uimotståelig dybde på huden.',
+    story_en: 'A tribute to the traditional Arabic coffee ceremony. Warm, intensely aromatic, with irresistible depth on the skin.',
+    price: { 30: 420, 50: 650, 100: 950 },
+    notes: {
+      top: 'Kardemomme, ingefær, kanelbark',
+      heart: 'Brent arabisk kaffe, praline, kandiserte frukter, hvite blomster',
+      base: 'Kaffelikør, madagaskar vanilje, tonkabønne, benzoin, musk',
+      top_en: 'Cardamom, ginger, cinnamon bark',
+      heart_en: 'Roasted Arabic coffee, praline, candied fruits, white florals',
+      base_en: 'Coffee liqueur, Madagascar vanilla, tonka bean, benzoin, musk'
+    },
+    color: {
+      liquidTop: 'oklch(.58 .15 52 / .88)',
+      liquidBottom: 'oklch(.22 .08 38 / .98)',
+      glow: 'oklch(.78 .18 60)',
+      cap: '#1c1007',
+      capStroke: '#c99352'
+    },
+    tag: 'Nyhet'
+  },
+  {
+    id: 'lattafa-asad',
+    brand: 'Lattafa',
+    name: 'Lattafa Asad',
+    edition: 'Signature Noir & Gold · 100 ml',
+    edition_en: 'Signature Noir & Gold · 100 ml',
+    subtitle: 'Spicy Black Pepper & Dry Woods · Eau de Parfum',
+    concentration: '20 %',
+    desc: 'Maskulin og magnetisk duft med svart pepper, saftig ananas, ristet kaffe, tørre tresorter og gyllen ambra.',
+    desc_en: 'A bold, magnetic masculine fragrance with cracked black pepper, juicy pineapple, roasted coffee, dry woods, and golden amber.',
+    story: 'Et kraftfullt statement. Asad betyr løve på arabisk og utstråler autoritet, eleganse og varig tilstedeværelse.',
+    story_en: 'A powerful statement of intent. Asad means lion in Arabic, radiating authority, elegance, and commanding presence.',
+    price: { 30: 350, 50: 520, 100: 790 },
+    notes: {
+      top: 'Svart pepper, ananas, tobakksblad',
+      heart: 'Mørkbrent kaffe, irisrot, indonesisk patchouli',
+      base: 'Gyldent rav, bourbon vanilje, tørre tresorter, benzoin, labdanum',
+      top_en: 'Black pepper, pineapple, cured tobacco leaf',
+      heart_en: 'Dark roast coffee, Florentine iris, Indonesian patchouli',
+      base_en: 'Golden amber, Bourbon vanilla, dry woods, benzoin, labdanum'
+    },
+    color: {
+      liquidTop: 'oklch(.42 .08 70 / .9)',
+      liquidBottom: 'oklch(.15 .04 50 / .98)',
+      glow: 'oklch(.85 .18 85)',
+      cap: '#0d0f12',
+      capStroke: '#d4af37'
+    },
+    tag: 'Populær'
+  },
+  {
+    id: 'lattafa-asad-zanzibar',
+    brand: 'Lattafa',
+    name: 'Lattafa Asad Zanzibar',
+    edition: 'Oceanic Reserve · 100 ml',
+    edition_en: 'Oceanic Reserve · 100 ml',
+    subtitle: 'Marine Salty Coconut & Vanilla · Eau de Parfum',
+    concentration: '20 %',
+    desc: 'Friskhet fra det indiske hav møter saltet kokosnøttvann, aromatisk lavendel og røykfylt vanilje.',
+    desc_en: 'Freshness of the Indian Ocean meets salted coconut water, aromatic lavender, and smoky island vanilla.',
+    story: 'En eksotisk odyssé inspirert av kystbrisen over krydderøya Zanzibar ved solnedgang.',
+    story_en: 'An exotic odyssey inspired by the coastal trade winds blowing over the spice island of Zanzibar at dusk.',
+    price: { 30: 350, 50: 520, 100: 790 },
+    notes: {
+      top: 'Fransk lavendel, svart pepper, havsalt',
+      heart: 'Saltet kokosnøttvann, kystiris',
+      base: 'Madagaskar vanilje, røkelse, drivved',
+      top_en: 'French lavender, black pepper, marine sea salt',
+      heart_en: 'Salted coconut water, coastal iris',
+      base_en: 'Madagascar vanilla, incense, sun-bleached driftwood'
+    },
+    color: {
+      liquidTop: 'oklch(.65 .16 220 / .85)',
+      liquidBottom: 'oklch(.28 .10 235 / .96)',
+      glow: 'oklch(.82 .15 210)',
+      cap: '#0c1520',
+      capStroke: '#89cff0'
+    },
+    tag: 'Eksotisk'
+  },
+  {
+    id: 'lattafa-yara-pink',
+    brand: 'Lattafa',
+    name: 'Lattafa Yara (Pink)',
+    edition: 'Sweet Orchid Flacon · 100 ml',
+    edition_en: 'Sweet Orchid Flacon · 100 ml',
+    subtitle: 'Tropical Orchid & Fluffy Vanilla · Eau de Parfum',
+    concentration: '18 %',
+    desc: 'En fløyelsmyk, pudret drøm med heliotrop, tropiske frukter, kremet marshmallow og berusende vanilje.',
+    desc_en: 'A velvety, powdery dream featuring heliotrope, tropical fruits, whipped marshmallow, and warm bourbon vanilla.',
+    story: 'En global sensasjon. Yara er feminin, luftig og omsluttende som en kashmirgenser i pastell.',
+    story_en: 'A worldwide fragrance sensation. Yara is feminine, airy, and embracing like a pastel cashmere sweater.',
+    price: { 30: 320, 50: 490, 100: 750 },
+    notes: {
+      top: 'Heliotrop, vill orkidé, søt mandarin',
+      heart: 'Tropisk fruktakkord, marshmallow, gourmandakkord',
+      base: 'Madagaskar vanilje, hvitt sandeltre, ren moskus',
+      top_en: 'Heliotrope, wild orchid, sweet tangerine',
+      heart_en: 'Tropical fruit accord, marshmallow, gourmand accord',
+      base_en: 'Madagascar vanilla, white sandalwood, pure musk'
+    },
+    color: {
+      liquidTop: 'oklch(.80 .15 350 / .85)',
+      liquidBottom: 'oklch(.48 .16 355 / .96)',
+      glow: 'oklch(.88 .18 340)',
+      cap: '#2d131f',
+      capStroke: '#f472b6'
+    },
+    tag: 'Viral Bestseller'
+  },
+  {
+    id: 'lattafa-yara-tous',
+    brand: 'Lattafa',
+    name: 'Lattafa Yara Tous (Yellow)',
+    edition: 'Sunshine Nectar · 100 ml',
+    edition_en: 'Sunshine Nectar · 100 ml',
+    subtitle: 'Mango Nectar & Passionfruit · Eau de Parfum',
+    concentration: '18 %',
+    desc: 'Solskinn på flaske med saftig moden mango, syrlig pasjonsfrukt, kremet kokos og hvit kashmir.',
+    desc_en: 'Liquid sunshine capturing luscious ripe mango, tangy passionfruit, creamy coconut, and soft white cashmere.',
+    story: 'En eksplosjon av tropisk optimisme. Like frisk som den er forførende søt under sommersolen.',
+    story_en: 'An explosion of tropical optimism. As refreshingly vibrant as it is seductively sweet under the summer sun.',
+    price: { 30: 320, 50: 490, 100: 750 },
+    notes: {
+      top: 'Moden mango, pasjonsfrukt, fersk kokosnøtt',
+      heart: 'Heliotrop, arabisk sjasmin, appelsinblomst',
+      base: 'Vanilje, kashmertre, solvarm musk',
+      top_en: 'Ripe mango, passionfruit, fresh coconut',
+      heart_en: 'Heliotrope, Arabian jasmine, orange blossom',
+      base_en: 'Vanilla, cashmere wood, sun-warmed musk'
+    },
+    color: {
+      liquidTop: 'oklch(.82 .20 75 / .85)',
+      liquidBottom: 'oklch(.45 .18 60 / .96)',
+      glow: 'oklch(.90 .22 80)',
+      cap: '#261506',
+      capStroke: '#fbbf24'
+    },
+    tag: 'Sommer'
+  },
+  {
+    id: 'lattafa-yara-moi',
+    brand: 'Lattafa',
+    name: 'Lattafa Yara Moi (White)',
+    edition: 'White Velvet · 100 ml',
+    edition_en: 'White Velvet · 100 ml',
+    subtitle: 'White Peach & Salted Caramel · Eau de Parfum',
+    concentration: '18 %',
+    desc: 'Raffinert hvit fersken, forførende salt karamell, rav og beroligende sandeltre i elegant harmoni.',
+    desc_en: 'Refined white peach, alluring salted caramel, amber, and soothing sandalwood blended in exquisite harmony.',
+    story: 'Kjent som den hvite Yara. En mer sofistikert, sensuell og luksuriøs tolkning for kveldsbruk.',
+    story_en: 'Known as the White Yara. A more sophisticated, sensual, and luxurious interpretation crafted for evening wear.',
+    price: { 30: 320, 50: 490, 100: 750 },
+    notes: {
+      top: 'Hvit fersken, jasminblomst',
+      heart: 'Saltet karamell, varm rav',
+      base: 'Kremet sandeltre, patchouli, hvit musk',
+      top_en: 'White peach, blooming jasmine',
+      heart_en: 'Salted caramel, warm amber',
+      base_en: 'Creamy sandalwood, patchouli, white musk'
+    },
+    color: {
+      liquidTop: 'oklch(.88 .06 85 / .85)',
+      liquidBottom: 'oklch(.55 .08 70 / .96)',
+      glow: 'oklch(.92 .10 85)',
+      cap: '#1e1b16',
+      capStroke: '#e2c992'
+    },
+    tag: 'Gourmand'
+  },
+  {
+    id: 'lattafa-badee-glory',
+    brand: 'Lattafa',
+    name: 'Bade\'e Al Oud - Oud for Glory',
+    edition: 'Royal Emblem Edition · 100 ml',
+    edition_en: 'Royal Emblem Edition · 100 ml',
+    subtitle: 'Smoky Agarwood & Royal Saffron · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Mørk røkelse, safran, edelt agartre (oud) og jordnær patchouli i en legendarisk orientalsk komposisjon.',
+    desc_en: 'Dark incense, royal saffron, precious agarwood (oud), and earthy patchouli in a legendary oriental composition.',
+    story: 'En majestetisk hyllest til den dype, mystiske kraften i ekte oud. Kompromissløs projeksjon og luksus.',
+    story_en: 'A majestic tribute to the deep, enigmatic power of oud. Uncompromising sillage and opulent longevity.',
+    price: { 30: 380, 50: 590, 100: 890 },
+    notes: {
+      top: 'Safrantråder, muskat, fransk lavendel',
+      heart: 'Røykfylt agarwood (oud), patchouli',
+      base: 'Mørk oud, edeltre, ambra, musk',
+      top_en: 'Saffron threads, nutmeg, French lavender',
+      heart_en: 'Smoky agarwood (oud), dark patchouli',
+      base_en: 'Deep oud, precious woods, amber, musk'
+    },
+    color: {
+      liquidTop: 'oklch(.42 .10 60 / .88)',
+      liquidBottom: 'oklch(.16 .04 40 / .98)',
+      glow: 'oklch(.85 .20 78)',
+      cap: '#0d0e11',
+      capStroke: '#d4af37'
+    },
+    tag: 'Signatur'
+  },
+  {
+    id: 'lattafa-badee-honor',
+    brand: 'Lattafa',
+    name: 'Bade\'e Al Oud - Honor & Glory',
+    edition: 'White & Gold Reserve · 100 ml',
+    edition_en: 'White & Gold Reserve · 100 ml',
+    subtitle: 'Pineapple Brûlée & Spiced Benzoin · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Karamellisert ananas, fransk crème brûlée, varm gurkemeie, kanel og fyldig sandeltre.',
+    desc_en: 'Caramelized pineapple brûlée, French crème brûlée, warm turmeric, sweet cinnamon, and rich sandalwood.',
+    story: 'En gourmand-revolusjon. Søt, krydret og uendelig tiltalende med en unik gyllen profil.',
+    story_en: 'A gourmand revolution. Sweet, exotic, and endlessly inviting with a distinctive golden character.',
+    price: { 30: 380, 50: 590, 100: 890 },
+    notes: {
+      top: 'Grillet ananas, crème brûlée',
+      heart: 'Kanelbark, gurkemeie, svart pepper, benzoin',
+      base: 'Bourbon vanilje, cashmeran, sandeltre, eikemose',
+      top_en: 'Grilled pineapple, crème brûlée',
+      heart_en: 'Cinnamon bark, turmeric, black pepper, benzoin',
+      base_en: 'Bourbon vanilla, cashmeran, sandalwood, oakmoss'
+    },
+    color: {
+      liquidTop: 'oklch(.85 .14 85 / .85)',
+      liquidBottom: 'oklch(.52 .12 75 / .96)',
+      glow: 'oklch(.90 .18 85)',
+      cap: '#211d17',
+      capStroke: '#e5b364'
+    },
+    tag: 'Bestseller'
+  },
+  {
+    id: 'lattafa-badee-amethyst',
+    brand: 'Lattafa',
+    name: 'Bade\'e Al Oud - Amethyst',
+    edition: 'Imperial Amethyst · 100 ml',
+    edition_en: 'Imperial Amethyst · 100 ml',
+    subtitle: 'Turkish Rose & Royal Amber Oud · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Luksuriøs tyrkisk rose og bulgarsk rose innsvøpt i rosa pepper, vanilje, rav og silkeaktig oud.',
+    desc_en: 'Opulent Turkish and Bulgarian roses draped in pink pepper, warm vanilla, rich amber, and silky oud.',
+    story: 'Kongefamiliens rosehage i full blomst. Dyp, romantisk og kongelig tilstedeværelse.',
+    story_en: 'The royal rose garden at midnight. Deep, romantic, and exuding aristocratic elegance.',
+    price: { 30: 380, 50: 590, 100: 890 },
+    notes: {
+      top: 'Rosa pepper, italiensk bergamott',
+      heart: 'Tyrkisk rose, bulgarsk rose, arabisk sjasmin',
+      base: 'Agarwood (oud), gyllent rav, madagaskar vanilje',
+      top_en: 'Pink pepper, Italian bergamot',
+      heart_en: 'Turkish rose, Bulgarian rose, Arabian jasmine',
+      base_en: 'Agarwood (oud), golden amber, Madagascar vanilla'
+    },
+    color: {
+      liquidTop: 'oklch(.55 .24 310 / .88)',
+      liquidBottom: 'oklch(.25 .15 305 / .98)',
+      glow: 'oklch(.75 .26 315)',
+      cap: '#190d1f',
+      capStroke: '#c084fc'
+    },
+    tag: 'Klassisk'
+  },
+  {
+    id: 'lattafa-badee-sublime',
+    brand: 'Lattafa',
+    name: 'Bade\'e Al Oud - Sublime',
+    edition: 'Emerald Sublime · 100 ml',
+    edition_en: 'Emerald Sublime · 100 ml',
+    subtitle: 'Juicy Red Apple & Forest Moss · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Friskt rødt eple, saftig litchi, fløyelsplomme og rose balansert mot dyp eikemose og patchouli.',
+    desc_en: 'Crisp red apple, juicy litchi, velvety plum, and blooming rose grounded by deep forest moss and patchouli.',
+    story: 'En forfriskende vri på orientalsk luksus. Bærekraftig friskhet med en uimotståelig dybde.',
+    story_en: 'A revitalizing twist on oriental luxury. Dynamic fruity freshness anchored by sophisticated depth.',
+    price: { 30: 380, 50: 590, 100: 890 },
+    notes: {
+      top: 'Rødt eple, litchi, duggfrisk rose',
+      heart: 'Søt plomme, hvit sjasmin',
+      base: 'Eikemose, vanilje, indonesisk patchouli',
+      top_en: 'Red apple, litchi, dewy rose',
+      heart_en: 'Sweet plum, white jasmine',
+      base_en: 'Oakmoss, vanilla, Indonesian patchouli'
+    },
+    color: {
+      liquidTop: 'oklch(.65 .22 145 / .85)',
+      liquidBottom: 'oklch(.30 .15 150 / .96)',
+      glow: 'oklch(.82 .24 140)',
+      cap: '#0d1c14',
+      capStroke: '#4ade80'
+    },
+    tag: 'Fruktig'
+  },
+  {
+    id: 'lattafa-rave-now',
+    brand: 'Lattafa',
+    name: 'Rave Now Black',
+    edition: 'Geometric Noir · 100 ml',
+    edition_en: 'Geometric Noir · 100 ml',
+    subtitle: 'Smoked Pineapple & Birch Woods · Eau de Parfum',
+    concentration: '20 %',
+    desc: 'Intens, saftig ananas og solbær blandet med røkt bjørkeved, bergamott, ambra og eikemose.',
+    desc_en: 'Intense, juicy pineapple and blackcurrant blended with smoky birch wood, bergamot, ambergris, and oakmoss.',
+    story: 'En energisk og kraftfull kreasjon designet for den moderne, selvsikre personligheten.',
+    story_en: 'A high-energy, commanding creation crafted for modern, self-assured confidence.',
+    price: { 30: 320, 50: 490, 100: 750 },
+    notes: {
+      top: 'Saftig ananas, solbær, bergamott, grønt eple',
+      heart: 'Røkt bjørk, marokkansk sjasmin, patchouli',
+      base: 'Ambra, eikemose, bourbon vanilje, hvit musk',
+      top_en: 'Juicy pineapple, blackcurrant, bergamot, green apple',
+      heart_en: 'Smoky birch, Moroccan jasmine, patchouli',
+      base_en: 'Ambergris, oakmoss, Bourbon vanilla, white musk'
+    },
+    color: {
+      liquidTop: 'oklch(.48 .06 240 / .85)',
+      liquidBottom: 'oklch(.18 .04 250 / .98)',
+      glow: 'oklch(.75 .12 230)',
+      cap: '#0a0d12',
+      capStroke: '#94a3b8'
+    },
+    tag: 'Energisk'
+  },
+
+  // ── MAISON ALHAMBRA ──
+  {
+    id: 'alhambra-sceptre-malachite',
+    brand: 'Maison Alhambra',
+    name: 'Sceptre Malachite',
+    edition: 'Imperial Gemstone · 100 ml',
+    edition_en: 'Imperial Gemstone · 100 ml',
+    subtitle: 'Aromatic Green Woods & Warm Amber · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Grønn mandarin og italiensk bergamott flettet sammen med aromatisk lavendel, edelt sedertre og gyllen ambra.',
+    desc_en: 'Green mandarin and Italian bergamot interwoven with aromatic lavender, noble cedar, and golden amber.',
+    story: 'Inspirert av den majestetiske grønne malakitt-edelstenen i de russiske tsarenes vinterpalasser.',
+    story_en: 'Inspired by the imperial green malachite gemstone adorning the winter palaces of tsars.',
+    price: { 30: 390, 50: 590, 100: 890 },
+    notes: {
+      top: 'Bergamott, grønn mandarin, salvie',
+      heart: 'Fransk lavendel, geranium, kardemomme',
+      base: 'Grønn vetiver, ambra, sedertre, harpiks',
+      top_en: 'Bergamot, green mandarin, clary sage',
+      heart_en: 'French lavender, geranium, cardamom',
+      base_en: 'Green vetiver, amber, cedarwood, balsamic resin'
+    },
+    color: {
+      liquidTop: 'oklch(.62 .20 155 / .85)',
+      liquidBottom: 'oklch(.27 .14 160 / .98)',
+      glow: 'oklch(.80 .22 150)',
+      cap: '#0a1912',
+      capStroke: '#34d399'
+    },
+    tag: 'Gemstone'
+  },
+  {
+    id: 'alhambra-sceptre-oceana',
+    brand: 'Maison Alhambra',
+    name: 'Sceptre Oceana',
+    edition: 'Imperial Gemstone · 100 ml',
+    edition_en: 'Imperial Gemstone · 100 ml',
+    subtitle: 'Oceanic Marine & Citrus Ambergris · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Krystallklar sjøsprøyt, solmodne sitrusfrukter, myrte og ekte grå ambra på en seng av kystsedertre.',
+    desc_en: 'Crystal clear sea spray, sun-ripened citrus, Mediterranean myrtle, and authentic ambergris over coastal cedar.',
+    story: 'En reise over det åpne asurblå havet. Forfriskende som et dykk i dypblått badevann på den italienske rivieraen.',
+    story_en: 'A voyage across azure ocean waves. Refreshing as a plunge into deep blue waters off the Amalfi coast.',
+    price: { 30: 390, 50: 590, 100: 890 },
+    notes: {
+      top: 'Sitrusfrukter, ozoniske noter, salt sjøbris',
+      heart: 'Middelhavsmyrte, havalger, hvit sjasmin',
+      base: 'Grå ambra, drivved, kystfuru, ren moskus',
+      top_en: 'Citrus zest, ozonic notes, salty sea breeze',
+      heart_en: 'Mediterranean myrtle, sea algae, white jasmine',
+      base_en: 'Ambergris, driftwood, coastal pine, clean musk'
+    },
+    color: {
+      liquidTop: 'oklch(.64 .18 230 / .85)',
+      liquidBottom: 'oklch(.25 .12 240 / .98)',
+      glow: 'oklch(.82 .18 220)',
+      cap: '#0a1422',
+      capStroke: '#38bdf8'
+    },
+    tag: 'Akvatisk'
+  },
+  {
+    id: 'alhambra-sceptre-amazonite',
+    brand: 'Maison Alhambra',
+    name: 'Sceptre Amazonite',
+    edition: 'Imperial Gemstone · 100 ml',
+    edition_en: 'Imperial Gemstone · 100 ml',
+    subtitle: 'Dark Oriental Spices & Smoked Woods · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Eksotisk safran, røkelse fra den arabiske halvøy, mørkt lær og balsamisk agartre.',
+    desc_en: 'Exotic saffron, Arabian incense, midnight leather, and balsamic agarwood resin.',
+    story: 'Amazonittens mystikk fanget i en dyp, tealgrønn flakong. Forfining for de krevende anledninger.',
+    story_en: 'The mystery of Amazonite stone captured in a deep teal flacon. Uncompromising sophistication.',
+    price: { 30: 390, 50: 590, 100: 890 },
+    notes: {
+      top: 'Safran, rosa pepper, bergamott',
+      heart: 'Røkelse, fint lær, mørk rose',
+      base: 'Balsamiske tresorter, ambra, edel oud, benzoin',
+      top_en: 'Saffron, pink pepper, bergamot',
+      heart_en: 'Frankincense, fine leather, dark rose',
+      base_en: 'Balsamic woods, ambergris, precious oud, benzoin'
+    },
+    color: {
+      liquidTop: 'oklch(.50 .14 195 / .88)',
+      liquidBottom: 'oklch(.20 .09 200 / .98)',
+      glow: 'oklch(.78 .16 190)',
+      cap: '#081619',
+      capStroke: '#2dd4bf'
+    },
+    tag: 'Orientalsk'
+  },
+  {
+    id: 'alhambra-sceptre-bronzite',
+    brand: 'Maison Alhambra',
+    name: 'Sceptre Bronzite',
+    edition: 'Imperial Gemstone · 100 ml',
+    edition_en: 'Imperial Gemstone · 100 ml',
+    subtitle: 'Warm Spicy Leather & Roasted Tonka · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Muskatnøtt og varm kardemomme møter kaffebønner, mykt lær, bronzitt rav og røstet tonkabønne.',
+    desc_en: 'Nutmeg and warm cardamom meet roasted coffee beans, soft leather, bronzite amber, and roasted tonka bean.',
+    story: 'Skapt med inspirasjon fra bronzittens metalliske glans og jordnære varme. Omsluttende og aristokratisk.',
+    story_en: 'Crafted with inspiration from the metallic sheen and earthy warmth of bronzite stone. Aristocratic warmth.',
+    price: { 30: 390, 50: 590, 100: 890 },
+    notes: {
+      top: 'Muskat, kardemomme, sitruszest',
+      heart: 'Varmt lær, ristet kaffe, tobakksblad',
+      base: 'Bronzitt rav, tonkabønne, røkt sedertre',
+      top_en: 'Nutmeg, cardamom, citrus zest',
+      heart_en: 'Warm leather, roasted coffee, cured tobacco leaf',
+      base_en: 'Bronzite amber, tonka bean, smoked cedarwood'
+    },
+    color: {
+      liquidTop: 'oklch(.66 .16 60 / .85)',
+      liquidBottom: 'oklch(.30 .11 45 / .98)',
+      glow: 'oklch(.82 .20 70)',
+      cap: '#211409',
+      capStroke: '#d97706'
+    },
+    tag: 'Varm Krydret'
+  },
+
+  // ── SWISS ARABIAN ──
+  {
+    id: 'swissarabian-shaghaf-oud',
+    brand: 'Swiss Arabian',
+    name: 'Shaghaf Oud',
+    edition: 'Iconic Gold Flacon · 75 ml',
+    edition_en: 'Iconic Gold Flacon · 75 ml',
+    subtitle: 'Golden Saffron, Praline & Pure Agarwood · Eau de Parfum',
+    concentration: '25 %',
+    desc: 'Den verdenskjente gullklassikeren med safrantråder, fløyelsaktig damaskrose, søt praline og luksuriøs oud.',
+    desc_en: 'The world-renowned golden classic featuring saffron threads, velvety Damask rose, sweet praline, and luxurious oud.',
+    story: 'Swiss Arabians stolthet. Shaghaf betyr lidenskap på arabisk — en duft som fyller rommet og sitter i dagevis.',
+    story_en: 'Swiss Arabian’s crowning glory. Shaghaf means passion in Arabic — a fragrance that fills the room and lasts for days.',
+    price: { 30: 450, 50: 690, 100: 990 },
+    notes: {
+      top: 'Verdifulle safrantråder',
+      heart: 'Damaskrose, fransk praline',
+      base: 'Edelt agartre (oud), madagaskar vanilje',
+      top_en: 'Precious saffron threads',
+      heart_en: 'Damask rose, French praline',
+      base_en: 'Precious agarwood (oud), Madagascar vanilla'
+    },
+    color: {
+      liquidTop: 'oklch(.80 .20 85 / .88)',
+      liquidBottom: 'oklch(.42 .15 70 / .98)',
+      glow: 'oklch(.92 .22 88)',
+      cap: '#261c06',
+      capStroke: '#fbbf24'
+    },
+    tag: 'Gullikon'
+  },
+  {
+    id: 'swissarabian-shaghaf-abyad',
+    brand: 'Swiss Arabian',
+    name: 'Shaghaf Oud Abyad',
+    edition: 'Silver Textured · 75 ml',
+    edition_en: 'Silver Textured · 75 ml',
+    subtitle: 'Smoky Oregano, Frankincense & Leather · Eau de Parfum',
+    concentration: '25 %',
+    desc: 'Røykfylt aromatisk oregano, pimentobær, hellig frankincense, ambra og mørkt lær i sølvglass.',
+    desc_en: 'Smoky aromatic oregano, pimento berry, sacred frankincense, rich amber, and dark leather in silver glass.',
+    story: 'En dramatisk, røykfylt og krydret symfoni for kjennere. Kompromissløs kvalitet fra første spray.',
+    story_en: 'A dramatic, smoky, and spiced symphony for connoisseurs. Uncompromising quality from the first spray.',
+    price: { 30: 450, 50: 690, 100: 990 },
+    notes: {
+      top: 'Bergamott, vill oregano, pimentobær',
+      heart: 'Opoponax røkelse, frankincense, ambra, myrra',
+      base: 'Lær, røykfylt oud, indonesisk patchouli, sandeltre',
+      top_en: 'Bergamot, wild oregano, pimento berry',
+      heart_en: 'Opoponax incense, frankincense, amber, myrrh',
+      base_en: 'Leather, smoky oud, Indonesian patchouli, sandalwood'
+    },
+    color: {
+      liquidTop: 'oklch(.76 .05 240 / .85)',
+      liquidBottom: 'oklch(.34 .06 250 / .96)',
+      glow: 'oklch(.88 .08 230)',
+      cap: '#14181f',
+      capStroke: '#cbd5e1'
+    },
+    tag: 'Røykfylt'
+  },
+  {
+    id: 'swissarabian-shaghaf-aswad',
+    brand: 'Swiss Arabian',
+    name: 'Shaghaf Oud Aswad',
+    edition: 'Midnight Noir · 75 ml',
+    edition_en: 'Midnight Noir · 75 ml',
+    subtitle: 'Intense Woody Floral & Royal Oud · Eau de Parfum',
+    concentration: '25 %',
+    desc: 'Timian, sort pepper, safran og mørke roser over en bunn av rå oud, lær, sandeltre og vanilje.',
+    desc_en: 'Thyme, black pepper, saffron, and midnight roses layered over raw oud, leather, sandalwood, and vanilla.',
+    story: 'Aswad betyr svart. Den mørkeste, mest gåtefulle tolkningen i Shaghaf-familien.',
+    story_en: 'Aswad means black. The darkest, most enigmatic interpretation in the acclaimed Shaghaf lineage.',
+    price: { 30: 450, 50: 690, 100: 990 },
+    notes: {
+      top: 'Sort pepper, timian, safran, rose',
+      heart: 'Koriander, jasmin, patchouli, spisskummen',
+      base: 'Svart oud, lær, ambra, sandeltre, vanilje',
+      top_en: 'Black pepper, thyme, saffron, rose',
+      heart_en: 'Coriander, jasmine, patchouli, cumin',
+      base_en: 'Black oud, leather, amber, sandalwood, vanilla'
+    },
+    color: {
+      liquidTop: 'oklch(.38 .08 60 / .9)',
+      liquidBottom: 'oklch(.14 .03 50 / .98)',
+      glow: 'oklch(.80 .18 78)',
+      cap: '#090b0e',
+      capStroke: '#e2b153'
+    },
+    tag: 'Mørk Oud'
+  },
+  {
+    id: 'swissarabian-shaghaf-tonka',
+    brand: 'Swiss Arabian',
+    name: 'Shaghaf Oud Tonka',
+    edition: 'Golden Reserve · 75 ml',
+    edition_en: 'Golden Reserve · 75 ml',
+    subtitle: 'Almond Blossom, Roasted Tonka & Amber Oud · Eau de Parfum',
+    concentration: '25 %',
+    desc: 'Mandelblomst, karamellisert tonkabønne, kanelbark og gyllen oud i en luksuriøs gourmand-opplevelse.',
+    desc_en: 'Almond blossom, caramelized tonka bean, cinnamon bark, and golden oud in a luxurious gourmand experience.',
+    story: 'Den nyeste sensasjonen fra Swiss Arabian. Silkemyk sødme kombinert med ekte arabisk treverk.',
+    story_en: 'The latest sensation from Swiss Arabian. Silky sweetness flawlessly married with authentic oriental woods.',
+    price: { 30: 490, 50: 750, 100: 1090 },
+    notes: {
+      top: 'Mandelblomst, appelsinblomst',
+      heart: 'Røstet tonkabønne, tyrkisk rose, kanelbark',
+      base: 'Gylden oud, vanilje bourbon, ambra',
+      top_en: 'Almond blossom, orange blossom',
+      heart_en: 'Roasted tonka bean, Turkish rose, cinnamon bark',
+      base_en: 'Golden oud, vanilla Bourbon, amber'
+    },
+    color: {
+      liquidTop: 'oklch(.74 .18 72 / .88)',
+      liquidBottom: 'oklch(.36 .13 52 / .98)',
+      glow: 'oklch(.88 .20 75)',
+      cap: '#24150a',
+      capStroke: '#f59e0b'
+    },
+    tag: 'Gourmand Oud'
+  },
+
+  // ── IBRAQ PERFUMES ──
+  {
+    id: 'ibraq-jamaican-tobacco',
+    brand: 'Ibraq',
+    name: 'Ibraq Jamaican Tobacco',
+    edition: 'Private Reserve · 100 ml',
+    edition_en: 'Private Reserve · 100 ml',
+    subtitle: 'Aged Rum, Spiced Leaf & Warm Tonka · Extrait de Parfum',
+    concentration: '28 %',
+    desc: 'Fatmodnet karibisk rom, krydrede tobakksblader, råkakao, honning og gyllen kvae i ekstraktkonsentrasjon.',
+    desc_en: 'Cask-aged Caribbean rum, spiced tobacco leaves, raw cacao, honey, and golden resins in Extrait concentration.',
+    story: 'En hyllest til de historiske tobakksplantasjene og romfatene i Karibia. Røykfylt, rik og overdådig.',
+    story_en: 'A tribute to heritage tobacco leaves and vintage rum barrels of the Caribbean. Smoky, opulent, and profound.',
+    price: { 30: 550, 50: 850, 100: 1290 },
+    notes: {
+      top: 'Fatmodnet rom, tørkede frukter, muskat',
+      heart: 'Gyldne tobakksblader, honning, kakao',
+      base: 'Tonkabønne, madagaskar vanilje, sedertre, mørk kvae',
+      top_en: 'Cask-aged rum, dried fruits, nutmeg',
+      heart_en: 'Golden tobacco leaves, honey, raw cacao',
+      base_en: 'Tonka bean, Madagascar vanilla, cedarwood, dark resin'
+    },
+    color: {
+      liquidTop: 'oklch(.68 .17 58 / .88)',
+      liquidBottom: 'oklch(.28 .11 40 / .98)',
+      glow: 'oklch(.84 .20 65)',
+      cap: '#1e1008',
+      capStroke: '#d97706'
+    },
+    tag: 'Haute Parfumerie'
+  },
+  {
+    id: 'ibraq-black-amber',
+    brand: 'Ibraq',
+    name: 'Ibraq Black Amber',
+    edition: 'Haute Flacon · 100 ml',
+    edition_en: 'Haute Flacon · 100 ml',
+    subtitle: 'Dark Incense, Labdanum & Resinous Woods · Extrait de Parfum',
+    concentration: '28 %',
+    desc: 'Røkelse fra Oman, cistus labdanum, svart ambra og røkt treverk destillert for maksimal dybde.',
+    desc_en: 'Sacred Omani incense, cistus labdanum, black amber, and smoked woods distilled for transcendental depth.',
+    story: 'Mørkets skjønnhet i flytende form. Black Amber er hemmelighetsfull, aristokratisk og uforglemmelig.',
+    story_en: 'The beauty of the nocturnal world in liquid form. Black Amber is secretive, aristocratic, and unforgettable.',
+    price: { 30: 550, 50: 850, 100: 1290 },
+    notes: {
+      top: 'Sort pepper, røkelse fra Oman, bergamott',
+      heart: 'Svart ambra, cistus labdanum, mørkt lær',
+      base: 'Balsamisk benzoin, indonesisk patchouli, røkt oud',
+      top_en: 'Black pepper, Omani frankincense, bergamot',
+      heart_en: 'Black amber, cistus labdanum, dark leather',
+      base_en: 'Balsamic benzoin, Indonesian patchouli, smoked oud'
+    },
+    color: {
+      liquidTop: 'oklch(.52 .14 48 / .9)',
+      liquidBottom: 'oklch(.20 .08 35 / .98)',
+      glow: 'oklch(.80 .18 55)',
+      cap: '#140d08',
+      capStroke: '#b45309'
+    },
+    tag: 'Ekstrakt'
+  },
+  {
+    id: 'ibraq-emerald-oud',
+    brand: 'Ibraq',
+    name: 'Ibraq Emerald Oud',
+    edition: 'Jewel Collection · 100 ml',
+    edition_en: 'Jewel Collection · 100 ml',
+    subtitle: 'Royal Cambodian Agarwood & Green Cardamom · Extrait de Parfum',
+    concentration: '28 %',
+    desc: 'Grønn kardemomme, sypress, kambodsjansk agartre og hvit ambra i en juvel av en flakong.',
+    desc_en: 'Green cardamom, cypress, Cambodian agarwood, and white ambergris presented in a jewel-inspired flacon.',
+    story: 'Kambodsjas legendariske oud-trær forent med frisk grønn natur og kongelige råvarer.',
+    story_en: 'Cambodia’s legendary oud heritage united with invigorating green botanicals and royal resins.',
+    price: { 30: 550, 50: 850, 100: 1290 },
+    notes: {
+      top: 'Grønn kardemomme, fiolblader, bergamott',
+      heart: 'Kambodsjansk oud, sypress, damaskrose',
+      base: 'Vetiver, hvit ambra, sedertre',
+      top_en: 'Green cardamom, violet leaves, bergamot',
+      heart_en: 'Cambodian oud, cypress, Damascena rose',
+      base_en: 'Vetiver, white ambergris, Virginia cedarwood'
+    },
+    color: {
+      liquidTop: 'oklch(.60 .18 160 / .85)',
+      liquidBottom: 'oklch(.24 .12 165 / .98)',
+      glow: 'oklch(.82 .20 155)',
+      cap: '#0c1912',
+      capStroke: '#10b981'
+    },
+    tag: 'Juvel'
+  },
+
+  // ── VIRIDIAN (VERIDIAN) ──
+  {
+    id: 'viridian-forest-mist',
+    brand: 'Viridian',
+    name: 'Viridian Forest Mist',
+    edition: 'Nordic Art Series · 100 ml',
+    edition_en: 'Nordic Art Series · 100 ml',
+    subtitle: 'Alpine Pine, Frozen Juniper & Crisp Lichen · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Fjellfuru, frosne einerbær, vill timian, fuktig kreklingmose og arktisk sedertre med kunstnerisk flakong.',
+    desc_en: 'Alpine pine, frozen juniper berries, wild thyme, dewy forest lichen, and arctic cedarwood in an artistic flacon.',
+    story: 'Flaskens illustrasjon fanger morgentåken som velter over furuskogen og det speilblanke skogstjernet.',
+    story_en: 'The flacon illustration depicts morning mist rolling over ancient pine forests and tranquil mountain tarns.',
+    price: { 30: 490, 50: 750, 100: 1090 },
+    notes: {
+      top: 'Fjellfuru, frossen einerbær, vill timian',
+      heart: 'Krekling, hvit sedertre, fuktig mose',
+      base: 'Kvae, grønn vetiver, ren arktisk musk',
+      top_en: 'Alpine pine, frosted juniper berries, wild thyme',
+      heart_en: 'Crowberry, white cedar, dewy forest moss',
+      base_en: 'Natural resin, green vetiver, clean arctic musk'
+    },
+    color: {
+      liquidTop: 'oklch(.70 .16 175 / .85)',
+      liquidBottom: 'oklch(.30 .11 180 / .96)',
+      glow: 'oklch(.86 .18 170)',
+      cap: '#0b1a17',
+      capStroke: '#2dd4bf'
+    },
+    tag: 'Barskog'
+  },
+  {
+    id: 'viridian-dusk',
+    brand: 'Viridian',
+    name: 'Viridian Dusk',
+    edition: 'Nordic Art Series · 100 ml',
+    edition_en: 'Nordic Art Series · 100 ml',
+    subtitle: 'Smoked Birch, Golden Resin & Wild Cardamom · Eau de Parfum',
+    concentration: '22 %',
+    desc: 'Kardemomme, brente einebær, røkt bjørkeved, villhonning, irisrot og varm ambra ved solnedgang.',
+    desc_en: 'Cardamom, scorched juniper, smoked birchwood, wild heather honey, orris root, and sunset amber.',
+    story: 'Timen da himmelen skifter fra fiolett til gull og bålrøyken stiger mot stjernene.',
+    story_en: 'The hour when the sky turns from violet to molten gold and campfire smoke drifts toward the stars.',
+    price: { 30: 490, 50: 750, 100: 1090 },
+    notes: {
+      top: 'Kardemomme, brente einebær, bergamott',
+      heart: 'Røkt bjørkeved, villhonning, irisrot',
+      base: 'Gylden kvae, fint lær, dyp ambra',
+      top_en: 'Cardamom, charred juniper, bergamot',
+      heart_en: 'Smoked birchwood, wild honey, orris root',
+      base_en: 'Golden pine resin, fine leather, deep amber'
+    },
+    color: {
+      liquidTop: 'oklch(.62 .16 320 / .85)',
+      liquidBottom: 'oklch(.26 .10 310 / .96)',
+      glow: 'oklch(.80 .18 315)',
+      cap: '#1a0f1e',
+      capStroke: '#c084fc'
+    },
+    tag: 'Skumring'
+  },
+
+  // ── REEF PERFUMES ──
+  {
+    id: 'reef-33',
+    brand: 'Reef',
+    name: 'Reef 33',
+    edition: 'Saudi Luxury Gold Crest · 100 ml',
+    edition_en: 'Saudi Luxury Gold Crest · 100 ml',
+    subtitle: 'Pink Pepper, Saffron & Royal Agarwood · Extrait de Parfum',
+    concentration: '26 %',
+    desc: 'Rosa pepper, frisk mandarin, safran, rosmarin og kongelig agartre fra Saudi-Arabias fremste parfymehus.',
+    desc_en: 'Pink pepper, vibrant mandarin, saffron, aromatic rosemary, and royal agarwood from Saudi Arabia’s premier perfume house.',
+    story: 'En av gulfens mest ettertraktede luksusparfymer. Forførende, distinkt og majestetisk på huden.',
+    story_en: 'One of the Arabian Gulf’s most sought-after luxury creations. Seductive, distinctive, and truly majestic.',
+    price: { 30: 590, 50: 890, 100: 1390 },
+    notes: {
+      top: 'Rosa pepper, mandarin, safran',
+      heart: 'Rosmarin, edeltre, arabisk sjasmin',
+      base: 'Kongelig agartre (oud), rav, ren musk',
+      top_en: 'Pink pepper, mandarin, saffron',
+      heart_en: 'Rosemary, noble woods, Arabian jasmine',
+      base_en: 'Royal agarwood (oud), amber, clean musk'
+    },
+    color: {
+      liquidTop: 'oklch(.82 .12 85 / .85)',
+      liquidBottom: 'oklch(.48 .10 70 / .96)',
+      glow: 'oklch(.90 .16 85)',
+      cap: '#1c1810',
+      capStroke: '#eab308'
+    },
+    tag: 'Luksus'
+  },
+  {
+    id: 'reef-29',
+    brand: 'Reef',
+    name: 'Reef 29',
+    edition: 'Saudi Luxury Silver Crest · 100 ml',
+    edition_en: 'Saudi Luxury Silver Crest · 100 ml',
+    subtitle: 'French Lavender, Pink Pepper & Agarwood · Extrait de Parfum',
+    concentration: '26 %',
+    desc: 'Fransk lavendel, irisrot, fiol, edelt sedertre, raffinert oud og hvit ambra i eksklusiv presentasjonseske.',
+    desc_en: 'French lavender, orris root, violet petals, cedarwood, refined oud, and white amber in an exclusive presentation box.',
+    story: 'Klassisk parisisk eleganse møter tradisjonsrik arabisk parfymekunst i fullkommen likevekt.',
+    story_en: 'Classic Parisian sophistication encounters timeless Arabian perfumery in flawless equilibrium.',
+    price: { 30: 590, 50: 890, 100: 1390 },
+    notes: {
+      top: 'Fransk lavendel, rosa pepper',
+      heart: 'Irisrot, fiol, edelt sedertre',
+      base: 'Raffinert oud, ambra, hvit musk',
+      top_en: 'French lavender, pink pepper',
+      heart_en: 'Orris root, violet petals, noble cedarwood',
+      base_en: 'Refined oud, ambergris, white musk'
+    },
+    color: {
+      liquidTop: 'oklch(.58 .08 260 / .85)',
+      liquidBottom: 'oklch(.22 .05 270 / .98)',
+      glow: 'oklch(.78 .12 250)',
+      cap: '#11131a',
+      capStroke: '#a855f7'
+    },
+    tag: 'Raffinert'
   }
 ];
 
 function loadCatalog() {
   try {
-    const raw = localStorage.getItem('sf_catalog_v1');
+    const raw = localStorage.getItem('sf_catalog_v2');
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      if (Array.isArray(parsed) && parsed.length >= 10) return parsed;
     }
   } catch (e) {
     console.warn('Feil ved lesing av lokal katalog:', e);
@@ -817,7 +1748,7 @@ let CATALOG = loadCatalog();
 window.CATALOG = CATALOG;
 function saveCatalog() {
   try {
-    localStorage.setItem('sf_catalog_v1', JSON.stringify(CATALOG));
+    localStorage.setItem('sf_catalog_v2', JSON.stringify(CATALOG));
     window.CATALOG = CATALOG;
   } catch (e) {
     console.error('Kunne ikke lagre katalog:', e);
@@ -833,7 +1764,12 @@ function renderBottleSvg(p, uid = 'main') {
   const capStroke = c.capStroke || 'var(--gold)';
   const capFill = c.cap || '#0a0e15';
   const nameDisplay = (p.name || 'SVARTFJORD').toUpperCase();
+  const brandDisplay = (p.brand || 'ATELIER').toUpperCase();
   const subDisplay = (p.subtitle || 'EXTRAIT DE PARFUM').toUpperCase();
+  const nameLen = nameDisplay.length;
+  const fontSize = nameLen > 24 ? 7.8 : (nameLen > 18 ? 9.2 : (nameLen > 13 ? 11 : 13));
+  const letterSpacing = nameLen > 20 ? 1.5 : (nameLen > 14 ? 2.2 : 3.5);
+
   return `<svg viewBox="0 0 200 330" role="img" aria-label="Flakong: ${p.name}">
 <defs>
 <linearGradient id="gl_${uid}" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#222c3b"/><stop offset=".42" stop-color="#05080d"/><stop offset=".72" stop-color="#0d1420"/><stop offset="1" stop-color="#1b2331"/></linearGradient>
@@ -858,8 +1794,9 @@ function renderBottleSvg(p, uid = 'main') {
   <path d="M50 80v210" stroke="#fff" stroke-opacity=".26" stroke-width="5" filter="url(#bl_${uid})"/>
   <path d="M162 92v190" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
 </g>
-<text x="100" y="150" text-anchor="middle" fill="#e9eef2" fill-opacity=".9" font-family="Cormorant Garamond,serif" font-size="13" letter-spacing="3.5">${nameDisplay}</text>
-<text x="100" y="168" text-anchor="middle" fill="${capStroke}" font-family="Inter Tight,sans-serif" font-size="6.2" letter-spacing="2.2">${subDisplay}</text>
+<text x="100" y="137" text-anchor="middle" fill="${capStroke}" font-family="Inter Tight,sans-serif" font-size="5.8" letter-spacing="1.8" opacity=".85">${brandDisplay}</text>
+<text x="100" y="152" text-anchor="middle" fill="#e9eef2" fill-opacity=".95" font-family="Cormorant Garamond,serif" font-size="${fontSize}" letter-spacing="${letterSpacing}">${nameDisplay}</text>
+<text x="100" y="167" text-anchor="middle" fill="${capStroke}" font-family="Inter Tight,sans-serif" font-size="5.8" letter-spacing="1.8">${subDisplay}</text>
 </svg>`;
 }
 
@@ -892,7 +1829,7 @@ const audioToggle=$('#audioToggle');
 audioToggle.onclick=()=>{
   initAudio();birdOn=!birdOn;
   audioToggle.classList.toggle('on',birdOn);
-  $('#audioText').textContent=birdOn?'Fuglesang: På':'Fuglesang: Av';
+  $('#audioText').textContent=birdOn?(LANG==='en'?'Birdsong: On':'Fuglesang: På'):(LANG==='en'?'Birdsong: Off':'Fuglesang: Av');
   if(birdOn){chirp();birdTimer=setInterval(()=>{if(birdOn&&Math.random()>.25)chirp()},3400)}
   else{clearInterval(birdTimer)}
 };
@@ -930,6 +1867,30 @@ function loopWaterfall(){
 setTimeout(()=>{wfit();loopWaterfall()},50);
 
 /* ── multi-product reactive store & checkout ── */
+let activeBrand = 'all';
+let searchQuery = '';
+let LANG = localStorage.getItem('sf_lang') || 'no';
+
+function getFilteredCatalog() {
+  let list = CATALOG;
+  if (activeBrand !== 'all') {
+    list = list.filter(p => (p.brand || 'Svartfjord').toLowerCase() === activeBrand.toLowerCase());
+  }
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    list = list.filter(p => {
+      const matchName = (p.name || '').toLowerCase().includes(q);
+      const matchBrand = (p.brand || '').toLowerCase().includes(q);
+      const matchSub = (p.subtitle || '').toLowerCase().includes(q);
+      const matchDesc = (p.desc || '').toLowerCase().includes(q) || (p.desc_en || '').toLowerCase().includes(q);
+      const notes = [p.notes?.top, p.notes?.heart, p.notes?.base, p.notes?.top_en, p.notes?.heart_en, p.notes?.base_en].filter(Boolean).join(' ').toLowerCase();
+      const matchNotes = notes.includes(q);
+      return matchName || matchBrand || matchSub || matchDesc || matchNotes;
+    });
+  }
+  return list;
+}
+
 const S = new Proxy({
   currentProductId: CATALOG[0]?.id || 'svartfjord-1',
   size: '50',
@@ -944,23 +1905,79 @@ const S = new Proxy({
 });
 window.S = S;
 
+function renderBrandFilters() {
+  if (!$('#brandFilterBar')) return;
+  const brands = ['all', ...new Set(CATALOG.map(p => p.brand || 'Svartfjord'))];
+  const brandLabels = {
+    all: LANG === 'en' ? 'All' : 'Alle',
+    Svartfjord: 'Svartfjord',
+    Lattafa: 'Lattafa',
+    'Maison Alhambra': 'Maison Alhambra',
+    'Swiss Arabian': 'Swiss Arabian',
+    Ibraq: 'Ibraq',
+    Viridian: 'Viridian',
+    Reef: 'Reef'
+  };
+
+  $('#brandFilterBar').innerHTML = brands.map(b => {
+    const count = b === 'all' ? CATALOG.length : CATALOG.filter(p => (p.brand || 'Svartfjord') === b).length;
+    const label = brandLabels[b] || b;
+    const isActive = activeBrand.toLowerCase() === b.toLowerCase();
+    return `<button role="tab" class="brand-btn ${isActive ? 'active' : ''}" data-brand="${b}" aria-selected="${isActive}">
+      <span>${label}</span>
+      <span class="badge">${count}</span>
+    </button>`;
+  }).join('');
+}
+
 function renderStore() {
+  const filtered = getFilteredCatalog();
   const cur = getProduct(S.currentProductId);
   const curPrice = (cur.price && cur.price[S.size]) || 2190;
+  const isEn = LANG === 'en';
 
   // Update flacon displays
   if ($('#stage')) $('#stage').innerHTML = renderBottleSvg(cur, 'stage');
   if ($('#flacon')) $('#flacon').innerHTML = renderBottleSvg(cur, 'hero');
 
-  // Update texts
+  // Update texts based on language
   if ($('#prodName')) $('#prodName').textContent = cur.name;
-  if ($('#prodSubtitle')) $('#prodSubtitle').textContent = `${(cur.subtitle || '').toUpperCase()} · ${cur.concentration || ''}`;
-  if ($('#prodEdition')) $('#prodEdition').textContent = cur.edition || 'Begrenset opplag';
-  if ($('#prodDesc')) $('#prodDesc').textContent = cur.desc || '';
+  if ($('#prodSubtitle')) {
+    const brandStr = (cur.brand ? cur.brand.toUpperCase() + ' · ' : '');
+    $('#prodSubtitle').textContent = `${brandStr}${(cur.subtitle || '').toUpperCase()} · ${cur.concentration || ''}`;
+  }
+  if ($('#prodEdition')) $('#prodEdition').textContent = isEn ? (cur.edition_en || cur.edition || 'Limited Edition') : (cur.edition || 'Begrenset opplag');
+  if ($('#prodDesc')) $('#prodDesc').textContent = isEn ? (cur.desc_en || cur.desc || '') : (cur.desc || '');
 
-  const notesArr = [cur.notes?.top, cur.notes?.heart, cur.notes?.base].filter(Boolean);
-  if ($('#prodNotesText')) $('#prodNotesText').textContent = notesArr.length ? notesArr.join(' / ') : 'Einer, damaskrose, svart oud, ambra.';
-  if ($('#prodStoryText')) $('#prodStoryText').textContent = cur.story || cur.desc || '';
+  // Notes
+  const nTop = isEn ? (cur.notes?.top_en || cur.notes?.top) : cur.notes?.top;
+  const nHeart = isEn ? (cur.notes?.heart_en || cur.notes?.heart) : cur.notes?.heart;
+  const nBase = isEn ? (cur.notes?.base_en || cur.notes?.base) : cur.notes?.base;
+  const notesArr = [nTop, nHeart, nBase].filter(Boolean);
+  if ($('#prodNotesText')) $('#prodNotesText').textContent = notesArr.length ? notesArr.join(' / ') : '';
+  if ($('#prodStoryText')) $('#prodStoryText').textContent = isEn ? (cur.story_en || cur.story || cur.desc_en || '') : (cur.story || cur.desc || '');
+
+  // Accordion titles & UI translations
+  if ($('#sumNotes')) $('#sumNotes').textContent = isEn ? 'Fragrance Pyramid' : 'Duftpyramide';
+  if ($('#sumStory')) $('#sumStory').textContent = isEn ? 'About the Creation' : 'Om kreasjonen';
+  if ($('#sumShipping')) $('#sumShipping').textContent = isEn ? 'Shipping & Returns' : 'Frakt & retur';
+  if ($('#prodShippingText')) $('#prodShippingText').textContent = isEn
+    ? 'Dispatched from Grünerløkka, Oslo within 24 hours. Free shipping in Norway, 60-day returns — even on opened bottles.'
+    : 'Sendes fra Grünerløkka innen 24 timer. Fri frakt i hele Norge, 60 dagers åpent kjøp — også på åpnet flakong.';
+  if ($('#add')) $('#add').textContent = isEn ? 'Add to Cart' : 'Legg i kurv';
+  if ($('#add2')) $('#add2').textContent = isEn ? 'Add to Cart' : 'Legg i kurv';
+  if ($('#eta')) $('#eta').textContent = isEn ? 'Delivery 2–3 business days' : 'Levering 2–3 dager';
+  if ($('#navScents')) $('#navScents').textContent = isEn ? 'The Scents' : 'Duften';
+  if ($('#navNature')) $('#navNature').textContent = isEn ? 'The Craft' : 'Naturen';
+  if ($('#navShop')) $('#navShop').textContent = isEn ? 'Shop' : 'Kjøp';
+  if ($('#colTitle')) $('#colTitle').textContent = isEn ? 'Our Flacons' : 'Våre Flakonger';
+  if ($('#colEye')) $('#colEye').textContent = isEn ? 'The Collection' : 'Kolleksjonen';
+
+  // Language buttons
+  $$('.lang-pill').forEach(b => b.classList.toggle('active', b.dataset.lang === LANG));
+  if ($('#langText')) $('#langText').textContent = isEn ? 'EN' : 'NO';
+  if ($('#langFlag')) $('#langFlag').textContent = isEn ? '🇬🇧' : '🇳🇴';
+  if ($('#audioText')) $('#audioText').textContent = birdOn ? (isEn ? 'Birdsong: On' : 'Fuglesang: På') : (isEn ? 'Birdsong: Off' : 'Fuglesang: Av');
 
   // Update prices
   if ($('#price')) $('#price').textContent = nok(curPrice);
@@ -969,20 +1986,42 @@ function renderStore() {
   if ($('#q')) $('#q').textContent = S.qty;
 
   // Collection count & tabs
-  if ($('#collectionCount')) $('#collectionCount').textContent = `${CATALOG.length} kreasjoner`;
-  if ($('#productTabs')) {
-    $('#productTabs').innerHTML = CATALOG.map(p => `
-      <button role="tab" class="ptab ${p.id === S.currentProductId ? 'active' : ''}" data-id="${p.id}" aria-selected="${p.id === S.currentProductId}">
-        <span class="dot" style="background:${p.color?.capStroke || 'var(--gold)'}"></span>
-        <span>${p.name}</span>
-      </button>
-    `).join('');
+  if ($('#collectionCount')) {
+    const totalCount = CATALOG.length;
+    const shownCount = filtered.length;
+    $('#collectionCount').textContent = shownCount === totalCount
+      ? `${totalCount} ${isEn ? 'creations' : 'kreasjoner'}`
+      : `${shownCount} av ${totalCount} ${isEn ? 'flacons' : 'flakonger'}`;
   }
+
+  // Render product tabs
+  if ($('#productTabs')) {
+    if (filtered.length === 0) {
+      $('#productTabs').innerHTML = `
+        <div style="padding:1rem;color:var(--dim);font-size:.85rem;display:flex;align-items:center;gap:.8rem">
+          <span>${isEn ? 'No flacons match your search.' : 'Ingen flakonger matcher søket.'}</span>
+          <button type="button" id="resetSearchInline" style="background:#ffffff10;border:1px solid var(--line);color:var(--gold);padding:.3rem .7rem;border-radius:99px;font:inherit;font-size:.75rem;cursor:pointer">${isEn ? 'Show All' : 'Vis Alle'}</button>
+        </div>
+      `;
+    } else {
+      $('#productTabs').innerHTML = filtered.map(p => `
+        <button role="tab" class="ptab ${p.id === S.currentProductId ? 'active' : ''}" data-id="${p.id}" aria-selected="${p.id === S.currentProductId}">
+          <span class="dot" style="background:${p.color?.capStroke || 'var(--gold)'}"></span>
+          <span style="opacity:.65;font-size:.68rem;text-transform:uppercase">${p.brand || ''}</span>
+          <span>${p.name}</span>
+        </button>
+      `).join('');
+    }
+  }
+
+  renderBrandFilters();
 }
 
 function renderCart() {
+  const isEn = LANG === 'en';
   const n = S.lines.reduce((a, l) => a + l.qty, 0);
   if ($('#badge')) $('#badge').textContent = n;
+  if ($('#cartBtnText')) $('#cartBtnText').textContent = isEn ? 'Cart' : 'Kurv';
 
   if ($('#lines')) {
     $('#lines').innerHTML = S.lines.length
@@ -998,18 +2037,31 @@ function renderCart() {
           </div>
         </div>
       `).join('')
-      : '<p class="row" style="color:var(--dim)">Kurven er tom — ennå.</p>';
+      : `<p class="row" style="color:var(--dim)">${isEn ? 'Your cart is empty — for now.' : 'Kurven er tom — ennå.'}</p>`;
   }
 
   const tot = S.lines.reduce((a, l) => a + (l.price * l.qty), 0);
   if ($('#total')) $('#total').textContent = nok(tot);
   if ($('#modalTotal')) $('#modalTotal').textContent = nok(tot);
+  if ($('#openCheckout')) $('#openCheckout').textContent = isEn ? 'Proceed to Checkout' : 'Gå til kassen (Vipps / Kort)';
 }
 
 function render() {
   renderStore();
   renderCart();
 }
+
+function toggleLanguage(newLang) {
+  LANG = newLang || (LANG === 'no' ? 'en' : 'no');
+  localStorage.setItem('sf_lang', LANG);
+  vt(() => {
+    render();
+  });
+  buzz([8]);
+}
+
+$('#langToggle')?.addEventListener('click', () => toggleLanguage());
+$$('.lang-pill').forEach(btn => btn.addEventListener('click', () => toggleLanguage(btn.dataset.lang)));
 
 $('#sizes')?.addEventListener('change', e => vt(() => S.size = e.target.value));
 $$('.qty button').forEach(b => b.onclick = () => S.qty = Math.max(1, S.qty + +b.dataset.q));
@@ -1018,25 +2070,14 @@ const addToCart = () => {
   const cur = getProduct(S.currentProductId);
   const unitPrice = (cur.price && cur.price[S.size]) || 2190;
   const l = S.lines.find(x => x.id === cur.id && x.size === S.size);
-  vt(() => {
-    if (l) {
-      l.qty += S.qty;
-    } else {
-      S.lines.push({
-        id: cur.id,
-        name: cur.name,
-        size: S.size,
-        price: unitPrice,
-        qty: S.qty,
-        capStroke: cur.color?.capStroke || 'var(--gold)'
-      });
-    }
-    S.lines = [...S.lines];
-  });
-  buzz([12, 40, 18]);
+  if (l) l.qty += S.qty;
+  else S.lines.push({ id: cur.id, name: `${cur.name}`, size: S.size, price: unitPrice, capStroke: cur.color?.capStroke, qty: S.qty });
+  S.qty = 1;
+  renderCart();
+  buzz([8, 40, 12]);
   if (birdOn) chirp();
-  if (typeof confetti === 'function') confetti({ particleCount: 40, spread: 60, origin: { y: .85 }, colors: ['#C9A96E', '#89CFF0', '#FFFFFF'] });
-  $('#cart').showPopover();
+  const c = $('#cart');
+  if (c && typeof c.showPopover === 'function') c.showPopover();
 };
 
 $('#add')?.addEventListener('click', addToCart);
@@ -1045,6 +2086,49 @@ $('#add2')?.addEventListener('click', addToCart);
 $('#lines')?.addEventListener('click', e => {
   const i = e.target.dataset.rm;
   if (i != null) vt(() => S.lines = S.lines.filter((_, x) => x != i));
+});
+
+$('#brandFilterBar')?.addEventListener('click', e => {
+  const btn = e.target.closest('.brand-btn');
+  if (!btn) return;
+  const b = btn.dataset.brand;
+  if (b) {
+    activeBrand = b;
+    const filtered = getFilteredCatalog();
+    if (filtered.length && !filtered.some(p => p.id === S.currentProductId)) {
+      vt(() => { S.currentProductId = filtered[0].id; });
+    } else {
+      render();
+    }
+    buzz([10]);
+  }
+});
+
+$('#catalogSearchInput')?.addEventListener('input', e => {
+  searchQuery = e.target.value.trim();
+  if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = searchQuery ? 'block' : 'none';
+  const filtered = getFilteredCatalog();
+  if (filtered.length && !filtered.some(p => p.id === S.currentProductId)) {
+    S.currentProductId = filtered[0].id;
+  }
+  render();
+});
+
+$('#clearSearchBtn')?.addEventListener('click', () => {
+  if ($('#catalogSearchInput')) $('#catalogSearchInput').value = '';
+  searchQuery = '';
+  if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = 'none';
+  render();
+});
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'resetSearchInline') {
+    activeBrand = 'all';
+    searchQuery = '';
+    if ($('#catalogSearchInput')) $('#catalogSearchInput').value = '';
+    if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = 'none';
+    render();
+  }
 });
 
 $('#productTabs')?.addEventListener('click', e => {
@@ -1068,113 +2152,155 @@ window.handleCheckout = e => {
   buzz([10, 60, 10, 60, 25]);
   if (birdOn) chirp();
   if (typeof confetti === 'function') confetti({ particleCount: 70, spread: 80, origin: { y: .6 }, colors: ['#C9A96E', '#FF5B24', '#FFFFFF'] });
+  const isEn = LANG === 'en';
+  alert(isEn
+    ? 'Thank you for your order! (Demonstration: Vipps / card payment completed).'
+    : 'Takk for din bestilling! (Demonstrasjon: Vipps / kort-transaksjon fullført).');
+  S.lines = [];
   $('#checkoutModal').close();
-  $('#cart').showPopover();
-  vt(() => {
-    $('#cart').innerHTML = `<p class="eye">Forseglet</p><h2 style="font-size:2rem;margin:.8rem 0">Takk. Ordren er reservert.</h2><p>Ordre <b style="color:var(--gold)">#${(Math.random()*1e5|0).toString(36).toUpperCase()}</b> — flakonger reservert i atelieret i Oslo. Bekreftelse sendt på SMS/e-post.</p><button class="cta" style="margin-top:1.6rem" popovertarget="cart" popovertargetaction="hide">Lukk</button>`;
-    S.lines = [];
-  });
 };
 
-/* ── Admin Portal & Product Manager ── */
+/* ── administrative backoffice & catalog manager ── */
+const DEFAULT_ADMIN_PIN = '4424';
+function getAdminPin() {
+  return localStorage.getItem('sf_admin_pin') || DEFAULT_ADMIN_PIN;
+}
+function setAdminPin(pin) {
+  localStorage.setItem('sf_admin_pin', pin);
+}
+
 const PRESETS = {
-  amber: { liquidTop: 'oklch(.66 .17 62 / .85)', liquidBottom: 'oklch(.26 .09 28 / .96)', glow: 'oklch(.85 .2 155)', cap: '#0a0e15', capStroke: 'var(--gold)' },
-  arctic: { liquidTop: 'oklch(.75 .14 210 / .85)', liquidBottom: 'oklch(.32 .12 225 / .96)', glow: 'oklch(.88 .18 200)', cap: '#121820', capStroke: '#89cff0' },
-  sol: { liquidTop: 'oklch(.78 .19 82 / .85)', liquidBottom: 'oklch(.38 .14 48 / .96)', glow: 'oklch(.88 .22 75)', cap: '#18120a', capStroke: '#e5b364' },
-  emerald: { liquidTop: 'oklch(.70 .18 145 / .85)', liquidBottom: 'oklch(.30 .12 140 / .96)', glow: 'oklch(.85 .22 140)', cap: '#08140c', capStroke: '#2ecc71' },
-  aurora: { liquidTop: 'oklch(.68 .20 300 / .85)', liquidBottom: 'oklch(.28 .14 290 / .96)', glow: 'oklch(.85 .24 310)', cap: '#120b18', capStroke: '#a55eea' },
-  rose: { liquidTop: 'oklch(.72 .18 25 / .85)', liquidBottom: 'oklch(.34 .12 20 / .96)', glow: 'oklch(.86 .20 30)', cap: '#180d10', capStroke: '#ff7675' }
+  amber: { liquidTop: 'oklch(.66 .17 62 / .85)', liquidBottom: 'oklch(.26 .09 28 / .96)', glow: 'oklch(.85 .2 155)' },
+  arctic: { liquidTop: 'oklch(.75 .14 210 / .85)', liquidBottom: 'oklch(.32 .12 225 / .96)', glow: 'oklch(.88 .18 200)' },
+  sol: { liquidTop: 'oklch(.78 .19 82 / .85)', liquidBottom: 'oklch(.38 .14 48 / .96)', glow: 'oklch(.88 .22 75)' },
+  emerald: { liquidTop: 'oklch(.65 .22 145 / .85)', liquidBottom: 'oklch(.28 .14 150 / .98)', glow: 'oklch(.82 .24 140)' },
+  aurora: { liquidTop: 'oklch(.58 .22 305 / .85)', liquidBottom: 'oklch(.24 .14 300 / .98)', glow: 'oklch(.75 .26 315)' },
+  rose: { liquidTop: 'oklch(.78 .16 350 / .85)', liquidBottom: 'oklch(.45 .16 355 / .96)', glow: 'oklch(.88 .18 340)' }
 };
 
-const getAdminPin = () => localStorage.getItem('sf_admin_pin') || '4424';
-const isAdminAuthed = () => sessionStorage.getItem('sf_admin_auth') === '1';
+let adminBrandFilter = 'all';
+let adminSearchQuery = '';
 
 function openAdmin() {
-  if (isAdminAuthed()) {
-    openAdminDashboard();
+  if (sessionStorage.getItem('sf_admin_authed') === 'true') {
+    openAdminPanel();
   } else {
     $('#adminPinInput').value = '';
     $('#pinError').textContent = '';
     $('#adminPinModal').showModal();
-    setTimeout(() => $('#adminPinInput').focus(), 100);
+    $('#adminPinInput').focus();
   }
 }
 
 $('#openAdminBtn')?.addEventListener('click', openAdmin);
+
 $('#closeAdminPinBtn')?.addEventListener('click', () => $('#adminPinModal').close());
 $('#cancelPinBtn')?.addEventListener('click', () => $('#adminPinModal').close());
-$('#closeAdminPanelBtn')?.addEventListener('click', () => $('#adminPanelModal').close());
 
 $('#adminPinForm')?.addEventListener('submit', e => {
   e.preventDefault();
   const inputPin = $('#adminPinInput').value.trim();
   if (inputPin === getAdminPin()) {
-    sessionStorage.setItem('sf_admin_auth', '1');
+    sessionStorage.setItem('sf_admin_authed', 'true');
     $('#adminPinModal').close();
-    openAdminDashboard();
-    buzz([15, 30, 15]);
+    openAdminPanel();
+    buzz([20, 40, 20]);
   } else {
-    $('#pinError').textContent = 'Feil PIN-kode. Standard atelier-PIN er 4424.';
-    $('#adminPinInput').value = '';
-    buzz([40, 60, 40]);
+    $('#pinError').textContent = 'Feil PIN-kode. Standard er 4424.';
+    buzz([40, 80, 40]);
   }
 });
 
+function openAdminPanel() {
+  $('#adminPanelModal').showModal();
+  switchAdminTab('list');
+}
+
+$('#closeAdminPanelBtn')?.addEventListener('click', () => $('#adminPanelModal').close());
 $('#adminLogoutBtn')?.addEventListener('click', () => {
-  sessionStorage.removeItem('sf_admin_auth');
+  sessionStorage.removeItem('sf_admin_authed');
   $('#adminPanelModal').close();
+  buzz([15]);
+});
+
+$('#tabBtnList')?.addEventListener('click', () => switchAdminTab('list'));
+$('#tabBtnForm')?.addEventListener('click', () => {
+  resetProductForm();
+  switchAdminTab('form');
+});
+$('#tabBtnData')?.addEventListener('click', () => {
+  switchAdminTab('data');
+  $('#catalogJsonArea').value = JSON.stringify(CATALOG, null, 2);
+});
+$('#adminAddNewBtn')?.addEventListener('click', () => {
+  resetProductForm();
+  switchAdminTab('form');
 });
 
 function switchAdminTab(tab) {
   $('#tabBtnList')?.classList.toggle('active', tab === 'list');
   $('#tabBtnForm')?.classList.toggle('active', tab === 'form');
   $('#tabBtnData')?.classList.toggle('active', tab === 'data');
-  if ($('#adminViewList')) $('#adminViewList').style.display = tab === 'list' ? 'block' : 'none';
-  if ($('#adminViewForm')) $('#adminViewForm').style.display = tab === 'form' ? 'block' : 'none';
-  if ($('#adminViewData')) $('#adminViewData').style.display = tab === 'data' ? 'block' : 'none';
-  if (tab === 'data') {
-    $('#catalogJsonArea').value = JSON.stringify(CATALOG, null, 2);
-    if ($('#pinChangeFeedback')) $('#pinChangeFeedback').textContent = '';
-  }
-  if (tab === 'list') {
-    renderAdminList();
-  }
-}
-$('#tabBtnList')?.addEventListener('click', () => switchAdminTab('list'));
-$('#tabBtnForm')?.addEventListener('click', () => { resetProductForm(); switchAdminTab('form'); });
-$('#tabBtnData')?.addEventListener('click', () => switchAdminTab('data'));
-$('#adminAddNewBtn')?.addEventListener('click', () => { resetProductForm(); switchAdminTab('form'); });
-
-function openAdminDashboard() {
-  $('#adminPanelModal').showModal();
-  switchAdminTab('list');
+  $('#adminViewList').style.display = tab === 'list' ? 'block' : 'none';
+  $('#adminViewForm').style.display = tab === 'form' ? 'block' : 'none';
+  $('#adminViewData').style.display = tab === 'data' ? 'block' : 'none';
+  if (tab === 'list') renderAdminProductList();
 }
 
-function renderAdminList() {
+function renderAdminProductList() {
+  let list = CATALOG;
+  if (adminBrandFilter !== 'all') {
+    list = list.filter(p => (p.brand || 'Svartfjord').toLowerCase() === adminBrandFilter.toLowerCase());
+  }
+  if (adminSearchQuery) {
+    const q = adminSearchQuery.toLowerCase();
+    list = list.filter(p => (p.name || '').toLowerCase().includes(q) || (p.brand || '').toLowerCase().includes(q));
+  }
+
   if ($('#adminProdCount')) $('#adminProdCount').textContent = CATALOG.length;
+  
+  // Render admin brand filters
+  if ($('#adminBrandFilters')) {
+    const brands = ['all', ...new Set(CATALOG.map(p => p.brand || 'Svartfjord'))];
+    $('#adminBrandFilters').innerHTML = brands.map(b => {
+      const count = b === 'all' ? CATALOG.length : CATALOG.filter(p => (p.brand || 'Svartfjord') === b).length;
+      const isActive = adminBrandFilter.toLowerCase() === b.toLowerCase();
+      return `<button type="button" class="preset-btn ${isActive ? 'active' : ''}" data-admbrand="${b}" style="${isActive ? 'background:rgba(201,169,110,0.2);border-color:var(--gold);color:var(--gold)' : ''}">
+        ${b === 'all' ? 'Alle' : b} (${count})
+      </button>`;
+    }).join('');
+  }
+
   if ($('#adminProductCards')) {
-    $('#adminProductCards').innerHTML = CATALOG.map(p => {
-      const p30 = (p.price && p.price[30]) || 1490;
-      const p50 = (p.price && p.price[50]) || 2190;
-      const p100 = (p.price && p.price[100]) || 3690;
+    if (list.length === 0) {
+      $('#adminProductCards').innerHTML = '<p style="color:var(--dim);padding:1rem;text-align:center">Ingen flakonger matcher filteret.</p>';
+      return;
+    }
+    $('#adminProductCards').innerHTML = list.map(p => {
+      const c = p.color || DEFAULT_CATALOG[0].color;
+      const stroke = c.capStroke || 'var(--gold)';
+      const priceText = p.price ? `30ml: ${nok(p.price[30]||0)} · 50ml: ${nok(p.price[50]||0)} · 100ml: ${nok(p.price[100]||0)}` : '2 190 kr';
       return `
-        <div class="admin-card">
-          <div style="width:55px;height:90px">${renderBottleSvg(p, 'adm_card_' + p.id)}</div>
+        <div class="admin-card" data-card-id="${p.id}">
+          <div style="width:60px;height:95px;display:flex;align-items:center;justify-content:center;background:#00000044;border-radius:8px;padding:4px">
+            ${renderBottleSvg(p, `adm_card_${p.id}`)}
+          </div>
           <div>
-            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
-              <h4 style="font-size:1.15rem;margin:0;color:#fff">${p.name}</h4>
-              <span style="font-size:.68rem;padding:.2rem .5rem;border-radius:99px;background:#ffffff10;color:var(--gold);border:1px solid var(--line)">${p.tag || p.edition || 'Flakong'}</span>
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem">
+              <span style="font-size:.65rem;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:#ffffff12;color:${stroke};border:1px solid ${stroke}44;font-weight:600">${p.brand || 'Svartfjord'}</span>
+              <strong style="font-size:1.05rem;color:#fff">${p.name}</strong>
+              <span style="font-size:.72rem;color:var(--dim)">· ${p.concentration || ''}</span>
             </div>
-            <p style="font-size:.78rem;color:var(--gold);margin:.2rem 0 .4rem">${p.subtitle || ''} · ${p.concentration || ''}</p>
-            <p style="font-size:.78rem;color:var(--dim);margin-bottom:.4rem;line-height:1.4">${p.desc || ''}</p>
-            <div style="font-size:.76rem;color:#e9eef2">
-              <b>30 ml:</b> ${nok(p30)} &nbsp;|&nbsp; <b>50 ml:</b> ${nok(p50)} &nbsp;|&nbsp; <b>100 ml:</b> ${nok(p100)}
+            <div style="font-size:.76rem;color:var(--dim);margin-bottom:.3rem">${p.subtitle || ''}</div>
+            <div style="font-size:.76rem;color:var(--gold)">${priceText}</div>
+            <div style="font-size:.72rem;color:var(--dim);margin-top:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:480px">
+              Duftnoter: ${[p.notes?.top, p.notes?.heart, p.notes?.base].filter(Boolean).join(' / ')}
             </div>
           </div>
           <div class="admin-card-actions">
-            <button class="admin-card-btn" data-act="shop" data-id="${p.id}" title="Vis og aktiver i butikken">👁️ Vis i butikk</button>
-            <button class="admin-card-btn" data-act="edit" data-id="${p.id}" title="Rediger denne flakongen">✏️ Rediger</button>
-            <button class="admin-card-btn" data-act="dup" data-id="${p.id}" title="Dupliser denne flakongen">📋 Dupliser</button>
+            <button class="admin-card-btn" data-act="shop" data-id="${p.id}" title="Vis i butikken">👁️ Vis</button>
+            <button class="admin-card-btn" data-act="edit" data-id="${p.id}" title="Rediger flakong og priser">✏️ Rediger</button>
+            <button class="admin-card-btn" data-act="dup" data-id="${p.id}" title="Dupliser denne flakongen">📋 Klon</button>
             <button class="admin-card-btn danger" data-act="del" data-id="${p.id}" title="Slett denne flakongen" ${CATALOG.length <= 1 ? 'disabled style="opacity:.4;cursor:not-allowed"' : ''}>🗑️ Slett</button>
           </div>
         </div>
@@ -1182,6 +2308,18 @@ function renderAdminList() {
     }).join('');
   }
 }
+
+$('#adminBrandFilters')?.addEventListener('click', e => {
+  const btn = e.target.closest('[data-admbrand]');
+  if (!btn) return;
+  adminBrandFilter = btn.dataset.admbrand;
+  renderAdminProductList();
+});
+
+$('#adminSearchInput')?.addEventListener('input', e => {
+  adminSearchQuery = e.target.value.trim();
+  renderAdminProductList();
+});
 
 $('#adminProductCards')?.addEventListener('click', e => {
   const btn = e.target.closest('[data-act]');
@@ -1207,25 +2345,32 @@ function loadProductIntoForm(id) {
   const p = getProduct(id);
   $('#prodFormId').value = p.id;
   $('#prodFormHeader').textContent = `Rediger: ${p.name}`;
+  $('#prodFormBrand').value = p.brand || 'Svartfjord';
   $('#prodFormName').value = p.name;
   $('#prodFormSubtitle').value = p.subtitle || '';
-  $('#prodFormConcentration').value = p.concentration || '26 %';
+  $('#prodFormConcentration').value = p.concentration || '22 %';
   $('#prodFormEdition').value = p.edition || '';
+  $('#prodFormEditionEn').value = p.edition_en || '';
   $('#prodFormDesc').value = p.desc || '';
+  $('#prodFormDescEn').value = p.desc_en || '';
   $('#prodFormStory').value = p.story || '';
-  $('#prodFormPrice30').value = (p.price && p.price[30]) || 1490;
-  $('#prodFormPrice50').value = (p.price && p.price[50]) || 2190;
-  $('#prodFormPrice100').value = (p.price && p.price[100]) || 3690;
+  $('#prodFormStoryEn').value = p.story_en || '';
+  $('#prodFormPrice30').value = (p.price && p.price[30]) || 390;
+  $('#prodFormPrice50').value = (p.price && p.price[50]) || 590;
+  $('#prodFormPrice100').value = (p.price && p.price[100]) || 890;
   $('#prodFormNotesTop').value = p.notes?.top || '';
+  $('#prodFormNotesTopEn').value = p.notes?.top_en || '';
   $('#prodFormNotesHeart').value = p.notes?.heart || '';
+  $('#prodFormNotesHeartEn').value = p.notes?.heart_en || '';
   $('#prodFormNotesBase').value = p.notes?.base || '';
+  $('#prodFormNotesBaseEn').value = p.notes?.base_en || '';
   const c = p.color || DEFAULT_CATALOG[0].color;
   $('#prodFormLiquidTop').value = c.liquidTop || 'oklch(.66 .17 62 / .85)';
   $('#prodFormLiquidBottom').value = c.liquidBottom || 'oklch(.26 .09 28 / .96)';
   $('#prodFormGlow').value = c.glow || 'oklch(.85 .2 155)';
   if (c.capStroke && c.capStroke.includes('89cff0')) {
     $('#prodFormCapFinish').value = 'silver';
-  } else if (c.capStroke && c.capStroke.includes('888')) {
+  } else if (c.capStroke && (c.capStroke.includes('888') || c.capStroke.includes('94a3b8'))) {
     $('#prodFormCapFinish').value = 'obsidian';
   } else {
     $('#prodFormCapFinish').value = 'gold';
@@ -1237,18 +2382,25 @@ function loadProductIntoForm(id) {
 function resetProductForm() {
   $('#prodFormId').value = '';
   $('#prodFormHeader').textContent = 'Opprett ny Flakong';
-  $('#prodFormName').value = `Svartfjord N°${CATALOG.length + 1}`;
-  $('#prodFormSubtitle').value = 'Extrait de Parfum';
-  $('#prodFormConcentration').value = '26 %';
-  $('#prodFormEdition').value = 'Begrenset opplag · 200 flakonger';
-  $('#prodFormDesc').value = 'Extrait de parfum, 26 % konsentrasjon. Håndfylt flakong modnet i Oslo.';
-  $('#prodFormStory').value = 'Inspirert av den nordiske villmarken og mørke fjorder.';
-  $('#prodFormPrice30').value = 1490;
-  $('#prodFormPrice50').value = 2190;
-  $('#prodFormPrice100').value = 3690;
-  $('#prodFormNotesTop').value = 'Einer, Frostluft, Tindved';
-  $('#prodFormNotesHeart').value = 'Damaskrose, Røkelse, Kvae';
-  $('#prodFormNotesBase').value = 'Svart oud, Isbremoskus, Ambra';
+  $('#prodFormBrand').value = 'Lattafa';
+  $('#prodFormName').value = `Ny Kreasjon N°${CATALOG.length + 1}`;
+  $('#prodFormSubtitle').value = 'Eau de Parfum';
+  $('#prodFormConcentration').value = '22 %';
+  $('#prodFormEdition').value = 'Boutique Flacon · 100 ml';
+  $('#prodFormEditionEn').value = 'Boutique Flacon · 100 ml';
+  $('#prodFormDesc').value = 'En forførende orientalsk duft med varme krydder og edeltre.';
+  $('#prodFormDescEn').value = 'An alluring oriental fragrance with warm spices and precious woods.';
+  $('#prodFormStory').value = 'Håndplukkede råvarer modnet for maksimal holdbarhet og projeksjon.';
+  $('#prodFormStoryEn').value = 'Hand-selected essences aged for extraordinary longevity and sillage.';
+  $('#prodFormPrice30').value = 390;
+  $('#prodFormPrice50').value = 590;
+  $('#prodFormPrice100').value = 890;
+  $('#prodFormNotesTop').value = 'Bergamott, Safran, Pepper';
+  $('#prodFormNotesTopEn').value = 'Bergamot, Saffron, Black Pepper';
+  $('#prodFormNotesHeart').value = 'Rose, Praline, Røkelse';
+  $('#prodFormNotesHeartEn').value = 'Rose, Praline, Frankincense';
+  $('#prodFormNotesBase').value = 'Oud, Vanilje, Ambra';
+  $('#prodFormNotesBaseEn').value = 'Oud, Vanilla, Amber';
   const c = PRESETS.amber;
   $('#prodFormLiquidTop').value = c.liquidTop;
   $('#prodFormLiquidBottom').value = c.liquidBottom;
@@ -1262,30 +2414,38 @@ $('#cancelFormBtn')?.addEventListener('click', () => switchAdminTab('list'));
 
 function getCapColors(finish) {
   if (finish === 'silver') return { cap: '#121820', capStroke: '#89cff0' };
-  if (finish === 'obsidian') return { cap: '#080808', capStroke: '#888888' };
+  if (finish === 'obsidian') return { cap: '#080808', capStroke: '#94a3b8' };
   return { cap: '#0a0e15', capStroke: 'var(--gold)' };
 }
 
 function getFormData() {
   const finish = $('#prodFormCapFinish').value;
   const capData = getCapColors(finish);
+  const brand = $('#prodFormBrand').value.trim() || 'Svartfjord';
   return {
-    id: $('#prodFormId').value || `svartfjord-${Date.now()}`,
-    name: $('#prodFormName').value.trim() || 'Svartfjord Flakong',
-    subtitle: $('#prodFormSubtitle').value.trim() || 'Extrait de Parfum',
-    concentration: $('#prodFormConcentration').value.trim() || '24 %',
-    edition: $('#prodFormEdition').value.trim() || 'Begrenset opplag',
+    id: $('#prodFormId').value || `${brand.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}`,
+    brand: brand,
+    name: $('#prodFormName').value.trim() || 'Ny Flakong',
+    subtitle: $('#prodFormSubtitle').value.trim() || 'Eau de Parfum',
+    concentration: $('#prodFormConcentration').value.trim() || '22 %',
+    edition: $('#prodFormEdition').value.trim() || 'Boutique Flacon',
+    edition_en: $('#prodFormEditionEn').value.trim() || 'Boutique Flacon',
     desc: $('#prodFormDesc').value.trim() || '',
+    desc_en: $('#prodFormDescEn').value.trim() || '',
     story: $('#prodFormStory').value.trim() || '',
+    story_en: $('#prodFormStoryEn').value.trim() || '',
     price: {
-      30: Number($('#prodFormPrice30').value) || 1490,
-      50: Number($('#prodFormPrice50').value) || 2190,
-      100: Number($('#prodFormPrice100').value) || 3690
+      30: Number($('#prodFormPrice30').value) || 390,
+      50: Number($('#prodFormPrice50').value) || 590,
+      100: Number($('#prodFormPrice100').value) || 890
     },
     notes: {
       top: $('#prodFormNotesTop').value.trim(),
+      top_en: $('#prodFormNotesTopEn').value.trim(),
       heart: $('#prodFormNotesHeart').value.trim(),
-      base: $('#prodFormNotesBase').value.trim()
+      heart_en: $('#prodFormNotesHeartEn').value.trim(),
+      base: $('#prodFormNotesBase').value.trim(),
+      base_en: $('#prodFormNotesBaseEn').value.trim()
     },
     color: {
       liquidTop: $('#prodFormLiquidTop').value.trim() || 'oklch(.66 .17 62 / .85)',
@@ -1294,7 +2454,7 @@ function getFormData() {
       cap: capData.cap,
       capStroke: capData.capStroke
     },
-    tag: 'Atelier'
+    tag: brand
   };
 }
 
@@ -1302,10 +2462,10 @@ function updateAdminPreview() {
   const p = getFormData();
   $('#adminPreviewBottle').innerHTML = renderBottleSvg(p, 'adm_prev');
   $('#previewProdName').textContent = p.name;
-  $('#previewProdSub').textContent = `${(p.subtitle || '').toUpperCase()} · ${p.concentration || ''}`;
-  $('#previewPrice50').textContent = nok(p.price[50] || 2190);
+  $('#previewProdSub').textContent = `${(p.brand ? p.brand.toUpperCase() + ' · ' : '')}${(p.subtitle || '').toUpperCase()} · ${p.concentration || ''}`;
+  $('#previewPrice50').textContent = nok(p.price[50] || 590);
   const notesText = [p.notes.top, p.notes.heart, p.notes.base].filter(Boolean).join(' / ');
-  $('#previewNotes').textContent = notesText || 'Einer, Damaskrose, Svart Oud';
+  $('#previewNotes').textContent = notesText || 'Bergamott, Safran / Rose / Oud, Vanilje';
 }
 
 $('#adminProductForm')?.addEventListener('input', updateAdminPreview);
@@ -1321,7 +2481,7 @@ $('#colorPresets')?.addEventListener('click', e => {
     $('#prodFormLiquidBottom').value = p.liquidBottom;
     $('#prodFormGlow').value = p.glow;
     if (key === 'arctic') $('#prodFormCapFinish').value = 'silver';
-    else if (key === 'emerald') $('#prodFormCapFinish').value = 'gold';
+    else if (key === 'rose') $('#prodFormCapFinish').value = 'gold';
     else $('#prodFormCapFinish').value = 'gold';
     updateAdminPreview();
     buzz([8]);
@@ -1349,30 +2509,31 @@ $('#adminProductForm')?.addEventListener('submit', e => {
 function duplicateProduct(id) {
   const orig = getProduct(id);
   const cloned = JSON.parse(JSON.stringify(orig));
-  cloned.id = `svartfjord-${Date.now()}`;
-  cloned.name = `${cloned.name} (Kopi)`;
+  cloned.id = `${orig.id}-klon-${Date.now().toString().slice(-4)}`;
+  cloned.name = `${orig.name} (Kopi)`;
   CATALOG.push(cloned);
   saveCatalog();
   render();
-  renderAdminList();
-  buzz([12]);
+  renderAdminProductList();
+  buzz([10, 20]);
 }
 
 function deleteProduct(id) {
   if (CATALOG.length <= 1) {
-    alert('Du må ha minst én flakong i atelier-katalogen.');
+    alert('Atelieret må ha minst én aktiv flakong.');
     return;
   }
-  const p = getProduct(id);
-  if (!confirm(`Er du sikker på at du vil slette "${p.name}"?`)) return;
-  CATALOG = CATALOG.filter(x => x.id !== id);
-  if (S.currentProductId === id) {
-    S.currentProductId = CATALOG[0].id;
+  const prod = getProduct(id);
+  if (confirm(`Er du sikker på at du vil slette "${prod.name}" fra katalogen?`)) {
+    CATALOG = CATALOG.filter(x => x.id !== id);
+    if (S.currentProductId === id) {
+      S.currentProductId = CATALOG[0].id;
+    }
+    saveCatalog();
+    render();
+    renderAdminProductList();
+    buzz([30]);
   }
-  saveCatalog();
-  render();
-  renderAdminList();
-  buzz([20, 20]);
 }
 
 // JSON & Data Management
@@ -1410,13 +2571,13 @@ $('#importJsonBtn')?.addEventListener('click', () => {
 });
 
 $('#resetCatalogBtn')?.addEventListener('click', () => {
-  if (confirm('Vil du tilbakestille katalogen til de opprinnelige 3 Svartfjord-flakongene?')) {
+  if (confirm('Er du sikker på at du vil gjenopprette standardkatalogen med alle 30 parfymer?')) {
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
     saveCatalog();
     S.currentProductId = CATALOG[0].id;
     render();
     $('#catalogJsonArea').value = JSON.stringify(CATALOG, null, 2);
-    alert('✓ Katalogen er tilbakestilt til standard!');
+    alert('✓ Standardkatalogen med 30 parfymer er gjenopprettet!');
     switchAdminTab('list');
   }
 });
@@ -1427,7 +2588,7 @@ $('#savePinBtn')?.addEventListener('click', () => {
     alert('PIN-koden må være minst 4 siffer.');
     return;
   }
-  localStorage.setItem('sf_admin_pin', np);
+  setAdminPin(np);
   $('#newPinInput').value = '';
   $('#pinChangeFeedback').textContent = '✓ Sikkerhets-PIN er oppdatert!';
   setTimeout(() => { $('#pinChangeFeedback').textContent = ''; }, 2500);
@@ -1450,6 +2611,7 @@ window.render = render;
 window.renderStore = renderStore;
 
 render();
+
 
 /* ── leveringsdato ── */
 const d=new Date(Date.now()+2*864e5);
