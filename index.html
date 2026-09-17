@@ -35,7 +35,9 @@ try {
   }
 } catch(e) {}
 </script>
-<noscript><style>html.booting{overflow:visible}.intro{display:none!important}
+<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
+
+<style>
 /* ── DUAL VIEW SWITCHER (Bottle & Box) ── */
 .img-switch-pill {
   position: absolute;
@@ -116,9 +118,6 @@ try {
   line-height: 1.4;
 }
 
-</style></noscript>
-
-<style>
 @property --wipe{syntax:'<percentage>';inherits:false;initial-value:-10%}
 @property --glow{syntax:'<number>';inherits:true;initial-value:0}
 
@@ -505,6 +504,7 @@ nav.main-nav a:hover{color:var(--gold)}
   display:none;
 }
 .clear-search-btn:hover{color:#fff}
+.clear-search-btn:focus-visible{outline:1px solid var(--gold);color:var(--gold-bright);border-radius:4px}
 
 /* Empty Search Box */
 .empty-results-box{
@@ -640,6 +640,7 @@ nav.main-nav a:hover{color:var(--gold)}
   width:94vw;
   max-height:90vh;
   overflow-y:auto;
+  overflow-x:hidden;
 }
 .product-modal-grid{
   display:grid;
@@ -674,7 +675,8 @@ nav.main-nav a:hover{color:var(--gold)}
   filter:drop-shadow(0 14px 28px rgba(0,0,0,0.9));
   transition:opacity .15s ease;
 }
-.modal-info-wrap{display:flex;flex-direction:column;gap:.7rem}
+.modal-info-wrap{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+#detailModalTitle{word-break:break-word;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15}
 
 /* Scent Pyramid 3 Rows */
 .notes-pyramid{
@@ -1545,7 +1547,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.15 (updated 2026-09-17 08:35)
+        v1.0.16 (updated 2026-09-17 08:45)
       </div>
     </div>
   </div>
@@ -2587,7 +2589,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v15');
+  const custom = localStorage.getItem('arx_custom_catalog_v16');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -3792,7 +3794,7 @@ window.saveAdminPrice = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (p) {
     p.price = newPrice;
-    localStorage.setItem('arx_custom_catalog_v15', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v16', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
