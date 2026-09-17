@@ -13,7 +13,7 @@
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
 <meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri (100 ml)">
-<meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr. Showroom i Tøyengata 3.">
+<meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Showroom i Tøyengata 3.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
 <meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
 
@@ -259,13 +259,13 @@ html.ready .intro{display:none!important}
 
 .intro .mark{
   font:300 clamp(1.6rem,6.5vw,2.6rem)/1 var(--sans);
-  color:var(--ice);
+  color:var(--gold);
   letter-spacing:.32em;
   text-indent:.32em;
   z-index:4;
   animation:tighten 1.8s 2.2s var(--E) both;
 }
-.intro .mark b{color:var(--gold);font-weight:400}
+.intro .mark b, .intro .mark .brand-city-red{color:#ef4444;font-weight:600}
 .intro .hint{
   font-size:clamp(.78rem,2vw,.9rem);
   color:var(--dim);
@@ -343,10 +343,11 @@ header{
   justify-content:space-between;
   gap:1rem;
 }
-.brand-group{display:flex;flex-direction:column}
-.brand-title{font:500 1.25rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ice)}
-.brand-title b{color:var(--gold)}
-.brand-sub{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+.brand-group{display:flex;align-items:center}
+.brand-title{font:600 1.25rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.65rem;text-decoration:none}
+.brand-title b, .brand-city-red{color:#ef4444;font-weight:700}
+.brand-name-gold{color:var(--gold)}
+.brand-sub{display:none}
 
 nav.main-nav{display:none;align-items:center;gap:1.6rem}
 @media(min-width:54rem){nav.main-nav{display:flex}}
@@ -668,44 +669,48 @@ nav.main-nav a:hover{color:var(--gold)}
 
 /* ═══ PRODUCT DETAIL MODAL DIALOG ═══ */
 .product-modal{
-  max-width:48rem;
+  max-width:34rem;
   width:94vw;
   max-height:90vh;
   overflow-y:auto;
   overflow-x:hidden;
 }
 .product-modal-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:1.8rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
 }
-@media(min-width:44rem){.product-modal{max-width:46rem;width:94vw}}
-@media(min-width:768px){
-  .product-modal-grid{grid-template-columns:290px 1fr;align-items:start;gap:1.6rem}
-}
+@media(min-width:44rem){.product-modal{max-width:34rem;width:94vw}}
 .modal-packshot-wrap{
   background:#05080e;
   border:1px solid var(--line);
   border-radius:1rem;
-  padding:1.2rem;
+  padding:1rem;
   display:flex;
   flex-direction:column;
-  align-items:stretch;
-  justify-content:flex-start;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 .modal-img-container{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:240px;
   width:100%;
+  max-width:280px;
+  height:250px;
+  position:relative;
+  overflow:hidden;
+  margin:0 auto;
+  border-radius:1rem;
+  background:radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
 }
 .modal-packshot-img{
   max-height:230px;
-  max-width:100%;
+  max-width:88%;
   object-fit:contain;
-  filter:drop-shadow(0 14px 28px rgba(0,0,0,0.9));
-  transition:opacity .15s ease;
+  filter:drop-shadow(0 16px 32px rgba(0,0,0,0.9));
+  transition:transform 0.4s ease;
 }
 .modal-info-wrap{display:flex;flex-direction:column;gap:.7rem;min-width:0}
 #detailModalTitle{word-break:break-word;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15}
@@ -1149,24 +1154,23 @@ footer{
     <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
   </svg>
   <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
-  <p class="mark">AROMATIX <b>OSLO</b></p>
+  <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></p>
   <p class="hint" id="introHint">Feel As Good As You Smell · 30 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
 <!-- ================= 2. HEADER BAR ================= -->
 <div class="top-banner">
-  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 <b>+47 955 50 199</b> · Fri frakt fra 500 kr</span>
+  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 <b>+47 955 50 199</b></span>
 </div>
 
 <header>
   <div class="header-inner">
-    <div class="brand-group" style="display:flex;align-items:center;gap:.75rem">
-      <img src="images/aromatix-emblem.png" alt="Aromatix Logo" class="brand-logo-img" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(201,169,110,0.45))">
-      <div>
-        <a href="#kjop" class="brand-title">AROMATIX <b>OSLO</b></a>
-        <span class="brand-sub" id="headerTagline">Kuratert Parfymeri · 100 ml Flakonger</span>
-      </div>
+    <div class="brand-group">
+      <a href="#kjop" class="brand-title">
+        <img src="images/aromatix-emblem.png" alt="Aromatix Logo" class="brand-logo-img" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.45))">
+        <span><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></span>
+      </a>
     </div>
 
     <nav class="main-nav">
@@ -1211,7 +1215,7 @@ footer{
     <div class="collection-header">
       <p class="tagline-small" id="colTag">Kuratert Utvalg</p>
       <h1 id="colTitle">Våre Parfymer</h1>
-      <p class="sub" id="colSub">30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt fra 500 kr</p>
+      <p class="sub" id="colSub">30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr</p>
       <div class="collection-status-bar">
         <span id="collectionCount">Viser 30 av 30 parfymer</span>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
@@ -1334,24 +1338,30 @@ footer{
         </div>
       </div>
 
-      <div class="img-switch-pill" style="margin:.6rem auto .3rem;position:static;transform:none;width:fit-content;display:flex">
-        <button type="button" class="view-toggle-btn active" id="modalBtnBottle" onclick="setModalView('bottle')">✨ Flakong</button>
-        <button type="button" class="view-toggle-btn" id="modalBtnBox" onclick="setModalView('box')">📦 Eske / Boks</button>
-      </div>
-      
-      <div class="packaging-guarantee-badge" id="boxGuaranteeBadge">
+      <div class="packaging-guarantee-badge" id="boxGuaranteeBadge" style="margin-top:.6rem">
         100% original, og produsenten endrer eske- og flakongdesign fra tid til annen
       </div>
     </div>
 
     <div class="modal-info-wrap">
-      <h2 id="detailModalTitle" style="font-family:var(--serif);font-size:1.8rem;font-weight:400;line-height:1.2">Parfymenavn</h2>
+      <h2 id="detailModalTitle" style="font-family:var(--serif);font-size:1.65rem;font-weight:400;line-height:1.25">Parfymenavn</h2>
       <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
         <span class="version-pill" id="detailModalVol">100 ml</span>
         <span style="font-size:.74rem;color:#4ade80" id="detailModalStock">● På lager (Oslo · Tøyengata 3)</span>
       </div>
 
-      <div style="font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
+      <!-- Price & Add Button Row Side-by-Side -->
+      <div class="modal-price-action-row" style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:.2rem 0;padding:.4rem 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="font-family:var(--serif);font-size:1.9rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
+        <div style="display:flex;gap:.6rem;align-items:center">
+          <div class="cart-qty-ctrl" style="padding:.2rem">
+            <button type="button" class="cqty-btn" onclick="adjustModalQty(-1)">–</button>
+            <span class="cqty-num" id="modalQtyNum">1</span>
+            <button type="button" class="cqty-btn" onclick="adjustModalQty(1)">+</button>
+          </div>
+          <button type="button" class="cta" id="detailModalAddBtn" onclick="addModalProductToCart()" style="padding:.55rem 1.4rem">Legg til</button>
+        </div>
+      </div>
 
       <p id="detailModalDesc" style="font-size:.85rem;color:var(--dim);line-height:1.55"></p>
 
@@ -1373,17 +1383,8 @@ footer{
 
       <p id="detailModalStory" style="font-size:.8rem;color:var(--dim);font-style:italic;line-height:1.5"></p>
 
-      <div style="display:flex;gap:.8rem;align-items:center;margin-top:.6rem">
-        <div class="cart-qty-ctrl" style="padding:.2rem">
-          <button type="button" class="cqty-btn" onclick="adjustModalQty(-1)">–</button>
-          <span class="cqty-num" id="modalQtyNum">1</span>
-          <button type="button" class="cqty-btn" onclick="adjustModalQty(1)">+</button>
-        </div>
-        <button type="button" class="cta" style="flex:1" id="detailModalAddBtn" onclick="addModalProductToCart()">Legg til</button>
-      </div>
-
-      <div style="border-top:1px solid var(--line);margin-top:.8rem;padding-top:.8rem;font-size:.74rem;color:var(--dim);line-height:1.4">
-        🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.</span><br>
+      <div style="border-top:1px solid var(--line);margin-top:.4rem;padding-top:.8rem;font-size:.74rem;color:var(--dim);line-height:1.4">
+        🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar).</span><br>
         🛡️ <span id="detailGuaranteeText">100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</span>
       </div>
     </div>
@@ -1405,7 +1406,7 @@ footer{
       <span id="csub">0 kr</span>
     </div>
     <div style="display:flex;justify-content:space-between;margin-bottom:.8rem;font-size:.85rem">
-      <span id="cartShippingLabel">Frakt (Fri fra 500 kr)</span>
+      <span id="cartShippingLabel">Frakt</span>
       <span id="cship">Gratis</span>
     </div>
     <div style="display:flex;justify-content:space-between;margin-bottom:1.2rem;font-size:1.1rem;font-weight:600">
@@ -1547,7 +1548,7 @@ footer{
     <div class="footer-col">
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
         <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="height:38px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.4))">
-        <div class="brand-title">AROMATIX <b>OSLO</b></div>
+        <div class="brand-title"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></div>
       </div>
       <p style="font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="footerAboutText">
         Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede 100 ml flakonger fra fremragende nisjehus. Makspris 1 500 kr.
@@ -1594,7 +1595,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.21 (updated 2026-09-17 15:25)
+        v1.0.22 (updated 2026-09-17 16:10)
       </div>
     </div>
   </div>
@@ -2630,13 +2631,13 @@ try {
 const I18N = {
   nb: {
     pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger",
-    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr.",
+    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr.",
     skipLink: "Hopp til parfymer (100 ml)",
     introHint: "Feel As Good As You Smell · 30 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Se intro",
-    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199 · Fri frakt fra 500 kr",
-    tagline: "Kuratert Parfymeri · 100 ml Flakonger",
+    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
+    tagline: "",
     navFragrances: "Våre Parfymer",
     navShowroom: "Showroom",
     navAbout: "Om",
@@ -2644,7 +2645,7 @@ const I18N = {
     cartLabel: "Kurv",
     colTag: "Kuratert Utvalg",
     colTitle: "Våre Parfymer",
-    colSub: "30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt fra 500 kr",
+    colSub: "30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr",
     showingCount: (count, total) => `Viser ${count} av ${total} parfymer`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
@@ -2680,7 +2681,7 @@ const I18N = {
     lblHeartNotes: "Hjertenoter",
     lblBaseNotes: "Bunnoter",
     detailAddBtn: "Legg til",
-    detailShippingText: "Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.",
+    detailShippingText: "Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar).",
     detailGuaranteeText: "100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     footerDisclaimer: "⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     sfTag: "Signaturkreasjon · Oslo",
@@ -2720,7 +2721,7 @@ const I18N = {
     emptyCart: "Handlekurven din er tom.",
     browseBtn: "Se alle parfymer",
     cartSubtotal: "Delsum",
-    cartShipping: "Frakt (Fri fra 500 kr)",
+    cartShipping: "Frakt",
     cartFree: "Gratis",
     cartTotal: "Totalbeløp:",
     checkoutBtn: "Gå til kassen (Reservasjon)",
@@ -2752,13 +2753,13 @@ const I18N = {
   },
   en: {
     pageTitle: "Aromatix Oslo · Curated Perfumery & 30 Selected Bottles",
-    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr. Free shipping on orders of 500 kr or more.",
+    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr.",
     skipLink: "Skip to fragrances (100 ml)",
     introHint: "Feel As Good As You Smell · 30 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Replay intro",
-    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199 · Free shipping from 500 kr",
-    tagline: "Curated Perfumery · 100 ml Bottles",
+    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
+    tagline: "",
     navFragrances: "Our Fragrances",
     navShowroom: "Showroom",
     navAbout: "About",
@@ -2766,7 +2767,7 @@ const I18N = {
     cartLabel: "Cart",
     colTag: "Curated Collection",
     colTitle: "Our Fragrances",
-    colSub: "30 Selected Bottles (100 ml) · Max Price 1 500 kr · Free shipping from 500 kr",
+    colSub: "30 Selected Bottles (100 ml) · Max Price 1 500 kr",
     showingCount: (count, total) => `Showing ${count} of ${total} fragrances`,
     colGuaranteeBadge: "● 100% Original factory-sealed bottles",
     lblFilterBrand: "Brand / House",
@@ -2802,7 +2803,7 @@ const I18N = {
     lblHeartNotes: "Heart Notes",
     lblBaseNotes: "Base Notes",
     detailAddBtn: "Add",
-    detailShippingText: "Dispatched within 24h from our showroom at Tøyengata 3, 0190 Oslo (inside PakStar). Free shipping from 500 kr.",
+    detailShippingText: "Dispatched within 24h from our showroom at Tøyengata 3, 0190 Oslo (inside PakStar).",
     detailGuaranteeText: "100% original and the Manufacturer changes the box and bottle design from time to time",
     footerDisclaimer: "⚠️ 100% original and the Manufacturer changes the box and bottle design from time to time",
     sfTag: "Signature Creation · Oslo",
@@ -2842,7 +2843,7 @@ const I18N = {
     emptyCart: "Your shopping cart is empty.",
     browseBtn: "Browse fragrances",
     cartSubtotal: "Subtotal",
-    cartShipping: "Shipping (Free from 500 kr)",
+    cartShipping: "Shipping",
     cartFree: "Free",
     cartTotal: "Total:",
     checkoutBtn: "Proceed to Checkout (Reservation)",
@@ -3096,18 +3097,12 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 window.setModalView = function(view) {
   const track = document.getElementById('modalSliderTrack');
-  const btnBottle = document.getElementById('modalBtnBottle');
-  const btnBox = document.getElementById('modalBtnBox');
   if (track) {
     if (view === 'box') {
       track.classList.add('slide-box');
     } else {
       track.classList.remove('slide-box');
     }
-  }
-  if (btnBottle && btnBox) {
-    btnBottle.classList.toggle('active', view === 'bottle');
-    btnBox.classList.toggle('active', view === 'box');
   }
 };
 
@@ -3490,10 +3485,9 @@ const POLICIES = {
           <li><b>Vestlandet og Midt-Norge:</b> 2–3 virkedager</li>
           <li><b>Nord-Norge:</b> 2–4 virkedager</li>
         </ul>
-        <h4>Fraktpriser</h4>
+        <h4>Frakt & Henting</h4>
         <ul>
-          <li><b>Gratis frakt:</b> På alle bestillinger fra 500 kr.</li>
-          <li><b>Fast lav frakt:</b> 59 kr for bestillinger under 500 kr.</li>
+          <li><b>Forsendelse:</b> Posten / Bring med full sporing.</li>
           <li><b>Henting i butikk:</b> Alltid gratis i Tøyengata 3, 0190 Oslo (inne hos PakStar).</li>
         </ul>
       `
@@ -3509,10 +3503,9 @@ const POLICIES = {
           <li><b>Western & Central Norway:</b> 2–3 business days</li>
           <li><b>Northern Norway:</b> 2–4 business days</li>
         </ul>
-        <h4>Shipping Rates</h4>
+        <h4>Shipping & Pickup</h4>
         <ul>
-          <li><b>Free Shipping:</b> On all orders of 500 kr or more.</li>
-          <li><b>Standard Flat Rate:</b> 59 kr for orders under 500 kr.</li>
+          <li><b>Delivery:</b> Posten / Bring with complete tracking.</li>
           <li><b>Store Pickup:</b> Always free at Tøyengata 3, 0190 Oslo (inside PakStar).</li>
         </ul>
       `
