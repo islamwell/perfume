@@ -1,246 +1,807 @@
-<!doctype html>
-<html lang="no" class="booting">
+<!DOCTYPE html>
+<html lang="nb" class="booting">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Aromatix Oslo · Kuratert Parfymeri & Nordiske Nichedufter</title>
+<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
-<meta name="description" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inside PakStar). Signaturkreasjoner fra Svartfjord og 100% originale fabrikkforseglede 100 ml flakonger fra Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
+<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger fra Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian, Reef og Svartfjord.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
+<meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri (100 ml)">
+<meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr. Showroom i Tøyengata 3.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
-<meta property="og:title" content="Aromatix Oslo · Kuratert Parfymeri & Nordiske Nichedufter">
-<meta property="og:description" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Fri frakt over 500 kr. Showroom i Tøyengata 3.">
 <meta property="og:image" content="https://aromatix-oslo.pages.dev/images/svartfjord-1.png">
-<meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <!-- Canvas Confetti CDN (deferred) -->
 <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<!-- Head Guard: Instant skip on repeat visits, reduced motion, or no-JS. Force replay with ?intro=1 or ?replay=1 -->
-<script>try{if(location.search.includes('nointro')||(sessionStorage.getItem('sf-seen-v1.0.12')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
-<noscript><style>html.booting{overflow:visible}.intro{display:none}html.booting :is(.hero .up,.flacon,#smoke){opacity:1!important}</style></noscript>
+<!-- Head Guard: Early skip on repeat session visits or reduced motion. Replay supported with ?intro=1 or ?replay=1 -->
+<script>
+try {
+  const params = new URLSearchParams(location.search);
+  const forceIntro = params.get('intro') === '1' || params.get('replay') === '1';
+  const skipIntro = params.get('nointro') === '1';
+  const seen = sessionStorage.getItem('arx_intro_seen');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (skipIntro || (!forceIntro && (seen || reducedMotion))) {
+    document.documentElement.className = 'ready';
+  }
+} catch(e) {}
+</script>
+<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
 
 <style>
 @property --wipe{syntax:'<percentage>';inherits:false;initial-value:-10%}
 @property --glow{syntax:'<number>';inherits:true;initial-value:0}
-:root{
-  --void:#05070b;--ink:#0a0e15;--line:#ffffff1a;--ice:oklch(.94 .02 220);--dim:oklch(.75 .015 250);
-  --gold:oklch(.79 .12 78);--gold-bright:oklch(.88 .14 85);--ember:oklch(.6 .17 45);--a1:oklch(.83 .19 155);--a2:oklch(.72 .14 205);--a3:oklch(.6 .18 315);
-  --serif:'Cormorant Garamond',ui-serif,Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;
-  --pad:clamp(1rem,4vw,3.2rem);color-scheme:dark;interpolate-size:allow-keywords;
-  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-*,::before,::after{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
-body{background:var(--void);color:var(--ice);font:300 clamp(.92rem,.35vw + .85rem,1.02rem)/1.65 var(--sans);overflow-x:clip;letter-spacing:.01em;max-width:100vw}
-body::after{content:'';position:fixed;inset:0;background:var(--grain);opacity:.035;mix-blend-mode:overlay;pointer-events:none;z-index:99}
-h1,h2,h3{font:300 1em/1.08 var(--serif);text-wrap:balance;letter-spacing:-.015em}
-p{text-wrap:pretty;color:var(--dim)}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
-.eye{font:500 .68rem/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
-section{padding:clamp(3.5rem,9vw,6.5rem) var(--pad);position:relative;overflow-x:clip}
 
-/* ── skip link ── */
-.skip-link{position:absolute;top:-100px;left:1rem;background:var(--gold);color:#05070b;padding:.6rem 1.2rem;font-weight:600;font-size:.82rem;border-radius:6px;z-index:9999;transition:top .2s}
+:root{
+  --sans:'Inter Tight',system-ui,-apple-system,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --bg:#05070b;
+  --void:#020407;
+  --card:#080d15;
+  --line:rgba(255,255,255,0.08);
+  --gold:#c9a96e;
+  --gold-bright:#e5c98e;
+  --ice:#e8f4fc;
+  --dim:rgba(232,244,252,0.65);
+  --a1:#9fd8ec;
+  --a2:#6da5c0;
+  --a3:#d48459;
+  --ember:#e06b3a;
+  --pad:clamp(1.2rem,4vw,3.5rem);
+  --radius:1.2rem;
+  --T:2.4s;
+  --E:cubic-bezier(.62,.02,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-family:var(--sans);background:var(--bg);color:var(--ice);scroll-behavior:smooth;overflow-x:clip;max-width:100vw}
+body{min-height:100vh;display:flex;flex-direction:column;line-height:1.5;overflow-x:clip;max-width:100vw;background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+
+/* Accessibility Skip Link */
+.skip-link{position:absolute;top:-100px;left:1rem;background:var(--gold);color:#000;padding:.6rem 1.2rem;font-weight:600;border-radius:4px;z-index:10000;transition:top .2s}
 .skip-link:focus{top:1rem}
 
-/* ── header & announcement banner ── */
-header{position:sticky;top:0;z-index:50}
-.top-banner{background:linear-gradient(90deg,rgba(201,169,110,.12),rgba(201,169,110,.2),rgba(201,169,110,.12));border-bottom:1px solid var(--line);font-size:.74rem;letter-spacing:.06em;padding:.45rem var(--pad);text-align:center;display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap}
-.top-banner b{color:var(--gold);font-weight:500}
-.top-banner a{text-decoration:underline;color:var(--ice)}
-.top-banner a:hover{color:var(--gold)}
+/* ═══ OPENING ANIMATED INTRO (Aromatix Oslo) ═══ */
+html.booting{overflow:clip;overscroll-behavior:none}
+html.ready .intro{display:none!important}
 
-.bar{display:flex;align-items:center;gap:.8rem;padding:.8rem var(--pad);transition:.4s;border-bottom:1px solid var(--line);background:rgba(5,7,11,0.85);backdrop-filter:blur(20px) saturate(1.4)}
-.brand-wrap{display:flex;flex-direction:column;margin-right:auto}
-.brand{font:600 1.05rem/1 var(--sans);letter-spacing:.3em;color:var(--ice)}
-.brand b{color:var(--gold);font-weight:600}
-.brand-sub{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.15rem}
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-content:center;
+  justify-items:center;
+  gap:1.2rem;
+  text-align:center;
+  background:radial-gradient(130% 90% at 50% 50%,#0b131e,var(--void) 76%);
+  cursor:pointer;
+}
+.intro:not(.go) *{animation-play-state:paused!important}
 
-nav{display:none;align-items:center;gap:1.4rem}
-@media (width>=56rem){nav{display:flex}}
-nav a{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);transition:color .2s;cursor:pointer}
-nav a:hover{color:var(--gold)}
+.ice-screen{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+  animation:iceThaw var(--T) var(--E) both;
+}
+.frost-crystals{
+  position:absolute;
+  inset:-10%;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%,rgba(159,216,236,.22),transparent 75%),
+    repeating-linear-gradient(55deg,rgba(200,240,255,.09) 0 1px,transparent 1px 16px),
+    repeating-linear-gradient(-55deg,rgba(200,240,255,.07) 0 1px,transparent 1px 22px),
+    repeating-linear-gradient(105deg,rgba(159,216,236,.14) 0 2px,transparent 2px 14px);
+  filter:blur(0.6px) contrast(1.25);
+  mix-blend-mode:screen;
+  animation:frostGlint 2.8s ease-in-out infinite alternate;
+}
+.ice-shards{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen}
+@keyframes frostGlint{0%{opacity:.75;filter:blur(0.5px) brightness(1)}100%{opacity:1;filter:blur(0.2px) brightness(1.35) hue-rotate(15deg)}}
+@keyframes iceThaw{0%{opacity:1;filter:blur(0px);transform:scale(1)}35%{opacity:.92;filter:blur(1px);transform:scale(1.02)}70%{opacity:.3;filter:blur(10px);transform:scale(1.09)}100%{opacity:0;filter:blur(24px);transform:scale(1.18);visibility:hidden}}
 
-.header-actions{display:flex;align-items:center;gap:.55rem}
-.lang-btn{background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:var(--ice);font:500 .72rem/1 var(--sans);padding:.48rem .85rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:.3s}
-.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
-.audio-btn{background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:var(--ice);font:400 .7rem/1 var(--sans);letter-spacing:.1em;padding:.48rem .8rem;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:.3s}
-.audio-btn:hover{border-color:var(--gold)}
-.audio-btn.on{border-color:var(--gold);color:var(--gold);background:rgba(201,169,110,.15)}
-.cartbtn{background:#ffffff0a;border:1px solid var(--line);border-radius:99px;color:inherit;font:500 .74rem/1 var(--sans);letter-spacing:.1em;padding:.5rem .95rem;text-transform:uppercase;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:.45rem}
-.cartbtn:hover{border-color:var(--gold)}
+.bloom{
+  position:absolute;
+  width:85vmin;
+  aspect-ratio:1;
+  border-radius:50%;
+  z-index:2;
+  background:radial-gradient(closest-side,var(--a1),transparent 72%);
+  animation:bloom var(--T) var(--E) both;
+}
+@keyframes bloom{0%{opacity:0;transform:scale(.3)}35%{opacity:.75;transform:scale(1)}100%{opacity:0;transform:scale(1.4)}}
+
+#mo{
+  width:min(50vw,220px);
+  height:auto;
+  overflow:visible;
+  z-index:3;
+  animation:lift var(--T) var(--E) both;
+}
+#mo .glass{
+  fill:url(#mg);
+  fill-opacity:0;
+  animation:morph var(--T) var(--E) both,pour 1s 1.05s ease-out both;
+}
+#mo .edge{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.6;
+  stroke-linejoin:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  filter:drop-shadow(0 0 8px oklch(.79 .12 78/.7));
+  animation:morph var(--T) var(--E) both,draw 1.2s ease-in-out both,cool .6s 1.6s ease-in both;
+}
+#mo .cap{animation:capIn .7s 1.5s var(--E) both}
+
+.intro .mark{
+  font:300 clamp(1.6rem,6.5vw,2.6rem)/1 var(--sans);
+  color:var(--ice);
+  letter-spacing:.32em;
+  text-indent:.32em;
+  z-index:4;
+  animation:tighten 1s 1.2s var(--E) both;
+}
+.intro .mark b{color:var(--gold);font-weight:400}
+.intro .hint{
+  font-size:clamp(.78rem,2vw,.9rem);
+  color:var(--dim);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  z-index:4;
+  animation:tighten 1s 1.45s var(--E) both;
+}
+.intro .skip-btn{
+  position:absolute;
+  bottom:2.2rem;
+  z-index:10;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:99px;
+  color:var(--ice);
+  font:500 .75rem/1 var(--sans);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  padding:.65rem 1.4rem;
+  transition:all .2s;
+  pointer-events:auto;
+  backdrop-filter:blur(10px);
+}
+.intro .skip-btn:hover{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,169,110,0.12)}
+
+@keyframes morph{
+  0%{d:path("M6 168C36 168 68 168 100 168C132 168 164 168 194 168C194 169 194 171 194 172C164 172 132 172 100 172C68 172 36 172 6 172C6 171 6 169 6 168Z")}
+  32%{d:path("M6 200C40 120 62 176 100 130C132 92 152 168 194 118C194 190 194 250 194 300C152 300 132 300 100 300C62 300 40 300 6 300C6 254 6 226 6 200Z")}
+  100%{d:path("M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z")}
+}
+@keyframes lift{0%{opacity:0;translate:0 3.5rem;filter:blur(10px)}18%{opacity:1;filter:blur(0)}45%{translate:0 1.2rem}100%{translate:0}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pour{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes cool{to{stroke-opacity:.35;filter:drop-shadow(0 0 16px oklch(.79 .12 78/.3))}}
+@keyframes capIn{from{opacity:0;translate:0 -18px}to{opacity:1;translate:0}}
+@keyframes tighten{from{opacity:0;letter-spacing:.5em;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
+
+@media (prefers-reduced-motion:reduce){
+  .intro{display:none!important}
+  html.booting{overflow:visible}
+}
+
+/* ── Top Announcement Ticker ── */
+.top-banner{
+  background:#020509;
+  border-bottom:1px solid var(--line);
+  padding:.45rem var(--pad);
+  font-size:.74rem;
+  letter-spacing:.04em;
+  color:var(--dim);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.top-banner b{color:var(--gold)}
+
+/* ── Header Bar ── */
+header{
+  position:sticky;
+  top:0;
+  z-index:90;
+  background:rgba(5,7,11,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:82rem;
+  margin:0 auto;
+  padding:.75rem var(--pad);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.brand-group{display:flex;flex-direction:column}
+.brand-title{font:500 1.25rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ice)}
+.brand-title b{color:var(--gold)}
+.brand-sub{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+
+nav.main-nav{display:none;align-items:center;gap:1.6rem}
+@media(min-width:54rem){nav.main-nav{display:flex}}
+nav.main-nav a{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s}
+nav.main-nav a:hover{color:var(--gold)}
+
+.header-actions{display:flex;align-items:center;gap:.6rem}
+
+/* Bilingual Switcher: Norsk | English */
+.lang-switch{
+  display:inline-flex;
+  align-items:center;
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--line);
+  border-radius:99px;
+  padding:.25rem .55rem;
+  font-size:.72rem;
+  gap:.35rem;
+}
+.lang-choice{
+  background:none;
+  border:0;
+  color:var(--dim);
+  font:inherit;
+  cursor:pointer;
+  padding:.15rem .35rem;
+  border-radius:99px;
+  transition:all .2s;
+}
+.lang-choice:hover{color:var(--ice)}
+.lang-choice.active{
+  color:#070b12;
+  background:var(--gold);
+  font-weight:600;
+}
+.lang-sep{color:var(--line);font-size:.68rem}
+
+.action-btn{
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--line);
+  border-radius:99px;
+  color:var(--ice);
+  font:500 .72rem/1 var(--sans);
+  letter-spacing:.06em;
+  padding:.5rem .85rem;
+  cursor:pointer;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+.action-btn:hover{border-color:var(--gold);color:var(--gold-bright)}
+
+.cartbtn{
+  background:rgba(255,255,255,0.08);
+  border:1px solid var(--line);
+  border-radius:99px;
+  color:var(--ice);
+  font:600 .74rem/1 var(--sans);
+  letter-spacing:.08em;
+  padding:.5rem .95rem;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+}
+.cartbtn:hover{border-color:var(--gold);background:rgba(201,169,110,0.1)}
 .cartbtn b{color:var(--gold)}
 
-.nav-toggle{display:inline-flex;background:#ffffff0a;border:1px solid var(--line);border-radius:8px;color:var(--ice);font-size:1.1rem;padding:.4rem .65rem;cursor:pointer}
-@media (width>=56rem){.nav-toggle{display:none}}
+.nav-toggle{
+  background:none;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--ice);
+  font-size:1.1rem;
+  padding:.4rem .65rem;
+  cursor:pointer;
+}
+@media(min-width:54rem){.nav-toggle{display:none}}
 
-/* ── mobile nav drawer ── */
-.mobile-nav{display:none;position:fixed;top:82px;inset-inline:0;background:rgba(5,7,11,0.98);backdrop-filter:blur(24px);padding:1.4rem var(--pad);border-bottom:1px solid var(--line);z-index:49;flex-direction:column;gap:1rem;box-shadow:0 20px 40px rgba(0,0,0,0.85)}
+/* Mobile Nav Drawer */
+.mobile-nav{
+  display:none;
+  background:#070a0f;
+  border-bottom:1px solid var(--line);
+  padding:1.2rem var(--pad);
+  flex-direction:column;
+  gap:1rem;
+}
 .mobile-nav.open{display:flex}
-.mobile-nav a{font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ice);padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.mobile-nav a{font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .mobile-nav a:hover{color:var(--gold)}
 
-/* ── hero ── */
-.hero{min-height:min(86svh,50rem);padding-block:clamp(3.5rem,7vw,5.5rem) 2.5rem;display:grid;align-content:center;justify-items:center;text-align:center;overflow:clip;isolation:isolate;position:relative}
-.aurora{position:absolute;inset:-15% -25%;z-index:-3;filter:blur(70px) saturate(1.5);opacity:.52}
-.aurora i{position:absolute;inset:0;background:radial-gradient(45% 32% at 30% 38%,var(--a1),#0000 70%),radial-gradient(38% 26% at 68% 30%,var(--a2),#0000 70%),radial-gradient(30% 22% at 50% 55%,var(--a3),#0000 70%);animation:drift 26s ease-in-out infinite alternate}
-.aurora i:nth-child(2){animation-duration:38s;animation-direction:alternate-reverse;opacity:.65;scale:-1 1}
-.aurora i:nth-child(3){animation-duration:19s;opacity:.45;filter:hue-rotate(40deg)}
-@keyframes drift{to{translate:6% -4%;scale:1.25 .85;filter:hue-rotate(35deg)}}
-.stars{position:absolute;inset:0;z-index:-4;background:radial-gradient(1px 1px at 20% 18%,#fff9,#0000),radial-gradient(1px 1px at 74% 12%,#fff7,#0000),radial-gradient(1.4px 1.4px at 46% 26%,#fffc,#0000),radial-gradient(1px 1px at 88% 34%,#fff6,#0000),radial-gradient(1px 1px at 8% 44%,#fff5,#0000);animation:twinkle 6s ease-in-out infinite alternate}
-@keyframes twinkle{to{opacity:.45}}
-.fjord{position:absolute;bottom:-2px;left:-8%;width:116%;z-index:-2}
-#waterfall-canvas{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.6}
-#smoke{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen}
+/* ═══ TOP MAIN SECTION: COLLECTION GRID (#kjop) ═══ */
+#kjop{
+  max-width:82rem;
+  margin:0 auto;
+  padding:2.5rem var(--pad) 4.5rem;
+  width:100%;
+}
+.collection-header{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  margin-bottom:1.8rem;
+}
+.collection-header .tagline-small{
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+.collection-header h1{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:300;
+  color:var(--ice);
+  line-height:1.15;
+}
+.collection-header p.sub{
+  font-size:.88rem;
+  color:var(--dim);
+  max-width:44rem;
+}
+.collection-status-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:.4rem;
+  font-size:.82rem;
+  color:var(--gold);
+}
 
-.hero h1{font-size:clamp(2.5rem,10vw,5.5rem);line-height:.95;z-index:3}
-.hero h1 em{font-style:italic;color:var(--gold);display:block}
-.hero p{max-width:36ch;margin:.9rem auto 0;z-index:3;font-size:clamp(.88rem,2vw,1.02rem)}
+/* Filter & Search Bar (Zero Horizontal Scrolling) */
+.filter-container{
+  background:#060a10f0;
+  border:1px solid var(--line);
+  border-radius:1.1rem;
+  padding:1.2rem;
+  margin-bottom:2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1rem;
+  align-items:end;
+}
+.filter-field{display:flex;flex-direction:column;gap:.4rem}
+.filter-field label{
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+.filter-select,.search-input{
+  width:100%;
+  padding:.7rem .9rem;
+  background:#0b1119;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--ice);
+  font:inherit;
+  font-size:.82rem;
+  outline:none;
+  transition:border-color .2s;
+}
+.filter-select:focus,.search-input:focus{border-color:var(--gold)}
 
-.flacon{width:min(44vw,200px);margin-block:1rem 0;filter:drop-shadow(0 25px 50px #000c);z-index:3;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.flacon svg{width:100%;height:auto;animation:hover 9s ease-in-out infinite;--glow:0;overflow:visible}
-@keyframes hover{50%{translate:0 -10px}}
+.search-wrap{position:relative;display:flex;align-items:center}
+.search-wrap input{padding-right:2.4rem}
+.clear-search-btn{
+  position:absolute;
+  right:.7rem;
+  background:none;
+  border:0;
+  color:var(--dim);
+  cursor:pointer;
+  font-size:.9rem;
+  display:none;
+}
+.clear-search-btn:hover{color:#fff}
 
-.bottle-cap{transform-origin:100px 24px;transition:transform .75s cubic-bezier(.34,1.56,.64,1),filter .5s ease;will-change:transform}
-.throat{transition:opacity .4s ease,filter .4s ease}
-html.open .flacon .bottle-cap{transform:translateY(-45px) rotate(-4deg);filter:drop-shadow(0 14px 24px rgba(201,169,110,0.6))}
-html.open .flacon .throat{opacity:1;filter:drop-shadow(0 0 12px var(--gold))}
-html.open .flacon{filter:drop-shadow(0 35px 70px #000e) drop-shadow(0 0 40px rgba(201,169,110,0.4))}
+/* Empty Search Box */
+.empty-results-box{
+  grid-column:1 / -1;
+  text-align:center;
+  padding:3.5rem 1rem;
+  background:#060a10f0;
+  border:1px solid var(--line);
+  border-radius:1.1rem;
+}
+.empty-results-box h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--ice)}
+.empty-results-box p{font-size:.88rem;color:var(--dim);margin-bottom:1.4rem}
 
-.hero-btn-row{display:flex;gap:.9rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:1.4rem;z-index:4;position:relative}
-.cta{background:var(--gold);color:#05070b;font:600 .78rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border:0;border-radius:99px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(201,169,110,0.28)}
-.cta:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,169,110,0.4)}
+/* 30-Product Responsive Cards Grid */
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:1.4rem;
+}
+@media(min-width:1120px){
+  .products-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:768px) and (max-width:1119px){
+  .products-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:440px) and (max-width:767px){
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+}
+@media(max-width:439px){
+  .products-grid{grid-template-columns:1fr}
+}
+
+/* Card Design */
+.perfume-card{
+  background:#060a10;
+  border:1px solid var(--line);
+  border-radius:1.1rem;
+  padding:1.2rem 1rem 1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  transition:transform .28s cubic-bezier(0.16,1,0.3,1),box-shadow .28s,border-color .28s;
+  position:relative;
+}
+.perfume-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 16px 36px rgba(0,0,0,0.8),0 0 20px rgba(201,169,110,0.15);
+}
+
+.card-img-wrap{
+  width:100%;
+  height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:.8rem;
+  cursor:pointer;
+}
+.card-img{
+  max-height:165px;
+  max-width:88%;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));
+  transition:transform .3s;
+}
+.perfume-card:hover .card-img{transform:scale(1.05)}
+
+.card-brand{
+  font-size:.65rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.3rem;
+  font-weight:600;
+}
+.card-name{
+  font-size:.96rem;
+  font-weight:500;
+  color:var(--ice);
+  line-height:1.25;
+  margin-bottom:.3rem;
+  cursor:pointer;
+}
+.card-vol{
+  font-size:.72rem;
+  color:var(--dim);
+  margin-bottom:.4rem;
+}
+.card-price{
+  font-family:var(--serif);
+  font-size:1.24rem;
+  color:var(--ice);
+  margin-bottom:.9rem;
+  font-weight:300;
+}
+
+.card-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.5rem;
+  width:100%;
+  margin-top:auto;
+}
+.card-btn{
+  padding:.55rem .4rem;
+  border-radius:99px;
+  font:inherit;
+  font-size:.72rem;
+  letter-spacing:.04em;
+  cursor:pointer;
+  transition:all .2s;
+  text-align:center;
+}
+.btn-details{
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--line);
+  color:var(--ice);
+}
+.btn-details:hover{background:rgba(255,255,255,0.12);border-color:var(--gold)}
+.btn-add{
+  background:var(--gold);
+  border:1px solid var(--gold);
+  color:#06090e;
+  font-weight:600;
+}
+.btn-add:hover{background:var(--gold-bright);box-shadow:0 0 16px rgba(201,169,110,0.35)}
+
+/* ═══ PRODUCT DETAIL MODAL DIALOG ═══ */
+.product-modal{
+  max-width:48rem;
+  width:94vw;
+  max-height:90vh;
+  overflow-y:auto;
+}
+.product-modal-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.8rem;
+}
+@media(min-width:44rem){
+  .product-modal-grid{grid-template-columns:240px 1fr;align-items:start}
+}
+.modal-packshot-wrap{
+  background:#05080e;
+  border:1px solid var(--line);
+  border-radius:1rem;
+  padding:1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:260px;
+}
+.modal-packshot-img{
+  max-height:240px;
+  max-width:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 14px 28px rgba(0,0,0,0.9));
+}
+.modal-info-wrap{display:flex;flex-direction:column;gap:.7rem}
+
+/* Scent Pyramid 3 Rows */
+.notes-pyramid{
+  display:grid;
+  gap:.6rem;
+  background:#070c14;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1rem;
+  margin:.4rem 0;
+}
+.note-row{display:flex;flex-direction:column;gap:.15rem}
+.note-tier-lbl{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.note-tier-val{font-size:.82rem;color:var(--ice);line-height:1.4}
+
+/* CTA & Secondary Buttons */
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--gold);
+  color:#05080c;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.85rem 1.6rem;
+  border-radius:99px;
+  border:0;
+  cursor:pointer;
+  transition:all .25s;
+  box-shadow:0 8px 24px rgba(201,169,110,0.25);
+}
+.cta:hover{background:var(--gold-bright);box-shadow:0 12px 30px rgba(201,169,110,0.4);transform:translateY(-1px)}
 .cta:active{transform:translateY(0)}
-.cta[disabled]{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.cta[disabled]{opacity:.35;cursor:not-allowed;box-shadow:none;transform:none}
 
-.hold{background:#ffffff0a;border:1px solid var(--line);color:var(--ice);border-radius:99px;padding:.88rem 1.4rem;font:500 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:grab;transition:.3s;backdrop-filter:blur(8px);-webkit-user-select:none;user-select:none}
-.hold:hover{border-color:var(--gold)}
-html.open .hold{background:rgba(201,169,110,.25);border-color:var(--gold)}
+/* ═══ SVARTFJORD FEATURE & STORY SECTION ═══ */
+.svartfjord-section{
+  border-top:1px solid var(--line);
+  padding:5rem var(--pad);
+  background:radial-gradient(100% 60% at 50% 10%,#09111b,#03060a 80%);
+  position:relative;
+}
+.svartfjord-hero{
+  max-width:64rem;
+  margin:0 auto;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+}
+.svartfjord-hero h2{
+  font-family:var(--serif);
+  font-size:clamp(2.2rem,6vw,3.8rem);
+  font-weight:300;
+  color:var(--ice);
+  margin-bottom:.8rem;
+}
+.svartfjord-hero p.story-lead{
+  font-size:1.05rem;
+  color:var(--dim);
+  max-width:38rem;
+  line-height:1.6;
+  margin-bottom:2rem;
+}
 
-.plume{position:absolute;inset-block:18% auto;z-index:5;pointer-events:none;font:italic 300 1.15rem var(--serif);color:var(--gold);width:100%}
-.plume span{position:absolute;left:50%;white-space:nowrap;text-shadow:0 0 18px #000}
-.scroll{margin-top:2rem;font-size:.62rem;letter-spacing:.3em;color:var(--dim);animation:blink 2.6s infinite;z-index:3}
-@keyframes blink{50%{opacity:.3;translate:0 5px}}
+/* Interactive 3D Flacon */
+.flacon{
+  width:160px;
+  height:240px;
+  margin:1.5rem auto;
+  position:relative;
+  cursor:pointer;
+  perspective:1000px;
+}
+.flacon-bottle{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.9));
+  transition:transform .4s cubic-bezier(0.16,1,0.3,1);
+}
+.flacon:hover .flacon-bottle{transform:scale(1.04)}
 
-/* ── Svartfjord Pyramid & Craft ── */
-.pyr{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-top:2rem;width:100%}
-.note{border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem;position:relative;background:linear-gradient(160deg,#ffffff06,#0000);transition:border-color .3s}
-.note:hover{border-color:var(--gold)}
-.note h3{font-size:1.6rem;margin:.5rem 0 .4rem}
-.note ul{list-style:none;padding:0;margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
-.note li{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.3rem .65rem;color:var(--ice)}
-.note b{position:absolute;top:1.2rem;right:1.4rem;font:300 2.2rem var(--serif);color:var(--c);opacity:.55}
+/* Scent Pyramid Section */
+#duft{
+  max-width:72rem;
+  margin:0 auto;
+  padding:4rem var(--pad);
+}
+.pyramid-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+  margin-top:2.5rem;
+}
+.pyramid-card{
+  background:#060a10;
+  border:1px solid var(--line);
+  border-radius:1rem;
+  padding:1.8rem;
+  display:flex;
+  flex-direction:column;
+  gap:.8rem;
+}
+.pyramid-card b{font-family:var(--serif);font-size:1.8rem;color:var(--gold)}
+.pyramid-card h3{font-size:1.2rem;color:var(--ice)}
+.pyramid-card p{font-size:.85rem;color:var(--dim);line-height:1.5}
 
-.natur-section{display:grid;gap:clamp(2rem,5vw,4rem);max-width:72rem;margin-inline:auto;align-items:center}
-@media (width>=56rem){.natur-section{grid-template-columns:1fr 1fr}}
-.art{position:relative;width:100%;aspect-ratio:16/10;border-radius:1.4rem;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.7);background:#070c12}
-@media (width>=56rem){.art{aspect-ratio:4/5}}
-.art>div{position:absolute;inset:0}
-.ice{background:linear-gradient(#0a1a26,#04080d 60%),radial-gradient(70% 40% at 30% 12%,var(--a2),#0000 70%)}
-.oud{background:radial-gradient(80% 60% at 70% 80%,rgba(201,169,110,.35),#0000 70%),#080506}
-.art-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:1.4rem;z-index:2;background:radial-gradient(circle at top right,rgba(0,0,0,.15),rgba(5,7,11,.6) 80%)}
-.art-badge{display:inline-flex;flex-direction:column;background:rgba(5,7,11,.8);backdrop-filter:blur(8px);border:1px solid var(--line);padding:.5rem .9rem;border-radius:8px;width:fit-content}
-.art-notes{display:flex;flex-direction:column;gap:.3rem;font-size:.84rem;color:var(--ice)}
-.art-notes span{background:rgba(0,0,0,.45);padding:.3rem .6rem;border-radius:6px;width:fit-content;backdrop-filter:blur(4px)}
-.natur-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line)}
-.natur-meta b{display:block;font-size:1.4rem;color:var(--gold);font-family:var(--serif)}
-.natur-meta span{font-size:.76rem;color:var(--dim)}
+/* Nature & Stats */
+#natur{
+  max-width:64rem;
+  margin:0 auto;
+  padding:4rem var(--pad);
+  text-align:center;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1.5rem;
+  margin:3rem 0;
+}
+.stat-box{
+  background:#060a10;
+  border:1px solid var(--line);
+  border-radius:1rem;
+  padding:1.8rem 1rem;
+}
+.stat-box b{font-family:var(--serif);font-size:2.6rem;color:var(--gold);display:block;line-height:1}
+.stat-box span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:.4rem;display:block}
 
-/* ── stats block (scoped to Svartfjord N°1) ── */
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;max-width:64rem;margin:auto}
-@media (width>=48rem){.stats{grid-template-columns:repeat(4,1fr)}}
-.stat-item{border:1px solid var(--line);border-radius:1rem;padding:1.4rem 1rem;text-align:center;background:#ffffff04}
-.stat-item b{display:block;font:300 clamp(2.4rem,5vw,3.6rem)/1 var(--serif);color:var(--gold)}
-.stat-item span{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:.5rem}
+/* Showroom Section */
+#showroom{
+  border-top:1px solid var(--line);
+  padding:4.5rem var(--pad);
+  background:#04070c;
+}
+.showroom-inner{
+  max-width:64rem;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2.5rem;
+  align-items:center;
+}
 
-/* ── BOUTIQUE COLLECTION & CONTROLS (NO HORIZONTAL SCROLL) ── */
-#kjop{border-top:1px solid var(--line)}
-.collection-header{margin-bottom:2rem}
-.collection-controls-bar{background:#ffffff04;border:1px solid var(--line);border-radius:1.2rem;padding:1.4rem;margin-bottom:2.2rem;width:100%}
-.filter-dropdown-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;width:100%}
-.filter-group{display:flex;flex-direction:column;gap:.35rem}
-.filter-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.filter-select{background:#080c13;color:var(--ice);border:1px solid var(--line);border-radius:8px;padding:.65rem .85rem;font:inherit;font-size:16px!important;cursor:pointer;transition:border-color .2s;width:100%}
-.filter-select:focus{border-color:var(--gold);outline:none}
-.catalog-search-wrap{position:relative;display:flex;align-items:center;width:100%}
-.search-icon{position:absolute;left:.75rem;pointer-events:none;font-size:.85rem;opacity:.6}
-.catalog-search-input{background:#080c13;color:var(--ice);border:1px solid var(--line);border-radius:8px;padding:.65rem .85rem .65rem 2.2rem;font:inherit;font-size:16px!important;width:100%;transition:border-color .2s}
-.catalog-search-input:focus{border-color:var(--gold);outline:none}
-.clear-search-btn{position:absolute;right:.6rem;background:none;border:0;color:var(--dim);cursor:pointer;padding:.2rem .4rem;font-size:.85rem}
-.quick-perfume-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}
-.quick-label{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-.highlight-select{flex:1;min-width:240px;background:#0d1420;border-color:var(--gold)}
+/* Newsletter Section */
+.newsletter-section{
+  border-top:1px solid var(--line);
+  padding:4rem var(--pad);
+  text-align:center;
+  background:#060a10;
+}
+.newsletter-inner{max-width:34rem;margin:0 auto}
+.newsletter-form{
+  display:flex;
+  gap:.6rem;
+  margin-top:1.5rem;
+  flex-wrap:wrap;
+}
+.newsletter-input{
+  flex:1;
+  min-width:220px;
+  padding:.8rem 1.2rem;
+  background:#0b1119;
+  border:1px solid var(--line);
+  border-radius:99px;
+  color:var(--ice);
+  font:inherit;
+  font-size:.85rem;
+  outline:none;
+}
+.newsletter-input:focus{border-color:var(--gold)}
 
-/* ── STORE STAGE (SELECTED PERFUME) ── */
-.buy{display:grid;gap:2.5rem;max-width:72rem;margin-inline:auto;align-items:center}
-@media (width>=56rem){.buy{grid-template-columns:1fr 1.15fr;gap:4rem}}
-.stage{background:radial-gradient(circle at 50% 55%,rgba(201,169,110,.14),transparent 68%),#04070c;border:1px solid var(--line);border-radius:1.6rem;padding:2rem;display:flex;align-items:center;justify-content:center;position:relative;min-height:380px;box-shadow:0 20px 60px rgba(0,0,0,.65)}
-.stage-packshot-img{max-height:440px;width:100%;object-fit:contain;filter:drop-shadow(0 24px 50px rgba(0,0,0,0.9));transition:transform .4s ease;animation:floatBottle 8s ease-in-out infinite alternate}
-@keyframes floatBottle{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-8px) scale(1.01)}}
-
-.single-size-wrap{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:1.1rem 0}
-.single-size-pill{display:inline-flex;align-items:center;gap:.55rem;background:#ffffff08;border:1px solid var(--gold);border-radius:99px;padding:.45rem 1rem}
-.vol-tag{font-weight:600;color:var(--gold);font-size:.9rem}
-.vol-desc{font-size:.8rem;color:var(--ice)}
-.stock-badge{font-size:.76rem;padding:.3rem .7rem;border-radius:99px;display:inline-flex;align-items:center;gap:.35rem}
-.stock-badge.in-stock{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
-
-.price{font:300 clamp(2.2rem,6vw,3.2rem)/1 var(--serif);color:var(--ice);margin:.8rem 0 1.2rem}
-.qty-stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;background:#ffffff08}
-.qty-stepper button{background:none;border:0;color:var(--ice);padding:.7rem 1.1rem;font-size:1.1rem;cursor:pointer}
-.qty-stepper span{padding:0 .6rem;font-weight:500;min-width:1.5rem;text-align:center}
-
-/* Scent Notes Box */
-.scent-notes-box{background:#ffffff05;border:1px solid var(--line);border-radius:1rem;padding:1.1rem 1.3rem;margin:1.4rem 0;display:grid;gap:.75rem}
-.note-tier{display:grid;grid-template-columns:110px 1fr;gap:.8rem;align-items:baseline;font-size:.84rem}
-@media (max-width:480px){.note-tier{grid-template-columns:1fr;gap:.15rem}}
-.tier-label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.tier-content{color:var(--ice);line-height:1.5}
-
-details{border-bottom:1px solid var(--line);padding:.85rem 0}
-details summary{font-weight:500;font-size:.86rem;cursor:pointer;color:var(--ice);display:flex;justify-content:space-between;align-items:center;list-style:none}
-details summary::-webkit-details-marker{display:none}
-details summary::after{content:'+';color:var(--gold);font-size:1.1rem}
-details[open] summary::after{content:'–'}
-details p{font-size:.82rem;color:var(--dim);margin-top:.5rem;line-height:1.6}
-
-/* ── VISUAL FLACON GALLERY GRID ── */
-.flacon-gallery{margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid var(--line);width:100%}
-.flacon-gallery-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.4rem;flex-wrap:wrap;gap:.6rem}
-.flacon-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;width:100%}
-@media (max-width:640px){.flacon-gallery-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
-.gallery-card{background:#060a10f0;border:1px solid var(--line);border-radius:1.1rem;padding:1.1rem .85rem .95rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;transition:all .28s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
-.gallery-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,0.8),0 0 20px rgba(201,169,110,0.15)}
-.gallery-card.active{border-color:var(--gold);background:#0d141ef0;box-shadow:0 0 0 1.5px var(--gold),0 14px 34px rgba(0,0,0,0.8)}
-.gallery-card-img-wrap{width:100%;height:165px;display:flex;align-items:center;justify-content:center;margin-bottom:.7rem}
-.gallery-card-img{max-height:155px;max-width:92%;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.85));transition:transform .3s}
-.gallery-card:hover .gallery-card-img{transform:scale(1.05)}
-.gallery-card-brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;font-weight:500}
-.gallery-card-title{font-size:.92rem;font-weight:500;color:var(--ice);line-height:1.25;margin-bottom:.35rem}
-.gallery-card-vol{font-size:.7rem;color:var(--dim);margin-bottom:.35rem}
-.gallery-card-price{font-family:var(--serif);font-size:1.18rem;color:var(--ice);margin-bottom:.7rem;font-weight:300}
-.gallery-card-btn{width:100%;padding:.48rem 0;border-radius:99px;background:#ffffff0a;border:1px solid var(--line);color:var(--ice);font:inherit;font-size:.72rem;letter-spacing:.04em;cursor:pointer;transition:all .2s}
-.gallery-card:hover .gallery-card-btn,.gallery-card.active .gallery-card-btn{background:var(--gold);color:#06090e;border-color:var(--gold);font-weight:600}
-
-.empty-search-box{grid-column:1/-1;text-align:center;padding:3rem 1.5rem;background:#ffffff03;border:1px dashed var(--line);border-radius:1rem}
-
-/* ── sticky buy-bar (mobile) ── */
-.buybar{position:fixed;bottom:0;inset-inline:0;background:rgba(5,7,11,0.92);backdrop-filter:blur(20px);padding:.75rem var(--pad) calc(.75rem + env(safe-area-inset-bottom, 0px));display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);z-index:40}
+/* ── Sticky Mobile Buy Bar ── */
+.buybar{
+  position:fixed;
+  bottom:0;
+  inset-inline:0;
+  background:rgba(5,7,11,0.95);
+  backdrop-filter:blur(20px);
+  padding:.75rem var(--pad) calc(.75rem + env(safe-area-inset-bottom, 0px));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  z-index:40;
+}
 @media (width>=56rem){.buybar{display:none}}
 .buybar small{font-size:.78rem;line-height:1.2;color:var(--dim)}
 .buybar .cta{width:auto;padding:.75rem 1.4rem;font-size:.75rem}
 
-/* ── POPUPS & DRAWERS ── */
-dialog.sheet{position:fixed;inset-block:0;inset-inline-start:auto;inset-inline-end:0;margin:0 0 0 auto;width:min(94vw,28rem);height:100dvh;max-height:100dvh;background:#070b12;border:0;border-left:1px solid var(--line);color:var(--ice);padding:1.8rem var(--pad);display:flex;flex-direction:column;box-shadow:-20px 0 60px #000c;z-index:100;box-sizing:border-box}
+/* ── MODALS AND DRAWERS ── */
+dialog.sheet{
+  position:fixed;
+  inset-block:0;
+  inset-inline-start:auto;
+  inset-inline-end:0;
+  margin:0 0 0 auto;
+  width:min(94vw,28rem);
+  height:100dvh;
+  max-height:100dvh;
+  background:#070b12;
+  border:0;
+  border-left:1px solid var(--line);
+  color:var(--ice);
+  padding:1.8rem var(--pad);
+  display:flex;
+  flex-direction:column;
+  box-shadow:-20px 0 60px #000c;
+  z-index:100;
+  box-sizing:border-box;
+}
 dialog.sheet:not([open]){display:none!important}
 dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
+
 .cart-items-list{flex:1;overflow-y:auto;display:grid;gap:1rem;margin:1.4rem 0;padding-right:.4rem}
 .cart-item-row{display:grid;grid-template-columns:55px 1fr auto;gap:.8rem;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.85rem}
 .cart-item-thumb{width:55px;height:55px;object-fit:contain;background:#ffffff05;border-radius:8px;padding:.2rem}
@@ -254,223 +815,206 @@ dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
 .cart-remove-btn{background:none;border:0;color:var(--dim);cursor:pointer;font-size:.75rem;margin-top:.3rem;padding:.2rem}
 .cart-remove-btn:hover{color:#ef4444}
 
-.dialog-box{border:1px solid var(--line);border-radius:1.4rem;padding:2rem;background:#0a0e16fa;backdrop-filter:blur(24px);color:var(--ice);max-width:34rem;width:92vw;margin:auto;box-shadow:0 30px 80px #000e}
+.dialog-box{
+  border:1px solid var(--line);
+  border-radius:1.4rem;
+  padding:2rem;
+  background:#0a0e16fa;
+  backdrop-filter:blur(24px);
+  color:var(--ice);
+  max-width:34rem;
+  width:92vw;
+  margin:auto;
+  box-shadow:0 30px 80px #000e;
+}
+.dialog-box:not([open]){display:none!important}
 .dialog-box::backdrop{background:#00000099;backdrop-filter:blur(8px)}
-.dialog-box input,.dialog-box select{width:100%;padding:.8rem 1rem;margin:.3rem 0 .85rem;background:#ffffff08;border:1px solid var(--line);border-radius:8px;color:var(--ice);font:inherit;font-size:16px!important}
+.dialog-box input,.dialog-box select{
+  width:100%;
+  padding:.8rem 1rem;
+  margin:.3rem 0 .85rem;
+  background:#ffffff08;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--ice);
+  font:inherit;
+  font-size:16px!important;
+}
 .dialog-box input:focus,.dialog-box select:focus{outline:none;border-color:var(--gold)}
 
-.checkout-notice-box{background:rgba(201,169,110,.08);border:1px solid var(--gold);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.2rem;display:flex;gap:.8rem;align-items:flex-start;font-size:.8rem;line-height:1.5}
-.order-summary-box{background:#ffffff05;border:1px solid var(--line);border-radius:8px;padding:.85rem 1rem;margin:1rem 0;font-size:.82rem}
-.order-summary-row{display:flex;justify-content:space-between;padding:.3rem 0}
+.checkout-notice-box{
+  background:#ffffff06;
+  border:1px solid rgba(201,169,110,0.25);
+  border-radius:10px;
+  padding:1rem;
+  margin-bottom:1.2rem;
+  display:flex;
+  gap:.8rem;
+  align-items:flex-start;
+}
 
-.policy-modal{max-width:44rem;max-height:86vh;overflow-y:auto}
-.policy-content h4{color:var(--gold);margin:1.2rem 0 .4rem;font-size:1.15rem}
-.policy-content p{margin-bottom:.8rem;line-height:1.65;font-size:.88rem}
-.policy-content ul{margin-bottom:1rem;padding-left:1.4rem;font-size:.86rem;color:var(--dim)}
-.policy-content li{margin-bottom:.3rem}
+/* Policy Modal */
+.policy-modal{max-width:44rem;max-height:85vh;overflow-y:auto}
+.policy-content{font-size:.86rem;color:var(--dim);line-height:1.65;display:grid;gap:1.2rem}
+.policy-content h4{color:var(--ice);font-size:1rem;margin-top:.4rem}
+.policy-content ul{padding-left:1.2rem;display:grid;gap:.35rem}
 
-/* ── footer ── */
-footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display:grid;gap:2rem;background:#04060a}
-.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
-.footer-col h5{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
-.footer-links{list-style:none;padding:0;display:grid;gap:.5rem}
-.footer-links a{font-size:.84rem;color:var(--dim);transition:color .2s}
-.footer-links a:hover{color:var(--ice)}
+/* Footer */
+footer{
+  border-top:1px solid var(--line);
+  padding:4rem var(--pad) 7rem;
+  background:#020508;
+  font-size:.82rem;
+  color:var(--dim);
+}
+.footer-inner{
+  max-width:82rem;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:2.5rem;
+  margin-bottom:3rem;
+}
+.footer-col h4{font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:grid;gap:.55rem}
+.footer-col a,.footer-col button{
+  color:var(--dim);
+  transition:color .2s;
+  background:none;
+  border:0;
+  cursor:pointer;
+  font:inherit;
+  text-align:left;
+  padding:0;
+}
+.footer-col a:hover,.footer-col button:hover{color:var(--gold)}
 
-/* ── reduced motion overrides ── */
-@media (prefers-reduced-motion:reduce){
-  *,::before,::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+.footer-bottom{
+  max-width:82rem;
+  margin:0 auto;
+  padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:1rem;
+  font-size:.74rem;
+}
+.version-pill{
+  font-family:monospace;
+  color:var(--gold);
+  background:rgba(255,255,255,0.06);
+  padding:.35rem .85rem;
+  border-radius:99px;
+  border:1px solid var(--line);
 }
 </style>
 </head>
-
 <body>
-<a href="#kjop" class="skip-link">Hopp til parfymer (100 ml)</a>
 
-<!-- Header -->
-<header>
-  <div class="top-banner">
-    <span>📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inside PakStar)</span>
-    <span>·</span>
-    <span id="bannerOffer">Fri frakt over 500 kr · 100% Original Produsentgaranti</span>
+<a href="#kjop" class="skip-link" id="skipLink">Hopp til parfymer (100 ml)</a>
+
+<!-- ================= 1. OPENING ANIMATED INTRO (Aromatix Oslo) ================= -->
+<div id="intro" class="intro" role="region" aria-label="Introduksjon">
+  <div class="ice-screen" aria-hidden="true">
+    <div class="frost-crystals"></div>
+    <svg class="ice-shards" viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <path d="M0,320 L240,240 L500,310 L760,250 L1000,300" stroke="rgba(180,230,255,0.45)" stroke-width="1.2" fill="none" stroke-dasharray="10 5"/>
+      <path d="M140,0 L240,240 L360,520" stroke="rgba(210,245,255,0.3)" stroke-width="0.8" fill="none"/>
+      <path d="M620,0 L760,250 L860,540" stroke="rgba(210,245,255,0.3)" stroke-width="0.8" fill="none"/>
+      <polygon points="240,240 275,285 210,295" fill="rgba(180,235,255,0.1)"/>
+      <polygon points="760,250 805,295 740,310" fill="rgba(180,235,255,0.1)"/>
+    </svg>
   </div>
-  <div class="bar">
-    <div class="brand-wrap">
-      <a href="#top" class="brand">AROMATIX <b>OSLO</b></a>
+  <span class="bloom" aria-hidden="true"></span>
+  <svg id="mo" viewBox="0 0 200 330" aria-hidden="true">
+    <defs>
+      <linearGradient id="mg" x1=".1" y1="0" x2=".9" y2="1">
+        <stop offset="0" stop-color="#243040"/>
+        <stop offset=".45" stop-color="#05080d"/>
+        <stop offset="1" stop-color="#1b2331"/>
+      </linearGradient>
+    </defs>
+    <path class="glass" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
+    <g class="cap" fill="none" stroke="var(--gold)" stroke-opacity=".6">
+      <rect x="84" y="6" width="32" height="34" rx="7"/>
+      <path d="M92 44h16v30H92z"/>
+    </g>
+    <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
+  </svg>
+  <p class="mark">AROMATIX <b>OSLO</b></p>
+  <p class="hint" id="introHint">Kuratert Parfymeri · 30 Utvalgte Flakonger</p>
+  <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
+</div>
+
+<!-- ================= 2. HEADER BAR ================= -->
+<div class="top-banner">
+  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · Fri frakt fra 500 kr · 100% Original Produsentgaranti</span>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand-group">
+      <a href="#kjop" class="brand-title">AROMATIX <b>OSLO</b></a>
       <span class="brand-sub" id="headerTagline">Kuratert Parfymeri · 100 ml Flakonger</span>
     </div>
 
-    <nav aria-label="Hovednavigasjon">
-      <a href="#kjop" id="navFragrances">Parfymer</a>
-      <a href="javascript:openPolicy('om')" id="navAbout">Om Aromatix</a>
-      <a href="javascript:openPolicy('frakt')" id="navShipping">Frakt & Levering</a>
-      <a href="javascript:openPolicy('retur')" id="navReturns">Retur & Angrerett</a>
-      <a href="javascript:openPolicy('kontakt')" id="navContact">Kontakt</a>
+    <nav class="main-nav">
+      <a href="#kjop" id="navFragrances">Våre Parfymer</a>
+      <a href="#svartfjordHero" id="navStory">Svartfjord</a>
+      <a href="#showroom" id="navShowroom">Showroom</a>
+      <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
     </nav>
 
     <div class="header-actions">
-      <button class="lang-btn" id="langToggleBtn" aria-label="Bytt språk">
-        <span id="langFlag">🇳🇴</span> <span id="langCode">NO</span>
+      <!-- Visible Language Switcher: Norsk | English -->
+      <div class="lang-switch" role="group" aria-label="Språkvelger">
+        <button type="button" class="lang-choice active" id="langNbBtn" onclick="setLanguage('nb')">Norsk</button>
+        <span class="lang-sep">|</span>
+        <button type="button" class="lang-choice" id="langEnBtn" onclick="setLanguage('en')">English</button>
+      </div>
+
+      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Se åpningsanimasjon på nytt">
+        <span>✨</span> <span id="lblReplayHeader">Se intro</span>
       </button>
-      <button class="audio-btn" id="audioToggleBtn" aria-label="Slå på fuglesang og atmosfære">
-        <span>♪</span> <span id="audioLabel">Lyd</span>
-      </button>
-      <button class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv">
+
+      <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv">
         <span id="cartLabel">Kurv</span> <b id="cartBadge">0</b>
       </button>
-      <button class="nav-toggle" id="navToggleBtn" aria-label="Åpne mobilmeny">☰</button>
+
+      <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne mobilmeny">☰</button>
     </div>
   </div>
 
-  <!-- Mobile Dropdown Navigation -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="#kjop" onclick="toggleMobileNav()">Parfymer (100 ml)</a>
-    <a href="javascript:openPolicy('om');toggleMobileNav()">Om Aromatix Oslo</a>
-    <a href="javascript:openPolicy('frakt');toggleMobileNav()">Frakt & Levering</a>
-    <a href="javascript:openPolicy('retur');toggleMobileNav()">Retur & Angrerett (14 dager)</a>
-    <a href="javascript:openPolicy('kontakt');toggleMobileNav()">Kontakt & Showroom (Tøyengata 3)</a>
+    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (30 flakonger)</a>
+    <a href="#svartfjordHero" onclick="toggleMobileNav()" id="mobNavStory">Svartfjord Signaturduft</a>
+    <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
+    <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
+    <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Se intro på nytt</button>
   </div>
 </header>
 
 <main id="top">
-<!-- HERO -->
-<section class="hero">
-  <div class="stars" aria-hidden="true"></div>
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <canvas id="waterfall-canvas" aria-hidden="true"></canvas>
-  <svg class="fjord" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 300V150l120-58 96 44 118-96 132 118 96-64 128 96 108-72 132 90 170-58v250z" fill="#070c12"/>
-    <path d="M0 300V196l150-72 130 84 140-52 150 76 130-44 170 66 140-40 190 52v34z" fill="#04070b"/>
-    <path d="M0 300v-52l180 26 220-18 240 30 260-22 300 24v12z" fill="#020407"/>
-  </svg>
-  <p class="eye up" id="heroEye">Signaturkreasjon · Svartfjord N°1 · Oslo</p>
-  <h1 class="up" id="heroTitle">Nordlyset,<em>tappet i svart.</em></h1>
-  <p class="up" id="heroDesc">Aromatix Oslo presenterer Svartfjord N°1 — håndlaget norsk extrait de parfum i røkt glass og massiv messing.</p>
-  
-  <div class="flacon" id="flacon" role="button" tabindex="0" aria-label="Svartfjord N°1 flakong">
-    <svg viewBox="0 0 200 320" aria-hidden="true">
-      <defs>
-        <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="oklch(.66 .17 62 / .85)"/>
-          <stop offset="100%" stop-color="oklch(.26 .09 28 / .96)"/>
-        </linearGradient>
-      </defs>
-      <!-- Bottle Body -->
-      <rect x="30" y="90" width="140" height="200" rx="18" fill="url(#liquidGrad)" stroke="var(--gold)" stroke-width="1.5"/>
-      <rect x="75" y="55" width="50" height="35" rx="4" fill="#121820" stroke="var(--gold)" stroke-width="1.5"/>
-      <!-- Bottle Cap -->
-      <g class="bottle-cap">
-        <rect x="70" y="16" width="60" height="40" rx="8" fill="#e5b364" stroke="#d4af37" stroke-width="1.5"/>
-        <line x1="75" y1="26" x2="125" y2="26" stroke="#997022" stroke-width="1"/>
-        <line x1="75" y1="36" x2="125" y2="36" stroke="#997022" stroke-width="1"/>
-      </g>
-      <!-- Label -->
-      <rect x="52" y="145" width="96" height="85" rx="4" fill="#ffffff08" stroke="var(--line)" stroke-width="1"/>
-      <text x="100" y="175" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" fill="#fff" letter-spacing="2">SVARTFJORD</text>
-      <text x="100" y="195" text-anchor="middle" font-family="'Inter Tight',sans-serif" font-size="9" fill="var(--gold)" letter-spacing="3">N°1 · 100 ML</text>
-      <text x="100" y="215" text-anchor="middle" font-family="'Inter Tight',sans-serif" font-size="7" fill="var(--dim)" letter-spacing="1">EXTRAIT DE PARFUM</text>
-    </svg>
-  </div>
-
-  <div class="hero-btn-row">
-    <a href="#kjop" class="cta" id="heroShopBtn">Utforsk Parfymene (100 ml)</a>
-    <button class="hold" id="hold">Åpne Svartfjord N°1</button>
-  </div>
-
-  <p class="scroll up" id="heroScroll">RULL NED</p>
-  <canvas id="smoke" aria-hidden="true"></canvas>
-</section>
-
-<!-- SVARTFJORD PYRAMID -->
-<section id="duft">
-  <p class="eye" id="pyrEye">Signaturkreasjon · Svartfjord N°1</p>
-  <h2 style="font-size:clamp(1.8rem,6vw,3.2rem);margin-top:.5rem" id="pyrTitle">Tre lag. Én natt.</h2>
-  <div class="pyr">
-    <article class="note" style="--c:var(--a1)">
-      <b>01</b><p class="eye" id="p1Top">Topp</p>
-      <h3 id="p1Title">Frostluft</h3>
-      <p id="p1Desc">Knust einer, blodappelsin og kald pepper — som å puste inn ved vannkanten.</p>
-      <ul><li>Einer</li><li>Blodappelsin</li><li>Rosa pepper</li><li>Havsalt</li></ul>
-    </article>
-    <article class="note" style="--c:var(--a3)">
-      <b>02</b><p class="eye" id="p2Heart">Hjerte</p>
-      <h3 id="p2Title">Bålets rose</h3>
-      <p id="p2Desc">Damaskrose brent i safran og bjørketjære. Mørkt, harpiksaktig, levende.</p>
-      <ul><li>Damaskrose</li><li>Safran</li><li>Bjørketjære</li><li>Røkelse</li></ul>
-    </article>
-    <article class="note" style="--c:var(--ember)">
-      <b>03</b><p class="eye" id="p3Base">Base</p>
-      <h3 id="p3Title">Svart oud</h3>
-      <p id="p3Desc">Fatmodnet svart oud, isbremoskus, furuharpiks og varm ambra.</p>
-      <ul><li>Black oud</li><li>Isbremoskus</li><li>Furuharpiks</li><li>Ambra</li></ul>
-    </article>
-  </div>
-</section>
-
-<!-- NATUREN × OUDEN -->
-<section id="natur" class="natur-section">
-  <div class="art">
-    <div class="ice"></div>
-    <div class="oud"></div>
-    <div class="art-overlay">
-      <div class="art-badge"><span class="eye">Oslo Maserasjon</span><b>90 Dager</b></div>
-      <div class="art-notes">
-        <span>🌲 Einer fra Vidda</span>
-        <span>🔥 Brent Bjørketjære</span>
-        <span>🪵 Pursat Svart Oud</span>
-      </div>
-      <p class="cap" id="artCap">Fra isbre til bål</p>
-    </div>
-  </div>
-  <div>
-    <p class="eye" id="natEye">Naturen × Ouden</p>
-    <h2 style="font-size:clamp(1.8rem,5vw,3rem);margin:.6rem 0 .9rem" id="natTitle">Vi destillerte Norge, og lot ouden brenne den.</h2>
-    <p id="natDesc">Einer fra Hardangervidda. Furuharpiks fra Nordmarka. Bjørketjære brent på tradisjonelt vis. Vi lot dem hvile 90 dager i svart oud fra Pursat — til isen luktet av glør. Vår egenproduserte signaturduft for Aromatix Oslo.</p>
-    <div class="natur-meta">
-      <div><b>100%</b><span id="metaTraceable">Sporbar batch</span></div>
-      <div><b>Oslo</b><span id="metaBottled">Tappet for hånd</span></div>
-      <div><b>100 ml</b><span id="metaSize">Fullstørrelse flakong</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS (SCOPED TO SVARTFJORD N°1) -->
-<section id="atelierStats" style="padding-top:2rem;padding-bottom:3.5rem">
-  <div style="text-align:center;margin-bottom:2rem">
-    <p class="eye" id="statsEye">Signaturkreasjon · Svartfjord N°1</p>
-    <h3 id="statsTitle" style="font-size:clamp(1.4rem,3.5vw,2.2rem);margin:.3rem 0">Bak Vår Håndlagde Oslo-Formel</h3>
-    <p id="statsSub" style="max-width:34rem;margin:auto;font-size:.84rem;color:var(--dim)">Gjelder vår egenproduserte flaggskipduft. Vårt kuraterte utvalg av orientalske klassikere leveres som originale 100 ml fabrikkutgaver.</p>
-  </div>
-  <div class="stats">
-    <div class="stat-item"><b data-n="12">12</b><span id="stat1Label">År fatmodnet oud</span></div>
-    <div class="stat-item"><b data-n="24" data-suf="%">24 %</b><span id="stat2Label">Oljekonsentrasjon</span></div>
-    <div class="stat-item"><b data-n="300">300</b><span id="stat3Label">Flakonger per opplag</span></div>
-    <div class="stat-item"><b data-n="100" data-suf="%">100 %</b><span id="stat4Label">Ekte produsentgaranti</span></div>
-  </div>
-</section>
-
-<!-- BOUTIQUE COLLECTION & CONTROLS (NO HORIZONTAL SCROLL) -->
-<section id="kjop">
-  <div class="collection-header">
-    <p class="eye" id="colEye">Kuratert Utvalg</p>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-top:.4rem;margin-bottom:.8rem">
-      <div>
-        <h2 id="colTitle" style="font-size:clamp(1.8rem,5vw,2.8rem)">Våre Parfymer</h2>
-        <p id="colSub" style="font-size:.84rem;color:var(--dim);margin-top:.2rem">30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt over 500 kr</p>
-      </div>
-      <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
-        <span id="collectionCount" style="font-size:.82rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase">30 parfymer</span>
+  <!-- ================= 3. COLLECTION GRID AT THE VERY TOP ================= -->
+  <section id="kjop">
+    <div class="collection-header">
+      <p class="tagline-small" id="colTag">Kuratert Utvalg</p>
+      <h1 id="colTitle">Våre Parfymer</h1>
+      <p class="sub" id="colSub">30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt fra 500 kr</p>
+      <div class="collection-status-bar">
+        <span id="collectionCount">Viser 30 av 30 parfymer</span>
+        <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
       </div>
     </div>
-  </div>
 
-  <!-- Dropdown Filter Bar (Zero horizontal scroll) -->
-  <div class="collection-controls-bar">
-    <div class="filter-dropdown-grid">
-      <div class="filter-group">
-        <label for="filterBrand" class="filter-label" id="lblFilterBrand">Produsent / Merke</label>
+    <!-- Dropdown Filter Bar (Zero Horizontal Scroll) -->
+    <div class="filter-container">
+      <div class="filter-field">
+        <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
-          <option value="all">Alle produsenter (30)</option>
+          <option value="all" id="optBrandAll">Alle merker (30)</option>
           <option value="Svartfjord">Svartfjord (3)</option>
           <option value="Lattafa">Lattafa (12)</option>
           <option value="Maison Alhambra">Maison Alhambra (4)</option>
@@ -480,129 +1024,210 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
           <option value="Reef">Reef (2)</option>
         </select>
       </div>
-      <div class="filter-group">
-        <label for="filterScent" class="filter-label" id="lblFilterScent">Duftfamilie</label>
+
+      <div class="filter-field">
+        <label for="filterScent" id="lblFilterScent">Duftfamilie</label>
         <select id="filterScent" class="filter-select" aria-label="Velg duftfamilie">
-          <option value="all">Alle duftnoter</option>
-          <option value="oud">Oud & Treaktig</option>
-          <option value="amber">Amber & Varm</option>
-          <option value="gourmand">Gourmand & Kaffe</option>
-          <option value="citrus">Frisk & Sitrus</option>
-          <option value="musk">Arktisk & Moskus</option>
-          <option value="floral">Blomstret & Søt</option>
+          <option value="all" id="optScentAll">Alle duftnoter</option>
+          <option value="oud" id="optScentOud">Oud & Treaktig</option>
+          <option value="amber" id="optScentAmber">Amber & Varm</option>
+          <option value="gourmand" id="optScentGourmand">Gourmand & Kaffe</option>
+          <option value="citrus" id="optScentCitrus">Frisk & Sitrus</option>
+          <option value="musk" id="optScentMusk">Arktisk & Moskus</option>
+          <option value="floral" id="optScentFloral">Blomstret & Søt</option>
         </select>
       </div>
-      <div class="filter-group">
-        <label for="filterSort" class="filter-label" id="lblFilterSort">Sortering</label>
+
+      <div class="filter-field">
+        <label for="filterSort" id="lblFilterSort">Sortering</label>
         <select id="filterSort" class="filter-select" aria-label="Sorter etter">
-          <option value="featured">Anbefalt utvalg</option>
-          <option value="price-asc">Pris: Lav til Høy</option>
-          <option value="price-desc">Pris: Høy til Lav</option>
-          <option value="name-asc">Navn: A–Å</option>
-          <option value="name-desc">Navn: Å–A</option>
+          <option value="featured" id="optSortFeatured">Anbefalt utvalg</option>
+          <option value="price-asc" id="optSortPriceAsc">Pris: Lav til Høy</option>
+          <option value="price-desc" id="optSortPriceDesc">Pris: Høy til Lav</option>
+          <option value="name-asc" id="optSortNameAsc">Navn: A–Å</option>
         </select>
       </div>
-      <div class="filter-group">
-        <label for="catalogSearchInput" class="filter-label" id="lblFilterSearch">Søk i katalogen</label>
-        <div class="catalog-search-wrap">
-          <span class="search-icon" aria-hidden="true">🔍</span>
-          <input type="search" id="catalogSearchInput" class="catalog-search-input" placeholder="Søk parfyme, merke, duftnote..." aria-label="Søk i parfymekatalogen">
-          <button type="button" id="clearSearchBtn" class="clear-search-btn" style="display:none" aria-label="Tøm søk">✕</button>
+
+      <div class="filter-field">
+        <label for="catalogSearchInput" id="lblFilterSearch">Søk i katalogen</label>
+        <div class="search-wrap">
+          <input type="text" id="catalogSearchInput" class="search-input" placeholder="Søk parfyme, merke, duftnote...">
+          <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Tøm søk">✕</button>
         </div>
       </div>
     </div>
 
-    <!-- Quick Fragrance Jump Selector -->
-    <div class="quick-perfume-row">
-      <label for="filterPerfumeSelect" class="quick-label" id="lblQuickSelect">Hurtigvelg flakong (100 ml):</label>
-      <select id="filterPerfumeSelect" class="filter-select highlight-select" aria-label="Hurtigvelg flakong"></select>
-    </div>
-  </div>
+    <!-- 30 Product Cards Grid -->
+    <div class="products-grid" id="flaconGalleryGrid"></div>
+  </section>
 
-  <!-- Store Stage (Selected Fragrance) -->
-  <div class="buy">
-    <div class="stage">
-      <div id="stage"></div>
-    </div>
-    <div>
-      <p class="eye" id="prodEdition">Originalutgave · 100 ml</p>
-      <h2 id="prodName" style="font-size:clamp(2.2rem,7vw,3.6rem);margin:.3rem 0 .2rem">Svartfjord N°1</h2>
-      <p id="prodSubtitle" class="eye" style="color:var(--gold);margin-bottom:.8rem;font-size:.76rem">BLACK OUD · EXTRAIT DE PARFUM · 24 %</p>
-      <p id="prodDesc">Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med lokk i massiv messing.</p>
-      
-      <!-- Single 100ml Size Badge -->
-      <div class="single-size-wrap">
-        <div class="single-size-pill">
-          <span class="vol-tag">100 ml</span>
-          <span class="vol-desc" id="volDescText">Original Fabrikkforseglet Flakong</span>
-        </div>
-        <span class="stock-badge in-stock" id="stockBadge">● På lager (Oslo · Tøyengata 3)</span>
-      </div>
-
-      <div class="price" id="price">1 490 kr</div>
-
-      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-        <div class="qty-stepper">
-          <button type="button" data-q="-1" aria-label="Reduser antall">–</button>
-          <span id="q">1</span>
-          <button type="button" data-q="1" aria-label="Øk antall">+</button>
-        </div>
-        <button class="cta" id="add" style="flex:1;min-width:14rem">Legg i kurv</button>
-      </div>
-
-      <p style="font-size:.78rem;color:var(--dim);margin-top:.9rem;line-height:1.4" id="stageMetaShipping">
-        <span>🚚 Sendes innen 24t fra Tøyengata 3 / Grünerløkka</span> · <span>Fri frakt over 500 kr</span> · <span>Gratis henting i butikk</span>
+  <!-- ================= 4. SVARTFJORD SIGNATURE FEATURE & STORY ================= -->
+  <section id="svartfjordHero" class="svartfjord-section">
+    <div class="svartfjord-hero">
+      <p class="tagline-small" id="sfTag">Signaturkreasjon · Oslo</p>
+      <h2 id="sfTitle">Svartfjord Signaturkolleksjon</h2>
+      <p class="story-lead" id="sfDesc">
+        Svart oud fra Pursat møter vill einer, bjørketjære og luften over en isbre klokken tre om natten. Vår egenproduserte, masererte nisjeduft fra Oslo.
       </p>
 
-      <!-- Structured Scent Notes (Top, Heart, Base) -->
-      <div class="scent-notes-box">
-        <div class="note-tier">
-          <span class="tier-label" id="lblTopNotes">Toppnoter</span>
-          <span class="tier-content" id="tierTopNotes">Einer, blodappelsin, rosa pepper, havsalt</span>
-        </div>
-        <div class="note-tier">
-          <span class="tier-label" id="lblHeartNotes">Hjertenoter</span>
-          <span class="tier-content" id="tierHeartNotes">Damaskrose, safran, bjørketjære, røkelse</span>
-        </div>
-        <div class="note-tier">
-          <span class="tier-label" id="lblBaseNotes">Bunnoter</span>
-          <span class="tier-content" id="tierBaseNotes">Svart oud, isbremoskus, furuharpiks, ambra</span>
-        </div>
+      <div class="flacon" id="flacon" role="button" tabindex="0" aria-label="Svartfjord N°1 flakong">
+        <img class="flacon-bottle" src="images/svartfjord-1.png" alt="Svartfjord N°1 Flakong">
       </div>
 
-      <div style="margin-top:1.4rem">
-        <details open><summary id="sumStory">Om duften & kreasjonen</summary><p id="prodStoryText">Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.</p></details>
-        <details><summary id="sumGuarantee">100% Original Produsentgaranti</summary><p id="prodGuaranteeText">100 % ekte produsentgaranti. Alle våre parfymer importeres fabrikkforseglet i original 100 ml presentasjonseske med autentiske batchkoder.</p></details>
-        <details><summary id="sumShipping">Frakt, retur & 14 dagers angrerett</summary><p id="prodShippingText">Sendes fra vårt lager i Tøyengata 3, Oslo (inside PakStar). Fri frakt over 500 kr. 14 dagers lovfestet angrerett på forseglede kosmetikkprodukter i henhold til Angrerettloven.</p></details>
+      <button type="button" class="cta" id="hold" style="margin-top:1rem">Trykk og hold — åpne flakongen</button>
+    </div>
+  </section>
+
+  <!-- Scent Pyramid Section -->
+  <section id="duft">
+    <div style="text-align:center;max-width:40rem;margin:0 auto">
+      <p class="tagline-small" id="pyrTag">Duftarkitektur</p>
+      <h2 id="pyrTitle" style="font-family:var(--serif);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:300;margin-top:.4rem">Tre lag. Én natt.</h2>
+    </div>
+
+    <div class="pyramid-grid">
+      <div class="pyramid-card">
+        <b>01</b>
+        <p class="tagline-small" id="pyrTier1">Toppnote</p>
+        <h3 id="pyrHead1">Frostluft</h3>
+        <p id="pyrDesc1">Knust vill einer, blodappelsin og kald rosa pepper — som å puste inn ved fjordkanten i morgengryet.</p>
+      </div>
+      <div class="pyramid-card">
+        <b>02</b>
+        <p class="tagline-small" id="pyrTier2">Hjertenote</p>
+        <h3 id="pyrHead2">Bålets Rose</h3>
+        <p id="pyrDesc2">Damaskrose brent i rød safran og røykt bjørketjære. Mørkt, harpiksaktig og pulserende.</p>
+      </div>
+      <div class="pyramid-card">
+        <b>03</b>
+        <p class="tagline-small" id="pyrTier3">Bunnote</p>
+        <h3 id="pyrHead3">Svart Oud</h3>
+        <p id="pyrDesc3">12 år lagret Pursat-oud, isbremoskus, furuharpiks og dyp ambra. Blir værende på huden i over 14 timer.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- VISUAL FLACON GALLERY GRID (NO HORIZONTAL SCROLL) -->
-  <div class="flacon-gallery" id="flaconGallery">
-    <div class="flacon-gallery-header">
+  <!-- Nature & Statistics -->
+  <section id="natur">
+    <p class="tagline-small" id="natTag">Håndverk & Opprinnelse</p>
+    <h2 id="natTitle" style="font-family:var(--serif);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:300;margin-top:.4rem">Maserert og flasket i Oslo</h2>
+    <p id="natDesc" style="color:var(--dim);max-width:38rem;margin:1rem auto 0;line-height:1.6;font-size:.92rem">
+      Hver signaturflakong i Svartfjord-serien modnes i 90 dager i mørke eikefat i vårt atelier før håndtapping. 24 % oljekonsentrasjon gir eksepsjonell sillage.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-box"><b>24 %</b><span id="stat1">Oljekonsentrasjon (Extrait)</span></div>
+      <div class="stat-box"><b>90</b><span id="stat2">Dagers maserering</span></div>
+      <div class="stat-box"><b>300</b><span id="stat3">Nummererte flakonger</span></div>
+      <div class="stat-box"><b>1 500 kr</b><span id="stat4">Garantert makspris</span></div>
+    </div>
+  </section>
+
+  <!-- Showroom & Pickup Section -->
+  <section id="showroom">
+    <div class="showroom-inner">
       <div>
-        <p class="eye" id="galleryEye">Visuelt Flakong-Galleri</p>
-        <h3 id="galleryTitle" style="font-size:clamp(1.5rem,4vw,2.2rem);margin:.2rem 0 0">Utforsk Kolleksjonens Flakonger (100 ml)</h3>
+        <p class="tagline-small" id="srTag">Besøk Oss i Oslo</p>
+        <h2 id="srTitle" style="font-family:var(--serif);font-size:2.2rem;font-weight:300;margin:.4rem 0 1rem">Showroom & Henting</h2>
+        <p id="srDesc" style="color:var(--dim);line-height:1.6;font-size:.9rem;margin-bottom:1.2rem">
+          Ønsker du å oppleve duftene før kjøp? Besøk vårt parfymeri og hentepunkt sentralt i Oslo. Vi tilbyr personlig duftveiledning og gratis henting av bestillinger.
+        </p>
+        <p style="color:var(--ice);font-size:.9rem;line-height:1.6">
+          📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
+          🕒 <span id="srHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
+          ✉️ <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a>
+        </p>
       </div>
-      <span id="gallerySubtitle" class="eye" style="color:var(--dim)">Klikk på en flakong for å se detaljer & handle</span>
+      <div style="background:#080e18;border:1px solid var(--line);border-radius:1.2rem;padding:2rem;text-align:center">
+        <div style="font-size:2.4rem;margin-bottom:.8rem">🛍️</div>
+        <h3 id="srBoxTitle" style="font-size:1.2rem;margin-bottom:.5rem">Gratis Henting i Butikk</h3>
+        <p id="srBoxDesc" style="font-size:.82rem;color:var(--dim);line-height:1.5;margin-bottom:1.2rem">
+          Legg inn en bestillingsforespørsel på nettsiden og hent ferdigpakket flakong samme dag. Oppgjør med Vipps ved overlevering.
+        </p>
+        <a href="#kjop" class="cta" id="srBoxBtn">Utforsk Duftene</a>
+      </div>
     </div>
-    <div class="flacon-gallery-grid" id="flaconGalleryGrid"></div>
-  </div>
-</section>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <h3 id="newsTitle" style="font-family:var(--serif);font-size:2rem;font-weight:300">Atelier-Journalen</h3>
+      <p id="newsDesc" style="font-size:.85rem;color:var(--dim);margin-top:.4rem;line-height:1.5">
+        Motta invitasjoner til duftprøving, nye flakongslipp og kuratorartikler fra Oslo.
+      </p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" id="newsEmail" class="newsletter-input" required placeholder="Din e-postadresse...">
+        <button type="submit" class="cta" style="padding:.75rem 1.4rem" id="newsBtn">Meld på</button>
+      </form>
+      <p id="newsFeedback" style="font-size:.78rem;color:var(--gold);margin-top:.8rem;display:none"></p>
+    </div>
+  </section>
 </main>
 
-<!-- Sticky Mobile Buy Bar -->
-<div class="buybar" id="mobileBuyBar">
-  <small id="bname">Svartfjord N°1 · 100 ml<br><b id="bprice" style="color:#fff">1 490 kr</b></small>
-  <button class="cta" id="add2">Legg i kurv</button>
-</div>
+<!-- ================= 5. PRODUCT DETAIL MODAL DIALOG ================= -->
+<dialog id="productDetailModal" class="dialog-box product-modal" aria-labelledby="detailModalTitle">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+    <p class="tagline-small" id="detailModalBrand">PRODUSENT</p>
+    <button type="button" class="clear-search-btn" onclick="closeProductDetail()" style="font-size:1.3rem;display:block" aria-label="Lukk produktdetaljer">✕</button>
+  </div>
 
-<!-- Cart Drawer (Modal Dialog) -->
+  <div class="product-modal-grid">
+    <div class="modal-packshot-wrap">
+      <img id="detailModalImg" class="modal-packshot-img" src="" alt="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+    </div>
+
+    <div class="modal-info-wrap">
+      <h2 id="detailModalTitle" style="font-family:var(--serif);font-size:1.8rem;font-weight:400;line-height:1.2">Parfymenavn</h2>
+      <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+        <span class="version-pill" id="detailModalVol">100 ml · Eau de Parfum</span>
+        <span style="font-size:.74rem;color:#4ade80" id="detailModalStock">● På lager (Oslo · Tøyengata 3)</span>
+      </div>
+
+      <div style="font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
+
+      <p id="detailModalDesc" style="font-size:.85rem;color:var(--dim);line-height:1.55"></p>
+
+      <!-- 3-Tier Scent Pyramid -->
+      <div class="notes-pyramid">
+        <div class="note-row">
+          <span class="note-tier-lbl" id="lblTopNotes">Toppnoter</span>
+          <span class="note-tier-val" id="detailModalTop"></span>
+        </div>
+        <div class="note-row">
+          <span class="note-tier-lbl" id="lblHeartNotes">Hjertenoter</span>
+          <span class="note-tier-val" id="detailModalHeart"></span>
+        </div>
+        <div class="note-row">
+          <span class="note-tier-lbl" id="lblBaseNotes">Bunnoter</span>
+          <span class="note-tier-val" id="detailModalBase"></span>
+        </div>
+      </div>
+
+      <p id="detailModalStory" style="font-size:.8rem;color:var(--dim);font-style:italic;line-height:1.5"></p>
+
+      <div style="display:flex;gap:.8rem;align-items:center;margin-top:.6rem">
+        <div class="cart-qty-ctrl" style="padding:.2rem">
+          <button type="button" class="cqty-btn" onclick="adjustModalQty(-1)">–</button>
+          <span class="cqty-num" id="modalQtyNum">1</span>
+          <button type="button" class="cqty-btn" onclick="adjustModalQty(1)">+</button>
+        </div>
+        <button type="button" class="cta" style="flex:1" id="detailModalAddBtn" onclick="addModalProductToCart()">Legg i handlekurv</button>
+      </div>
+
+      <div style="border-top:1px solid var(--line);margin-top:.8rem;padding-top:.8rem;font-size:.74rem;color:var(--dim);line-height:1.4">
+        🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.</span><br>
+        🛡️ <span id="detailGuaranteeText">100% original produsentgaranti i forseglet 100 ml flakong. 14 dagers angrerett.</span>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- ================= 6. CART DRAWER (Modal Dialog) ================= -->
 <dialog id="cart" class="sheet" aria-labelledby="cartHeading">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <h3 id="cartHeading" style="font-size:1.4rem">Handlekurv</h3>
-    <button type="button" class="clear-search-btn" onclick="closeCart()" style="font-size:1.2rem" aria-label="Lukk kurv">✕</button>
+    <button type="button" class="clear-search-btn" onclick="closeCart()" style="font-size:1.2rem;display:block" aria-label="Lukk kurv">✕</button>
   </div>
   
   <div class="cart-items-list" id="cartList"></div>
@@ -613,76 +1238,75 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
       <span id="csub">0 kr</span>
     </div>
     <div style="display:flex;justify-content:space-between;margin-bottom:.8rem;font-size:.85rem">
-      <span id="cartShippingLabel">Frakt (Fri over 500 kr)</span>
+      <span id="cartShippingLabel">Frakt (Fri fra 500 kr)</span>
       <span id="cship">Gratis</span>
     </div>
     <div style="display:flex;justify-content:space-between;margin-bottom:1.2rem;font-size:1.1rem;font-weight:600">
       <span id="cartTotalLabel">Totalbeløp:</span>
       <span id="ctot" style="color:var(--gold);font-family:var(--serif)">0 kr</span>
     </div>
-    <button class="cta" id="openCheckout" style="width:100%">Gå til kassen (Reservasjon)</button>
+    <button class="cta" id="openCheckout" onclick="openCheckout()" style="width:100%">Gå til kassen (Reservasjon)</button>
   </div>
 </dialog>
 
-<!-- Checkout Modal (Transparent Preview & Order Inquiry) -->
+<!-- ================= 7. CHECKOUT MODAL (Order Inquiry) ================= -->
 <dialog id="checkoutModal" class="dialog-box" aria-labelledby="checkoutHeading">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="eye" id="checkoutEye">Bestilling & Reservasjon</p>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('checkoutModal').close()" style="font-size:1.2rem" aria-label="Lukk kasse">✕</button>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+    <p class="tagline-small" id="checkoutEye">Bestilling & Reservasjon</p>
+    <button type="button" class="clear-search-btn" onclick="closeCheckout()" style="font-size:1.2rem;display:block" aria-label="Lukk kasse">✕</button>
   </div>
   
-  <h3 id="checkoutHeading" style="font-size:1.6rem;margin-bottom:.8rem">Fullfør din bestillingsforespørsel</h3>
+  <h3 id="checkoutHeading" style="font-size:1.5rem;margin-bottom:.8rem">Fullfør din bestillingsforespørsel</h3>
   
-  <!-- Transparent Preview Notice -->
   <div class="checkout-notice-box">
-    <span style="font-size:1.4rem;line-height:1">🧪</span>
+    <span style="font-size:1.4rem">🧪</span>
     <div>
       <b style="color:var(--gold);display:block;margin-bottom:.2rem" id="noticeBoxTitle">Forhåndsvisningsbutikk & Reservasjon</b>
       <p style="font-size:.78rem;color:var(--ice);line-height:1.45" id="noticeBoxText">
-        Nettbutikken klargjøres for ordinær kortbetaling. Når du sender bestillingen, reserveres dine originale 100 ml flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes på nettsiden nå.
+        Nettbutikken klargjøres for ordinær kortbetaling. Når du sender bestillingen, reserveres dine originale 100 ml flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes nå.
       </p>
     </div>
   </div>
 
   <form id="orderForm" onsubmit="handleCheckout(event)">
-    <label for="orderName" class="eye" style="font-size:.62rem" id="lblOrderName">Fullt navn</label>
+    <label for="orderName" class="tagline-small" id="lblOrderName">Fullt navn</label>
     <input type="text" id="orderName" name="name" autocomplete="name" required placeholder="f.eks. Astrid Lind">
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
       <div>
-        <label for="orderEmail" class="eye" style="font-size:.62rem" id="lblOrderEmail">E-postadresse (for kvittering)</label>
+        <label for="orderEmail" class="tagline-small" id="lblOrderEmail">E-postadresse</label>
         <input type="email" id="orderEmail" name="email" autocomplete="email" required placeholder="astrid@eksempel.no">
       </div>
       <div>
-        <label for="orderPhone" class="eye" style="font-size:.62rem" id="lblOrderPhone">Mobilnummer (for Vipps)</label>
+        <label for="orderPhone" class="tagline-small" id="lblOrderPhone">Mobilnummer (Vipps)</label>
         <input type="tel" id="orderPhone" name="tel" autocomplete="tel" required placeholder="+47 912 34 567">
       </div>
     </div>
 
-    <label for="orderDelivery" class="eye" style="font-size:.62rem" id="lblOrderDelivery">Leveringsmetode</label>
-    <select id="orderDelivery" required onchange="toggleDeliveryFields(this.value)">
-      <option value="pickup" selected>Gratis henting: Tøyengata 3, 0190 Oslo (inside PakStar)</option>
-      <option value="posten">Posten / Bring Norgespakke (1–3 virkedager)</option>
+    <label for="orderDelivery" class="tagline-small" id="lblOrderDelivery">Leveringsmetode</label>
+    <select id="orderDelivery" required onchange="onDeliveryChange(this.value)">
+      <option value="pickup" id="optDeliveryPickup" selected>Gratis henting: Tøyengata 3, 0190 Oslo (inne hos PakStar)</option>
+      <option value="posten" id="optDeliveryPosten">Posten / Bring Norgespakke (1–3 virkedager)</option>
     </select>
 
     <div id="deliveryAddressFields" style="display:none">
-      <label for="orderStreet" class="eye" style="font-size:.62rem" id="lblOrderStreet">Gateadresse</label>
+      <label for="orderStreet" class="tagline-small" id="lblOrderStreet">Gateadresse</label>
       <input type="text" id="orderStreet" name="street" autocomplete="street-address" placeholder="Gateadresse og leilighetsnummer">
 
       <div style="display:grid;grid-template-columns:110px 1fr;gap:.8rem">
         <div>
-          <label for="orderPostal" class="eye" style="font-size:.62rem" id="lblOrderPostal">Postnr.</label>
+          <label for="orderPostal" class="tagline-small" id="lblOrderPostal">Postnr.</label>
           <input type="text" id="orderPostal" name="postal" autocomplete="postal-code" pattern="[0-9]{4}" placeholder="0190">
         </div>
         <div>
-          <label for="orderCity" class="eye" style="font-size:.62rem" id="lblOrderCity">Poststed</label>
+          <label for="orderCity" class="tagline-small" id="lblOrderCity">Poststed</label>
           <input type="text" id="orderCity" name="city" autocomplete="address-level2" placeholder="Oslo">
         </div>
       </div>
     </div>
 
-    <!-- Pre-order summary box -->
-    <div class="order-summary-box" id="checkoutOrderSummary"></div>
+    <!-- Order summary box -->
+    <div id="checkoutOrderSummary" style="background:#070b12;border:1px solid var(--line);border-radius:10px;padding:.85rem;margin:.5rem 0;font-size:.82rem"></div>
 
     <button type="submit" class="cta" style="width:100%;margin-top:.4rem;background:#ff5b24;color:#fff;box-shadow:0 10px 30px rgba(255,91,36,0.35)" id="btnSubmitOrder">
       Send Bestillingsforespørsel (Vipps-oppgjør)
@@ -690,18 +1314,16 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
   </form>
 </dialog>
 
-<!-- Order Confirmation Receipt Modal -->
-<dialog id="confirmationModal" class="dialog-box" aria-labelledby="confHeading">
-  <div style="text-align:center;margin-bottom:1rem">
-    <div style="font-size:2.4rem">✨</div>
-    <p class="eye" style="color:#4ade80" id="confBadge">Ordreforespørsel Mottatt</p>
-    <h3 id="confHeading" style="font-size:1.8rem;margin:.3rem 0">Takk for din bestilling!</h3>
-    <p style="font-size:.84rem;color:var(--dim)" id="confSub">Dine 100 ml flakonger er nå reservert i Tøyengata 3, Oslo.</p>
-  </div>
+<!-- ================= 8. CONFIRMATION RECEIPT MODAL ================= -->
+<dialog id="confirmationModal" class="dialog-box" style="text-align:center" aria-labelledby="confHeading">
+  <div style="font-size:2.4rem;margin-bottom:.3rem">✨</div>
+  <p class="tagline-small" style="color:#4ade80" id="confBadge">Bestillingsforespørsel Mottatt</p>
+  <h3 id="confHeading" style="font-size:1.8rem;margin:.4rem 0">Takk for din bestilling!</h3>
+  <p style="font-size:.84rem;color:var(--dim)" id="confSub">Dine 100 ml flakonger er nå reservert i Tøyengata 3, Oslo.</p>
 
-  <div class="order-summary-box" id="confirmationReceiptBox"></div>
+  <div class="notes-pyramid" id="confirmationReceiptBox" style="text-align:left;margin:1.4rem 0"></div>
 
-  <div class="checkout-notice-box" style="margin:1rem 0">
+  <div class="checkout-notice-box" style="margin:1rem 0;text-align:left">
     <span>📱</span>
     <p style="font-size:.8rem;color:var(--ice)" id="confNextSteps">
       Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.
@@ -709,31 +1331,31 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
   </div>
 
   <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-    <button type="button" class="cta" onclick="window.print()" style="flex:1;background:#ffffff15;color:#fff;box-shadow:none" id="btnPrintReceipt">Skriv ut kvittering</button>
-    <button type="button" class="cta" onclick="document.getElementById('confirmationModal').close()" style="flex:1" id="btnCloseConf">Fortsett å handle</button>
+    <button type="button" class="cta" onclick="window.print()" style="flex:1;background:rgba(255,255,255,0.08);color:#fff;box-shadow:none" id="btnPrintReceipt">Skriv ut kvittering</button>
+    <button type="button" class="cta" onclick="closeConfirm()" style="flex:1" id="btnCloseConf">Fortsett å handle</button>
   </div>
 </dialog>
 
-<!-- Policy Details Modal -->
+<!-- ================= 9. POLICY DETAILS MODAL ================= -->
 <dialog id="policyModal" class="dialog-box policy-modal" aria-labelledby="policyHeading">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="eye" id="policyCategory">Aromatix Oslo</p>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('policyModal').close()" style="font-size:1.2rem" aria-label="Lukk">✕</button>
+    <p class="tagline-small" id="policyCategory">Aromatix Oslo</p>
+    <button type="button" class="clear-search-btn" onclick="closePolicy()" style="font-size:1.2rem;display:block" aria-label="Lukk">✕</button>
   </div>
-  <h3 id="policyHeading" style="font-size:1.8rem;margin-bottom:1rem">Retningslinjer</h3>
+  <h3 id="policyHeading" style="font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:1rem">Retningslinjer</h3>
   <div class="policy-content" id="policyBody"></div>
-  <button type="button" class="cta" onclick="document.getElementById('policyModal').close()" style="width:100%;margin-top:1.4rem" id="policyCloseBtn">Lukk vindu</button>
+  <button type="button" class="cta" onclick="closePolicy()" style="width:100%;margin-top:1.6rem" id="policyCloseBtn">Lukk vindu</button>
 </dialog>
 
-<!-- Admin Login & Atelier Modal -->
-<dialog id="adminPinModal" class="dialog-box pin-modal">
+<!-- ================= 10. ADMIN AUTH & PANEL ================= -->
+<dialog id="adminPinModal" class="dialog-box">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
-    <p class="eye">Atelier Sikkerhet</p>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPinModal').close()" style="font-size:1.2rem">✕</button>
+    <p class="tagline-small">Atelier Sikkerhet</p>
+    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPinModal').close()" style="font-size:1.2rem;display:block">✕</button>
   </div>
   <div style="font-size:2rem;margin-bottom:.3rem">🔐</div>
   <h3 style="font-size:1.5rem;margin-bottom:.4rem">Kurator Adgang</h3>
-  <p style="font-size:.82rem;color:var(--dim);margin-bottom:1.2rem">Tast inn din 4-sifrede PIN-kode for å åpne katalog- og ordrestyring.</p>
+  <p style="font-size:.82rem;color:var(--dim);margin-bottom:1.2rem">Tast inn din 4-sifrede PIN-kode for å åpne katalogstyring.</p>
   
   <form id="adminPinForm" onsubmit="handleAdminAuth(event)">
     <input type="password" id="adminPinInput" maxlength="6" inputmode="numeric" pattern="[0-9]*" placeholder="••••" required
@@ -743,93 +1365,76 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
   </form>
 </dialog>
 
-<!-- Admin Management Panel -->
 <dialog id="adminPanelModal" class="dialog-box" style="max-width:54rem;max-height:88vh;overflow-y:auto">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="eye">Kurator Atelier (Admin)</p>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem">✕</button>
+    <p class="tagline-small">Kurator Atelier (Admin)</p>
+    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem;display:block">✕</button>
   </div>
-
-  <div style="display:flex;gap:.6rem;border-bottom:1px solid var(--line);padding-bottom:.8rem;margin-bottom:1.2rem">
-    <button type="button" class="cta" id="tabBtnCatalog" onclick="switchAdminTab('catalog')" style="font-size:.74rem;padding:.5rem 1rem">Katalogstyring</button>
-    <button type="button" class="cta" id="tabBtnOrders" onclick="switchAdminTab('orders')" style="font-size:.74rem;padding:.5rem 1rem;background:#ffffff15;color:#fff;box-shadow:none">Mottatte Bestillinger</button>
-  </div>
-
-  <!-- Tab 1: Catalog Manager -->
-  <div id="adminCatalogView">
-    <div style="background:rgba(201,169,110,.08);border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;margin-bottom:1.2rem;font-size:.8rem">
-      ⚠️ <b>Lokal editor (Draft):</b> Endringer lagres lokalt i nettleseren. Makspris for alle parfymer er håndhevet til 1 500 kr.
-    </div>
-    
-    <div style="display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap">
-      <button type="button" class="cta" onclick="exportCatalogJson()" style="font-size:.74rem;padding:.5rem 1rem">Eksporter Katalog (JSON)</button>
-      <button type="button" class="cta" onclick="resetToDefaultCatalog()" style="font-size:.74rem;padding:.5rem 1rem;background:#ef444420;color:#ef4444;box-shadow:none">Gjenopprett Standard</button>
-    </div>
-
-    <div id="adminProductList" style="display:grid;gap:.8rem;max-height:50vh;overflow-y:auto;padding-right:.4rem"></div>
-  </div>
-
-  <!-- Tab 2: Orders Viewer -->
-  <div id="adminOrdersView" style="display:none">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-      <h4 style="font-size:1.2rem">Kundeordrer & Reservasjoner</h4>
-      <button type="button" class="cta" onclick="clearOrdersLog()" style="font-size:.7rem;padding:.4rem .8rem;background:#ef444420;color:#ef4444;box-shadow:none">Tøm ordrehistorikk</button>
-    </div>
-    <div id="adminOrdersList" style="display:grid;gap:.8rem"></div>
-  </div>
+  <p style="font-size:.84rem;color:var(--dim);margin-bottom:1.5rem">Administrer katalogen. Maksimal pris er 1 500 kr og alle flasker standardiseres til 100 ml.</p>
+  <div id="adminProductList" style="display:grid;gap:.8rem"></div>
 </dialog>
 
-<!-- Footer -->
+<!-- ================= 11. FOOTER ================= -->
 <footer>
-  <div class="footer-cols">
-    <div>
-      <p class="brand" style="font-size:1.1rem;margin-bottom:.4rem">AROMATIX <b>OSLO</b></p>
-      <p style="font-size:.84rem;line-height:1.6">
-        Kuratert parfymeri og showroom.<br>
-        📍 <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b><br>
-        Showroom & Henting: Man–Lør 11:00–18:00<br>
-        E-post: <a href="mailto:hei@aromatix.no" style="color:var(--gold);text-decoration:underline">hei@aromatix.no</a><br>
-        Telefon: +47 22 11 00 00
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="brand-title">AROMATIX <b>OSLO</b></div>
+      <p style="font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="footerAboutText">
+        Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede 100 ml flakonger fra fremragende nisjehus. Makspris 1 500 kr.
       </p>
     </div>
 
-    <div>
-      <h5 id="footColInfo">Kundeservice & Garanti</h5>
-      <ul class="footer-links">
-        <li><a href="javascript:openPolicy('om')">Om Aromatix Oslo</a></li>
-        <li><a href="javascript:openPolicy('frakt')">Frakt & Levering</a></li>
-        <li><a href="javascript:openPolicy('retur')">Retur & Angrerett (14 dager)</a></li>
-        <li><a href="javascript:openPolicy('vilkar')">Kjøpsbetingelser & MVA</a></li>
-        <li><a href="javascript:openPolicy('kontakt')">Kontakt & Veibeskrivelse</a></li>
+    <div class="footer-col">
+      <h4 id="footerNavTitle">Navigasjon</h4>
+      <ul>
+        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (30)</a></li>
+        <li><a href="#svartfjordHero" id="ftNavStory">Svartfjord Kolleksjon</a></li>
+        <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
+        <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
       </ul>
     </div>
 
-    <div>
-      <h5 id="footColNewsletter">Få beskjed om nye parfymer</h5>
-      <p style="font-size:.82rem;margin-bottom:.8rem" id="footNewsSub">Motta eksklusive lanseringer, duftguider og invitasjoner til prøvesmaking.</p>
-      <form id="newsletterForm" onsubmit="handleNewsletter(event)">
-        <div style="display:flex;gap:.4rem">
-          <input type="email" id="newsletterEmail" required placeholder="din@epost.no" autocomplete="email" style="flex:1;padding:.65rem .85rem;background:#ffffff08;border:1px solid var(--line);border-radius:8px;color:#fff;font:inherit;font-size:16px!important">
-          <button type="submit" class="cta" style="padding:.65rem 1.2rem;font-size:.76rem" id="btnNewsletter">Meld på</button>
-        </div>
-        <p id="newsletterMsg" style="font-size:.76rem;color:var(--gold);margin-top:.4rem;display:none"></p>
-      </form>
+    <div class="footer-col">
+      <h4 id="footerPolicyTitle">Kundeservice & Kjøp</h4>
+      <ul>
+        <li><button type="button" onclick="openPolicy('om')" id="ftPolicyAbout">Om Aromatix Oslo</button></li>
+        <li><button type="button" onclick="openPolicy('frakt')" id="ftPolicyShipping">Frakt & Levering</button></li>
+        <li><button type="button" onclick="openPolicy('retur')" id="ftPolicyReturns">Retur & 14 dagers angrerett</button></li>
+        <li><button type="button" onclick="openPolicy('vilkar')" id="ftPolicyTerms">Kjøpsbetingelser & MVA</button></li>
+        <li><button type="button" onclick="openPolicy('kontakt')" id="ftPolicyContact">Showroom & Kontakt</button></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 id="footerContactTitle">Showroom & Henting</h4>
+      <p style="font-size:.78rem;color:var(--ice);line-height:1.6">
+        📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
+        🕒 <span id="ftHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
+        ✉️ <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a><br>
+        📱 Vipps Bedrift: Aromatix Oslo
+      </p>
     </div>
   </div>
 
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.72rem">
-    <p>© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)</p>
+  <div class="footer-bottom">
+    <p id="footerCopyright">© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)</p>
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
-      <button onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
-      <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.12 (updated 2026-09-17 06:22)
+      <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
+      <div class="version-pill">
+        v1.0.13 (updated 2026-09-17 07:00)
       </div>
     </div>
   </div>
 </footer>
 
+<!-- Sticky Mobile Buy Bar -->
+<div class="buybar" id="mobileBuyBar">
+  <small id="bname">Svartfjord N°1 · 100 ml<br><b id="bprice" style="color:#fff">1 490 kr</b></small>
+  <button class="cta" id="add2" onclick="quickAddToCart(S.currentProductId)">Legg i kurv</button>
+</div>
+
 <script>
-// ── DEFAULT CATALOG (30 items, 100ml, max price 1500 kr) ──
+// ── CATALOG DEFINITION (30 items, 100ml, price <= 1500 kr) ──
 const DEFAULT_CATALOG = [
   {
     "id": "svartfjord-1",
@@ -861,7 +1466,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0a0e15",
       "capStroke": "var(--gold)"
     },
-    "tag": "Flaggskip"
+    "tag": "Flaggskip",
+    "size": "100 ml"
   },
   {
     "id": "svartfjord-2",
@@ -893,7 +1499,8 @@ const DEFAULT_CATALOG = [
       "cap": "#121820",
       "capStroke": "#89cff0"
     },
-    "tag": "Arktisk"
+    "tag": "Arktisk",
+    "size": "100 ml"
   },
   {
     "id": "svartfjord-3",
@@ -925,7 +1532,8 @@ const DEFAULT_CATALOG = [
       "cap": "#18120a",
       "capStroke": "#e5b364"
     },
-    "tag": "Solgull"
+    "tag": "Solgull",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-khamrah",
@@ -957,7 +1565,8 @@ const DEFAULT_CATALOG = [
       "cap": "#211608",
       "capStroke": "#f59e0b"
     },
-    "tag": "Bestseller"
+    "tag": "Bestseller",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-khamrah-qahwa",
@@ -989,7 +1598,8 @@ const DEFAULT_CATALOG = [
       "cap": "#1c1007",
       "capStroke": "#c99352"
     },
-    "tag": "Nyhet"
+    "tag": "Nyhet",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-asad",
@@ -1021,7 +1631,8 @@ const DEFAULT_CATALOG = [
       "cap": "#080b10",
       "capStroke": "#eab308"
     },
-    "tag": "Signatur"
+    "tag": "Signatur",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-asad-zanzibar",
@@ -1053,7 +1664,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0c1520",
       "capStroke": "#89cff0"
     },
-    "tag": "Eksotisk"
+    "tag": "Eksotisk",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-yara-pink",
@@ -1085,7 +1697,8 @@ const DEFAULT_CATALOG = [
       "cap": "#2d131f",
       "capStroke": "#f472b6"
     },
-    "tag": "Bestseller"
+    "tag": "Bestseller",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-yara-tous",
@@ -1117,7 +1730,8 @@ const DEFAULT_CATALOG = [
       "cap": "#281b08",
       "capStroke": "#facc15"
     },
-    "tag": "Solrik"
+    "tag": "Solrik",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-yara-moi",
@@ -1149,7 +1763,8 @@ const DEFAULT_CATALOG = [
       "cap": "#181410",
       "capStroke": "#e2e8f0"
     },
-    "tag": "Karamell"
+    "tag": "Karamell",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-badee-glory",
@@ -1181,7 +1796,8 @@ const DEFAULT_CATALOG = [
       "cap": "#08090d",
       "capStroke": "#d4af37"
     },
-    "tag": "Kongeoud"
+    "tag": "Kongeoud",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-badee-honor",
@@ -1213,7 +1829,8 @@ const DEFAULT_CATALOG = [
       "cap": "#211d17",
       "capStroke": "#e5b364"
     },
-    "tag": "Gourmand"
+    "tag": "Gourmand",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-badee-amethyst",
@@ -1245,7 +1862,8 @@ const DEFAULT_CATALOG = [
       "cap": "#190d1f",
       "capStroke": "#c084fc"
     },
-    "tag": "Kongelig Rose"
+    "tag": "Kongelig Rose",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-badee-sublime",
@@ -1277,7 +1895,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0d1c14",
       "capStroke": "#4ade80"
     },
-    "tag": "Fruktig"
+    "tag": "Fruktig",
+    "size": "100 ml"
   },
   {
     "id": "lattafa-rave-now",
@@ -1309,7 +1928,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0a0d12",
       "capStroke": "#94a3b8"
     },
-    "tag": "Frisk"
+    "tag": "Frisk",
+    "size": "100 ml"
   },
   {
     "id": "alhambra-sceptre-malachite",
@@ -1341,7 +1961,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0a1912",
       "capStroke": "#34d399"
     },
-    "tag": "Edelsten"
+    "tag": "Edelsten",
+    "size": "100 ml"
   },
   {
     "id": "alhambra-sceptre-oceana",
@@ -1373,7 +1994,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0a1422",
       "capStroke": "#38bdf8"
     },
-    "tag": "Akvatisk"
+    "tag": "Akvatisk",
+    "size": "100 ml"
   },
   {
     "id": "alhambra-sceptre-amazonite",
@@ -1405,7 +2027,8 @@ const DEFAULT_CATALOG = [
       "cap": "#081619",
       "capStroke": "#2dd4bf"
     },
-    "tag": "Orientalsk"
+    "tag": "Orientalsk",
+    "size": "100 ml"
   },
   {
     "id": "alhambra-sceptre-bronzite",
@@ -1437,7 +2060,8 @@ const DEFAULT_CATALOG = [
       "cap": "#211409",
       "capStroke": "#d97706"
     },
-    "tag": "Varm Lær"
+    "tag": "Varm Lær",
+    "size": "100 ml"
   },
   {
     "id": "swissarabian-shaghaf-oud",
@@ -1469,7 +2093,8 @@ const DEFAULT_CATALOG = [
       "cap": "#261c06",
       "capStroke": "#fbbf24"
     },
-    "tag": "Gullikon"
+    "tag": "Gullikon",
+    "size": "100 ml"
   },
   {
     "id": "swissarabian-shaghaf-abyad",
@@ -1501,7 +2126,8 @@ const DEFAULT_CATALOG = [
       "cap": "#14181f",
       "capStroke": "#cbd5e1"
     },
-    "tag": "Røykfylt"
+    "tag": "Røykfylt",
+    "size": "100 ml"
   },
   {
     "id": "swissarabian-shaghaf-aswad",
@@ -1533,7 +2159,8 @@ const DEFAULT_CATALOG = [
       "cap": "#090b0e",
       "capStroke": "#e2b153"
     },
-    "tag": "Mørk Oud"
+    "tag": "Mørk Oud",
+    "size": "100 ml"
   },
   {
     "id": "swissarabian-shaghaf-tonka",
@@ -1565,7 +2192,8 @@ const DEFAULT_CATALOG = [
       "cap": "#24150a",
       "capStroke": "#f59e0b"
     },
-    "tag": "Gourmand"
+    "tag": "Gourmand",
+    "size": "100 ml"
   },
   {
     "id": "ibraq-jamaican-tobacco",
@@ -1597,7 +2225,8 @@ const DEFAULT_CATALOG = [
       "cap": "#1e1008",
       "capStroke": "#d97706"
     },
-    "tag": "Haute Parfumerie"
+    "tag": "Haute Parfumerie",
+    "size": "100 ml"
   },
   {
     "id": "ibraq-black-amber",
@@ -1629,7 +2258,8 @@ const DEFAULT_CATALOG = [
       "cap": "#140d08",
       "capStroke": "#b45309"
     },
-    "tag": "Ekstrakt"
+    "tag": "Ekstrakt",
+    "size": "100 ml"
   },
   {
     "id": "ibraq-emerald-oud",
@@ -1661,7 +2291,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0c1912",
       "capStroke": "#10b981"
     },
-    "tag": "Smaragd"
+    "tag": "Smaragd",
+    "size": "100 ml"
   },
   {
     "id": "viridian-forest-mist",
@@ -1693,7 +2324,8 @@ const DEFAULT_CATALOG = [
       "cap": "#0b1a17",
       "capStroke": "#2dd4bf"
     },
-    "tag": "Barskog"
+    "tag": "Barskog",
+    "size": "100 ml"
   },
   {
     "id": "viridian-dusk",
@@ -1725,7 +2357,8 @@ const DEFAULT_CATALOG = [
       "cap": "#1a0f1e",
       "capStroke": "#c084fc"
     },
-    "tag": "Skumring"
+    "tag": "Skumring",
+    "size": "100 ml"
   },
   {
     "id": "reef-33",
@@ -1757,7 +2390,8 @@ const DEFAULT_CATALOG = [
       "cap": "#1c1810",
       "capStroke": "#eab308"
     },
-    "tag": "Luksus"
+    "tag": "Luksus",
+    "size": "100 ml"
   },
   {
     "id": "reef-29",
@@ -1789,183 +2423,353 @@ const DEFAULT_CATALOG = [
       "cap": "#15181e",
       "capStroke": "#94a3b8"
     },
-    "tag": "Eleganse"
+    "tag": "Eleganse",
+    "size": "100 ml"
   }
 ];
 
-// Centralized I18N Dictionary
+let CATALOG = [];
+try {
+  const custom = localStorage.getItem('arx_custom_catalog_v10');
+  CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
+  if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
+} catch(e) {
+  CATALOG = DEFAULT_CATALOG;
+}
+
+// ── BILINGUAL TRANSLATION DICTIONARY (nb / en) ──
 const I18N = {
-  no: {
-    banner: "Fri frakt over 500 kr · 100% Original Produsentgaranti",
+  nb: {
+    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger",
+    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr.",
+    skipLink: "Hopp til parfymer (100 ml)",
+    introHint: "Kuratert Parfymeri · 30 Utvalgte Flakonger",
+    skipIntro: "Hopp over",
+    replayIntro: "Se intro",
+    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · Fri frakt fra 500 kr · 100% Original Produsentgaranti",
     tagline: "Kuratert Parfymeri · 100 ml Flakonger",
-    navFragrances: "Parfymer",
-    navAbout: "Om Aromatix",
-    navShipping: "Frakt & Levering",
-    navReturns: "Retur & Angrerett",
+    navFragrances: "Våre Parfymer",
+    navStory: "Svartfjord",
+    navShowroom: "Showroom",
     navContact: "Kontakt",
-    heroEye: "Signaturkreasjon · Svartfjord N°1 · Oslo",
-    heroTitle: "Nordlyset,<em>tappet i svart.</em>",
-    heroDesc: "Aromatix Oslo presenterer Svartfjord N°1 — håndlaget norsk extrait de parfum i røkt glass og massiv messing.",
-    heroShopBtn: "Utforsk Parfymene (100 ml)",
-    heroHold: "Åpne Svartfjord N°1",
+    cartLabel: "Kurv",
+    colTag: "Kuratert Utvalg",
     colTitle: "Våre Parfymer",
-    colSub: "30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt over 500 kr",
-    volDesc: "Original Fabrikkforseglet Flakong",
-    stock: "● På lager (Oslo · Tøyengata 3)",
-    addBtn: "Legg i kurv",
-    galleryTitle: "Utforsk Kolleksjonens Flakonger (100 ml)",
-    gallerySub: "Klikk på en flakong for å se detaljer & handle",
-    selectFlacon: "Velg flakong",
-    selectedFlacon: "Valgt",
+    colSub: "30 Utvalgte Flakonger (100 ml) · Makspris 1 500 kr · Fri frakt fra 500 kr",
+    showingCount: (count, total) => `Viser ${count} av ${total} parfymer`,
+    colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
+    lblFilterBrand: "Produsent / Merke",
+    optBrandAll: "Alle merker (30)",
+    lblFilterScent: "Duftfamilie",
+    optScentAll: "Alle duftnoter",
+    optScentOud: "Oud & Treaktig",
+    optScentAmber: "Amber & Varm",
+    optScentGourmand: "Gourmand & Kaffe",
+    optScentCitrus: "Frisk & Sitrus",
+    optScentMusk: "Arktisk & Moskus",
+    optScentFloral: "Blomstret & Søt",
+    lblFilterSort: "Sortering",
+    optSortFeatured: "Anbefalt utvalg",
+    optSortPriceAsc: "Pris: Lav til Høy",
+    optSortPriceDesc: "Pris: Høy til Lav",
+    optSortNameAsc: "Navn: A–Å",
+    lblFilterSearch: "Søk i katalogen",
+    searchPlaceholder: "Søk parfyme, merke, duftnote...",
+    emptyTitle: "Ingen parfymer passer til søket ditt",
+    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 30 parfymer.",
+    resetFilters: "Nullstill filtre",
+    cardDetailsBtn: "Se detaljer",
+    cardAddBtn: "Legg i kurv",
+    detailModalBrand: "PRODUSENT",
+    detailModalStock: "● På lager (Oslo · Tøyengata 3)",
+    lblTopNotes: "Toppnoter",
+    lblHeartNotes: "Hjertenoter",
+    lblBaseNotes: "Bunnoter",
+    detailAddBtn: "Legg i handlekurv",
+    detailShippingText: "Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.",
+    detailGuaranteeText: "100% original produsentgaranti i forseglet 100 ml flakong. 14 dagers angrerett.",
+    sfTag: "Signaturkreasjon · Oslo",
+    sfTitle: "Svartfjord Signaturkolleksjon",
+    sfDesc: "Svart oud fra Pursat møter vill einer, bjørketjære og luften over en isbre klokken tre om natten. Vår egenproduserte, masererte nisjeduft fra Oslo.",
+    sfHold: "Trykk og hold — åpne flakongen",
+    pyrTag: "Duftarkitektur",
+    pyrTitle: "Tre lag. Én natt.",
+    pyrTier1: "Toppnote",
+    pyrHead1: "Frostluft",
+    pyrDesc1: "Knust vill einer, blodappelsin og kald rosa pepper — som å puste inn ved fjordkanten i morgengryet.",
+    pyrTier2: "Hjertenote",
+    pyrHead2: "Bålets Rose",
+    pyrDesc2: "Damaskrose brent i rød safran og røykt bjørketjære. Mørkt, harpiksaktig og pulserende.",
+    pyrTier3: "Bunnote",
+    pyrHead3: "Svart Oud",
+    pyrDesc3: "12 år lagret Pursat-oud, isbremoskus, furuharpiks og dyp ambra. Blir værende på huden i over 14 timer.",
+    natTag: "Håndverk & Opprinnelse",
+    natTitle: "Maserert og flasket i Oslo",
+    natDesc: "Hver signaturflakong i Svartfjord-serien modnes i 90 dager i mørke eikefat i vårt atelier før håndtapping. 24 % oljekonsentrasjon gir eksepsjonell sillage.",
+    stat1: "Oljekonsentrasjon (Extrait)",
+    stat2: "Dagers maserering",
+    stat3: "Nummererte flakonger",
+    stat4: "Garantert makspris",
+    srTag: "Besøk Oss i Oslo",
+    srTitle: "Showroom & Henting",
+    srDesc: "Ønsker du å oppleve duftene før kjøp? Besøk vårt parfymeri og hentepunkt sentralt i Oslo. Vi tilbyr personlig duftveiledning og gratis henting av bestillinger.",
+    srHours: "Mandag – Lørdag: 11:00 – 18:00",
+    srBoxTitle: "Gratis Henting i Butikk",
+    srBoxDesc: "Legg inn en bestillingsforespørsel på nettsiden og hent ferdigpakket flakong samme dag. Oppgjør med Vipps ved overlevering.",
+    srBoxBtn: "Utforsk Duftene",
+    newsTitle: "Atelier-Journalen",
+    newsDesc: "Motta invitasjoner til duftprøving, nye flakongslipp og kuratorartikler fra Oslo.",
+    newsBtn: "Meld på",
+    newsPlaceholder: "Din e-postadresse...",
     cartTitle: "Handlekurv",
+    emptyCart: "Handlekurven din er tom.",
+    browseBtn: "Se alle parfymer",
     cartSubtotal: "Delsum",
-    cartShipping: "Frakt (Fri over 500 kr)",
+    cartShipping: "Frakt (Fri fra 500 kr)",
+    cartFree: "Gratis",
     cartTotal: "Totalbeløp:",
     checkoutBtn: "Gå til kassen (Reservasjon)",
-    emptyCart: "Handlekurven din er tom.",
-    browseFragrances: "Se alle parfymer",
-    free: "Gratis"
+    checkoutTitle: "Fullfør din bestillingsforespørsel",
+    checkoutEye: "Bestilling & Reservasjon",
+    noticeBoxTitle: "Forhåndsvisningsbutikk & Reservasjon",
+    noticeBoxText: "Nettbutikken er i forhåndsvisningsmodus. Når du sender bestillingen, reserveres dine originale 100 ml flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes nå.",
+    lblOrderName: "Fullt navn",
+    lblOrderEmail: "E-postadresse",
+    lblOrderPhone: "Mobilnummer (Vipps)",
+    lblOrderDelivery: "Leveringsmetode",
+    optDeliveryPickup: "Gratis henting: Tøyengata 3, 0190 Oslo (inne hos PakStar)",
+    optDeliveryPosten: "Posten / Bring Norgespakke (1–3 virkedager)",
+    lblOrderStreet: "Gateadresse",
+    lblOrderPostal: "Postnr.",
+    lblOrderCity: "Poststed",
+    btnSubmitOrder: "Send Bestillingsforespørsel (Vipps-oppgjør)",
+    confBadge: "Bestillingsforespørsel Mottatt",
+    confTitle: "Takk for din bestilling!",
+    confSub: "Dine 100 ml flakonger er nå reservert i Tøyengata 3, Oslo.",
+    confNextSteps: "Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.",
+    btnPrintReceipt: "Skriv ut kvittering",
+    btnCloseConf: "Fortsett å handle",
+    footerAboutText: "Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede 100 ml flakonger fra fremragende nisjehus. Makspris 1 500 kr.",
+    footerNavTitle: "Navigasjon",
+    footerPolicyTitle: "Kundeservice & Kjøp",
+    footerContactTitle: "Showroom & Henting",
+    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)"
   },
   en: {
-    banner: "Free shipping over 500 kr · 100% Genuine Manufacturer Guarantee",
-    tagline: "Curated Perfumery · 100 ml Flacons",
-    navFragrances: "Fragrances",
-    navAbout: "About Aromatix",
-    navShipping: "Shipping & Delivery",
-    navReturns: "Returns & Rights",
+    pageTitle: "Aromatix Oslo · Curated Perfumery & 30 Selected Bottles",
+    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr. Free shipping on orders of 500 kr or more.",
+    skipLink: "Skip to fragrances (100 ml)",
+    introHint: "Curated Perfumery · 30 Selected Bottles",
+    skipIntro: "Skip intro",
+    replayIntro: "Replay intro",
+    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · Free shipping from 500 kr · 100% Original Manufacturer Guarantee",
+    tagline: "Curated Perfumery · 100 ml Bottles",
+    navFragrances: "Our Fragrances",
+    navStory: "Svartfjord",
+    navShowroom: "Showroom",
     navContact: "Contact",
-    heroEye: "Signature Creation · Svartfjord N°1 · Oslo",
-    heroTitle: "The Northern Lights,<em>bottled in obsidian.</em>",
-    heroDesc: "Aromatix Oslo presents Svartfjord N°1 — handcrafted Nordic extrait de parfum in smoked glass with solid brass.",
-    heroShopBtn: "Explore Fragrances (100 ml)",
-    heroHold: "Open Svartfjord N°1",
+    cartLabel: "Cart",
+    colTag: "Curated Collection",
     colTitle: "Our Fragrances",
-    colSub: "30 Curated Flacons (100 ml) · Max Price 1 500 kr · Free Shipping over 500 kr",
-    volDesc: "Original Factory-Sealed Flacon",
-    stock: "● In stock (Oslo · Tøyengata 3)",
-    addBtn: "Add to Cart",
-    galleryTitle: "Explore All Flacons (100 ml)",
-    gallerySub: "Click any flacon to view details & purchase",
-    selectFlacon: "Select Flacon",
-    selectedFlacon: "Selected",
-    cartTitle: "Shopping Bag",
+    colSub: "30 Selected Bottles (100 ml) · Max Price 1 500 kr · Free shipping from 500 kr",
+    showingCount: (count, total) => `Showing ${count} of ${total} fragrances`,
+    colGuaranteeBadge: "● 100% Original factory-sealed bottles",
+    lblFilterBrand: "Brand / House",
+    optBrandAll: "All brands (30)",
+    lblFilterScent: "Scent Family",
+    optScentAll: "All scent notes",
+    optScentOud: "Oud & Woody",
+    optScentAmber: "Amber & Warm",
+    optScentGourmand: "Gourmand & Coffee",
+    optScentCitrus: "Fresh & Citrus",
+    optScentMusk: "Glacial & Musk",
+    optScentFloral: "Floral & Sweet",
+    lblFilterSort: "Sort by",
+    optSortFeatured: "Featured Selection",
+    optSortPriceAsc: "Price: Low to High",
+    optSortPriceDesc: "Price: High to Low",
+    optSortNameAsc: "Name: A–Z",
+    lblFilterSearch: "Search catalog",
+    searchPlaceholder: "Search fragrance, brand, notes...",
+    emptyTitle: "No fragrances match your search",
+    emptyDesc: "Try another search term or reset filters to browse all 30 fragrances.",
+    resetFilters: "Reset filters",
+    cardDetailsBtn: "View details",
+    cardAddBtn: "Add to cart",
+    detailModalBrand: "HOUSE",
+    detailModalStock: "● In stock (Oslo · Tøyengata 3)",
+    lblTopNotes: "Top Notes",
+    lblHeartNotes: "Heart Notes",
+    lblBaseNotes: "Base Notes",
+    detailAddBtn: "Add to Cart",
+    detailShippingText: "Dispatched within 24h from our showroom at Tøyengata 3, 0190 Oslo (inside PakStar). Free shipping from 500 kr.",
+    detailGuaranteeText: "100% original manufacturer guarantee in sealed 100 ml bottle. 14-day statutory return rights.",
+    sfTag: "Signature Creation · Oslo",
+    sfTitle: "Svartfjord Signature Collection",
+    sfDesc: "Pursat black oud meets wild juniper, birch tar, and sub-zero glacial air at three in the morning. Handcrafted and matured in Oslo.",
+    sfHold: "Press and hold — uncork bottle",
+    pyrTag: "Scent Architecture",
+    pyrTitle: "Three layers. One night.",
+    pyrTier1: "Top Note",
+    pyrHead1: "Glacial Air",
+    pyrDesc1: "Crushed wild juniper, blood orange, and cool pink pepper — breathing cold air along the fjord at dawn.",
+    pyrTier2: "Heart Note",
+    pyrHead2: "Campfire Rose",
+    pyrDesc2: "Damascena rose kissed by red saffron and smoked birch tar. Dark, resinous, and vibrant.",
+    pyrTier3: "Base Note",
+    pyrHead3: "Black Oud",
+    pyrDesc3: "12-year aged Pursat oud, glacial musk, pine resin, and ambergris. Lasts over 14 hours on the skin.",
+    natTag: "Craftsmanship & Origin",
+    natTitle: "Matured and bottled in Oslo",
+    natDesc: "Each Svartfjord flacon is aged for 90 days in dark oak casks in our Oslo atelier before hand-filling. 24% perfume oil concentration gives exceptional sillage.",
+    stat1: "Concentration (Extrait)",
+    stat2: "Days of cask maturation",
+    stat3: "Numbered bottles",
+    stat4: "Max price guarantee",
+    srTag: "Visit Us in Oslo",
+    srTitle: "Showroom & Pickup",
+    srDesc: "Would you like to experience the fragrances in person? Visit our perfumery and pickup point in central Oslo. We offer personalized olfactory guidance and free order pickup.",
+    srHours: "Monday – Saturday: 11:00 – 18:00",
+    srBoxTitle: "Free In-Store Pickup",
+    srBoxDesc: "Submit your reservation inquiry online and pick up your packaged bottle the same day. Safe Vipps settlement upon collection.",
+    srBoxBtn: "Browse Fragrances",
+    newsTitle: "The Atelier Journal",
+    newsDesc: "Receive invitations to private fragrance tastings, new bottle drops, and curatorial dispatches from Oslo.",
+    newsBtn: "Subscribe",
+    newsPlaceholder: "Your email address...",
+    cartTitle: "Shopping Cart",
+    emptyCart: "Your shopping cart is empty.",
+    browseBtn: "Browse fragrances",
     cartSubtotal: "Subtotal",
-    cartShipping: "Shipping (Free over 500 kr)",
+    cartShipping: "Shipping (Free from 500 kr)",
+    cartFree: "Free",
     cartTotal: "Total:",
     checkoutBtn: "Proceed to Checkout (Reservation)",
-    emptyCart: "Your shopping bag is empty.",
-    browseFragrances: "Browse all fragrances",
-    free: "Free"
+    checkoutTitle: "Complete Your Pre-Order Request",
+    checkoutEye: "Order & Reservation",
+    noticeBoxTitle: "Preview Store & Reservation",
+    noticeBoxText: "The store is currently accepting reservation inquiries. When submitting your order, your original 100 ml bottles are reserved. Settlement is completed via Vipps upon confirmation or pickup at Tøyengata 3. No payment is charged now.",
+    lblOrderName: "Full Name",
+    lblOrderEmail: "Email Address",
+    lblOrderPhone: "Mobile Number (Vipps)",
+    lblOrderDelivery: "Delivery Method",
+    optDeliveryPickup: "Free pickup: Tøyengata 3, 0190 Oslo (inside PakStar)",
+    optDeliveryPosten: "Posten / Bring Parcel (1–3 business days)",
+    lblOrderStreet: "Street Address",
+    lblOrderPostal: "Postal Code",
+    lblOrderCity: "City",
+    btnSubmitOrder: "Submit Pre-Order Request (Vipps)",
+    confBadge: "Order Inquiry Received",
+    confTitle: "Thank You for Your Order!",
+    confSub: "Your 100 ml bottles are now reserved at Tøyengata 3, Oslo.",
+    confNextSteps: "We will send an order confirmation to your email and a Vipps payment request to your mobile number prior to fulfillment.",
+    btnPrintReceipt: "Print Receipt",
+    btnCloseConf: "Continue Shopping",
+    footerAboutText: "Curated perfumery in Oslo. We supply 100% original factory-sealed 100 ml bottles from premier niche houses. Maximum price 1 500 kr.",
+    footerNavTitle: "Navigation",
+    footerPolicyTitle: "Customer Care & Orders",
+    footerContactTitle: "Showroom & Pickup",
+    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)"
   }
 };
 
-// App State
-let LANG = localStorage.getItem('arx_lang') || 'no';
-let CATALOG = loadCatalog();
+// ── APP STATE ──
+let LANG = 'nb';
+// Migrate legacy 'no'
+try {
+  const savedLang = localStorage.getItem('arx_lang');
+  if (savedLang === 'no' || savedLang === 'nb') LANG = 'nb';
+  else if (savedLang === 'en') LANG = 'en';
+  else {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang === 'en') LANG = 'en';
+  }
+} catch(e) {}
+
 let activeBrand = 'all';
 let activeScent = 'all';
 let activeSort = 'featured';
 let searchQuery = '';
-
-const S = {
-  currentProductId: CATALOG[0]?.id || 'svartfjord-1',
-  size: 100,
-  qty: 1,
-  lines: []
+let S = {
+  lines: [],
+  currentProductId: 'svartfjord-1',
+  modalQty: 1
 };
 
-function $(s) { return document.querySelector(s); }
-function nok(n) { return (Number(n)||0).toLocaleString('nb-NO') + ' kr'; }
-
-// ── Catalog Storage & Validation ──
-function loadCatalog() {
-  try {
-    const saved = localStorage.getItem('arx_catalog_v10');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length >= 10) return parsed;
-    }
-  } catch(e) {}
-  return JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+// ── UTILITIES ──
+const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
+const nok = n => `${Number(n).toLocaleString(LANG === 'nb' ? 'no-NO' : 'en-US')} kr`;
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function saveCatalog(cat) {
-  localStorage.setItem('arx_catalog_v10', JSON.stringify(cat));
+// ── UNIFIED TOTALS CALCULATION ──
+function calculateTotals(lines, deliveryMethod) {
+  const subtotal = lines.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const shipping = (lines.length === 0 || deliveryMethod === 'pickup' || subtotal >= 500) ? 0 : 59;
+  return { subtotal, shipping, total: subtotal + shipping };
 }
 
-// ── Cart Storage ──
+// ── CART PERSISTENCE ──
 function loadCart() {
   try {
     const d = localStorage.getItem('arx_cart_v10');
     if (d) S.lines = JSON.parse(d);
-  } catch(e) {}
+  } catch(e) { S.lines = []; }
 }
 function saveCart() {
-  localStorage.setItem('arx_cart_v10', JSON.stringify(S.lines));
+  try {
+    localStorage.setItem('arx_cart_v10', JSON.stringify(S.lines));
+  } catch(e) {}
 }
 
-// ── Product Selection & URL Deep-Linking ──
-window.selectProduct = function(id) {
-  const found = CATALOG.find(p => p.id === id);
-  if (!found) return;
-  S.currentProductId = id;
-  S.size = 100;
-  S.qty = 1;
+// ── ANIMATED INTRO CONTROLLER ──
+let introTimer = null;
+function finishIntro() {
+  if (introTimer) clearTimeout(introTimer);
+  document.documentElement.classList.remove('booting');
+  document.documentElement.classList.add('ready');
+  try { sessionStorage.setItem('arx_intro_seen', '1'); } catch(e) {}
+  const introEl = $('#intro');
+  if (introEl) {
+    introEl.classList.remove('go');
+    introEl.style.display = 'none';
+  }
+}
+window.finishIntro = finishIntro;
 
-  // Update URL without reload
-  try {
-    const url = new URL(window.location);
-    url.searchParams.set('prod', id);
-    window.history.pushState({ prod: id }, '', url);
-    document.title = `${found.name} (100 ml) · Aromatix Oslo`;
-  } catch(e) {}
+function replayIntro() {
+  try { sessionStorage.removeItem('arx_intro_seen'); } catch(e) {}
+  const introEl = $('#intro');
+  if (!introEl) return;
+  introEl.style.display = 'grid';
+  document.documentElement.classList.remove('ready');
+  document.documentElement.classList.add('booting');
+  introEl.classList.remove('go');
+  void introEl.offsetWidth; // reflow
+  introEl.classList.add('go');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  $('#skipIntroBtn')?.focus();
+  introTimer = setTimeout(finishIntro, 2500);
+}
+window.replayIntro = replayIntro;
 
-  renderStore();
-};
-window.selectPerfume = window.selectProduct;
-
-window.addEventListener('popstate', e => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('prod')) {
-    const id = params.get('prod');
-    if (id && id !== S.currentProductId) selectProduct(id);
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.documentElement.classList.contains('booting')) {
+      finishIntro();
+    }
   }
 });
 
-// ── Render Store & Controls ──
+// ── RENDER STORE & COLLECTION ──
 function renderStore() {
   const isEn = LANG === 'en';
-  const cur = CATALOG.find(p => p.id === S.currentProductId) || CATALOG[0];
-  const curPrice = Math.min(1500, Number(cur.price) || 1190);
+  const t = I18N[LANG];
 
-  // Stage display
-  if ($('#stage')) {
-    $('#stage').innerHTML = `
-      <img class="stage-packshot-img" src="${cur.image}" alt="${cur.name}" onerror="this.src='images/svartfjord-1.png'">
-    `;
-  }
-
-  if ($('#prodEdition')) $('#prodEdition').textContent = `${cur.brand} · ${isEn ? (cur.edition_en || 'Original Edition · 100 ml') : (cur.edition || 'Originalutgave · 100 ml')}`;
-  if ($('#prodName')) $('#prodName').textContent = cur.name;
-  if ($('#prodSubtitle')) $('#prodSubtitle').textContent = isEn ? (cur.subtitle_en || cur.subtitle) : cur.subtitle;
-  if ($('#prodDesc')) $('#prodDesc').textContent = isEn ? (cur.desc_en || cur.desc) : cur.desc;
-  if ($('#price')) $('#price').textContent = nok(curPrice);
-  if ($('#q')) $('#q').textContent = S.qty;
-
-  // Scent Notes Tiers
-  if ($('#tierTopNotes')) $('#tierTopNotes').textContent = isEn ? (cur.notes?.top_en || cur.notes?.top) : cur.notes?.top;
-  if ($('#tierHeartNotes')) $('#tierHeartNotes').textContent = isEn ? (cur.notes?.heart_en || cur.notes?.heart) : cur.notes?.heart;
-  if ($('#tierBaseNotes')) $('#tierBaseNotes').textContent = isEn ? (cur.notes?.base_en || cur.notes?.base) : cur.notes?.base;
-
-  // Accordions
-  if ($('#prodStoryText')) $('#prodStoryText').textContent = isEn ? (cur.story_en || cur.story) : cur.story;
-
-  // Mobile Buybar
-  if ($('#bname')) {
-    $('#bname').innerHTML = `${cur.name} · 100 ml<br><b id="bprice" style="color:#fff">${nok(curPrice)}</b>`;
-  }
-
-  // Filter and Sort Catalog
+  // Filter Catalog
   let filtered = CATALOG.filter(p => {
     if (activeBrand !== 'all' && p.brand !== activeBrand) return false;
     if (activeScent !== 'all' && p.scentFamily !== activeScent) return false;
@@ -1973,7 +2777,7 @@ function renderStore() {
       const q = searchQuery.toLowerCase();
       const matchName = p.name.toLowerCase().includes(q);
       const matchBrand = p.brand.toLowerCase().includes(q);
-      const matchDesc = (p.desc + ' ' + (p.desc_en||'')).toLowerCase().includes(q);
+      const matchDesc = (p.desc + ' ' + (p.desc_en || '')).toLowerCase().includes(q);
       const matchNotes = (p.notes ? Object.values(p.notes).join(' ') : '').toLowerCase().includes(q);
       if (!matchName && !matchBrand && !matchDesc && !matchNotes) return false;
     }
@@ -1981,55 +2785,56 @@ function renderStore() {
   });
 
   // Sort
-  if (activeSort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
-  else if (activeSort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
-  else if (activeSort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
-  else if (activeSort === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
+  if (activeSort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+  else if (activeSort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+  else if (activeSort === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+  else if (activeSort === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
 
-  // Count text
-  if ($('#collectionCount')) $('#collectionCount').textContent = `${filtered.length} ${isEn ? 'fragrances' : 'parfymer'}`;
-
-  // Quick jump selector
-  if ($('#filterPerfumeSelect')) {
-    $('#filterPerfumeSelect').innerHTML = filtered.map(p => `
-      <option value="${p.id}" ${p.id === S.currentProductId ? 'selected' : ''}>
-        ${p.name} (${p.brand}) · 100 ml · ${nok(p.price)}
-      </option>
-    `).join('');
+  // Count
+  if ($('#collectionCount')) {
+    $('#collectionCount').textContent = t.showingCount(filtered.length, CATALOG.length);
   }
 
-  // Render Visual Flacon Gallery Grid
-  if ($('#flaconGalleryGrid')) {
-    if (filtered.length === 0) {
-      $('#flaconGalleryGrid').innerHTML = `
-        <div class="empty-search-box">
-          <p style="color:var(--dim);margin-bottom:1rem">
-            ${isEn ? 'No fragrances match your active filters.' : 'Ingen parfymer matcher dine valgte filtre.'}
-          </p>
-          <button type="button" class="cta" onclick="resetAllFilters()">
-            ${isEn ? 'Reset filters' : 'Nullstill filtre'}
-          </button>
-        </div>
-      `;
-    } else {
-      $('#flaconGalleryGrid').innerHTML = filtered.map(p => {
-        const isActive = p.id === S.currentProductId;
-        const btnLabel = isEn ? (isActive ? 'Selected' : 'Select Flacon') : (isActive ? 'Valgt' : 'Velg flakong');
-        return `
-          <div class="gallery-card ${isActive ? 'active' : ''}" data-gallery-id="${p.id}" role="button" tabindex="0" aria-label="${p.name}">
-            <div class="gallery-card-img-wrap">
-              <img class="gallery-card-img" src="${p.image}" alt="${p.name}" loading="lazy">
-            </div>
-            <span class="gallery-card-brand">${p.brand}</span>
-            <div class="gallery-card-title">${p.name}</div>
-            <div class="gallery-card-vol">100 ml · ${p.concentration || 'Eau de Parfum'}</div>
-            <div class="gallery-card-price">${nok(p.price)}</div>
-            <button type="button" class="gallery-card-btn" tabindex="-1">${btnLabel}</button>
-          </div>
-        `;
-      }).join('');
-    }
+  // Render Grid
+  const grid = $('#flaconGalleryGrid');
+  if (!grid) return;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-results-box">
+        <h3>${t.emptyTitle}</h3>
+        <p>${t.emptyDesc}</p>
+        <button type="button" class="cta" onclick="resetAllFilters()">${t.resetFilters}</button>
+      </div>
+    `;
+    return;
   }
+
+  grid.innerHTML = filtered.map(p => `
+    <article class="perfume-card" data-id="${p.id}" tabindex="0">
+      <div class="card-img-wrap" onclick="openProductDetail('${p.id}')">
+        <img class="card-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+      </div>
+      <span class="card-brand">${escapeHtml(p.brand)}</span>
+      <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(p.name)}</h3>
+      <div class="card-vol">100 ml · ${p.concentration || 'Eau de Parfum'}</div>
+      <div class="card-price">${nok(p.price)}</div>
+      <div class="card-actions">
+        <button type="button" class="card-btn btn-details" onclick="openProductDetail('${p.id}')">${t.cardDetailsBtn}</button>
+        <button type="button" class="card-btn btn-add" onclick="quickAddToCart('${p.id}')">${t.cardAddBtn}</button>
+      </div>
+    </article>
+  `).join('');
+
+  // Keyboard accessibility on cards
+  grid.querySelectorAll('.perfume-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.target === card) {
+        openProductDetail(card.dataset.id);
+      }
+    });
+  });
 }
 
 window.resetAllFilters = function() {
@@ -2045,26 +2850,136 @@ window.resetAllFilters = function() {
   renderStore();
 };
 
-// ── Cart Operations ──
+// ── PRODUCT DETAIL MODAL DIALOG ──
+window.openProductDetail = function(id, pushUrl = true) {
+  const p = CATALOG.find(item => item.id === id);
+  if (!p) return;
+  S.currentProductId = id;
+  S.modalQty = 1;
+
+  if (pushUrl) {
+    try {
+      const url = new URL(window.location);
+      url.searchParams.set('prod', id);
+      window.history.pushState({ prod: id }, '', url);
+    } catch(e) {}
+  }
+
+  updateProductDetailModalContent(p);
+  $('#productDetailModal')?.showModal();
+
+  // Also sync mobile buybar
+  updateMobileBuyBar(p);
+};
+
+function updateProductDetailModalContent(p) {
+  const isEn = LANG === 'en';
+  if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.brand;
+  if ($('#detailModalTitle')) $('#detailModalTitle').textContent = p.name;
+  if ($('#detailModalVol')) $('#detailModalVol').textContent = `100 ml · ${p.concentration || 'Eau de Parfum'}`;
+  if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
+  if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
+  if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
+  if ($('#detailModalImg')) {
+    $('#detailModalImg').src = p.image;
+    $('#detailModalImg').alt = p.name;
+  }
+  if ($('#detailModalTop')) $('#detailModalTop').textContent = isEn ? (p.notes?.top_en || p.notes?.top) : p.notes?.top;
+  if ($('#detailModalHeart')) $('#detailModalHeart').textContent = isEn ? (p.notes?.heart_en || p.notes?.heart) : p.notes?.heart;
+  if ($('#detailModalBase')) $('#detailModalBase').textContent = isEn ? (p.notes?.base_en || p.notes?.base) : p.notes?.base;
+  if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
+}
+
+window.closeProductDetail = function() {
+  $('#productDetailModal')?.close();
+  try {
+    const url = new URL(window.location);
+    if (url.searchParams.has('prod')) {
+      url.searchParams.delete('prod');
+      window.history.pushState({}, '', url);
+    }
+  } catch(e) {}
+};
+
+window.adjustModalQty = function(delta) {
+  S.modalQty = Math.max(1, S.modalQty + delta);
+  if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
+};
+
+window.addModalProductToCart = function() {
+  const p = CATALOG.find(item => item.id === S.currentProductId);
+  if (!p) return;
+  addToCartWithQty(p, S.modalQty);
+  closeProductDetail();
+  openCart();
+};
+
+window.quickAddToCart = function(id) {
+  const p = CATALOG.find(item => item.id === id);
+  if (!p) return;
+  addToCartWithQty(p, 1);
+  openCart();
+};
+
+function addToCartWithQty(p, qty) {
+  const existing = S.lines.find(l => l.id === p.id);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    S.lines.push({
+      id: p.id,
+      name: p.name,
+      brand: p.brand,
+      size: '100 ml',
+      price: p.price,
+      image: p.image,
+      qty: qty
+    });
+  }
+  saveCart();
+  renderCart();
+}
+
+function updateMobileBuyBar(p) {
+  if ($('#bname')) {
+    $('#bname').innerHTML = `${escapeHtml(p.name)} · 100 ml<br><b id="bprice" style="color:#fff">${nok(p.price)}</b>`;
+  }
+}
+
+// ── BACK / FORWARD NAVIGATION (History) ──
+window.addEventListener('popstate', e => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('prod')) {
+    const id = params.get('prod');
+    openProductDetail(id, false);
+  } else {
+    $('#productDetailModal')?.close();
+  }
+});
+
+// ── CART OPERATIONS ──
 function renderCart() {
   const isEn = LANG === 'en';
+  const t = I18N[LANG];
   const totalCount = S.lines.reduce((sum, item) => sum + item.qty, 0);
   if ($('#cartBadge')) $('#cartBadge').textContent = totalCount;
+
+  const totals = calculateTotals(S.lines, 'pickup');
 
   if (S.lines.length === 0) {
     if ($('#cartList')) {
       $('#cartList').innerHTML = `
         <div style="text-align:center;padding:3rem 1rem;color:var(--dim)">
-          <div style="font-size:2rem;margin-bottom:.5rem">🛍️</div>
-          <p>${isEn ? 'Your shopping bag is empty.' : 'Handlekurven din er tom.'}</p>
+          <div style="font-size:2.2rem;margin-bottom:.5rem">🛍️</div>
+          <p>${t.emptyCart}</p>
           <a href="#kjop" onclick="closeCart()" class="cta" style="margin-top:1.2rem;display:inline-block">
-            ${isEn ? 'Browse fragrances' : 'Se alle parfymer'}
+            ${t.browseBtn}
           </a>
         </div>
       `;
     }
     if ($('#csub')) $('#csub').textContent = '0 kr';
-    if ($('#cship')) $('#cship').textContent = isEn ? 'Free' : 'Gratis';
+    if ($('#cship')) $('#cship').textContent = t.cartFree;
     if ($('#ctot')) $('#ctot').textContent = '0 kr';
     if ($('#openCheckout')) {
       $('#openCheckout').disabled = true;
@@ -2078,17 +2993,15 @@ function renderCart() {
     $('#openCheckout').style.opacity = '1';
   }
 
-  let subtotal = 0;
   if ($('#cartList')) {
     $('#cartList').innerHTML = S.lines.map(item => {
       const lineTotal = item.price * item.qty;
-      subtotal += lineTotal;
       return `
         <div class="cart-item-row">
-          <img class="cart-item-thumb" src="${item.image}" alt="${item.name}">
+          <img class="cart-item-thumb" src="${item.image}" alt="${escapeHtml(item.name)}">
           <div class="cart-item-info">
-            <b>${item.name}</b>
-            <small>${item.brand} · 100 ml · ${nok(item.price)}</small>
+            <b>${escapeHtml(item.name)}</b>
+            <small>${escapeHtml(item.brand)} · 100 ml · ${nok(item.price)}</small>
             <div class="cart-qty-ctrl">
               <button type="button" class="cqty-btn" onclick="updateCartItem('${item.id}', -1)">–</button>
               <span class="cqty-num">${item.qty}</span>
@@ -2097,19 +3010,16 @@ function renderCart() {
           </div>
           <div class="cart-item-right">
             <span class="cart-item-total">${nok(lineTotal)}</span>
-            <button type="button" class="cart-remove-btn" onclick="removeCartItem('${item.id}')">✕</button>
+            <button type="button" class="cart-remove-btn" onclick="removeCartItem('${item.id}')" aria-label="Fjern vare">✕</button>
           </div>
         </div>
       `;
     }).join('');
   }
 
-  const shipping = subtotal >= 500 ? 0 : 59;
-  const total = subtotal + shipping;
-
-  if ($('#csub')) $('#csub').textContent = nok(subtotal);
-  if ($('#cship')) $('#cship').textContent = shipping === 0 ? (isEn ? 'Free' : 'Gratis') : nok(shipping);
-  if ($('#ctot')) $('#ctot').textContent = nok(total);
+  if ($('#csub')) $('#csub').textContent = nok(totals.subtotal);
+  if ($('#cship')) $('#cship').textContent = totals.shipping === 0 ? t.cartFree : nok(totals.shipping);
+  if ($('#ctot')) $('#ctot').textContent = nok(totals.total);
 }
 
 window.updateCartItem = function(id, delta) {
@@ -2129,31 +3039,6 @@ window.removeCartItem = function(id) {
   renderCart();
 };
 
-window.addToCart = function() {
-  const cur = CATALOG.find(p => p.id === S.currentProductId) || CATALOG[0];
-  const curPrice = Math.min(1500, Number(cur.price) || 1190);
-
-  const existing = S.lines.find(l => l.id === cur.id);
-  if (existing) {
-    existing.qty += S.qty;
-  } else {
-    S.lines.push({
-      id: cur.id,
-      name: cur.name,
-      brand: cur.brand,
-      size: 100,
-      price: curPrice,
-      image: cur.image,
-      qty: S.qty
-    });
-  }
-  saveCart();
-  renderCart();
-
-  // Open cart popover
-  window.openCart();
-};
-
 window.openCart = function() {
   const c = $('#cart');
   if (c && !c.open) c.showModal();
@@ -2165,73 +3050,63 @@ window.closeCart = function() {
 window.toggleCart = function() {
   const c = $('#cart');
   if (!c) return;
-  if (c.open) {
-    c.close();
-  } else {
-    c.showModal();
-  }
+  if (c.open) c.close();
+  else c.showModal();
 };
 
-// ── Checkout & Order Inquiry ──
+// ── CHECKOUT & ORDER INQUIRY ──
 window.openCheckout = function() {
   if (!S.lines.length) return;
   window.closeCart();
-  
-  // Render checkout pre-order summary
-  let subtotal = S.lines.reduce((s, i) => s + i.price * i.qty, 0);
-  let shipping = subtotal >= 500 ? 0 : 59;
-  let total = subtotal + shipping;
-
-  if ($('#checkoutOrderSummary')) {
-    $('#checkoutOrderSummary').innerHTML = `
-      <div style="font-weight:600;margin-bottom:.5rem">Ordresammendrag (100 ml flakonger):</div>
-      ${S.lines.map(i => `
-        <div class="order-summary-row">
-          <span>${i.name} (${i.qty}x 100 ml)</span>
-          <span>${nok(i.price * i.qty)}</span>
-        </div>
-      `).join('')}
-      <div style="border-top:1px solid var(--line);margin-top:.4rem;padding-top:.4rem">
-        <div class="order-summary-row"><span>Delsum:</span><span>${nok(subtotal)}</span></div>
-        <div class="order-summary-row"><span>Frakt:</span><span>${shipping === 0 ? 'Gratis' : nok(shipping)}</span></div>
-        <div class="order-summary-row" style="font-weight:600;color:var(--gold);font-size:.9rem"><span>Totalt (MVA inkl.):</span><span>${nok(total)}</span></div>
-      </div>
-    `;
-  }
+  updateCheckoutSummary();
   $('#checkoutModal')?.showModal();
 };
-
 window.closeCheckout = function() {
   $('#checkoutModal')?.close();
 };
-
 window.closeConfirm = function() {
   $('#confirmationModal')?.close();
 };
 
-window.closePolicy = function() {
-  $('#policyModal')?.close();
-};
-
-window.toggleDeliveryFields = function(method) {
+function onDeliveryChange(method) {
   const isPosten = method === 'posten';
   const group = $('#deliveryAddressFields');
   if (group) group.style.display = isPosten ? 'block' : 'none';
   if ($('#orderStreet')) $('#orderStreet').required = isPosten;
   if ($('#orderPostal')) $('#orderPostal').required = isPosten;
   if ($('#orderCity')) $('#orderCity').required = isPosten;
-};
+  updateCheckoutSummary();
+}
+window.onDeliveryChange = onDeliveryChange;
 
-$('#openCheckout')?.addEventListener('click', window.openCheckout);
+function updateCheckoutSummary() {
+  const delivery = $('#orderDelivery')?.value || 'pickup';
+  const totals = calculateTotals(S.lines, delivery);
+  const isEn = LANG === 'en';
+
+  if ($('#checkoutOrderSummary')) {
+    $('#checkoutOrderSummary').innerHTML = `
+      <div style="font-weight:600;margin-bottom:.5rem">${isEn ? 'Order Summary (100 ml bottles):' : 'Ordresammendrag (100 ml flakonger):'}</div>
+      ${S.lines.map(i => `
+        <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
+          <span>${escapeHtml(i.name)} (${i.qty}x 100 ml)</span>
+          <span>${nok(i.price * i.qty)}</span>
+        </div>
+      `).join('')}
+      <div style="border-top:1px solid var(--line);margin-top:.4rem;padding-top:.4rem">
+        <div style="display:flex;justify-content:space-between"><span>${isEn ? 'Subtotal:' : 'Delsum:'}</span><span>${nok(totals.subtotal)}</span></div>
+        <div style="display:flex;justify-content:space-between"><span>${isEn ? 'Shipping:' : 'Frakt:'}</span><span>${totals.shipping === 0 ? (isEn ? 'Free' : 'Gratis') : nok(totals.shipping)}</span></div>
+        <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gold);margin-top:.2rem"><span>${isEn ? 'Total (VAT incl.):' : 'Totalt (MVA inkl.):'}</span><span>${nok(totals.total)}</span></div>
+      </div>
+    `;
+  }
+}
 
 window.handleCheckout = function(e) {
   if (e && e.preventDefault) e.preventDefault();
-  
-  let subtotal = S.lines.reduce((s, i) => s + i.price * i.qty, 0);
-  let shipping = subtotal >= 500 ? 0 : 59;
-  let total = subtotal + shipping;
+  const delivery = $('#orderDelivery')?.value || 'pickup';
+  const totals = calculateTotals(S.lines, delivery);
 
-  const deliveryMethod = $('#orderDelivery')?.value || 'pickup';
   const orderId = 'ARX-' + Date.now().toString().slice(-6);
   const newOrder = {
     orderId,
@@ -2240,19 +3115,18 @@ window.handleCheckout = function(e) {
       name: $('#orderName')?.value?.trim() || 'Kunde',
       email: $('#orderEmail')?.value?.trim() || '',
       phone: $('#orderPhone')?.value?.trim() || '',
-      delivery: deliveryMethod,
+      delivery: delivery,
       street: $('#orderStreet')?.value?.trim() || '',
       postal: $('#orderPostal')?.value?.trim() || '',
       city: $('#orderCity')?.value?.trim() || ''
     },
     items: JSON.parse(JSON.stringify(S.lines)),
-    subtotal,
-    shipping,
-    total,
+    subtotal: totals.subtotal,
+    shipping: totals.shipping,
+    total: totals.total,
     status: 'Mottatt (Avventer Vipps)'
   };
 
-  // Save to persistent storage
   try {
     const existing = JSON.parse(localStorage.getItem('arx_orders_v10') || '[]');
     existing.unshift(newOrder);
@@ -2266,291 +3140,447 @@ window.handleCheckout = function(e) {
 
   $('#checkoutModal')?.close();
 
-  // Populate & Open Confirmation Receipt Modal
+  // Populate Receipt
   if ($('#confirmationReceiptBox')) {
     const isEn = LANG === 'en';
-    const deliveryDisplay = newOrder.customer.delivery === 'pickup' 
-      ? 'Henting i showroom: Tøyengata 3, 0190 Oslo (inside PakStar)' 
-      : `${newOrder.customer.street}, ${newOrder.customer.postal} ${newOrder.customer.city} (Posten Norgespakke)`;
-    
+    const deliveryDisplay = newOrder.customer.delivery === 'pickup'
+      ? (isEn ? 'Free Pickup: Tøyengata 3, 0190 Oslo (inside PakStar)' : 'Gratis Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar)')
+      : `${escapeHtml(newOrder.customer.street)}, ${escapeHtml(newOrder.customer.postal)} ${escapeHtml(newOrder.customer.city)} (Posten Norgespakke)`;
+
     $('#confirmationReceiptBox').innerHTML = `
       <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:.5rem;margin-bottom:.5rem">
-        <b>Ordrenummer:</b>
+        <b>${isEn ? 'Order Reference:' : 'Ordrenummer:'}</b>
         <span style="color:var(--gold);font-family:monospace;font-weight:600">#${orderId}</span>
       </div>
       <div style="font-size:.78rem;color:var(--dim);margin-bottom:.6rem;line-height:1.45">
-        <b>Kunde:</b> ${newOrder.customer.name} (${newOrder.customer.email} · ${newOrder.customer.phone})<br>
-        <b>Levering:</b> ${deliveryDisplay}
+        <b>${isEn ? 'Customer:' : 'Kunde:'}</b> ${escapeHtml(newOrder.customer.name)} (${escapeHtml(newOrder.customer.email)} · ${escapeHtml(newOrder.customer.phone)})<br>
+        <b>${isEn ? 'Delivery:' : 'Levering:'}</b> ${deliveryDisplay}
       </div>
       ${newOrder.items.map(i => `
-        <div class="order-summary-row" style="font-size:.82rem">
-          <span>${i.name} (100 ml x ${i.qty})</span>
+        <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.2rem">
+          <span>${escapeHtml(i.name)} (100 ml x ${i.qty})</span>
           <span>${nok(i.price * i.qty)}</span>
         </div>
       `).join('')}
-      <div class="order-summary-row" style="font-weight:600;color:var(--gold);border-top:1px solid var(--line);padding-top:.4rem;margin-top:.4rem">
-        <span>Totalbeløp:</span>
-        <span>${nok(total)}</span>
+      <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gold);border-top:1px solid var(--line);padding-top:.4rem;margin-top:.4rem">
+        <span>${isEn ? 'Total Amount:' : 'Totalbeløp:'}</span>
+        <span>${nok(totals.total)}</span>
       </div>
     `;
   }
   $('#confirmationModal')?.showModal();
 };
 
-// ── Policy Modals ──
-window.openPolicy = function(type) {
-  const isEn = LANG === 'en';
-  const modal = $('#policyModal');
-  const cat = $('#policyCategory');
-  const heading = $('#policyHeading');
-  const body = $('#policyBody');
-
-  if (type === 'om') {
-    cat.textContent = isEn ? 'About Us' : 'Om Aromatix Oslo';
-    heading.textContent = isEn ? 'Curated Perfumery in Oslo' : 'Kuratert Parfymeri i Oslo';
-    body.innerHTML = `
-      <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
-      <h4>Vår Filosofi</h4>
-      <p>Vi forener det beste fra to verdener: Vår egenproduserte, eksklusive nordiske serie <b>Svartfjord</b> (håndblandet og maserert i Oslo), kombinert med et håndplukket utvalg av verdens fremste orientalske mesterverk fra legendariske hus som Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
-      <h4>100% Original Produsentgaranti</h4>
-      <p>Alle våre parfymer leveres som originale, fabrikkforseglede 100 ml utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt originalemballasje med sporbare batchkoder.</p>
-      <h4>Maksprisgaranti</h4>
-      <p>Hos Aromatix Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
-    `;
-  } else if (type === 'frakt') {
-    cat.textContent = isEn ? 'Shipping & Delivery' : 'Frakt & Levering';
-    heading.textContent = isEn ? 'Fast Delivery Across Norway' : 'Rask Levering i Hele Norge';
-    body.innerHTML = `
-      <h4>Leveringstid & Forsendelse</h4>
-      <p>Alle bestillinger pakkes og sendes innen 24 timer på virkedager fra vårt lager i Tøyengata 3, Oslo. Vi benytter Posten / Bring med full sporing på SMS og e-post.</p>
-      <ul>
-        <li><b>Sør- og Østlandet:</b> 1–2 virkedager</li>
-        <li><b>Vestlandet og Midt-Norge:</b> 2–3 virkedager</li>
-        <li><b>Nord-Norge:</b> 2–4 virkedager</li>
-      </ul>
-      <h4>Fraktpriser</h4>
-      <ul>
-        <li><b>Gratis frakt:</b> På alle bestillinger over 500 kr.</li>
-        <li><b>Fast lav frakt:</b> 59 kr for bestillinger under 500 kr.</li>
-        <li><b>Henting i butikk:</b> Alltid gratis i Tøyengata 3, 0190 Oslo (inside PakStar).</li>
-      </ul>
-    `;
-  } else if (type === 'retur') {
-    cat.textContent = isEn ? 'Returns & Rights' : 'Retur & Angrerett';
-    heading.textContent = isEn ? '14-Day Statutory Withdrawal' : '14 Dagers Lovfestet Angrerett';
-    body.innerHTML = `
-      <h4>Angrerett i henhold til Angrerettloven</h4>
-      <p>Som forbruker har du etter Angrerettloven 14 dagers ubetinget angrerett fra du mottar varen.</p>
-      <h4>Forseglede kosmetikkprodukter</h4>
-      <p>Av helsevern- og hygienemessige årsaker (Angrerettloven § 22 g) gjelder angreretten på kosmetikk og parfymer når flakongens originale fabrikkforsegling/cellofanforsegling ikke er brutt. Dersom forseglingen er brutt, kan varen dessverre ikke returneres.</p>
-      <h4>Returprosess</h4>
-      <p>Ta kontakt på <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> med ditt ordrenummer, så sender vi deg en returseddel. Refusjon utbetales til samme betalingsmiddel innen 5 virkedager etter mottatt og kontrollert retur.</p>
-    `;
-  } else if (type === 'vilkar') {
-    cat.textContent = isEn ? 'Terms of Service' : 'Kjøpsbetingelser & Personvern';
-    heading.textContent = isEn ? 'Terms & Consumer Protection' : 'Kjøpsvilkår & Forbrukervern';
-    body.innerHTML = `
-      <h4>Priser og Betaling</h4>
-      <p>Alle priser i butikken er oppgitt i norske kroner (NOK) inkludert 25 % merverdiavgift (MVA). Butikken garanterer at ingen parfyme koster mer enn 1 500 kr.</p>
-      <h4>Trygg Reservasjon & Betaling</h4>
-      <p>I forhåndsvisningsperioden opprettes bestillinger som reservasjonsordre. Betaling avtales og gjøres trygt med Vipps før varen overleveres eller sendes.</p>
-      <h4>Personvern (GDPR)</h4>
-      <p>Vi behandler dine personopplysninger (navn, e-post, telefon, adresse) kun for å håndtere og levere din bestilling. Vi deler aldri dine opplysninger med uvedkommende tredjeparter.</p>
-    `;
-  } else if (type === 'kontakt') {
-    cat.textContent = isEn ? 'Contact & Showroom' : 'Kontakt & Showroom';
-    heading.textContent = isEn ? 'Visit Us in Oslo' : 'Besøk Oss i Oslo';
-    body.innerHTML = `
-      <h4>Aromatix Oslo Showroom</h4>
-      <p>
-        📍 <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b><br>
-        Åpningstider: Mandag – Lørdag kl. 11:00 – 18:00
-      </p>
-      <h4>Kundeservice</h4>
-      <p>
-        E-post: <a href="mailto:hei@aromatix.no" style="color:var(--gold);text-decoration:underline">hei@aromatix.no</a> (Svar innen 24 timer alle hverdager)<br>
-        Telefon: +47 22 11 00 00<br>
-        Vipps Bedrift: Aromatix Oslo
-      </p>
-    `;
-  }
-  modal.showModal();
-};
-
-// ── Admin Panel ──
-const ADMIN_PIN = '4424';
-window.openAdmin = function() {
-  $('#adminPinModal').showModal();
-};
-window.handleAdminAuth = function(e) {
-  e.preventDefault();
-  const input = $('#adminPinInput').value.trim();
-  if (input === ADMIN_PIN || input === localStorage.getItem('arx_custom_pin')) {
-    $('#adminPinModal').close();
-    $('#adminPinInput').value = '';
-    $('#adminPinError').style.display = 'none';
-    renderAdminPanel();
-    $('#adminPanelModal').showModal();
-  } else {
-    $('#adminPinError').style.display = 'block';
-  }
-};
-
-window.switchAdminTab = function(tab) {
-  if (tab === 'catalog') {
-    $('#adminCatalogView').style.display = 'block';
-    $('#adminOrdersView').style.display = 'none';
-    $('#tabBtnCatalog').style.background = 'var(--gold)';
-    $('#tabBtnCatalog').style.color = '#05070b';
-    $('#tabBtnOrders').style.background = '#ffffff15';
-    $('#tabBtnOrders').style.color = '#fff';
-  } else {
-    $('#adminCatalogView').style.display = 'none';
-    $('#adminOrdersView').style.display = 'block';
-    $('#tabBtnOrders').style.background = 'var(--gold)';
-    $('#tabBtnOrders').style.color = '#05070b';
-    $('#tabBtnCatalog').style.background = '#ffffff15';
-    $('#tabBtnCatalog').style.color = '#fff';
-    renderAdminOrders();
-  }
-};
-
-function renderAdminPanel() {
-  if ($('#adminProductList')) {
-    $('#adminProductList').innerHTML = CATALOG.map(p => `
-      <div style="display:flex;align-items:center;justify-content:space-between;background:#ffffff06;border:1px solid var(--line);border-radius:8px;padding:.6rem .9rem;gap:.6rem">
-        <div style="display:flex;align-items:center;gap:.8rem">
-          <img src="${p.image}" style="width:36px;height:36px;object-fit:contain" alt="">
-          <div>
-            <b>${p.name}</b>
-            <div style="font-size:.72rem;color:var(--dim)">${p.brand} · 100 ml</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <span style="color:var(--gold);font-weight:500;font-size:.85rem">${nok(p.price)}</span>
-        </div>
-      </div>
-    `).join('');
-  }
-}
-
-function renderAdminOrders() {
-  const orders = JSON.parse(localStorage.getItem('arx_orders_v10') || '[]');
-  if ($('#adminOrdersList')) {
-    if (!orders.length) {
-      $('#adminOrdersList').innerHTML = '<p style="color:var(--dim);text-align:center;padding:2rem">Ingen bestillinger mottatt ennå.</p>';
-      return;
+// ── POLICY MODALS (100% BILINGUAL) ──
+const POLICIES = {
+  om: {
+    nb: {
+      cat: "Om Aromatix Oslo",
+      heading: "Kuratert Parfymeri i Oslo",
+      body: `
+        <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
+        <h4>Vår Filosofi</h4>
+        <p>Vi forener det beste fra to verdener: Vår egenproduserte, eksklusive nordiske serie <b>Svartfjord</b> (håndblandet og maserert i Oslo), kombinert med et håndplukket utvalg av verdens fremste orientalske mesterverk fra legendariske hus som Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
+        <h4>100% Original Produsentgaranti</h4>
+        <p>Alle våre parfymer leveres som originale, fabrikkforseglede 100 ml utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt originalemballasje med sporbare batchkoder.</p>
+        <h4>Maksprisgaranti</h4>
+        <p>Hos Aromatix Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+      `
+    },
+    en: {
+      cat: "About Aromatix Oslo",
+      heading: "Curated Perfumery in Oslo",
+      body: `
+        <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
+        <h4>Our Philosophy</h4>
+        <p>We unite the best of two worlds: Our signature Nordic series <b>Svartfjord</b> (handcrafted and aged in Oslo), alongside a hand-picked collection of the world's finest oriental masterworks from prestigious perfume houses such as Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, and Reef.</p>
+        <h4>100% Original Manufacturer Guarantee</h4>
+        <p>All our fragrances are supplied as original, factory-sealed 100 ml bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
+        <h4>Maximum Price Guarantee</h4>
+        <p>At Aromatix Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+      `
     }
-    $('#adminOrdersList').innerHTML = orders.map(o => `
-      <div style="background:#ffffff06;border:1px solid var(--line);border-radius:10px;padding:1rem;font-size:.82rem">
-        <div style="display:flex;justify-content:space-between;margin-bottom:.4rem">
-          <b>Ordre #${o.orderId}</b>
-          <span style="color:var(--gold);font-weight:600">${nok(o.total)}</span>
-        </div>
-        <div style="color:var(--dim);margin-bottom:.4rem">
-          ${new Date(o.date).toLocaleString('nb-NO')} · ${o.customer.name} (${o.customer.phone} · ${o.customer.email})
-        </div>
-        <div style="padding-left:.6rem;border-left:2px solid var(--gold)">
-          ${o.items.map(i => `${i.name} (100 ml x ${i.qty})`).join(', ')}
-        </div>
-      </div>
-    `).join('');
+  },
+  frakt: {
+    nb: {
+      cat: "Frakt & Levering",
+      heading: "Rask Levering i Hele Norge",
+      body: `
+        <h4>Leveringstid & Forsendelse</h4>
+        <p>Alle bestillinger pakkes og sendes innen 24 timer på virkedager fra vårt lager i Tøyengata 3, Oslo. Vi benytter Posten / Bring med full sporing på SMS og e-post.</p>
+        <ul>
+          <li><b>Sør- og Østlandet:</b> 1–2 virkedager</li>
+          <li><b>Vestlandet og Midt-Norge:</b> 2–3 virkedager</li>
+          <li><b>Nord-Norge:</b> 2–4 virkedager</li>
+        </ul>
+        <h4>Fraktpriser</h4>
+        <ul>
+          <li><b>Gratis frakt:</b> På alle bestillinger fra 500 kr.</li>
+          <li><b>Fast lav frakt:</b> 59 kr for bestillinger under 500 kr.</li>
+          <li><b>Henting i butikk:</b> Alltid gratis i Tøyengata 3, 0190 Oslo (inne hos PakStar).</li>
+        </ul>
+      `
+    },
+    en: {
+      cat: "Shipping & Delivery",
+      heading: "Fast Delivery Across Norway",
+      body: `
+        <h4>Dispatch & Delivery Times</h4>
+        <p>All orders are packed and dispatched within 24 hours on business days from our Oslo warehouse at Tøyengata 3. We ship via Posten / Bring with complete SMS and email tracking.</p>
+        <ul>
+          <li><b>Eastern & Southern Norway:</b> 1–2 business days</li>
+          <li><b>Western & Central Norway:</b> 2–3 business days</li>
+          <li><b>Northern Norway:</b> 2–4 business days</li>
+        </ul>
+        <h4>Shipping Rates</h4>
+        <ul>
+          <li><b>Free Shipping:</b> On all orders of 500 kr or more.</li>
+          <li><b>Standard Flat Rate:</b> 59 kr for orders under 500 kr.</li>
+          <li><b>Store Pickup:</b> Always free at Tøyengata 3, 0190 Oslo (inside PakStar).</li>
+        </ul>
+      `
+    }
+  },
+  retur: {
+    nb: {
+      cat: "Retur & Angrerett",
+      heading: "14 Dagers Lovfestet Angrerett",
+      body: `
+        <h4>Angrerett i henhold til Angrerettloven</h4>
+        <p>Som forbruker har du etter Angrerettloven 14 dagers ubetinget angrerett fra du mottar varen.</p>
+        <h4>Forseglede kosmetikkprodukter</h4>
+        <p>Av helsevern- og hygienemessige årsaker (Angrerettloven § 22 g) gjelder angreretten på kosmetikk og parfymer når flakongens originale fabrikkforsegling/cellofanforsegling ikke er brutt. Dersom forseglingen er brutt, kan varen dessverre ikke returneres.</p>
+        <h4>Returprosess</h4>
+        <p>Ta kontakt på <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> med ditt ordrenummer, så sender vi deg en returseddel. Refusjon utbetales til samme betalingsmiddel innen 5 virkedager etter mottatt og kontrollert retur.</p>
+      `
+    },
+    en: {
+      cat: "Returns & Rights",
+      heading: "14-Day Statutory Withdrawal Right",
+      body: `
+        <h4>Right of Withdrawal under Norwegian Consumer Law</h4>
+        <p>As a consumer, you are entitled to a 14-day statutory cooling-off period from the date of package delivery.</p>
+        <h4>Sealed Cosmetic Products</h4>
+        <p>In accordance with health protection and hygiene regulations (Norwegian Cancellation Act § 22 g), perfumes are eligible for return only if the original manufacturer cellophane seal remains unbroken. Opened cosmetic items cannot be returned.</p>
+        <h4>Return Procedure</h4>
+        <p>Contact our support desk at <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> citing your order reference. We will provide a return shipping label. Refunds are processed within 5 business days following return inspection.</p>
+      `
+    }
+  },
+  vilkar: {
+    nb: {
+      cat: "Kjøpsbetingelser & Personvern",
+      heading: "Kjøpsvilkår & Forbrukervern",
+      body: `
+        <h4>Priser og Betaling</h4>
+        <p>Alle priser i butikken er oppgitt i norske kroner (NOK) inkludert 25 % merverdiavgift (MVA). Butikken garanterer at ingen parfyme koster mer enn 1 500 kr.</p>
+        <h4>Trygg Reservasjon & Betaling</h4>
+        <p>I forhåndsvisningsperioden opprettes bestillinger som reservasjonsordre. Betaling avtales og gjøres trygt med Vipps før varen overleveres eller sendes.</p>
+        <h4>Personvern (GDPR)</h4>
+        <p>Vi behandler dine personopplysninger (navn, e-post, telefon, adresse) kun for å håndtere og levere din bestilling. Vi deler aldri dine opplysninger med uvedkommende tredjeparter.</p>
+      `
+    },
+    en: {
+      cat: "Terms & Privacy",
+      heading: "Purchase Terms & Consumer Protection",
+      body: `
+        <h4>Pricing & Currency</h4>
+        <p>All prices in the store are quoted in Norwegian Kroner (NOK), inclusive of 25% VAT (MVA). No fragrance exceeds 1 500 kr.</p>
+        <h4>Reservation Inquiries</h4>
+        <p>During the current store phase, orders are created as reservation inquiries. Payment is settled securely via Vipps prior to handover or parcel dispatch.</p>
+        <h4>Data Privacy (GDPR)</h4>
+        <p>We process customer contact information strictly to manage and fulfill your fragrance reservations. Your information is never disclosed to third parties.</p>
+      `
+    }
+  },
+  kontakt: {
+    nb: {
+      cat: "Kontakt & Showroom",
+      heading: "Besøk Oss i Oslo",
+      body: `
+        <h4>Aromatix Oslo Showroom</h4>
+        <p>
+          📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
+          Åpningstider: Mandag – Lørdag kl. 11:00 – 18:00
+        </p>
+        <h4>Kundeservice</h4>
+        <p>
+          E-post: <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> (Svar innen 24 timer på virkedager)<br>
+          Telefon: +47 22 11 00 00<br>
+          Vipps Bedrift: Aromatix Oslo
+        </p>
+      `
+    },
+    en: {
+      cat: "Contact & Showroom",
+      heading: "Visit Us in Oslo",
+      body: `
+        <h4>Aromatix Oslo Showroom</h4>
+        <p>
+          📍 <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b><br>
+          Opening Hours: Monday – Saturday 11:00 – 18:00
+        </p>
+        <h4>Customer Support</h4>
+        <p>
+          Email: <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> (Response within 24h on business days)<br>
+          Phone: +47 22 11 00 00<br>
+          Vipps Business: Aromatix Oslo
+        </p>
+      `
+    }
   }
-}
-
-window.exportCatalogJson = function() {
-  const blob = new Blob([JSON.stringify(CATALOG, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'aromatix_catalog_100ml.json';
-  a.click();
 };
 
-window.resetToDefaultCatalog = function() {
-  if (confirm('Nullstill katalogen til standard 30 parfymer (100 ml, maks 1500 kr)?')) {
-    localStorage.removeItem('arx_catalog_v10');
-    CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    renderStore();
-    renderAdminPanel();
-  }
+window.openPolicy = function(type) {
+  const p = POLICIES[type];
+  if (!p) return;
+  const content = p[LANG] || p.nb;
+  if ($('#policyCategory')) $('#policyCategory').textContent = content.cat;
+  if ($('#policyHeading')) $('#policyHeading').textContent = content.heading;
+  if ($('#policyBody')) $('#policyBody').innerHTML = content.body;
+  $('#policyModal')?.showModal();
+};
+window.closePolicy = function() {
+  $('#policyModal')?.close();
 };
 
-window.clearOrdersLog = function() {
-  if (confirm('Tøm alle lagrede kundeordrer?')) {
-    localStorage.removeItem('arx_orders_v10');
-    renderAdminOrders();
-  }
-};
-
-// ── Newsletter Form ──
+// ── NEWSLETTER HANDLER ──
 window.handleNewsletter = function(e) {
   e.preventDefault();
-  const email = $('#newsletterEmail').value.trim();
-  if (!email) return;
-  try {
-    const subs = JSON.parse(localStorage.getItem('arx_newsletter_v10') || '[]');
-    if (!subs.includes(email)) subs.push(email);
-    localStorage.setItem('arx_newsletter_v10', JSON.stringify(subs));
-  } catch(e) {}
-  $('#newsletterEmail').value = '';
-  $('#newsletterMsg').textContent = LANG === 'en' ? 'Thank you! You are subscribed.' : 'Takk! Du er nå påmeldt nyhetsbrevet.';
-  $('#newsletterMsg').style.display = 'block';
+  const input = $('#newsEmail');
+  const fb = $('#newsFeedback');
+  if (!input || !fb) return;
+  const isEn = LANG === 'en';
+  fb.textContent = isEn ? 'Thank you! Your subscription inquiry has been noted (Demo Mode).' : 'Takk! Din registrering er mottatt (Demonstrasjonsmodus).';
+  fb.style.display = 'block';
+  input.value = '';
 };
 
-// ── Language Switcher ──
+// ── LANGUAGE SWITCHING SYSTEM ──
 function setLanguage(lang) {
-  LANG = lang;
-  localStorage.setItem('arx_lang', lang);
-  document.documentElement.lang = lang;
+  LANG = (lang === 'en') ? 'en' : 'nb';
+  try {
+    localStorage.setItem('arx_lang', LANG);
+  } catch(e) {}
+  document.documentElement.lang = LANG;
 
-  const isEn = lang === 'en';
-  if ($('#langFlag')) $('#langFlag').textContent = isEn ? '🇬🇧' : '🇳🇴';
-  if ($('#langCode')) $('#langCode').textContent = isEn ? 'EN' : 'NO';
+  // Toggle active button class
+  if ($('#langNbBtn')) $('#langNbBtn').classList.toggle('active', LANG === 'nb');
+  if ($('#langEnBtn')) $('#langEnBtn').classList.toggle('active', LANG === 'en');
 
-  // Update text
-  const t = I18N[lang] || I18N.no;
-  if ($('#bannerOffer')) $('#bannerOffer').textContent = t.banner;
+  const t = I18N[LANG];
+
+  // Document metadata
+  document.title = t.pageTitle;
+  const metaDesc = $('#metaDesc');
+  if (metaDesc) metaDesc.setAttribute('content', t.metaDesc);
+
+  // Skip Link & Intro
+  if ($('#skipLink')) $('#skipLink').textContent = t.skipLink;
+  if ($('#introHint')) $('#introHint').textContent = t.introHint;
+  if ($('#skipIntroBtn')) $('#skipIntroBtn').textContent = t.skipIntro;
+  if ($('#lblReplayHeader')) $('#lblReplayHeader').textContent = t.replayIntro;
+
+  // Header
+  if ($('#bannerOffer')) $('#bannerOffer').innerHTML = t.banner;
   if ($('#headerTagline')) $('#headerTagline').textContent = t.tagline;
   if ($('#navFragrances')) $('#navFragrances').textContent = t.navFragrances;
-  if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
-  if ($('#navShipping')) $('#navShipping').textContent = t.navShipping;
-  if ($('#navReturns')) $('#navReturns').textContent = t.navReturns;
+  if ($('#navStory')) $('#navStory').textContent = t.navStory;
+  if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
-  if ($('#cartLabel')) $('#cartLabel').textContent = isEn ? 'Bag' : 'Kurv';
-  if ($('#heroEye')) $('#heroEye').textContent = t.heroEye;
-  if ($('#heroTitle')) $('#heroTitle').innerHTML = t.heroTitle;
-  if ($('#heroDesc')) $('#heroDesc').textContent = t.heroDesc;
-  if ($('#heroShopBtn')) $('#heroShopBtn').textContent = t.heroShopBtn;
-  if ($('#hold')) $('#hold').textContent = t.heroHold;
+  if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
+
+  // Mobile nav
+  if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.navFragrances;
+  if ($('#mobNavStory')) $('#mobNavStory').textContent = t.navStory;
+  if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.navShowroom;
+  if ($('#mobNavContact')) $('#mobNavContact').textContent = t.navContact;
+  if ($('#mobNavReplay')) $('#mobNavReplay').textContent = `✨ ${t.replayIntro}`;
+
+  // Collection
+  if ($('#colTag')) $('#colTag').textContent = t.colTag;
   if ($('#colTitle')) $('#colTitle').textContent = t.colTitle;
   if ($('#colSub')) $('#colSub').textContent = t.colSub;
-  if ($('#volDescText')) $('#volDescText').textContent = t.volDesc;
-  if ($('#stockBadge')) $('#stockBadge').textContent = t.stock;
-  if ($('#add')) $('#add').textContent = t.addBtn;
-  if ($('#add2')) $('#add2').textContent = t.addBtn;
-  if ($('#galleryTitle')) $('#galleryTitle').textContent = t.galleryTitle;
-  if ($('#gallerySubtitle')) $('#gallerySubtitle').textContent = t.gallerySub;
+  if ($('#colGuaranteeBadge')) $('#colGuaranteeBadge').textContent = t.colGuaranteeBadge;
+
+  // Filters
+  if ($('#lblFilterBrand')) $('#lblFilterBrand').textContent = t.lblFilterBrand;
+  if ($('#optBrandAll')) $('#optBrandAll').textContent = t.optBrandAll;
+  if ($('#lblFilterScent')) $('#lblFilterScent').textContent = t.lblFilterScent;
+  if ($('#optScentAll')) $('#optScentAll').textContent = t.optScentAll;
+  if ($('#optScentOud')) $('#optScentOud').textContent = t.optScentOud;
+  if ($('#optScentAmber')) $('#optScentAmber').textContent = t.optScentAmber;
+  if ($('#optScentGourmand')) $('#optScentGourmand').textContent = t.optScentGourmand;
+  if ($('#optScentCitrus')) $('#optScentCitrus').textContent = t.optScentCitrus;
+  if ($('#optScentMusk')) $('#optScentMusk').textContent = t.optScentMusk;
+  if ($('#optScentFloral')) $('#optScentFloral').textContent = t.optScentFloral;
+  if ($('#lblFilterSort')) $('#lblFilterSort').textContent = t.lblFilterSort;
+  if ($('#optSortFeatured')) $('#optSortFeatured').textContent = t.optSortFeatured;
+  if ($('#optSortPriceAsc')) $('#optSortPriceAsc').textContent = t.optSortPriceAsc;
+  if ($('#optSortPriceDesc')) $('#optSortPriceDesc').textContent = t.optSortPriceDesc;
+  if ($('#optSortNameAsc')) $('#optSortNameAsc').textContent = t.optSortNameAsc;
+  if ($('#lblFilterSearch')) $('#lblFilterSearch').textContent = t.lblFilterSearch;
+  if ($('#catalogSearchInput')) $('#catalogSearchInput').placeholder = t.searchPlaceholder;
+
+  // Svartfjord story
+  if ($('#sfTag')) $('#sfTag').textContent = t.sfTag;
+  if ($('#sfTitle')) $('#sfTitle').textContent = t.sfTitle;
+  if ($('#sfDesc')) $('#sfDesc').textContent = t.sfDesc;
+  if ($('#hold')) $('#hold').textContent = t.sfHold;
+  if ($('#pyrTag')) $('#pyrTag').textContent = t.pyrTag;
+  if ($('#pyrTitle')) $('#pyrTitle').textContent = t.pyrTitle;
+  if ($('#pyrTier1')) $('#pyrTier1').textContent = t.pyrTier1;
+  if ($('#pyrHead1')) $('#pyrHead1').textContent = t.pyrHead1;
+  if ($('#pyrDesc1')) $('#pyrDesc1').textContent = t.pyrDesc1;
+  if ($('#pyrTier2')) $('#pyrTier2').textContent = t.pyrTier2;
+  if ($('#pyrHead2')) $('#pyrHead2').textContent = t.pyrHead2;
+  if ($('#pyrDesc2')) $('#pyrDesc2').textContent = t.pyrDesc2;
+  if ($('#pyrTier3')) $('#pyrTier3').textContent = t.pyrTier3;
+  if ($('#pyrHead3')) $('#pyrHead3').textContent = t.pyrHead3;
+  if ($('#pyrDesc3')) $('#pyrDesc3').textContent = t.pyrDesc3;
+
+  // Nature & stats
+  if ($('#natTag')) $('#natTag').textContent = t.natTag;
+  if ($('#natTitle')) $('#natTitle').textContent = t.natTitle;
+  if ($('#natDesc')) $('#natDesc').textContent = t.natDesc;
+  if ($('#stat1')) $('#stat1').textContent = t.stat1;
+  if ($('#stat2')) $('#stat2').textContent = t.stat2;
+  if ($('#stat3')) $('#stat3').textContent = t.stat3;
+  if ($('#stat4')) $('#stat4').textContent = t.stat4;
+
+  // Showroom
+  if ($('#srTag')) $('#srTag').textContent = t.srTag;
+  if ($('#srTitle')) $('#srTitle').textContent = t.srTitle;
+  if ($('#srDesc')) $('#srDesc').textContent = t.srDesc;
+  if ($('#srHours')) $('#srHours').textContent = t.srHours;
+  if ($('#srBoxTitle')) $('#srBoxTitle').textContent = t.srBoxTitle;
+  if ($('#srBoxDesc')) $('#srBoxDesc').textContent = t.srBoxDesc;
+  if ($('#srBoxBtn')) $('#srBoxBtn').textContent = t.srBoxBtn;
+
+  // Newsletter
+  if ($('#newsTitle')) $('#newsTitle').textContent = t.newsTitle;
+  if ($('#newsDesc')) $('#newsDesc').textContent = t.newsDesc;
+  if ($('#newsBtn')) $('#newsBtn').textContent = t.newsBtn;
+  if ($('#newsEmail')) $('#newsEmail').placeholder = t.newsPlaceholder;
+
+  // Cart labels
   if ($('#cartHeading')) $('#cartHeading').textContent = t.cartTitle;
   if ($('#cartSubtotalLabel')) $('#cartSubtotalLabel').textContent = t.cartSubtotal;
   if ($('#cartShippingLabel')) $('#cartShippingLabel').textContent = t.cartShipping;
   if ($('#cartTotalLabel')) $('#cartTotalLabel').textContent = t.cartTotal;
   if ($('#openCheckout')) $('#openCheckout').textContent = t.checkoutBtn;
 
+  // Checkout labels
+  if ($('#checkoutHeading')) $('#checkoutHeading').textContent = t.checkoutTitle;
+  if ($('#checkoutEye')) $('#checkoutEye').textContent = t.checkoutEye;
+  if ($('#noticeBoxTitle')) $('#noticeBoxTitle').textContent = t.noticeBoxTitle;
+  if ($('#noticeBoxText')) $('#noticeBoxText').textContent = t.noticeBoxText;
+  if ($('#lblOrderName')) $('#lblOrderName').textContent = t.lblOrderName;
+  if ($('#lblOrderEmail')) $('#lblOrderEmail').textContent = t.lblOrderEmail;
+  if ($('#lblOrderPhone')) $('#lblOrderPhone').textContent = t.lblOrderPhone;
+  if ($('#lblOrderDelivery')) $('#lblOrderDelivery').textContent = t.lblOrderDelivery;
+  if ($('#optDeliveryPickup')) $('#optDeliveryPickup').textContent = t.optDeliveryPickup;
+  if ($('#optDeliveryPosten')) $('#optDeliveryPosten').textContent = t.optDeliveryPosten;
+  if ($('#lblOrderStreet')) $('#lblOrderStreet').textContent = t.lblOrderStreet;
+  if ($('#lblOrderPostal')) $('#lblOrderPostal').textContent = t.lblOrderPostal;
+  if ($('#lblOrderCity')) $('#lblOrderCity').textContent = t.lblOrderCity;
+  if ($('#btnSubmitOrder')) $('#btnSubmitOrder').textContent = t.btnSubmitOrder;
+
+  // Confirmation
+  if ($('#confBadge')) $('#confBadge').textContent = t.confBadge;
+  if ($('#confHeading')) $('#confHeading').textContent = t.confTitle;
+  if ($('#confSub')) $('#confSub').textContent = t.confSub;
+  if ($('#confNextSteps')) $('#confNextSteps').textContent = t.confNextSteps;
+  if ($('#btnPrintReceipt')) $('#btnPrintReceipt').textContent = t.btnPrintReceipt;
+  if ($('#btnCloseConf')) $('#btnCloseConf').textContent = t.btnCloseConf;
+
+  // Product detail modal labels
+  if ($('#lblTopNotes')) $('#lblTopNotes').textContent = t.lblTopNotes;
+  if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = t.lblHeartNotes;
+  if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = t.lblBaseNotes;
+  if ($('#detailModalAddBtn')) $('#detailModalAddBtn').textContent = t.detailAddBtn;
+  if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
+  if ($('#detailGuaranteeText')) $('#detailGuaranteeText').textContent = t.detailGuaranteeText;
+
+  // Footer
+  if ($('#footerAboutText')) $('#footerAboutText').textContent = t.footerAboutText;
+  if ($('#footerNavTitle')) $('#footerNavTitle').textContent = t.footerNavTitle;
+  if ($('#footerPolicyTitle')) $('#footerPolicyTitle').textContent = t.footerPolicyTitle;
+  if ($('#footerContactTitle')) $('#footerContactTitle').textContent = t.footerContactTitle;
+  if ($('#footerCopyright')) $('#footerCopyright').textContent = t.footerCopyright;
+  if ($('#ftHours')) $('#ftHours').textContent = t.srHours;
+  if ($('#ftNavFragrances')) $('#ftNavFragrances').textContent = t.navFragrances;
+  if ($('#ftNavStory')) $('#ftNavStory').textContent = t.navStory;
+  if ($('#ftNavShowroom')) $('#ftNavShowroom').textContent = t.navShowroom;
+  if ($('#ftNavReplay')) $('#ftNavReplay').textContent = `✨ ${t.replayIntro}`;
+
+  // Update open detail modal if active
+  const openModal = $('#productDetailModal');
+  if (openModal && openModal.open && S.currentProductId) {
+    const curP = CATALOG.find(item => item.id === S.currentProductId);
+    if (curP) updateProductDetailModalContent(curP);
+  }
+
   renderStore();
   renderCart();
 }
-
-$('#langToggleBtn')?.addEventListener('click', () => {
-  setLanguage(LANG === 'no' ? 'en' : 'no');
-});
+window.setLanguage = setLanguage;
 
 window.toggleMobileNav = function() {
   $('#mobileNav')?.classList.toggle('open');
 };
-$('#navToggleBtn')?.addEventListener('click', toggleMobileNav);
 
-// ── Filter Controls Listeners ──
+// ── ADMIN PANEL ──
+const ADMIN_PIN = '4424';
+window.openAdmin = function() {
+  $('#adminPinModal')?.showModal();
+};
+window.handleAdminAuth = function(e) {
+  e.preventDefault();
+  const input = $('#adminPinInput').value.trim();
+  if (input === ADMIN_PIN || input === localStorage.getItem('arx_custom_pin')) {
+    $('#adminPinModal')?.close();
+    renderAdminPanel();
+    $('#adminPanelModal')?.showModal();
+  } else {
+    const err = $('#adminPinError');
+    if (err) err.style.display = 'block';
+  }
+};
+function renderAdminPanel() {
+  const list = $('#adminProductList');
+  if (!list) return;
+  list.innerHTML = CATALOG.map(p => `
+    <div style="background:#070b12;border:1px solid var(--line);border-radius:10px;padding:.9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem">
+      <div style="display:flex;align-items:center;gap:.8rem">
+        <img src="${p.image}" style="width:40px;height:40px;object-fit:contain;background:#ffffff05;border-radius:6px">
+        <div>
+          <b>${escapeHtml(p.name)}</b> <span style="font-size:.76rem;color:var(--dim)">(${escapeHtml(p.brand)} · 100 ml)</span>
+          <div style="color:var(--gold);font-size:.85rem">${nok(p.price)}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <input type="number" min="100" max="1500" value="${p.price}" id="admPrice_${p.id}" style="width:90px;padding:.4rem;font-size:.85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px">
+        <button type="button" class="cta" style="padding:.45rem .85rem;font-size:.74rem" onclick="saveAdminPrice('${p.id}')">Lagre</button>
+      </div>
+    </div>
+  `).join('');
+}
+window.saveAdminPrice = function(id) {
+  const inp = $(`#admPrice_${id}`);
+  if (!inp) return;
+  const newPrice = Math.min(1500, Math.max(100, parseInt(inp.value, 10) || 1190));
+  const p = CATALOG.find(item => item.id === id);
+  if (p) {
+    p.price = newPrice;
+    localStorage.setItem('arx_custom_catalog_v10', JSON.stringify(CATALOG));
+    renderStore();
+    renderCart();
+    alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
+  }
+};
+
+// ── EVENT LISTENERS INITIALIZATION ──
 $('#filterBrand')?.addEventListener('change', e => {
   activeBrand = e.target.value;
   renderStore();
@@ -2562,9 +3592,6 @@ $('#filterScent')?.addEventListener('change', e => {
 $('#filterSort')?.addEventListener('change', e => {
   activeSort = e.target.value;
   renderStore();
-});
-$('#filterPerfumeSelect')?.addEventListener('change', e => {
-  selectProduct(e.target.value);
 });
 $('#catalogSearchInput')?.addEventListener('input', e => {
   searchQuery = e.target.value.trim();
@@ -2578,40 +3605,24 @@ $('#clearSearchBtn')?.addEventListener('click', () => {
   renderStore();
 });
 
-// Gallery Card Click delegation
-$('#flaconGalleryGrid')?.addEventListener('click', e => {
-  const card = e.target.closest('[data-gallery-id]');
-  if (card) {
-    selectProduct(card.dataset.galleryId);
-    $('#stage')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-});
-
-// Quantity controls
-$('button[data-q="-1"]')?.addEventListener('click', () => {
-  if (S.qty > 1) { S.qty--; $('#q').textContent = S.qty; }
-});
-$('button[data-q="1"]')?.addEventListener('click', () => {
-  S.qty++; $('#q').textContent = S.qty;
-});
-$('#add')?.addEventListener('click', addToCart);
-$('#add2')?.addEventListener('click', addToCart);
-
-// ── Cart Toggle & Backdrop Dismiss ──
 $('#cartToggleBtn')?.addEventListener('click', e => {
   e.preventDefault();
   window.toggleCart();
 });
-$('#cart')?.addEventListener('click', e => {
-  const rect = $('#cart').getBoundingClientRect();
-  const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-    rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-  if (!isInDialog) {
-    window.closeCart();
-  }
+
+// Backdrop Dismiss on all dialogs
+$$('dialog').forEach(d => {
+  d.addEventListener('click', e => {
+    const rect = d.getBoundingClientRect();
+    const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+    if (!isInDialog) {
+      d.close();
+    }
+  });
 });
 
-// Flacon Hold Animation
+// Flacon Hold Uncork
 let holdTimer = null;
 const holdBtn = $('#hold');
 function uncork() {
@@ -2625,118 +3636,35 @@ window.addEventListener('pointerup', () => {
 });
 $('#flacon')?.addEventListener('click', uncork);
 
-// ── Ambient Sound Synthesizer ──
-let actx=null, birdOn=false, birdTimer=null;
-function initAudio() {
-  if(!actx) actx = new(window.AudioContext||window.webkitAudioContext)();
-}
-function chirp() {
-  if (!actx) return;
-  if (actx.state === 'suspended') actx.resume();
-  const now = actx.currentTime;
-  const notes = Math.floor(Math.random() * 3) + 2;
-  for (let i = 0; i < notes; i++) {
-    const t = now + i * (0.065 + Math.random() * 0.04);
-    const osc = actx.createOscillator(), g = actx.createGain();
-    const base = 2400 + Math.random() * 800, peak = base + 1200 + Math.random() * 600;
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(base, t);
-    osc.frequency.exponentialRampToValueAtTime(peak, t + 0.025);
-    osc.frequency.exponentialRampToValueAtTime(base - 400, t + 0.055);
-    g.gain.setValueAtTime(0.001, t);
-    g.gain.linearRampToValueAtTime(0.04, t + 0.01);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
-    osc.connect(g); g.connect(actx.destination);
-    osc.start(t); osc.stop(t + 0.075);
-  }
-}
-$('#audioToggleBtn')?.addEventListener('click', () => {
-  initAudio();
-  birdOn = !birdOn;
-  $('#audioToggleBtn').classList.toggle('on', birdOn);
-  $('#audioLabel').textContent = birdOn ? (LANG === 'en' ? 'Sound: On' : 'Lyd: På') : (LANG === 'en' ? 'Sound' : 'Lyd');
-  if (birdOn) {
-    chirp();
-    birdTimer = setInterval(() => { if (birdOn && Math.random() > .25) chirp(); }, 3400);
-  } else {
-    clearInterval(birdTimer);
-  }
-});
-
-// ── Realistic Waterfall Canvas with Offscreen Pause ──
-const wcv = $('#waterfall-canvas');
-let wcx = wcv ? wcv.getContext('2d') : null;
-let ww = 0, wh = 0, streams = [], sprays = [], isHeroVisible = true;
-
-if (wcv && wcx) {
-  const wfit = () => {
-    ww = wcv.width = wcv.clientWidth;
-    wh = wcv.height = wcv.clientHeight;
-    initWaterfall();
-  };
-  window.addEventListener('resize', wfit);
-  function initWaterfall() {
-    streams = []; sprays = [];
-    const cnt = Math.min(80, Math.floor(ww / 15));
-    for (let i = 0; i < cnt; i++) {
-      streams.push({
-        x: Math.random() * ww,
-        y: Math.random() * wh,
-        l: Math.random() * 80 + 35,
-        v: Math.random() * 6 + 4,
-        w: Math.random() * 1.6 + .5,
-        a: Math.random() * .3 + .1,
-        g: Math.random() > .75
-      });
-    }
-  }
-  function loopWaterfall() {
-    if (isHeroVisible && document.visibilityState === 'visible') {
-      wcx.clearRect(0, 0, ww, wh);
-      for (let s of streams) {
-        s.y += s.v;
-        if (s.y > wh) {
-          s.y = -s.l; s.x = Math.random() * ww;
-        }
-        const grad = wcx.createLinearGradient(s.x, s.y, s.x, s.y + s.l);
-        if (s.g) {
-          grad.addColorStop(0, 'rgba(201,169,110,0)');
-          grad.addColorStop(1, `rgba(235,210,165,${s.a})`);
-        } else {
-          grad.addColorStop(0, 'rgba(137,207,240,0)');
-          grad.addColorStop(1, `rgba(225,245,255,${s.a})`);
-        }
-        wcx.strokeStyle = grad; wcx.lineWidth = s.w;
-        wcx.beginPath(); wcx.moveTo(s.x, s.y); wcx.lineTo(s.x, s.y + s.l); wcx.stroke();
-      }
-    }
-    requestAnimationFrame(loopWaterfall);
-  }
-  wfit();
-  requestAnimationFrame(loopWaterfall);
-
-  // Performance optimization: Pause when hero is scrolled out of view
-  const heroEl = document.querySelector('.hero');
-  if (heroEl && window.IntersectionObserver) {
-    const obs = new IntersectionObserver(entries => {
-      isHeroVisible = entries[0].isIntersecting;
-    }, { threshold: 0.05 });
-    obs.observe(heroEl);
-  }
-}
-
-// ── Startup & Initialization ──
+// ── STARTUP & INITIALIZATION SEQUENCE ──
+// 1. Load cart
 loadCart();
+// 2. Set language (resolves text before intro/store display)
 setLanguage(LANG);
+// 3. Decide whether intro should play
+const params = new URLSearchParams(window.location.search);
+const forceIntro = params.get('intro') === '1' || params.get('replay') === '1';
+const skipIntro = params.get('nointro') === '1';
+const seen = sessionStorage.getItem('arx_intro_seen');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Direct URL param on boot
-const bootParams = new URLSearchParams(window.location.search);
-if (bootParams.has('prod')) {
-  selectProduct(bootParams.get('prod'));
+if (skipIntro || (!forceIntro && (seen || reducedMotion))) {
+  finishIntro();
+} else {
+  const introEl = $('#intro');
+  if (introEl) {
+    introEl.classList.add('go');
+    introTimer = setTimeout(finishIntro, 2500);
+  } else {
+    finishIntro();
+  }
 }
 
-// Ready flag
-document.documentElement.className = 'ready';
+// 4. Handle direct product URL parameter without pushing new history state
+if (params.has('prod')) {
+  const prodId = params.get('prod');
+  openProductDetail(prodId, false);
+}
 </script>
 </body>
 </html>
