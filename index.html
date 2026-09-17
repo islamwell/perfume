@@ -98,10 +98,11 @@ try {
 
 .modal-img-container {
   width: 100%;
-  max-width: 320px;
-  height: 290px;
+  max-width: 280px;
+  height: 250px;
   position: relative;
   overflow: hidden;
+  display: block;
   margin: 0 auto;
   border-radius: 1rem;
   background: radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
@@ -356,34 +357,29 @@ nav.main-nav a:hover{color:var(--gold)}
 
 .header-actions{display:flex;align-items:center;gap:.6rem}
 
-/* Bilingual Switcher: Norsk | English */
-.lang-switch{
-  display:inline-flex;
-  align-items:center;
+/* Single Flag Language Switcher */
+.lang-flag-btn{
   background:rgba(255,255,255,0.06);
   border:1px solid var(--line);
+  color:var(--ice);
   border-radius:99px;
-  padding:.25rem .55rem;
-  font-size:.72rem;
-  gap:.35rem;
-}
-.lang-choice{
-  background:none;
-  border:0;
-  color:var(--dim);
-  font:inherit;
+  padding:.35rem .65rem;
+  font-size:1.15rem;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   cursor:pointer;
-  padding:.15rem .35rem;
-  border-radius:99px;
-  transition:all .2s;
+  transition:all .2s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.lang-choice:hover{color:var(--ice)}
-.lang-choice.active{
-  color:#070b12;
-  background:var(--gold);
-  font-weight:600;
+.lang-flag-btn:hover{
+  background:rgba(201,169,110,0.14);
+  border-color:var(--gold);
+  transform:scale(1.08);
+  box-shadow:0 0 12px rgba(201,169,110,0.25);
 }
-.lang-sep{color:var(--line);font-size:.68rem}
+.lang-flag-btn:active{transform:scale(0.95)}
+.lang-flag-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 .action-btn{
   background:rgba(255,255,255,0.06);
@@ -590,9 +586,7 @@ nav.main-nav a:hover{color:var(--gold)}
   height:180px;
   position:relative;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:block;
   margin-bottom:.8rem;
   cursor:pointer;
   border-radius:.8rem;
@@ -693,9 +687,7 @@ nav.main-nav a:hover{color:var(--gold)}
   text-align:center;
 }
 .modal-img-container{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:block;
   width:100%;
   max-width:280px;
   height:250px;
@@ -1181,15 +1173,13 @@ footer{
     </nav>
 
     <div class="header-actions">
-      <!-- Visible Language Switcher: Norsk | English -->
-      <div class="lang-switch" role="group" aria-label="Språkvelger">
-        <button type="button" class="lang-choice active" id="langNbBtn" onclick="setLanguage('nb')">Norsk</button>
-        <span class="lang-sep">|</span>
-        <button type="button" class="lang-choice" id="langEnBtn" onclick="setLanguage('en')">English</button>
-      </div>
+      <!-- Single Flag Language Switcher (toggles Norwegian / English) -->
+      <button type="button" class="lang-flag-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Bytt språk / Switch language" title="Bytt språk (Norsk / English)">
+        <span id="langFlagEmoji">🇳🇴</span>
+      </button>
 
-      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Se åpningsanimasjon på nytt">
-        <span>✨</span> <span id="lblReplayHeader">Se intro</span>
+      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Intro">
+        <span>✨</span> <span id="lblReplayHeader">Intro</span>
       </button>
 
       <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv">
@@ -1205,7 +1195,10 @@ footer{
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
     <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
-    <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Se intro på nytt</button>
+    <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Intro</button>
+    <button type="button" onclick="toggleLanguage();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavLang">
+      <span id="mobLangFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
+    </button>
   </div>
 </header>
 
@@ -1533,13 +1526,112 @@ footer{
   </form>
 </dialog>
 
-<dialog id="adminPanelModal" class="dialog-box" style="max-width:54rem;max-height:88vh;overflow-y:auto">
+<dialog id="adminPanelModal" class="dialog-box" style="max-width:56rem;max-height:90vh;overflow-y:auto">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="tagline-small">Kurator Atelier (Admin)</p>
+    <div>
+      <p class="tagline-small">Kurator Atelier (Admin)</p>
+      <h3 style="margin:.2rem 0;font-size:1.3rem;color:var(--ice)">Katalogadministrasjon</h3>
+    </div>
     <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem;display:block">✕</button>
   </div>
-  <p style="font-size:.84rem;color:var(--dim);margin-bottom:1.5rem">Administrer katalogen. Maksimal pris er 1 500 kr og alle flasker standardiseres til 100 ml.</p>
+  <p style="font-size:.84rem;color:var(--dim);margin-bottom:1rem">
+    Rediger priser direkte eller klikk «✏️ Rediger detaljer» for å endre tittel, merke, duftnoter, beskrivelse og bilder. Alle endringer lagres umiddelbart.
+  </p>
+
+  <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
+    <input type="text" id="adminSearchInp" placeholder="Søk blant 30 parfymer..." oninput="filterAdminList(this.value)"
+      style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
+    <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
+      ↺ Tilbakestill til standardkatalog
+    </button>
+  </div>
+
   <div id="adminProductList" style="display:grid;gap:.8rem"></div>
+</dialog>
+
+<dialog id="adminEditDetailModal" class="dialog-box" style="max-width:44rem;max-height:90vh;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem">
+    <div>
+      <p class="tagline-small">Admin Redigering</p>
+      <h3 style="margin:.2rem 0;font-size:1.25rem;color:var(--ice)">Rediger Parfymedetaljer</h3>
+    </div>
+    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminEditDetailModal').close()" style="font-size:1.2rem;display:block">✕</button>
+  </div>
+  
+  <form id="adminEditDetailForm" onsubmit="saveAdminProductDetails(event)" style="display:flex;flex-direction:column;gap:1rem">
+    <input type="hidden" id="editAdmId">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Parfymenavn</label>
+        <input type="text" id="editAdmName" required style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.88rem">
+      </div>
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Produsent / Hus</label>
+        <input type="text" id="editAdmBrand" required style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.88rem">
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Pris i NOK (Maks 1 500)</label>
+        <input type="number" id="editAdmPrice" min="100" max="1500" required style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.88rem">
+      </div>
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Duftkategori / Familie</label>
+        <select id="editAdmCategory" style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.88rem">
+          <option value="oud">Oud & Treaktig</option>
+          <option value="amber">Amber & Varm</option>
+          <option value="gourmand">Gourmand & Kaffe</option>
+          <option value="citrus">Frisk & Sitrus</option>
+          <option value="musk">Arktisk & Moskus</option>
+          <option value="floral">Blomstret & Søt</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Kort undertittel / Karakter</label>
+      <input type="text" id="editAdmSubtitle" style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.88rem">
+    </div>
+
+    <div style="display:grid;gap:.7rem;background:#070c14;border:1px solid var(--line);border-radius:10px;padding:1rem">
+      <div style="font-size:.78rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase">Duftpyramide (Noter)</div>
+      <div>
+        <label style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:.2rem">Toppnoter</label>
+        <input type="text" id="editAdmTopNotes" style="width:100%;padding:.5rem .7rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;font:inherit;font-size:.84rem">
+      </div>
+      <div>
+        <label style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:.2rem">Hjertenoter</label>
+        <input type="text" id="editAdmHeartNotes" style="width:100%;padding:.5rem .7rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;font:inherit;font-size:.84rem">
+      </div>
+      <div>
+        <label style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:.2rem">Bunnoter</label>
+        <input type="text" id="editAdmBaseNotes" style="width:100%;padding:.5rem .7rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;font:inherit;font-size:.84rem">
+      </div>
+    </div>
+
+    <div>
+      <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Beskrivelse / Kuratorfortelling</label>
+      <textarea id="editAdmStory" rows="3" style="width:100%;padding:.6rem .8rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font:inherit;font-size:.84rem;line-height:1.5;resize:vertical"></textarea>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+      <div>
+        <label style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:.2rem">Flakong-bilde (URL / sti)</label>
+        <input type="text" id="editAdmImage" style="width:100%;padding:.5rem .7rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;font:inherit;font-size:.82rem">
+      </div>
+      <div>
+        <label style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:.2rem">Eske-bilde (URL / sti)</label>
+        <input type="text" id="editAdmImageBox" style="width:100%;padding:.5rem .7rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;font:inherit;font-size:.82rem">
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:.8rem;margin-top:.8rem">
+      <button type="button" class="card-btn btn-details" onclick="document.getElementById('adminEditDetailModal').close()" style="padding:.6rem 1.2rem">Avbryt</button>
+      <button type="submit" class="cta" style="padding:.6rem 1.4rem">Lagre endringer</button>
+    </div>
+  </form>
 </dialog>
 
 <!-- ================= 11. FOOTER ================= -->
@@ -1595,7 +1687,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.22 (updated 2026-09-17 16:10)
+        v1.0.23 (updated 2026-09-17 18:05)
       </div>
     </div>
   </div>
@@ -2620,7 +2712,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v21');
+  const custom = localStorage.getItem('arx_custom_catalog_v23') || localStorage.getItem('arx_custom_catalog_v21');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -2635,7 +2727,7 @@ const I18N = {
     skipLink: "Hopp til parfymer (100 ml)",
     introHint: "Feel As Good As You Smell · 30 Utvalgte Flakonger",
     skipIntro: "Hopp over",
-    replayIntro: "Se intro",
+    replayIntro: "Intro",
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
     tagline: "",
     navFragrances: "Våre Parfymer",
@@ -2757,7 +2849,7 @@ const I18N = {
     skipLink: "Skip to fragrances (100 ml)",
     introHint: "Feel As Good As You Smell · 30 Selected Bottles",
     skipIntro: "Skip intro",
-    replayIntro: "Replay intro",
+    replayIntro: "Intro",
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
     tagline: "",
     navFragrances: "Our Fragrances",
@@ -3634,9 +3726,25 @@ function setLanguage(lang) {
   } catch(e) {}
   document.documentElement.lang = LANG;
 
-  // Toggle active button class
-  if ($('#langNbBtn')) $('#langNbBtn').classList.toggle('active', LANG === 'nb');
-  if ($('#langEnBtn')) $('#langEnBtn').classList.toggle('active', LANG === 'en');
+  // Update single flag button
+  const flagEl = $('#langFlagEmoji');
+  if (flagEl) {
+    flagEl.textContent = (LANG === 'en') ? '🇬🇧' : '🇳🇴';
+  }
+  const langToggleBtn = $('#langToggleBtn');
+  if (langToggleBtn) {
+    const titleText = (LANG === 'en') ? 'Switch to Norwegian (Bytt til norsk)' : 'Bytt til engelsk (Switch to English)';
+    langToggleBtn.title = titleText;
+    langToggleBtn.setAttribute('aria-label', titleText);
+  }
+  const mobFlagEl = $('#mobLangFlagEmoji');
+  if (mobFlagEl) {
+    mobFlagEl.textContent = (LANG === 'en') ? '🇬🇧' : '🇳🇴';
+  }
+  const mobLangText = $('#mobNavLangText');
+  if (mobLangText) {
+    mobLangText.textContent = (LANG === 'en') ? 'Bytt til Norsk (Switch to Norwegian)' : 'Bytt til English (Switch to English)';
+  }
 
   const t = I18N[LANG];
 
@@ -3801,6 +3909,10 @@ function setLanguage(lang) {
   renderCart();
 }
 window.setLanguage = setLanguage;
+window.toggleLanguage = function() {
+  const nextLang = (LANG === 'nb') ? 'en' : 'nb';
+  setLanguage(nextLang);
+};
 
 window.toggleMobileNav = function() {
   $('#mobileNav')?.classList.toggle('open');
@@ -3823,25 +3935,58 @@ window.handleAdminAuth = function(e) {
     if (err) err.style.display = 'block';
   }
 };
+
+let adminSearchTerm = '';
+window.filterAdminList = function(val) {
+  adminSearchTerm = (val || '').toLowerCase().trim();
+  renderAdminPanel();
+};
+
 function renderAdminPanel() {
   const list = $('#adminProductList');
   if (!list) return;
-  list.innerHTML = CATALOG.map(p => `
-    <div style="background:#070b12;border:1px solid var(--line);border-radius:10px;padding:.9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem">
-      <div style="display:flex;align-items:center;gap:.8rem">
-        <img src="${p.image}" style="width:40px;height:40px;object-fit:contain;background:#ffffff05;border-radius:6px">
+
+  const items = CATALOG.filter(p => {
+    if (!adminSearchTerm) return true;
+    return (p.name || '').toLowerCase().includes(adminSearchTerm) ||
+           (p.brand || '').toLowerCase().includes(adminSearchTerm) ||
+           (p.house || '').toLowerCase().includes(adminSearchTerm) ||
+           (p.notes?.top || '').toLowerCase().includes(adminSearchTerm) ||
+           (p.notes?.heart || '').toLowerCase().includes(adminSearchTerm) ||
+           (p.notes?.base || '').toLowerCase().includes(adminSearchTerm);
+  });
+
+  if (items.length === 0) {
+    list.innerHTML = `<p style="color:var(--dim);padding:2rem;text-align:center">Ingen parfymer passer til søket «${escapeHtml(adminSearchTerm)}».</p>`;
+    return;
+  }
+
+  list.innerHTML = items.map(p => `
+    <div style="background:#070b12;border:1px solid var(--line);border-radius:10px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.9rem;min-width:240px;flex:1">
+        <img src="${p.image}" alt="${escapeHtml(p.name)}" style="width:44px;height:44px;object-fit:contain;background:#ffffff05;border-radius:8px;padding:2px;border:1px solid var(--line)"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'44\' height=\'44\' viewBox=\'0 0 44 44\'%3E%3Crect width=\'44\' height=\'44\' fill=\'%23080d15\'/%3E%3C/svg%3E'">
         <div>
-          <b>${escapeHtml(p.name)}</b> <span style="font-size:.76rem;color:var(--dim)">(${escapeHtml(p.brand)} · 100 ml)</span>
-          <div style="color:var(--gold);font-size:.85rem">${nok(p.price)}</div>
+          <b style="color:var(--ice);font-size:.92rem">${escapeHtml(p.name)}</b>
+          <div style="font-size:.75rem;color:var(--dim)">${escapeHtml(p.house || p.brand)} · 100 ml</div>
+          <div style="color:var(--gold);font-size:.82rem;margin-top:.1rem">${nok(p.price)}</div>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:.6rem">
-        <input type="number" min="100" max="1500" value="${p.price}" id="admPrice_${p.id}" style="width:90px;padding:.4rem;font-size:.85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px">
-        <button type="button" class="cta" style="padding:.45rem .85rem;font-size:.74rem" onclick="saveAdminPrice('${p.id}')">Lagre</button>
+      <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:.4rem">
+          <input type="number" min="100" max="1500" value="${p.price}" id="admPrice_${p.id}"
+            style="width:85px;padding:.45rem .5rem;font-size:.85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;text-align:center"
+            aria-label="Pris for ${escapeHtml(p.name)}">
+          <button type="button" class="cta" style="padding:.45rem .85rem;font-size:.74rem" onclick="saveAdminPrice('${p.id}')">Lagre pris</button>
+        </div>
+        <button type="button" class="card-btn btn-details" style="padding:.45rem .85rem;font-size:.74rem;display:flex;align-items:center;gap:.3rem" onclick="openAdminProductEdit('${p.id}')">
+          ✏️ Rediger detaljer
+        </button>
       </div>
     </div>
   `).join('');
 }
+
 window.saveAdminPrice = function(id) {
   const inp = $(`#admPrice_${id}`);
   if (!inp) return;
@@ -3849,10 +3994,80 @@ window.saveAdminPrice = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (p) {
     p.price = newPrice;
-    localStorage.setItem('arx_custom_catalog_v17', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
+    renderAdminPanel();
     alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
+  }
+};
+
+window.openAdminProductEdit = function(id) {
+  const p = CATALOG.find(item => item.id === id);
+  if (!p) return;
+  $('#editAdmId').value = p.id;
+  $('#editAdmName').value = p.name || '';
+  $('#editAdmBrand').value = p.house || p.brand || '';
+  $('#editAdmPrice').value = p.price || 1190;
+  $('#editAdmCategory').value = p.category || 'oud';
+  $('#editAdmSubtitle').value = p.subtitle || '';
+  $('#editAdmTopNotes').value = p.notes?.top || '';
+  $('#editAdmHeartNotes').value = p.notes?.heart || '';
+  $('#editAdmBaseNotes').value = p.notes?.base || '';
+  $('#editAdmStory').value = p.story || p.desc || '';
+  $('#editAdmImage').value = p.image || '';
+  $('#editAdmImageBox').value = p.image_box || '';
+  $('#adminEditDetailModal')?.showModal();
+};
+
+window.saveAdminProductDetails = function(e) {
+  e.preventDefault();
+  const id = $('#editAdmId').value;
+  const p = CATALOG.find(item => item.id === id);
+  if (!p) return;
+
+  p.name = $('#editAdmName').value.trim();
+  const brandVal = $('#editAdmBrand').value.trim();
+  p.brand = brandVal;
+  p.house = brandVal;
+  p.price = Math.min(1500, Math.max(100, parseInt($('#editAdmPrice').value, 10) || 1190));
+  p.category = $('#editAdmCategory').value;
+  p.subtitle = $('#editAdmSubtitle').value.trim();
+  p.notes = {
+    top: $('#editAdmTopNotes').value.trim(),
+    heart: $('#editAdmHeartNotes').value.trim(),
+    base: $('#editAdmBaseNotes').value.trim()
+  };
+  p.story = $('#editAdmStory').value.trim();
+  p.desc = p.story;
+  if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
+  if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
+
+  localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
+  renderStore();
+  renderCart();
+  renderAdminPanel();
+
+  const openModal = $('#productDetailModal');
+  if (openModal && openModal.open && S.currentProductId === id) {
+    updateProductDetailModalContent(p);
+  }
+
+  $('#adminEditDetailModal')?.close();
+  alert(`Endringer lagret for ${p.name}!`);
+};
+
+window.resetAdminCatalogToDefaults = function() {
+  if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v23');
+    localStorage.removeItem('arx_custom_catalog_v21');
+    localStorage.removeItem('arx_custom_catalog_v17');
+    CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+    localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
+    renderStore();
+    renderCart();
+    renderAdminPanel();
+    alert('Katalogen er tilbakestilt til standardkatalogen.');
   }
 };
 
