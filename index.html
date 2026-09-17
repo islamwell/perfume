@@ -138,7 +138,7 @@ try {
   --ember:#e06b3a;
   --pad:clamp(1.2rem,4vw,3.5rem);
   --radius:1.2rem;
-  --T:2.4s;
+  --T:5.8s;
   --E:cubic-bezier(.62,.02,.2,1);
 }
 
@@ -215,7 +215,7 @@ html.ready .intro{display:none!important}
 #mo .glass{
   fill:url(#mg);
   fill-opacity:0;
-  animation:morph var(--T) var(--E) both,pour 1s 1.05s ease-out both;
+  animation:morph var(--T) var(--E) both,pour 2.2s 2.2s ease-out both;
 }
 #mo .edge{
   fill:none;
@@ -225,9 +225,9 @@ html.ready .intro{display:none!important}
   stroke-dasharray:1;
   stroke-dashoffset:1;
   filter:drop-shadow(0 0 8px oklch(.79 .12 78/.7));
-  animation:morph var(--T) var(--E) both,draw 1.2s ease-in-out both,cool .6s 1.6s ease-in both;
+  animation:morph var(--T) var(--E) both,draw 2.6s ease-in-out both,cool 1.2s 3.8s ease-in both;
 }
-#mo .cap{animation:capIn .7s 1.5s var(--E) both}
+#mo .cap{animation:capIn 1.2s 3.2s var(--E) both}
 
 .intro .mark{
   font:300 clamp(1.6rem,6.5vw,2.6rem)/1 var(--sans);
@@ -235,7 +235,7 @@ html.ready .intro{display:none!important}
   letter-spacing:.32em;
   text-indent:.32em;
   z-index:4;
-  animation:tighten 1s 1.2s var(--E) both;
+  animation:tighten 1.8s 2.2s var(--E) both;
 }
 .intro .mark b{color:var(--gold);font-weight:400}
 .intro .hint{
@@ -244,7 +244,7 @@ html.ready .intro{display:none!important}
   letter-spacing:.15em;
   text-transform:uppercase;
   z-index:4;
-  animation:tighten 1s 1.45s var(--E) both;
+  animation:tighten 1.8s 3.0s var(--E) both;
 }
 .intro .skip-btn{
   position:absolute;
@@ -1541,7 +1541,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.17 (updated 2026-09-17 12:15)
+        v1.0.18 (updated 2026-09-17 12:18)
       </div>
     </div>
   </div>
@@ -2892,7 +2892,7 @@ function replayIntro() {
   introEl.classList.add('go');
   window.scrollTo({ top: 0, behavior: 'instant' });
   $('#skipIntroBtn')?.focus();
-  introTimer = setTimeout(finishIntro, 2500);
+  introTimer = setTimeout(finishIntro, 6000);
 }
 window.replayIntro = replayIntro;
 
@@ -3857,7 +3857,7 @@ if (skipIntro || (!forceIntro && (seen || reducedMotion))) {
   const introEl = $('#intro');
   if (introEl) {
     introEl.classList.add('go');
-    introTimer = setTimeout(finishIntro, 2500);
+    introTimer = setTimeout(finishIntro, 6000);
   } else {
     finishIntro();
   }
