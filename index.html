@@ -22,7 +22,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <!-- Head Guard: Instant skip on repeat visits, reduced motion, or no-JS. Force replay with ?intro=1 or ?replay=1 -->
-<script>try{if(location.search.includes('nointro')||(sessionStorage.getItem('sf-seen-v1.0.11')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
+<script>try{if(location.search.includes('nointro')||(sessionStorage.getItem('sf-seen-v1.0.12')&&!location.search.includes('replay')&&!location.search.includes('intro'))||matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.className='ready'}catch(e){}</script>
 <noscript><style>html.booting{overflow:visible}.intro{display:none}html.booting :is(.hero .up,.flacon,#smoke){opacity:1!important}</style></noscript>
 
 <style>
@@ -238,8 +238,9 @@ details p{font-size:.82rem;color:var(--dim);margin-top:.5rem;line-height:1.6}
 .buybar .cta{width:auto;padding:.75rem 1.4rem;font-size:.75rem}
 
 /* ── POPUPS & DRAWERS ── */
-.sheet{position:fixed;inset-block:0;inset-inline:auto 0;width:min(94vw,28rem);background:#070b12;border:0;border-left:1px solid var(--line);color:var(--ice);padding:1.8rem var(--pad);display:flex;flex-direction:column;box-shadow:-20px 0 60px #000c;z-index:90}
-.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
+dialog.sheet{position:fixed;inset-block:0;inset-inline-start:auto;inset-inline-end:0;margin:0 0 0 auto;width:min(94vw,28rem);height:100dvh;max-height:100dvh;background:#070b12;border:0;border-left:1px solid var(--line);color:var(--ice);padding:1.8rem var(--pad);display:flex;flex-direction:column;box-shadow:-20px 0 60px #000c;z-index:100;box-sizing:border-box}
+dialog.sheet:not([open]){display:none!important}
+dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
 .cart-items-list{flex:1;overflow-y:auto;display:grid;gap:1rem;margin:1.4rem 0;padding-right:.4rem}
 .cart-item-row{display:grid;grid-template-columns:55px 1fr auto;gap:.8rem;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.85rem}
 .cart-item-thumb{width:55px;height:55px;object-fit:contain;background:#ffffff05;border-radius:8px;padding:.2rem}
@@ -314,7 +315,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
       <button class="audio-btn" id="audioToggleBtn" aria-label="Slå på fuglesang og atmosfære">
         <span>♪</span> <span id="audioLabel">Lyd</span>
       </button>
-      <button class="cartbtn" id="cartToggleBtn" popovertarget="cart" aria-label="Åpne handlekurv">
+      <button class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv">
         <span id="cartLabel">Kurv</span> <b id="cartBadge">0</b>
       </button>
       <button class="nav-toggle" id="navToggleBtn" aria-label="Åpne mobilmeny">☰</button>
@@ -597,11 +598,11 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
   <button class="cta" id="add2">Legg i kurv</button>
 </div>
 
-<!-- Cart Popover Drawer -->
-<div id="cart" popover class="sheet" role="dialog" aria-labelledby="cartHeading">
+<!-- Cart Drawer (Modal Dialog) -->
+<dialog id="cart" class="sheet" aria-labelledby="cartHeading">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <h3 id="cartHeading" style="font-size:1.4rem">Handlekurv</h3>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('cart').hidePopover()" style="font-size:1.2rem" aria-label="Lukk kurv">✕</button>
+    <button type="button" class="clear-search-btn" onclick="closeCart()" style="font-size:1.2rem" aria-label="Lukk kurv">✕</button>
   </div>
   
   <div class="cart-items-list" id="cartList"></div>
@@ -621,7 +622,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
     </div>
     <button class="cta" id="openCheckout" style="width:100%">Gå til kassen (Reservasjon)</button>
   </div>
-</div>
+</dialog>
 
 <!-- Checkout Modal (Transparent Preview & Order Inquiry) -->
 <dialog id="checkoutModal" class="dialog-box" aria-labelledby="checkoutHeading">
@@ -821,7 +822,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem var(--pad) 6.5rem;display
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div style="font-family:monospace;color:var(--gold);background:#ffffff08;padding:.3rem .75rem;border-radius:99px;border:1px solid var(--line)">
-        v1.0.11 (updated 2026-09-17 00:32)
+        v1.0.12 (updated 2026-09-17 06:22)
       </div>
     </div>
   </div>
@@ -2056,7 +2057,7 @@ function renderCart() {
         <div style="text-align:center;padding:3rem 1rem;color:var(--dim)">
           <div style="font-size:2rem;margin-bottom:.5rem">🛍️</div>
           <p>${isEn ? 'Your shopping bag is empty.' : 'Handlekurven din er tom.'}</p>
-          <a href="#kjop" onclick="document.getElementById('cart').hidePopover()" class="cta" style="margin-top:1.2rem;display:inline-block">
+          <a href="#kjop" onclick="closeCart()" class="cta" style="margin-top:1.2rem;display:inline-block">
             ${isEn ? 'Browse fragrances' : 'Se alle parfymer'}
           </a>
         </div>
@@ -2154,16 +2155,27 @@ window.addToCart = function() {
 };
 
 window.openCart = function() {
-  try { $('#cart')?.showPopover(); } catch(e) {}
+  const c = $('#cart');
+  if (c && !c.open) c.showModal();
 };
 window.closeCart = function() {
-  try { $('#cart')?.hidePopover(); } catch(e) {}
+  const c = $('#cart');
+  if (c && c.open) c.close();
+};
+window.toggleCart = function() {
+  const c = $('#cart');
+  if (!c) return;
+  if (c.open) {
+    c.close();
+  } else {
+    c.showModal();
+  }
 };
 
 // ── Checkout & Order Inquiry ──
 window.openCheckout = function() {
   if (!S.lines.length) return;
-  try { $('#cart')?.hidePopover(); } catch(e) {}
+  window.closeCart();
   
   // Render checkout pre-order summary
   let subtotal = S.lines.reduce((s, i) => s + i.price * i.qty, 0);
@@ -2584,6 +2596,20 @@ $('button[data-q="1"]')?.addEventListener('click', () => {
 });
 $('#add')?.addEventListener('click', addToCart);
 $('#add2')?.addEventListener('click', addToCart);
+
+// ── Cart Toggle & Backdrop Dismiss ──
+$('#cartToggleBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  window.toggleCart();
+});
+$('#cart')?.addEventListener('click', e => {
+  const rect = $('#cart').getBoundingClientRect();
+  const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+    rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+  if (!isInDialog) {
+    window.closeCart();
+  }
+});
 
 // Flacon Hold Animation
 let holdTimer = null;
