@@ -1136,7 +1136,7 @@ footer{
     <nav class="main-nav">
       <a href="#kjop" id="navFragrances">Våre Parfymer</a>
       <a href="#showroom" id="navShowroom">Showroom</a>
-      <button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om Oss</button>
+      <button type="button" onclick="openPolicy(\'om\')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om</button>
       <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
     </nav>
 
@@ -1163,7 +1163,7 @@ footer{
   <div class="mobile-nav" id="mobileNav">
     <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (30 flakonger)</a>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om Oss</button>
+    <button type="button" onclick="openPolicy(\'om\');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Se intro på nytt</button>
   </div>
@@ -1289,23 +1289,16 @@ footer{
         <img id="detailModalImg" class="modal-packshot-img" src="" alt=""
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
       </div>
-      <div class="modal-gallery-thumbs" role="group" aria-label="Velg bilde">
-        <button type="button" class="thumb-btn active" id="modalThumbBottle" onclick="switchModalView('bottle')">
-          <span>🍾</span> <span id="lblThumbBottle">Flakong</span>
-        </button>
-        <button type="button" class="thumb-btn" id="modalThumbBox" onclick="switchModalView('box')">
-          <span>📦</span> <span id="lblThumbBox">Originaleske</span>
-        </button>
-      </div>
+      
       <div class="packaging-guarantee-badge" id="boxGuaranteeBadge">
-        🔒 100% Original, uåpnet fabrikkemballasje med batchkode
+        100% original, og produsenten endrer eske- og flakongdesign fra tid til annen
       </div>
     </div>
 
     <div class="modal-info-wrap">
       <h2 id="detailModalTitle" style="font-family:var(--serif);font-size:1.8rem;font-weight:400;line-height:1.2">Parfymenavn</h2>
       <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
-        <span class="version-pill" id="detailModalVol">100 ml · Eau de Parfum</span>
+        <span class="version-pill" id="detailModalVol">100 ml</span>
         <span style="font-size:.74rem;color:#4ade80" id="detailModalStock">● På lager (Oslo · Tøyengata 3)</span>
       </div>
 
@@ -1337,12 +1330,12 @@ footer{
           <span class="cqty-num" id="modalQtyNum">1</span>
           <button type="button" class="cqty-btn" onclick="adjustModalQty(1)">+</button>
         </div>
-        <button type="button" class="cta" style="flex:1" id="detailModalAddBtn" onclick="addModalProductToCart()">Legg i handlekurv</button>
+        <button type="button" class="cta" style="flex:1" id="detailModalAddBtn" onclick="addModalProductToCart()">Legg til</button>
       </div>
 
       <div style="border-top:1px solid var(--line);margin-top:.8rem;padding-top:.8rem;font-size:.74rem;color:var(--dim);line-height:1.4">
         🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.</span><br>
-        🛡️ <span id="detailGuaranteeText">100% original produsentgaranti i forseglet 100 ml flakong. 14 dagers angrerett.</span>
+        🛡️ <span id="detailGuaranteeText">100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</span>
       </div>
     </div>
   </div>
@@ -1543,11 +1536,12 @@ footer{
   </div>
 
   <div class="footer-bottom">
+    <p id="footerDisclaimer" style="font-size:.76rem;color:var(--dim);margin-bottom:.5rem;text-align:center">⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</p>
     <p id="footerCopyright">© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)</p>
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.16 (updated 2026-09-17 08:45)
+        v1.0.17 (updated 2026-09-17 12:15)
       </div>
     </div>
   </div>
@@ -1556,7 +1550,7 @@ footer{
 <!-- Sticky Mobile Buy Bar -->
 <div class="buybar" id="mobileBuyBar">
   <small id="bname">Armaf Club de Nuit Intense Man · 100 ml<br><b id="bprice" style="color:#fff">499 kr</b></small>
-  <button class="cta" id="add2" onclick="quickAddToCart(S.currentProductId)">Legg i kurv</button>
+  <button class="cta" id="add2" onclick="quickAddToCart(S.currentProductId)">Legg til</button>
 </div>
 
 <script>
@@ -1568,20 +1562,19 @@ const DEFAULT_CATALOG = [
     "brand": "Armaf",
     "house": "Sterling Perfumes",
     "name": "Armaf Club de Nuit Intense Man",
-    "edition": "The Intense · 100 ml",
-    "edition_en": "The Intense · 100 ml",
-    "subtitle": "Woody Spicy · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "The Intense \u00b7 100 ml",
+    "edition_en": "The Intense \u00b7 100 ml",
+    "subtitle": "Woody Spicy",
     "scentFamily": "citrus",
-    "desc": "Ikonisk og kraftfull treaktig-krydret mesterduft fra Armaf by Sterling Perfumes. Åpner med sprudlende sitron og solbær over røyket bjørk, ambra og forførende vanilje.",
+    "desc": "Ikonisk og kraftfull treaktig-krydret mesterduft fra Armaf by Sterling Perfumes. \u00c5pner med sprudlende sitron og solb\u00e6r over r\u00f8yket bj\u00f8rk, ambra og forf\u00f8rende vanilje.",
     "desc_en": "Iconic and commanding woody-spicy fragrance from Armaf by Sterling Perfumes. Opens with crisp lemon and blackcurrant over smoky birch, ambergris, and seductive vanilla.",
-    "story": "Kjent verden over som \"The Intense\" fra Armaf by Sterling Perfumes. En legendarisk duft kjent for sin enorme projeksjon, sofistikerte eleganse og uimotståelige tilstedeværelse.",
+    "story": "Kjent verden over som \"The Intense\" fra Armaf by Sterling Perfumes. En legendarisk duft kjent for sin enorme projeksjon, sofistikerte eleganse og uimotst\u00e5elige tilstedev\u00e6relse.",
     "story_en": "World-renowned as \"The Intense\" from Armaf by Sterling Perfumes. A legendary signature recognized for immense projection, sophisticated elegance, and undeniable presence.",
     "price": 499,
     "size": "100 ml",
     "notes": {
-      "top": "Sitron, bergamott, solbær, ananas, eple",
-      "heart": "Bjørk, sjasmin, rose",
+      "top": "Sitron, bergamott, solb\u00e6r, ananas, eple",
+      "heart": "Bj\u00f8rk, sjasmin, rose",
       "base": "Ambra, moskus, patchouli, vanilje",
       "top_en": "Lemon, bergamot, blackcurrant, pineapple, apple",
       "heart_en": "Birch, jasmine, rose",
@@ -1604,19 +1597,18 @@ const DEFAULT_CATALOG = [
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Force",
-    "edition": "Luksusutgave · 100 ml",
-    "edition_en": "Luxury Edition · 100 ml",
-    "subtitle": "Fruity Amber · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Luksusutgave \u00b7 100 ml",
+    "edition_en": "Luxury Edition \u00b7 100 ml",
+    "subtitle": "Fruity Amber",
     "scentFamily": "citrus",
-    "desc": "En moderne og oppsiktsvekkende triumf fra Reef Perfumes. Røde bær, granateple og karamell hviler over et hjerte av lotus og ren hvit moskus.",
+    "desc": "En moderne og oppsiktsvekkende triumf fra Reef Perfumes. R\u00f8de b\u00e6r, granateple og karamell hviler over et hjerte av lotus og ren hvit moskus.",
     "desc_en": "A captivating modern triumph from Reef Perfumes. Crisp red berries, pomegranate, and caramel unfold over a heart of lotus and pure white musk.",
-    "story": "Reef Force representerer styrke, karisma og moderne eleganse. Leveres i et markant sølvkabinett med matchende metallisk luksuspresentasjonseske.",
+    "story": "Reef Force representerer styrke, karisma og moderne eleganse. Leveres i et markant s\u00f8lvkabinett med matchende metallisk luksuspresentasjonseske.",
     "story_en": "Reef Force embodies poise, charisma, and modern elegance. Encased in a commanding silver flacon with a matching metallic presentation box.",
     "price": 1390,
     "size": "100 ml",
     "notes": {
-      "top": "Røde bær, granateple, yuzu, karamell",
+      "top": "R\u00f8de b\u00e6r, granateple, yuzu, karamell",
       "heart": "Magnolia, lotus, peon",
       "base": "Hvit moskus, ambra",
       "top_en": "Red berries, pomegranate, yuzu, caramel",
@@ -1639,14 +1631,13 @@ const DEFAULT_CATALOG = [
     "brand": "Lattafa",
     "house": "Lattafa Pride",
     "name": "Lattafa Pride Royal Sapphire",
-    "edition": "Pride Kolleksjon · 100 ml",
-    "edition_en": "Pride Collection · 100 ml",
-    "subtitle": "Floral Amber · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Pride Kolleksjon \u00b7 100 ml",
+    "edition_en": "Pride Collection \u00b7 100 ml",
+    "subtitle": "Floral Amber",
     "scentFamily": "floral",
     "desc": "Juvelen i Lattafa Pride-kolleksjonen. Sprudlende mandarin og safran over damaskrose, sjasmin og kongelig ambra.",
     "desc_en": "The crown jewel of the Lattafa Pride collection. Sparkling mandarin and saffron opening into damascena rose, jasmine, and royal ambergris.",
-    "story": "Kjent som Lattafas mest luksuriøse safirduft. Leveres i en dyp safirblå krystallflakong med forgylte ornamenter og eksklusiv luksuseske.",
+    "story": "Kjent som Lattafas mest luksuri\u00f8se safirduft. Leveres i en dyp safirbl\u00e5 krystallflakong med forgylte ornamenter og eksklusiv luksuseske.",
     "story_en": "Renowned as Lattafa's most opulent sapphire fragrance. Encased in a royal sapphire blue crystal flacon with gold filigree and a matching luxury presentation box.",
     "price": 650,
     "size": "100 ml",
@@ -1672,20 +1663,19 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-khamrah.png",
     "brand": "Lattafa",
     "name": "Lattafa Khamrah",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Gourmand Warm Amber · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Gourmand Warm Amber",
     "scentFamily": "gourmand",
-    "desc": "En overdådig orientalsk gourmand med søt kanel, saftige dadler, fyldig pralin og edle tresorter.",
+    "desc": "En overd\u00e5dig orientalsk gourmand med s\u00f8t kanel, saftige dadler, fyldig pralin og edle tresorter.",
     "desc_en": "A lavish oriental gourmand featuring sweet cinnamon, luscious dates, rich praline, and precious woods.",
     "story": "Lattafas mest feirede klassiker. Varm, omsluttende og krystallaktig luksus for spesielle kvelder.",
-    "story_en": "Lattafa’s most celebrated masterpiece. Warm, intoxicating, and crystal-cut luxury designed to last.",
+    "story_en": "Lattafa\u2019s most celebrated masterpiece. Warm, intoxicating, and crystal-cut luxury designed to last.",
     "price": 590,
     "notes": {
       "top": "Kanel, muskat, bergamott",
       "heart": "Dadler, praline, tuberose, mahogni",
-      "base": "Vanilje, tonkabønne, benzoin, myrra, ambra, akigalawood",
+      "base": "Vanilje, tonkab\u00f8nne, benzoin, myrra, ambra, akigalawood",
       "top_en": "Cinnamon, nutmeg, bergamot",
       "heart_en": "Dates, praline, tuberose, mahonial",
       "base_en": "Vanilla, tonka bean, benzoin, myrrh, amberwood, akigalawood"
@@ -1706,20 +1696,19 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-khamrah-qahwa.png",
     "brand": "Lattafa",
     "name": "Lattafa Khamrah Qahwa",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Arabic Coffee & Warm Praline · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Arabic Coffee & Warm Praline",
     "scentFamily": "gourmand",
-    "desc": "Mørk brent arabisk kaffe flettet sammen med ingefær, kanel, praline, kandisert frukt og fløyelsmyk vanilje.",
+    "desc": "M\u00f8rk brent arabisk kaffe flettet sammen med ingef\u00e6r, kanel, praline, kandisert frukt og fl\u00f8yelsmyk vanilje.",
     "desc_en": "Dark roasted Arabic coffee intertwined with ginger, cinnamon, praline, candied fruits, and velvety vanilla.",
-    "story": "En hyllest til den tradisjonelle arabiske kaffeseremonien. Varm, aromatisk og uimotståelig dybde.",
+    "story": "En hyllest til den tradisjonelle arabiske kaffeseremonien. Varm, aromatisk og uimotst\u00e5elig dybde.",
     "story_en": "A tribute to the traditional Arabic coffee ceremony. Warm, intensely aromatic, with irresistible depth.",
     "price": 620,
     "notes": {
-      "top": "Ingefær, kanelbark, kardemomme",
+      "top": "Ingef\u00e6r, kanelbark, kardemomme",
       "heart": "Praline, kandiserte frukter, hvite blomster",
-      "base": "Arabisk kaffe, tonkabønne, benzoin, vanilje, musk",
+      "base": "Arabisk kaffe, tonkab\u00f8nne, benzoin, vanilje, musk",
       "top_en": "Ginger, cinnamon bark, cardamom",
       "heart_en": "Praline, candied fruits, white flowers",
       "base_en": "Arabic coffee, tonka bean, benzoin, vanilla, musk"
@@ -1740,20 +1729,19 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-asad.png",
     "brand": "Lattafa",
     "name": "Lattafa Asad",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Black Pepper, Tobacco & Warm Amber · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Black Pepper, Tobacco & Warm Amber",
     "scentFamily": "amber",
-    "desc": "Maskulin kraft med svart pepper, ananas, kaffe, tobakksblader, tørt treverk og rik ambra.",
+    "desc": "Maskulin kraft med svart pepper, ananas, kaffe, tobakksblader, t\u00f8rt treverk og rik ambra.",
     "desc_en": "Commanding masculinity with black pepper, pineapple, coffee, cured tobacco, dry woods, and rich amber.",
-    "story": "Asad betyr løve på arabisk. En uredd og sofistikert signaturduft for den moderne mannen.",
+    "story": "Asad betyr l\u00f8ve p\u00e5 arabisk. En uredd og sofistikert signaturduft for den moderne mannen.",
     "story_en": "Asad means lion in Arabic. A fearless, sophisticated signature for the discerning gentleman.",
     "price": 490,
     "notes": {
       "top": "Svart pepper, ananas, tobakksblad",
       "heart": "Kaffe, irisrot, patchouli",
-      "base": "Ambra, vanilje, tørre tresorter, benzoin, labdanum",
+      "base": "Ambra, vanilje, t\u00f8rre tresorter, benzoin, labdanum",
       "top_en": "Black pepper, pineapple, tobacco leaf",
       "heart_en": "Coffee, orris root, patchouli",
       "base_en": "Amber, vanilla, dry woods, benzoin, labdanum"
@@ -1774,20 +1762,19 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-asad-zanzibar.png",
     "brand": "Lattafa",
     "name": "Lattafa Asad Zanzibar",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Marine Sea Salt & Coconut Vanilla · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Marine Sea Salt & Coconut Vanilla",
     "scentFamily": "citrus",
-    "desc": "Det indiske hav møter saltet kokosnøttvann, aromatisk lavendel, iris og røykfylt øy-vanilje.",
+    "desc": "Det indiske hav m\u00f8ter saltet kokosn\u00f8ttvann, aromatisk lavendel, iris og r\u00f8ykfylt \u00f8y-vanilje.",
     "desc_en": "Freshness of the Indian Ocean meets salted coconut water, aromatic lavender, and smoky island vanilla.",
-    "story": "En eksotisk odyssé inspirert av kystbrisen over krydderøya Zanzibar ved solnedgang.",
+    "story": "En eksotisk odyss\u00e9 inspirert av kystbrisen over krydder\u00f8ya Zanzibar ved solnedgang.",
     "story_en": "An exotic odyssey inspired by the coastal trade winds blowing over the spice island of Zanzibar at dusk.",
     "price": 490,
     "notes": {
       "top": "Fransk lavendel, svart pepper, havsalt",
-      "heart": "Saltet kokosnøttvann, kystiris",
-      "base": "Madagaskar vanilje, røkelse, drivved",
+      "heart": "Saltet kokosn\u00f8ttvann, kystiris",
+      "base": "Madagaskar vanilje, r\u00f8kelse, drivved",
       "top_en": "French lavender, black pepper, marine sea salt",
       "heart_en": "Salted coconut water, coastal iris",
       "base_en": "Madagascar vanilla, incense, sun-bleached driftwood"
@@ -1808,18 +1795,17 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-pink.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara (Pink)",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Tropical Orchid & Fluffy Vanilla · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Tropical Orchid & Fluffy Vanilla",
     "scentFamily": "floral",
-    "desc": "En fløyelsmyk, pudret drøm med heliotrop, tropiske frukter, kremet marshmallow og berusende vanilje.",
+    "desc": "En fl\u00f8yelsmyk, pudret dr\u00f8m med heliotrop, tropiske frukter, kremet marshmallow og berusende vanilje.",
     "desc_en": "A velvety, powdery dream featuring heliotrope, tropical fruits, whipped marshmallow, and warm bourbon vanilla.",
     "story": "En global sensasjon. Yara er feminin, luftig og omsluttende som en kashmirgenser i pastell.",
     "story_en": "A worldwide fragrance sensation. Yara is feminine, airy, and embracing like a pastel cashmere sweater.",
     "price": 450,
     "notes": {
-      "top": "Heliotrop, vill orkidé, søt mandarin",
+      "top": "Heliotrop, vill orkid\u00e9, s\u00f8t mandarin",
       "heart": "Tropisk fruktakkord, marshmallow, gourmandakkord",
       "base": "Madagaskar vanilje, hvitt sandeltre, ren moskus",
       "top_en": "Heliotrope, wild orchid, sweet tangerine",
@@ -1842,14 +1828,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-tous.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara Tous (Yellow)",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Mango Nectar & Passionfruit · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Mango Nectar & Passionfruit",
     "scentFamily": "floral",
     "desc": "Solmoden mango, pasjonsfrukt og kokosmelk med appelsinblomst, sjasmin og varm vanilje.",
     "desc_en": "Sun-drenched mango nectar, golden passionfruit, and coconut water blooming with white florals and vanilla.",
-    "story": "Solens energi i en gyllen flakong. En ren sommerferie på huden uansett årstid.",
+    "story": "Solens energi i en gyllen flakong. En ren sommerferie p\u00e5 huden uansett \u00e5rstid.",
     "story_en": "Solar radiance captured in yellow. An exotic tropical getaway bottled for effortless joy.",
     "price": 450,
     "notes": {
@@ -1876,14 +1861,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-moi.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara Moi (White)",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Salted Caramel, Peach & Jasmine · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Salted Caramel, Peach & Jasmine",
     "scentFamily": "floral",
-    "desc": "Hvit fersken og sjasmin svøpt i salt karamell, varm ambra, patchouli og kremet sandeltre.",
+    "desc": "Hvit fersken og sjasmin sv\u00f8pt i salt karamell, varm ambra, patchouli og kremet sandeltre.",
     "desc_en": "White peach and blooming jasmine bathed in buttery salted caramel, warm amber, patchouli, and sandalwood.",
-    "story": "Kjent som «den hvite Yara». Sofistikert, forførende og fløyelsmyk kveldseleganse.",
+    "story": "Kjent som \u00abden hvite Yara\u00bb. Sofistikert, forf\u00f8rende og fl\u00f8yelsmyk kveldseleganse.",
     "story_en": "Celebrated as 'the white Yara'. Sophisticated, alluring, and wrapped in creamy amber warmth.",
     "price": 450,
     "notes": {
@@ -1910,18 +1894,17 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-glory.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Oud for Glory",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Smoky Agarwood, Saffron & Nutmeg · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Smoky Agarwood, Saffron & Nutmeg",
     "scentFamily": "oud",
-    "desc": "En mørk, kongelig oud-kreasjon med edel safran, muskat, patchouli, røykfylt agartre og ren musk.",
+    "desc": "En m\u00f8rk, kongelig oud-kreasjon med edel safran, muskat, patchouli, r\u00f8ykfylt agartre og ren musk.",
     "desc_en": "A dark, imperial oud masterclass with golden saffron, nutmeg, patchouli, smoked agarwood, and musk.",
-    "story": "En legende i moderne parfymeri. Kraftfull, kompromissløs og med majestetisk tilstedeværelse.",
+    "story": "En legende i moderne parfymeri. Kraftfull, kompromissl\u00f8s og med majestetisk tilstedev\u00e6relse.",
     "story_en": "A true modern legend. Commanding, uncompromising, and radiating royal distinction.",
     "price": 550,
     "notes": {
-      "top": "Safran, muskatnøtt, lavendel",
+      "top": "Safran, muskatn\u00f8tt, lavendel",
       "heart": "Agarwood (oud), patchouli",
       "base": "Agarwood, patchouli, musk",
       "top_en": "Saffron, nutmeg, lavender",
@@ -1944,21 +1927,20 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-honor.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Honor & Glory",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Caramelized Pineapple & Crème Brûlée · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Caramelized Pineapple & Cr\u00e8me Br\u00fbl\u00e9e",
     "scentFamily": "gourmand",
-    "desc": "Grillet ananas, karamellisert crème brûlée, kanelbark, gurkemeie og luksuriøs bourbon vanilje i hvit gullflakong.",
-    "desc_en": "Grilled pineapple, caramelized crème brûlée, cinnamon bark, and bourbon vanilla encased in opulent white and gold.",
+    "desc": "Grillet ananas, karamellisert cr\u00e8me br\u00fbl\u00e9e, kanelbark, gurkemeie og luksuri\u00f8s bourbon vanilje i hvit gullflakong.",
+    "desc_en": "Grilled pineapple, caramelized cr\u00e8me br\u00fbl\u00e9e, cinnamon bark, and bourbon vanilla encased in opulent white and gold.",
     "story": "Den hvite juvelen i Bade'e-serien. En oppsiktsvekkende gourmand som tiltrekker seg komplimenter.",
     "story_en": "The white jewel of the Bade'e collection. A stunning gourmand celebrated for its extraordinary sillage.",
     "price": 550,
     "notes": {
-      "top": "Grillet ananas, crème brûlée",
+      "top": "Grillet ananas, cr\u00e8me br\u00fbl\u00e9e",
       "heart": "Kanelbark, gurkemeie, svart pepper, benzoin",
       "base": "Bourbon vanilje, cashmeran, sandeltre, eikemose",
-      "top_en": "Grilled pineapple, crème brûlée",
+      "top_en": "Grilled pineapple, cr\u00e8me br\u00fbl\u00e9e",
       "heart_en": "Cinnamon bark, turmeric, black pepper, benzoin",
       "base_en": "Bourbon vanilla, cashmeran, sandalwood, oakmoss"
     },
@@ -1978,14 +1960,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-amethyst.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Amethyst",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Turkish Rose & Royal Amber Oud · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Turkish Rose & Royal Amber Oud",
     "scentFamily": "floral",
-    "desc": "Luksuriøs tyrkisk rose og bulgarsk rose innsvøpt i rosa pepper, vanilje, rav og silkeaktig oud.",
+    "desc": "Luksuri\u00f8s tyrkisk rose og bulgarsk rose innsv\u00f8pt i rosa pepper, vanilje, rav og silkeaktig oud.",
     "desc_en": "Opulent Turkish and Bulgarian roses draped in pink pepper, warm vanilla, rich amber, and silky oud.",
-    "story": "Kongefamiliens rosehage i full blomst. Dyp, romantisk og kongelig tilstedeværelse.",
+    "story": "Kongefamiliens rosehage i full blomst. Dyp, romantisk og kongelig tilstedev\u00e6relse.",
     "story_en": "The royal rose garden at midnight. Deep, romantic, and exuding aristocratic elegance.",
     "price": 550,
     "notes": {
@@ -2012,19 +1993,18 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-sublime.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Sublime",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Juicy Red Apple & Forest Moss · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Juicy Red Apple & Forest Moss",
     "scentFamily": "citrus",
-    "desc": "Friskt rødt eple, saftig litchi, fløyelsplomme og rose balansert mot dyp eikemose og patchouli.",
+    "desc": "Friskt r\u00f8dt eple, saftig litchi, fl\u00f8yelsplomme og rose balansert mot dyp eikemose og patchouli.",
     "desc_en": "Crisp red apple, juicy litchi, velvety plum, and blooming rose grounded by deep forest moss and patchouli.",
-    "story": "En forfriskende vri på orientalsk luksus. Bærekraftig friskhet med en uimotståelig dybde.",
+    "story": "En forfriskende vri p\u00e5 orientalsk luksus. B\u00e6rekraftig friskhet med en uimotst\u00e5elig dybde.",
     "story_en": "A revitalizing twist on oriental luxury. Dynamic fruity freshness anchored by sophisticated depth.",
     "price": 550,
     "notes": {
-      "top": "Rødt eple, litchi, duggfrisk rose",
-      "heart": "Søt plomme, hvit sjasmin",
+      "top": "R\u00f8dt eple, litchi, duggfrisk rose",
+      "heart": "S\u00f8t plomme, hvit sjasmin",
       "base": "Eikemose, vanilje, indonesisk patchouli",
       "top_en": "Red apple, litchi, dewy rose",
       "heart_en": "Sweet plum, white jasmine",
@@ -2046,19 +2026,18 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-rave-now.png",
     "brand": "Lattafa",
     "name": "Rave Now Black",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Smoked Pineapple & Birch Woods · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Smoked Pineapple & Birch Woods",
     "scentFamily": "citrus",
-    "desc": "Intens, saftig ananas og solbær blandet med røkt bjørkeved, bergamott, ambra og eikemose.",
+    "desc": "Intens, saftig ananas og solb\u00e6r blandet med r\u00f8kt bj\u00f8rkeved, bergamott, ambra og eikemose.",
     "desc_en": "Intense, juicy pineapple and blackcurrant blended with smoky birch wood, bergamot, ambergris, and oakmoss.",
     "story": "En energisk og kraftfull kreasjon designet for den moderne, selvsikre personligheten.",
     "story_en": "A high-energy, commanding creation crafted for modern, self-assured confidence.",
     "price": 390,
     "notes": {
-      "top": "Saftig ananas, solbær, bergamott, grønt eple",
-      "heart": "Røkt bjørk, marokkansk sjasmin, patchouli",
+      "top": "Saftig ananas, solb\u00e6r, bergamott, gr\u00f8nt eple",
+      "heart": "R\u00f8kt bj\u00f8rk, marokkansk sjasmin, patchouli",
       "base": "Ambra, eikemose, bourbon vanilje, hvit musk",
       "top_en": "Juicy pineapple, blackcurrant, bergamot, green apple",
       "heart_en": "Smoky birch, Moroccan jasmine, patchouli",
@@ -2080,20 +2059,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-malachite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Malachite",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Aromatic Green Woods & Warm Amber · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Aromatic Green Woods & Warm Amber",
     "scentFamily": "oud",
-    "desc": "Grønn mandarin og italiensk bergamott flettet sammen med aromatisk lavendel, edelt sedertre og gyllen ambra.",
+    "desc": "Gr\u00f8nn mandarin og italiensk bergamott flettet sammen med aromatisk lavendel, edelt sedertre og gyllen ambra.",
     "desc_en": "Green mandarin and Italian bergamot interwoven with aromatic lavender, noble cedar, and golden amber.",
-    "story": "Inspirert av den majestetiske grønne malakitt-edelstenen i de russiske tsarenes vinterpalasser.",
+    "story": "Inspirert av den majestetiske gr\u00f8nne malakitt-edelstenen i de russiske tsarenes vinterpalasser.",
     "story_en": "Inspired by the imperial green malachite gemstone adorning the winter palaces of tsars.",
     "price": 590,
     "notes": {
-      "top": "Bergamott, grønn mandarin, salvie",
+      "top": "Bergamott, gr\u00f8nn mandarin, salvie",
       "heart": "Fransk lavendel, geranium, kardemomme",
-      "base": "Grønn vetiver, ambra, sedertre, harpiks",
+      "base": "Gr\u00f8nn vetiver, ambra, sedertre, harpiks",
       "top_en": "Bergamot, green mandarin, clary sage",
       "heart_en": "French lavender, geranium, cardamom",
       "base_en": "Green vetiver, amber, cedarwood, balsamic resin"
@@ -2114,20 +2092,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-oceana.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Oceana",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Oceanic Marine & Citrus Ambergris · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Oceanic Marine & Citrus Ambergris",
     "scentFamily": "citrus",
-    "desc": "Krystallklar sjøsprøyt, solmodne sitrusfrukter, myrte og ekte grå ambra på en seng av kystsedertre.",
+    "desc": "Krystallklar sj\u00f8spr\u00f8yt, solmodne sitrusfrukter, myrte og ekte gr\u00e5 ambra p\u00e5 en seng av kystsedertre.",
     "desc_en": "Crystal clear sea spray, sun-ripened citrus, Mediterranean myrtle, and authentic ambergris over coastal cedar.",
-    "story": "En reise over det åpne asurblå havet. Forfriskende som et dykk i dypblått badevann på den italienske rivieraen.",
+    "story": "En reise over det \u00e5pne asurbl\u00e5 havet. Forfriskende som et dykk i dypbl\u00e5tt badevann p\u00e5 den italienske rivieraen.",
     "story_en": "A voyage across azure ocean waves. Refreshing as a plunge into deep blue waters off the Amalfi coast.",
     "price": 590,
     "notes": {
-      "top": "Sitrusfrukter, ozoniske noter, salt sjøbris",
+      "top": "Sitrusfrukter, ozoniske noter, salt sj\u00f8bris",
       "heart": "Middelhavsmyrte, havalger, hvit sjasmin",
-      "base": "Grå ambra, drivved, kystfuru, ren moskus",
+      "base": "Gr\u00e5 ambra, drivved, kystfuru, ren moskus",
       "top_en": "Citrus zest, ozonic notes, salty sea breeze",
       "heart_en": "Mediterranean myrtle, sea algae, white jasmine",
       "base_en": "Ambergris, driftwood, coastal pine, clean musk"
@@ -2148,19 +2125,18 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-amazonite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Amazonite",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Dark Oriental Spices & Smoked Woods · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Dark Oriental Spices & Smoked Woods",
     "scentFamily": "amber",
-    "desc": "Eksotisk safran, røkelse fra den arabiske halvøy, mørkt lær og balsamisk agartre.",
+    "desc": "Eksotisk safran, r\u00f8kelse fra den arabiske halv\u00f8y, m\u00f8rkt l\u00e6r og balsamisk agartre.",
     "desc_en": "Exotic saffron, Arabian incense, midnight leather, and balsamic agarwood resin.",
-    "story": "Amazonittens mystikk fanget i en dyp, tealgrønn flakong. Forfining for de krevende anledninger.",
+    "story": "Amazonittens mystikk fanget i en dyp, tealgr\u00f8nn flakong. Forfining for de krevende anledninger.",
     "story_en": "The mystery of Amazonite stone captured in a deep teal flacon. Uncompromising sophistication.",
     "price": 590,
     "notes": {
       "top": "Safran, rosa pepper, bergamott",
-      "heart": "Røkelse, fint lær, mørk rose",
+      "heart": "R\u00f8kelse, fint l\u00e6r, m\u00f8rk rose",
       "base": "Balsamiske tresorter, ambra, edel oud, benzoin",
       "top_en": "Saffron, pink pepper, bergamot",
       "heart_en": "Frankincense, fine leather, dark rose",
@@ -2182,20 +2158,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-bronzite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Bronzite",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Warm Spicy Leather & Roasted Tonka · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Warm Spicy Leather & Roasted Tonka",
     "scentFamily": "amber",
-    "desc": "Muskatnøtt og varm kardemomme møter kaffebønner, mykt lær, bronzitt rav og røstet tonkabønne.",
+    "desc": "Muskatn\u00f8tt og varm kardemomme m\u00f8ter kaffeb\u00f8nner, mykt l\u00e6r, bronzitt rav og r\u00f8stet tonkab\u00f8nne.",
     "desc_en": "Nutmeg and warm cardamom meet roasted coffee beans, soft leather, bronzite amber, and roasted tonka bean.",
-    "story": "Skapt med inspirasjon fra bronzittens metalliske glans og jordnære varme. Omsluttende og aristokratisk.",
+    "story": "Skapt med inspirasjon fra bronzittens metalliske glans og jordn\u00e6re varme. Omsluttende og aristokratisk.",
     "story_en": "Crafted with inspiration from the metallic sheen and earthy warmth of bronzite stone. Aristocratic warmth.",
     "price": 590,
     "notes": {
       "top": "Muskat, kardemomme, sitruszest",
-      "heart": "Varmt lær, ristet kaffe, tobakksblad",
-      "base": "Bronzitt rav, tonkabønne, røkt sedertre",
+      "heart": "Varmt l\u00e6r, ristet kaffe, tobakksblad",
+      "base": "Bronzitt rav, tonkab\u00f8nne, r\u00f8kt sedertre",
       "top_en": "Nutmeg, cardamom, citrus zest",
       "heart_en": "Warm leather, roasted coffee, cured tobacco leaf",
       "base_en": "Bronzite amber, tonka bean, smoked cedarwood"
@@ -2207,7 +2182,7 @@ const DEFAULT_CATALOG = [
       "cap": "#211409",
       "capStroke": "#d97706"
     },
-    "tag": "Varm Lær",
+    "tag": "Varm L\u00e6r",
     "image_box": "images/alhambra-sceptre-malachite-box.png",
     "size": "100 ml"
   },
@@ -2216,18 +2191,17 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-oud.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Golden Saffron, Praline & Pure Agarwood · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Golden Saffron, Praline & Pure Agarwood",
     "scentFamily": "oud",
-    "desc": "Den verdenskjente gullklassikeren med safrantråder, fløyelsaktig damaskrose, søt praline og luksuriøs oud.",
+    "desc": "Den verdenskjente gullklassikeren med safrantr\u00e5der, fl\u00f8yelsaktig damaskrose, s\u00f8t praline og luksuri\u00f8s oud.",
     "desc_en": "The world-renowned golden classic featuring saffron threads, velvety Damask rose, sweet praline, and luxurious oud.",
-    "story": "Swiss Arabians stolthet. Shaghaf betyr lidenskap på arabisk — en duft som fyller rommet og sitter lenge på tøyet.",
-    "story_en": "Swiss Arabian’s crowning glory. Shaghaf means passion in Arabic — a fragrance that fills the room with memorable sillage.",
+    "story": "Swiss Arabians stolthet. Shaghaf betyr lidenskap p\u00e5 arabisk \u2014 en duft som fyller rommet og sitter lenge p\u00e5 t\u00f8yet.",
+    "story_en": "Swiss Arabian\u2019s crowning glory. Shaghaf means passion in Arabic \u2014 a fragrance that fills the room with memorable sillage.",
     "price": 790,
     "notes": {
-      "top": "Verdifulle safrantråder",
+      "top": "Verdifulle safrantr\u00e5der",
       "heart": "Damaskrose, fransk praline",
       "base": "Edelt agartre (oud), madagaskar vanilje",
       "top_en": "Precious saffron threads",
@@ -2250,20 +2224,19 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-abyad.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud Abyad",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Smoky Oregano, Frankincense & Leather · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Smoky Oregano, Frankincense & Leather",
     "scentFamily": "amber",
-    "desc": "Røykfylt aromatisk oregano, pimentobær, hellig frankincense, ambra og mørkt lær i sølvglass.",
+    "desc": "R\u00f8ykfylt aromatisk oregano, pimentob\u00e6r, hellig frankincense, ambra og m\u00f8rkt l\u00e6r i s\u00f8lvglass.",
     "desc_en": "Smoky aromatic oregano, pimento berry, sacred frankincense, rich amber, and dark leather in silver glass.",
-    "story": "En dramatisk, røykfylt og krydret symfoni for kjennere. Kompromissløs kvalitet fra første spray.",
+    "story": "En dramatisk, r\u00f8ykfylt og krydret symfoni for kjennere. Kompromissl\u00f8s kvalitet fra f\u00f8rste spray.",
     "story_en": "A dramatic, smoky, and spiced symphony for connoisseurs. Uncompromising quality from the first spray.",
     "price": 790,
     "notes": {
-      "top": "Bergamott, vill oregano, pimentobær",
-      "heart": "Opoponax røkelse, frankincense, ambra, myrra",
-      "base": "Lær, røykfylt oud, indonesisk patchouli, sandeltre",
+      "top": "Bergamott, vill oregano, pimentob\u00e6r",
+      "heart": "Opoponax r\u00f8kelse, frankincense, ambra, myrra",
+      "base": "L\u00e6r, r\u00f8ykfylt oud, indonesisk patchouli, sandeltre",
       "top_en": "Bergamot, wild oregano, pimento berry",
       "heart_en": "Opoponax incense, frankincense, amber, myrrh",
       "base_en": "Leather, smoky oud, Indonesian patchouli, sandalwood"
@@ -2275,7 +2248,7 @@ const DEFAULT_CATALOG = [
       "cap": "#14181f",
       "capStroke": "#cbd5e1"
     },
-    "tag": "Røykfylt",
+    "tag": "R\u00f8ykfylt",
     "image_box": "images/swissarabian-shaghaf-oud-box.png",
     "size": "100 ml"
   },
@@ -2284,20 +2257,19 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-aswad.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud Aswad",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Intense Woody Floral & Royal Oud · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Intense Woody Floral & Royal Oud",
     "scentFamily": "oud",
-    "desc": "Timian, sort pepper, safran og mørke roser over en bunn av rå oud, lær, sandeltre og vanilje.",
+    "desc": "Timian, sort pepper, safran og m\u00f8rke roser over en bunn av r\u00e5 oud, l\u00e6r, sandeltre og vanilje.",
     "desc_en": "Thyme, black pepper, saffron, and midnight roses layered over raw oud, leather, sandalwood, and vanilla.",
-    "story": "Aswad betyr svart. Den mørkeste, mest gåtefulle tolkningen i Shaghaf-familien.",
+    "story": "Aswad betyr svart. Den m\u00f8rkeste, mest g\u00e5tefulle tolkningen i Shaghaf-familien.",
     "story_en": "Aswad means black. The darkest, most enigmatic interpretation in the acclaimed Shaghaf lineage.",
     "price": 790,
     "notes": {
       "top": "Sort pepper, timian, safran, rose",
       "heart": "Koriander, jasmin, patchouli, spisskummen",
-      "base": "Svart oud, lær, ambra, sandeltre, vanilje",
+      "base": "Svart oud, l\u00e6r, ambra, sandeltre, vanilje",
       "top_en": "Black pepper, thyme, saffron, rose",
       "heart_en": "Coriander, jasmine, patchouli, cumin",
       "base_en": "Black oud, leather, amber, sandalwood, vanilla"
@@ -2309,7 +2281,7 @@ const DEFAULT_CATALOG = [
       "cap": "#090b0e",
       "capStroke": "#e2b153"
     },
-    "tag": "Mørk Oud",
+    "tag": "M\u00f8rk Oud",
     "image_box": "images/swissarabian-shaghaf-oud-box.png",
     "size": "100 ml"
   },
@@ -2318,19 +2290,18 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-tonka.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud Tonka",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Almond Blossom, Roasted Tonka & Amber Oud · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Almond Blossom, Roasted Tonka & Amber Oud",
     "scentFamily": "gourmand",
-    "desc": "Mandelblomst, karamellisert tonkabønne, kanelbark og gyllen oud i en luksuriøs gourmand-opplevelse.",
+    "desc": "Mandelblomst, karamellisert tonkab\u00f8nne, kanelbark og gyllen oud i en luksuri\u00f8s gourmand-opplevelse.",
     "desc_en": "Almond blossom, caramelized tonka bean, cinnamon bark, and golden oud in a luxurious gourmand experience.",
-    "story": "Den nyeste sensasjonen fra Swiss Arabian. Silkemyk sødme kombinert med ekte arabisk treverk.",
+    "story": "Den nyeste sensasjonen fra Swiss Arabian. Silkemyk s\u00f8dme kombinert med ekte arabisk treverk.",
     "story_en": "The latest sensation from Swiss Arabian. Silky sweetness flawlessly married with authentic oriental woods.",
     "price": 820,
     "notes": {
       "top": "Mandelblomst, appelsinblomst",
-      "heart": "Røstet tonkabønne, tyrkisk rose, kanelbark",
+      "heart": "R\u00f8stet tonkab\u00f8nne, tyrkisk rose, kanelbark",
       "base": "Gylden oud, vanilje bourbon, ambra",
       "top_en": "Almond blossom, orange blossom",
       "heart_en": "Roasted tonka bean, Turkish rose, cinnamon bark",
@@ -2352,20 +2323,20 @@ const DEFAULT_CATALOG = [
     "image": "images/ibraq-jamaican-tobacco.png",
     "brand": "Ibraq",
     "name": "Ibraq Jamaican Tobacco",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Aged Rum, Spiced Leaf & Warm Tonka · Extrait de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Aged Rum, Spiced Leaf & Warm Tonka \u00b7 Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "amber",
-    "desc": "Fatmodnet karibisk rom, krydrede tobakksblader, råkakao, honning og gyllen kvae i ekstraktkonsentrasjon.",
+    "desc": "Fatmodnet karibisk rom, krydrede tobakksblader, r\u00e5kakao, honning og gyllen kvae i ekstraktkonsentrasjon.",
     "desc_en": "Cask-aged Caribbean rum, spiced tobacco leaves, raw cacao, honey, and golden resins in Extrait concentration.",
-    "story": "En hyllest til de historiske tobakksplantasjene og romfatene i Karibia. Røykfylt, rik og overdådig.",
+    "story": "En hyllest til de historiske tobakksplantasjene og romfatene i Karibia. R\u00f8ykfylt, rik og overd\u00e5dig.",
     "story_en": "A tribute to heritage tobacco leaves and vintage rum barrels of the Caribbean. Smoky, opulent, and profound.",
     "price": 1190,
     "notes": {
-      "top": "Fatmodnet rom, tørkede frukter, muskat",
+      "top": "Fatmodnet rom, t\u00f8rkede frukter, muskat",
       "heart": "Gyldne tobakksblader, honning, kakao",
-      "base": "Tonkabønne, madagaskar vanilje, sedertre, mørk kvae",
+      "base": "Tonkab\u00f8nne, madagaskar vanilje, sedertre, m\u00f8rk kvae",
       "top_en": "Cask-aged rum, dried fruits, nutmeg",
       "heart_en": "Golden tobacco leaves, honey, raw cacao",
       "base_en": "Tonka bean, Madagascar vanilla, cedarwood, dark resin"
@@ -2386,20 +2357,20 @@ const DEFAULT_CATALOG = [
     "image": "images/ibraq-black-amber.png",
     "brand": "Ibraq",
     "name": "Ibraq Black Amber",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Dark Incense, Labdanum & Resinous Woods · Extrait de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Dark Incense, Labdanum & Resinous Woods \u00b7 Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "amber",
-    "desc": "Røkelse fra Oman, cistus labdanum, svart ambra og røkt treverk destillert for maksimal dybde.",
+    "desc": "R\u00f8kelse fra Oman, cistus labdanum, svart ambra og r\u00f8kt treverk destillert for maksimal dybde.",
     "desc_en": "Sacred Omani incense, cistus labdanum, black amber, and smoked woods distilled for transcendental depth.",
-    "story": "Mørkets skjønnhet i flytende form. Black Amber er hemmelighetsfull, dyp og uforglemmelig.",
+    "story": "M\u00f8rkets skj\u00f8nnhet i flytende form. Black Amber er hemmelighetsfull, dyp og uforglemmelig.",
     "story_en": "The beauty of the nocturnal world in liquid form. Black Amber is secretive, deep, and unforgettable.",
     "price": 1190,
     "notes": {
-      "top": "Sort pepper, røkelse fra Oman, bergamott",
-      "heart": "Svart ambra, cistus labdanum, mørkt lær",
-      "base": "Balsamisk benzoin, indonesisk patchouli, røkt oud",
+      "top": "Sort pepper, r\u00f8kelse fra Oman, bergamott",
+      "heart": "Svart ambra, cistus labdanum, m\u00f8rkt l\u00e6r",
+      "base": "Balsamisk benzoin, indonesisk patchouli, r\u00f8kt oud",
       "top_en": "Black pepper, Omani frankincense, bergamot",
       "heart_en": "Black amber, cistus labdanum, dark leather",
       "base_en": "Balsamic benzoin, Indonesian patchouli, smoked oud"
@@ -2420,18 +2391,18 @@ const DEFAULT_CATALOG = [
     "image": "images/ibraq-emerald-oud.png",
     "brand": "Ibraq",
     "name": "Ibraq Emerald Oud",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Royal Cambodian Agarwood & Green Cardamom · Extrait de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Royal Cambodian Agarwood & Green Cardamom \u00b7 Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "oud",
-    "desc": "Grønn kardemomme, sypress, kambodsjansk agartre og hvit ambra i en juvel av en flakong.",
+    "desc": "Gr\u00f8nn kardemomme, sypress, kambodsjansk agartre og hvit ambra i en juvel av en flakong.",
     "desc_en": "Green cardamom, cypress, Cambodian agarwood, and white ambergris presented in a jewel-inspired flacon.",
-    "story": "Kambodsjas legendariske oud-trær forent med frisk grønn natur og edle råvarer.",
-    "story_en": "Cambodia’s legendary oud heritage united with invigorating green botanicals and fine resins.",
+    "story": "Kambodsjas legendariske oud-tr\u00e6r forent med frisk gr\u00f8nn natur og edle r\u00e5varer.",
+    "story_en": "Cambodia\u2019s legendary oud heritage united with invigorating green botanicals and fine resins.",
     "price": 1290,
     "notes": {
-      "top": "Grønn kardemomme, fiolblader, bergamott",
+      "top": "Gr\u00f8nn kardemomme, fiolblader, bergamott",
       "heart": "Kambodsjansk oud, sypress, damaskrose",
       "base": "Vetiver, hvit ambra, sedertre",
       "top_en": "Green cardamom, violet leaves, bergamot",
@@ -2454,20 +2425,19 @@ const DEFAULT_CATALOG = [
     "image": "images/viridian-forest-mist.png",
     "brand": "Viridian",
     "name": "Viridian Forest Mist",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Alpine Pine, Frozen Juniper & Crisp Lichen · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Alpine Pine, Frozen Juniper & Crisp Lichen",
     "scentFamily": "musk",
-    "desc": "Fjellfuru, frosne einerbær, vill timian, fuktig kreklingmose og arktisk sedertre med kunstnerisk flakong.",
+    "desc": "Fjellfuru, frosne einerb\u00e6r, vill timian, fuktig kreklingmose og arktisk sedertre med kunstnerisk flakong.",
     "desc_en": "Alpine pine, frozen juniper berries, wild thyme, dewy forest lichen, and arctic cedarwood in an artistic flacon.",
-    "story": "Flaskens illustrasjon fanger morgentåken som velter over furuskogen og det speilblanke skogstjernet.",
+    "story": "Flaskens illustrasjon fanger morgent\u00e5ken som velter over furuskogen og det speilblanke skogstjernet.",
     "story_en": "The flacon illustration depicts morning mist rolling over ancient pine forests and tranquil mountain tarns.",
     "price": 1190,
     "notes": {
-      "top": "Fjellfuru, frossen einerbær, vill timian",
+      "top": "Fjellfuru, frossen einerb\u00e6r, vill timian",
       "heart": "Krekling, hvit sedertre, fuktig mose",
-      "base": "Kvae, grønn vetiver, ren arktisk musk",
+      "base": "Kvae, gr\u00f8nn vetiver, ren arktisk musk",
       "top_en": "Alpine pine, frosted juniper berries, wild thyme",
       "heart_en": "Crowberry, white cedar, dewy forest moss",
       "base_en": "Natural resin, green vetiver, clean arctic musk"
@@ -2488,20 +2458,19 @@ const DEFAULT_CATALOG = [
     "image": "images/viridian-dusk.png",
     "brand": "Viridian",
     "name": "Viridian Dusk",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Smoked Birch, Golden Resin & Wild Cardamom · Eau de Parfum",
-    "concentration": "Eau de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Smoked Birch, Golden Resin & Wild Cardamom",
     "scentFamily": "amber",
-    "desc": "Kardemomme, brente einebær, røkt bjørkeved, villhonning, irisrot og varm ambra ved solnedgang.",
+    "desc": "Kardemomme, brente eineb\u00e6r, r\u00f8kt bj\u00f8rkeved, villhonning, irisrot og varm ambra ved solnedgang.",
     "desc_en": "Cardamom, scorched juniper, smoked birchwood, wild heather honey, orris root, and sunset amber.",
-    "story": "Timen da himmelen skifter fra fiolett til gull og bålrøyken stiger mot stjernene.",
+    "story": "Timen da himmelen skifter fra fiolett til gull og b\u00e5lr\u00f8yken stiger mot stjernene.",
     "story_en": "The hour when the sky turns from violet to molten gold and campfire smoke drifts toward the stars.",
     "price": 1190,
     "notes": {
-      "top": "Kardemomme, brente einebær, bergamott",
-      "heart": "Røkt bjørkeved, villhonning, irisrot",
-      "base": "Gylden kvae, fint lær, dyp ambra",
+      "top": "Kardemomme, brente eineb\u00e6r, bergamott",
+      "heart": "R\u00f8kt bj\u00f8rkeved, villhonning, irisrot",
+      "base": "Gylden kvae, fint l\u00e6r, dyp ambra",
       "top_en": "Cardamom, charred juniper, bergamot",
       "heart_en": "Smoky birchwood, wild honey, orris root",
       "base_en": "Golden pine resin, fine leather, deep amber"
@@ -2522,15 +2491,15 @@ const DEFAULT_CATALOG = [
     "image": "images/reef-33.png",
     "brand": "Reef",
     "name": "Reef 33",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "Pink Pepper, Saffron & Royal Agarwood · Extrait de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "Pink Pepper, Saffron & Royal Agarwood \u00b7 Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "floral",
     "desc": "Rosa pepper, frisk mandarin, safran, rosmarin og kongelig agartre fra Saudi-Arabias fremste parfymehus.",
-    "desc_en": "Pink pepper, vibrant mandarin, saffron, aromatic rosemary, and royal agarwood from Saudi Arabia’s premier perfume house.",
-    "story": "En av gulfens mest ettertraktede luksusparfymer. Forførende, distinkt og majestetisk på huden.",
-    "story_en": "One of the Arabian Gulf’s most sought-after luxury creations. Seductive, distinctive, and truly majestic.",
+    "desc_en": "Pink pepper, vibrant mandarin, saffron, aromatic rosemary, and royal agarwood from Saudi Arabia\u2019s premier perfume house.",
+    "story": "En av gulfens mest ettertraktede luksusparfymer. Forf\u00f8rende, distinkt og majestetisk p\u00e5 huden.",
+    "story_en": "One of the Arabian Gulf\u2019s most sought-after luxury creations. Seductive, distinctive, and truly majestic.",
     "price": 1390,
     "notes": {
       "top": "Rosa pepper, mandarin, safran",
@@ -2556,14 +2525,14 @@ const DEFAULT_CATALOG = [
     "image": "images/reef-29.png",
     "brand": "Reef",
     "name": "Reef 29",
-    "edition": "Originalutgave · 100 ml",
-    "edition_en": "Original Edition · 100 ml",
-    "subtitle": "French Lavender, Pink Pepper & Agarwood · Extrait de Parfum",
+    "edition": "Originalutgave \u00b7 100 ml",
+    "edition_en": "Original Edition \u00b7 100 ml",
+    "subtitle": "French Lavender, Pink Pepper & Agarwood \u00b7 Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "citrus",
     "desc": "Fransk lavendel, irisrot, fiol, edelt sedertre, raffinert oud og hvit ambra i eksklusiv presentasjonseske.",
     "desc_en": "French lavender, orris root, violet petals, cedarwood, refined oud, and white amber in an exclusive presentation box.",
-    "story": "Klassisk parisisk eleganse møter tradisjonsrik arabisk parfymekunst i fullkommen likevekt.",
+    "story": "Klassisk parisisk eleganse m\u00f8ter tradisjonsrik arabisk parfymekunst i fullkommen likevekt.",
     "story_en": "Classic Parisian sophistication encounters timeless Arabian perfumery in flawless equilibrium.",
     "price": 1390,
     "notes": {
@@ -2589,7 +2558,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v16');
+  const custom = localStorage.getItem('arx_custom_catalog_v17');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -2609,7 +2578,7 @@ const I18N = {
     tagline: "Kuratert Parfymeri · 100 ml Flakonger",
     navFragrances: "Våre Parfymer",
     navShowroom: "Showroom",
-    navAbout: "Om Oss",
+    navAbout: "Om",
     navContact: "Kontakt",
     cartLabel: "Kurv",
     colTag: "Kuratert Utvalg",
@@ -2638,20 +2607,21 @@ const I18N = {
     emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 30 parfymer.",
     resetFilters: "Nullstill filtre",
     cardDetailsBtn: "Se detaljer",
-    cardAddBtn: "Legg i kurv",
+    cardAddBtn: "Legg til",
     viewBottle: "Flakong",
     viewBox: "Eske",
     lblThumbBottle: "Flakong",
     lblThumbBox: "Originaleske",
-    boxGuaranteeBadge: "🔒 100% Original, uåpnet fabrikkemballasje med batchkode",
+    boxGuaranteeBadge: "100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     detailModalBrand: "PRODUSENT",
     detailModalStock: "● På lager (Oslo · Tøyengata 3)",
     lblTopNotes: "Toppnoter",
     lblHeartNotes: "Hjertenoter",
     lblBaseNotes: "Bunnoter",
-    detailAddBtn: "Legg i handlekurv",
+    detailAddBtn: "Legg til",
     detailShippingText: "Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar). Fri frakt fra 500 kr.",
-    detailGuaranteeText: "100% original produsentgaranti i forseglet 100 ml flakong. 14 dagers angrerett.",
+    detailGuaranteeText: "100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
+    footerDisclaimer: "⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     sfTag: "Signaturkreasjon · Oslo",
     sfTitle: "Svartfjord Signaturkolleksjon",
     sfDesc: "Svart oud fra Pursat møter vill einer, bjørketjære og luften over en isbre klokken tre om natten. Vår egenproduserte, masererte nisjeduft fra Oslo.",
@@ -2730,7 +2700,7 @@ const I18N = {
     tagline: "Curated Perfumery · 100 ml Bottles",
     navFragrances: "Our Fragrances",
     navShowroom: "Showroom",
-    navAbout: "About Us",
+    navAbout: "About",
     navContact: "Contact",
     cartLabel: "Cart",
     colTag: "Curated Collection",
@@ -2759,20 +2729,21 @@ const I18N = {
     emptyDesc: "Try another search term or reset filters to browse all 30 fragrances.",
     resetFilters: "Reset filters",
     cardDetailsBtn: "View details",
-    cardAddBtn: "Add to cart",
+    cardAddBtn: "Add",
     viewBottle: "Bottle",
     viewBox: "Box",
     lblThumbBottle: "Bottle",
     lblThumbBox: "Presentation Box",
-    boxGuaranteeBadge: "🔒 100% Original, unopened retail presentation box with batch code",
+    boxGuaranteeBadge: "100% original and the Manufacturer changes the box and bottle design from time to time",
     detailModalBrand: "HOUSE",
     detailModalStock: "● In stock (Oslo · Tøyengata 3)",
     lblTopNotes: "Top Notes",
     lblHeartNotes: "Heart Notes",
     lblBaseNotes: "Base Notes",
-    detailAddBtn: "Add to Cart",
+    detailAddBtn: "Add",
     detailShippingText: "Dispatched within 24h from our showroom at Tøyengata 3, 0190 Oslo (inside PakStar). Free shipping from 500 kr.",
-    detailGuaranteeText: "100% original manufacturer guarantee in sealed 100 ml bottle. 14-day statutory return rights.",
+    detailGuaranteeText: "100% original and the Manufacturer changes the box and bottle design from time to time",
+    footerDisclaimer: "⚠️ 100% original and the Manufacturer changes the box and bottle design from time to time",
     sfTag: "Signature Creation · Oslo",
     sfTitle: "Svartfjord Signature Collection",
     sfDesc: "Pursat black oud meets wild juniper, birch tar, and sub-zero glacial air at three in the morning. Handcrafted and matured in Oslo.",
@@ -2982,17 +2953,13 @@ function renderStore() {
   grid.innerHTML = filtered.map(p => `
     <article class="perfume-card" data-id="${p.id}" tabindex="0">
       <div class="card-img-wrap">
-        <img class="card-img" id="cardImg-${p.id}" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
+        <img class="card-img" id="cardImg-${p.id}" src="${currentViewMode === 'box' ? (p.image_box || p.image) : p.image}" data-bottle="${p.image}" data-box="${p.image_box || p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
           onclick="openProductDetail('${p.id}')"
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-        <div class="img-switch-pill" role="group" aria-label="Velg bilde">
-          <button type="button" class="view-toggle-btn active" id="btnFlacon-${p.id}" onclick="event.stopPropagation();switchCardImg('${p.id}','bottle')" title="${t.viewBottle || 'Flakong'}">🍾 ${t.viewBottle || 'Flakong'}</button>
-          <button type="button" class="view-toggle-btn" id="btnBox-${p.id}" onclick="event.stopPropagation();switchCardImg('${p.id}','box')" title="${t.viewBox || 'Eske'}">📦 ${t.viewBox || 'Eske'}</button>
-        </div>
       </div>
       <span class="card-brand">${escapeHtml(p.brand)}</span>
       <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(p.name)}</h3>
-      <div class="card-vol">100 ml · ${p.concentration || 'Eau de Parfum'}</div>
+      <div class="card-vol">100 ml</div>
       <div class="card-price">${nok(p.price)}</div>
       <div class="card-actions">
         <button type="button" class="card-btn btn-details" onclick="openProductDetail('${p.id}')">${t.cardDetailsBtn}</button>
@@ -3025,42 +2992,69 @@ window.resetAllFilters = function() {
 };
 
 
-// ── CARD & MODAL IMAGE SWITCHER (Bottle vs Packaging Box) ──
-window.switchCardImg = function(id, view) {
-  const p = CATALOG.find(item => item.id === id);
-  if (!p) return;
-  const img = document.getElementById(`cardImg-${id}`);
-  const btnFlacon = document.getElementById(`btnFlacon-${id}`);
-  const btnBox = document.getElementById(`btnBox-${id}`);
-  if (img) {
-    img.style.opacity = '0.5';
-    setTimeout(() => {
-      img.src = view === 'box' ? (p.image_box || p.image) : p.image;
-      img.style.opacity = '1';
-    }, 100);
-  }
-  if (btnFlacon && btnBox) {
-    btnFlacon.classList.toggle('active', view !== 'box');
-    btnBox.classList.toggle('active', view === 'box');
+// ── AUTOMATIC 6-SECOND CARD & MODAL IMAGE LOOP (Bottle vs Packaging Box) ──
+
+let currentViewMode = 'bottle';
+let autoLoopTimer = null;
+
+function startAutoLoop() {
+  if (autoLoopTimer) clearInterval(autoLoopTimer);
+  autoLoopTimer = setInterval(() => {
+    currentViewMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
+
+    // 1. Loop visible card packshots
+    const cardImages = document.querySelectorAll('.card-img-wrap .card-img');
+    cardImages.forEach(img => {
+      const targetSrc = currentViewMode === 'box' ? (img.dataset.box || img.dataset.bottle) : img.dataset.bottle;
+      if (targetSrc && img.getAttribute('src') !== targetSrc) {
+        img.style.opacity = '0.35';
+        setTimeout(() => {
+          img.src = targetSrc;
+          img.style.opacity = '1';
+        }, 220);
+      }
+    });
+
+    // 2. Loop modal packshot if open
+    const modal = document.getElementById('productDetailModal');
+    if (modal && modal.open && S.currentProductId) {
+      const p = CATALOG.find(item => item.id === S.currentProductId);
+      const mImg = document.getElementById('detailModalImg');
+      if (p && mImg) {
+        const targetSrc = currentViewMode === 'box' ? (p.image_box || p.image) : p.image;
+        if (targetSrc && mImg.getAttribute('src') !== targetSrc) {
+          mImg.style.opacity = '0.35';
+          setTimeout(() => {
+            mImg.src = targetSrc;
+            mImg.style.opacity = '1';
+          }, 220);
+        }
+      }
+    }
+  }, 6000);
+}
+
+// Start auto-looping immediately
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  startAutoLoop();
+}
+
+window.togglePackshotView = function() {
+  currentViewMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
+  const modal = document.getElementById('productDetailModal');
+  if (modal && modal.open && S.currentProductId) {
+    const p = CATALOG.find(item => item.id === S.currentProductId);
+    const mImg = document.getElementById('detailModalImg');
+    if (p && mImg) {
+      mImg.style.opacity = '0.35';
+      setTimeout(() => {
+        mImg.src = currentViewMode === 'box' ? (p.image_box || p.image) : p.image;
+        mImg.style.opacity = '1';
+      }, 150);
+    }
   }
 };
 
-let currentModalView = 'bottle';
-window.switchModalView = function(view) {
-  currentModalView = view;
-  const p = CATALOG.find(item => item.id === S.currentProductId);
-  if (!p) return;
-  const img = $('#detailModalImg');
-  if (img) {
-    img.style.opacity = '0.4';
-    setTimeout(() => {
-      img.src = view === 'box' ? (p.image_box || p.image) : p.image;
-      img.style.opacity = '1';
-    }, 120);
-  }
-  $('#modalThumbBottle')?.classList.toggle('active', view !== 'box');
-  $('#modalThumbBox')?.classList.toggle('active', view === 'box');
-};
 
 // ── PRODUCT DETAIL MODAL DIALOG ──
 window.openProductDetail = function(id, pushUrl = true) {
@@ -3091,12 +3085,12 @@ function updateProductDetailModalContent(p) {
   const isEn = LANG === 'en';
   if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.brand;
   if ($('#detailModalTitle')) $('#detailModalTitle').textContent = p.name;
-  if ($('#detailModalVol')) $('#detailModalVol').textContent = `100 ml · ${p.concentration || 'Eau de Parfum'}`;
+  if ($('#detailModalVol')) $('#detailModalVol').textContent = '100 ml';
   if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
   if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
   if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
   if ($('#detailModalImg')) {
-    $('#detailModalImg').src = p.image;
+    $('#detailModalImg').src = (currentViewMode === 'box' && p.image_box) ? p.image_box : p.image;
     $('#detailModalImg').alt = p.name;
   }
   if ($('#detailModalTop')) $('#detailModalTop').textContent = isEn ? (p.notes?.top_en || p.notes?.top) : p.notes?.top;
@@ -3717,11 +3711,11 @@ function setLanguage(lang) {
   if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = t.lblHeartNotes;
   if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = t.lblBaseNotes;
   if ($('#detailModalAddBtn')) $('#detailModalAddBtn').textContent = t.detailAddBtn;
-    if ($('#lblThumbBottle')) $('#lblThumbBottle').textContent = t.lblThumbBottle;
-  if ($('#lblThumbBox')) $('#lblThumbBox').textContent = t.lblThumbBox;
+  if ($('#add2')) $('#add2').textContent = t.cardAddBtn;
   if ($('#boxGuaranteeBadge')) $('#boxGuaranteeBadge').textContent = t.boxGuaranteeBadge;
   if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
   if ($('#detailGuaranteeText')) $('#detailGuaranteeText').textContent = t.detailGuaranteeText;
+  if ($('#footerDisclaimer')) $('#footerDisclaimer').textContent = t.footerDisclaimer;
 
   // Footer
   if ($('#footerAboutText')) $('#footerAboutText').textContent = t.footerAboutText;
@@ -3794,7 +3788,7 @@ window.saveAdminPrice = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (p) {
     p.price = newPrice;
-    localStorage.setItem('arx_custom_catalog_v16', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v17', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
