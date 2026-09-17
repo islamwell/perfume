@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
@@ -13,7 +15,7 @@
 <meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri (100 ml)">
 <meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr. Showroom i Tøyengata 3.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
-<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/armaf-club-de-nuit-intense.png">
+<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,34 +40,30 @@ try {
 <noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
 
 <style>
-/* ── DUAL VIEW SWITCHER (Bottle & Box) ── */
+/* ── DUAL VIEW SWITCHER & HARDWARE-ACCELERATED SLIDING CAROUSEL ── */
 .img-switch-pill {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
+  display: inline-flex;
   background: rgba(8, 13, 21, 0.88);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(201, 169, 110, 0.35);
   border-radius: 999px;
-  padding: 2px;
-  gap: 2px;
+  padding: 3px;
+  gap: 3px;
   z-index: 3;
 }
 .view-toggle-btn {
   background: transparent;
   border: none;
   color: var(--dim);
-  font-size: 0.68rem;
-  padding: 0.22rem 0.55rem;
+  font-size: 0.74rem;
+  padding: 0.28rem 0.75rem;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 .view-toggle-btn:hover {
   color: #fff;
@@ -75,37 +73,67 @@ try {
   color: #03060a;
   font-weight: 700;
 }
-.modal-gallery-thumbs {
+
+/* Hardware-accelerated sliding packshot carousel */
+.card-slider-track {
   display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: 0.6rem;
+  width: 200%;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
-.thumb-btn {
-  flex: 1;
+.card-slider-track.slide-box {
+  transform: translate3d(-50%, 0, 0);
+}
+.card-slide {
+  width: 50%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  background: #09101b;
-  border: 1px solid var(--line);
-  border-radius: 0.5rem;
-  padding: 0.45rem 0.6rem;
-  color: var(--ice);
-  font-size: 0.76rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  flex-shrink: 0;
+  padding: 0.25rem;
 }
-.thumb-btn:hover {
-  border-color: rgba(201, 169, 110, 0.5);
-  color: #fff;
+
+.modal-img-container {
+  width: 100%;
+  max-width: 320px;
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 1rem;
+  background: radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
 }
-.thumb-btn.active {
-  border-color: var(--gold);
-  background: rgba(201, 169, 110, 0.15);
-  color: #fff;
-  font-weight: 600;
+.modal-slider-track {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
+.modal-slider-track.slide-box {
+  transform: translate3d(-50%, 0, 0);
+}
+.modal-slide {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0.5rem;
+}
+.modal-packshot-img {
+  max-height: 260px;
+  max-width: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.9));
+  transition: transform 0.4s ease;
+}
+
 .packaging-guarantee-badge {
   font-size: 0.74rem;
   color: var(--gold);
@@ -559,11 +587,15 @@ nav.main-nav a:hover{color:var(--gold)}
 .card-img-wrap{
   width:100%;
   height:180px;
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
   margin-bottom:.8rem;
   cursor:pointer;
+  border-radius:.8rem;
+  background:radial-gradient(circle at 50% 60%, rgba(201,169,110,0.06), transparent 70%);
 }
 .card-img{
   max-height:165px;
@@ -1116,27 +1148,31 @@ footer{
     </g>
     <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
   </svg>
+  <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
   <p class="mark">AROMATIX <b>OSLO</b></p>
-  <p class="hint" id="introHint">Kuratert Parfymeri · 30 Utvalgte Flakonger</p>
+  <p class="hint" id="introHint">Feel As Good As You Smell · 30 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
 <!-- ================= 2. HEADER BAR ================= -->
 <div class="top-banner">
-  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · Fri frakt fra 500 kr · 100% Original Produsentgaranti</span>
+  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 <b>+47 955 50 199</b> · Fri frakt fra 500 kr</span>
 </div>
 
 <header>
   <div class="header-inner">
-    <div class="brand-group">
-      <a href="#kjop" class="brand-title">AROMATIX <b>OSLO</b></a>
-      <span class="brand-sub" id="headerTagline">Kuratert Parfymeri · 100 ml Flakonger</span>
+    <div class="brand-group" style="display:flex;align-items:center;gap:.75rem">
+      <img src="images/aromatix-emblem.png" alt="Aromatix Logo" class="brand-logo-img" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(201,169,110,0.45))">
+      <div>
+        <a href="#kjop" class="brand-title">AROMATIX <b>OSLO</b></a>
+        <span class="brand-sub" id="headerTagline">Kuratert Parfymeri · 100 ml Flakonger</span>
+      </div>
     </div>
 
     <nav class="main-nav">
       <a href="#kjop" id="navFragrances">Våre Parfymer</a>
       <a href="#showroom" id="navShowroom">Showroom</a>
-      <button type="button" onclick="openPolicy(\'om\')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om</button>
+      <button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om</button>
       <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
     </nav>
 
@@ -1163,7 +1199,7 @@ footer{
   <div class="mobile-nav" id="mobileNav">
     <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (30 flakonger)</a>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy(\'om\');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
+    <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Se intro på nytt</button>
   </div>
@@ -1188,13 +1224,12 @@ footer{
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
           <option value="all" id="optBrandAll">Alle merker (30)</option>
-          <option value="Armaf">Armaf / Sterling Perfumes (1)</option>
-          <option value="Lattafa">Lattafa (13)</option>
-          <option value="Maison Alhambra">Maison Alhambra (4)</option>
-          <option value="Swiss Arabian">Swiss Arabian (4)</option>
-          <option value="Ibraq">Ibraq (3)</option>
-          <option value="Reef">Reef (3)</option>
-          <option value="Viridian">Viridian (2)</option>
+          <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
+          <option value="Lattafa" id="optBrandLattafa">Lattafa (13)</option>
+          <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (4)</option>
+          <option value="Swiss Arabian" id="optBrandSwiss">Swiss Arabian (4)</option>
+          <option value="Ibraq" id="optBrandIbraq">Ibrahim Al Qurashi (IBRAQ) (3)</option>
+          <option value="Reef" id="optBrandReef">Reef Perfumes (5)</option>
         </select>
       </div>
 
@@ -1246,7 +1281,8 @@ footer{
         <p style="color:var(--ice);font-size:.9rem;line-height:1.6">
           📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
           🕒 <span id="srHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
-          ✉️ <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a>
+          📞 <a href="tel:+4795550199" style="color:var(--gold)">+47 955 50 199</a><br>
+          ✉️ <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a>
         </p>
       </div>
       <div style="background:#080e18;border:1px solid var(--line);border-radius:1.2rem;padding:2rem;text-align:center">
@@ -1286,8 +1322,21 @@ footer{
   <div class="product-modal-grid">
     <div class="modal-packshot-wrap">
       <div class="modal-img-container">
-        <img id="detailModalImg" class="modal-packshot-img" src="" alt=""
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+        <div class="modal-slider-track" id="modalSliderTrack">
+          <div class="modal-slide">
+            <img id="detailModalImgBottle" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Flakong"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="modal-slide">
+            <img id="detailModalImgBox" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Presentasjonseske"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+          </div>
+        </div>
+      </div>
+
+      <div class="img-switch-pill" style="margin:.6rem auto .3rem;position:static;transform:none;width:fit-content;display:flex">
+        <button type="button" class="view-toggle-btn active" id="modalBtnBottle" onclick="setModalView('bottle')">✨ Flakong</button>
+        <button type="button" class="view-toggle-btn" id="modalBtnBox" onclick="setModalView('box')">📦 Eske / Boks</button>
       </div>
       
       <div class="packaging-guarantee-badge" id="boxGuaranteeBadge">
@@ -1496,7 +1545,10 @@ footer{
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
-      <div class="brand-title">AROMATIX <b>OSLO</b></div>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
+        <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="height:38px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.4))">
+        <div class="brand-title">AROMATIX <b>OSLO</b></div>
+      </div>
       <p style="font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="footerAboutText">
         Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede 100 ml flakonger fra fremragende nisjehus. Makspris 1 500 kr.
       </p>
@@ -1529,7 +1581,8 @@ footer{
       <p style="font-size:.78rem;color:var(--ice);line-height:1.6">
         📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
         🕒 <span id="ftHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
-        ✉️ <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a><br>
+        📞 <a href="tel:+4795550199" style="color:var(--gold)">+47 955 50 199</a><br>
+        ✉️ <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a><br>
         📱 Vipps Bedrift: Aromatix Oslo
       </p>
     </div>
@@ -1541,7 +1594,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.18 (updated 2026-09-17 12:18)
+        v1.0.21 (updated 2026-09-17 15:25)
       </div>
     </div>
   </div>
@@ -1787,7 +1840,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#89cff0"
     },
     "tag": "Eksotisk",
-    "image_box": "images/lattafa-asad-box.png",
+    "image_box": "images/lattafa-asad-zanzibar-box.png",
     "size": "100 ml"
   },
   {
@@ -1795,17 +1848,17 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-pink.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara (Pink)",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Tropical Orchid & Fluffy Vanilla",
     "scentFamily": "floral",
-    "desc": "En fl\u00f8yelsmyk, pudret dr\u00f8m med heliotrop, tropiske frukter, kremet marshmallow og berusende vanilje.",
+    "desc": "En fløyelsmyk, pudret drøm med heliotrop, tropiske frukter, kremet marshmallow og berusende vanilje.",
     "desc_en": "A velvety, powdery dream featuring heliotrope, tropical fruits, whipped marshmallow, and warm bourbon vanilla.",
     "story": "En global sensasjon. Yara er feminin, luftig og omsluttende som en kashmirgenser i pastell.",
     "story_en": "A worldwide fragrance sensation. Yara is feminine, airy, and embracing like a pastel cashmere sweater.",
     "price": 450,
     "notes": {
-      "top": "Heliotrop, vill orkid\u00e9, s\u00f8t mandarin",
+      "top": "Heliotrop, vill orkidé, søt mandarin",
       "heart": "Tropisk fruktakkord, marshmallow, gourmandakkord",
       "base": "Madagaskar vanilje, hvitt sandeltre, ren moskus",
       "top_en": "Heliotrope, wild orchid, sweet tangerine",
@@ -1828,13 +1881,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-tous.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara Tous (Yellow)",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Mango Nectar & Passionfruit",
     "scentFamily": "floral",
     "desc": "Solmoden mango, pasjonsfrukt og kokosmelk med appelsinblomst, sjasmin og varm vanilje.",
     "desc_en": "Sun-drenched mango nectar, golden passionfruit, and coconut water blooming with white florals and vanilla.",
-    "story": "Solens energi i en gyllen flakong. En ren sommerferie p\u00e5 huden uansett \u00e5rstid.",
+    "story": "Solens energi i en gyllen flakong. En ren sommerferie på huden uansett årstid.",
     "story_en": "Solar radiance captured in yellow. An exotic tropical getaway bottled for effortless joy.",
     "price": 450,
     "notes": {
@@ -1853,7 +1906,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#facc15"
     },
     "tag": "Solrik",
-    "image_box": "images/lattafa-yara-pink-box.png",
+    "image_box": "images/lattafa-yara-tous-box.png",
     "size": "100 ml"
   },
   {
@@ -1861,13 +1914,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-yara-moi.png",
     "brand": "Lattafa",
     "name": "Lattafa Yara Moi (White)",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Salted Caramel, Peach & Jasmine",
     "scentFamily": "floral",
-    "desc": "Hvit fersken og sjasmin sv\u00f8pt i salt karamell, varm ambra, patchouli og kremet sandeltre.",
+    "desc": "Hvit fersken og sjasmin svøpt i salt karamell, varm ambra, patchouli og kremet sandeltre.",
     "desc_en": "White peach and blooming jasmine bathed in buttery salted caramel, warm amber, patchouli, and sandalwood.",
-    "story": "Kjent som \u00abden hvite Yara\u00bb. Sofistikert, forf\u00f8rende og fl\u00f8yelsmyk kveldseleganse.",
+    "story": "Kjent som «den hvite Yara». Sofistikert, forførende og fløyelsmyk kveldseleganse.",
     "story_en": "Celebrated as 'the white Yara'. Sophisticated, alluring, and wrapped in creamy amber warmth.",
     "price": 450,
     "notes": {
@@ -1886,7 +1939,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#e2e8f0"
     },
     "tag": "Karamell",
-    "image_box": "images/lattafa-yara-pink-box.png",
+    "image_box": "images/lattafa-yara-moi-box.png",
     "size": "100 ml"
   },
   {
@@ -1894,17 +1947,17 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-glory.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Oud for Glory",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Smoky Agarwood, Saffron & Nutmeg",
     "scentFamily": "oud",
-    "desc": "En m\u00f8rk, kongelig oud-kreasjon med edel safran, muskat, patchouli, r\u00f8ykfylt agartre og ren musk.",
+    "desc": "En mørk, kongelig oud-kreasjon med edel safran, muskat, patchouli, røykfylt agartre og ren musk.",
     "desc_en": "A dark, imperial oud masterclass with golden saffron, nutmeg, patchouli, smoked agarwood, and musk.",
-    "story": "En legende i moderne parfymeri. Kraftfull, kompromissl\u00f8s og med majestetisk tilstedev\u00e6relse.",
+    "story": "En legende i moderne parfymeri. Kraftfull, kompromissløs og med majestetisk tilstedeværelse.",
     "story_en": "A true modern legend. Commanding, uncompromising, and radiating royal distinction.",
     "price": 550,
     "notes": {
-      "top": "Safran, muskatn\u00f8tt, lavendel",
+      "top": "Safran, muskatnøtt, lavendel",
       "heart": "Agarwood (oud), patchouli",
       "base": "Agarwood, patchouli, musk",
       "top_en": "Saffron, nutmeg, lavender",
@@ -1927,20 +1980,20 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-honor.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Honor & Glory",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Caramelized Pineapple & Cr\u00e8me Br\u00fbl\u00e9e",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Caramelized Pineapple & Crème Brûlée",
     "scentFamily": "gourmand",
-    "desc": "Grillet ananas, karamellisert cr\u00e8me br\u00fbl\u00e9e, kanelbark, gurkemeie og luksuri\u00f8s bourbon vanilje i hvit gullflakong.",
-    "desc_en": "Grilled pineapple, caramelized cr\u00e8me br\u00fbl\u00e9e, cinnamon bark, and bourbon vanilla encased in opulent white and gold.",
+    "desc": "Grillet ananas, karamellisert crème brûlée, kanelbark, gurkemeie og luksuriøs bourbon vanilje i hvit gullflakong.",
+    "desc_en": "Grilled pineapple, caramelized crème brûlée, cinnamon bark, and bourbon vanilla encased in opulent white and gold.",
     "story": "Den hvite juvelen i Bade'e-serien. En oppsiktsvekkende gourmand som tiltrekker seg komplimenter.",
     "story_en": "The white jewel of the Bade'e collection. A stunning gourmand celebrated for its extraordinary sillage.",
     "price": 550,
     "notes": {
-      "top": "Grillet ananas, cr\u00e8me br\u00fbl\u00e9e",
+      "top": "Grillet ananas, crème brûlée",
       "heart": "Kanelbark, gurkemeie, svart pepper, benzoin",
       "base": "Bourbon vanilje, cashmeran, sandeltre, eikemose",
-      "top_en": "Grilled pineapple, cr\u00e8me br\u00fbl\u00e9e",
+      "top_en": "Grilled pineapple, crème brûlée",
       "heart_en": "Cinnamon bark, turmeric, black pepper, benzoin",
       "base_en": "Bourbon vanilla, cashmeran, sandalwood, oakmoss"
     },
@@ -1952,7 +2005,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#e5b364"
     },
     "tag": "Gourmand",
-    "image_box": "images/lattafa-badee-glory-box.png",
+    "image_box": "images/lattafa-badee-honor-box.png",
     "size": "100 ml"
   },
   {
@@ -1960,13 +2013,13 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-amethyst.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Amethyst",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Turkish Rose & Royal Amber Oud",
     "scentFamily": "floral",
-    "desc": "Luksuri\u00f8s tyrkisk rose og bulgarsk rose innsv\u00f8pt i rosa pepper, vanilje, rav og silkeaktig oud.",
+    "desc": "Luksuriøs tyrkisk rose og bulgarsk rose innsvøpt i rosa pepper, vanilje, rav og silkeaktig oud.",
     "desc_en": "Opulent Turkish and Bulgarian roses draped in pink pepper, warm vanilla, rich amber, and silky oud.",
-    "story": "Kongefamiliens rosehage i full blomst. Dyp, romantisk og kongelig tilstedev\u00e6relse.",
+    "story": "Kongefamiliens rosehage i full blomst. Dyp, romantisk og kongelig tilstedeværelse.",
     "story_en": "The royal rose garden at midnight. Deep, romantic, and exuding aristocratic elegance.",
     "price": 550,
     "notes": {
@@ -1985,7 +2038,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#c084fc"
     },
     "tag": "Kongelig Rose",
-    "image_box": "images/lattafa-badee-glory-box.png",
+    "image_box": "images/lattafa-badee-amethyst-box.png",
     "size": "100 ml"
   },
   {
@@ -1993,18 +2046,18 @@ const DEFAULT_CATALOG = [
     "image": "images/lattafa-badee-sublime.png",
     "brand": "Lattafa",
     "name": "Bade'e Al Oud - Sublime",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Juicy Red Apple & Forest Moss",
     "scentFamily": "citrus",
-    "desc": "Friskt r\u00f8dt eple, saftig litchi, fl\u00f8yelsplomme og rose balansert mot dyp eikemose og patchouli.",
+    "desc": "Friskt rødt eple, saftig litchi, fløyelsplomme og rose balansert mot dyp eikemose og patchouli.",
     "desc_en": "Crisp red apple, juicy litchi, velvety plum, and blooming rose grounded by deep forest moss and patchouli.",
-    "story": "En forfriskende vri p\u00e5 orientalsk luksus. B\u00e6rekraftig friskhet med en uimotst\u00e5elig dybde.",
+    "story": "En forfriskende vri på orientalsk luksus. Bærekraftig friskhet med en uimotståelig dybde.",
     "story_en": "A revitalizing twist on oriental luxury. Dynamic fruity freshness anchored by sophisticated depth.",
     "price": 550,
     "notes": {
-      "top": "R\u00f8dt eple, litchi, duggfrisk rose",
-      "heart": "S\u00f8t plomme, hvit sjasmin",
+      "top": "Rødt eple, litchi, duggfrisk rose",
+      "heart": "Søt plomme, hvit sjasmin",
       "base": "Eikemose, vanilje, indonesisk patchouli",
       "top_en": "Red apple, litchi, dewy rose",
       "heart_en": "Sweet plum, white jasmine",
@@ -2018,26 +2071,27 @@ const DEFAULT_CATALOG = [
       "capStroke": "#4ade80"
     },
     "tag": "Fruktig",
-    "image_box": "images/lattafa-badee-glory-box.png",
+    "image_box": "images/lattafa-badee-sublime-box.png",
     "size": "100 ml"
   },
   {
     "id": "lattafa-rave-now",
     "image": "images/lattafa-rave-now.png",
     "brand": "Lattafa",
+    "house": "Lattafa / Rave",
     "name": "Rave Now Black",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Smoked Pineapple & Birch Woods",
     "scentFamily": "citrus",
-    "desc": "Intens, saftig ananas og solb\u00e6r blandet med r\u00f8kt bj\u00f8rkeved, bergamott, ambra og eikemose.",
+    "desc": "Intens, saftig ananas og solbær blandet med røkt bjørkeved, bergamott, ambra og eikemose i geometrisk sort flakong.",
     "desc_en": "Intense, juicy pineapple and blackcurrant blended with smoky birch wood, bergamot, ambergris, and oakmoss.",
-    "story": "En energisk og kraftfull kreasjon designet for den moderne, selvsikre personligheten.",
-    "story_en": "A high-energy, commanding creation crafted for modern, self-assured confidence.",
+    "story": "En energisk og kraftfull kreasjon designet for den moderne, selvsikre personligheten. Leveres i autentisk sort bikakemønstret flakong og luksuseske.",
+    "story_en": "A high-energy, commanding creation crafted for modern, self-assured confidence. Presented in authentic black honeycomb flacon.",
     "price": 390,
     "notes": {
-      "top": "Saftig ananas, solb\u00e6r, bergamott, gr\u00f8nt eple",
-      "heart": "R\u00f8kt bj\u00f8rk, marokkansk sjasmin, patchouli",
+      "top": "Saftig ananas, solbær, bergamott, grønt eple",
+      "heart": "Røkt bjørk, marokkansk sjasmin, patchouli",
       "base": "Ambra, eikemose, bourbon vanilje, hvit musk",
       "top_en": "Juicy pineapple, blackcurrant, bergamot, green apple",
       "heart_en": "Smoky birch, Moroccan jasmine, patchouli",
@@ -2051,7 +2105,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#94a3b8"
     },
     "tag": "Frisk",
-    "image_box": "images/armaf-club-de-nuit-intense-box.png",
+    "image_box": "images/lattafa-rave-now-box.png",
     "size": "100 ml"
   },
   {
@@ -2059,19 +2113,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-malachite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Malachite",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Aromatic Green Woods & Warm Amber",
     "scentFamily": "oud",
-    "desc": "Gr\u00f8nn mandarin og italiensk bergamott flettet sammen med aromatisk lavendel, edelt sedertre og gyllen ambra.",
+    "desc": "Grønn mandarin og italiensk bergamott flettet sammen med aromatisk lavendel, edelt sedertre og gyllen ambra.",
     "desc_en": "Green mandarin and Italian bergamot interwoven with aromatic lavender, noble cedar, and golden amber.",
-    "story": "Inspirert av den majestetiske gr\u00f8nne malakitt-edelstenen i de russiske tsarenes vinterpalasser.",
+    "story": "Inspirert av den majestetiske grønne malakitt-edelstenen i de russiske tsarenes vinterpalasser.",
     "story_en": "Inspired by the imperial green malachite gemstone adorning the winter palaces of tsars.",
     "price": 590,
     "notes": {
-      "top": "Bergamott, gr\u00f8nn mandarin, salvie",
+      "top": "Bergamott, grønn mandarin, salvie",
       "heart": "Fransk lavendel, geranium, kardemomme",
-      "base": "Gr\u00f8nn vetiver, ambra, sedertre, harpiks",
+      "base": "Grønn vetiver, ambra, sedertre, harpiks",
       "top_en": "Bergamot, green mandarin, clary sage",
       "heart_en": "French lavender, geranium, cardamom",
       "base_en": "Green vetiver, amber, cedarwood, balsamic resin"
@@ -2092,19 +2146,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-oceana.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Oceana",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Oceanic Marine & Citrus Ambergris",
     "scentFamily": "citrus",
-    "desc": "Krystallklar sj\u00f8spr\u00f8yt, solmodne sitrusfrukter, myrte og ekte gr\u00e5 ambra p\u00e5 en seng av kystsedertre.",
+    "desc": "Krystallklar sjøsprøyt, solmodne sitrusfrukter, myrte og ekte grå ambra på en seng av kystsedertre.",
     "desc_en": "Crystal clear sea spray, sun-ripened citrus, Mediterranean myrtle, and authentic ambergris over coastal cedar.",
-    "story": "En reise over det \u00e5pne asurbl\u00e5 havet. Forfriskende som et dykk i dypbl\u00e5tt badevann p\u00e5 den italienske rivieraen.",
+    "story": "En reise over det åpne asurblå havet. Forfriskende som et dykk i dypblått badevann på den italienske rivieraen.",
     "story_en": "A voyage across azure ocean waves. Refreshing as a plunge into deep blue waters off the Amalfi coast.",
     "price": 590,
     "notes": {
-      "top": "Sitrusfrukter, ozoniske noter, salt sj\u00f8bris",
+      "top": "Sitrusfrukter, ozoniske noter, salt sjøbris",
       "heart": "Middelhavsmyrte, havalger, hvit sjasmin",
-      "base": "Gr\u00e5 ambra, drivved, kystfuru, ren moskus",
+      "base": "Grå ambra, drivved, kystfuru, ren moskus",
       "top_en": "Citrus zest, ozonic notes, salty sea breeze",
       "heart_en": "Mediterranean myrtle, sea algae, white jasmine",
       "base_en": "Ambergris, driftwood, coastal pine, clean musk"
@@ -2117,7 +2171,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#38bdf8"
     },
     "tag": "Akvatisk",
-    "image_box": "images/alhambra-sceptre-malachite-box.png",
+    "image_box": "images/alhambra-sceptre-oceana-box.png",
     "size": "100 ml"
   },
   {
@@ -2125,18 +2179,18 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-amazonite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Amazonite",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Dark Oriental Spices & Smoked Woods",
     "scentFamily": "amber",
-    "desc": "Eksotisk safran, r\u00f8kelse fra den arabiske halv\u00f8y, m\u00f8rkt l\u00e6r og balsamisk agartre.",
+    "desc": "Eksotisk safran, røkelse fra den arabiske halvøy, mørkt lær og balsamisk agartre.",
     "desc_en": "Exotic saffron, Arabian incense, midnight leather, and balsamic agarwood resin.",
-    "story": "Amazonittens mystikk fanget i en dyp, tealgr\u00f8nn flakong. Forfining for de krevende anledninger.",
+    "story": "Amazonittens mystikk fanget i en dyp, tealgrønn flakong. Forfining for de krevende anledninger.",
     "story_en": "The mystery of Amazonite stone captured in a deep teal flacon. Uncompromising sophistication.",
     "price": 590,
     "notes": {
       "top": "Safran, rosa pepper, bergamott",
-      "heart": "R\u00f8kelse, fint l\u00e6r, m\u00f8rk rose",
+      "heart": "Røkelse, fint lær, mørk rose",
       "base": "Balsamiske tresorter, ambra, edel oud, benzoin",
       "top_en": "Saffron, pink pepper, bergamot",
       "heart_en": "Frankincense, fine leather, dark rose",
@@ -2150,7 +2204,7 @@ const DEFAULT_CATALOG = [
       "capStroke": "#2dd4bf"
     },
     "tag": "Orientalsk",
-    "image_box": "images/alhambra-sceptre-malachite-box.png",
+    "image_box": "images/alhambra-sceptre-amazonite-box.png",
     "size": "100 ml"
   },
   {
@@ -2158,19 +2212,19 @@ const DEFAULT_CATALOG = [
     "image": "images/alhambra-sceptre-bronzite.png",
     "brand": "Maison Alhambra",
     "name": "Sceptre Bronzite",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Warm Spicy Leather & Roasted Tonka",
     "scentFamily": "amber",
-    "desc": "Muskatn\u00f8tt og varm kardemomme m\u00f8ter kaffeb\u00f8nner, mykt l\u00e6r, bronzitt rav og r\u00f8stet tonkab\u00f8nne.",
+    "desc": "Muskatnøtt og varm kardemomme møter kaffebønner, mykt lær, bronzitt rav og røstet tonkabønne.",
     "desc_en": "Nutmeg and warm cardamom meet roasted coffee beans, soft leather, bronzite amber, and roasted tonka bean.",
-    "story": "Skapt med inspirasjon fra bronzittens metalliske glans og jordn\u00e6re varme. Omsluttende og aristokratisk.",
+    "story": "Skapt med inspirasjon fra bronzittens metalliske glans og jordnære varme. Omsluttende og aristokratisk.",
     "story_en": "Crafted with inspiration from the metallic sheen and earthy warmth of bronzite stone. Aristocratic warmth.",
     "price": 590,
     "notes": {
       "top": "Muskat, kardemomme, sitruszest",
-      "heart": "Varmt l\u00e6r, ristet kaffe, tobakksblad",
-      "base": "Bronzitt rav, tonkab\u00f8nne, r\u00f8kt sedertre",
+      "heart": "Varmt lær, ristet kaffe, tobakksblad",
+      "base": "Bronzitt rav, tonkabønne, røkt sedertre",
       "top_en": "Nutmeg, cardamom, citrus zest",
       "heart_en": "Warm leather, roasted coffee, cured tobacco leaf",
       "base_en": "Bronzite amber, tonka bean, smoked cedarwood"
@@ -2182,8 +2236,8 @@ const DEFAULT_CATALOG = [
       "cap": "#211409",
       "capStroke": "#d97706"
     },
-    "tag": "Varm L\u00e6r",
-    "image_box": "images/alhambra-sceptre-malachite-box.png",
+    "tag": "Varm Lær",
+    "image_box": "images/alhambra-sceptre-bronzite-box.png",
     "size": "100 ml"
   },
   {
@@ -2248,8 +2302,8 @@ const DEFAULT_CATALOG = [
       "cap": "#14181f",
       "capStroke": "#cbd5e1"
     },
-    "tag": "R\u00f8ykfylt",
-    "image_box": "images/swissarabian-shaghaf-oud-box.png",
+    "tag": "Røykfylt",
+    "image_box": "images/swissarabian-shaghaf-abyad-box.png",
     "size": "100 ml"
   },
   {
@@ -2257,19 +2311,19 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-aswad.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud Aswad",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Intense Woody Floral & Royal Oud",
     "scentFamily": "oud",
-    "desc": "Timian, sort pepper, safran og m\u00f8rke roser over en bunn av r\u00e5 oud, l\u00e6r, sandeltre og vanilje.",
+    "desc": "Timian, sort pepper, safran og mørke roser over en bunn av rå oud, lær, sandeltre og vanilje.",
     "desc_en": "Thyme, black pepper, saffron, and midnight roses layered over raw oud, leather, sandalwood, and vanilla.",
-    "story": "Aswad betyr svart. Den m\u00f8rkeste, mest g\u00e5tefulle tolkningen i Shaghaf-familien.",
+    "story": "Aswad betyr svart. Den mørkeste, mest gåtefulle tolkningen i Shaghaf-familien.",
     "story_en": "Aswad means black. The darkest, most enigmatic interpretation in the acclaimed Shaghaf lineage.",
     "price": 790,
     "notes": {
       "top": "Sort pepper, timian, safran, rose",
       "heart": "Koriander, jasmin, patchouli, spisskummen",
-      "base": "Svart oud, l\u00e6r, ambra, sandeltre, vanilje",
+      "base": "Svart oud, lær, ambra, sandeltre, vanilje",
       "top_en": "Black pepper, thyme, saffron, rose",
       "heart_en": "Coriander, jasmine, patchouli, cumin",
       "base_en": "Black oud, leather, amber, sandalwood, vanilla"
@@ -2281,8 +2335,8 @@ const DEFAULT_CATALOG = [
       "cap": "#090b0e",
       "capStroke": "#e2b153"
     },
-    "tag": "M\u00f8rk Oud",
-    "image_box": "images/swissarabian-shaghaf-oud-box.png",
+    "tag": "Mørk Oud",
+    "image_box": "images/swissarabian-shaghaf-aswad-box.png",
     "size": "100 ml"
   },
   {
@@ -2290,18 +2344,18 @@ const DEFAULT_CATALOG = [
     "image": "images/swissarabian-shaghaf-tonka.png",
     "brand": "Swiss Arabian",
     "name": "Shaghaf Oud Tonka",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
     "subtitle": "Almond Blossom, Roasted Tonka & Amber Oud",
     "scentFamily": "gourmand",
-    "desc": "Mandelblomst, karamellisert tonkab\u00f8nne, kanelbark og gyllen oud i en luksuri\u00f8s gourmand-opplevelse.",
+    "desc": "Mandelblomst, karamellisert tonkabønne, kanelbark og gyllen oud i en luksuriøs gourmand-opplevelse.",
     "desc_en": "Almond blossom, caramelized tonka bean, cinnamon bark, and golden oud in a luxurious gourmand experience.",
-    "story": "Den nyeste sensasjonen fra Swiss Arabian. Silkemyk s\u00f8dme kombinert med ekte arabisk treverk.",
+    "story": "Den nyeste sensasjonen fra Swiss Arabian. Silkemyk sødme kombinert med ekte arabisk treverk.",
     "story_en": "The latest sensation from Swiss Arabian. Silky sweetness flawlessly married with authentic oriental woods.",
     "price": 820,
     "notes": {
       "top": "Mandelblomst, appelsinblomst",
-      "heart": "R\u00f8stet tonkab\u00f8nne, tyrkisk rose, kanelbark",
+      "heart": "Røstet tonkabønne, tyrkisk rose, kanelbark",
       "base": "Gylden oud, vanilje bourbon, ambra",
       "top_en": "Almond blossom, orange blossom",
       "heart_en": "Roasted tonka bean, Turkish rose, cinnamon bark",
@@ -2315,28 +2369,29 @@ const DEFAULT_CATALOG = [
       "capStroke": "#f59e0b"
     },
     "tag": "Gourmand",
-    "image_box": "images/swissarabian-shaghaf-oud-box.png",
+    "image_box": "images/swissarabian-shaghaf-tonka-box.png",
     "size": "100 ml"
   },
   {
     "id": "ibraq-jamaican-tobacco",
     "image": "images/ibraq-jamaican-tobacco.png",
     "brand": "Ibraq",
-    "name": "Ibraq Jamaican Tobacco",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Aged Rum, Spiced Leaf & Warm Tonka \u00b7 Extrait de Parfum",
+    "house": "Ibrahim Al Qurashi (IBRAQ)",
+    "name": "Ibrahim Al Qurashi Jamaican Tobacco",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Aged Rum, Spiced Leaf & Warm Tonka · Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "amber",
-    "desc": "Fatmodnet karibisk rom, krydrede tobakksblader, r\u00e5kakao, honning og gyllen kvae i ekstraktkonsentrasjon.",
-    "desc_en": "Cask-aged Caribbean rum, spiced tobacco leaves, raw cacao, honey, and golden resins in Extrait concentration.",
-    "story": "En hyllest til de historiske tobakksplantasjene og romfatene i Karibia. R\u00f8ykfylt, rik og overd\u00e5dig.",
-    "story_en": "A tribute to heritage tobacco leaves and vintage rum barrels of the Caribbean. Smoky, opulent, and profound.",
+    "desc": "Fatmodnet karibisk rom, krydrede tobakksblader, råkakao, honning og gyllen kvae i ekstraktkonsentrasjon fra Ibrahim Al Qurashi.",
+    "desc_en": "Cask-aged Caribbean rum, spiced tobacco leaves, raw cacao, honey, and golden resins in Extrait concentration by Ibrahim Al Qurashi.",
+    "story": "En hyllest til de historiske tobakksplantasjene og romfatene i Karibia. Røykfylt, rik og overdådig haute parfumerie.",
+    "story_en": "A tribute to heritage tobacco leaves and vintage rum barrels of the Caribbean. Smoky, opulent, and profound haute parfumerie.",
     "price": 1190,
     "notes": {
-      "top": "Fatmodnet rom, t\u00f8rkede frukter, muskat",
+      "top": "Fatmodnet rom, tørkede frukter, muskat",
       "heart": "Gyldne tobakksblader, honning, kakao",
-      "base": "Tonkab\u00f8nne, madagaskar vanilje, sedertre, m\u00f8rk kvae",
+      "base": "Tonkabønne, madagaskar vanilje, sedertre, mørk kvae",
       "top_en": "Cask-aged rum, dried fruits, nutmeg",
       "heart_en": "Golden tobacco leaves, honey, raw cacao",
       "base_en": "Tonka bean, Madagascar vanilla, cedarwood, dark resin"
@@ -2353,27 +2408,28 @@ const DEFAULT_CATALOG = [
     "size": "100 ml"
   },
   {
-    "id": "ibraq-black-amber",
-    "image": "images/ibraq-black-amber.png",
+    "id": "ibraq-black-diamond",
+    "image": "images/ibraq-black-diamond.png",
     "brand": "Ibraq",
-    "name": "Ibraq Black Amber",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Dark Incense, Labdanum & Resinous Woods \u00b7 Extrait de Parfum",
+    "house": "Ibrahim Al Qurashi (IBRAQ)",
+    "name": "Ibrahim Al Qurashi Black Diamond Incense",
+    "edition": "Kongeutgave · 100 ml",
+    "edition_en": "Royal Edition · 100 ml",
+    "subtitle": "Black Diamond Incense & Noble Woods · Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "amber",
-    "desc": "R\u00f8kelse fra Oman, cistus labdanum, svart ambra og r\u00f8kt treverk destillert for maksimal dybde.",
-    "desc_en": "Sacred Omani incense, cistus labdanum, black amber, and smoked woods distilled for transcendental depth.",
-    "story": "M\u00f8rkets skj\u00f8nnhet i flytende form. Black Amber er hemmelighetsfull, dyp og uforglemmelig.",
-    "story_en": "The beauty of the nocturnal world in liquid form. Black Amber is secretive, deep, and unforgettable.",
+    "desc": "Krystallklar sort røkelse fra Oman, cistus labdanum, svart ambra og edelt sedertre i fasettert krystalldiamant-flakong fra Ibrahim Al Qurashi.",
+    "desc_en": "Sacred black incense, rare frankincense resins, dark amber, and noble cedar in a faceted crystal diamond flacon by Ibrahim Al Qurashi.",
+    "story": "Den legendariske Black Diamond-kreasjonen fra Ibrahim Al Qurashi. Mørk, hemmelighetsfull og med majestetisk kongelig tilstedeværelse.",
+    "story_en": "The legendary Black Diamond creation from Ibrahim Al Qurashi. Secretive, deep, and radiating unmatched royal distinction.",
     "price": 1190,
     "notes": {
-      "top": "Sort pepper, r\u00f8kelse fra Oman, bergamott",
-      "heart": "Svart ambra, cistus labdanum, m\u00f8rkt l\u00e6r",
-      "base": "Balsamisk benzoin, indonesisk patchouli, r\u00f8kt oud",
-      "top_en": "Black pepper, Omani frankincense, bergamot",
+      "top": "Sort røkelse fra Oman, bergamott, kardemomme",
+      "heart": "Svart ambra, cistus labdanum, mørkt lær",
+      "base": "Balsamisk benzoin, indonesisk patchouli, røkt luksusoud",
+      "top_en": "Sacred black incense, bergamot, cardamom",
       "heart_en": "Black amber, cistus labdanum, dark leather",
-      "base_en": "Balsamic benzoin, Indonesian patchouli, smoked oud"
+      "base_en": "Balsamic benzoin, Indonesian patchouli, smoked luxury oud"
     },
     "color": {
       "liquidTop": "oklch(.52 .14 48 / .9)",
@@ -2382,27 +2438,28 @@ const DEFAULT_CATALOG = [
       "cap": "#140d08",
       "capStroke": "#b45309"
     },
-    "tag": "Ekstrakt",
-    "image_box": "images/ibraq-jamaican-tobacco-box.png",
+    "tag": "Diamant",
+    "image_box": "images/ibraq-black-diamond-box.png",
     "size": "100 ml"
   },
   {
     "id": "ibraq-emerald-oud",
     "image": "images/ibraq-emerald-oud.png",
     "brand": "Ibraq",
-    "name": "Ibraq Emerald Oud",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Royal Cambodian Agarwood & Green Cardamom \u00b7 Extrait de Parfum",
+    "house": "Ibrahim Al Qurashi (IBRAQ)",
+    "name": "Ibrahim Al Qurashi Emerald Oud",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Royal Cambodian Agarwood & Green Cardamom · Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "oud",
-    "desc": "Gr\u00f8nn kardemomme, sypress, kambodsjansk agartre og hvit ambra i en juvel av en flakong.",
-    "desc_en": "Green cardamom, cypress, Cambodian agarwood, and white ambergris presented in a jewel-inspired flacon.",
-    "story": "Kambodsjas legendariske oud-tr\u00e6r forent med frisk gr\u00f8nn natur og edle r\u00e5varer.",
-    "story_en": "Cambodia\u2019s legendary oud heritage united with invigorating green botanicals and fine resins.",
+    "desc": "Grønn kardemomme, sypress, kambodsjansk agartre og hvit ambra i en smaragdgrønn luksusflakong fra Ibrahim Al Qurashi.",
+    "desc_en": "Green cardamom, cypress, Cambodian agarwood, and white ambergris presented in a jewel-inspired flacon by Ibrahim Al Qurashi.",
+    "story": "Kambodsjas legendariske oud-trær forent med frisk grønn natur og edle råvarer i en eksklusiv fløyelspresentasjonseske.",
+    "story_en": "Cambodia’s legendary oud heritage united with invigorating green botanicals and fine resins in an emerald coffret box.",
     "price": 1290,
     "notes": {
-      "top": "Gr\u00f8nn kardemomme, fiolblader, bergamott",
+      "top": "Grønn kardemomme, fiolblader, bergamott",
       "heart": "Kambodsjansk oud, sypress, damaskrose",
       "base": "Vetiver, hvit ambra, sedertre",
       "top_en": "Green cardamom, violet leaves, bergamot",
@@ -2417,27 +2474,28 @@ const DEFAULT_CATALOG = [
       "capStroke": "#10b981"
     },
     "tag": "Smaragd",
-    "image_box": "images/ibraq-jamaican-tobacco-box.png",
+    "image_box": "images/ibraq-emerald-oud-box.png",
     "size": "100 ml"
   },
   {
     "id": "viridian-forest-mist",
     "image": "images/viridian-forest-mist.png",
-    "brand": "Viridian",
-    "name": "Viridian Forest Mist",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Alpine Pine, Frozen Juniper & Crisp Lichen",
+    "brand": "Reef",
+    "house": "Reef Perfumes",
+    "name": "Reef Veridian",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Alpine Pine, Frozen Juniper & Crisp Lichen · Luksuspresentasjon",
     "scentFamily": "musk",
-    "desc": "Fjellfuru, frosne einerb\u00e6r, vill timian, fuktig kreklingmose og arktisk sedertre med kunstnerisk flakong.",
-    "desc_en": "Alpine pine, frozen juniper berries, wild thyme, dewy forest lichen, and arctic cedarwood in an artistic flacon.",
-    "story": "Flaskens illustrasjon fanger morgent\u00e5ken som velter over furuskogen og det speilblanke skogstjernet.",
-    "story_en": "The flacon illustration depicts morning mist rolling over ancient pine forests and tranquil mountain tarns.",
+    "desc": "Fjellfuru, frosne einerbær, vill timian, fuktig kreklingmose og arktisk sedertre i grønn signaturflakong med edeltretui fra Reef Perfumes.",
+    "desc_en": "Alpine pine, frozen juniper berries, wild thyme, dewy forest lichen, and arctic cedarwood in green signature flacon with wooden box by Reef Perfumes.",
+    "story": "Reef Veridian fanger morgentåken som velter over furuskogen og det speilblanke skogstjernet. Leveres i autentisk luksuspresentasjonseske.",
+    "story_en": "Reef Veridian captures morning mist rolling over ancient pine forests and tranquil tarns. Encased in authentic luxury packaging.",
     "price": 1190,
     "notes": {
-      "top": "Fjellfuru, frossen einerb\u00e6r, vill timian",
+      "top": "Fjellfuru, frossen einerbær, vill timian",
       "heart": "Krekling, hvit sedertre, fuktig mose",
-      "base": "Kvae, gr\u00f8nn vetiver, ren arktisk musk",
+      "base": "Kvae, grønn vetiver, ren arktisk musk",
       "top_en": "Alpine pine, frosted juniper berries, wild thyme",
       "heart_en": "Crowberry, white cedar, dewy forest moss",
       "base_en": "Natural resin, green vetiver, clean arctic musk"
@@ -2450,27 +2508,28 @@ const DEFAULT_CATALOG = [
       "capStroke": "#2dd4bf"
     },
     "tag": "Barskog",
-    "image_box": "images/alhambra-sceptre-malachite-box.png",
+    "image_box": "images/reef-viridian-box.png",
     "size": "100 ml"
   },
   {
     "id": "viridian-dusk",
     "image": "images/viridian-dusk.png",
-    "brand": "Viridian",
-    "name": "Viridian Dusk",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Smoked Birch, Golden Resin & Wild Cardamom",
+    "brand": "Reef",
+    "house": "Reef Perfumes",
+    "name": "Reef Veridian Dusk",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Smoked Birch, Golden Resin & Wild Cardamom · Luksuspresentasjon",
     "scentFamily": "amber",
-    "desc": "Kardemomme, brente eineb\u00e6r, r\u00f8kt bj\u00f8rkeved, villhonning, irisrot og varm ambra ved solnedgang.",
-    "desc_en": "Cardamom, scorched juniper, smoked birchwood, wild heather honey, orris root, and sunset amber.",
-    "story": "Timen da himmelen skifter fra fiolett til gull og b\u00e5lr\u00f8yken stiger mot stjernene.",
+    "desc": "Kardemomme, brente einebær, røkt bjørkeved, villhonning, irisrot og varm ambra i luksuspresentasjon fra Reef Perfumes.",
+    "desc_en": "Cardamom, scorched juniper, smoked birchwood, wild heather honey, orris root, and sunset amber by Reef Perfumes.",
+    "story": "Timen da himmelen skifter fra fiolett til gull og bålrøyken stiger mot stjernene over ørkenlandskapet.",
     "story_en": "The hour when the sky turns from violet to molten gold and campfire smoke drifts toward the stars.",
     "price": 1190,
     "notes": {
-      "top": "Kardemomme, brente eineb\u00e6r, bergamott",
-      "heart": "R\u00f8kt bj\u00f8rkeved, villhonning, irisrot",
-      "base": "Gylden kvae, fint l\u00e6r, dyp ambra",
+      "top": "Kardemomme, brente einebær, bergamott",
+      "heart": "Røkt bjørkeved, villhonning, irisrot",
+      "base": "Gylden kvae, fint lær, dyp ambra",
       "top_en": "Cardamom, charred juniper, bergamot",
       "heart_en": "Smoky birchwood, wild honey, orris root",
       "base_en": "Golden pine resin, fine leather, deep amber"
@@ -2483,23 +2542,24 @@ const DEFAULT_CATALOG = [
       "capStroke": "#c084fc"
     },
     "tag": "Skumring",
-    "image_box": "images/ibraq-jamaican-tobacco-box.png",
+    "image_box": "images/reef-viridian-box.png",
     "size": "100 ml"
   },
   {
     "id": "reef-33",
     "image": "images/reef-33.png",
     "brand": "Reef",
+    "house": "Reef Perfumes",
     "name": "Reef 33",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "Pink Pepper, Saffron & Royal Agarwood \u00b7 Extrait de Parfum",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "Pink Pepper, Saffron & Royal Agarwood · Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "floral",
-    "desc": "Rosa pepper, frisk mandarin, safran, rosmarin og kongelig agartre fra Saudi-Arabias fremste parfymehus.",
-    "desc_en": "Pink pepper, vibrant mandarin, saffron, aromatic rosemary, and royal agarwood from Saudi Arabia\u2019s premier perfume house.",
-    "story": "En av gulfens mest ettertraktede luksusparfymer. Forf\u00f8rende, distinkt og majestetisk p\u00e5 huden.",
-    "story_en": "One of the Arabian Gulf\u2019s most sought-after luxury creations. Seductive, distinctive, and truly majestic.",
+    "desc": "Rosa pepper, frisk mandarin, safran, rosmarin og kongelig agartre fra Saudi-Arabias fremste parfymehus Reef Perfumes.",
+    "desc_en": "Pink pepper, vibrant mandarin, saffron, aromatic rosemary, and royal agarwood from Saudi Arabia’s premier perfume house Reef Perfumes.",
+    "story": "En av gulfens mest ettertraktede luksusparfymer. Forførende, distinkt og majestetisk på huden.",
+    "story_en": "One of the Arabian Gulf’s most sought-after luxury creations. Seductive, distinctive, and truly majestic.",
     "price": 1390,
     "notes": {
       "top": "Rosa pepper, mandarin, safran",
@@ -2524,15 +2584,16 @@ const DEFAULT_CATALOG = [
     "id": "reef-29",
     "image": "images/reef-29.png",
     "brand": "Reef",
+    "house": "Reef Perfumes",
     "name": "Reef 29",
-    "edition": "Originalutgave \u00b7 100 ml",
-    "edition_en": "Original Edition \u00b7 100 ml",
-    "subtitle": "French Lavender, Pink Pepper & Agarwood \u00b7 Extrait de Parfum",
+    "edition": "Originalutgave · 100 ml",
+    "edition_en": "Original Edition · 100 ml",
+    "subtitle": "French Lavender, Pink Pepper & Agarwood · Extrait de Parfum",
     "concentration": "Extrait de Parfum",
     "scentFamily": "citrus",
-    "desc": "Fransk lavendel, irisrot, fiol, edelt sedertre, raffinert oud og hvit ambra i eksklusiv presentasjonseske.",
-    "desc_en": "French lavender, orris root, violet petals, cedarwood, refined oud, and white amber in an exclusive presentation box.",
-    "story": "Klassisk parisisk eleganse m\u00f8ter tradisjonsrik arabisk parfymekunst i fullkommen likevekt.",
+    "desc": "Fransk lavendel, irisrot, fiol, edelt sedertre, raffinert oud og hvit ambra i eksklusiv presentasjonseske fra Reef Perfumes.",
+    "desc_en": "French lavender, orris root, violet petals, cedarwood, refined oud, and white amber in an exclusive presentation box from Reef Perfumes.",
+    "story": "Klassisk parisisk eleganse møter tradisjonsrik arabisk parfymekunst i fullkommen likevekt.",
     "story_en": "Classic Parisian sophistication encounters timeless Arabian perfumery in flawless equilibrium.",
     "price": 1390,
     "notes": {
@@ -2558,7 +2619,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v17');
+  const custom = localStorage.getItem('arx_custom_catalog_v21');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -2571,10 +2632,10 @@ const I18N = {
     pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger",
     metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr.",
     skipLink: "Hopp til parfymer (100 ml)",
-    introHint: "Kuratert Parfymeri · 30 Utvalgte Flakonger",
+    introHint: "Feel As Good As You Smell · 30 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Se intro",
-    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · Fri frakt fra 500 kr · 100% Original Produsentgaranti",
+    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199 · Fri frakt fra 500 kr",
     tagline: "Kuratert Parfymeri · 100 ml Flakonger",
     navFragrances: "Våre Parfymer",
     navShowroom: "Showroom",
@@ -2693,10 +2754,10 @@ const I18N = {
     pageTitle: "Aromatix Oslo · Curated Perfumery & 30 Selected Bottles",
     metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr. Free shipping on orders of 500 kr or more.",
     skipLink: "Skip to fragrances (100 ml)",
-    introHint: "Curated Perfumery · 30 Selected Bottles",
+    introHint: "Feel As Good As You Smell · 30 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Replay intro",
-    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · Free shipping from 500 kr · 100% Original Manufacturer Guarantee",
+    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199 · Free shipping from 500 kr",
     tagline: "Curated Perfumery · 100 ml Bottles",
     navFragrances: "Our Fragrances",
     navShowroom: "Showroom",
@@ -2952,12 +3013,19 @@ function renderStore() {
 
   grid.innerHTML = filtered.map(p => `
     <article class="perfume-card" data-id="${p.id}" tabindex="0">
-      <div class="card-img-wrap">
-        <img class="card-img" id="cardImg-${p.id}" src="${currentViewMode === 'box' ? (p.image_box || p.image) : p.image}" data-bottle="${p.image}" data-box="${p.image_box || p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
-          onclick="openProductDetail('${p.id}')"
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+      <div class="card-img-wrap" onclick="openProductDetail('${p.id}')">
+        <div class="card-slider-track ${currentViewMode === 'box' ? 'slide-box' : ''}">
+          <div class="card-slide">
+            <img class="card-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="card-slide">
+            <img class="card-img" src="${p.image_box || p.image}" alt="${escapeHtml(p.name)} eske" loading="lazy"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+          </div>
+        </div>
       </div>
-      <span class="card-brand">${escapeHtml(p.brand)}</span>
+      <span class="card-brand">${escapeHtml(p.house || p.brand)}</span>
       <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(p.name)}</h3>
       <div class="card-vol">100 ml</div>
       <div class="card-price">${nok(p.price)}</div>
@@ -2992,45 +3060,32 @@ window.resetAllFilters = function() {
 };
 
 
-// ── AUTOMATIC 6-SECOND CARD & MODAL IMAGE LOOP (Bottle vs Packaging Box) ──
+// ── HARDWARE-ACCELERATED PACKSHOT SLIDER (Bottle vs Presentation Box) ──
 
 let currentViewMode = 'bottle';
 let autoLoopTimer = null;
 
+function applyViewMode(mode) {
+  currentViewMode = mode;
+  // Slide all product card tracks smoothly
+  const tracks = document.querySelectorAll('.card-slider-track');
+  tracks.forEach(track => {
+    if (mode === 'box') {
+      track.classList.add('slide-box');
+    } else {
+      track.classList.remove('slide-box');
+    }
+  });
+
+  // Slide modal if open
+  setModalView(mode);
+}
+
 function startAutoLoop() {
   if (autoLoopTimer) clearInterval(autoLoopTimer);
   autoLoopTimer = setInterval(() => {
-    currentViewMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
-
-    // 1. Loop visible card packshots
-    const cardImages = document.querySelectorAll('.card-img-wrap .card-img');
-    cardImages.forEach(img => {
-      const targetSrc = currentViewMode === 'box' ? (img.dataset.box || img.dataset.bottle) : img.dataset.bottle;
-      if (targetSrc && img.getAttribute('src') !== targetSrc) {
-        img.style.opacity = '0.35';
-        setTimeout(() => {
-          img.src = targetSrc;
-          img.style.opacity = '1';
-        }, 220);
-      }
-    });
-
-    // 2. Loop modal packshot if open
-    const modal = document.getElementById('productDetailModal');
-    if (modal && modal.open && S.currentProductId) {
-      const p = CATALOG.find(item => item.id === S.currentProductId);
-      const mImg = document.getElementById('detailModalImg');
-      if (p && mImg) {
-        const targetSrc = currentViewMode === 'box' ? (p.image_box || p.image) : p.image;
-        if (targetSrc && mImg.getAttribute('src') !== targetSrc) {
-          mImg.style.opacity = '0.35';
-          setTimeout(() => {
-            mImg.src = targetSrc;
-            mImg.style.opacity = '1';
-          }, 220);
-        }
-      }
-    }
+    const nextMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
+    applyViewMode(nextMode);
   }, 6000);
 }
 
@@ -3039,20 +3094,26 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   startAutoLoop();
 }
 
-window.togglePackshotView = function() {
-  currentViewMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
-  const modal = document.getElementById('productDetailModal');
-  if (modal && modal.open && S.currentProductId) {
-    const p = CATALOG.find(item => item.id === S.currentProductId);
-    const mImg = document.getElementById('detailModalImg');
-    if (p && mImg) {
-      mImg.style.opacity = '0.35';
-      setTimeout(() => {
-        mImg.src = currentViewMode === 'box' ? (p.image_box || p.image) : p.image;
-        mImg.style.opacity = '1';
-      }, 150);
+window.setModalView = function(view) {
+  const track = document.getElementById('modalSliderTrack');
+  const btnBottle = document.getElementById('modalBtnBottle');
+  const btnBox = document.getElementById('modalBtnBox');
+  if (track) {
+    if (view === 'box') {
+      track.classList.add('slide-box');
+    } else {
+      track.classList.remove('slide-box');
     }
   }
+  if (btnBottle && btnBox) {
+    btnBottle.classList.toggle('active', view === 'bottle');
+    btnBox.classList.toggle('active', view === 'box');
+  }
+};
+
+window.togglePackshotView = function() {
+  const nextMode = (currentViewMode === 'bottle' ? 'box' : 'bottle');
+  applyViewMode(nextMode);
 };
 
 
@@ -3062,9 +3123,6 @@ window.openProductDetail = function(id, pushUrl = true) {
   if (!p) return;
   S.currentProductId = id;
   S.modalQty = 1;
-  currentModalView = 'bottle';
-  $('#modalThumbBottle')?.classList.add('active');
-  $('#modalThumbBox')?.classList.remove('active');
 
   if (pushUrl) {
     try {
@@ -3083,21 +3141,31 @@ window.openProductDetail = function(id, pushUrl = true) {
 
 function updateProductDetailModalContent(p) {
   const isEn = LANG === 'en';
-  if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.brand;
+  if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.house || p.brand;
   if ($('#detailModalTitle')) $('#detailModalTitle').textContent = p.name;
   if ($('#detailModalVol')) $('#detailModalVol').textContent = '100 ml';
   if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
   if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
   if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
-  if ($('#detailModalImg')) {
-    $('#detailModalImg').src = (currentViewMode === 'box' && p.image_box) ? p.image_box : p.image;
-    $('#detailModalImg').alt = p.name;
+  
+  const mImgBottle = document.getElementById('detailModalImgBottle');
+  const mImgBox = document.getElementById('detailModalImgBox');
+  if (mImgBottle) {
+    mImgBottle.src = p.image;
+    mImgBottle.alt = `${p.name} flakong`;
   }
+  if (mImgBox) {
+    mImgBox.src = p.image_box || p.image;
+    mImgBox.alt = `${p.name} presentasjonseske`;
+  }
+  setModalView(currentViewMode);
+
   if ($('#detailModalTop')) $('#detailModalTop').textContent = isEn ? (p.notes?.top_en || p.notes?.top) : p.notes?.top;
   if ($('#detailModalHeart')) $('#detailModalHeart').textContent = isEn ? (p.notes?.heart_en || p.notes?.heart) : p.notes?.heart;
   if ($('#detailModalBase')) $('#detailModalBase').textContent = isEn ? (p.notes?.base_en || p.notes?.base) : p.notes?.base;
   if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
 }
+
 
 window.closeProductDetail = function() {
   $('#productDetailModal')?.close();
@@ -3460,7 +3528,7 @@ const POLICIES = {
         <h4>Forseglede kosmetikkprodukter</h4>
         <p>Av helsevern- og hygienemessige årsaker (Angrerettloven § 22 g) gjelder angreretten på kosmetikk og parfymer når flakongens originale fabrikkforsegling/cellofanforsegling ikke er brutt. Dersom forseglingen er brutt, kan varen dessverre ikke returneres.</p>
         <h4>Returprosess</h4>
-        <p>Ta kontakt på <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> med ditt ordrenummer, så sender vi deg en returseddel. Refusjon utbetales til samme betalingsmiddel innen 5 virkedager etter mottatt og kontrollert retur.</p>
+        <p>Ta kontakt på <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> med ditt ordrenummer, så sender vi deg en returseddel. Refusjon utbetales til samme betalingsmiddel innen 5 virkedager etter mottatt og kontrollert retur.</p>
       `
     },
     en: {
@@ -3472,7 +3540,7 @@ const POLICIES = {
         <h4>Sealed Cosmetic Products</h4>
         <p>In accordance with health protection and hygiene regulations (Norwegian Cancellation Act § 22 g), perfumes are eligible for return only if the original manufacturer cellophane seal remains unbroken. Opened cosmetic items cannot be returned.</p>
         <h4>Return Procedure</h4>
-        <p>Contact our support desk at <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> citing your order reference. We will provide a return shipping label. Refunds are processed within 5 business days following return inspection.</p>
+        <p>Contact our support desk at <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> citing your order reference. We will provide a return shipping label. Refunds are processed within 5 business days following return inspection.</p>
       `
     }
   },
@@ -3514,8 +3582,8 @@ const POLICIES = {
         </p>
         <h4>Kundeservice</h4>
         <p>
-          E-post: <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> (Svar innen 24 timer på virkedager)<br>
-          Telefon: +47 22 11 00 00<br>
+          E-post: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Svar innen 24 timer på virkedager)<br>
+          Telefon: +47 955 50 199<br>
           Vipps Bedrift: Aromatix Oslo
         </p>
       `
@@ -3531,8 +3599,8 @@ const POLICIES = {
         </p>
         <h4>Customer Support</h4>
         <p>
-          Email: <a href="mailto:hei@aromatix.no" style="color:var(--gold)">hei@aromatix.no</a> (Response within 24h on business days)<br>
-          Phone: +47 22 11 00 00<br>
+          Email: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Response within 24h on business days)<br>
+          Phone: +47 955 50 199<br>
           Vipps Business: Aromatix Oslo
         </p>
       `
