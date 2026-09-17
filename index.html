@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 30 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
-<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger fra Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian, Reef og Svartfjord.">
+<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
@@ -13,7 +13,7 @@
 <meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri (100 ml)">
 <meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte 100 ml flakonger. Makspris 1 500 kr. Fri frakt fra 500 kr. Showroom i Tøyengata 3.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
-<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/svartfjord-1.png">
+<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/armaf-club-de-nuit-intense.png">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -962,8 +962,8 @@ footer{
 
     <nav class="main-nav">
       <a href="#kjop" id="navFragrances">Våre Parfymer</a>
-      <a href="#svartfjordHero" id="navStory">Svartfjord</a>
       <a href="#showroom" id="navShowroom">Showroom</a>
+      <button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om Oss</button>
       <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
     </nav>
 
@@ -989,8 +989,8 @@ footer{
 
   <div class="mobile-nav" id="mobileNav">
     <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (30 flakonger)</a>
-    <a href="#svartfjordHero" onclick="toggleMobileNav()" id="mobNavStory">Svartfjord Signaturduft</a>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
+    <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om Oss</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Se intro på nytt</button>
   </div>
@@ -1015,13 +1015,14 @@ footer{
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
           <option value="all" id="optBrandAll">Alle merker (30)</option>
-          <option value="Svartfjord">Svartfjord (3)</option>
+          <option value="Armaf">Armaf / Sterling Perfumes (1)</option>
           <option value="Lattafa">Lattafa (12)</option>
           <option value="Maison Alhambra">Maison Alhambra (4)</option>
           <option value="Swiss Arabian">Swiss Arabian (4)</option>
           <option value="Ibraq">Ibraq (3)</option>
           <option value="Viridian">Viridian (2)</option>
           <option value="Reef">Reef (2)</option>
+          <option value="Svartfjord">Svartfjord (2)</option>
         </select>
       </div>
 
@@ -1059,68 +1060,6 @@ footer{
 
     <!-- 30 Product Cards Grid -->
     <div class="products-grid" id="flaconGalleryGrid"></div>
-  </section>
-
-  <!-- ================= 4. SVARTFJORD SIGNATURE FEATURE & STORY ================= -->
-  <section id="svartfjordHero" class="svartfjord-section">
-    <div class="svartfjord-hero">
-      <p class="tagline-small" id="sfTag">Signaturkreasjon · Oslo</p>
-      <h2 id="sfTitle">Svartfjord Signaturkolleksjon</h2>
-      <p class="story-lead" id="sfDesc">
-        Svart oud fra Pursat møter vill einer, bjørketjære og luften over en isbre klokken tre om natten. Vår egenproduserte, masererte nisjeduft fra Oslo.
-      </p>
-
-      <div class="flacon" id="flacon" role="button" tabindex="0" aria-label="Svartfjord N°1 flakong">
-        <img class="flacon-bottle" src="images/svartfjord-1.png" alt="Svartfjord N°1 Flakong">
-      </div>
-
-      <button type="button" class="cta" id="hold" style="margin-top:1rem">Trykk og hold — åpne flakongen</button>
-    </div>
-  </section>
-
-  <!-- Scent Pyramid Section -->
-  <section id="duft">
-    <div style="text-align:center;max-width:40rem;margin:0 auto">
-      <p class="tagline-small" id="pyrTag">Duftarkitektur</p>
-      <h2 id="pyrTitle" style="font-family:var(--serif);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:300;margin-top:.4rem">Tre lag. Én natt.</h2>
-    </div>
-
-    <div class="pyramid-grid">
-      <div class="pyramid-card">
-        <b>01</b>
-        <p class="tagline-small" id="pyrTier1">Toppnote</p>
-        <h3 id="pyrHead1">Frostluft</h3>
-        <p id="pyrDesc1">Knust vill einer, blodappelsin og kald rosa pepper — som å puste inn ved fjordkanten i morgengryet.</p>
-      </div>
-      <div class="pyramid-card">
-        <b>02</b>
-        <p class="tagline-small" id="pyrTier2">Hjertenote</p>
-        <h3 id="pyrHead2">Bålets Rose</h3>
-        <p id="pyrDesc2">Damaskrose brent i rød safran og røykt bjørketjære. Mørkt, harpiksaktig og pulserende.</p>
-      </div>
-      <div class="pyramid-card">
-        <b>03</b>
-        <p class="tagline-small" id="pyrTier3">Bunnote</p>
-        <h3 id="pyrHead3">Svart Oud</h3>
-        <p id="pyrDesc3">12 år lagret Pursat-oud, isbremoskus, furuharpiks og dyp ambra. Blir værende på huden i over 14 timer.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nature & Statistics -->
-  <section id="natur">
-    <p class="tagline-small" id="natTag">Håndverk & Opprinnelse</p>
-    <h2 id="natTitle" style="font-family:var(--serif);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:300;margin-top:.4rem">Maserert og flasket i Oslo</h2>
-    <p id="natDesc" style="color:var(--dim);max-width:38rem;margin:1rem auto 0;line-height:1.6;font-size:.92rem">
-      Hver signaturflakong i Svartfjord-serien modnes i 90 dager i mørke eikefat i vårt atelier før håndtapping. 24 % oljekonsentrasjon gir eksepsjonell sillage.
-    </p>
-
-    <div class="stats-grid">
-      <div class="stat-box"><b>24 %</b><span id="stat1">Oljekonsentrasjon (Extrait)</span></div>
-      <div class="stat-box"><b>90</b><span id="stat2">Dagers maserering</span></div>
-      <div class="stat-box"><b>300</b><span id="stat3">Nummererte flakonger</span></div>
-      <div class="stat-box"><b>1 500 kr</b><span id="stat4">Garantert makspris</span></div>
-    </div>
   </section>
 
   <!-- Showroom & Pickup Section -->
@@ -1388,7 +1327,8 @@ footer{
       <h4 id="footerNavTitle">Navigasjon</h4>
       <ul>
         <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (30)</a></li>
-        <li><a href="#svartfjordHero" id="ftNavStory">Svartfjord Kolleksjon</a></li>
+        <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
+        <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatix Oslo</button></li>
         <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
         <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
       </ul>
@@ -1421,7 +1361,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.13 (updated 2026-09-17 07:00)
+        v1.0.14 (updated 2026-09-17 08:00)
       </div>
     </div>
   </div>
@@ -1429,7 +1369,7 @@ footer{
 
 <!-- Sticky Mobile Buy Bar -->
 <div class="buybar" id="mobileBuyBar">
-  <small id="bname">Svartfjord N°1 · 100 ml<br><b id="bprice" style="color:#fff">1 490 kr</b></small>
+  <small id="bname">Armaf Club de Nuit Intense Man · 100 ml<br><b id="bprice" style="color:#fff">499 kr</b></small>
   <button class="cta" id="add2" onclick="quickAddToCart(S.currentProductId)">Legg i kurv</button>
 </div>
 
@@ -1437,37 +1377,38 @@ footer{
 // ── CATALOG DEFINITION (30 items, 100ml, price <= 1500 kr) ──
 const DEFAULT_CATALOG = [
   {
-    "id": "svartfjord-1",
-    "image": "images/svartfjord-1.png",
-    "brand": "Svartfjord",
-    "name": "Svartfjord N°1",
-    "edition": "Signaturopplag · 100 ml",
-    "edition_en": "Signature Edition · 100 ml",
-    "subtitle": "Black Oud · Extrait de Parfum",
-    "concentration": "24 %",
-    "scentFamily": "oud",
-    "desc": "Extrait de parfum, 24 % konsentrasjon. Håndfylt flakong i røkt glass med lokk i massiv messing.",
-    "desc_en": "Extrait de parfum, 24% concentration. Hand-filled flacon in smoked glass with solid brass cap.",
-    "story": "Svart oud fra Pursat møter einer, bjørketjære og luften over en isbre klokken tre om natten.",
-    "story_en": "Pursat black oud meets wild juniper, birch tar, and sub-zero glacial air at three in the morning.",
-    "price": 1490,
+    "id": "armaf-club-de-nuit-intense",
+    "image": "images/armaf-club-de-nuit-intense.png",
+    "brand": "Armaf",
+    "house": "Sterling Perfumes",
+    "name": "Armaf Club de Nuit Intense Man",
+    "edition": "The Intense · 100 ml",
+    "edition_en": "The Intense · 100 ml",
+    "subtitle": "Woody Spicy · Eau de Parfum",
+    "concentration": "Eau de Parfum",
+    "scentFamily": "citrus",
+    "desc": "Ikonisk og kraftfull treaktig-krydret mesterduft fra Armaf by Sterling Perfumes. Åpner med sprudlende sitron og solbær over røyket bjørk, ambra og forførende vanilje.",
+    "desc_en": "Iconic and commanding woody-spicy fragrance from Armaf by Sterling Perfumes. Opens with crisp lemon and blackcurrant over smoky birch, ambergris, and seductive vanilla.",
+    "story": "Kjent verden over som \"The Intense\" fra Armaf by Sterling Perfumes. En legendarisk duft kjent for sin enorme projeksjon, sofistikerte eleganse og uimotståelige tilstedeværelse.",
+    "story_en": "World-renowned as \"The Intense\" from Armaf by Sterling Perfumes. A legendary signature recognized for immense projection, sophisticated elegance, and undeniable presence.",
+    "price": 499,
+    "size": "100 ml",
     "notes": {
-      "top": "Einer, blodappelsin, rosa pepper, havsalt",
-      "heart": "Damaskrose, safran, bjørketjære, røkelse",
-      "base": "Svart oud, isbremoskus, furuharpiks, ambra",
-      "top_en": "Juniper, blood orange, pink pepper, sea salt",
-      "heart_en": "Damascena rose, saffron, birch tar, incense",
-      "base_en": "Black oud, glacial musk, pine resin, amber"
+      "top": "Sitron, bergamott, solbær, ananas, eple",
+      "heart": "Bjørk, sjasmin, rose",
+      "base": "Ambra, moskus, patchouli, vanilje",
+      "top_en": "Lemon, bergamot, blackcurrant, pineapple, apple",
+      "heart_en": "Birch, jasmine, rose",
+      "base_en": "Ambergris, musk, patchouli, vanilla"
     },
     "color": {
-      "liquidTop": "oklch(.66 .17 62 / .85)",
-      "liquidBottom": "oklch(.26 .09 28 / .96)",
-      "glow": "oklch(.85 .2 155)",
-      "cap": "#0a0e15",
+      "liquidTop": "oklch(.35 .04 260 / .9)",
+      "liquidBottom": "oklch(.12 .02 260 / .98)",
+      "glow": "oklch(.75 .18 75)",
+      "cap": "#15181e",
       "capStroke": "var(--gold)"
     },
-    "tag": "Flaggskip",
-    "size": "100 ml"
+    "tag": "Bestselger"
   },
   {
     "id": "svartfjord-2",
@@ -2430,7 +2371,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v10');
+  const custom = localStorage.getItem('arx_custom_catalog_v14');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -2449,8 +2390,8 @@ const I18N = {
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · Fri frakt fra 500 kr · 100% Original Produsentgaranti",
     tagline: "Kuratert Parfymeri · 100 ml Flakonger",
     navFragrances: "Våre Parfymer",
-    navStory: "Svartfjord",
     navShowroom: "Showroom",
+    navAbout: "Om Oss",
     navContact: "Kontakt",
     cartLabel: "Kurv",
     colTag: "Kuratert Utvalg",
@@ -2565,8 +2506,8 @@ const I18N = {
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · Free shipping from 500 kr · 100% Original Manufacturer Guarantee",
     tagline: "Curated Perfumery · 100 ml Bottles",
     navFragrances: "Our Fragrances",
-    navStory: "Svartfjord",
     navShowroom: "Showroom",
+    navAbout: "About Us",
     navContact: "Contact",
     cartLabel: "Cart",
     colTag: "Curated Collection",
@@ -2692,7 +2633,7 @@ let activeSort = 'featured';
 let searchQuery = '';
 let S = {
   lines: [],
-  currentProductId: 'svartfjord-1',
+  currentProductId: 'armaf-club-de-nuit-intense',
   modalQty: 1
 };
 
@@ -3180,7 +3121,7 @@ const POLICIES = {
       body: `
         <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi</h4>
-        <p>Vi forener det beste fra to verdener: Vår egenproduserte, eksklusive nordiske serie <b>Svartfjord</b> (håndblandet og maserert i Oslo), kombinert med et håndplukket utvalg av verdens fremste orientalske mesterverk fra legendariske hus som Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
+        <p>Vi tilbyr et håndplukket utvalg av verdens fremste mesterverk fra legendariske hus som Armaf by Sterling Perfumes, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede 100 ml utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt originalemballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
@@ -3193,7 +3134,7 @@ const POLICIES = {
       body: `
         <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy</h4>
-        <p>We unite the best of two worlds: Our signature Nordic series <b>Svartfjord</b> (handcrafted and aged in Oslo), alongside a hand-picked collection of the world's finest oriental masterworks from prestigious perfume houses such as Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, and Reef.</p>
+        <p>We offer a hand-picked collection of the world's finest olfactory masterworks from prestigious perfume houses such as Armaf by Sterling Perfumes, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian, and Reef.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed 100 ml bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
@@ -3385,7 +3326,10 @@ function setLanguage(lang) {
   if ($('#bannerOffer')) $('#bannerOffer').innerHTML = t.banner;
   if ($('#headerTagline')) $('#headerTagline').textContent = t.tagline;
   if ($('#navFragrances')) $('#navFragrances').textContent = t.navFragrances;
-  if ($('#navStory')) $('#navStory').textContent = t.navStory;
+  if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
+  if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
+  if ($('#ftNavShowroom')) $('#ftNavShowroom').textContent = t.ftNavShowroom || t.navShowroom;
+  if ($('#ftNavAbout')) $('#ftNavAbout').textContent = t.ftNavAbout || t.navAbout;
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
@@ -3573,7 +3517,7 @@ window.saveAdminPrice = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (p) {
     p.price = newPrice;
-    localStorage.setItem('arx_custom_catalog_v10', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v14', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
@@ -3622,19 +3566,7 @@ $$('dialog').forEach(d => {
   });
 });
 
-// Flacon Hold Uncork
-let holdTimer = null;
-const holdBtn = $('#hold');
-function uncork() {
-  document.documentElement.classList.toggle('open');
-}
-holdBtn?.addEventListener('pointerdown', () => {
-  holdTimer = setTimeout(uncork, 400);
-});
-window.addEventListener('pointerup', () => {
-  clearTimeout(holdTimer);
-});
-$('#flacon')?.addEventListener('click', uncork);
+// Flacon uncork removed with Svartfjord section
 
 // ── STARTUP & INITIALIZATION SEQUENCE ──
 // 1. Load cart
