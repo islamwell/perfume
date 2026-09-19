@@ -1509,33 +1509,36 @@ footer{
 </dialog>
 
 <!-- ================= 10. ADMIN AUTH & PANEL ================= -->
-<dialog id="adminPinModal" class="dialog-box">
+<dialog id="adminPinModal" class="dialog-box" style="max-width:26rem">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
     <p class="tagline-small">Atelier Sikkerhet</p>
     <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPinModal').close()" style="font-size:1.2rem;display:block">✕</button>
   </div>
-  <div style="font-size:2rem;margin-bottom:.3rem">🔐</div>
-  <h3 style="font-size:1.5rem;margin-bottom:.4rem">Kurator Adgang</h3>
-  <p style="font-size:.82rem;color:var(--dim);margin-bottom:1.2rem">Tast inn din 4-sifrede PIN-kode for å åpne katalogstyring.</p>
+  <div style="font-size:2.2rem;margin-bottom:.3rem">🔐</div>
+  <h3 style="font-size:1.4rem;margin-bottom:.4rem;color:var(--ice)">Kurator Adgang</h3>
+  <p style="font-size:.82rem;color:var(--dim);margin-bottom:1.2rem">Tast inn administratorpassord for å administrere priser og katalog.</p>
   
   <form id="adminPinForm" onsubmit="handleAdminAuth(event)">
-    <input type="password" id="adminPinInput" maxlength="6" inputmode="numeric" pattern="[0-9]*" placeholder="••••" required
-      style="text-align:center;font-size:1.8rem;letter-spacing:.5em;padding:.8rem;background:#05080d;border:1px solid var(--gold);color:#fff;border-radius:10px;font-family:monospace">
-    <p id="adminPinError" style="color:#ef4444;font-size:.78rem;display:none;margin-top:.4rem">Ugyldig PIN-kode.</p>
+    <input type="password" id="adminPinInput" placeholder="Passord..." required autocomplete="current-password"
+      style="width:100%;text-align:center;font-size:1.05rem;letter-spacing:.05em;padding:.75rem .9rem;background:#05080d;border:1px solid var(--gold);color:#fff;border-radius:10px;font-family:inherit">
+    <p id="adminPinError" style="color:#ef4444;font-size:.78rem;display:none;margin-top:.5rem">Ugyldig passord.</p>
     <button type="submit" class="cta" style="width:100%;margin-top:1rem">Lås opp</button>
   </form>
 </dialog>
 
 <dialog id="adminPanelModal" class="dialog-box" style="max-width:56rem;max-height:90vh;overflow-y:auto">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem;flex-wrap:wrap">
     <div>
       <p class="tagline-small">Kurator Atelier (Admin)</p>
       <h3 style="margin:.2rem 0;font-size:1.3rem;color:var(--ice)">Katalogadministrasjon</h3>
     </div>
-    <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem;display:block">✕</button>
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <span id="adminCloudStatusPill" style="font-size:.74rem;padding:.25rem .75rem;border-radius:99px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;display:inline-flex;align-items:center;gap:.35rem">☁️ Sky-synkronisering aktiv</span>
+      <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem;display:block">✕</button>
+    </div>
   </div>
   <p style="font-size:.84rem;color:var(--dim);margin-bottom:1rem">
-    Rediger priser direkte eller klikk «✏️ Rediger detaljer» for å endre tittel, merke, duftnoter, beskrivelse og bilder. Alle endringer lagres umiddelbart.
+    Priser <b>autolagres</b> direkte og synkroniseres til skyen for alle enheter. Klikk «✏️ Rediger detaljer» for å endre tittel, noter, beskrivelse eller bilder.
   </p>
 
   <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
@@ -1687,7 +1690,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.23 (updated 2026-09-17 18:05)
+        v1.0.24 (updated 2026-09-19 07:20)
       </div>
     </div>
   </div>
@@ -3918,18 +3921,24 @@ window.toggleMobileNav = function() {
   $('#mobileNav')?.classList.toggle('open');
 };
 
-// ── ADMIN PANEL ──
-const ADMIN_PIN = '4424';
+// ── ADMIN PANEL & CLOUD SYNCHRONIZATION ──
+const ADMIN_PASSWORD = 'readquran2344';
+let currentAdminPassword = sessionStorage.getItem('arx_admin_pwd') || ADMIN_PASSWORD;
+
 window.openAdmin = function() {
   $('#adminPinModal')?.showModal();
 };
+
 window.handleAdminAuth = function(e) {
   e.preventDefault();
   const input = $('#adminPinInput').value.trim();
-  if (input === ADMIN_PIN || input === localStorage.getItem('arx_custom_pin')) {
+  if (input === ADMIN_PASSWORD) {
+    sessionStorage.setItem('arx_admin_pwd', input);
+    currentAdminPassword = input;
     $('#adminPinModal')?.close();
     renderAdminPanel();
     $('#adminPanelModal')?.showModal();
+    syncCatalogToCloud();
   } else {
     const err = $('#adminPinError');
     if (err) err.style.display = 'block';
@@ -3969,15 +3978,18 @@ function renderAdminPanel() {
         <div>
           <b style="color:var(--ice);font-size:.92rem">${escapeHtml(p.name)}</b>
           <div style="font-size:.75rem;color:var(--dim)">${escapeHtml(p.house || p.brand)} · 100 ml</div>
-          <div style="color:var(--gold);font-size:.82rem;margin-top:.1rem">${nok(p.price)}</div>
+          <div style="color:var(--gold);font-size:.82rem;margin-top:.1rem" id="admPriceDisplay_${p.id}">${nok(p.price)}</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:.4rem">
+        <div style="display:flex;align-items:center;gap:.35rem;background:#05080e;border:1px solid var(--line);padding:.25rem .5rem;border-radius:8px">
+          <span style="font-size:.78rem;color:var(--gold);font-weight:600">kr</span>
           <input type="number" min="100" max="1500" value="${p.price}" id="admPrice_${p.id}"
-            style="width:85px;padding:.45rem .5rem;font-size:.85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:6px;text-align:center"
-            aria-label="Pris for ${escapeHtml(p.name)}">
-          <button type="button" class="cta" style="padding:.45rem .85rem;font-size:.74rem" onclick="saveAdminPrice('${p.id}')">Lagre pris</button>
+            oninput="handlePriceAutoSave('${p.id}', this.value)"
+            onchange="handlePriceAutoSave('${p.id}', this.value, true)"
+            style="width:75px;padding:.3rem .4rem;font-size:.85rem;background:transparent;border:0;color:#fff;text-align:center;font-weight:600"
+            aria-label="Pris for ${escapeHtml(p.name)}" title="Endre pris (autolagres umiddelbart)">
+          <span id="admStatus_${p.id}" style="font-size:.72rem;min-width:62px;text-align:center;transition:all .2s"></span>
         </div>
         <button type="button" class="card-btn btn-details" style="padding:.45rem .85rem;font-size:.74rem;display:flex;align-items:center;gap:.3rem" onclick="openAdminProductEdit('${p.id}')">
           ✏️ Rediger detaljer
@@ -3987,18 +3999,53 @@ function renderAdminPanel() {
   `).join('');
 }
 
-window.saveAdminPrice = function(id) {
-  const inp = $(`#admPrice_${id}`);
-  if (!inp) return;
-  const newPrice = Math.min(1500, Math.max(100, parseInt(inp.value, 10) || 1190));
-  const p = CATALOG.find(item => item.id === id);
-  if (p) {
+let priceAutoSaveTimers = {};
+window.handlePriceAutoSave = function(id, val, immediate = false) {
+  const statusEl = $(`#admStatus_${id}`);
+  if (statusEl) {
+    statusEl.innerHTML = '<span style="color:var(--gold);font-size:.7rem">⏳ Lagrer...</span>';
+  }
+  if (priceAutoSaveTimers[id]) clearTimeout(priceAutoSaveTimers[id]);
+
+  const executeSave = async () => {
+    const newPrice = Math.min(1500, Math.max(100, parseInt(val, 10) || 1190));
+    const p = CATALOG.find(item => item.id === id);
+    if (!p) return;
     p.price = newPrice;
-    localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
+    
+    // Update live price display in admin row
+    const disp = $(`#admPriceDisplay_${id}`);
+    if (disp) disp.textContent = nok(newPrice);
+
+    // Update storefront and cart
     renderStore();
     renderCart();
-    renderAdminPanel();
-    alert(`Oppdatert ${p.name} til ${nok(newPrice)}.`);
+
+    // Update modal if open
+    const openModal = $('#productDetailModal');
+    if (openModal && openModal.open && S.currentProductId === id) {
+      updateProductDetailModalContent(p);
+    }
+
+    // Save locally
+    localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
+
+    // Sync to Cloudflare KV cloud
+    const cloudRes = await syncCatalogToCloud();
+    if (statusEl) {
+      if (cloudRes.success) {
+        statusEl.innerHTML = '<span style="color:#22c55e;font-weight:600;font-size:.72rem">✓ Autolagret</span>';
+        setTimeout(() => { if (statusEl) statusEl.innerHTML = ''; }, 2500);
+      } else {
+        statusEl.innerHTML = '<span style="color:#eab308;font-size:.7rem">⚠️ Kun lokalt</span>';
+      }
+    }
+  };
+
+  if (immediate) {
+    executeSave();
+  } else {
+    priceAutoSaveTimers[id] = setTimeout(executeSave, 400);
   }
 };
 
@@ -4020,7 +4067,7 @@ window.openAdminProductEdit = function(id) {
   $('#adminEditDetailModal')?.showModal();
 };
 
-window.saveAdminProductDetails = function(e) {
+window.saveAdminProductDetails = async function(e) {
   e.preventDefault();
   const id = $('#editAdmId').value;
   const p = CATALOG.find(item => item.id === id);
@@ -4054,10 +4101,85 @@ window.saveAdminProductDetails = function(e) {
   }
 
   $('#adminEditDetailModal')?.close();
-  alert(`Endringer lagret for ${p.name}!`);
+
+  // Sync to Cloudflare KV
+  const res = await syncCatalogToCloud();
+  if (res.success) {
+    alert(`✓ Endringer lagret og synkronisert til skyen for ${p.name}!`);
+  } else {
+    alert(`Endringer lagret lokalt. Sky-feil: ${res.error || 'Ukjent feil'}`);
+  }
 };
 
-window.resetAdminCatalogToDefaults = function() {
+async function syncCatalogToCloud() {
+  const pill = $('#adminCloudStatusPill');
+  if (pill) {
+    pill.style.color = 'var(--gold)';
+    pill.style.borderColor = 'rgba(201,169,110,0.4)';
+    pill.style.background = 'rgba(201,169,110,0.1)';
+    pill.innerHTML = '☁️ Synkroniserer...';
+  }
+
+  try {
+    const res = await fetch('/api/catalog', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: currentAdminPassword || ADMIN_PASSWORD,
+        catalog: CATALOG
+      })
+    });
+
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (pill) {
+        pill.style.color = '#22c55e';
+        pill.style.borderColor = 'rgba(34,197,94,0.3)';
+        pill.style.background = 'rgba(34,197,94,0.12)';
+        pill.innerHTML = '☁️ Synkronisert med skyen';
+      }
+      return { success: true };
+    } else {
+      if (pill) {
+        pill.style.color = '#ef4444';
+        pill.style.borderColor = 'rgba(239,68,68,0.3)';
+        pill.style.background = 'rgba(239,68,68,0.12)';
+        pill.innerHTML = '⚠️ Sky-feil: ' + (data.error || 'Kunne ikke lagre');
+      }
+      return { success: false, error: data.error };
+    }
+  } catch (err) {
+    if (pill) {
+      pill.style.color = '#eab308';
+      pill.style.borderColor = 'rgba(234,179,8,0.3)';
+      pill.style.background = 'rgba(234,179,8,0.12)';
+      pill.innerHTML = '☁️ Lagret lokalt (frakoblet)';
+    }
+    return { success: false, error: err.message };
+  }
+}
+
+async function loadCloudCatalog() {
+  try {
+    const res = await fetch('/api/catalog');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= 5) {
+      CATALOG = data.catalog;
+      localStorage.setItem('arx_custom_catalog_v23', JSON.stringify(CATALOG));
+      renderStore();
+      renderCart();
+      if ($('#adminPanelModal')?.open) {
+        renderAdminPanel();
+      }
+      console.log('Aromatix sky-katalog lastet (' + CATALOG.length + ' parfymer).');
+    }
+  } catch (err) {
+    console.warn('Bruker lokal katalog-buffer:', err.message);
+  }
+}
+
+window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
     localStorage.removeItem('arx_custom_catalog_v23');
     localStorage.removeItem('arx_custom_catalog_v21');
@@ -4067,7 +4189,19 @@ window.resetAdminCatalogToDefaults = function() {
     renderStore();
     renderCart();
     renderAdminPanel();
-    alert('Katalogen er tilbakestilt til standardkatalogen.');
+
+    try {
+      await fetch('/api/catalog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password: currentAdminPassword || ADMIN_PASSWORD,
+          action: 'reset'
+        })
+      });
+    } catch(e) {}
+
+    alert('Katalogen er tilbakestilt til standardkatalogen både lokalt og i skyen.');
   }
 };
 
@@ -4120,6 +4254,8 @@ $$('dialog').forEach(d => {
 loadCart();
 // 2. Set language (resolves text before intro/store display)
 setLanguage(LANG);
+// 3. Load cloud catalog from Cloudflare KV for multi-device sync
+loadCloudCatalog();
 // 3. Decide whether intro should play
 const params = new URLSearchParams(window.location.search);
 const forceIntro = params.get('intro') === '1' || params.get('replay') === '1';
