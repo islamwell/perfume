@@ -1,35 +1,34 @@
-# SVARTFJORD (v1.0.6) — Parfymehus Oslo
+# AROMATIX OSLO (v1.0.27) — Parfymehus & Kuratert Parfymeri
 
-Ultra-luksuriøs e-handels- og kunstopplevelse for **SVARTFJORD** — lokalisert i Thorvald Meyers gate 32, Grünerløkka, Oslo.
+Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.6 Høydepunkter
+## 🌟 Versjon 1.0.27 Høydepunkter
 
-1. **Kurator Atelier & Admin Panel**:
-   - Sikker PIN-lås (`4424`) med rask adgang fra footer eller hurtigtast (`Alt+A` / `Shift+A` / `#admin`).
-   - Dynamisk administrasjon av hele parfymekatalogen rett fra nettleseren (`localStorage` persistens).
-   - Sanntids visuell flakong-generator med 6 eksklusive fargepaletter (Obsidian Amber, Arktisk Isbre, Midnattssol, Smaragd Skog, Nordlyslilla, Roségull) og fri hex/oklch-fargetilpasning.
-   - Live sanntids SVG-forhåndsvisning mens du skriver inn duftnoter, opplag og priser.
-   - 1-klikks JSON-eksport og -import for full sikkerhetskopi og enkel integrasjon i kildekoden.
+1. **Utvidet Kuratert Parfymekatalog (73 Eksklusive Flakonger & Oljer)**:
+   - Nye merker og signaturdufter lagt til:
+     - **Ahmed Al Maghribi** (Royal Wood 100ml, Xtasy lilla flakong 100ml)
+     - **Bespoke London & Bespoke Woman** (9 distinkte dufter i 100ml EDP til undersøkt markedspris 169 kr: Fresh Citrus & Vetiver, Spiced Pear & Warm Amber, Salted Caramel & Water Lilies, Wild Herbs & Tonka Bean, Oriental Woods & Amber, Elemi & Pepper, Oud & Vanilla, Black Suede & Fougère, Sweet Spice & Sandalwood)
+     - **Aoura London** (Paradise Bliss, Midnight Passion, Love Rush 100ml EDP til 299 kr)
+     - **French Avenue / Fragrance World** (Spectre Ghost 80ml EDP til 500 kr)
+     - **Sergio Tacchini Milano** (I Love Italy 100ml, Splendida Pour Femme 100ml til 400 kr)
+     - **Daniel Hechter Paris** (Caractère 50ml til tilbudspris 265 kr)
+     - **Al Haramain** (Mukhamria Maliki Silver 25ml, Fawah New Edition 25ml, Mystique 100ml)
+     - **Lattafa Attar 20ml-serie** (Haakem, Maitha, Esraa, Amoura 20ml konsentrerte oljer til 290 kr)
+     - **Lattafa Pride Discovery Gift Set** (Art of Universe / Pride 4-i-1 eske til 600 kr)
+     - **So...? Miss So** (Midnight Magic, Starlet 50ml til undersøkt markedspris 129 kr)
+     - **Aristea Diamond Collection** (Diamond Noir Woman 65ml til 199 kr)
+     - **Maison Alhambra** (Sceptre Oceana 100ml, Jean Lowe Immortal 100ml, Love Spark 80ml, Pink Velvet 80ml, Lava 100ml, Smoky Touch 80ml)
+     - **Reef Perfumes Kunst-esker (150ml, 1500 kr)**: Veridian (seilbåt-maleri), Blanc Nomad (hestevogn-design), Blanc Ash (snøkledd vinterskog)
+     - **Asdaaf Ameerat Al Arab** (100ml rød fløyelsflakong til 400 kr)
+     - **Lattafa Signaturer**: Oud Mood i autentisk beige sylinder-eske med snor, Mayar og Glacier i sylinder-bokser, Rave Now Black og Bade'e Al Oud-serien.
 
-2. **Dynamisk Multi-Produkt Kolleksjonsvelger**:
-   - Interaktiv flakong-tabline (`Svartfjord N°1`, `Svartfjord N°2 Hvitbre`, `Svartfjord N°3 Midnattssol` + nyopprettede flakonger).
-   - Sømløse View Transitions ved bytte av flakong i atelieret: oppdaterer flaske, væskefarger, konsentrasjon, duftpyramide og størrelsespriser (30ml, 50ml, 100ml).
-   - Multi-produkt handlekurv som støtter ulike flakonger og størrelser samtidig med separat prising og Vipps-integrasjon.
-
-3. **Interaktiv Flakong med Væskefysikk & Krystallpropp**:
-   - Trykk og hold / klikk for å åpne flakongen med oppløftende krystallkork, harmonisk klang og stigende røkelsessky med duftnoter.
-   - Mobiloptimalisert for touch med haptisk tilbakemelding (`navigator.vibrate`).
-
-4. **Prosedyral Lyd & Fossefall-animasjon**:
-   - Ekte syntetisert morgengry-fuglesang og bekkelyd via Web Audio API.
-   - Bakgrunnskanvas med fallende fossefall og partikler.
-
-5. **Fullverdig Utsjekk & Vipps**:
-   - Integrert modal for fullføring av bestilling med automatisk beregning av totalsum for alle flakonger i kurven.
+2. **Dynamisk Merkefilter & Merkekort**:
+   - Automatisk opptelling og filtrering på tvers av alle 15+ merkehus i sanntid.
+   - Visuelle merke- og type-emblemer ("Sylinder-eske med snor", "Kunst-eske", "Gavesett", "Attar").
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.6 (updated 2026-09-16 14:46)`
+`v1.0.27 (updated 2026-09-21 13:45)`
