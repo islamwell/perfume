@@ -2164,7 +2164,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.28 (updated 2026-09-21 13:48)
+        v1.0.29 (updated 2026-09-21 15:10)
       </div>
     </div>
   </div>
@@ -5223,9 +5223,9 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v28');
+  const custom = localStorage.getItem('arx_custom_catalog_v29');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
-  if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
+  if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
   CATALOG = DEFAULT_CATALOG;
 }
@@ -6559,7 +6559,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -6621,7 +6621,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -6695,9 +6695,9 @@ async function loadCloudCatalog() {
     const res = await fetch('/api/catalog');
     if (!res.ok) return;
     const data = await res.json();
-    if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= 5) {
+    if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -6712,11 +6712,12 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v29');
     localStorage.removeItem('arx_custom_catalog_v28');
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
