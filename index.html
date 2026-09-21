@@ -587,6 +587,80 @@ try {
   color: #060a10;
 }
 
+/* ================= MODAL SALE BANNER & SCENT SELECTOR ================= */
+.modal-sale-banner {
+  background: linear-gradient(135deg, rgba(34,197,94,0.14), rgba(201,169,110,0.1));
+  border: 1px solid rgba(74,222,128,0.35);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.4rem 0 0.85rem;
+}
+.modal-sale-banner .sale-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.modal-sale-banner strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+.modal-scent-wrap {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  margin: 0.4rem 0 0.9rem;
+}
+.scent-select-label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.45rem;
+}
+.scent-select-label .required-indicator {
+  color: #ef4444;
+  font-weight: 700;
+  margin-left: 0.2rem;
+}
+.scent-select-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: #080d16;
+  border: 1.5px solid rgba(201,169,110,0.4);
+  border-radius: 0.6rem;
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.scent-select-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 14px rgba(201,169,110,0.35);
+}
+.scent-select-input.has-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 14px rgba(239,68,68,0.45) !important;
+  animation: shakeError 0.35s ease;
+}
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.scent-error-msg {
+  color: #ef4444;
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
 .packaging-guarantee-badge {
   font-size: 0.74rem;
   color: var(--gold);
@@ -1972,16 +2046,19 @@ footer{
 
       <!-- 8. Buhara Esans 7ml Supertilbud -->
       <article class="hero-best-card">
-        <span class="hero-best-badge green" id="heroBadge8">⚡ Supertilbud 49 kr</span>
+        <span class="hero-best-badge green" id="heroBadge8">⚡ Tidsbegrenset tilbud · Før 100 kr</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
-          <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esansları 7ml" loading="lazy">
+          <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esans 7ml Roll-on (1 stk)" loading="lazy">
         </div>
-        <span class="hero-best-brand">Buhara Esans</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esansları (7 ml Roll-on)</h3>
-        <div class="hero-best-vol" id="heroVol8">7 ml · Alkoholfri Esans (Før 100 kr)</div>
+        <span class="hero-best-brand">Buhara Esans · 1 stk roll-on</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esans (7 ml Roll-on · 1 flaske)</h3>
+        <div class="hero-best-vol" id="heroVol8">7 ml · 1 stk valgfri duft (Før 100 kr)</div>
         <div class="hero-best-bottom">
-          <span class="hero-best-price">49 kr</span>
-          <button type="button" class="hero-best-cta" onclick="quickAddToCart('buhara-esans-7ml')">Kjøp nå</button>
+          <div style="display:flex;align-items:baseline;gap:.45rem">
+            <span class="hero-best-price" style="color:#4ade80">49 kr</span>
+            <span style="font-size:.78rem;color:var(--dim);text-decoration:line-through">100 kr</span>
+          </div>
+          <button type="button" class="hero-best-cta hero-best-scent-btn" onclick="openProductDetail('buhara-esans-7ml')">Velg duft</button>
         </div>
       </article>
     </div>
@@ -2131,7 +2208,10 @@ footer{
 
       <!-- Price & Add Button Row Side-by-Side -->
       <div class="modal-price-action-row" style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:.2rem 0;padding:.4rem 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="font-family:var(--serif);font-size:1.9rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
+        <div style="display:flex;align-items:baseline;gap:.6rem">
+          <div style="font-family:var(--serif);font-size:1.9rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
+          <span id="detailModalOldPrice" style="font-size:1.05rem;color:var(--dim);text-decoration:line-through;display:none">100 kr</span>
+        </div>
         <div style="display:flex;gap:.6rem;align-items:center">
           <div class="cart-qty-ctrl" style="padding:.2rem">
             <button type="button" class="cqty-btn" onclick="adjustModalQty(-1)">–</button>
@@ -2140,6 +2220,27 @@ footer{
           </div>
           <button type="button" class="cta" id="detailModalAddBtn" onclick="addModalProductToCart()" style="padding:.55rem 1.4rem">Legg til</button>
         </div>
+      </div>
+
+      <!-- Sale Banner (Shown for items on sale with originalPrice) -->
+      <div id="detailModalSaleBanner" class="modal-sale-banner" style="display:none">
+        <span class="sale-icon">⚡</span>
+        <div class="sale-text-wrap">
+          <strong id="detailModalSaleTitle">Tidsbegrenset tilbud — Kun 49 kr</strong>
+          <span id="detailModalSaleSub" style="color:var(--dim);font-size:.76rem">Ordinær pris 100 kr · Gjelder per 1 stk flaske</span>
+        </div>
+      </div>
+
+      <!-- Scent Option Selector (Shown when product has scents array) -->
+      <div id="detailModalScentWrap" class="modal-scent-wrap" style="display:none">
+        <label for="detailScentSelect" class="scent-select-label" id="lblDetailScent">
+          <span id="lblDetailScentText">Velg ønsket duft (1 stk rulleflaske):</span>
+          <span class="required-indicator">*</span>
+        </label>
+        <select id="detailScentSelect" class="scent-select-input" onchange="onScentSelectChange(this.value)" aria-required="true">
+          <option value="">-- Velg duft --</option>
+        </select>
+        <div id="detailScentError" class="scent-error-msg" style="display:none">Vennligst velg en duft før du legger i handlekurven.</div>
       </div>
 
       <p id="detailModalDesc" style="font-size:.85rem;color:var(--dim);line-height:1.55"></p>
@@ -2491,7 +2592,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.33 (updated 2026-09-21 23:58)
+        v1.0.34 (updated 2026-09-22 00:01)
       </div>
     </div>
   </div>
@@ -5568,17 +5669,29 @@ const DEFAULT_CATALOG = [
     "image_box": "images/buhara-esans-7ml.png",
     "brand": "Buhara Esans",
     "house": "Buhara Esansları Türkiye",
-    "name": "Buhara Esansları (7 ml Roll-on)",
-    "edition": "Kolleksjon av ulike tradisjonelle dufter · 7 ml",
-    "edition_en": "Collection of various traditional scents · 7 ml",
-    "subtitle": "Authentic Turkish Alcohol-Free Roll-on Esans",
+    "name": "Buhara Esansları (7 ml Roll-on · 1 flaske)",
+    "edition": "1 stk valgfri tradisjonell duft · 7 ml roll-on",
+    "edition_en": "1x chosen traditional scent · 7 ml roll-on",
+    "subtitle": "Authentic Turkish Alcohol-Free Roll-on Esans (1 bottle)",
     "scentFamily": "musk",
-    "desc": "Ekte tyrkiske alkoholfrie parfymeruller (7 ml) fra velkjente Buhara Esans. Finnes i et bredt utvalg av elskede, tradisjonelle orientalske dufter: Isparta Rose, Hvit Moskus, Amber, Kaba Örtüsü, Sultan og Rav. Begrenset kampanje: kun 49 kr (ordinær pris 100 kr)!",
-    "desc_en": "Authentic Turkish alcohol-free roll-on perfume oils (7 ml) by renowned Buhara Esans. Available in classic traditional scents like Isparta Rose, White Musk, Amber, and Sultan. Limited-time offer: only 49 NOK (regular 100 NOK)!",
-    "story": "Buhara Esans er en av Tyrkias mest tradisjonsrike produsenter av konsentrert esans, kjent for rene, alkoholfrie formler i praktiske 7 ml lommerulleflasker.",
-    "story_en": "A revered Turkish classic, delivering deeply spiritual, nostalgic, and alcohol-free concentrated scents in travel-ready 7 ml roll-ons.",
+    "desc": "Ekte tyrkisk alkoholfri parfymerulle (7 ml · 1 stk flaske) fra velkjente Buhara Esans. Velg din favoritt blant elskede, tradisjonelle orientalske dufter som Isparta Rose, Hvit Moskus, Amber, Kaba Örtüsü, Sultan og Rav. Tidsbegrenset tilbud: kun 49 kr (ordinær pris 100 kr per flaske)!",
+    "desc_en": "Authentic Turkish alcohol-free roll-on perfume oil (7 ml · 1 bottle) by renowned Buhara Esans. Choose your favorite traditional oriental scent: Isparta Rose, White Musk, Amber, Sultan, and more. Limited-time offer: only 49 NOK (regular price 100 NOK per bottle)!",
+    "story": "Buhara Esans er en av Tyrkias mest tradisjonsrike produsenter av konsentrert esans, kjent for rene, alkoholfrie formler i praktiske 7 ml lommerulleflasker. Prisen gjelder per 1 stk flaske i valgfri duft.",
+    "story_en": "A revered Turkish classic, delivering deeply spiritual, nostalgic, and alcohol-free concentrated scents in travel-ready 7 ml roll-on bottles. Price applies per 1 bottle of your chosen scent.",
+    "originalPrice": 100,
     "price": 49,
-    "size": "7 ml",
+    "size": "7 ml (1 stk)",
+    "scents": [
+      "Isparta Rose (Isparta Gülü)",
+      "Hvit Moskus (Beyaz Misk)",
+      "Amber (Kehribar)",
+      "Zam Hara",
+      "Zamzer",
+      "Kaba Örtüsü",
+      "Sultan",
+      "Müge (Liljekonvall)",
+      "Menekşe (Fiol)"
+    ],
     "notes": {
       "top": "Isparta damaskusrose, hvit musk, frisk sitrus",
       "heart": "Amberkvae, sjasmin, orientalske urter",
@@ -5594,13 +5707,13 @@ const DEFAULT_CATALOG = [
       "cap": "#d4af37",
       "capStroke": "#22c55e"
     },
-    "tag": "Tilbud 49 kr · Før 100 kr"
+    "tag": "⚡ Tilbud 49 kr · Før 100 kr"
   }
 ];
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v31');
+  const custom = localStorage.getItem('arx_custom_catalog_v34');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -5696,6 +5809,12 @@ const I18N = {
     lblHeartNotes: "Hjertenoter",
     lblBaseNotes: "Bunnoter",
     detailAddBtn: "Legg til",
+    lblDetailScent: "Velg ønsket duft (1 stk rulleflaske):",
+    optSelectScent: "-- Velg duft --",
+    errSelectScent: "Vennligst velg en duft før du legger i handlekurven.",
+    saleBannerTitle: "Tidsbegrenset tilbud — Kun 49 kr",
+    saleBannerSub: "Ordinær pris 100 kr · Gjelder per 1 stk flaske",
+    chooseScentBtn: "Velg duft",
     detailShippingText: "Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar).",
     detailGuaranteeText: "100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     footerDisclaimer: "⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
@@ -5862,6 +5981,12 @@ const I18N = {
     lblHeartNotes: "Heart Notes",
     lblBaseNotes: "Base Notes",
     detailAddBtn: "Add",
+    lblDetailScent: "Choose desired scent (1 roll-on bottle):",
+    optSelectScent: "-- Choose scent --",
+    errSelectScent: "Please choose a scent before adding to cart.",
+    saleBannerTitle: "Limited Time Offer — Only 49 kr",
+    saleBannerSub: "Regular price 100 kr · Valid per 1 bottle",
+    chooseScentBtn: "Choose scent",
     detailShippingText: "Dispatched within 24h from our showroom at Tøyengata 3, 0190 Oslo (inside PakStar).",
     detailGuaranteeText: "100% original and the Manufacturer changes the box and bottle design from time to time",
     footerDisclaimer: "⚠️ 100% original and the Manufacturer changes the box and bottle design from time to time",
@@ -5963,7 +6088,8 @@ let searchQuery = '';
 let S = {
   lines: [],
   currentProductId: 'armaf-club-de-nuit-intense',
-  modalQty: 1
+  modalQty: 1,
+  selectedScent: ''
 };
 
 // ── UTILITIES ──
@@ -6185,10 +6311,13 @@ function renderStore() {
       <span class="card-brand">${escapeHtml(p.house || p.brand)}</span>
       <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(p.name)}</h3>
       <div class="card-vol">${escapeHtml(p.size || '100 ml')}</div>
-      <div class="card-price">${nok(p.price)}</div>
+      <div class="card-price">
+        ${nok(p.price)}
+        ${p.originalPrice ? `<span style="font-size:0.75rem;color:var(--dim);text-decoration:line-through;margin-left:0.35rem">${nok(p.originalPrice)}</span>` : ''}
+      </div>
       <div class="card-actions">
         <button type="button" class="card-btn btn-details" onclick="openProductDetail('${p.id}')">${t.cardDetailsBtn}</button>
-        <button type="button" class="card-btn btn-add" onclick="quickAddToCart('${p.id}')">${t.cardAddBtn}</button>
+        <button type="button" class="card-btn btn-add" onclick="${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">${p.scents && p.scents.length ? (isEn ? 'Choose scent' : 'Velg duft') : t.cardAddBtn}</button>
       </div>
     </article>
   `).join('');
@@ -6274,6 +6403,7 @@ window.openProductDetail = function(id, pushUrl = true) {
   if (!p) return;
   S.currentProductId = id;
   S.modalQty = 1;
+  S.selectedScent = '';
 
   if (pushUrl) {
     try {
@@ -6292,13 +6422,66 @@ window.openProductDetail = function(id, pushUrl = true) {
 
 function updateProductDetailModalContent(p) {
   const isEn = LANG === 'en';
+  const t = I18N[LANG];
   if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.house || p.brand;
   if ($('#detailModalTitle')) $('#detailModalTitle').textContent = p.name;
   if ($('#detailModalVol')) $('#detailModalVol').textContent = p.size || '100 ml';
-  if ($('#detailModalStock')) $('#detailModalStock').textContent = I18N[LANG].detailModalStock;
+  if ($('#detailModalStock')) $('#detailModalStock').textContent = t.detailModalStock;
   if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
   if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
   if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
+
+  // Sale banner and strikethrough price
+  const saleBanner = document.getElementById('detailModalSaleBanner');
+  const oldPriceEl = document.getElementById('detailModalOldPrice');
+  if (p.originalPrice) {
+    if (oldPriceEl) {
+      oldPriceEl.textContent = nok(p.originalPrice);
+      oldPriceEl.style.display = 'inline';
+    }
+    if (saleBanner) {
+      saleBanner.style.display = 'flex';
+      const saleTitle = document.getElementById('detailModalSaleTitle');
+      const saleSub = document.getElementById('detailModalSaleSub');
+      if (saleTitle) {
+        saleTitle.textContent = isEn 
+          ? `Limited Time Offer — Only ${nok(p.price)}` 
+          : `Tidsbegrenset tilbud — Kun ${nok(p.price)}`;
+      }
+      if (saleSub) {
+        saleSub.textContent = isEn 
+          ? `Regular price ${nok(p.originalPrice)} · Valid per 1 bottle` 
+          : `Ordinær pris ${nok(p.originalPrice)} · Gjelder per 1 stk flaske`;
+      }
+    }
+  } else {
+    if (oldPriceEl) oldPriceEl.style.display = 'none';
+    if (saleBanner) saleBanner.style.display = 'none';
+  }
+
+  // Scent selection
+  const scentWrap = document.getElementById('detailModalScentWrap');
+  const scentSelect = document.getElementById('detailScentSelect');
+  const scentError = document.getElementById('detailScentError');
+  if (scentError) scentError.style.display = 'none';
+  if (scentSelect) scentSelect.classList.remove('has-error');
+
+  if (p.scents && Array.isArray(p.scents) && p.scents.length > 0) {
+    if (scentWrap) scentWrap.style.display = 'block';
+    if (scentSelect) {
+      let optionsHtml = `<option value="">${t.optSelectScent || (isEn ? '-- Choose scent --' : '-- Velg duft --')}</option>`;
+      p.scents.forEach(s => {
+        const isSel = S.selectedScent === s ? ' selected' : '';
+        optionsHtml += `<option value="${escapeHtml(s)}"${isSel}>${escapeHtml(s)}</option>`;
+      });
+      scentSelect.innerHTML = optionsHtml;
+      scentSelect.value = S.selectedScent || '';
+    }
+  } else {
+    if (scentWrap) scentWrap.style.display = 'none';
+    if (scentSelect) scentSelect.innerHTML = '';
+    S.selectedScent = '';
+  }
   
   const mImgBottle = document.getElementById('detailModalImgBottle');
   const mImgBox = document.getElementById('detailModalImgBox');
@@ -6320,6 +6503,14 @@ function updateProductDetailModalContent(p) {
     updateZoomModalContent(p);
   }
 }
+
+window.onScentSelectChange = function(val) {
+  S.selectedScent = val;
+  const scentError = document.getElementById('detailScentError');
+  const scentSelect = document.getElementById('detailScentSelect');
+  if (scentError) scentError.style.display = 'none';
+  if (scentSelect) scentSelect.classList.remove('has-error');
+};
 
 let currentZoomMode = 'bottle';
 
@@ -6407,7 +6598,24 @@ window.adjustModalQty = function(delta) {
 window.addModalProductToCart = function() {
   const p = CATALOG.find(item => item.id === S.currentProductId);
   if (!p) return;
-  addToCartWithQty(p, S.modalQty);
+  if (p.scents && p.scents.length > 0) {
+    if (!S.selectedScent) {
+      const scentError = document.getElementById('detailScentError');
+      const scentSelect = document.getElementById('detailScentSelect');
+      if (scentError) {
+        scentError.textContent = LANG === 'en'
+          ? 'Please choose a scent before adding to cart.'
+          : 'Vennligst velg en duft før du legger i handlekurven.';
+        scentError.style.display = 'block';
+      }
+      if (scentSelect) {
+        scentSelect.classList.add('has-error');
+        scentSelect.focus();
+      }
+      return;
+    }
+  }
+  addToCartWithQty(p, S.modalQty, S.selectedScent);
   closeProductDetail();
   openCart();
 };
@@ -6415,18 +6623,31 @@ window.addModalProductToCart = function() {
 window.quickAddToCart = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (!p) return;
+  if (p.scents && p.scents.length > 0) {
+    openProductDetail(id);
+    const select = document.getElementById('detailScentSelect');
+    if (select) {
+      setTimeout(() => select.focus(), 150);
+    }
+    return;
+  }
   addToCartWithQty(p, 1);
   openCart();
 };
 
-function addToCartWithQty(p, qty) {
-  const existing = S.lines.find(l => l.id === p.id);
+function addToCartWithQty(p, qty, scent = '') {
+  const lineKey = scent ? `${p.id}__${scent}` : p.id;
+  const displayName = scent ? `${p.name} (${scent})` : p.name;
+  const existing = S.lines.find(l => (l.cartLineId || l.id) === lineKey);
   if (existing) {
     existing.qty += qty;
   } else {
     S.lines.push({
       id: p.id,
-      name: p.name,
+      cartLineId: lineKey,
+      name: displayName,
+      originalName: p.name,
+      scent: scent || '',
       brand: p.brand,
       size: p.size || '100 ml',
       price: p.price,
@@ -6494,6 +6715,7 @@ function renderCart() {
   if ($('#cartList')) {
     $('#cartList').innerHTML = S.lines.map(item => {
       const lineTotal = item.price * item.qty;
+      const lineKey = item.cartLineId || item.id;
       return `
         <div class="cart-item-row">
           <img class="cart-item-thumb" src="${item.image}" alt="${escapeHtml(item.name)}">
@@ -6501,14 +6723,14 @@ function renderCart() {
             <b>${escapeHtml(item.name)}</b>
             <small>${escapeHtml(item.brand)} · ${escapeHtml(item.size || '100 ml')} · ${nok(item.price)}</small>
             <div class="cart-qty-ctrl">
-              <button type="button" class="cqty-btn" onclick="updateCartItem('${item.id}', -1)">–</button>
+              <button type="button" class="cqty-btn" onclick="updateCartItem('${escapeHtml(lineKey)}', -1)">–</button>
               <span class="cqty-num">${item.qty}</span>
-              <button type="button" class="cqty-btn" onclick="updateCartItem('${item.id}', 1)">+</button>
+              <button type="button" class="cqty-btn" onclick="updateCartItem('${escapeHtml(lineKey)}', 1)">+</button>
             </div>
           </div>
           <div class="cart-item-right">
             <span class="cart-item-total">${nok(lineTotal)}</span>
-            <button type="button" class="cart-remove-btn" onclick="removeCartItem('${item.id}')" aria-label="Fjern vare">✕</button>
+            <button type="button" class="cart-remove-btn" onclick="removeCartItem('${escapeHtml(lineKey)}')" aria-label="Fjern vare">✕</button>
           </div>
         </div>
       `;
@@ -6520,19 +6742,19 @@ function renderCart() {
   if ($('#ctot')) $('#ctot').textContent = nok(totals.total);
 }
 
-window.updateCartItem = function(id, delta) {
-  const item = S.lines.find(l => l.id === id);
+window.updateCartItem = function(key, delta) {
+  const item = S.lines.find(l => (l.cartLineId || l.id) === key);
   if (!item) return;
   item.qty += delta;
   if (item.qty <= 0) {
-    S.lines = S.lines.filter(l => l.id !== id);
+    S.lines = S.lines.filter(l => (l.cartLineId || l.id) !== key);
   }
   saveCart();
   renderCart();
 };
 
-window.removeCartItem = function(id) {
-  S.lines = S.lines.filter(l => l.id !== id);
+window.removeCartItem = function(key) {
+  S.lines = S.lines.filter(l => (l.cartLineId || l.id) !== key);
   saveCart();
   renderCart();
 };
@@ -6584,10 +6806,10 @@ function updateCheckoutSummary() {
 
   if ($('#checkoutOrderSummary')) {
     $('#checkoutOrderSummary').innerHTML = `
-      <div style="font-weight:600;margin-bottom:.5rem">${isEn ? 'Order Summary (100 ml bottles):' : 'Ordresammendrag (100 ml flakonger):'}</div>
+      <div style="font-weight:600;margin-bottom:.5rem">${isEn ? 'Order Summary:' : 'Ordresammendrag:'}</div>
       ${S.lines.map(i => `
         <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
-          <span>${escapeHtml(i.name)} (${i.qty}x 100 ml)</span>
+          <span>${escapeHtml(i.name)} (${i.qty}x ${escapeHtml(i.size || '100 ml')})</span>
           <span>${nok(i.price * i.qty)}</span>
         </div>
       `).join('')}
@@ -6656,7 +6878,7 @@ window.handleCheckout = function(e) {
       </div>
       ${newOrder.items.map(i => `
         <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.2rem">
-          <span>${escapeHtml(i.name)} (100 ml x ${i.qty})</span>
+          <span>${escapeHtml(i.name)} (${escapeHtml(i.size || '100 ml')} x ${i.qty})</span>
           <span>${nok(i.price * i.qty)}</span>
         </div>
       `).join('')}
@@ -6933,7 +7155,11 @@ function setLanguage(lang) {
     if (volEl && t[`heroVol${i}`]) volEl.textContent = t[`heroVol${i}`];
   }
   $$('.hero-best-cta').forEach(btn => {
-    btn.textContent = t.heroBuyNow || (LANG === 'en' ? 'Buy now' : 'Kjøp nå');
+    if (btn.classList.contains('hero-best-scent-btn')) {
+      btn.textContent = t.chooseScentBtn || (LANG === 'en' ? 'Choose scent' : 'Velg duft');
+    } else {
+      btn.textContent = t.heroBuyNow || (LANG === 'en' ? 'Buy now' : 'Kjøp nå');
+    }
   });
 
   // Collection
@@ -7045,6 +7271,8 @@ function setLanguage(lang) {
   if ($('#boxGuaranteeBadge')) $('#boxGuaranteeBadge').textContent = t.boxGuaranteeBadge;
   if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
   if ($('#detailGuaranteeText')) $('#detailGuaranteeText').textContent = t.detailGuaranteeText;
+  if ($('#lblDetailScentText')) $('#lblDetailScentText').textContent = t.lblDetailScent || (LANG === 'en' ? 'Choose desired scent (1 roll-on bottle):' : 'Velg ønsket duft (1 stk rulleflaske):');
+  if ($('#detailScentError')) $('#detailScentError').textContent = t.errSelectScent || (LANG === 'en' ? 'Please choose a scent before adding to cart.' : 'Vennligst velg en duft før du legger i handlekurven.');
   if ($('#policyCloseBtn')) $('#policyCloseBtn').textContent = (LANG === 'en') ? 'Close window' : 'Lukk vindu';
 
   // Footer
@@ -7193,7 +7421,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v34', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -7255,7 +7483,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v34', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -7331,7 +7559,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v34', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -7346,6 +7574,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v34');
     localStorage.removeItem('arx_custom_catalog_v31');
     localStorage.removeItem('arx_custom_catalog_v30');
     localStorage.removeItem('arx_custom_catalog_v29');
@@ -7353,7 +7582,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v34', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
