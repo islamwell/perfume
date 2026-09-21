@@ -42,7 +42,7 @@ try {
 <style>
 /* ================= HERO BESTSELLERS SECTION ================= */
 .hero-bestsellers-section {
-  padding: 2.8rem 1.5rem 2.2rem;
+  padding: 1.5rem 1.5rem 2.2rem;
   max-width: 1400px;
   margin: 0 auto 2.5rem;
   position: relative;
@@ -644,8 +644,58 @@ header{
 
 nav.main-nav{display:none;align-items:center;gap:1.6rem}
 @media(min-width:54rem){nav.main-nav{display:flex}}
-nav.main-nav a{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s}
-nav.main-nav a:hover{color:var(--gold)}
+nav.main-nav a, nav.main-nav .nav-dropdown-trigger{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit}
+nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, .nav-dropdown:hover .nav-dropdown-trigger, .nav-dropdown.active .nav-dropdown-trigger{color:var(--gold)}
+
+/* Top Brands Dropdown (Desktop) */
+.nav-dropdown{position:relative;display:inline-flex;align-items:center}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem 0}
+.nav-arrow{font-size:.68rem;transition:transform .2s ease;display:inline-block}
+.nav-dropdown:hover .nav-arrow, .nav-dropdown.active .nav-arrow{transform:rotate(180deg)}
+.nav-dropdown-panel{
+  position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%) translateY(8px);
+  width:max-content;min-width:270px;max-width:320px;
+  background:#070b13fa;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(201,169,110,0.35);border-radius:1rem;
+  box-shadow:0 16px 40px rgba(0,0,0,0.8),0 0 20px rgba(201,169,110,0.14);
+  padding:.8rem .65rem;opacity:0;visibility:hidden;pointer-events:none;
+  transition:all .22s cubic-bezier(0.16,1,0.3,1);z-index:1000
+}
+.nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown.active .nav-dropdown-panel, .nav-dropdown:focus-within .nav-dropdown-panel{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)
+}
+.nav-dropdown-header{
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+  padding:.2rem .4rem .6rem;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:.35rem;text-align:center
+}
+.nav-dropdown-list{display:flex;flex-direction:column;gap:.2rem;max-height:380px;overflow-y:auto}
+.nav-dropdown-item{
+  display:flex;align-items:center;gap:.65rem;width:100%;background:transparent;
+  border:1px solid transparent;border-radius:.55rem;padding:.42rem .65rem;
+  color:#e2e8f0;font-family:inherit;font-size:.82rem;text-align:left;cursor:pointer;
+  transition:all .16s ease
+}
+.nav-dropdown-item:hover{
+  background:rgba(201,169,110,0.15);border-color:rgba(201,169,110,0.3);color:#fff;transform:translateX(4px)
+}
+.nav-item-icon{font-size:1rem;line-height:1;flex-shrink:0}
+.nav-item-name{font-weight:500}
+
+/* Mobile dropdown */
+.mob-dropdown{width:100%;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:.5rem}
+.mob-dropdown-trigger{
+  width:100%;background:none;border:0;color:var(--gold);font:inherit;text-align:left;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-size:.98rem;font-weight:600;padding:.4rem 0
+}
+.mob-dropdown-header{font-size:.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;padding:.3rem 0 .5rem;font-weight:600}
+.mob-brands-list{display:flex;flex-direction:column;gap:.3rem;padding-left:.3rem}
+.mob-brand-item{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:#e2e8f0;
+  border-radius:.5rem;padding:.45rem .75rem;text-align:left;font:inherit;font-size:.85rem;
+  cursor:pointer;display:flex;align-items:center;gap:.6rem;transition:all .15s ease
+}
+.mob-brand-item:active{background:rgba(201,169,110,0.2);border-color:var(--gold);color:#fff}
 
 .header-actions{display:flex;align-items:center;gap:.6rem}
 
@@ -772,6 +822,89 @@ nav.main-nav a:hover{color:var(--gold)}
   margin-top:.4rem;
   font-size:.82rem;
   color:var(--gold);
+}
+.status-bar-left{
+  display:inline-flex;
+  align-items:center;
+  gap:.85rem;
+  flex-wrap:wrap;
+}
+.btn-show-all{
+  background:linear-gradient(135deg,rgba(201,169,110,0.22),rgba(201,169,110,0.08));
+  border:1.5px solid var(--gold);
+  color:var(--gold);
+  font-family:inherit;
+  font-size:.82rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:.34rem .95rem;
+  border-radius:999px;
+  cursor:pointer;
+  transition:all .2s cubic-bezier(0.16,1,0.3,1);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 8px rgba(201,169,110,0.2);
+}
+.btn-show-all:hover{
+  background:var(--gold);
+  color:#060a10;
+  transform:translateY(-2px);
+  box-shadow:0 4px 18px rgba(201,169,110,0.5);
+}
+.btn-show-all:active{
+  transform:translateY(0);
+}
+
+/* Floating Small Circle Back-To-Top Button */
+.back-to-top{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:rgba(10,14,23,0.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1.5px solid var(--gold);
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.35rem;
+  font-weight:700;
+  cursor:pointer;
+  z-index:999;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(16px) scale(0.9);
+  transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .2s ease,box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 10px rgba(201,169,110,0.2);
+}
+.back-to-top.visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+}
+.back-to-top:hover{
+  background:var(--gold);
+  color:#05080e;
+  box-shadow:0 6px 24px rgba(201,169,110,0.45);
+  transform:translateY(-3px) scale(1.06);
+}
+.back-to-top:active{
+  transform:scale(0.95);
+}
+@media(max-width:54rem){
+  .back-to-top{
+    bottom:5.5rem;
+    right:1.2rem;
+    width:42px;
+    height:42px;
+    font-size:1.2rem;
+  }
 }
 
 /* Filter & Search Bar (Zero Horizontal Scrolling) */
@@ -1458,7 +1591,49 @@ footer{
     </div>
 
     <nav class="main-nav">
-      <a href="#kjop" id="navFragrances">Våre Parfymer</a>
+      <div class="nav-dropdown" id="navBrandsDropdown">
+        <button type="button" class="nav-dropdown-trigger" id="navBrandsTrigger" onclick="toggleNavDropdown(event)" aria-expanded="false" aria-haspopup="true">
+          <span id="navFragrancesText">Top Brands</span> <span class="nav-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown-panel" id="navBrandsPanel">
+          <div class="nav-dropdown-header" id="navBrandsHeader">Top Brands Online — Click to filter</div>
+          <div class="nav-dropdown-list">
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Lattafa')">
+              <span class="nav-item-icon">🌟</span> <span class="nav-item-name">Lattafa Perfumes</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Armaf')">
+              <span class="nav-item-icon">👑</span> <span class="nav-item-name">Armaf / Sterling</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Maison Alhambra')">
+              <span class="nav-item-icon">🏛️</span> <span class="nav-item-name">Maison Alhambra</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Reef')">
+              <span class="nav-item-icon">💎</span> <span class="nav-item-name">Reef Perfumes</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Swiss Arabian')">
+              <span class="nav-item-icon">🌙</span> <span class="nav-item-name">Swiss Arabian</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
+              <span class="nav-item-icon">⚜️</span> <span class="nav-item-name">Ahmed Al Maghribi</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('French Avenue')">
+              <span class="nav-item-icon">🍸</span> <span class="nav-item-name">French Avenue</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Hamidi')">
+              <span class="nav-item-icon">🪔</span> <span class="nav-item-name">Hamidi Oud</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Ibraq')">
+              <span class="nav-item-icon">💠</span> <span class="nav-item-name">Ibrahim Al Qurashi (IBRAQ)</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Bespoke London')">
+              <span class="nav-item-icon">🇬🇧</span> <span class="nav-item-name">Bespoke London</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Buhara Esans')">
+              <span class="nav-item-icon">🇹🇷</span> <span class="nav-item-name">Buhara Esans</span>
+            </button>
+          </div>
+        </div>
+      </div>
       <a href="#showroom" id="navShowroom">Showroom</a>
       <button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om</button>
       <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
@@ -1483,7 +1658,27 @@ footer{
   </div>
 
   <div class="mobile-nav" id="mobileNav">
-    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (89)</a>
+    <div class="mob-dropdown" id="mobBrandsDropdown">
+      <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances">
+        <span id="mobNavFragrancesText">Top Brands</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
+      </button>
+      <div class="mob-dropdown-panel" id="mobBrandsPanel" style="display:none">
+        <div class="mob-dropdown-header" id="mobBrandsHeader">Top Brands Online — Click to filter</div>
+        <div class="mob-brands-list">
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav();"><span>🌟</span> Lattafa Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav();"><span>👑</span> Armaf / Sterling</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav();"><span>🏛️</span> Maison Alhambra</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav();"><span>💎</span> Reef Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav();"><span>🌙</span> Swiss Arabian</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi'); toggleMobileNav();"><span>⚜️</span> Ahmed Al Maghribi</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('French Avenue'); toggleMobileNav();"><span>🍸</span> French Avenue</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Hamidi'); toggleMobileNav();"><span>🪔</span> Hamidi Oud</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ibraq'); toggleMobileNav();"><span>💠</span> Ibrahim Al Qurashi (IBRAQ)</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bespoke London'); toggleMobileNav();"><span>🇬🇧</span> Bespoke London</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Buhara Esans'); toggleMobileNav();"><span>🇹🇷</span> Buhara Esans</button>
+        </div>
+      </div>
+    </div>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
     <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
@@ -1496,66 +1691,8 @@ footer{
 
 <main id="top">
 
-  <!-- ================= 3. HERO: TOP BRANDS & BEST SELLERS ON THE INTERNET ================= -->
+  <!-- ================= 3. HERO: BEST SELLERS ON THE INTERNET ================= -->
   <section id="heroSection" class="hero-bestsellers-section" aria-label="Internettets bestselgende parfymer">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span>🔥</span> <span id="heroEyebrowText">Mest Etterspurte på Nettet · 100% Originale</span>
-      </div>
-      <h1 class="hero-title" id="heroTitle">
-        Internettets <span>Største Bestselgere</span>
-      </h1>
-      <p class="hero-subtitle" id="heroSubtitle">
-        Håndplukkede virale sensasjoner og legendariske arabiske duftmestere som dominerer TikTok, Fragrantica og globale topplister. Opplev enorm sillage og luksus til markedets beste priser.
-      </p>
-      <div class="hero-trust-bar">
-        <div class="hero-trust-item"><span>✨</span> <b id="heroTrust1">100% Originale fabrikkutgaver</b></div>
-        <div class="hero-trust-item"><span>📍</span> <b id="heroTrust2">Showroom: Tøyengata 3, Oslo</b></div>
-        <div class="hero-trust-item"><span>⚡</span> <b id="heroTrust3">Lynrask Vipps-bestilling</b></div>
-        <div class="hero-trust-item"><span>🏷️</span> <b id="heroTrust4">Maks 1 500 kr</b></div>
-      </div>
-    </div>
-
-    <!-- Top Brands Navigation Pills -->
-    <div class="hero-brands-wrap">
-      <span class="hero-brands-label" id="heroBrandsLabel">Topp Merkehus på Nettet — Klikk for å filtrere</span>
-      <div class="hero-brands-pills">
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
-          <span>🌟</span> Lattafa Perfumes
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
-          <span>👑</span> Armaf / Sterling
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Maison Alhambra')">
-          <span>🏛️</span> Maison Alhambra
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Reef')">
-          <span>💎</span> Reef Perfumes
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
-          <span>🌙</span> Swiss Arabian
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
-          <span>⚜️</span> Ahmed Al Maghribi
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('French Avenue')">
-          <span>🍸</span> French Avenue
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Hamidi')">
-          <span>🪔</span> Hamidi Oud
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ibraq')">
-          <span>💠</span> Ibrahim Al Qurashi (IBRAQ)
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Bespoke London')">
-          <span>🇬🇧</span> Bespoke London
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Buhara Esans')">
-          <span>🇹🇷</span> Buhara Esans
-        </button>
-      </div>
-    </div>
-
     <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
     <div class="hero-bestsellers-header">
       <div>
@@ -1697,7 +1834,10 @@ footer{
       <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
       <p class="sub" id="colSub">89 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
       <div class="collection-status-bar">
-        <span id="collectionCount">Viser 89 av 89 parfymer — Finn din favoritt i dag</span>
+        <div class="status-bar-left">
+          <span id="collectionCount">Viser 89 av 89 parfymer — Finn din favoritt i dag</span>
+          <button type="button" class="btn-show-all" id="btnShowAll" onclick="resetAllFilters()" title="Vis alle parfymer / Reset filters">Show All</button>
+        </div>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
       </div>
     </div>
@@ -1816,10 +1956,6 @@ footer{
               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
           </div>
         </div>
-      </div>
-
-      <div class="packaging-guarantee-badge" id="boxGuaranteeBadge" style="margin-top:.6rem">
-        100% original, og produsenten endrer eske- og flakongdesign fra tid til annen
       </div>
     </div>
 
@@ -2176,11 +2312,16 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.31 (updated 2026-09-21 18:05)
+        v1.0.32 (updated 2026-09-21 23:55)
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Floating Small Circle Back-to-Top Button -->
+<button type="button" class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" aria-label="Tilbake til toppen / Back to top" title="Tilbake til toppen">
+  ↑
+</button>
 
 <!-- Sticky Mobile Buy Bar -->
 <div class="buybar" id="mobileBuyBar">
@@ -2190,7 +2331,52 @@ footer{
 
 <script>
 
+function toggleNavDropdown(e) {
+  if (e) e.stopPropagation();
+  const dd = document.getElementById('navBrandsDropdown');
+  if (dd) dd.classList.toggle('active');
+}
+function closeNavDropdown() {
+  const dd = document.getElementById('navBrandsDropdown');
+  if (dd) dd.classList.remove('active');
+}
+document.addEventListener('click', function(e) {
+  const dd = document.getElementById('navBrandsDropdown');
+  if (dd && !dd.contains(e.target)) {
+    dd.classList.remove('active');
+  }
+});
+
+function toggleMobBrandsDropdown() {
+  const panel = document.getElementById('mobBrandsPanel');
+  const arrow = document.getElementById('mobBrandsArrow');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || !panel.style.display;
+  if (isHidden) {
+    panel.style.display = 'block';
+    if (arrow) arrow.textContent = '▴';
+  } else {
+    panel.style.display = 'none';
+    if (arrow) arrow.textContent = '▾';
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.addEventListener('scroll', function() {
+  const btt = document.getElementById('backToTopBtn');
+  if (btt) {
+    if (window.scrollY > 320) {
+      btt.classList.add('visible');
+    } else {
+      btt.classList.remove('visible');
+    }
+  }
+}, { passive: true });
+
 window.filterByBrandFromHero = function(brandName) {
+  closeNavDropdown();
   activeBrand = brandName;
   const brandSelect = document.getElementById('filterBrand');
   if (brandSelect) {
@@ -5253,11 +5439,13 @@ const I18N = {
     replayIntro: "Intro",
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
     tagline: "",
-    navFragrances: "Våre Parfymer",
+    navFragrances: "Topp Merker",
     navShowroom: "Showroom",
     navAbout: "Om",
     navContact: "Kontakt",
-    mobNavFragrances: "Våre Parfymer (89)",
+    mobNavFragrances: "Topp Merker",
+    navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
+    btnShowAll: "Vis alle",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "Om",
     mobNavContact: "Kontakt & Henting",
@@ -5416,11 +5604,13 @@ const I18N = {
     replayIntro: "Intro",
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
     tagline: "",
-    navFragrances: "Our Fragrances",
+    navFragrances: "Top Brands",
     navShowroom: "Showroom",
     navAbout: "About",
     navContact: "Contact",
-    mobNavFragrances: "Our Fragrances (89)",
+    mobNavFragrances: "Top Brands",
+    navBrandsHeader: "Top Brands Online — Click to filter",
+    btnShowAll: "Show All",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "About",
     mobNavContact: "Contact & Pickup",
@@ -6456,14 +6646,18 @@ function setLanguage(lang) {
   // Header
   if ($('#bannerOffer')) $('#bannerOffer').innerHTML = t.banner;
   if ($('#headerTagline')) $('#headerTagline').textContent = t.tagline;
-  if ($('#navFragrances')) $('#navFragrances').textContent = t.navFragrances;
+  if ($('#navFragrancesText')) $('#navFragrancesText').textContent = t.navFragrances;
+  else if ($('#navFragrances')) $('#navFragrances').textContent = t.navFragrances;
+  if ($('#navBrandsHeader')) $('#navBrandsHeader').textContent = t.navBrandsHeader || t.heroBrandsLabel;
+  if ($('#mobBrandsHeader')) $('#mobBrandsHeader').textContent = t.navBrandsHeader || t.heroBrandsLabel;
   if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
 
   // Mobile nav
-  if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.mobNavFragrances || t.navFragrances;
+  if ($('#mobNavFragrancesText')) $('#mobNavFragrancesText').textContent = t.mobNavFragrances || t.navFragrances;
+  else if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.mobNavFragrances || t.navFragrances;
   if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
   if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
   if ($('#mobNavContact')) $('#mobNavContact').textContent = t.mobNavContact || t.navContact;
@@ -6497,6 +6691,7 @@ function setLanguage(lang) {
   if ($('#colTitle')) $('#colTitle').textContent = t.colTitle;
   if ($('#colSub')) $('#colSub').textContent = t.colSub;
   if ($('#colGuaranteeBadge')) $('#colGuaranteeBadge').textContent = t.colGuaranteeBadge;
+  if ($('#btnShowAll')) $('#btnShowAll').textContent = t.btnShowAll || 'Show All';
 
   // Filters
   if ($('#lblFilterBrand')) $('#lblFilterBrand').textContent = t.lblFilterBrand;
