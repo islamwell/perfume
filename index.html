@@ -37,7 +37,9 @@ try {
   }
 } catch(e) {}
 </script>
-<noscript><style>html.booting{overflow:visible}.intro{display:none!important}
+<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
+
+<style>
 /* ================= HERO BESTSELLERS SECTION ================= */
 .hero-bestsellers-section {
   padding: 2.8rem 1.5rem 2.2rem;
@@ -191,14 +193,20 @@ try {
   .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
 @media(max-width: 519px) {
+  .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+}
+@media(max-width: 359px) {
   .hero-bestsellers-grid { grid-template-columns: 1fr; }
 }
 
 .hero-best-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(6,10,16,0.98) 100%);
   border: 1px solid rgba(201,169,110,0.25);
   border-radius: 1.2rem;
-  padding: 1.25rem 1.1rem 1.1rem;
+  padding: 1.15rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,6 +248,7 @@ try {
 .hero-best-img-wrap {
   width: 100%;
   height: 175px;
+  max-height: 175px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,15 +256,22 @@ try {
   cursor: pointer;
   background: radial-gradient(circle at 50% 60%, rgba(201,169,110,0.08), transparent 70%);
   border-radius: .8rem;
+  overflow: hidden;
 }
-.hero-best-img-wrap img {
-  max-height: 160px;
+.hero-best-img-wrap img,
+.hero-best-img {
+  max-height: 155px;
   max-width: 86%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
   filter: drop-shadow(0 14px 22px rgba(0,0,0,0.85));
   transition: transform .32s cubic-bezier(0.16,1,0.3,1);
 }
-.hero-best-card:hover .hero-best-img-wrap img {
+.hero-best-card:hover .hero-best-img-wrap img,
+.hero-best-card:hover .hero-best-img {
   transform: scale(1.07);
 }
 .hero-best-brand {
@@ -316,9 +332,6 @@ try {
   box-shadow: 0 4px 16px rgba(201,169,110,0.45);
 }
 
-</style></noscript>
-
-<style>
 /* ── DUAL VIEW SWITCHER & HARDWARE-ACCELERATED SLIDING CAROUSEL ── */
 .img-switch-pill {
   display: inline-flex;
@@ -1559,7 +1572,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge gold">🔥 #1 på Nettet</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('armaf-club-de-nuit-intense')">
-          <img src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
+          <img class="hero-best-img" src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
         </div>
         <span class="hero-best-brand">Armaf by Sterling</span>
         <h3 class="hero-best-name" onclick="openProductDetail('armaf-club-de-nuit-intense')">Armaf Club de Nuit Intense Man</h3>
@@ -1574,7 +1587,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge">⚡ TikTok Viral</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
-          <img src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
+          <img class="hero-best-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-khamrah')">Lattafa Khamrah</h3>
@@ -1589,7 +1602,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge gold">🔥 Bestselger Herre</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
-          <img src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
+          <img class="hero-best-img" src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-asad')">Lattafa Asad (Black Dragon)</h3>
@@ -1604,7 +1617,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge purple">💖 #1 Damefavoritt</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
-          <img src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
+          <img class="hero-best-img" src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-yara-pink')">Lattafa Yara (Pink)</h3>
@@ -1619,7 +1632,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge">💎 BR540 Sensation</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">
-          <img src="images/lattafa-ana-abiyedh-rouge.png" alt="Lattafa Ana Abiyedh Rouge" loading="lazy">
+          <img class="hero-best-img" src="images/lattafa-ana-abiyedh-rouge.png" alt="Lattafa Ana Abiyedh Rouge" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">Lattafa Ana Abiyedh Rouge</h3>
@@ -1634,7 +1647,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge gold">🍸 Nisje-Mesterverk</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('french-avenue-spectre-ghost')">
-          <img src="images/french-avenue-spectre-ghost.png" alt="French Avenue Spectre Ghost" loading="lazy">
+          <img class="hero-best-img" src="images/french-avenue-spectre-ghost.png" alt="French Avenue Spectre Ghost" loading="lazy">
         </div>
         <span class="hero-best-brand">French Avenue</span>
         <h3 class="hero-best-name" onclick="openProductDetail('french-avenue-spectre-ghost')">French Avenue Spectre Ghost</h3>
@@ -1649,7 +1662,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge">📦 Sylinder-eske m/ snor</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-oud-mood')">
-          <img src="images/lattafa-oud-mood.png" alt="Lattafa Oud Mood" loading="lazy">
+          <img class="hero-best-img" src="images/lattafa-oud-mood.png" alt="Lattafa Oud Mood" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-oud-mood')">Lattafa Oud Mood</h3>
@@ -1664,7 +1677,7 @@ footer{
       <article class="hero-best-card">
         <span class="hero-best-badge green">⚡ Supertilbud 49 kr</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
-          <img src="images/buhara-esans-7ml.png" alt="Buhara Esansları 7ml" loading="lazy">
+          <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esansları 7ml" loading="lazy">
         </div>
         <span class="hero-best-brand">Buhara Esans</span>
         <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esansları (7 ml Roll-on)</h3>
@@ -2164,7 +2177,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.29 (updated 2026-09-21 15:10)
+        v1.0.30 (updated 2026-09-21 15:46)
       </div>
     </div>
   </div>
@@ -5223,7 +5236,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v29');
+  const custom = localStorage.getItem('arx_custom_catalog_v30');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -6559,7 +6572,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -6621,7 +6634,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -6697,7 +6710,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -6712,12 +6725,13 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v30');
     localStorage.removeItem('arx_custom_catalog_v29');
     localStorage.removeItem('arx_custom_catalog_v28');
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v29', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
