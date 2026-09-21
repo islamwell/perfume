@@ -398,6 +398,43 @@ try {
   margin: 0 auto;
   border-radius: 1rem;
   background: radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.modal-img-container:hover {
+  box-shadow: 0 0 24px rgba(201,169,110,0.22);
+}
+.modal-img-container:hover .modal-packshot-img {
+  transform: scale(1.05);
+}
+.modal-zoom-badge {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.72rem;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.modal-img-container:hover .modal-zoom-badge {
+  opacity: 1;
+  background: rgba(8, 12, 20, 0.95);
+  border-color: var(--gold);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
 }
 .modal-slider-track {
   display: flex;
@@ -425,6 +462,129 @@ try {
   object-fit: contain;
   filter: drop-shadow(0 16px 32px rgba(0,0,0,0.9));
   transition: transform 0.4s ease;
+}
+
+/* ================= IMAGE ZOOM LIGHTBOX MODAL ================= */
+.image-zoom-dialog {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 96vw;
+  max-height: 96vh;
+  width: auto;
+  height: auto;
+  margin: auto;
+  overflow: visible;
+  outline: none;
+}
+.image-zoom-dialog:not([open]) {
+  display: none !important;
+}
+.image-zoom-dialog::backdrop {
+  background: rgba(3, 5, 8, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.zoom-modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 92vw;
+  max-height: 92vh;
+  padding: 1.2rem;
+}
+.zoom-modal-close {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.4rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+.zoom-modal-close:hover {
+  background: var(--gold);
+  color: #060a10;
+  transform: scale(1.1);
+}
+.zoom-img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 86vw;
+  max-height: 72vh;
+  cursor: zoom-out;
+}
+.zoom-modal-img {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 48px rgba(0,0,0,0.95)) drop-shadow(0 0 35px rgba(201,169,110,0.25));
+  border-radius: 0.8rem;
+  animation: zoomFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes zoomFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.zoom-modal-caption {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
+.zoom-modal-sub {
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-top: 0.25rem;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.zoom-switch-bar {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  background: rgba(255,255,255,0.06);
+  padding: 0.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.zoom-switch-btn {
+  background: none;
+  border: none;
+  color: var(--dim);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.zoom-switch-btn.active {
+  background: var(--gold);
+  color: #060a10;
 }
 
 .packaging-guarantee-badge {
@@ -1945,7 +2105,7 @@ footer{
 
   <div class="product-modal-grid">
     <div class="modal-packshot-wrap">
-      <div class="modal-img-container">
+      <div class="modal-img-container" onclick="openImageZoom()" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom()" role="button" tabindex="0" title="Klikk for å forstørre bildet / Click to zoom" aria-label="Klikk for å forstørre bildet">
         <div class="modal-slider-track" id="modalSliderTrack">
           <div class="modal-slide">
             <img id="detailModalImgBottle" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Flakong"
@@ -1955,6 +2115,9 @@ footer{
             <img id="detailModalImgBox" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Presentasjonseske"
               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
           </div>
+        </div>
+        <div class="modal-zoom-badge">
+          <span>🔍</span> <span id="lblModalZoomBadge">Klikk for å forstørre</span>
         </div>
       </div>
     </div>
@@ -2003,6 +2166,22 @@ footer{
         🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar).</span><br>
         🛡️ <span id="detailGuaranteeText">100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</span>
       </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- ================= 5b. ZOOMED-IN PICTURE MODAL (Lightbox) ================= -->
+<dialog id="imageZoomModal" class="image-zoom-dialog" onclick="if(event.target===this)closeImageZoom()" aria-labelledby="zoomModalCaption">
+  <div class="zoom-modal-content">
+    <button type="button" class="zoom-modal-close" onclick="closeImageZoom()" aria-label="Lukk forstørret bilde">✕</button>
+    <div class="zoom-img-wrap" onclick="closeImageZoom()" title="Klikk for å lukke / Click to close">
+      <img id="zoomModalImg" class="zoom-modal-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Forstørret bilde">
+    </div>
+    <div id="zoomModalCaption" class="zoom-modal-caption"></div>
+    <div id="zoomModalSub" class="zoom-modal-sub"></div>
+    <div id="zoomSwitchBar" class="zoom-switch-bar" style="display:none">
+      <button type="button" class="zoom-switch-btn" id="zoomBtnBottle" onclick="switchZoomImage('bottle')">Flakong</button>
+      <button type="button" class="zoom-switch-btn" id="zoomBtnBox" onclick="switchZoomImage('box')">Eske</button>
     </div>
   </div>
 </dialog>
@@ -2312,7 +2491,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.32 (updated 2026-09-21 23:55)
+        v1.0.33 (updated 2026-09-21 23:58)
       </div>
     </div>
   </div>
@@ -5512,6 +5691,7 @@ const I18N = {
     boxGuaranteeBadge: "100% original, og produsenten endrer eske- og flakongdesign fra tid til annen",
     detailModalBrand: "PRODUSENT",
     detailModalStock: "● På lager (Oslo · Tøyengata 3)",
+    lblModalZoomBadge: "Klikk for å forstørre",
     lblTopNotes: "Toppnoter",
     lblHeartNotes: "Hjertenoter",
     lblBaseNotes: "Bunnoter",
@@ -5677,6 +5857,7 @@ const I18N = {
     boxGuaranteeBadge: "100% original and the Manufacturer changes the box and bottle design from time to time",
     detailModalBrand: "HOUSE",
     detailModalStock: "● In stock (Oslo · Tøyengata 3)",
+    lblModalZoomBadge: "Click to zoom",
     lblTopNotes: "Top Notes",
     lblHeartNotes: "Heart Notes",
     lblBaseNotes: "Base Notes",
@@ -6135,10 +6316,79 @@ function updateProductDetailModalContent(p) {
   if ($('#detailModalHeart')) $('#detailModalHeart').textContent = isEn ? (p.notes?.heart_en || p.notes?.heart) : p.notes?.heart;
   if ($('#detailModalBase')) $('#detailModalBase').textContent = isEn ? (p.notes?.base_en || p.notes?.base) : p.notes?.base;
   if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
+  if ($('#imageZoomModal')?.open) {
+    updateZoomModalContent(p);
+  }
 }
 
+let currentZoomMode = 'bottle';
+
+window.openImageZoom = function(mode) {
+  const p = CATALOG.find(item => item.id === S.currentProductId);
+  if (!p) return;
+  currentZoomMode = mode || currentViewMode || 'bottle';
+  updateZoomModalContent(p);
+  const modal = document.getElementById('imageZoomModal');
+  if (modal && !modal.open) {
+    modal.showModal();
+  }
+};
+
+window.switchZoomImage = function(mode) {
+  currentZoomMode = mode;
+  const p = CATALOG.find(item => item.id === S.currentProductId);
+  if (p) {
+    updateZoomModalContent(p);
+  }
+};
+
+function updateZoomModalContent(p) {
+  const isEn = LANG === 'en';
+  const hasBox = !!p.image_box;
+  const zoomImg = document.getElementById('zoomModalImg');
+  const zoomCap = document.getElementById('zoomModalCaption');
+  const zoomSub = document.getElementById('zoomModalSub');
+  const switchBar = document.getElementById('zoomSwitchBar');
+  const btnBottle = document.getElementById('zoomBtnBottle');
+  const btnBox = document.getElementById('zoomBtnBox');
+
+  const imgSrc = (currentZoomMode === 'box' && hasBox) ? p.image_box : p.image;
+  if (zoomImg) {
+    zoomImg.src = imgSrc;
+    zoomImg.alt = `${p.name} - ${currentZoomMode === 'box' ? (isEn ? 'Box' : 'Eske') : (isEn ? 'Bottle' : 'Flakong')}`;
+  }
+  if (zoomCap) {
+    zoomCap.textContent = p.name;
+  }
+  if (zoomSub) {
+    zoomSub.textContent = currentZoomMode === 'box' 
+      ? (isEn ? 'Official Presentation Box' : 'Offisiell Presentasjonseske')
+      : (isEn ? 'Original 100 ml Flacon Edition' : 'Original 100 ml Flakongutgave');
+  }
+  if (switchBar) {
+    if (hasBox) {
+      switchBar.style.display = 'inline-flex';
+      if (btnBottle) {
+        btnBottle.textContent = isEn ? 'Bottle' : 'Flakong';
+        btnBottle.classList.toggle('active', currentZoomMode === 'bottle');
+      }
+      if (btnBox) {
+        btnBox.textContent = isEn ? 'Box' : 'Eske';
+        btnBox.classList.toggle('active', currentZoomMode === 'box');
+      }
+    } else {
+      switchBar.style.display = 'none';
+    }
+  }
+}
+
+window.closeImageZoom = function() {
+  const modal = document.getElementById('imageZoomModal');
+  if (modal) modal.close();
+};
 
 window.closeProductDetail = function() {
+  $('#imageZoomModal')?.close();
   $('#productDetailModal')?.close();
   try {
     const url = new URL(window.location);
@@ -6790,6 +7040,7 @@ function setLanguage(lang) {
   if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = t.lblBaseNotes;
   if ($('#detailModalAddBtn')) $('#detailModalAddBtn').textContent = t.detailAddBtn;
   if ($('#detailModalStock')) $('#detailModalStock').textContent = t.detailModalStock;
+  if ($('#lblModalZoomBadge')) $('#lblModalZoomBadge').textContent = t.lblModalZoomBadge || 'Klikk for å forstørre';
   if ($('#add2')) $('#add2').textContent = t.cardAddBtn;
   if ($('#boxGuaranteeBadge')) $('#boxGuaranteeBadge').textContent = t.boxGuaranteeBadge;
   if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
