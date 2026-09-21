@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 73 Utvalgte Flakonger</title>
+<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 89 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 73 originale flakonger og oljer fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
+<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 89 originale flakonger og oljer fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
@@ -37,7 +37,286 @@ try {
   }
 } catch(e) {}
 </script>
-<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
+<noscript><style>html.booting{overflow:visible}.intro{display:none!important}
+/* ================= HERO BESTSELLERS SECTION ================= */
+.hero-bestsellers-section {
+  padding: 2.8rem 1.5rem 2.2rem;
+  max-width: 1400px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,169,110,0.14), transparent 70%),
+              radial-gradient(ellipse 60% 40% at 85% 20%, rgba(99,102,241,0.07), transparent 60%),
+              radial-gradient(ellipse 50% 30% at 15% 30%, rgba(234,179,8,0.06), transparent 60%);
+  border-bottom: 1px solid rgba(201,169,110,0.18);
+  border-radius: 1.5rem;
+}
+.hero-content {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 2rem;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .78rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+  border: 1px solid rgba(201,169,110,0.3);
+  padding: .35rem 1.1rem;
+  border-radius: 999px;
+  margin-bottom: 1.1rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.hero-title span {
+  background: linear-gradient(135deg, #ffffff 30%, var(--gold) 80%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-subtitle {
+  font-size: clamp(.95rem, 1.8vw, 1.18rem);
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+  font-weight: 300;
+}
+.hero-trust-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  font-size: .84rem;
+  color: var(--dim);
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+.hero-trust-item b {
+  color: #fff;
+}
+
+/* Brand Pills Row */
+.hero-brands-wrap {
+  margin: 2rem auto 2.6rem;
+  text-align: center;
+}
+.hero-brands-label {
+  font-size: .76rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .9rem;
+  display: block;
+  font-weight: 600;
+}
+.hero-brands-pills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .65rem;
+  flex-wrap: wrap;
+}
+.hero-brand-pill {
+  background: rgba(15,23,42,0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e2e8f0;
+  padding: .5rem 1.15rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  cursor: pointer;
+  transition: all .24s cubic-bezier(0.16,1,0.3,1);
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  text-decoration: none;
+}
+.hero-brand-pill:hover {
+  background: rgba(201,169,110,0.18);
+  border-color: var(--gold);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 14px rgba(201,169,110,0.25);
+}
+
+/* Featured Bestsellers Showcase */
+.hero-bestsellers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.4rem;
+  padding: 0 .4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: .8rem;
+}
+.hero-bestsellers-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+}
+.hero-bestsellers-header p {
+  color: var(--dim);
+  font-size: .86rem;
+  margin: .2rem 0 0;
+}
+.hero-bestsellers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media(min-width: 1200px) {
+  .hero-bestsellers-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media(min-width: 820px) and (max-width: 1199px) {
+  .hero-bestsellers-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(min-width: 520px) and (max-width: 819px) {
+  .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+@media(max-width: 519px) {
+  .hero-bestsellers-grid { grid-template-columns: 1fr; }
+}
+
+.hero-best-card {
+  background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(6,10,16,0.98) 100%);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 1.2rem;
+  padding: 1.25rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all .28s cubic-bezier(0.16,1,0.3,1);
+  overflow: hidden;
+}
+.hero-best-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.85), 0 0 28px rgba(201,169,110,0.25);
+}
+.hero-best-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #dc2626;
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+.hero-best-badge.gold {
+  background: linear-gradient(135deg, #d4af37 0%, #b45309 100%);
+  color: #fff;
+}
+.hero-best-badge.green {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+.hero-best-badge.purple {
+  background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+}
+.hero-best-img-wrap {
+  width: 100%;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .8rem;
+  cursor: pointer;
+  background: radial-gradient(circle at 50% 60%, rgba(201,169,110,0.08), transparent 70%);
+  border-radius: .8rem;
+}
+.hero-best-img-wrap img {
+  max-height: 160px;
+  max-width: 86%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,0.85));
+  transition: transform .32s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-best-card:hover .hero-best-img-wrap img {
+  transform: scale(1.07);
+}
+.hero-best-brand {
+  font-size: .74rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .25rem;
+}
+.hero-best-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 .35rem;
+  line-height: 1.25;
+  cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 3.1rem;
+}
+.hero-best-vol {
+  font-size: .74rem;
+  color: var(--dim);
+  margin-bottom: .6rem;
+}
+.hero-best-bottom {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .6rem;
+  padding-top: .6rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-best-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-best-cta {
+  background: linear-gradient(135deg, var(--gold) 0%, #b8860b 100%);
+  color: #05070b;
+  border: none;
+  border-radius: 999px;
+  padding: .45rem 1.15rem;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.hero-best-cta:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+  box-shadow: 0 4px 16px rgba(201,169,110,0.45);
+}
+
+</style></noscript>
 
 <style>
 /* ── DUAL VIEW SWITCHER & HARDWARE-ACCELERATED SLIDING CAROUSEL ── */
@@ -1147,7 +1426,7 @@ footer{
   </svg>
   <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
   <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></p>
-  <p class="hint" id="introHint">Feel As Good As You Smell · 73 Utvalgte Flakonger</p>
+  <p class="hint" id="introHint">Feel As Good As You Smell · 89 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
@@ -1203,6 +1482,201 @@ footer{
 </header>
 
 <main id="top">
+
+  <!-- ================= 3. HERO: TOP BRANDS & BEST SELLERS ON THE INTERNET ================= -->
+  <section id="heroSection" class="hero-bestsellers-section" aria-label="Internettets bestselgende parfymer">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span>🔥</span> <span>Mest Etterspurte på Nettet · 100% Originale</span>
+      </div>
+      <h1 class="hero-title">
+        Internettets <span>Største Bestselgere</span>
+      </h1>
+      <p class="hero-subtitle">
+        Håndplukkede virale sensasjoner og legendariske arabiske duftmestere som dominerer TikTok, Fragrantica og globale topplister. Opplev enorm sillage og luksus til markedets beste priser.
+      </p>
+      <div class="hero-trust-bar">
+        <div class="hero-trust-item"><span>✨</span> <b>100% Originale fabrikkutgaver</b></div>
+        <div class="hero-trust-item"><span>📍</span> <b>Showroom: Tøyengata 3, Oslo</b></div>
+        <div class="hero-trust-item"><span>⚡</span> <b>Lynrask Vipps-bestilling</b></div>
+        <div class="hero-trust-item"><span>🏷️</span> <b>Maks 1 500 kr</b></div>
+      </div>
+    </div>
+
+    <!-- Top Brands Navigation Pills -->
+    <div class="hero-brands-wrap">
+      <span class="hero-brands-label">Topp Merkehus på Nettet — Klikk for å filtrere</span>
+      <div class="hero-brands-pills">
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
+          <span>🌟</span> Lattafa Perfumes
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
+          <span>👑</span> Armaf / Sterling
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Maison Alhambra')">
+          <span>🏛️</span> Maison Alhambra
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Reef')">
+          <span>💎</span> Reef Perfumes
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
+          <span>🌙</span> Swiss Arabian
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
+          <span>⚜️</span> Ahmed Al Maghribi
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('French Avenue')">
+          <span>🍸</span> French Avenue
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Hamidi')">
+          <span>🪔</span> Hamidi Oud
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ibraq')">
+          <span>💠</span> Ibrahim Al Qurashi (IBRAQ)
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Bespoke London')">
+          <span>🇬🇧</span> Bespoke London
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Buhara Esans')">
+          <span>🇹🇷</span> Buhara Esans
+        </button>
+      </div>
+    </div>
+
+    <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
+    <div class="hero-bestsellers-header">
+      <div>
+        <h2>Mest Solgte på Nettet</h2>
+        <p>De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
+      </div>
+      <a href="#kjop" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
+        Se hele katalogen (89) ↓
+      </a>
+    </div>
+
+    <div class="hero-bestsellers-grid">
+      <!-- 1. Armaf Club de Nuit Intense Man -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge gold">🔥 #1 på Nettet</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('armaf-club-de-nuit-intense')">
+          <img src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Armaf by Sterling</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('armaf-club-de-nuit-intense')">Armaf Club de Nuit Intense Man</h3>
+        <div class="hero-best-vol">100 ml · Woody Spicy Beast</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">499 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('armaf-club-de-nuit-intense')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 2. Lattafa Khamrah -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge">⚡ TikTok Viral</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
+          <img src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Lattafa</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-khamrah')">Lattafa Khamrah</h3>
+        <div class="hero-best-vol">100 ml · Kanel & Gourmand Vanilje</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">400 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-khamrah')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 3. Lattafa Asad -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge gold">🔥 Bestselger Herre</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
+          <img src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Lattafa</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-asad')">Lattafa Asad (Black Dragon)</h3>
+        <div class="hero-best-vol">100 ml · Sort Pepper, Tobakk & Amber</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">490 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-asad')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 4. Lattafa Yara Pink -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge purple">💖 #1 Damefavoritt</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
+          <img src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Lattafa</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-yara-pink')">Lattafa Yara (Pink)</h3>
+        <div class="hero-best-vol">100 ml · Heliotrop, Vanilje & Tropisk</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">450 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-yara-pink')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 5. Lattafa Ana Abiyedh Rouge -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge">💎 BR540 Sensation</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">
+          <img src="images/lattafa-ana-abiyedh-rouge.png" alt="Lattafa Ana Abiyedh Rouge" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Lattafa</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">Lattafa Ana Abiyedh Rouge</h3>
+        <div class="hero-best-vol">100 ml · Safran, Karamell & Ambra</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">400 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-ana-abiyedh-rouge')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 6. French Avenue Spectre Ghost -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge gold">🍸 Nisje-Mesterverk</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('french-avenue-spectre-ghost')">
+          <img src="images/french-avenue-spectre-ghost.png" alt="French Avenue Spectre Ghost" loading="lazy">
+        </div>
+        <span class="hero-best-brand">French Avenue</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('french-avenue-spectre-ghost')">French Avenue Spectre Ghost</h3>
+        <div class="hero-best-vol">80 ml · Ingefær & Madagaskar Vanilje</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">500 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('french-avenue-spectre-ghost')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 7. Lattafa Oud Mood -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge">📦 Sylinder-eske m/ snor</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-oud-mood')">
+          <img src="images/lattafa-oud-mood.png" alt="Lattafa Oud Mood" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Lattafa</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-oud-mood')">Lattafa Oud Mood</h3>
+        <div class="hero-best-vol">100 ml · Safran, Karamell & Oud</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">400 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-oud-mood')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 8. Buhara Esans 7ml Supertilbud -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge green">⚡ Supertilbud 49 kr</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
+          <img src="images/buhara-esans-7ml.png" alt="Buhara Esansları 7ml" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Buhara Esans</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esansları (7 ml Roll-on)</h3>
+        <div class="hero-best-vol">7 ml · Alkoholfri Esans (Før 100 kr)</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">49 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('buhara-esans-7ml')">Kjøp nå</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <!-- ================= 3. COLLECTION GRID AT THE VERY TOP ================= -->
   <section id="kjop">
     <div class="collection-header">
@@ -1690,7 +2164,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.27 (updated 2026-09-21 13:45)
+        v1.0.28 (updated 2026-09-21 13:48)
       </div>
     </div>
   </div>
@@ -1703,6 +2177,20 @@ footer{
 </div>
 
 <script>
+
+window.filterByBrandFromHero = function(brandName) {
+  activeBrand = brandName;
+  const brandSelect = document.getElementById('filterBrand');
+  if (brandSelect) {
+    brandSelect.value = brandName;
+  }
+  renderStore();
+  const kjopEl = document.getElementById('kjop');
+  if (kjopEl) {
+    kjopEl.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 // ── CATALOG DEFINITION (30 items, 100ml, price <= 1500 kr) ──
 const DEFAULT_CATALOG = [
   {
@@ -1748,10 +2236,10 @@ const DEFAULT_CATALOG = [
     "name": "Reef Force",
     "edition": "Luksusutgave · 100 ml",
     "edition_en": "Luxury Edition · 100 ml",
-    "subtitle": "Fruity Amber",
+    "subtitle": "Hexagonal Slim Bottle · Woody Fresh",
     "scentFamily": "citrus",
-    "desc": "En moderne og oppsiktsvekkende triumf fra Reef Perfumes. Røde bær, granateple og karamell hviler over et hjerte av lotus og ren hvit moskus.",
-    "desc_en": "A captivating modern triumph from Reef Perfumes. Crisp red berries, pomegranate, and caramel unfold over a heart of lotus and pure white musk.",
+    "desc": "En mektig og forfriskende signaturduft fra Reef Perfumes i en eksklusiv, sekskantet (hexagonal) lang og slank flakong. Rosa pepper, sitron og bergamott over lavendel, edelt agarwood (oud), hvit ambra og moskus.",
+    "desc_en": "A commanding signature from Reef Perfumes housed in an iconic, six-sided (hexagonal) long slim bottle. Pink pepper, lemon, and bergamot over lavender, agarwood, white amber, and musk.",
     "story": "Reef Force representerer styrke, karisma og moderne eleganse. Leveres i et markant sølvkabinett med matchende metallisk luksuspresentasjonseske.",
     "story_en": "Reef Force embodies poise, charisma, and modern elegance. Encased in a commanding silver flacon with a matching metallic presentation box.",
     "price": 1390,
@@ -1771,7 +2259,7 @@ const DEFAULT_CATALOG = [
       "cap": "#c0c0c0",
       "capStroke": "#e5e5e5"
     },
-    "tag": "Bestselger"
+    "tag": "Sekskantet Slank Flakong"
   },
   {
     "id": "lattafa-royal-sapphire",
@@ -4186,12 +4674,556 @@ const DEFAULT_CATALOG = [
       "capStroke": "#22c55e"
     },
     "tag": "Bestseller"
+  },
+  {
+    "id": "lattafa-ana-abiyedh-rouge",
+    "image": "images/lattafa-ana-abiyedh-rouge.png",
+    "image_box": "images/lattafa-ana-abiyedh-rouge-box.png",
+    "brand": "Lattafa",
+    "house": "Lattafa Perfumes Dubai",
+    "name": "Lattafa Ana Abiyedh Rouge",
+    "edition": "Rouge Edition · 100 ml",
+    "edition_en": "Rouge Edition · 100 ml",
+    "subtitle": "Warm Sweet Spicy Amber (BR540 Inspiration)",
+    "scentFamily": "amber",
+    "desc": "Lattafas berømte tolkning av Baccarat Rouge 540. Sprø nashi-pære, kumquat og safran over karamellisert sukker, sjasmin, eikemose, hvit ambra og edelt sedertre.",
+    "desc_en": "Lattafa's acclaimed tribute to Baccarat Rouge 540. Crisp nashi pear, kumquat, and saffron over caramelized ambergris, jasmine, oakmoss, and cedar.",
+    "story": "Ana Abiyedh Rouge er en global bestselger kjent for sin tiltalende, sukret-krystallinske ambra-aura og enorme komplimentfaktor.",
+    "story_en": "A global viral powerhouse celebrated for its mouthwatering spun-sugar sweetness, crystalline saffron warmth, and massive compliment appeal.",
+    "price": 400,
+    "size": "100 ml",
+    "notes": {
+      "top": "Nashi-pære, kumquat, bergamott",
+      "heart": "Karamellisert safran, sjasmin, kardemomme",
+      "base": "Ambra, sedertre, eikemose, ren moskus",
+      "top_en": "Nashi pear, kumquat, bergamot",
+      "heart_en": "Caramelized saffron, jasmine, cardamom",
+      "base_en": "Ambergris, cedarwood, oakmoss, clean musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.68 .22 25 / .9)",
+      "liquidBottom": "oklch(.30 .16 15 / .98)",
+      "glow": "oklch(.80 .24 25)",
+      "cap": "#991b1b",
+      "capStroke": "#ef4444"
+    },
+    "tag": "Bestselger på nett"
+  },
+  {
+    "id": "lattafa-ana-abiyedh-scarlet",
+    "image": "images/lattafa-ana-abiyedh-scarlet.png",
+    "image_box": "images/lattafa-ana-abiyedh-scarlet.png",
+    "brand": "Lattafa",
+    "house": "Lattafa Perfumes Dubai",
+    "name": "Lattafa Ana Abiyedh Scarlet",
+    "edition": "Scarlet Edition · 100 ml",
+    "edition_en": "Scarlet Edition · 100 ml",
+    "subtitle": "Dark Cherry & Velvety Rose",
+    "scentFamily": "gourmand",
+    "desc": "Intens og forførende luksus. Mørke moreller og solbær over rød damaskusrose, flytende karamell, vanilje, amber og edelt sandeltre.",
+    "desc_en": "An intoxicating, decadent feast. Dark Morello cherries and blackcurrant over Damask rose, molten caramel, vanilla, amber, and sandalwood.",
+    "story": "Scarlet er den dristige flankeren i Ana Abiyedh-serien, hyllet for sin fyldige kirsebærsødme og fløyelsmyke eleganse.",
+    "story_en": "The bold, sultry star of the Ana Abiyedh collection, praised for opulent black cherry nectar and velvety rose richness.",
+    "price": 400,
+    "size": "100 ml",
+    "notes": {
+      "top": "Mørke kirsebær, solbær, rød mandarin",
+      "heart": "Damaskusrose, karamell, sjasmin",
+      "base": "Madagaskar-vanilje, amber, sandeltre",
+      "top_en": "Dark cherry, blackcurrant, red mandarin",
+      "heart_en": "Damask rose, caramel, jasmine",
+      "base_en": "Madagascar vanilla, amber, sandalwood"
+    },
+    "color": {
+      "liquidTop": "oklch(.60 .24 15 / .9)",
+      "liquidBottom": "oklch(.26 .16 10 / .98)",
+      "glow": "oklch(.75 .26 15)",
+      "cap": "#7f1d1d",
+      "capStroke": "#f87171"
+    },
+    "tag": "Scarlet Cherry"
+  },
+  {
+    "id": "lattafa-ana-abiyedh-coral",
+    "image": "images/lattafa-ana-abiyedh-coral.png",
+    "image_box": "images/lattafa-ana-abiyedh-coral.png",
+    "brand": "Lattafa",
+    "house": "Lattafa Perfumes Dubai",
+    "name": "Lattafa Ana Abiyedh Coral",
+    "edition": "Coral Edition · 100 ml",
+    "edition_en": "Coral Edition · 100 ml",
+    "subtitle": "Juicy Watermelon & Tropical Peach",
+    "scentFamily": "floral",
+    "desc": "En sprudlende tropisk sommerdrøm! Saftig vannmelon, hvit fersken og pære møter kremet kokosnøtt, hvite blomster, myk ambra og vaniljemoskus.",
+    "desc_en": "A radiant tropical summer daydream! Crisp watermelon, white peach, and pear laced with creamy coconut, white florals, amber, and vanilla musk.",
+    "story": "Coral gir deg følelsen av solfylte strender og eksotiske korallrev i en elegant, moderne flakong.",
+    "story_en": "Transporting you to turquoise waters and sun-kissed sands with an irresistible splash of watermelon and coconut nectar.",
+    "price": 400,
+    "size": "100 ml",
+    "notes": {
+      "top": "Frisk vannmelon, hvit fersken, pære",
+      "heart": "Kokosnøtt, hvite blomster, rose",
+      "base": "Vanilje, amber, sandeltre, ren moskus",
+      "top_en": "Fresh watermelon, white peach, pear",
+      "heart_en": "Coconut, white florals, rose",
+      "base_en": "Vanilla, amber, sandalwood, clean musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.74 .18 35 / .9)",
+      "liquidBottom": "oklch(.40 .12 25 / .98)",
+      "glow": "oklch(.85 .20 35)",
+      "cap": "#ea580c",
+      "capStroke": "#fb923c"
+    },
+    "tag": "Tropisk Coral"
+  },
+  {
+    "id": "reef-pesca",
+    "image": "images/reef-pesca.png",
+    "image_box": "images/reef-pesca.png",
+    "brand": "Reef",
+    "house": "Reef Perfumes",
+    "name": "Reef Pesca",
+    "edition": "Hexagonal Slim Bottle · 100 ml",
+    "edition_en": "Hexagonal Slim Bottle · 100 ml",
+    "subtitle": "Juicy Peach & Elegant Iris",
+    "scentFamily": "floral",
+    "desc": "Reef Pesca er innkapslet i merkets ikoniske, sekskantede (hexagonal) lange og slanke luksusflaske. Saftig, fløyelsmyk fersken åpner duften før den omfavnes av elegant iris og aromatisk maté-te på en base av edelt treverk.",
+    "desc_en": "Reef Pesca arrives in Reef's prestigious, six-sided (hexagonal) long slim collector's bottle. Luscious velvety peach blossoming into refined iris and aromatic maté over precious woods.",
+    "story": "Reefs sekskantede flakonger er et arkitektonisk mesterverk som symboliserer harmoni, modernitet og saudiarabisk luksus.",
+    "story_en": "Reef's hexagonal geometric silhouette represents modern architectural grandeur and high-end Gulf luxury.",
+    "price": 1390,
+    "size": "100 ml",
+    "notes": {
+      "top": "Saftig moden fersken, bergamott",
+      "heart": "Fløyelsmyk iris, sjasmin",
+      "base": "Maté-te, edelt sedertre, hvit moskus",
+      "top_en": "Juicy ripe peach, bergamot",
+      "heart_en": "Velvety iris, jasmine",
+      "base_en": "Maté tea, cedarwood, white musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.76 .16 55 / .9)",
+      "liquidBottom": "oklch(.40 .10 45 / .98)",
+      "glow": "oklch(.86 .18 55)",
+      "cap": "#d4af37",
+      "capStroke": "#f59e0b"
+    },
+    "tag": "Sekskantet Slank Flakong"
+  },
+  {
+    "id": "reef-bluest",
+    "image": "images/reef-bluest.png",
+    "image_box": "images/reef-bluest.png",
+    "brand": "Reef",
+    "house": "Reef Perfumes",
+    "name": "Reef Bluest",
+    "edition": "Hexagonal Slim Bottle · 100 ml",
+    "edition_en": "Hexagonal Slim Bottle · 100 ml",
+    "subtitle": "Cool Cardamom & Golden Amber",
+    "scentFamily": "amber",
+    "desc": "Reef Bluest i den karakteristiske, sekskantede (hexagonal) lange og slanke flakongen. Kjølig, aristokratisk kardemomme møter sofistikert iris og en dyp, varm base av gyllen ambra og edelt treverk.",
+    "desc_en": "Reef Bluest in the signature six-sided (hexagonal) long slim flacon. Crisp, aristocratic green cardamom harmonizes with powdered iris and radiant golden amber.",
+    "story": "Bluest utstråler ro, selvtillit og urokkelig eleganse. Den sekskantede formen gir en unik taktil opplevelse ved påføring.",
+    "story_en": "Embodying cool composure, distinguished confidence, and architectural grace in an iconic hexagonal glass sculpture.",
+    "price": 1390,
+    "size": "100 ml",
+    "notes": {
+      "top": "Kjølig grønn kardemomme, bergamott",
+      "heart": "Pudret iris, fiolblader",
+      "base": "Gyllen ambra, sedertre, ren moskus",
+      "top_en": "Cool green cardamom, bergamot",
+      "heart_en": "Powdered iris, violet leaves",
+      "base_en": "Golden amber, cedarwood, clean musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.65 .16 230 / .9)",
+      "liquidBottom": "oklch(.30 .12 240 / .98)",
+      "glow": "oklch(.80 .18 230)",
+      "cap": "#d4af37",
+      "capStroke": "#38bdf8"
+    },
+    "tag": "Sekskantet Slank Flakong"
+  },
+  {
+    "id": "hamidi-ruslen",
+    "image": "images/hamidi-ruslen.png",
+    "image_box": "images/hamidi-ruslen.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Ruslen (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Concentrated Perfume Oil",
+    "scentFamily": "amber",
+    "desc": "Alkoholfri ren parfymeolje fra tradisjonsrike Hamidi Oud & Perfumes. Varme krydder, safran og amber over edelt treverk og moskus. Påføres med glasspinne for intens, intim varighet.",
+    "desc_en": "Alcohol-free concentrated perfume oil from Hamidi Oud & Perfumes. Warm spices, saffron, and amber over precious woods and musk. Dab applicator for long-lasting sillage.",
+    "story": "Hamidi har mestret orientalsk parfymemakeri i generasjoner, med rene oljer som varer på huden fra morgen til kveld.",
+    "story_en": "Crafted with pure aromatic oils that bloom richly with body heat, offering intimate, all-day Arabian luxury.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Safran, orientalske krydder",
+      "heart": "Amber, damaskusrose",
+      "base": "Sedertre, ren moskus, agarwood",
+      "top_en": "Saffron, oriental spices",
+      "heart_en": "Amber, Damask rose",
+      "base_en": "Cedarwood, clean musk, agarwood"
+    },
+    "color": {
+      "liquidTop": "oklch(.70 .14 65 / .9)",
+      "liquidBottom": "oklch(.35 .08 55 / .98)",
+      "glow": "oklch(.82 .16 65)",
+      "cap": "#d4af37",
+      "capStroke": "#f59e0b"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-mera",
+    "image": "images/hamidi-mera.png",
+    "image_box": "images/hamidi-mera.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Mera (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Concentrated Floral Amber Oil",
+    "scentFamily": "floral",
+    "desc": "Alkoholfri ren parfymeolje med delikate blomsternoter, fersken, rose, vanilje og varm ambra. Skånsom mot huden og perfekt for layering.",
+    "desc_en": "Alcohol-free concentrated perfume oil blending delicate florals, white peach, rose, vanilla, and warm amber.",
+    "story": "Mera er en feminin og fortryllende olje som gir en silkemyk, intim duftopplevelse hele dagen.",
+    "story_en": "A graceful floral-amber oil designed to be dabbed on pulse points for an enchanting, velvety trail.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Hvit fersken, bergamott, blomster",
+      "heart": "Rød rose, sjasmin, ylang-ylang",
+      "base": "Varm ambra, vanilje, hvit moskus",
+      "top_en": "White peach, bergamot, florals",
+      "heart_en": "Red rose, jasmine, ylang-ylang",
+      "base_en": "Warm amber, vanilla, white musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.72 .18 15 / .9)",
+      "liquidBottom": "oklch(.38 .12 10 / .98)",
+      "glow": "oklch(.84 .20 15)",
+      "cap": "#d4af37",
+      "capStroke": "#fb7185"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-majida",
+    "image": "images/hamidi-majida.png",
+    "image_box": "images/hamidi-majida.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Majida (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Concentrated Oriental Oud Oil",
+    "scentFamily": "oud",
+    "desc": "Ren orientalsk luksusolje. Varm safran, agarwood (oud), patsjuli og sødmefylt karamell på en seng av edel ambra.",
+    "desc_en": "Pure oriental luxury oil. Warm saffron, precious agarwood (oud), patchouli, and sweet caramel on glowing amber.",
+    "story": "Majida betyr 'den ærefulle' og representerer tradisjonell arabisk gjestfrihet og verdighet.",
+    "story_en": "Meaning 'the honorable', Majida exudes traditional Arabian hospitality, warmth, and dignity.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Krydret safran, piment",
+      "heart": "Oud, rød rose, karamell",
+      "base": "Ambra, patchouli, sandeltre",
+      "top_en": "Spicy saffron, pimento",
+      "heart_en": "Oud, red rose, caramel",
+      "base_en": "Amber, patchouli, sandalwood"
+    },
+    "color": {
+      "liquidTop": "oklch(.64 .16 70 / .9)",
+      "liquidBottom": "oklch(.32 .10 60 / .98)",
+      "glow": "oklch(.78 .18 70)",
+      "cap": "#d4af37",
+      "capStroke": "#b45309"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-rayan",
+    "image": "images/hamidi-rayan.png",
+    "image_box": "images/hamidi-rayan.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Rayan (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Fresh Aromatic Citrus Oil",
+    "scentFamily": "citrus",
+    "desc": "En frisk og oppløftende alkoholfri olje. Sprudlende bergamott, sitron og ferskner over salvie, lavendel og krystallmoskus.",
+    "desc_en": "A fresh, uplifting alcohol-free oil. Sparkling bergamot and lemon over sage, French lavender, and crystalline musk.",
+    "story": "Rayan er skapt for den som ønsker en ren, oppkvikkende og sofistikert duftopplevelse som varer hele dagen.",
+    "story_en": "Crisp and energizing, Rayan brings aromatic brightness and pristine freshness in an enduring oil formula.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Bergamott, sitron, mandarin",
+      "heart": "Salvie, lavendel, geranium",
+      "base": "Sedertre, hvit moskus, ambra",
+      "top_en": "Bergamot, lemon, mandarin",
+      "heart_en": "Clary sage, lavender, geranium",
+      "base_en": "Cedarwood, white musk, amber"
+    },
+    "color": {
+      "liquidTop": "oklch(.76 .14 140 / .9)",
+      "liquidBottom": "oklch(.42 .08 130 / .98)",
+      "glow": "oklch(.88 .16 140)",
+      "cap": "#d4af37",
+      "capStroke": "#10b981"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-rouh",
+    "image": "images/hamidi-rouh.png",
+    "image_box": "images/hamidi-rouh.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Rouh (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Spiritual Musk & Rose Oil",
+    "scentFamily": "musk",
+    "desc": "\"Sjelens duft\". En harmonisk og beroligende blanding av taif-rose, hvit musk, sandeltre og myk ambra i konsentrert oljeform.",
+    "desc_en": "\"Scent of the Soul\". A serene, soothing elixir of Taif rose, white musk, sandalwood, and gentle amber.",
+    "story": "Rouh betyr sjel på arabisk og er en spirituell og ren komposisjon som bringer indre ro og eleganse.",
+    "story_en": "Named after the soul, Rouh offers a transcendent, peaceful veil of ethereal white musk and roses.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Taif-rose, bergamott",
+      "heart": "Hvite blomster, orris, sjasmin",
+      "base": "Kongelig hvit moskus, sandeltre, ambra",
+      "top_en": "Taif rose, bergamot",
+      "heart_en": "White florals, orris, jasmine",
+      "base_en": "Royal white musk, sandalwood, amber"
+    },
+    "color": {
+      "liquidTop": "oklch(.80 .08 280 / .9)",
+      "liquidBottom": "oklch(.45 .06 270 / .98)",
+      "glow": "oklch(.90 .10 280)",
+      "cap": "#d4af37",
+      "capStroke": "#a855f7"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-laila",
+    "image": "images/hamidi-laila.png",
+    "image_box": "images/hamidi-laila.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Laila (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Nocturnal Sweet Amber Floral",
+    "scentFamily": "floral",
+    "desc": "En romantisk og forførende nattduft. Saftige bær og eple over sjasmin, appelsinblomst, vanilje, karamell og gyllen ambra.",
+    "desc_en": "A romantic, intoxicating nocturnal essence. Sweet berries and apple over jasmine, orange blossom, vanilla, and golden amber.",
+    "story": "Inspirert av orientalske stjernenetter og klassiske kjærlighetshistorier fra Arabia.",
+    "story_en": "Evoking Arabian nights under a canopy of stars with luscious sweet florality and warm ambergris.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Røde bær, eple, sitron",
+      "heart": "Sjasmin, appelsinblomst, rose",
+      "base": "Karamellisert vanilje, ambra, moskus",
+      "top_en": "Red berries, crisp apple, lemon",
+      "heart_en": "Jasmine, orange blossom, rose",
+      "base_en": "Caramelized vanilla, amber, musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.68 .18 340 / .9)",
+      "liquidBottom": "oklch(.35 .12 330 / .98)",
+      "glow": "oklch(.80 .20 340)",
+      "cap": "#d4af37",
+      "capStroke": "#ec4899"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-gulnar",
+    "image": "images/hamidi-gulnar.png",
+    "image_box": "images/hamidi-gulnar.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Gulnar (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Pomegranate Blossom Floral Oil",
+    "scentFamily": "floral",
+    "desc": "Gulnar betyr granatepleblomst. En overdådig og saftig blanding av granateple, peon, tuberose, sjasmin, sandeltre og moskus.",
+    "desc_en": "Gulnar means pomegranate blossom. A rich, juicy bouquet of pomegranate nectar, peony, tuberose, jasmine, and sandalwood.",
+    "story": "En fargerik og livsbejaende olje som sprer en luksuriøs aura av friske blomster og eksotisk frukt.",
+    "story_en": "Vibrant and life-affirming, offering an opulent swirl of red fruit blossom and creamy woods.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Granateple, bergamott, peon",
+      "heart": "Tuberose, sjasmin, rød rose",
+      "base": "Sandeltre, ambra, hvit moskus",
+      "top_en": "Pomegranate, bergamot, peony",
+      "heart_en": "Tuberose, jasmine, red rose",
+      "base_en": "Sandalwood, amber, white musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.66 .20 20 / .9)",
+      "liquidBottom": "oklch(.32 .14 15 / .98)",
+      "glow": "oklch(.78 .22 20)",
+      "cap": "#d4af37",
+      "capStroke": "#f43f5e"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-zayn",
+    "image": "images/hamidi-zayn.png",
+    "image_box": "images/hamidi-zayn.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Zayn (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Aromatic Woody Amber Oil",
+    "scentFamily": "amber",
+    "desc": "Zayn betyr skjønnhet og nåde. Fransk lavendel, salvie og kardemomme over sedertre, røkelse, gyllen ambra og lær.",
+    "desc_en": "Meaning beauty and grace, Zayn blends French lavender and sage with cedarwood, incense, amber, and subtle leather.",
+    "story": "En maskulin og raffinert alkoholfri olje for mannen som setter pris på ren eleganse og varig tilstedeværelse.",
+    "story_en": "Refined and noble, Zayn wraps the wearer in an understated veil of aromatic woods and amber resins.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Fransk lavendel, salvie, kardemomme",
+      "heart": "Sedertre, røkelse, iris",
+      "base": "Gyllen ambra, lærnoter, moskus",
+      "top_en": "French lavender, sage, cardamom",
+      "heart_en": "Cedarwood, frankincense, iris",
+      "base_en": "Golden amber, leather accords, musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.62 .12 85 / .9)",
+      "liquidBottom": "oklch(.30 .08 75 / .98)",
+      "glow": "oklch(.76 .14 85)",
+      "cap": "#d4af37",
+      "capStroke": "#ca8a04"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-anani",
+    "image": "images/hamidi-anani.png",
+    "image_box": "images/hamidi-anani.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Anani (Non-Spray Oil)",
+    "edition": "Pure CPO Attar · 15 ml",
+    "edition_en": "Pure CPO Attar · 15 ml",
+    "subtitle": "Exotic Amber & Spiced Woods Oil",
+    "scentFamily": "oud",
+    "desc": "En sjelden og hypnotisk olje. Eksotisk safran og myrra over mørkt agarwood (oud), patsjuli, sandeltre og vaniljemoskus.",
+    "desc_en": "A rare, hypnotic oil composition. Saffron and myrrh over dark Cambodian agarwood (oud), patchouli, and vanilla musk.",
+    "story": "Anani er en eksklusiv orientalsk olje skapt for spesielle anledninger der du ønsker å etterlate et uutslettelig inntrykk.",
+    "story_en": "A potent Arabian treasure crafted for special moments when an unforgettable impression is desired.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Safran, myrra, bergamott",
+      "heart": "Kambodsjansk oud, patsjuli, rose",
+      "base": "Sandeltre, ambra, vaniljemoskus",
+      "top_en": "Saffron, myrrh, bergamot",
+      "heart_en": "Cambodian oud, patchouli, rose",
+      "base_en": "Sandalwood, amber, vanilla musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.55 .14 45 / .9)",
+      "liquidBottom": "oklch(.25 .08 35 / .98)",
+      "glow": "oklch(.70 .16 45)",
+      "cap": "#d4af37",
+      "capStroke": "#92400e"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "hamidi-arabian-crest",
+    "image": "images/hamidi-arabian-crest.png",
+    "image_box": "images/hamidi-arabian-crest.png",
+    "brand": "Hamidi",
+    "house": "Hamidi Oud & Perfumes",
+    "name": "Hamidi Arabian Crest (Non-Spray Oil)",
+    "edition": "Royal Signature CPO · 15 ml",
+    "edition_en": "Royal Signature CPO · 15 ml",
+    "subtitle": "Royal Arabian Oud & Amber",
+    "scentFamily": "oud",
+    "desc": "Hamidis signaturolje som bærer det arabiske våpenskjoldet. Prestisjetung oud, safran, tørr ambra, røkelse og kongelig sandeltre.",
+    "desc_en": "Hamidi's signature royal oil bearing the Arabian crest. Prestigious oud, saffron, ambergris, frankincense, and royal sandalwood.",
+    "story": "Arabian Crest representerer arven og storheten til de historiske karavanene som fraktet verdens mest verdifulle røkelse og parfymer.",
+    "story_en": "Reflecting the grandeur of the ancient trade routes that carried the world's most prized incense and perfumes.",
+    "price": 200,
+    "size": "15 ml",
+    "notes": {
+      "top": "Kongelig safran, røkelse, bergamott",
+      "heart": "Agarwood (oud), lær, damaskusrose",
+      "base": "Tørr ambra, sandeltre, edel moskus",
+      "top_en": "Royal saffron, frankincense, bergamot",
+      "heart_en": "Agarwood (oud), leather, Damask rose",
+      "base_en": "Dry ambergris, sandalwood, noble musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.58 .16 55 / .9)",
+      "liquidBottom": "oklch(.28 .10 45 / .98)",
+      "glow": "oklch(.74 .18 55)",
+      "cap": "#d4af37",
+      "capStroke": "#eab308"
+    },
+    "tag": "Parfymeolje · 200 kr"
+  },
+  {
+    "id": "buhara-esans-7ml",
+    "image": "images/buhara-esans-7ml.png",
+    "image_box": "images/buhara-esans-7ml.png",
+    "brand": "Buhara Esans",
+    "house": "Buhara Esansları Türkiye",
+    "name": "Buhara Esansları (7 ml Roll-on)",
+    "edition": "Kolleksjon av ulike tradisjonelle dufter · 7 ml",
+    "edition_en": "Collection of various traditional scents · 7 ml",
+    "subtitle": "Authentic Turkish Alcohol-Free Roll-on Esans",
+    "scentFamily": "musk",
+    "desc": "Ekte tyrkiske alkoholfrie parfymeruller (7 ml) fra velkjente Buhara Esans. Finnes i et bredt utvalg av elskede, tradisjonelle orientalske dufter: Isparta Rose, Hvit Moskus, Amber, Kaba Örtüsü, Sultan og Rav. Begrenset kampanje: kun 49 kr (ordinær pris 100 kr)!",
+    "desc_en": "Authentic Turkish alcohol-free roll-on perfume oils (7 ml) by renowned Buhara Esans. Available in classic traditional scents like Isparta Rose, White Musk, Amber, and Sultan. Limited-time offer: only 49 NOK (regular 100 NOK)!",
+    "story": "Buhara Esans er en av Tyrkias mest tradisjonsrike produsenter av konsentrert esans, kjent for rene, alkoholfrie formler i praktiske 7 ml lommerulleflasker.",
+    "story_en": "A revered Turkish classic, delivering deeply spiritual, nostalgic, and alcohol-free concentrated scents in travel-ready 7 ml roll-ons.",
+    "price": 49,
+    "size": "7 ml",
+    "notes": {
+      "top": "Isparta damaskusrose, hvit musk, frisk sitrus",
+      "heart": "Amberkvae, sjasmin, orientalske urter",
+      "base": "Kremet sandeltre, ren ambra, edelt treverk",
+      "top_en": "Isparta Damask rose, white musk, fresh citrus",
+      "heart_en": "Amber resin, jasmine, oriental herbs",
+      "base_en": "Creamy sandalwood, pure ambergris, cedar"
+    },
+    "color": {
+      "liquidTop": "oklch(.75 .18 80 / .9)",
+      "liquidBottom": "oklch(.38 .12 70 / .98)",
+      "glow": "oklch(.88 .20 80)",
+      "cap": "#d4af37",
+      "capStroke": "#22c55e"
+    },
+    "tag": "Tilbud 49 kr · Før 100 kr"
   }
 ];
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v27');
+  const custom = localStorage.getItem('arx_custom_catalog_v28');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < 5) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -4201,7 +5233,7 @@ try {
 // ── BILINGUAL TRANSLATION DICTIONARY (nb / en) ──
 const I18N = {
   nb: {
-    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 73 Utvalgte Flakonger",
+    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 89 Utvalgte Flakonger",
     metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr.",
     skipLink: "Hopp til parfymer (100 ml)",
     introHint: "Feel As Good As You Smell · 30 Utvalgte Flakonger",
@@ -4323,10 +5355,10 @@ const I18N = {
     footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)"
   },
   en: {
-    pageTitle: "Aromatix Oslo · Curated Perfumery & 73 Selected Bottles",
+    pageTitle: "Aromatix Oslo · Curated Perfumery & 89 Selected Bottles",
     metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr.",
     skipLink: "Skip to fragrances (100 ml)",
-    introHint: "Feel As Good As You Smell · 73 Selected Bottles",
+    introHint: "Feel As Good As You Smell · 89 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Intro",
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
@@ -5527,7 +6559,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v27', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -5589,7 +6621,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v27', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -5665,7 +6697,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= 5) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v27', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -5680,11 +6712,11 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
-    localStorage.removeItem('arx_custom_catalog_v27');
+    localStorage.removeItem('arx_custom_catalog_v28');
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v27', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v28', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
