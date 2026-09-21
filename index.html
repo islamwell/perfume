@@ -1483,7 +1483,7 @@ footer{
   </div>
 
   <div class="mobile-nav" id="mobileNav">
-    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (30 flakonger)</a>
+    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavFragrances">Våre Parfymer (89)</a>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
     <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
     <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
@@ -1500,25 +1500,25 @@ footer{
   <section id="heroSection" class="hero-bestsellers-section" aria-label="Internettets bestselgende parfymer">
     <div class="hero-content">
       <div class="hero-eyebrow">
-        <span>🔥</span> <span>Mest Etterspurte på Nettet · 100% Originale</span>
+        <span>🔥</span> <span id="heroEyebrowText">Mest Etterspurte på Nettet · 100% Originale</span>
       </div>
-      <h1 class="hero-title">
+      <h1 class="hero-title" id="heroTitle">
         Internettets <span>Største Bestselgere</span>
       </h1>
-      <p class="hero-subtitle">
+      <p class="hero-subtitle" id="heroSubtitle">
         Håndplukkede virale sensasjoner og legendariske arabiske duftmestere som dominerer TikTok, Fragrantica og globale topplister. Opplev enorm sillage og luksus til markedets beste priser.
       </p>
       <div class="hero-trust-bar">
-        <div class="hero-trust-item"><span>✨</span> <b>100% Originale fabrikkutgaver</b></div>
-        <div class="hero-trust-item"><span>📍</span> <b>Showroom: Tøyengata 3, Oslo</b></div>
-        <div class="hero-trust-item"><span>⚡</span> <b>Lynrask Vipps-bestilling</b></div>
-        <div class="hero-trust-item"><span>🏷️</span> <b>Maks 1 500 kr</b></div>
+        <div class="hero-trust-item"><span>✨</span> <b id="heroTrust1">100% Originale fabrikkutgaver</b></div>
+        <div class="hero-trust-item"><span>📍</span> <b id="heroTrust2">Showroom: Tøyengata 3, Oslo</b></div>
+        <div class="hero-trust-item"><span>⚡</span> <b id="heroTrust3">Lynrask Vipps-bestilling</b></div>
+        <div class="hero-trust-item"><span>🏷️</span> <b id="heroTrust4">Maks 1 500 kr</b></div>
       </div>
     </div>
 
     <!-- Top Brands Navigation Pills -->
     <div class="hero-brands-wrap">
-      <span class="hero-brands-label">Topp Merkehus på Nettet — Klikk for å filtrere</span>
+      <span class="hero-brands-label" id="heroBrandsLabel">Topp Merkehus på Nettet — Klikk for å filtrere</span>
       <div class="hero-brands-pills">
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
           <span>🌟</span> Lattafa Perfumes
@@ -1559,10 +1559,10 @@ footer{
     <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
     <div class="hero-bestsellers-header">
       <div>
-        <h2>Mest Solgte på Nettet</h2>
-        <p>De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
+        <h2 id="heroBestsellersTitle">Mest Solgte på Nettet</h2>
+        <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
       </div>
-      <a href="#kjop" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
+      <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
         Se hele katalogen (89) ↓
       </a>
     </div>
@@ -1570,13 +1570,13 @@ footer{
     <div class="hero-bestsellers-grid">
       <!-- 1. Armaf Club de Nuit Intense Man -->
       <article class="hero-best-card">
-        <span class="hero-best-badge gold">🔥 #1 på Nettet</span>
+        <span class="hero-best-badge gold" id="heroBadge1">🔥 #1 på Nettet</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('armaf-club-de-nuit-intense')">
           <img class="hero-best-img" src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
         </div>
         <span class="hero-best-brand">Armaf by Sterling</span>
         <h3 class="hero-best-name" onclick="openProductDetail('armaf-club-de-nuit-intense')">Armaf Club de Nuit Intense Man</h3>
-        <div class="hero-best-vol">100 ml · Woody Spicy Beast</div>
+        <div class="hero-best-vol" id="heroVol1">100 ml · Woody Spicy Beast</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">499 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('armaf-club-de-nuit-intense')">Kjøp nå</button>
@@ -1585,13 +1585,13 @@ footer{
 
       <!-- 2. Lattafa Khamrah -->
       <article class="hero-best-card">
-        <span class="hero-best-badge">⚡ TikTok Viral</span>
+        <span class="hero-best-badge" id="heroBadge2">⚡ TikTok Viral</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
           <img class="hero-best-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-khamrah')">Lattafa Khamrah</h3>
-        <div class="hero-best-vol">100 ml · Kanel & Gourmand Vanilje</div>
+        <div class="hero-best-vol" id="heroVol2">100 ml · Kanel & Gourmand Vanilje</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-khamrah')">Kjøp nå</button>
@@ -1600,13 +1600,13 @@ footer{
 
       <!-- 3. Lattafa Asad -->
       <article class="hero-best-card">
-        <span class="hero-best-badge gold">🔥 Bestselger Herre</span>
+        <span class="hero-best-badge gold" id="heroBadge3">🔥 Bestselger Herre</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
           <img class="hero-best-img" src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-asad')">Lattafa Asad (Black Dragon)</h3>
-        <div class="hero-best-vol">100 ml · Sort Pepper, Tobakk & Amber</div>
+        <div class="hero-best-vol" id="heroVol3">100 ml · Sort Pepper, Tobakk & Amber</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">490 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-asad')">Kjøp nå</button>
@@ -1615,13 +1615,13 @@ footer{
 
       <!-- 4. Lattafa Yara Pink -->
       <article class="hero-best-card">
-        <span class="hero-best-badge purple">💖 #1 Damefavoritt</span>
+        <span class="hero-best-badge purple" id="heroBadge4">💖 #1 Damefavoritt</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
           <img class="hero-best-img" src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-yara-pink')">Lattafa Yara (Pink)</h3>
-        <div class="hero-best-vol">100 ml · Heliotrop, Vanilje & Tropisk</div>
+        <div class="hero-best-vol" id="heroVol4">100 ml · Heliotrop, Vanilje & Tropisk</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">450 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-yara-pink')">Kjøp nå</button>
@@ -1630,13 +1630,13 @@ footer{
 
       <!-- 5. Lattafa Ana Abiyedh Rouge -->
       <article class="hero-best-card">
-        <span class="hero-best-badge">💎 BR540 Sensation</span>
+        <span class="hero-best-badge" id="heroBadge5">💎 BR540 Sensation</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">
           <img class="hero-best-img" src="images/lattafa-ana-abiyedh-rouge.png" alt="Lattafa Ana Abiyedh Rouge" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">Lattafa Ana Abiyedh Rouge</h3>
-        <div class="hero-best-vol">100 ml · Safran, Karamell & Ambra</div>
+        <div class="hero-best-vol" id="heroVol5">100 ml · Safran, Karamell & Ambra</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-ana-abiyedh-rouge')">Kjøp nå</button>
@@ -1645,13 +1645,13 @@ footer{
 
       <!-- 6. French Avenue Spectre Ghost -->
       <article class="hero-best-card">
-        <span class="hero-best-badge gold">🍸 Nisje-Mesterverk</span>
+        <span class="hero-best-badge gold" id="heroBadge6">🍸 Nisje-Mesterverk</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('french-avenue-spectre-ghost')">
           <img class="hero-best-img" src="images/french-avenue-spectre-ghost.png" alt="French Avenue Spectre Ghost" loading="lazy">
         </div>
         <span class="hero-best-brand">French Avenue</span>
         <h3 class="hero-best-name" onclick="openProductDetail('french-avenue-spectre-ghost')">French Avenue Spectre Ghost</h3>
-        <div class="hero-best-vol">80 ml · Ingefær & Madagaskar Vanilje</div>
+        <div class="hero-best-vol" id="heroVol6">80 ml · Ingefær & Madagaskar Vanilje</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">500 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('french-avenue-spectre-ghost')">Kjøp nå</button>
@@ -1660,13 +1660,13 @@ footer{
 
       <!-- 7. Lattafa Oud Mood -->
       <article class="hero-best-card">
-        <span class="hero-best-badge">📦 Sylinder-eske m/ snor</span>
+        <span class="hero-best-badge" id="heroBadge7">📦 Sylinder-eske m/ snor</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-oud-mood')">
           <img class="hero-best-img" src="images/lattafa-oud-mood.png" alt="Lattafa Oud Mood" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-oud-mood')">Lattafa Oud Mood</h3>
-        <div class="hero-best-vol">100 ml · Safran, Karamell & Oud</div>
+        <div class="hero-best-vol" id="heroVol7">100 ml · Safran, Karamell & Oud</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-oud-mood')">Kjøp nå</button>
@@ -1675,13 +1675,13 @@ footer{
 
       <!-- 8. Buhara Esans 7ml Supertilbud -->
       <article class="hero-best-card">
-        <span class="hero-best-badge green">⚡ Supertilbud 49 kr</span>
+        <span class="hero-best-badge green" id="heroBadge8">⚡ Supertilbud 49 kr</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
           <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esansları 7ml" loading="lazy">
         </div>
         <span class="hero-best-brand">Buhara Esans</span>
         <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esansları (7 ml Roll-on)</h3>
-        <div class="hero-best-vol">7 ml · Alkoholfri Esans (Før 100 kr)</div>
+        <div class="hero-best-vol" id="heroVol8">7 ml · Alkoholfri Esans (Før 100 kr)</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">49 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('buhara-esans-7ml')">Kjøp nå</button>
@@ -1695,9 +1695,9 @@ footer{
     <div class="collection-header">
       <p class="tagline-small" id="colTag">Finn Din Signaturduft</p>
       <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
-      <p class="sub" id="colSub">30 Håndplukkede 100 ml Flakonger · Maks 1 500 kr · Unn Deg En Ny Favoritt I Dag</p>
+      <p class="sub" id="colSub">89 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
       <div class="collection-status-bar">
-        <span id="collectionCount">Viser 30 av 30 parfymer — Finn din favoritt i dag</span>
+        <span id="collectionCount">Viser 89 av 89 parfymer — Finn din favoritt i dag</span>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
       </div>
     </div>
@@ -1707,7 +1707,7 @@ footer{
       <div class="filter-field">
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
-          <option value="all" id="optBrandAll">Alle merker (30)</option>
+          <option value="all" id="optBrandAll">Alle merker (89)</option>
           <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
           <option value="Lattafa" id="optBrandLattafa">Lattafa (14)</option>
           <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (1)</option>
@@ -2029,7 +2029,7 @@ footer{
   </p>
 
   <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
-    <input type="text" id="adminSearchInp" placeholder="Søk blant 30 parfymer..." oninput="filterAdminList(this.value)"
+    <input type="text" id="adminSearchInp" placeholder="Søk blant 89 parfymer..." oninput="filterAdminList(this.value)"
       style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
     <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
       ↺ Tilbakestill til standardkatalog
@@ -2140,10 +2140,9 @@ footer{
     <div class="footer-col">
       <h4 id="footerNavTitle">Navigasjon</h4>
       <ul>
-        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (30)</a></li>
+        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (89)</a></li>
         <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
         <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatix Oslo</button></li>
-        <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
         <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
       </ul>
     </div>
@@ -2175,9 +2174,9 @@ footer{
     <p id="footerDisclaimer" style="font-size:.76rem;color:var(--dim);margin-bottom:.5rem;text-align:center">⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</p>
     <p id="footerCopyright">© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)</p>
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
-      <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline">Kurator Atelier (Admin)</button>
+      <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.30 (updated 2026-09-21 15:46)
+        v1.0.31 (updated 2026-09-21 18:05)
       </div>
     </div>
   </div>
@@ -5236,7 +5235,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v30');
+  const custom = localStorage.getItem('arx_custom_catalog_v31');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -5247,9 +5246,9 @@ try {
 const I18N = {
   nb: {
     pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 89 Utvalgte Flakonger",
-    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 30 originale 100 ml flakonger. Makspris 1 500 kr.",
-    skipLink: "Hopp til parfymer (100 ml)",
-    introHint: "Feel As Good As You Smell · 30 Utvalgte Flakonger",
+    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 89 originale parfymer og luksusoljer. Makspris 1 500 kr.",
+    skipLink: "Hopp til parfymer",
+    introHint: "Feel As Good As You Smell · 89 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Intro",
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
@@ -5258,14 +5257,46 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "Om",
     navContact: "Kontakt",
+    mobNavFragrances: "Våre Parfymer (89)",
+    mobNavShowroom: "Showroom (Tøyengata 3)",
+    mobNavAbout: "Om",
+    mobNavContact: "Kontakt & Henting",
     cartLabel: "Kurv",
+    heroEyebrow: "Mest Etterspurte på Nettet · 100% Originale",
+    heroTitle: "Internettets <span>Største Bestselgere</span>",
+    heroSubtitle: "Håndplukkede virale sensasjoner og legendariske arabiske duftmestere som dominerer TikTok, Fragrantica og globale topplister. Opplev enorm sillage og luksus til markedets beste priser.",
+    heroTrust1: "100% Originale fabrikkutgaver",
+    heroTrust2: "Showroom: Tøyengata 3, Oslo",
+    heroTrust3: "Lynrask Vipps-bestilling",
+    heroTrust4: "Maks 1 500 kr",
+    heroBrandsLabel: "Topp Merkehus på Nettet — Klikk for å filtrere",
+    heroBestsellersTitle: "Mest Solgte på Nettet",
+    heroBestsellersSub: "De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser",
+    heroBestsellersLink: "Se hele katalogen (89) ↓",
+    heroBuyNow: "Kjøp nå",
+    heroBadge1: "🔥 #1 på Nettet",
+    heroVol1: "100 ml · Woody Spicy Beast",
+    heroBadge2: "⚡ TikTok Viral",
+    heroVol2: "100 ml · Kanel & Gourmand Vanilje",
+    heroBadge3: "🔥 Bestselger Herre",
+    heroVol3: "100 ml · Sort Pepper, Tobakk & Amber",
+    heroBadge4: "💖 #1 Damefavoritt",
+    heroVol4: "100 ml · Heliotrop, Vanilje & Tropisk",
+    heroBadge5: "💎 BR540 Sensation",
+    heroVol5: "100 ml · Safran, Karamell & Ambra",
+    heroBadge6: "🍸 Nisje-Mesterverk",
+    heroVol6: "80 ml · Ingefær & Madagaskar Vanilje",
+    heroBadge7: "📦 Sylinder-eske m/ snor",
+    heroVol7: "100 ml · Safran, Karamell & Oud",
+    heroBadge8: "⚡ Supertilbud 49 kr",
+    heroVol8: "7 ml · Alkoholfri Esans (Før 100 kr)",
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
-    colSub: "30 Håndplukkede 100 ml Flakonger · Maks 1 500 kr · Unn Deg En Ny Favoritt I Dag",
+    colSub: "89 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
     showingCount: (count, total) => `Viser ${count} av ${total} parfymer — Finn din favoritt i dag`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
-    optBrandAll: "Alle merker (30)",
+    optBrandAll: "Alle merker (89)",
     lblFilterScent: "Duftfamilie",
     optScentAll: "Alle duftnoter",
     optScentOud: "Oud & Treaktig",
@@ -5282,7 +5313,7 @@ const I18N = {
     lblFilterSearch: "Søk i katalogen",
     searchPlaceholder: "Søk parfyme, merke, duftnote...",
     emptyTitle: "Ingen parfymer passer til søket ditt",
-    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 30 parfymer.",
+    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 89 parfymer.",
     resetFilters: "Nullstill filtre",
     cardDetailsBtn: "Se detaljer",
     cardAddBtn: "Legg til",
@@ -5344,7 +5375,7 @@ const I18N = {
     checkoutTitle: "Fullfør din bestillingsforespørsel",
     checkoutEye: "Bestilling & Reservasjon",
     noticeBoxTitle: "Forhåndsvisningsbutikk & Reservasjon",
-    noticeBoxText: "Nettbutikken er i forhåndsvisningsmodus. Når du sender bestillingen, reserveres dine originale 100 ml flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes nå.",
+    noticeBoxText: "Nettbutikken er i forhåndsvisningsmodus. Når du sender bestillingen, reserveres dine originale flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes nå.",
     lblOrderName: "Fullt navn",
     lblOrderEmail: "E-postadresse",
     lblOrderPhone: "Mobilnummer (Vipps)",
@@ -5357,20 +5388,29 @@ const I18N = {
     btnSubmitOrder: "Send Bestillingsforespørsel (Vipps-oppgjør)",
     confBadge: "Bestillingsforespørsel Mottatt",
     confTitle: "Takk for din bestilling!",
-    confSub: "Dine 100 ml flakonger er nå reservert i Tøyengata 3, Oslo.",
+    confSub: "Dine flakonger er nå reservert i Tøyengata 3, Oslo.",
     confNextSteps: "Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.",
     btnPrintReceipt: "Skriv ut kvittering",
     btnCloseConf: "Fortsett å handle",
-    footerAboutText: "Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede 100 ml flakonger fra fremragende nisjehus. Makspris 1 500 kr.",
+    footerAboutText: "Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger og oljer fra fremragende nisjehus. Makspris 1 500 kr.",
     footerNavTitle: "Navigasjon",
     footerPolicyTitle: "Kundeservice & Kjøp",
     footerContactTitle: "Showroom & Henting",
-    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)"
+    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)",
+    ftNavFragrances: "Våre Parfymer (89)",
+    ftNavShowroom: "Showroom & Henting",
+    ftNavAbout: "Om Aromatix Oslo",
+    ftPolicyAbout: "Om Aromatix Oslo",
+    ftPolicyShipping: "Frakt & Levering",
+    ftPolicyReturns: "Retur & 14 dagers angrerett",
+    ftPolicyTerms: "Kjøpsbetingelser & MVA",
+    ftPolicyContact: "Showroom & Kontakt",
+    adminOpenBtn: "Kurator Atelier (Admin)"
   },
   en: {
     pageTitle: "Aromatix Oslo · Curated Perfumery & 89 Selected Bottles",
-    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 30 original 100 ml bottles. Maximum price 1 500 kr.",
-    skipLink: "Skip to fragrances (100 ml)",
+    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 89 authentic fragrances and luxury oils. Maximum price 1 500 kr.",
+    skipLink: "Skip to fragrances",
     introHint: "Feel As Good As You Smell · 89 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Intro",
@@ -5380,14 +5420,46 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "About",
     navContact: "Contact",
+    mobNavFragrances: "Our Fragrances (89)",
+    mobNavShowroom: "Showroom (Tøyengata 3)",
+    mobNavAbout: "About",
+    mobNavContact: "Contact & Pickup",
     cartLabel: "Cart",
+    heroEyebrow: "Most Demanded Online · 100% Authentic",
+    heroTitle: "The Internet's <span>Biggest Bestsellers</span>",
+    heroSubtitle: "Handpicked viral sensations and legendary Arabian perfume masters dominating TikTok, Fragrantica, and global charts. Experience tremendous sillage and luxury at unbeatable prices.",
+    heroTrust1: "100% Authentic Factory Editions",
+    heroTrust2: "Showroom: Tøyengata 3, Oslo",
+    heroTrust3: "Swift Vipps & Reservation",
+    heroTrust4: "Max 1 500 kr Guarantee",
+    heroBrandsLabel: "Top Brands Online — Click to filter",
+    heroBestsellersTitle: "Best Sellers Online",
+    heroBestsellersSub: "The absolute crowd favorites with the highest views, sales, and top ratings",
+    heroBestsellersLink: "View full collection (89) ↓",
+    heroBuyNow: "Buy now",
+    heroBadge1: "🔥 #1 Online",
+    heroVol1: "100 ml · Woody Spicy Beast",
+    heroBadge2: "⚡ TikTok Viral",
+    heroVol2: "100 ml · Cinnamon & Gourmand Vanilla",
+    heroBadge3: "🔥 Men's Bestseller",
+    heroVol3: "100 ml · Black Pepper, Tobacco & Amber",
+    heroBadge4: "💖 #1 Women's Pick",
+    heroVol4: "100 ml · Heliotrope, Vanilla & Tropical",
+    heroBadge5: "💎 BR540 Sensation",
+    heroVol5: "100 ml · Saffron, Caramel & Amber",
+    heroBadge6: "🍸 Niche Masterpiece",
+    heroVol6: "80 ml · Ginger & Madagascar Vanilla",
+    heroBadge7: "📦 Cylinder Box w/ Rope",
+    heroVol7: "100 ml · Saffron, Caramel & Oud",
+    heroBadge8: "⚡ Super Deal 49 kr",
+    heroVol8: "7 ml · Alcohol-Free Essence (Was 100 kr)",
     colTag: "Find Your Signature Scent",
     colTitle: "Smell Amazing. Feel Confident.",
-    colSub: "30 Handpicked 100 ml Bottles · Max 1 500 kr · Treat Yourself Today",
+    colSub: "89 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
     showingCount: (count, total) => `Showing ${count} of ${total} fragrances — Find your perfect match`,
     colGuaranteeBadge: "● 100% Original factory-sealed bottles",
     lblFilterBrand: "Brand / House",
-    optBrandAll: "All brands (30)",
+    optBrandAll: "All brands (89)",
     lblFilterScent: "Scent Family",
     optScentAll: "All scent notes",
     optScentOud: "Oud & Woody",
@@ -5404,7 +5476,7 @@ const I18N = {
     lblFilterSearch: "Search catalog",
     searchPlaceholder: "Search fragrance, brand, notes...",
     emptyTitle: "No fragrances match your search",
-    emptyDesc: "Try another search term or reset filters to browse all 30 fragrances.",
+    emptyDesc: "Try another search term or reset filters to browse all 89 fragrances.",
     resetFilters: "Reset filters",
     cardDetailsBtn: "View details",
     cardAddBtn: "Add",
@@ -5466,7 +5538,7 @@ const I18N = {
     checkoutTitle: "Complete Your Pre-Order Request",
     checkoutEye: "Order & Reservation",
     noticeBoxTitle: "Preview Store & Reservation",
-    noticeBoxText: "The store is currently accepting reservation inquiries. When submitting your order, your original 100 ml bottles are reserved. Settlement is completed via Vipps upon confirmation or pickup at Tøyengata 3. No payment is charged now.",
+    noticeBoxText: "The store is currently accepting reservation inquiries. When submitting your order, your original bottles are reserved. Settlement is completed via Vipps upon confirmation or pickup at Tøyengata 3. No payment is charged now.",
     lblOrderName: "Full Name",
     lblOrderEmail: "Email Address",
     lblOrderPhone: "Mobile Number (Vipps)",
@@ -5479,15 +5551,24 @@ const I18N = {
     btnSubmitOrder: "Submit Pre-Order Request (Vipps)",
     confBadge: "Order Inquiry Received",
     confTitle: "Thank You for Your Order!",
-    confSub: "Your 100 ml bottles are now reserved at Tøyengata 3, Oslo.",
+    confSub: "Your bottles are now reserved at Tøyengata 3, Oslo.",
     confNextSteps: "We will send an order confirmation to your email and a Vipps payment request to your mobile number prior to fulfillment.",
     btnPrintReceipt: "Print Receipt",
     btnCloseConf: "Continue Shopping",
-    footerAboutText: "Curated perfumery in Oslo. We supply 100% original factory-sealed 100 ml bottles from premier niche houses. Maximum price 1 500 kr.",
+    footerAboutText: "Curated perfumery in Oslo. We supply 100% original factory-sealed bottles and oils from premier niche houses. Maximum price 1 500 kr.",
     footerNavTitle: "Navigation",
     footerPolicyTitle: "Customer Care & Orders",
     footerContactTitle: "Showroom & Pickup",
-    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)"
+    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)",
+    ftNavFragrances: "Our Fragrances (89)",
+    ftNavShowroom: "Showroom & Pickup",
+    ftNavAbout: "About Aromatix Oslo",
+    ftPolicyAbout: "About Aromatix Oslo",
+    ftPolicyShipping: "Shipping & Delivery",
+    ftPolicyReturns: "Returns & 14-Day Right of Withdrawal",
+    ftPolicyTerms: "Terms of Sale & VAT",
+    ftPolicyContact: "Showroom & Contact",
+    adminOpenBtn: "Curator Atelier (Admin)"
   }
 };
 
@@ -5521,6 +5602,71 @@ const nok = n => `${Number(n).toLocaleString(LANG === 'nb' ? 'no-NO' : 'en-US')}
 function escapeHtml(str) {
   if (!str) return '';
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const TAG_TRANSLATIONS = {
+  "Bestselger": "Bestseller",
+  "Sekskantet Slank Flakong": "Hexagonal Slim Flacon",
+  "Eksklusiv": "Exclusive",
+  "Nyhet": "New Arrival",
+  "Sylinder-eske": "Cylinder Box",
+  "Nisje": "Niche",
+  "Nisjefavoritt": "Niche Favorite",
+  "150 ml Luksus": "150 ml Luxury",
+  "Sceptre Luksus": "Sceptre Luxury",
+  "Tilbud · 265 kr": "Sale · 265 kr",
+  "Milano Fresh": "Milano Fresh",
+  "Kongelig Oud": "Royal Oud",
+  "Lilla Flakong": "Purple Flacon",
+  "Milano Glamour": "Milano Glamour",
+  "Mørk Oud": "Dark Oud",
+  "London Fresh": "London Fresh",
+  "Bespoke Woman": "Bespoke Woman",
+  "Ville Urter": "Wild Herbs",
+  "Varm Amber": "Warm Amber",
+  "Gold Edition": "Gold Edition",
+  "Semsket Skinn": "Suede Leather",
+  "Krydret Sandeltre": "Spiced Sandalwood",
+  "Tropisk Bliss": "Tropical Bliss",
+  "Sensuell Kveld": "Sensual Evening",
+  "Love Rush": "Love Rush",
+  "Sylinder-eske med snor": "Cylinder Box w/ Rope",
+  "25 ml Attar": "25 ml Attar",
+  "Spectre Niche": "Spectre Niche",
+  "Rød Fløyel": "Red Velvet",
+  "Diamant Noir": "Diamond Noir",
+  "100 ml Luksus": "100 ml Luxury",
+  "Mystique": "Mystique",
+  "Gavesett 4-i-1": "Gift Set 4-in-1",
+  "20 ml Attar": "20 ml Attar",
+  "Tilbud · 129 kr": "Sale · 129 kr",
+  "Jean Lowe": "Jean Lowe",
+  "Electric Cherry": "Electric Cherry",
+  "Rose Velvet": "Rose Velvet",
+  "Kunst-eske: Seilbåt": "Art Box: Sailboat",
+  "Kunst-eske: Hestevogn": "Art Box: Horse Carriage",
+  "Kunst-eske: Vintertrær": "Art Box: Winter Trees",
+  "Frisk Fougère": "Fresh Fougère",
+  "Røyket Lær": "Smoked Leather",
+  "Bestseller": "Bestseller",
+  "Bestselger på nett": "Online Bestseller",
+  "Scarlet Cherry": "Scarlet Cherry",
+  "Tropisk Coral": "Tropical Coral",
+  "Parfymeolje · 200 kr": "Perfume Oil · 200 kr",
+  "Tilbud 49 kr · Før 100 kr": "Sale 49 kr · Was 100 kr"
+};
+
+function translateTag(tag, lang) {
+  if (!tag) return '';
+  if (lang !== 'en') return tag;
+  if (TAG_TRANSLATIONS[tag]) return TAG_TRANSLATIONS[tag];
+  let t = tag;
+  t = t.replace(/Tilbud/g, 'Sale');
+  t = t.replace(/Før/g, 'Was');
+  t = t.replace(/Bestselger/g, 'Bestseller');
+  t = t.replace(/Flakong/g, 'Flacon');
+  t = t.replace(/Eske/gi, 'Box');
+  return t;
 }
 
 // ── UNIFIED TOTALS CALCULATION ──
@@ -5653,7 +5799,7 @@ function renderStore() {
   grid.innerHTML = filtered.map(p => `
     <article class="perfume-card" data-id="${p.id}" tabindex="0">
       <div class="card-img-wrap" onclick="openProductDetail('${p.id}')">
-        ${p.tag ? `<span class="card-tag-badge" style="position:absolute;top:10px;left:10px;background:rgba(5,7,11,0.85);backdrop-filter:blur(8px);border:1px solid rgba(201,169,110,0.35);color:var(--gold);font-size:0.68rem;padding:2px 8px;border-radius:12px;z-index:2;pointer-events:none;font-weight:500;letter-spacing:.02em">${escapeHtml(p.tag)}</span>` : ''}
+        ${p.tag ? `<span class="card-tag-badge" style="position:absolute;top:10px;left:10px;background:rgba(5,7,11,0.85);backdrop-filter:blur(8px);border:1px solid rgba(201,169,110,0.35);color:var(--gold);font-size:0.68rem;padding:2px 8px;border-radius:12px;z-index:2;pointer-events:none;font-weight:500;letter-spacing:.02em">${escapeHtml(translateTag(p.tag, LANG))}</span>` : ''}
         <div class="card-slider-track ${currentViewMode === 'box' ? 'slide-box' : ''}">
           <div class="card-slide">
             <img class="card-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
@@ -5778,6 +5924,7 @@ function updateProductDetailModalContent(p) {
   if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.house || p.brand;
   if ($('#detailModalTitle')) $('#detailModalTitle').textContent = p.name;
   if ($('#detailModalVol')) $('#detailModalVol').textContent = p.size || '100 ml';
+  if ($('#detailModalStock')) $('#detailModalStock').textContent = I18N[LANG].detailModalStock;
   if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
   if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
   if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
@@ -6311,19 +6458,39 @@ function setLanguage(lang) {
   if ($('#headerTagline')) $('#headerTagline').textContent = t.tagline;
   if ($('#navFragrances')) $('#navFragrances').textContent = t.navFragrances;
   if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
-  if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
-  if ($('#ftNavShowroom')) $('#ftNavShowroom').textContent = t.ftNavShowroom || t.navShowroom;
-  if ($('#ftNavAbout')) $('#ftNavAbout').textContent = t.ftNavAbout || t.navAbout;
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
 
   // Mobile nav
-  if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.navFragrances;
-  if ($('#mobNavStory')) $('#mobNavStory').textContent = t.navStory;
-  if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.navShowroom;
-  if ($('#mobNavContact')) $('#mobNavContact').textContent = t.navContact;
+  if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.mobNavFragrances || t.navFragrances;
+  if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
+  if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
+  if ($('#mobNavContact')) $('#mobNavContact').textContent = t.mobNavContact || t.navContact;
   if ($('#mobNavReplay')) $('#mobNavReplay').textContent = `✨ ${t.replayIntro}`;
+
+  // Hero Section
+  if ($('#heroEyebrowText')) $('#heroEyebrowText').textContent = t.heroEyebrow;
+  if ($('#heroTitle')) $('#heroTitle').innerHTML = t.heroTitle;
+  if ($('#heroSubtitle')) $('#heroSubtitle').textContent = t.heroSubtitle;
+  if ($('#heroTrust1')) $('#heroTrust1').textContent = t.heroTrust1;
+  if ($('#heroTrust2')) $('#heroTrust2').textContent = t.heroTrust2;
+  if ($('#heroTrust3')) $('#heroTrust3').textContent = t.heroTrust3;
+  if ($('#heroTrust4')) $('#heroTrust4').textContent = t.heroTrust4;
+  if ($('#heroBrandsLabel')) $('#heroBrandsLabel').textContent = t.heroBrandsLabel;
+  if ($('#heroBestsellersTitle')) $('#heroBestsellersTitle').textContent = t.heroBestsellersTitle;
+  if ($('#heroBestsellersSub')) $('#heroBestsellersSub').textContent = t.heroBestsellersSub;
+  if ($('#heroBestsellersLink')) $('#heroBestsellersLink').textContent = t.heroBestsellersLink;
+
+  for (let i = 1; i <= 8; i++) {
+    const badgeEl = $(`#heroBadge${i}`);
+    if (badgeEl && t[`heroBadge${i}`]) badgeEl.textContent = t[`heroBadge${i}`];
+    const volEl = $(`#heroVol${i}`);
+    if (volEl && t[`heroVol${i}`]) volEl.textContent = t[`heroVol${i}`];
+  }
+  $$('.hero-best-cta').forEach(btn => {
+    btn.textContent = t.heroBuyNow || (LANG === 'en' ? 'Buy now' : 'Kjøp nå');
+  });
 
   // Collection
   if ($('#colTag')) $('#colTag').textContent = t.colTag;
@@ -6427,23 +6594,31 @@ function setLanguage(lang) {
   if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = t.lblHeartNotes;
   if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = t.lblBaseNotes;
   if ($('#detailModalAddBtn')) $('#detailModalAddBtn').textContent = t.detailAddBtn;
+  if ($('#detailModalStock')) $('#detailModalStock').textContent = t.detailModalStock;
   if ($('#add2')) $('#add2').textContent = t.cardAddBtn;
   if ($('#boxGuaranteeBadge')) $('#boxGuaranteeBadge').textContent = t.boxGuaranteeBadge;
   if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
   if ($('#detailGuaranteeText')) $('#detailGuaranteeText').textContent = t.detailGuaranteeText;
-  if ($('#footerDisclaimer')) $('#footerDisclaimer').textContent = t.footerDisclaimer;
+  if ($('#policyCloseBtn')) $('#policyCloseBtn').textContent = (LANG === 'en') ? 'Close window' : 'Lukk vindu';
 
   // Footer
+  if ($('#footerDisclaimer')) $('#footerDisclaimer').textContent = t.footerDisclaimer;
   if ($('#footerAboutText')) $('#footerAboutText').textContent = t.footerAboutText;
   if ($('#footerNavTitle')) $('#footerNavTitle').textContent = t.footerNavTitle;
   if ($('#footerPolicyTitle')) $('#footerPolicyTitle').textContent = t.footerPolicyTitle;
   if ($('#footerContactTitle')) $('#footerContactTitle').textContent = t.footerContactTitle;
   if ($('#footerCopyright')) $('#footerCopyright').textContent = t.footerCopyright;
   if ($('#ftHours')) $('#ftHours').textContent = t.srHours;
-  if ($('#ftNavFragrances')) $('#ftNavFragrances').textContent = t.navFragrances;
-  if ($('#ftNavStory')) $('#ftNavStory').textContent = t.navStory;
-  if ($('#ftNavShowroom')) $('#ftNavShowroom').textContent = t.navShowroom;
+  if ($('#ftNavFragrances')) $('#ftNavFragrances').textContent = t.ftNavFragrances || t.navFragrances;
+  if ($('#ftNavShowroom')) $('#ftNavShowroom').textContent = t.ftNavShowroom || t.navShowroom;
+  if ($('#ftNavAbout')) $('#ftNavAbout').textContent = t.ftNavAbout || t.navAbout;
   if ($('#ftNavReplay')) $('#ftNavReplay').textContent = `✨ ${t.replayIntro}`;
+  if ($('#ftPolicyAbout')) $('#ftPolicyAbout').textContent = t.ftPolicyAbout;
+  if ($('#ftPolicyShipping')) $('#ftPolicyShipping').textContent = t.ftPolicyShipping;
+  if ($('#ftPolicyReturns')) $('#ftPolicyReturns').textContent = t.ftPolicyReturns;
+  if ($('#ftPolicyTerms')) $('#ftPolicyTerms').textContent = t.ftPolicyTerms;
+  if ($('#ftPolicyContact')) $('#ftPolicyContact').textContent = t.ftPolicyContact;
+  if ($('#adminOpenBtn')) $('#adminOpenBtn').textContent = t.adminOpenBtn;
 
   // Update open detail modal if active
   const openModal = $('#productDetailModal');
@@ -6572,7 +6747,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -6634,7 +6809,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -6710,7 +6885,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -6725,13 +6900,14 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v31');
     localStorage.removeItem('arx_custom_catalog_v30');
     localStorage.removeItem('arx_custom_catalog_v29');
     localStorage.removeItem('arx_custom_catalog_v28');
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v30', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v31', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
