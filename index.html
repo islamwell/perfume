@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 89 Utvalgte Flakonger</title>
+<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 90 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 89 originale flakonger og oljer fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
+<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 90 originale flakonger og oljer fra Armaf (Sterling Perfumes), Lattafa, Swiss Arabian, Maison Alhambra, Ibraq, Viridian og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
@@ -1839,7 +1839,7 @@ footer{
   </svg>
   <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
   <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></p>
-  <p class="hint" id="introHint">Feel As Good As You Smell · 89 Utvalgte Flakonger</p>
+  <p class="hint" id="introHint">Feel As Good As You Smell · 90 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
@@ -1967,7 +1967,7 @@ footer{
         <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
       </div>
       <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
-        Se hele katalogen (89) ↓
+        Se hele katalogen (90) ↓
       </a>
     </div>
 
@@ -2102,10 +2102,10 @@ footer{
     <div class="collection-header">
       <p class="tagline-small" id="colTag">Finn Din Signaturduft</p>
       <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
-      <p class="sub" id="colSub">89 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
+      <p class="sub" id="colSub">90 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
       <div class="collection-status-bar">
         <div class="status-bar-left">
-          <span id="collectionCount">Viser 89 av 89 parfymer — Finn din favoritt i dag</span>
+          <span id="collectionCount">Viser 90 av 90 parfymer — Finn din favoritt i dag</span>
           <button type="button" class="btn-show-all" id="btnShowAll" onclick="resetAllFilters()" title="Vis alle parfymer / Reset filters">Show All</button>
         </div>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
@@ -2117,7 +2117,7 @@ footer{
       <div class="filter-field">
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
-          <option value="all" id="optBrandAll">Alle merker (89)</option>
+          <option value="all" id="optBrandAll">Alle merker (90)</option>
           <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
           <option value="Lattafa" id="optBrandLattafa">Lattafa (14)</option>
           <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (1)</option>
@@ -2230,6 +2230,11 @@ footer{
           <span>🔍</span> <span id="lblModalZoomBadge">Klikk for å forstørre</span>
         </div>
       </div>
+      <div id="detailSetBtnWrap" style="display:none;margin-top:0.6rem;text-align:center">
+        <button type="button" class="zoom-switch-btn" onclick="openImageZoom('set')" style="background:rgba(201,169,110,0.15);border:1px solid var(--gold);color:var(--gold);padding:0.35rem 0.95rem;border-radius:999px;font-size:0.76rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem">
+          <span>🎁</span> <span id="detailSetBtnText">Se Luksus Gavesett</span>
+        </button>
+      </div>
     </div>
 
     <div class="modal-info-wrap">
@@ -2316,6 +2321,7 @@ footer{
     <div id="zoomSwitchBar" class="zoom-switch-bar" style="display:none">
       <button type="button" class="zoom-switch-btn" id="zoomBtnBottle" onclick="switchZoomImage('bottle')">Flakong</button>
       <button type="button" class="zoom-switch-btn" id="zoomBtnBox" onclick="switchZoomImage('box')">Eske</button>
+      <button type="button" class="zoom-switch-btn" id="zoomBtnSet" onclick="switchZoomImage('set')" style="display:none">Gavesett</button>
     </div>
   </div>
 </dialog>
@@ -2549,7 +2555,7 @@ footer{
     </p>
 
     <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
-      <input type="text" id="adminSearchInp" placeholder="Søk blant 89 parfymer..." oninput="filterAdminList(this.value)"
+      <input type="text" id="adminSearchInp" placeholder="Søk blant 90 parfymer..." oninput="filterAdminList(this.value)"
         style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
       <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
         ↺ Tilbakestill til standardkatalog
@@ -2661,7 +2667,7 @@ footer{
     <div class="footer-col">
       <h4 id="footerNavTitle">Navigasjon</h4>
       <ul>
-        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (89)</a></li>
+        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (90)</a></li>
         <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
         <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatix Oslo</button></li>
         <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
@@ -2697,7 +2703,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.35 (updated 2026-09-22 07:55)
+        v1.0.37 (updated 2026-09-22 13:53)
       </div>
     </div>
   </div>
@@ -5092,6 +5098,7 @@ const DEFAULT_CATALOG = [
     "id": "reef-blanc-nomad",
     "image": "images/reef-blanc-nomad.png",
     "image_box": "images/reef-blanc-nomad-box.png",
+    "image_set": "images/reef-blanc-nomad-set.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Blanc Nomad",
@@ -5126,6 +5133,7 @@ const DEFAULT_CATALOG = [
     "id": "reef-blanc-ash",
     "image": "images/reef-blanc-ash.png",
     "image_box": "images/reef-blanc-ash-box.png",
+    "image_set": "images/reef-blanc-ash-set.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Blanc Ash",
@@ -5427,6 +5435,41 @@ const DEFAULT_CATALOG = [
       "capStroke": "#38bdf8"
     },
     "tag": "Sekskantet Slank Flakong"
+  },
+  {
+    "id": "reef-33",
+    "image": "images/reef-33.png",
+    "image_box": "images/reef-33-box.png",
+    "brand": "Reef",
+    "house": "Reef Perfumes",
+    "name": "Reef 33",
+    "edition": "Orange Velvet Box Edition · 100 ml",
+    "edition_en": "Orange Velvet Box Edition · 100 ml",
+    "subtitle": "Pink Pepper, Saffron & Royal Agarwood · Extrait de Parfum",
+    "concentration": "Extrait de Parfum",
+    "scentFamily": "amber",
+    "desc": "Reef 33 i luksuriøs oransje fløyelspresentasjon og merkets prestisjetunge sekskantede hvite flakong. Forførende rosa pepper, frisk mandarin og eksotisk safran over rosmarin og kongelig agartre (oud).",
+    "desc_en": "Reef 33 presented in a luxury orange velvet box and prestigious hexagonal white flacon. Seductive pink pepper, vibrant mandarin, and exotic saffron over aromatic rosemary and royal agarwood.",
+    "story": "En av gulfens mest ettertraktede luksusparfymer fra Saudi-Arabias fremste parfymehus Reef Perfumes. Leveres i den ikoniske oransje samleesken.",
+    "story_en": "One of the Arabian Gulf's most sought-after luxury creations by Reef Perfumes. Housed in the iconic orange velvet presentation casket.",
+    "price": 1390,
+    "size": "100 ml",
+    "notes": {
+      "top": "Rosa pepper, safran, mandarin",
+      "heart": "Rosmarin, edeltre, arabisk sjasmin",
+      "base": "Kongelig agartre (oud), ambra, ren musk",
+      "top_en": "Pink pepper, saffron, mandarin",
+      "heart_en": "Rosemary, noble woods, Arabian jasmine",
+      "base_en": "Royal agarwood (oud), amber, clean musk"
+    },
+    "color": {
+      "liquidTop": "oklch(.82 .12 85 / .85)",
+      "liquidBottom": "oklch(.48 .10 70 / .96)",
+      "glow": "oklch(.90 .16 85)",
+      "cap": "#1c1810",
+      "capStroke": "#ea580c"
+    },
+    "tag": "Oransje Luksuseske"
   },
   {
     "id": "hamidi-ruslen",
@@ -5828,10 +5871,10 @@ try {
 // ── BILINGUAL TRANSLATION DICTIONARY (nb / en) ──
 const I18N = {
   nb: {
-    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 89 Utvalgte Flakonger",
-    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 89 originale parfymer og luksusoljer. Makspris 1 500 kr.",
+    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 90 Utvalgte Flakonger",
+    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 90 originale parfymer og luksusoljer. Makspris 1 500 kr.",
     skipLink: "Hopp til parfymer",
-    introHint: "Feel As Good As You Smell · 89 Utvalgte Flakonger",
+    introHint: "Feel As Good As You Smell · 90 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Intro",
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
@@ -5857,7 +5900,7 @@ const I18N = {
     heroBrandsLabel: "Topp Merkehus på Nettet — Klikk for å filtrere",
     heroBestsellersTitle: "Mest Solgte på Nettet",
     heroBestsellersSub: "De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser",
-    heroBestsellersLink: "Se hele katalogen (89) ↓",
+    heroBestsellersLink: "Se hele katalogen (90) ↓",
     heroBuyNow: "Kjøp nå",
     heroBadge1: "🔥 #1 på Nettet",
     heroVol1: "100 ml · Woody Spicy Beast",
@@ -5877,11 +5920,11 @@ const I18N = {
     heroVol8: "7 ml · Alkoholfri Esans (Før 100 kr)",
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
-    colSub: "89 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
+    colSub: "90 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
     showingCount: (count, total) => `Viser ${count} av ${total} parfymer — Finn din favoritt i dag`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
-    optBrandAll: "Alle merker (89)",
+    optBrandAll: "Alle merker (90)",
     lblFilterScent: "Duftfamilie",
     optScentAll: "Alle duftnoter",
     optScentOud: "Oud & Treaktig",
@@ -5898,7 +5941,7 @@ const I18N = {
     lblFilterSearch: "Søk i katalogen",
     searchPlaceholder: "Søk parfyme, merke, duftnote...",
     emptyTitle: "Ingen parfymer passer til søket ditt",
-    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 89 parfymer.",
+    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 90 parfymer.",
     resetFilters: "Nullstill filtre",
     cardDetailsBtn: "Se detaljer",
     cardAddBtn: "Legg til",
@@ -5989,7 +6032,7 @@ const I18N = {
     footerPolicyTitle: "Kundeservice & Kjøp",
     footerContactTitle: "Showroom & Henting",
     footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)",
-    ftNavFragrances: "Våre Parfymer (89)",
+    ftNavFragrances: "Våre Parfymer (90)",
     ftNavShowroom: "Showroom & Henting",
     ftNavAbout: "Om Aromatix Oslo",
     ftPolicyAbout: "Om Aromatix Oslo",
@@ -6000,10 +6043,10 @@ const I18N = {
     adminOpenBtn: "Kurator Atelier (Admin)"
   },
   en: {
-    pageTitle: "Aromatix Oslo · Curated Perfumery & 89 Selected Bottles",
-    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 89 authentic fragrances and luxury oils. Maximum price 1 500 kr.",
+    pageTitle: "Aromatix Oslo · Curated Perfumery & 90 Selected Bottles",
+    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 90 authentic fragrances and luxury oils. Maximum price 1 500 kr.",
     skipLink: "Skip to fragrances",
-    introHint: "Feel As Good As You Smell · 89 Selected Bottles",
+    introHint: "Feel As Good As You Smell · 90 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Intro",
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
@@ -6029,7 +6072,7 @@ const I18N = {
     heroBrandsLabel: "Top Brands Online — Click to filter",
     heroBestsellersTitle: "Best Sellers Online",
     heroBestsellersSub: "The absolute crowd favorites with the highest views, sales, and top ratings",
-    heroBestsellersLink: "View full collection (89) ↓",
+    heroBestsellersLink: "View full collection (90) ↓",
     heroBuyNow: "Buy now",
     heroBadge1: "🔥 #1 Online",
     heroVol1: "100 ml · Woody Spicy Beast",
@@ -6049,11 +6092,11 @@ const I18N = {
     heroVol8: "7 ml · Alcohol-Free Essence (Was 100 kr)",
     colTag: "Find Your Signature Scent",
     colTitle: "Smell Amazing. Feel Confident.",
-    colSub: "89 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
+    colSub: "90 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
     showingCount: (count, total) => `Showing ${count} of ${total} fragrances — Find your perfect match`,
     colGuaranteeBadge: "● 100% Original factory-sealed bottles",
     lblFilterBrand: "Brand / House",
-    optBrandAll: "All brands (89)",
+    optBrandAll: "All brands (90)",
     lblFilterScent: "Scent Family",
     optScentAll: "All scent notes",
     optScentOud: "Oud & Woody",
@@ -6070,7 +6113,7 @@ const I18N = {
     lblFilterSearch: "Search catalog",
     searchPlaceholder: "Search fragrance, brand, notes...",
     emptyTitle: "No fragrances match your search",
-    emptyDesc: "Try another search term or reset filters to browse all 89 fragrances.",
+    emptyDesc: "Try another search term or reset filters to browse all 90 fragrances.",
     resetFilters: "Reset filters",
     cardDetailsBtn: "View details",
     cardAddBtn: "Add",
@@ -6161,7 +6204,7 @@ const I18N = {
     footerPolicyTitle: "Customer Care & Orders",
     footerContactTitle: "Showroom & Pickup",
     footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)",
-    ftNavFragrances: "Our Fragrances (89)",
+    ftNavFragrances: "Our Fragrances (90)",
     ftNavShowroom: "Showroom & Pickup",
     ftNavAbout: "About Aromatix Oslo",
     ftPolicyAbout: "About Aromatix Oslo",
@@ -6248,6 +6291,7 @@ const TAG_TRANSLATIONS = {
   "Kunst-eske: Seilbåt": "Art Box: Sailboat",
   "Kunst-eske: Hestevogn": "Art Box: Horse Carriage",
   "Kunst-eske: Vintertrær": "Art Box: Winter Trees",
+  "Oransje Luksuseske": "Orange Luxury Box",
   "Frisk Fougère": "Fresh Fougère",
   "Røyket Lær": "Smoked Leather",
   "Bestseller": "Bestseller",
@@ -6604,6 +6648,18 @@ function updateProductDetailModalContent(p) {
   if ($('#detailModalHeart')) $('#detailModalHeart').textContent = isEn ? (p.notes?.heart_en || p.notes?.heart) : p.notes?.heart;
   if ($('#detailModalBase')) $('#detailModalBase').textContent = isEn ? (p.notes?.base_en || p.notes?.base) : p.notes?.base;
   if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
+
+  const setWrap = document.getElementById('detailSetBtnWrap');
+  const setText = document.getElementById('detailSetBtnText');
+  if (setWrap) {
+    if (p.image_set) {
+      setWrap.style.display = 'block';
+      if (setText) setText.textContent = isEn ? 'View Luxury Gift Set (150 ml + Spray)' : 'Se Luksus Gavesett (150 ml + Spray)';
+    } else {
+      setWrap.style.display = 'none';
+    }
+  }
+
   if ($('#imageZoomModal')?.open) {
     updateZoomModalContent(p);
   }
@@ -6641,36 +6697,65 @@ window.switchZoomImage = function(mode) {
 function updateZoomModalContent(p) {
   const isEn = LANG === 'en';
   const hasBox = !!p.image_box;
+  const hasSet = !!p.image_set;
   const zoomImg = document.getElementById('zoomModalImg');
   const zoomCap = document.getElementById('zoomModalCaption');
   const zoomSub = document.getElementById('zoomModalSub');
   const switchBar = document.getElementById('zoomSwitchBar');
   const btnBottle = document.getElementById('zoomBtnBottle');
   const btnBox = document.getElementById('zoomBtnBox');
+  const btnSet = document.getElementById('zoomBtnSet');
 
-  const imgSrc = (currentZoomMode === 'box' && hasBox) ? p.image_box : p.image;
+  if (currentZoomMode === 'set' && !hasSet) {
+    currentZoomMode = hasBox ? 'box' : 'bottle';
+  } else if (currentZoomMode === 'box' && !hasBox) {
+    currentZoomMode = 'bottle';
+  }
+
+  let imgSrc = p.image;
+  if (currentZoomMode === 'box' && hasBox) {
+    imgSrc = p.image_box;
+  } else if (currentZoomMode === 'set' && hasSet) {
+    imgSrc = p.image_set;
+  } else {
+    imgSrc = p.image;
+  }
+
   if (zoomImg) {
     zoomImg.src = imgSrc;
-    zoomImg.alt = `${p.name} - ${currentZoomMode === 'box' ? (isEn ? 'Box' : 'Eske') : (isEn ? 'Bottle' : 'Flakong')}`;
+    const modeLabel = currentZoomMode === 'set' 
+      ? (isEn ? 'Gift Set' : 'Gavesett') 
+      : (currentZoomMode === 'box' ? (isEn ? 'Box' : 'Eske') : (isEn ? 'Bottle' : 'Flakong'));
+    zoomImg.alt = `${p.name} - ${modeLabel}`;
   }
   if (zoomCap) {
     zoomCap.textContent = p.name;
   }
   if (zoomSub) {
-    zoomSub.textContent = currentZoomMode === 'box' 
-      ? (isEn ? 'Official Presentation Box' : 'Offisiell Presentasjonseske')
-      : (isEn ? 'Original 100 ml Flacon Edition' : 'Original 100 ml Flakongutgave');
+    if (currentZoomMode === 'set') {
+      zoomSub.textContent = isEn ? 'Luxury 150 ml Gift Set (Flacon + Perfumed Body Spray)' : 'Luksus 150 ml Gavesett (Flakong + Parfymert Deospray)';
+    } else if (currentZoomMode === 'box') {
+      zoomSub.textContent = isEn ? 'Official Presentation Box' : 'Offisiell Presentasjonseske';
+    } else {
+      zoomSub.textContent = isEn ? (p.edition_en || `${p.size || '100 ml'} Flacon Edition`) : (p.edition || `${p.size || '100 ml'} Flakongutgave`);
+    }
   }
   if (switchBar) {
-    if (hasBox) {
+    if (hasBox || hasSet) {
       switchBar.style.display = 'inline-flex';
       if (btnBottle) {
         btnBottle.textContent = isEn ? 'Bottle' : 'Flakong';
         btnBottle.classList.toggle('active', currentZoomMode === 'bottle');
       }
       if (btnBox) {
+        btnBox.style.display = hasBox ? 'inline-block' : 'none';
         btnBox.textContent = isEn ? 'Box' : 'Eske';
         btnBox.classList.toggle('active', currentZoomMode === 'box');
+      }
+      if (btnSet) {
+        btnSet.style.display = hasSet ? 'inline-block' : 'none';
+        btnSet.textContent = isEn ? 'Gift Set' : 'Gavesett';
+        btnSet.classList.toggle('active', currentZoomMode === 'set');
       }
     } else {
       switchBar.style.display = 'none';
