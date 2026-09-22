@@ -1770,6 +1770,39 @@ footer{
   line-height: 1.4;
 }
 
+/* ═══ ADMIN PANEL TABS & ORDERS ═══ */
+.admin-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--dim);
+  padding: .45rem .95rem;
+  border-radius: 8px;
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.admin-tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.admin-tab-btn.active {
+  background: rgba(201, 169, 110, 0.15);
+  border-color: rgba(201, 169, 110, 0.45);
+  color: var(--gold);
+  font-weight: 600;
+}
+.admin-order-card {
+  background: #070b12;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: border-color .2s;
+}
+.admin-order-card:hover {
+  border-color: rgba(201, 169, 110, 0.3);
+}
+
 </style>
 </head>
 <body>
@@ -2429,30 +2462,102 @@ footer{
   </form>
 </dialog>
 
-<dialog id="adminPanelModal" class="dialog-box" style="max-width:56rem;max-height:90vh;overflow-y:auto">
+<dialog id="adminPanelModal" class="dialog-box" style="max-width:58rem;max-height:92vh;overflow-y:auto">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem;flex-wrap:wrap">
     <div>
       <p class="tagline-small">Kurator Atelier (Admin)</p>
-      <h3 style="margin:.2rem 0;font-size:1.3rem;color:var(--ice)">Katalogadministrasjon</h3>
+      <h3 style="margin:.2rem 0;font-size:1.3rem;color:var(--ice)">Administrasjon & Kontrollpanel</h3>
     </div>
     <div style="display:flex;align-items:center;gap:.8rem">
       <span id="adminCloudStatusPill" style="font-size:.74rem;padding:.25rem .75rem;border-radius:99px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:#22c55e;display:inline-flex;align-items:center;gap:.35rem">☁️ Sky-synkronisering aktiv</span>
       <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPanelModal').close()" style="font-size:1.2rem;display:block">✕</button>
     </div>
   </div>
-  <p style="font-size:.84rem;color:var(--dim);margin-bottom:1rem">
-    Priser <b>autolagres</b> direkte og synkroniseres til skyen for alle enheter. Klikk «✏️ Rediger detaljer» for å endre tittel, noter, beskrivelse eller bilder.
-  </p>
 
-  <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
-    <input type="text" id="adminSearchInp" placeholder="Søk blant 89 parfymer..." oninput="filterAdminList(this.value)"
-      style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
-    <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
-      ↺ Tilbakestill til standardkatalog
-    </button>
+  <!-- Admin Tab Bar -->
+  <div style="display:flex;gap:.5rem;margin-bottom:1.2rem;border-bottom:1px solid var(--line);padding-bottom:.5rem;flex-wrap:wrap">
+    <button type="button" class="admin-tab-btn active" id="tabBtnOrders" onclick="switchAdminTab('orders')">📋 Innkomne Ordrer</button>
+    <button type="button" class="admin-tab-btn" id="tabBtnTelegram" onclick="switchAdminTab('telegram')">📱 Telegram Varsling</button>
+    <button type="button" class="admin-tab-btn" id="tabBtnCatalog" onclick="switchAdminTab('catalog')">🏷️ Parfymer & Priser</button>
   </div>
 
-  <div id="adminProductList" style="display:grid;gap:.8rem"></div>
+  <!-- Tab 1: Orders -->
+  <div id="adminOrdersSection">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.8rem">
+      <p style="font-size:.84rem;color:var(--dim);margin:0">
+        Oversikt over alle kundeordrer og Vipps-oppgjør.
+      </p>
+      <button type="button" class="card-btn btn-details" onclick="loadAdminOrders()" style="padding:.4rem .8rem;font-size:.76rem">
+        🔄 Oppdater ordrer
+      </button>
+    </div>
+    <div id="adminOrdersList" style="display:grid;gap:.85rem"></div>
+  </div>
+
+  <!-- Tab 2: Telegram Settings -->
+  <div id="adminTelegramSection" style="display:none">
+    <div style="background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.25);border-radius:10px;padding:1.1rem;margin-bottom:1.2rem">
+      <h4 style="margin:0 0 .5rem 0;color:var(--gold);font-size:1rem;display:flex;align-items:center;gap:.5rem">
+        <span>📱</span> Direktemeldings-varsling til din Telegram
+      </h4>
+      <p style="font-size:.82rem;color:var(--dim);line-height:1.55;margin:0 0 .8rem 0">
+        Få lynrask push-varsling på mobilen med full ordrekvittering, kundens Vipps-telefonnummer og adressedetaljer så snart en bestilling legges inn.
+      </p>
+      <div style="font-size:.78rem;color:#cbd5e1;background:#03060a;padding:.75rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.08);line-height:1.6">
+        <b>Slik setter du det opp på 1 minutt:</b><br>
+        1. Åpne Telegram på mobilen eller PC og søk etter <b style="color:var(--gold)">@BotFather</b>.<br>
+        2. Send <code>/newbot</code>, gi boten din et navn (f.eks. <i>Aromatix Oslo Ordrer</i>), og kopier den genererte <b>HTTP API Token</b>.<br>
+        3. Start en samtale med din nye bot i Telegram ved å klikke «Start».<br>
+        4. Søk etter <b style="color:var(--gold)">@userinfobot</b> i Telegram for å se din egen <b>Id</b> (tallrekke, f.eks. <code>123456789</code>).<br>
+        5. Lim inn verdiene nedenfor, klikk «Lagre», og test med «⚡ Send Testmelding».
+      </div>
+    </div>
+
+    <form id="adminTgForm" onsubmit="saveTelegramSettings(event)" style="display:flex;flex-direction:column;gap:1rem">
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em">
+          Telegram Bot Token (fra @BotFather)
+        </label>
+        <input type="text" id="admTgBotToken" placeholder="f.eks. 1234567890:ABCdefGHIjklMNOpqrSTUvwxYZ"
+          style="width:100%;padding:.65rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-family:monospace;font-size:.85rem">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:.76rem;color:var(--gold);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em">
+          Telegram Chat ID (ditt bruker-ID fra @userinfobot)
+        </label>
+        <input type="text" id="admTgChatId" placeholder="f.eks. 987654321"
+          style="width:100%;padding:.65rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-family:monospace;font-size:.85rem">
+      </div>
+
+      <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:.4rem">
+        <button type="submit" class="cta" style="padding:.6rem 1.4rem;font-size:.84rem">
+          💾 Lagre Telegram-oppsett
+        </button>
+        <button type="button" class="card-btn btn-details" onclick="testTelegramPing()" style="padding:.6rem 1.2rem;font-size:.84rem">
+          ⚡ Send Testmelding til mobilen
+        </button>
+        <span id="admTgStatus" style="font-size:.8rem;font-weight:500"></span>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tab 3: Catalog & Prices -->
+  <div id="adminCatalogSection" style="display:none">
+    <p style="font-size:.84rem;color:var(--dim);margin-bottom:1rem">
+      Priser <b>autolagres</b> direkte og synkroniseres til skyen for alle enheter. Klikk «✏️ Rediger detaljer» for å endre tittel, noter, beskrivelse eller bilder.
+    </p>
+
+    <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
+      <input type="text" id="adminSearchInp" placeholder="Søk blant 89 parfymer..." oninput="filterAdminList(this.value)"
+        style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
+      <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
+        ↺ Tilbakestill til standardkatalog
+      </button>
+    </div>
+
+    <div id="adminProductList" style="display:grid;gap:.8rem"></div>
+  </div>
 </dialog>
 
 <dialog id="adminEditDetailModal" class="dialog-box" style="max-width:44rem;max-height:90vh;overflow-y:auto">
@@ -2592,7 +2697,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.34 (updated 2026-09-22 00:01)
+        v1.0.35 (updated 2026-09-22 07:55)
       </div>
     </div>
   </div>
@@ -6853,6 +6958,19 @@ window.handleCheckout = function(e) {
     localStorage.setItem('arx_orders_v10', JSON.stringify(existing));
   } catch(err) {}
 
+  // Dispatch order to Cloud backend & Telegram
+  try {
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newOrder)
+    }).then(r => r.json()).then(res => {
+      console.log('Aromatix ordre-respons (Sky/Telegram):', res);
+    }).catch(err => {
+      console.warn('Sky-/Telegram-innsending feilet:', err.message);
+    });
+  } catch(e) {}
+
   // Empty Cart
   S.lines = [];
   saveCart();
@@ -7329,12 +7447,239 @@ window.handleAdminAuth = function(e) {
     sessionStorage.setItem('arx_admin_pwd', input);
     currentAdminPassword = input;
     $('#adminPinModal')?.close();
-    renderAdminPanel();
+    switchAdminTab('orders');
     $('#adminPanelModal')?.showModal();
     syncCatalogToCloud();
   } else {
     const err = $('#adminPinError');
     if (err) err.style.display = 'block';
+  }
+};
+
+window.switchAdminTab = function(tab) {
+  const tabs = ['orders', 'telegram', 'catalog'];
+  tabs.forEach(t => {
+    const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+    const sec = document.getElementById('admin' + t.charAt(0).toUpperCase() + t.slice(1) + 'Section');
+    if (btn) btn.classList.toggle('active', t === tab);
+    if (sec) sec.style.display = (t === tab) ? 'block' : 'none';
+  });
+
+  if (tab === 'orders') {
+    loadAdminOrders();
+  } else if (tab === 'telegram') {
+    loadTelegramConfig();
+  } else if (tab === 'catalog') {
+    renderAdminPanel();
+  }
+};
+
+window.loadAdminOrders = async function() {
+  const list = document.getElementById('adminOrdersList');
+  if (!list) return;
+
+  list.innerHTML = '<div style="padding:1.5rem;text-align:center;color:var(--dim)">⏳ Laster inn ordrer...</div>';
+
+  let orders = [];
+  try {
+    const pwd = currentAdminPassword || ADMIN_PASSWORD;
+    const res = await fetch(`/api/orders?password=${encodeURIComponent(pwd)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success && Array.isArray(data.orders)) {
+        orders = data.orders;
+      }
+    }
+  } catch (err) {
+    console.warn('Kunne ikke hente ordrer fra skyen:', err.message);
+  }
+
+  // Fallback to local storage if empty
+  if (orders.length === 0) {
+    try {
+      orders = JSON.parse(localStorage.getItem('arx_orders_v10') || '[]');
+    } catch(e) {}
+  }
+
+  if (orders.length === 0) {
+    list.innerHTML = `
+      <div style="background:#05080e;border:1px dashed var(--line);border-radius:10px;padding:2.5rem 1rem;text-align:center;color:var(--dim)">
+        <div style="font-size:2rem;margin-bottom:.5rem">📦</div>
+        <p style="margin:0;font-size:.9rem">Ingen innkomne ordrer registrert ennå.</p>
+        <span style="font-size:.76rem;color:var(--dim);margin-top:.4rem;display:inline-block">Nye bestillinger lagt inn av kunder vil vises her og sendes direkte til din Telegram.</span>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = orders.map(ord => {
+    const isPickup = ord.customer?.delivery === 'pickup';
+    const deliveryDisplay = isPickup
+      ? '🏪 Henting i Butikk (Tøyengata 3)'
+      : `📦 Posten Norgespakke (${escapeHtml(ord.customer?.street || '')}, ${escapeHtml(ord.customer?.postal || '')} ${escapeHtml(ord.customer?.city || '')})`;
+
+    const itemsSummary = (ord.items || []).map(i => {
+      const scentNote = i.scent ? ` <span style="color:var(--gold)">(${escapeHtml(i.scent)})</span>` : '';
+      return `<li style="margin-bottom:.2rem"><b>${escapeHtml(i.name)}</b>${scentNote} — ${i.qty} stk × ${nok(i.price)} (${escapeHtml(i.size || '100 ml')})</li>`;
+    }).join('');
+
+    let dateFormatted = ord.date;
+    try {
+      dateFormatted = new Date(ord.date).toLocaleString('no-NO', { dateStyle: 'short', timeStyle: 'short' });
+    } catch(e) {}
+
+    return `
+      <div class="admin-order-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:.6rem;margin-bottom:.6rem;flex-wrap:wrap;gap:.5rem">
+          <div>
+            <span style="font-family:monospace;font-weight:700;color:var(--gold);font-size:.95rem">#${ord.orderId}</span>
+            <span style="font-size:.74rem;color:var(--dim);margin-left:.5rem">${dateFormatted}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <span style="font-size:.74rem;padding:.2rem .6rem;border-radius:99px;background:rgba(201,169,110,0.15);color:var(--gold);border:1px solid rgba(201,169,110,0.3)">
+              ${escapeHtml(ord.status || 'Mottatt')}
+            </span>
+            <b style="font-size:1.05rem;color:#4ade80">${nok(ord.total)}</b>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:.8rem;font-size:.8rem;margin-bottom:.7rem">
+          <div>
+            <span style="color:var(--dim);display:block;font-size:.72rem;text-transform:uppercase">Kunde</span>
+            <b style="color:var(--ice)">${escapeHtml(ord.customer?.name || 'Ukjent')}</b><br>
+            📞 Vipps: <a href="tel:${escapeHtml(ord.customer?.phone || '')}" style="color:var(--gold);text-decoration:underline"><b>${escapeHtml(ord.customer?.phone || '–')}</b></a><br>
+            ✉️ ${escapeHtml(ord.customer?.email || '–')}
+          </div>
+          <div>
+            <span style="color:var(--dim);display:block;font-size:.72rem;text-transform:uppercase">Leveringsmåte</span>
+            <span style="color:#cbd5e1">${deliveryDisplay}</span>
+          </div>
+        </div>
+
+        <div style="background:#04070c;border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:#cbd5e1;margin-bottom:.6rem">
+          <span style="color:var(--dim);display:block;font-size:.72rem;text-transform:uppercase;margin-bottom:.3rem">Bestilte varer</span>
+          <ul style="margin:0;padding-left:1.1rem">
+            ${itemsSummary}
+          </ul>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;gap:.6rem;flex-wrap:wrap">
+          <button type="button" class="card-btn btn-details" style="padding:.35rem .75rem;font-size:.72rem"
+            onclick="copyVippsRequestText('${ord.orderId}', '${escapeHtml(ord.customer?.name)}', '${escapeHtml(ord.customer?.phone)}', ${ord.total})">
+            📋 Kopier Vipps-krav tekst
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+};
+
+window.copyVippsRequestText = function(orderId, name, phone, total) {
+  const text = `Hei ${name}! Takk for din bestilling #${orderId} hos Aromatix Oslo. Totalbeløp å betale via Vipps er ${total} kr. Hilsen Aromatix Oslo.`;
+  navigator.clipboard.writeText(text).then(() => {
+    alert(`✓ Vipps-forespørselstekst for #${orderId} kopiert til utklippstavlen!\n\n"${text}"`);
+  }).catch(() => {
+    prompt('Kopier Vipps-tekst:', text);
+  });
+};
+
+window.loadTelegramConfig = async function() {
+  const statusEl = document.getElementById('admTgStatus');
+  const botInp = document.getElementById('admTgBotToken');
+  const chatInp = document.getElementById('admTgChatId');
+
+  try {
+    const pwd = currentAdminPassword || ADMIN_PASSWORD;
+    const res = await fetch(`/api/orders?password=${encodeURIComponent(pwd)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success && data.telegramConfig) {
+        if (data.telegramConfig.rawBotToken && botInp && !botInp.value) {
+          botInp.value = data.telegramConfig.rawBotToken;
+        }
+        if (data.telegramConfig.rawChatId && chatInp && !chatInp.value) {
+          chatInp.value = data.telegramConfig.rawChatId;
+        }
+        if (data.telegramConfig.configured && statusEl) {
+          statusEl.innerHTML = '<span style="color:#22c55e">✓ Telegram er konfigurert</span>';
+        }
+      }
+    }
+  } catch(e) {}
+};
+
+window.saveTelegramSettings = async function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const statusEl = document.getElementById('admTgStatus');
+  const botToken = document.getElementById('admTgBotToken')?.value?.trim();
+  const chatId = document.getElementById('admTgChatId')?.value?.trim();
+
+  if (!botToken || !chatId) {
+    if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">⚠️ Fyll inn både Bot Token og Chat ID</span>';
+    return;
+  }
+
+  if (statusEl) statusEl.innerHTML = '<span style="color:var(--gold)">⏳ Lagrer...</span>';
+
+  try {
+    const pwd = currentAdminPassword || ADMIN_PASSWORD;
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'save_telegram_config',
+        password: pwd,
+        botToken,
+        chatId
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#22c55e">✓ Telegram-oppsett lagret i skyen!</span>';
+      setTimeout(() => { if (statusEl) statusEl.innerHTML = ''; }, 4000);
+    } else {
+      if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444">Feil: ${data.error || 'Kunne ikke lagre'}</span>`;
+    }
+  } catch(err) {
+    if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444">Nettverksfeil: ${err.message}</span>`;
+  }
+};
+
+window.testTelegramPing = async function() {
+  const statusEl = document.getElementById('admTgStatus');
+  const botToken = document.getElementById('admTgBotToken')?.value?.trim();
+  const chatId = document.getElementById('admTgChatId')?.value?.trim();
+
+  if (!botToken || !chatId) {
+    alert('Vennligst fyll inn både Bot Token og Chat ID før du tester.');
+    return;
+  }
+
+  if (statusEl) statusEl.innerHTML = '<span style="color:var(--gold)">⚡ Sender testmelding til Telegram...</span>';
+
+  try {
+    const pwd = currentAdminPassword || ADMIN_PASSWORD;
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'test_telegram',
+        password: pwd,
+        botToken,
+        chatId
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#22c55e">✓ Testmelding sendt! Sjekk Telegram på telefonen din.</span>';
+      alert('✓ Testmelding ble sendt vellykket til Telegram!\n\nSjekk Telegram-appen på telefonen din for å se meldingen.');
+    } else {
+      if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444">Feil: ${data.error || 'Kunne ikke sende'}</span>`;
+      alert(`⚠️ Telegram returnerte en feil:\n\n${data.error || 'Ukjent feil'}\n\nTips: Husk å starte en chat med boten din i Telegram først ved å klikke "Start".`);
+    }
+  } catch(err) {
+    if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444">Feil: ${err.message}</span>`;
+    alert('Nettverksfeil: ' + err.message);
   }
 };
 

@@ -1,25 +1,21 @@
-# AROMATIX OSLO (v1.0.34) — Parfymehus & Kuratert Parfymeri
+# AROMATIX OSLO (v1.0.35) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.34 Høydepunkter
+## 🌟 Versjon 1.0.35 Høydepunkter
 
-1. **Tyrkisk Roll-On (Buhara Esans 7ml) — Én Enkelt Flaske**:
-   - Bildet viser nå strengt kun én enkelt rulleflaske (`images/buhara-esans-7ml.png`) på transparent bakgrunn, slik at kunder ikke misforstår og tror de bestiller en hel 5-pakning.
-   - Presisert overalt i butikkfront, hero-bånd og handlekurv at prisen gjelder per 1 stk flaske (7 ml).
+1. **Direkte Telegram-Varsling ved Bestilling**:
+   - Backend Cloudflare-funksjon (`/functions/api/orders.js`) sender automatisk en ryddig, formatert ordrekvittering til butikkeiers Telegram så snart kunden klikker «Send Bestillingsforespørsel».
+   - Inkluderer ordrenummer, kundens navn, Vipps-mobilnummer, leveringsmåte (Tøyengata 3 henting eller Posten Norgespakke), spesifikke duftvarianter/størrelser, delsum, frakt og totalt Vipps-beløp.
 
-2. **Obligatorisk Duftvelger (Scent Selection)**:
-   - Kunden må velge ønsket duft (Isparta Rose, Hvit Moskus, Amber, Zam Hara, Zamzer, Kaba Örtüsü, Sultan, Müge eller Menekşe) før produktet kan legges i handlekurven.
-   - Rød varselmelding og fokusmarkering hindrer bestilling uten valgt duftnote.
-   - Hver valgte duftvariant legges som egen linje i handlekurven med uavhengig antall og pris.
+2. **Ordre- & Telegram-Kontrollpanel i Kurator Atelier (Admin)**:
+   - Ny fane **«📋 Innkomne Ordrer»**: Komplett oversikt over alle bestillinger med hurtigknapp for å kopiere ferdig Vipps-krav tekst til utklippstavlen.
+   - Ny fane **«📱 Telegram Varsling»**: Enkelt oppsett for Telegram Bot Token og Chat ID, inkludert en **«⚡ Send Testmelding til mobilen»**-knapp for å verifisere at boten pinger telefonen din.
 
-3. **Tidsbegrenset Tilbud (Sale: 49 kr · Før 100 kr)**:
-   - Markert med gjennomstreket ordinær pris (100 kr) og grønt tilbudssignal (49 kr).
-   - Tidsbegrenset salgsbanner integrert i detaljvisningen.
-
-4. **Tidligere funksjoner**:
+3. **Tidligere funksjoner**:
+   - Tyrkisk Buhara Roll-On med enkeltflaske-packshot, obligatorisk duftvelger og 49 kr tilbud (Før 100 kr).
    - Forstørret bilde-modal (Zoom-In Lightbox) ved klikk på flakong/eske.
    - Top Brands dropdown-meny og "Show All" hurtigknapp.
    - Flytende sirkulær "Tilbake til toppen"-knapp.
@@ -27,4 +23,4 @@ Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i T
 ---
 
 ## 🚀 Versjonering
-`v1.0.34 (updated 2026-09-22 00:01)`
+`v1.0.35 (updated 2026-09-22 07:55)`
