@@ -871,7 +871,7 @@ header{
   gap:1rem;
 }
 .brand-group{display:flex;align-items:center}
-.brand-title{font:600 1.25rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.65rem;text-decoration:none}
+.brand-title{font:600 clamp(0.95rem,3.4vw,1.25rem)/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.6rem;text-decoration:none}
 .brand-title b, .brand-city-red{color:#ef4444;font-weight:700}
 .brand-name-gold{color:var(--gold)}
 .brand-sub{display:none}
@@ -1838,7 +1838,7 @@ footer{
     <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
   </svg>
   <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
-  <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></p>
+  <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">PERFUMES</b></p>
   <p class="hint" id="introHint">Feel As Good As You Smell · 90 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
@@ -1851,9 +1851,9 @@ footer{
 <header>
   <div class="header-inner">
     <div class="brand-group">
-      <a href="#kjop" class="brand-title">
+      <a href="#kjop" class="brand-title" aria-label="Aromatix Perfumes">
         <img src="images/aromatix-emblem.png" alt="Aromatix Logo" class="brand-logo-img" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.45))">
-        <span><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></span>
+        <span><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">PERFUMES</b></span>
       </a>
     </div>
 
@@ -2703,7 +2703,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.37 (updated 2026-09-22 13:53)
+        v1.0.38 (updated 2026-09-22 13:56)
       </div>
     </div>
   </div>
