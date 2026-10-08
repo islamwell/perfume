@@ -876,10 +876,68 @@ header{
 .brand-name-gold{color:var(--gold)}
 .brand-sub{display:none}
 
-nav.main-nav{display:none;align-items:center;gap:1.6rem}
+nav.main-nav{display:none;align-items:center;gap:1.3rem}
 @media(min-width:54rem){nav.main-nav{display:flex}}
-nav.main-nav a, nav.main-nav .nav-dropdown-trigger{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit}
-nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, .nav-dropdown:hover .nav-dropdown-trigger, .nav-dropdown.active .nav-dropdown-trigger{color:var(--gold)}
+nav.main-nav a, nav.main-nav .nav-dropdown-trigger, nav.main-nav button{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit}
+nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav button:hover, .nav-dropdown:hover .nav-dropdown-trigger, .nav-dropdown.active .nav-dropdown-trigger{color:var(--gold)}
+
+/* Top Nav Search Bar */
+.top-nav-search{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(201,169,110,0.32);
+  border-radius:999px;
+  padding:.32rem .75rem;
+  gap:.45rem;
+  transition:all .22s cubic-bezier(0.16,1,0.3,1);
+  min-width:160px;
+  max-width:240px;
+}
+.top-nav-search:focus-within{
+  background:rgba(7,11,19,0.95);
+  border-color:var(--gold);
+  box-shadow:0 0 16px rgba(201,169,110,0.28), 0 4px 12px rgba(0,0,0,0.5);
+  min-width:210px;
+}
+.top-search-icon{
+  font-size:.78rem;
+  opacity:.85;
+  pointer-events:none;
+  line-height:1;
+}
+.top-nav-search-input{
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#fff;
+  font-family:inherit;
+  font-size:.78rem;
+  letter-spacing:.02em;
+  width:100%;
+}
+.top-nav-search-input::placeholder{
+  color:var(--dim);
+  font-size:.75rem;
+}
+.top-nav-clear-btn{
+  background:none;
+  border:none;
+  color:var(--dim);
+  font-size:.72rem;
+  cursor:pointer;
+  padding:0;
+  line-height:1;
+  transition:color .15s;
+}
+.top-nav-clear-btn:hover{
+  color:#ef4444;
+}
+.mob-search-wrap{
+  padding:.3rem 0 .7rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
 
 /* Top Brands Dropdown (Desktop) */
 .nav-dropdown{position:relative;display:inline-flex;align-items:center}
@@ -1905,8 +1963,12 @@ footer{
         </div>
       </div>
       <a href="#showroom" id="navShowroom">Showroom</a>
-      <button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navAbout">Om</button>
-      <button type="button" onclick="openPolicy('kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase" id="navContact">Kontakt</button>
+      <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Om & Kontakt</button>
+      <div class="top-nav-search" id="topNavSearchWrap">
+        <span class="top-search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen">
+        <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+      </div>
     </nav>
 
     <div class="header-actions">
@@ -1950,9 +2012,15 @@ footer{
         </div>
       </div>
     </div>
+    <div class="mob-search-wrap">
+      <div class="top-nav-search" style="width:100%;max-width:100%;display:flex">
+        <span class="top-search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="mobNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen">
+        <button type="button" id="mobNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+      </div>
+    </div>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy('om');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAbout">Om</button>
-    <button type="button" onclick="openPolicy('kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavContact">Kontakt & Henting</button>
+    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAboutContact">Om & Kontakt</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Intro</button>
     <button type="button" onclick="toggleLanguage();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavLang">
       <span id="mobLangFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
@@ -2722,7 +2790,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.41 (updated 2026-10-08 14:28)
+        v1.0.42 (updated 2026-10-08 16:45)
       </div>
     </div>
   </div>
@@ -6037,7 +6105,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "Bujairami's legendary masterpiece inspired by Parfums de Marly Layton. An irresistible romantic fusion of crisp apple, bergamot, lavender, cardamom, jasmine, creamy bourbon vanilla, and precious woods.",
     "story": "Date Night er Bujairamis kanskje mest roste herreduft internasjonalt, berømt for sine overlegne kompliment-faktorer og enorme varighet.",
     "story_en": "Date Night is Bujairami's globally acclaimed crowd-pleaser, renowned for unmatched compliment pull and beast-mode longevity.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Sprøtt eple, bergamott, lavendel, mandarin",
@@ -6071,7 +6139,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "The ultimate tropical luxury scent inspired by Creed Virgin Island Water. Freshly squeezed lime, creamy coconut milk, bergamot, white Jamaican rum, ylang-ylang, and sweet sugarcane.",
     "story": "Kokomo Paradise innkapsler solfylte dager, turkise bølger og forfriskende tropiske drinker i en høykonsentrert Extrait-formel.",
     "story_en": "Kokomo Paradise encapsulates sunny beaches, crystal waters, and refreshing tropical cocktails in a potent Extrait de Parfum formula.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Saftig lime, bergamott, siciliansk mandarin, kokosmelk",
@@ -6105,7 +6173,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "Inspired by Byredo Mojave Ghost. An ethereal, airy, and captivating woody-floral composition featuring rare sapodilla (nesberry), ambrette seeds, magnolia, violet, sandalwood, and cedarwood.",
     "story": "En hyllest til den sjeldne spøkelsesblomsten som overlever i den brennhete Mojave-ørkenen — delikat, sofistikert og umulig å glemme.",
     "story_en": "A tribute to the rare ghost flower blossoming against the odds in the arid Mojave desert — delicate, refined, and unforgettable.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Sapodilla (nesberry), ambrette (musk mallow)",
@@ -6139,7 +6207,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "A decadent, irresistible scent inspired by Guerlain Tonka Impériale. Roasted tonka beans, bitter almond, aromatic rosemary, honeyed tobacco, and incense over noble woods.",
     "story": "Tonka Tease er definisjonen på sofistikert hygge. Den omslutter deg som en luksuriøs kashmirkåpe på en kjølig kveld.",
     "story_en": "Tonka Tease represents the height of warm opulence, wrapping the wearer in a comforting blanket of roasted tonka and fine blonde tobacco.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Bittermandel, rosmarin, bergamott",
@@ -6173,7 +6241,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "Bujairami's acclaimed tribute to Louis Vuitton Imagination. Sparkling Italian citrus, black Chinese tea, Nigerian ginger, cinnamon, and ambroxan craft an exhilarating signature of pure refinement.",
     "story": "Hectic er en av de mest ettertraktede sommersonatene på markedet, hyllet for sin enestående spredning og oppløftende te-noter.",
     "story_en": "Hectic has taken fragrance communities by storm, hailed for its uplifting tea facets and sparkling citrus freshness with elite performance.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Calabrisk bergamott, siciliansk appelsin, sitron",
@@ -6207,7 +6275,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "A joyous and lavish scent inspired by Byredo Bal d'Afrique Absolu. Sparkling African marigold, bergamot, buchu, violet, sweet praline, and Moroccan cedarwood blend into an uplifting, sunny aura.",
     "story": "Navnet sier alt — Too Damn Good er en elsket signaturduft som sprer varme smil og luksuriøs eleganse hvor enn du går.",
     "story_en": "Living up to its name, Too Damn Good radiates effortless warmth, elegance, and charisma that turns heads wherever you step.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Afrikansk ringblomst (tagetes), bergamott, solbær",
@@ -6241,7 +6309,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "Inspired by the avant-garde niche sensation Ex Nihilo Blue Talisman. Juicy pear, bergamot, and mandarin collide with orange blossom, georgywood, akigalawood, and crystal musk for a futuristic fresh aura.",
     "story": "Executor representerer presisjon og moderne luksus. En magnetisk og strålende komposisjon med overlegen projeksjon.",
     "story_en": "Executor represents precision and modern luxury. A patriotic, radiant composition with crystalline projection designed for leaders.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Saftig pære, bergamott, italiensk mandarin",
@@ -6275,7 +6343,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "An explosion of ultra-luxury inspired by Louis Vuitton Symphony. Electric grapefruit zest, spicy ginger, bergamot, and a veil of crystal musk create an unmatched experience of sparkling freshness.",
     "story": "Psycho leverer ren ekstase og grenseløs energi. En symfoni av friskhet som fanger rommet umiddelbart.",
     "story_en": "Psycho delivers boundless energy and pure citrus ecstasy. A symphony of sparkling freshness that commands attention instantly.",
-    "price": 450,
+    "price": 899,
     "size": "100 ml",
     "notes": {
       "top": "Sprø grapefrukt, siciliansk bergamott, mandarin",
@@ -6298,7 +6366,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v41');
+  const custom = localStorage.getItem('arx_custom_catalog_v42');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -6320,6 +6388,9 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "Om",
     navContact: "Kontakt",
+    navAboutContact: "Om & Kontakt",
+    mobNavAboutContact: "Om & Kontakt",
+    topSearchPlaceholder: "Søk parfyme...",
     mobNavFragrances: "Topp Merker",
     navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
     btnShowAll: "Vis alle",
@@ -6495,6 +6566,9 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "About",
     navContact: "Contact",
+    navAboutContact: "About & Contact",
+    mobNavAboutContact: "About & Contact",
+    topSearchPlaceholder: "Search perfume...",
     mobNavFragrances: "Top Brands",
     navBrandsHeader: "Top Brands Online — Click to filter",
     btnShowAll: "Show All",
@@ -6948,7 +7022,11 @@ window.resetAllFilters = function() {
   if ($('#filterScent')) $('#filterScent').value = 'all';
   if ($('#filterSort')) $('#filterSort').value = 'featured';
   if ($('#catalogSearchInput')) $('#catalogSearchInput').value = '';
+  if ($('#topNavSearchInput')) $('#topNavSearchInput').value = '';
+  if ($('#mobNavSearchInput')) $('#mobNavSearchInput').value = '';
   if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = 'none';
+  if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = 'none';
+  if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = 'none';
   renderStore();
 };
 
@@ -7591,6 +7669,58 @@ const POLICIES = {
       `
     }
   },
+  om_kontakt: {
+    nb: {
+      cat: "Om Oss & Kontakt",
+      heading: "Aromatix Oslo — Kuratert Parfymeri & Showroom",
+      body: `
+        <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
+        <h4>Vår Filosofi & Utvalg</h4>
+        <p>Vi tilbyr et håndplukket utvalg av over 100 virale og legendariske mesterverk fra hus som Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
+        <h4>100% Original Produsentgaranti</h4>
+        <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt emballasje med sporbare batchkoder.</p>
+        <h4>Maksprisgaranti</h4>
+        <p>Hos Aromatix Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+        <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
+        <h4>Besøk Showroomet i Oslo</h4>
+        <p>
+          📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
+          🕒 Åpningstider: Mandag – Lørdag kl. 11:00 – 18:00
+        </p>
+        <h4>Kundeservice & Henvendelser</h4>
+        <p>
+          ✉️ E-post: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Svar innen 24 timer på virkedager)<br>
+          📞 Telefon: +47 955 50 199<br>
+          📱 Vipps Bedrift: Aromatix Oslo
+        </p>
+      `
+    },
+    en: {
+      cat: "About Us & Contact",
+      heading: "Aromatix Oslo — Curated Perfumery & Showroom",
+      body: `
+        <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
+        <h4>Our Philosophy & Collection</h4>
+        <p>We curate over 100 viral and legendary fragrance masterpieces from houses including Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
+        <h4>100% Original Manufacturer Guarantee</h4>
+        <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
+        <h4>Maximum Price Guarantee</h4>
+        <p>At Aromatix Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+        <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
+        <h4>Visit Our Oslo Showroom</h4>
+        <p>
+          📍 <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b><br>
+          🕒 Opening Hours: Monday – Saturday 11:00 – 18:00
+        </p>
+        <h4>Customer Support & Inquiries</h4>
+        <p>
+          ✉️ Email: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Response within 24h on business days)<br>
+          📞 Phone: +47 955 50 199<br>
+          📱 Vipps Business: Aromatix Oslo
+        </p>
+      `
+    }
+  },
   frakt: {
     nb: {
       cat: "Frakt & Levering",
@@ -7795,6 +7925,8 @@ function setLanguage(lang) {
   if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
+  if ($('#navAboutContact')) $('#navAboutContact').textContent = t.navAboutContact || (LANG === 'en' ? 'About & Contact' : 'Om & Kontakt');
+  if ($('#topNavSearchInput')) $('#topNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
 
   // Mobile nav
@@ -7803,6 +7935,8 @@ function setLanguage(lang) {
   if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
   if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
   if ($('#mobNavContact')) $('#mobNavContact').textContent = t.mobNavContact || t.navContact;
+  if ($('#mobNavAboutContact')) $('#mobNavAboutContact').textContent = t.mobNavAboutContact || (LANG === 'en' ? 'About & Contact' : 'Om & Kontakt');
+  if ($('#mobNavSearchInput')) $('#mobNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#mobNavReplay')) $('#mobNavReplay').textContent = `✨ ${t.replayIntro}`;
 
   // Hero Section
@@ -8320,7 +8454,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v42', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8382,7 +8516,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v42', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8458,7 +8592,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v42', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8473,6 +8607,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v42');
     localStorage.removeItem('arx_custom_catalog_v41');
     localStorage.removeItem('arx_custom_catalog_v40');
     localStorage.removeItem('arx_custom_catalog_v39');
@@ -8484,7 +8619,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v42', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -8517,16 +8652,62 @@ $('#filterSort')?.addEventListener('change', e => {
   activeSort = e.target.value;
   renderStore();
 });
-$('#catalogSearchInput')?.addEventListener('input', e => {
-  searchQuery = e.target.value.trim();
-  if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = searchQuery ? 'block' : 'none';
+function syncSearch(val, source, shouldScrollToCatalog = false) {
+  searchQuery = (val || '').trim();
+  const rawVal = val || '';
+  if (source !== 'catalog' && $('#catalogSearchInput')) $('#catalogSearchInput').value = rawVal;
+  if (source !== 'top' && $('#topNavSearchInput')) $('#topNavSearchInput').value = rawVal;
+  if (source !== 'mob' && $('#mobNavSearchInput')) $('#mobNavSearchInput').value = rawVal;
+
+  const hasVal = rawVal.length > 0;
+  if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = hasVal ? 'block' : 'none';
+  if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
+  if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
+
   renderStore();
+
+  if (shouldScrollToCatalog) {
+    const kjopSection = document.getElementById('kjop');
+    if (kjopSection) {
+      kjopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+// Catalog Filter Search Input
+$('#catalogSearchInput')?.addEventListener('input', e => {
+  syncSearch(e.target.value, 'catalog');
 });
 $('#clearSearchBtn')?.addEventListener('click', () => {
-  $('#catalogSearchInput').value = '';
-  searchQuery = '';
-  $('#clearSearchBtn').style.display = 'none';
-  renderStore();
+  syncSearch('', 'all');
+});
+
+// Top Navigation Search Input (Desktop)
+$('#topNavSearchInput')?.addEventListener('input', e => {
+  syncSearch(e.target.value, 'top');
+});
+$('#topNavSearchInput')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    syncSearch(e.target.value, 'top', true);
+  }
+});
+$('#topNavClearSearchBtn')?.addEventListener('click', () => {
+  syncSearch('', 'all');
+});
+
+// Mobile Navigation Search Input
+$('#mobNavSearchInput')?.addEventListener('input', e => {
+  syncSearch(e.target.value, 'mob');
+});
+$('#mobNavSearchInput')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    syncSearch(e.target.value, 'mob', true);
+  }
+});
+$('#mobNavClearSearchBtn')?.addEventListener('click', () => {
+  syncSearch('', 'all');
 });
 
 $('#cartToggleBtn')?.addEventListener('click', e => {
