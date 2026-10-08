@@ -2722,7 +2722,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.40 (updated 2026-10-08 14:00)
+        v1.0.41 (updated 2026-10-08 14:28)
       </div>
     </div>
   </div>
@@ -5935,7 +5935,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "A hypnotic, fiery luxury creation inspired by Stéphane Humbert Lucas God of Fire. Exotic juicy mango, zesty lemon, fiery ginger, and tart rhubarb blended with glowing ambergris, cedar, and oud. Adorned with the iconic serpent motif on an intense turquoise flacon.",
     "story": "Vulcan Feu fra French Avenue kombinerer overlegen råvarekvalitet med en slående presentasjon i dyp blå eske og en flakong voktet av den mytiske kobraen.",
     "story_en": "Vulcan Feu by French Avenue combines exceptional ingredient quality with a striking presentation in a deep blue box and a flacon guarded by the mythical serpent.",
-    "price": 399,
+    "price": 499,
     "size": "100 ml",
     "notes": {
       "top": "Saftig mango, sitron, bær, rød ingefær",
@@ -5969,7 +5969,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "Dark, enigmatic, and magnetic. Vulcan Black Friday features a matte black flacon emblazoned with a striking serpent with ruby red eyes. Notes of dark leather, exclusive saffron, smoked cedarwood, crisp apple, cinnamon, and rich amber.",
     "story": "En feiring av dristig mørke og uimotståelig tiltrekning, levert i en eksklusiv sort gaveeske med kobra-våpenet.",
     "story_en": "A celebration of bold darkness and magnetic attraction, delivered in an exclusive black luxury presentation box featuring the cobra insignia.",
-    "price": 399,
+    "price": 499,
     "size": "100 ml",
     "notes": {
       "top": "Sprøtt eple, safran, bergamott, kanel",
@@ -6003,7 +6003,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "A creamy, golden, and seductive gourmand creation housed in a pearl-white flacon with a gilded snake emblem and white box. Opens with aged whiskey and citrus, unfolding into cocoa, espresso, bourbon vanilla, tonka beans, and warm sandalwood.",
     "story": "Sable symboliserer ørkensandens rene skjønnhet og den raffinerte varmen fra luksuriøse brennevinsfat og rik sjokolade.",
     "story_en": "Sable embodies the luminous beauty of white desert sands fused with the warmth of aged spirits, roasted cocoa, and tonka bean.",
-    "price": 399,
+    "price": 499,
     "size": "100 ml",
     "notes": {
       "top": "Lagret maltwhisky, mandarin, kardemomme",
@@ -6298,7 +6298,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v40');
+  const custom = localStorage.getItem('arx_custom_catalog_v41');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -8320,7 +8320,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v40', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8382,7 +8382,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v40', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8458,7 +8458,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v40', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8473,6 +8473,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v41');
     localStorage.removeItem('arx_custom_catalog_v40');
     localStorage.removeItem('arx_custom_catalog_v39');
     localStorage.removeItem('arx_custom_catalog_v34');
@@ -8483,7 +8484,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v40', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v41', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
