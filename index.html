@@ -2790,7 +2790,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.43 (updated 2026-10-08 17:00)
+        v1.0.44 (updated 2026-10-08 17:25)
       </div>
     </div>
   </div>
@@ -6263,7 +6263,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "bujairami-hectic",
     "image": "images/bujairami-hectic.png",
-    "image_box": "images/bujairami-hectic.png",
+    "image_box": "images/bujairami-hectic-box.png",
     "brand": "Bujairami",
     "house": "Bujairami Perfumes Sydney",
     "name": "Bujairami Hectic",
@@ -6271,10 +6271,10 @@ const DEFAULT_CATALOG = [
     "edition_en": "Extrait de Parfum · 100 ml",
     "subtitle": "Black Tea, Bergamot & Ambroxan (Imagination DNA)",
     "scentFamily": "fresh",
-    "desc": "Bujairamis berømte tolkning av Louis Vuitton Imagination. Sprudlende italiensk sitrus, svart kinesisk te, nigeriansk ingefær, kanel og ambroxan danner en uforglemmelig opplevelse av luksuriøs renhet.",
-    "desc_en": "Bujairami's acclaimed tribute to Louis Vuitton Imagination. Sparkling Italian citrus, black Chinese tea, Nigerian ginger, cinnamon, and ambroxan craft an exhilarating signature of pure refinement.",
-    "story": "Hectic er en av de mest ettertraktede sommersonatene på markedet, hyllet for sin enestående spredning og oppløftende te-noter.",
-    "story_en": "Hectic has taken fragrance communities by storm, hailed for its uplifting tea facets and sparkling citrus freshness with elite performance.",
+    "desc": "Bujairamis berømte tolkning av Louis Vuitton Imagination, levert i eksklusivt kongeblått skinn-etui med flip-top lokk. Sprudlende italiensk sitrus, svart kinesisk te, nigeriansk ingefær, kanel og ambroxan danner en uforglemmelig opplevelse av luksuriøs renhet.",
+    "desc_en": "Bujairami's acclaimed tribute to Louis Vuitton Imagination, presented in an exclusive royal blue leather case with flip-top cover lid. Sparkling Italian citrus, black Chinese tea, Nigerian ginger, cinnamon, and ambroxan craft an exhilarating signature of pure refinement.",
+    "story": "Hectic er en av de mest ettertraktede sommersonatene på markedet, levert i Bujairamis karakteristiske luksuriøse flip-top skinneske.",
+    "story_en": "Hectic has taken fragrance communities by storm, hailed for its uplifting tea facets and presented in Bujairami's signature flip-top leather presentation case.",
     "price": 899,
     "size": "100 ml",
     "notes": {
@@ -6292,7 +6292,7 @@ const DEFAULT_CATALOG = [
       "cap": "#0f172a",
       "capStroke": "#06b6d4"
     },
-    "tag": "Viral Sommerduft"
+    "tag": "Blå Skinneske · Flip Top"
   },
   {
     "id": "bujairami-too-damn-good",
@@ -6400,7 +6400,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v43');
+  const custom = localStorage.getItem('arx_custom_catalog_v44');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -8488,7 +8488,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v43', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v44', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8550,7 +8550,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v43', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v44', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8626,7 +8626,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v43', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v44', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8641,6 +8641,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v44');
     localStorage.removeItem('arx_custom_catalog_v43');
     localStorage.removeItem('arx_custom_catalog_v42');
     localStorage.removeItem('arx_custom_catalog_v41');
@@ -8654,7 +8655,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v43', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v44', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
