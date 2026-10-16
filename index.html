@@ -1086,6 +1086,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   gap:.4rem;
 }
 .action-btn:hover{border-color:var(--gold);color:var(--gold-bright)}
+.action-btn-icon{font-size:1rem;line-height:1;display:inline-flex;align-items:center;justify-content:center}
 
 .cartbtn{
   background:rgba(255,255,255,0.08);
@@ -1103,7 +1104,8 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   gap:.45rem;
 }
 .cartbtn:hover{border-color:var(--gold);background:rgba(201,169,110,0.1)}
-.cartbtn b{color:var(--gold)}
+.cartbtn b{color:var(--gold);font-weight:700}
+.cart-icon{font-size:1.05rem;line-height:1;display:inline-flex;align-items:center;justify-content:center}
 
 .nav-toggle{
   background:none;
@@ -1115,6 +1117,117 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   cursor:pointer;
 }
 @media(min-width:54rem){.nav-toggle{display:none}}
+
+/* ── Mobile Header & Top Menu Optimization ── */
+@media(max-width:54rem){
+  .header-inner{
+    padding:.5rem var(--pad, .75rem);
+    padding-left:max(0.6rem, env(safe-area-inset-left));
+    padding-right:max(0.6rem, env(safe-area-inset-right));
+    gap:.45rem;
+  }
+  .brand-group{
+    flex-shrink:1;
+    min-width:0;
+  }
+  .brand-title{
+    font-size:clamp(0.85rem, 3.2vw, 1.05rem);
+    gap:.4rem;
+    white-space:nowrap;
+    letter-spacing:.06em;
+  }
+  .brand-logo-img{
+    height:28px !important;
+  }
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:.38rem;
+    flex-shrink:0;
+  }
+  .header-btn-text{
+    display:none !important;
+  }
+  .lang-flag-btn{
+    padding:.35rem .45rem;
+    min-width:35px;
+    height:35px;
+    font-size:1.05rem;
+  }
+  .action-btn{
+    padding:.35rem .5rem;
+    min-width:35px;
+    height:35px;
+    font-size:1rem;
+    justify-content:center;
+    gap:0;
+  }
+  .cartbtn{
+    padding:.35rem .6rem;
+    min-width:44px;
+    height:35px;
+    font-size:.8rem;
+    justify-content:center;
+    gap:.3rem;
+  }
+  .cartbtn .cart-icon{
+    font-size:1rem;
+    line-height:1;
+  }
+  .cartbtn b{
+    font-size:.78rem;
+    line-height:1;
+  }
+  .nav-toggle{
+    padding:.35rem .55rem;
+    min-width:35px;
+    height:35px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+    line-height:1;
+  }
+}
+
+@media(max-width:370px){
+  .header-inner{
+    padding-left:max(0.4rem, env(safe-area-inset-left));
+    padding-right:max(0.4rem, env(safe-area-inset-right));
+    gap:.25rem;
+  }
+  .brand-title{
+    font-size:.8rem;
+    gap:.25rem;
+    letter-spacing:.03em;
+  }
+  .brand-logo-img{
+    height:24px !important;
+  }
+  .header-actions{
+    gap:.25rem;
+  }
+  .lang-flag-btn,
+  .action-btn,
+  .nav-toggle{
+    min-width:32px;
+    height:32px;
+    padding:.2rem .35rem;
+    font-size:.95rem;
+  }
+  .cartbtn{
+    min-width:40px;
+    height:32px;
+    padding:.2rem .45rem;
+    gap:.22rem;
+  }
+  .cartbtn .cart-icon{
+    font-size:.95rem;
+  }
+  .cartbtn b{
+    font-size:.75rem;
+  }
+}
 
 /* Mobile Nav Drawer */
 .mobile-nav{
@@ -2033,12 +2146,12 @@ footer{
         <span id="langFlagEmoji">🇳🇴</span>
       </button>
 
-      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Intro">
-        <span>✨</span> <span id="lblReplayHeader">Intro</span>
+      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Intro" aria-label="Spill intro på nytt / Replay intro">
+        <span class="action-btn-icon" aria-hidden="true">✨</span> <span id="lblReplayHeader" class="header-btn-text">Intro</span>
       </button>
 
-      <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv">
-        <span id="cartLabel">Kurv</span> <b id="cartBadge">0</b>
+      <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv / Open cart" title="Handlekurv / Cart">
+        <span class="cart-icon" aria-hidden="true">🛒</span> <span id="cartLabel" class="header-btn-text">Kurv</span> <b id="cartBadge">0</b>
       </button>
 
       <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne mobilmeny">☰</button>
@@ -2846,7 +2959,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.45 (updated 2026-10-14 00:10)
+        v1.0.46 (updated 2026-10-16 22:30)
       </div>
     </div>
   </div>
@@ -6456,7 +6569,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v45');
+  const custom = localStorage.getItem('arx_custom_catalog_v46');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -8033,6 +8146,18 @@ function setLanguage(lang) {
   if ($('#navAboutContact')) $('#navAboutContact').textContent = t.navAboutContact || (LANG === 'en' ? 'About & Contact' : 'Om & Kontakt');
   if ($('#topNavSearchInput')) $('#topNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
+  const cartToggleBtn = $('#cartToggleBtn');
+  if (cartToggleBtn) {
+    const cTitle = (LANG === 'en') ? 'Shopping Cart' : 'Handlekurv';
+    cartToggleBtn.title = cTitle;
+    cartToggleBtn.setAttribute('aria-label', cTitle);
+  }
+  const replayBtn = $('#replayIntroHeaderBtn');
+  if (replayBtn) {
+    const rTitle = (LANG === 'en') ? 'Replay intro' : 'Spill intro på nytt';
+    replayBtn.title = rTitle;
+    replayBtn.setAttribute('aria-label', rTitle);
+  }
 
   // Mobile nav
   if ($('#mobNavFragrancesText')) $('#mobNavFragrancesText').textContent = t.mobNavFragrances || t.navFragrances;
@@ -8559,7 +8684,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v45', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8621,7 +8746,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v45', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8697,7 +8822,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v45', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8712,6 +8837,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v46');
     localStorage.removeItem('arx_custom_catalog_v45');
     localStorage.removeItem('arx_custom_catalog_v44');
     localStorage.removeItem('arx_custom_catalog_v43');
@@ -8727,7 +8853,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v45', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
