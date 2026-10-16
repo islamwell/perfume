@@ -1232,15 +1232,22 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 /* Mobile Nav Drawer */
 .mobile-nav{
   display:none;
-  background:#070a0f;
+  background:rgba(7,10,15,0.98);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid var(--line);
-  padding:1.2rem var(--pad);
+  padding:1.1rem var(--pad, .75rem);
   flex-direction:column;
-  gap:1rem;
+  gap:.85rem;
+  max-height:calc(100vh - 56px);
+  max-height:calc(100dvh - 56px);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .mobile-nav.open{display:flex}
 .mobile-nav a{font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .mobile-nav a:hover{color:var(--gold)}
+@media(min-width:54rem){.mobile-nav{display:none !important}}
 
 /* ═══ TOP MAIN SECTION: COLLECTION GRID (#kjop) ═══ */
 #kjop{
@@ -1360,8 +1367,8 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 }
 @media(max-width:54rem){
   .back-to-top{
-    bottom:5.5rem;
-    right:1.2rem;
+    bottom:calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    right:max(1.2rem, env(safe-area-inset-right, 1.2rem));
     width:42px;
     height:42px;
     font-size:1.2rem;
@@ -1552,8 +1559,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   max-width:34rem;
   width:94vw;
   max-height:90vh;
+  max-height:90dvh;
   overflow-y:auto;
   overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
 }
 .product-modal-grid{
   display:flex;
@@ -1781,7 +1790,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   border-top:1px solid var(--line);
   z-index:40;
 }
-@media (width>=56rem){.buybar{display:none}}
+@media (min-width:54rem){.buybar{display:none}}
 .buybar small{font-size:.78rem;line-height:1.2;color:var(--dim)}
 .buybar .cta{width:auto;padding:.75rem 1.4rem;font-size:.75rem}
 
@@ -1831,8 +1840,19 @@ dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
   color:var(--ice);
   max-width:34rem;
   width:92vw;
+  max-height:90vh;
+  max-height:90dvh;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   margin:auto;
   box-shadow:0 30px 80px #000e;
+}
+@media(max-width:54rem){
+  .dialog-box{
+    padding:1.35rem 1.1rem;
+    border-radius:1.1rem;
+    width:95vw;
+  }
 }
 .dialog-box:not([open]){display:none!important}
 .dialog-box::backdrop{background:#00000099;backdrop-filter:blur(8px)}
@@ -2154,13 +2174,16 @@ footer{
         <span class="cart-icon" aria-hidden="true">🛒</span> <span id="cartLabel" class="header-btn-text">Kurv</span> <b id="cartBadge">0</b>
       </button>
 
-      <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne mobilmeny">☰</button>
+      <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne mobilmeny" aria-expanded="false" aria-controls="mobileNav" title="Meny / Menu">☰</button>
     </div>
   </div>
 
-  <div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav" id="mobileNav" aria-label="Mobil navigasjon">
+    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavCatalog" style="font-weight:600;color:var(--gold);display:flex;align-items:center;gap:.5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,0.06)">
+      <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (103 stk)</span>
+    </a>
     <div class="mob-dropdown" id="mobBrandsDropdown">
-      <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances">
+      <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances" aria-expanded="false">
         <span id="mobNavFragrancesText">Top Brands</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
       </button>
       <div class="mob-dropdown-panel" id="mobBrandsPanel" style="display:none">
@@ -2959,7 +2982,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.46 (updated 2026-10-16 22:30)
+        v1.0.47 (updated 2026-10-16 22:45)
       </div>
     </div>
   </div>
@@ -2997,14 +3020,17 @@ document.addEventListener('click', function(e) {
 function toggleMobBrandsDropdown() {
   const panel = document.getElementById('mobBrandsPanel');
   const arrow = document.getElementById('mobBrandsArrow');
+  const trigger = document.getElementById('mobNavFragrances');
   if (!panel) return;
   const isHidden = panel.style.display === 'none' || !panel.style.display;
   if (isHidden) {
     panel.style.display = 'block';
     if (arrow) arrow.textContent = '▴';
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
   } else {
     panel.style.display = 'none';
     if (arrow) arrow.textContent = '▾';
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
   }
 }
 
@@ -6569,7 +6595,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v46');
+  const custom = localStorage.getItem('arx_custom_catalog_v47');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -7087,6 +7113,7 @@ function finishIntro() {
 window.finishIntro = finishIntro;
 
 function replayIntro() {
+  if ($('#mobileNav')?.classList.contains('open')) window.toggleMobileNav(true);
   try { sessionStorage.removeItem('arx_intro_seen'); } catch(e) {}
   const introEl = $('#intro');
   if (!introEl) return;
@@ -7705,6 +7732,7 @@ window.removeCartItem = function(key) {
 };
 
 window.openCart = function() {
+  if ($('#mobileNav')?.classList.contains('open')) window.toggleMobileNav(true);
   const c = $('#cart');
   if (c && !c.open) c.showModal();
 };
@@ -7715,8 +7743,12 @@ window.closeCart = function() {
 window.toggleCart = function() {
   const c = $('#cart');
   if (!c) return;
-  if (c.open) c.close();
-  else c.showModal();
+  if (c.open) {
+    c.close();
+  } else {
+    if ($('#mobileNav')?.classList.contains('open')) window.toggleMobileNav(true);
+    c.showModal();
+  }
 };
 
 // ── CHECKOUT & ORDER INQUIRY ──
@@ -8160,6 +8192,18 @@ function setLanguage(lang) {
   }
 
   // Mobile nav
+  if ($('#mobNavCatalogText')) {
+    $('#mobNavCatalogText').textContent = (LANG === 'en') ? 'All Fragrances (103 items)' : 'Alle Parfymer (103 stk)';
+  }
+  const navToggleBtn = $('#navToggleBtn');
+  if (navToggleBtn) {
+    const isOpen = $('#mobileNav')?.classList.contains('open');
+    const navTitle = isOpen
+      ? (LANG === 'en' ? 'Close mobile menu' : 'Lukk mobilmeny')
+      : (LANG === 'en' ? 'Open mobile menu' : 'Åpne mobilmeny');
+    navToggleBtn.setAttribute('aria-label', navTitle);
+    navToggleBtn.title = navTitle;
+  }
   if ($('#mobNavFragrancesText')) $('#mobNavFragrancesText').textContent = t.mobNavFragrances || t.navFragrances;
   else if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.mobNavFragrances || t.navFragrances;
   if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
@@ -8346,8 +8390,34 @@ window.toggleLanguage = function() {
   setLanguage(nextLang);
 };
 
-window.toggleMobileNav = function() {
-  $('#mobileNav')?.classList.toggle('open');
+window.toggleMobileNav = function(forceClose = false) {
+  const nav = $('#mobileNav');
+  const btn = $('#navToggleBtn');
+  if (!nav) return;
+  const isCurrentlyOpen = nav.classList.contains('open');
+  const willBeOpen = forceClose ? false : !isCurrentlyOpen;
+
+  if (willBeOpen) {
+    nav.classList.add('open');
+  } else {
+    nav.classList.remove('open');
+    const mobPanel = document.getElementById('mobBrandsPanel');
+    if (mobPanel) mobPanel.style.display = 'none';
+    const mobArrow = document.getElementById('mobBrandsArrow');
+    if (mobArrow) mobArrow.textContent = '▾';
+    const mobFrag = document.getElementById('mobNavFragrances');
+    if (mobFrag) mobFrag.setAttribute('aria-expanded', 'false');
+  }
+
+  if (btn) {
+    btn.textContent = willBeOpen ? '✕' : '☰';
+    btn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
+    const label = willBeOpen
+      ? (LANG === 'en' ? 'Close mobile menu' : 'Lukk mobilmeny')
+      : (LANG === 'en' ? 'Open mobile menu' : 'Åpne mobilmeny');
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+  }
 };
 
 // ── ADMIN PANEL & CLOUD SYNCHRONIZATION ──
@@ -8684,7 +8754,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8746,7 +8816,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8822,7 +8892,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8837,6 +8907,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v47');
     localStorage.removeItem('arx_custom_catalog_v46');
     localStorage.removeItem('arx_custom_catalog_v45');
     localStorage.removeItem('arx_custom_catalog_v44');
@@ -8853,7 +8924,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v46', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -8938,6 +9009,9 @@ $('#mobNavSearchInput')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
     syncSearch(e.target.value, 'mob', true);
+    if ($('#mobileNav')?.classList.contains('open')) {
+      window.toggleMobileNav(true);
+    }
   }
 });
 $('#mobNavClearSearchBtn')?.addEventListener('click', () => {
@@ -8959,6 +9033,26 @@ $$('dialog').forEach(d => {
       d.close();
     }
   });
+});
+
+// Dismiss mobileNav when clicking outside or pressing Escape
+document.addEventListener('click', e => {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.getElementById('navToggleBtn');
+  if (nav && nav.classList.contains('open')) {
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+      window.toggleMobileNav(true);
+    }
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const nav = document.getElementById('mobileNav');
+    if (nav && nav.classList.contains('open')) {
+      window.toggleMobileNav(true);
+    }
+  }
 });
 
 // Flacon uncork removed with Svartfjord section
