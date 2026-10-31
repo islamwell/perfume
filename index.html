@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 103 Utvalgte Flakonger</title>
+<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 110 Utvalgte Flakonger</title>
 <meta name="theme-color" content="#05070b">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 103 originale flakonger, luksus gavesett og oljer fra French Avenue, Bujairami, Armaf, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
+<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 110 originale flakonger, luksus gavesett og oljer fra Surrati, Risala, French Avenue, Bujairami, Armaf, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
-<meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri & 103 Utvalgte Flakonger">
+<meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri & 110 Utvalgte Flakonger">
 <meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
 <meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aromatix Oslo · Kuratert Parfymeri & 103 Utvalgte Flakonger">
+<meta name="twitter:title" content="Aromatix Oslo · Kuratert Parfymeri & 110 Utvalgte Flakonger">
 <meta name="twitter:description" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
 <meta name="twitter:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
 
@@ -2086,7 +2086,7 @@ footer{
   </svg>
   <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
   <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">PERFUMES</b></p>
-  <p class="hint" id="introHint">Feel As Good As You Smell · 103 Utvalgte Flakonger</p>
+  <p class="hint" id="introHint">Feel As Good As You Smell · 110 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
@@ -2117,6 +2117,12 @@ footer{
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Armaf')">
               <span class="nav-item-icon">👑</span> <span class="nav-item-name">Armaf / Sterling</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Surrati')">
+              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Risala')">
+              <span class="nav-item-icon">🖋️</span> <span class="nav-item-name">Risala / Le Falconé</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Maison Alhambra')">
               <span class="nav-item-icon">🏛️</span> <span class="nav-item-name">Maison Alhambra</span>
@@ -2180,7 +2186,7 @@ footer{
 
   <div class="mobile-nav" id="mobileNav" aria-label="Mobil navigasjon">
     <a href="#kjop" onclick="toggleMobileNav()" id="mobNavCatalog" style="font-weight:600;color:var(--gold);display:flex;align-items:center;gap:.5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,0.06)">
-      <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (103 stk)</span>
+      <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (110 stk)</span>
     </a>
     <div class="mob-dropdown" id="mobBrandsDropdown">
       <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances" aria-expanded="false">
@@ -2191,6 +2197,8 @@ footer{
         <div class="mob-brands-list">
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav();"><span>🌟</span> Lattafa Perfumes</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav();"><span>👑</span> Armaf / Sterling</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();"><span>🕋</span> Surrati Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Risala'); toggleMobileNav();"><span>🖋️</span> Risala / Le Falconé</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav();"><span>🏛️</span> Maison Alhambra</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav();"><span>💎</span> Reef Perfumes</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav();"><span>🌙</span> Swiss Arabian</button>
@@ -2231,7 +2239,7 @@ footer{
         <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
       </div>
       <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
-        Se hele katalogen (103) ↓
+        Se hele katalogen (110) ↓
       </a>
     </div>
 
@@ -2381,10 +2389,10 @@ footer{
     <div class="collection-header">
       <p class="tagline-small" id="colTag">Finn Din Signaturduft</p>
       <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
-      <p class="sub" id="colSub">103 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
+      <p class="sub" id="colSub">110 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
       <div class="collection-status-bar">
         <div class="status-bar-left">
-          <span id="collectionCount">Viser 103 av 103 parfymer — Finn din favoritt i dag</span>
+          <span id="collectionCount">Viser 110 av 110 parfymer — Finn din favoritt i dag</span>
           <button type="button" class="btn-show-all" id="btnShowAll" onclick="resetAllFilters()" title="Vis alle parfymer / Reset filters">Show All</button>
         </div>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
@@ -2396,8 +2404,10 @@ footer{
       <div class="filter-field">
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
-          <option value="all" id="optBrandAll">Alle merker (103)</option>
+          <option value="all" id="optBrandAll">Alle merker (110)</option>
           <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
+          <option value="Surrati" id="optBrandSurrati">Surrati Perfumes (Makkah) (6)</option>
+          <option value="Risala" id="optBrandRisala">Risala / Le Falconé Dubai (1)</option>
           <option value="Lattafa" id="optBrandLattafa">Lattafa (14)</option>
           <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (1)</option>
           <option value="Swiss Arabian" id="optBrandSwiss">Swiss Arabian (4)</option>
@@ -2834,7 +2844,7 @@ footer{
     </p>
 
     <div style="display:flex;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap">
-      <input type="text" id="adminSearchInp" placeholder="Søk blant 103 parfymer..." oninput="filterAdminList(this.value)"
+      <input type="text" id="adminSearchInp" placeholder="Søk blant 110 parfymer..." oninput="filterAdminList(this.value)"
         style="padding:.55rem .85rem;background:#05080e;border:1px solid var(--line);color:#fff;border-radius:8px;font-size:.84rem;flex:1;min-width:200px">
       <button type="button" class="card-btn btn-details" onclick="resetAdminCatalogToDefaults()" style="padding:.55rem .9rem;font-size:.76rem;color:#ef4444;border-color:rgba(239,68,68,0.3)">
         ↺ Tilbakestill til standardkatalog
@@ -2946,7 +2956,7 @@ footer{
     <div class="footer-col">
       <h4 id="footerNavTitle">Navigasjon</h4>
       <ul>
-        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (103)</a></li>
+        <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (110)</a></li>
         <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
         <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatix Oslo</button></li>
         <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
@@ -2982,7 +2992,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.47 (updated 2026-10-16 22:45)
+        v1.0.48 (updated 2026-10-31 22:05)
       </div>
     </div>
   </div>
@@ -6590,12 +6600,250 @@ const DEFAULT_CATALOG = [
       "capStroke": "#84cc16"
     },
     "tag": "Ekstrem Friskhet"
-  }
+  },
+{
+  "id": "surrati-oud-honey",
+  "image": "images/surrati-oud-honey.png",
+  "image_box": "images/surrati-oud-honey.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Oud Honey",
+  "edition": "Heritage Collection · 140 ml",
+  "edition_en": "Heritage Collection · 140 ml",
+  "subtitle": "Golden Honey, Rich Cambodian Oud & Velvet Florals",
+  "scentFamily": "oud",
+  "desc": "En uimotståelig og eksklusiv orientalsk luksusduft fra det ærverdige dufthuset Surrati i Mekka. Ekte, gyllen villhonning forenes i perfekt harmoni med dypt kamodsjansk agarwood (oud), krydret kardemomme, fløyelsmyk rose og varm ambra.",
+  "desc_en": "An irresistible oriental luxury masterpiece from the historic Surrati perfume house of Makkah. Real wild golden honey blended seamlessly with deep Cambodian agarwood (oud), warm cardamom, velvety rose, and rich amber.",
+  "story": "Surrati Honey Oud er en av merkets mest ettertraktede kreasjoner verden over. Den sjenerøse 140 ml flakongen byr på ekstraordinær projeksjon og en gyllen, forførende sødme som omsvøper sansene hele dagen.",
+  "story_en": "Surrati Honey Oud is globally acclaimed as one of the house's most sought-after treasures. The generous 140 ml presentation bottle offers phenomenal sillage and a golden, intoxicating warmth that lingers effortlessly.",
+  "price": 899,
+  "size": "140 ml",
+  "notes": {
+    "top": "Kardemomme, bergamott, gyllen villhonning",
+    "heart": "Fransk rose, sambac sjasmin, honningdugg",
+    "base": "Kamodsjansk oud, edelt rav (amber), madagaskarvanilje, moskus",
+    "top_en": "Cardamom, bergamot, golden wild honey",
+    "heart_en": "French rose, sambac jasmine, honeydew nectar",
+    "base_en": "Cambodian oud, precious amber, Madagascar vanilla, musk"
+  },
+  "color": {
+    "liquidTop": "oklch(.80 .18 75 / .9)",
+    "liquidBottom": "oklch(.40 .15 60 / .98)",
+    "glow": "oklch(.88 .18 78)",
+    "cap": "#1e1b18",
+    "capStroke": "var(--gold)"
+  },
+  "tag": "Nyhet · 899 kr"
+},
+{
+  "id": "surrati-rosso-ombre",
+  "image": "images/surrati-rosso-ombre.png",
+  "image_box": "images/surrati-rosso-ombre.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Rosso Ombré",
+  "edition": "Extrait de Parfum · 150 ml",
+  "edition_en": "Extrait de Parfum · 150 ml",
+  "subtitle": "Red Berry Elixir, Smoky Oud & Velvet Amber",
+  "scentFamily": "amber",
+  "desc": "Surrati Rosso Ombré i gigantisk 150 ml Extrait de Parfum flakong. En blendende rød juvel som forener saftige mørke bær, italiensk bergamott og sitron med røyket oud, orientalske blomster, varm ambra og sensuell moskus.",
+  "desc_en": "Surrati Rosso Ombré in a massive 150 ml Extrait de Parfum flacon. A dazzling crimson masterpiece combining dark juicy berries, Italian bergamot, and lemon with smoky oud, oriental petals, warm amber, and sensual musk.",
+  "story": "Rosso Ombré er selve symbolet på moderne arabisk haute parfumerie. Den tunge, rødlige flakongen og høye oljekonsentrasjonen gir en overlegen aura og et uforglemmelig duftspor.",
+  "story_en": "Rosso Ombré epitomizes modern Arabian haute perfumery. Its heavy crimson bottle and extrait concentration deliver unmatched longevity and an unforgettable trail.",
+  "price": 899,
+  "size": "150 ml",
+  "notes": {
+    "top": "Italiensk bergamott, modne bringebær, frisk sitrus",
+    "heart": "Oud-tre, orientalske kronblader, damaskrose",
+    "base": "Varm ambra, sedertre, hvit moskus, edelt harpiks",
+    "top_en": "Italian bergamot, ripe raspberries, fresh citrus",
+    "heart_en": "Oud wood, oriental petals, Damask rose",
+    "base_en": "Warm amber, cedarwood, white musk, noble resin"
+  },
+  "color": {
+    "liquidTop": "oklch(.55 .22 25 / .9)",
+    "liquidBottom": "oklch(.25 .15 15 / .98)",
+    "glow": "oklch(.65 .22 25)",
+    "cap": "#1a0808",
+    "capStroke": "#ef4444"
+  },
+  "tag": "150 ml Extrait · 899 kr"
+},
+{
+  "id": "surrati-fabrica",
+  "image": "images/surrati-fabrica.png",
+  "image_box": "images/surrati-fabrica.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Fabrica",
+  "edition": "Extrait de Parfum · 150 ml",
+  "edition_en": "Extrait de Parfum · 150 ml",
+  "subtitle": "Warm Spices, Rich Woods & Opulent Amber Leather",
+  "scentFamily": "gourmand",
+  "desc": "En arkitektonisk og luksuriøs extrait-kreasjon fra Surrati i stor 150 ml flakong. Fabrica blander edle krydder, ristede trenoter, mykt lær og kremet vanilje med en dyp amberbase for en selvsikker og uimotståelig stil.",
+  "desc_en": "An architectural and luxurious extrait creation from Surrati in a bold 150 ml bottle. Fabrica unites noble spices, roasted woods, supple leather, and creamy vanilla with a deep amber base for commanding elegance.",
+  "story": "Fabrica er designet for kjenneren som ønsker en eksklusiv nisjeprofil med maksimal tilstedeværelse. En kraftfull, sofistikert og moderne duft som fanger rommet.",
+  "story_en": "Fabrica was created for the connoisseur seeking an exclusive niche identity with maximum presence. Powerful, sophisticated, and captivating in every setting.",
+  "price": 899,
+  "size": "150 ml",
+  "notes": {
+    "top": "Kardemomme, rosa pepper, tørket frukt",
+    "heart": "Aromatisk lær, sedertre, ristet tonkabønne",
+    "base": "Amber, bourbonvanilje, sandeltre, eikemose",
+    "top_en": "Cardamom, pink pepper, dried fruit nuances",
+    "heart_en": "Aromatic leather, cedarwood, roasted tonka bean",
+    "base_en": "Amber, bourbon vanilla, sandalwood, oakmoss"
+  },
+  "color": {
+    "liquidTop": "oklch(.65 .14 55 / .9)",
+    "liquidBottom": "oklch(.30 .12 45 / .98)",
+    "glow": "oklch(.75 .16 60)",
+    "cap": "#1c1917",
+    "capStroke": "var(--gold)"
+  },
+  "tag": "150 ml Extrait · 899 kr"
+},
+{
+  "id": "surrati-cuban-tobacco",
+  "image": "images/surrati-cuban-tobacco.png",
+  "image_box": "images/surrati-cuban-tobacco.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Cuban Tobacco",
+  "edition": "Signature Extrait · 100 ml",
+  "edition_en": "Signature Extrait · 100 ml",
+  "subtitle": "Cuban Cigar Leaf, Dark Cocoa & Smoked Vanilla",
+  "scentFamily": "gourmand",
+  "desc": "En overdådig og mørk tobakksduft av høyeste klasse. Surrati Cuban Tobacco kombinerer rike cubanske tobakksblader, bitter kakao, tørket plomme og gyllen honning over røyket treverk og luksuriøs vanilje.",
+  "desc_en": "A sumptuous and dark tobacco masterpiece of the highest pedigree. Surrati Cuban Tobacco merges rich Cuban cigar leaf, dark cocoa, dried plum, and golden honey over smoked woods and luxurious vanilla.",
+  "story": "Inspirert av Havannas mest eksklusive sigarlounger og arabisk parfumekunst. En intens og varm duftopplevelse med uovertruffen holdbarhet og tiltrekningskraft.",
+  "story_en": "Inspired by Havana's private cigar lounges harmonized with traditional Arabian perfumery. An intense, warm sensory journey with peerless longevity and magnetic charm.",
+  "price": 899,
+  "size": "100 ml",
+  "notes": {
+    "top": "Cubansk tobakk, krydret kanel, tørket frukt",
+    "heart": "Mørk kakao, tonkabønne, tobakksblomst",
+    "base": "Bourbonvanilje, røyket oud, sandeltre, tørket kvae",
+    "top_en": "Cuban tobacco leaf, spicy cinnamon, dried fruit",
+    "heart_en": "Dark cocoa, tonka bean, tobacco blossom",
+    "base_en": "Bourbon vanilla, smoked oud, sandalwood, dry sap"
+  },
+  "color": {
+    "liquidTop": "oklch(.50 .12 45 / .9)",
+    "liquidBottom": "oklch(.20 .08 35 / .98)",
+    "glow": "oklch(.60 .15 50)",
+    "cap": "#29180f",
+    "capStroke": "#d97706"
+  },
+  "tag": "Tobakk & Bourbon · 899 kr"
+},
+{
+  "id": "surrati-jewel",
+  "image": "images/surrati-jewel.png",
+  "image_box": "images/surrati-jewel.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Jewel",
+  "edition": "Prestige Collection · 140 ml",
+  "edition_en": "Prestige Collection · 140 ml",
+  "subtitle": "Luminous Florals, Sparkling Amber & Soft White Woods",
+  "scentFamily": "floral",
+  "desc": "En strålende og elegant juvel av en parfyme. Surrati Jewel i luksuriøs 140 ml flakong forener delikate hvite blomster, sprudlende mandarin og saftig fersken med fløyelsmyk sjasmin, kashmir-tre og varm gyllen ambra.",
+  "desc_en": "A radiant and sophisticated gem of a fragrance. Surrati Jewel in an opulent 140 ml bottle brings together delicate white flowers, sparkling mandarin, and sweet peach with velvety jasmine, cashmere wood, and golden amber.",
+  "story": "Jewel representerer ren luksus og tidløs femininitet. Flakongen er designet for å glitre som en edelsten, med en forførende duft som etterlater et uforglemmelig inntrykk.",
+  "story_en": "Jewel represents pure luxury and timeless femininity. Encased in a faceted bottle designed to gleam like a gemstone, delivering a captivating floral trail.",
+  "price": 899,
+  "size": "140 ml",
+  "notes": {
+    "top": "Mandarin, hvit fersken, bergamott",
+    "heart": "Sambac sjasmin, ylang-ylang, appelsinblomst",
+    "base": "Kashmir-tre, hvit ambra, vanilje, lys moskus",
+    "top_en": "Mandarin, white peach, bergamot",
+    "heart_en": "Sambac jasmine, ylang-ylang, orange blossom",
+    "base_en": "Cashmere wood, white amber, vanilla, luminous musk"
+  },
+  "color": {
+    "liquidTop": "oklch(.82 .14 85 / .9)",
+    "liquidBottom": "oklch(.45 .12 70 / .98)",
+    "glow": "oklch(.90 .16 85)",
+    "cap": "#fef08a",
+    "capStroke": "var(--gold)"
+  },
+  "tag": "140 ml Luksus · 899 kr"
+},
+{
+  "id": "surrati-dolce-marina",
+  "image": "images/surrati-dolce-marina.png",
+  "image_box": "images/surrati-dolce-marina.png",
+  "brand": "Surrati",
+  "house": "Surrati Perfumes · Holy Makkah",
+  "name": "Surrati Dolce Marina",
+  "edition": "Riviera Edition · 140 ml",
+  "edition_en": "Riviera Edition · 140 ml",
+  "subtitle": "Marine Breeze, Mediterranean Citrus & Clean Musk",
+  "scentFamily": "citrus",
+  "desc": "En frisk og oppløftende kystduft fra Surrati i stor 140 ml flakong. Dolce Marina fanger den krystallklare havbrisen langs Middelhavskysten med italiensk sitron, bergamott, akvatiske noter, myk salvie og ren hvit moskus.",
+  "desc_en": "A refreshing and invigorating coastal fragrance from Surrati in a generous 140 ml bottle. Dolce Marina captures crystal Mediterranean breezes with Italian lemon, bergamot, aquatic accords, clary sage, and clean white musk.",
+  "story": "Dolce Marina forener arabisk parfumekunsts overlegne varighet med den europeiske rivieraens uanstrengte friskhet. Perfekt for sommer, vår og hverdagsbruk.",
+  "story_en": "Dolce Marina combines the extraordinary performance of Arabian perfumery with the breezy freshness of the European Riviera. Perfect for summer, spring, and daily signature wear.",
+  "price": 899,
+  "size": "140 ml",
+  "notes": {
+    "top": "Italiensk sitron, bergamott, havbris-akkord",
+    "heart": "Rosmarin, salvie, havlilje",
+    "base": "Drivved, ambra, ren hvit moskus, sedertre",
+    "top_en": "Italian lemon, bergamot, sea breeze accord",
+    "heart_en": "Rosemary, clary sage, sea lily",
+    "base_en": "Driftwood, ambergris, clean white musk, cedar"
+  },
+  "color": {
+    "liquidTop": "oklch(.75 .12 210 / .9)",
+    "liquidBottom": "oklch(.35 .10 215 / .98)",
+    "glow": "oklch(.85 .14 210)",
+    "cap": "#0284c7",
+    "capStroke": "#38bdf8"
+  },
+  "tag": "140 ml Friskhet · 899 kr"
+},
+{
+  "id": "risala-autograph",
+  "image": "images/risala-autograph.png",
+  "image_box": "images/risala-autograph.png",
+  "brand": "Risala",
+  "house": "Le Falconé · Dubai UAE",
+  "name": "Le Falconé Risala Autograph",
+  "edition": "Niche Collection · 100 ml",
+  "edition_en": "Niche Collection · 100 ml",
+  "subtitle": "Sparkling Citrus, Mediterranean Herbs & Vetiver Leather (Isola Blu DNA)",
+  "scentFamily": "citrus",
+  "desc": "Den virale nisjesensasjonen fra Le Falconé / Risala i Dubai (Risalah Autograph). En luksuriøs og oppkvikkende komposisjon med sprudlende sitron, lime, bergamott og solbær over appelsinblomst, timian, kokos og iris, hvilende på en base av edelt sedertre, fint lær og hvit moskus.",
+  "desc_en": "The viral niche sensation from Le Falconé / Risala in Dubai (Risalah Autograph). An ultra-luxurious, uplifting creation featuring sparkling lemon, lime, bergamot, and blackcurrant over orange blossom, thyme, coconut, and iris, resting on cedarwood, fine leather, and white musk.",
+  "story": "Risala Autograph er hyllet av parfyme-entusiaster og duft-influensere for sin slående likhet med ultrakosteige Roja Parfums Isola Blu. En ekstraordinær signaturduft for enhver anledning.",
+  "story_en": "Risala Autograph is celebrated by fragrance aficionados for capturing the breathtaking sophistication of Roja Parfums Isola Blu. An extraordinary signature scent for any occasion.",
+  "price": 649,
+  "size": "100 ml",
+  "notes": {
+    "top": "Sitron, lime, bergamott, solbær, rosa pepper, timian",
+    "heart": "Appelsinblomst, kokos, iris, lilje, labdanum, eikemose",
+    "base": "Sedertre, lær, ambra, patsjuli, hvit moskus",
+    "top_en": "Lemon, lime, bergamot, blackcurrant, pink pepper, thyme",
+    "heart_en": "Orange blossom, coconut, iris, lily, labdanum, oakmoss",
+    "base_en": "Cedarwood, leather, amber, patchouli, white musk"
+  },
+  "color": {
+    "liquidTop": "oklch(.75 .15 140 / .9)",
+    "liquidBottom": "oklch(.35 .10 145 / .98)",
+    "glow": "oklch(.85 .16 140)",
+    "cap": "#064e3b",
+    "capStroke": "var(--gold)"
+  },
+  "tag": "Viral Nisjefavoritt · 649 kr"
+}
 ];
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v47');
+  const custom = localStorage.getItem('arx_custom_catalog_v48');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -6605,10 +6853,10 @@ try {
 // ── BILINGUAL TRANSLATION DICTIONARY (nb / en) ──
 const I18N = {
   nb: {
-    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 103 Utvalgte Flakonger",
-    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 103 originale parfymer, luksus gavesett og oljer. Makspris 1 500 kr.",
+    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 110 Utvalgte Flakonger",
+    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 110 originale parfymer, luksus gavesett og oljer. Makspris 1 500 kr.",
     skipLink: "Hopp til parfymer",
-    introHint: "Feel As Good As You Smell · 103 Utvalgte Flakonger",
+    introHint: "Feel As Good As You Smell · 110 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Intro",
     banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
@@ -6637,7 +6885,7 @@ const I18N = {
     heroBrandsLabel: "Topp Merkehus på Nettet — Klikk for å filtrere",
     heroBestsellersTitle: "Mest Solgte på Nettet",
     heroBestsellersSub: "De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser",
-    heroBestsellersLink: "Se hele katalogen (103) ↓",
+    heroBestsellersLink: "Se hele katalogen (110) ↓",
     heroBuyNow: "Kjøp nå",
     heroBadge1: "🔥 #1 på Nettet",
     heroVol1: "100 ml · Woody Spicy Beast",
@@ -6659,11 +6907,11 @@ const I18N = {
     heroVol9: "4-i-1 Gaveeske · Grønn, Hvit & Rød",
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
-    colSub: "103 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
+    colSub: "110 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
     showingCount: (count, total) => `Viser ${count} av ${total} parfymer — Finn din favoritt i dag`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
-    optBrandAll: "Alle merker (103)",
+    optBrandAll: "Alle merker (110)",
     lblFilterScent: "Duftfamilie",
     optScentAll: "Alle duftnoter",
     optScentOud: "Oud & Treaktig",
@@ -6680,7 +6928,7 @@ const I18N = {
     lblFilterSearch: "Søk i katalogen",
     searchPlaceholder: "Søk parfyme, merke, duftnote...",
     emptyTitle: "Ingen parfymer passer til søket ditt",
-    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 103 parfymer.",
+    emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 110 parfymer.",
     resetFilters: "Nullstill filtre",
     cardDetailsBtn: "Se detaljer",
     cardAddBtn: "Legg til",
@@ -6772,7 +7020,7 @@ const I18N = {
     footerPolicyTitle: "Kundeservice & Kjøp",
     footerContactTitle: "Showroom & Henting",
     footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)",
-    ftNavFragrances: "Våre Parfymer (103)",
+    ftNavFragrances: "Våre Parfymer (110)",
     ftNavShowroom: "Showroom & Henting",
     ftNavAbout: "Om Aromatix Oslo",
     ftPolicyAbout: "Om Aromatix Oslo",
@@ -6783,10 +7031,10 @@ const I18N = {
     adminOpenBtn: "Kurator Atelier (Admin)"
   },
   en: {
-    pageTitle: "Aromatix Oslo · Curated Perfumery & 103 Selected Bottles",
-    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 103 authentic fragrances, luxury gift sets and oils. Maximum price 1 500 kr.",
+    pageTitle: "Aromatix Oslo · Curated Perfumery & 110 Selected Bottles",
+    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 110 authentic fragrances, luxury gift sets and oils. Maximum price 1 500 kr.",
     skipLink: "Skip to fragrances",
-    introHint: "Feel As Good As You Smell · 103 Selected Bottles",
+    introHint: "Feel As Good As You Smell · 110 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Intro",
     banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
@@ -6815,7 +7063,7 @@ const I18N = {
     heroBrandsLabel: "Top Brands Online — Click to filter",
     heroBestsellersTitle: "Best Sellers Online",
     heroBestsellersSub: "The absolute crowd favorites with the highest views, sales, and top ratings",
-    heroBestsellersLink: "View full collection (103) ↓",
+    heroBestsellersLink: "View full collection (110) ↓",
     heroBuyNow: "Buy now",
     heroBadge1: "🔥 #1 Online",
     heroVol1: "100 ml · Woody Spicy Beast",
@@ -6837,11 +7085,11 @@ const I18N = {
     heroVol9: "4-in-1 Luxury Box · Green, White & Red",
     colTag: "Find Your Signature Scent",
     colTitle: "Smell Amazing. Feel Confident.",
-    colSub: "103 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
+    colSub: "110 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
     showingCount: (count, total) => `Showing ${count} of ${total} fragrances — Find your perfect match`,
     colGuaranteeBadge: "● 100% Original factory-sealed bottles",
     lblFilterBrand: "Brand / House",
-    optBrandAll: "All brands (103)",
+    optBrandAll: "All brands (110)",
     lblFilterScent: "Scent Family",
     optScentAll: "All scent notes",
     optScentOud: "Oud & Woody",
@@ -6858,7 +7106,7 @@ const I18N = {
     lblFilterSearch: "Search catalog",
     searchPlaceholder: "Search fragrance, brand, notes...",
     emptyTitle: "No fragrances match your search",
-    emptyDesc: "Try another search term or reset filters to browse all 103 fragrances.",
+    emptyDesc: "Try another search term or reset filters to browse all 110 fragrances.",
     resetFilters: "Reset filters",
     cardDetailsBtn: "View details",
     cardAddBtn: "Add",
@@ -6950,7 +7198,7 @@ const I18N = {
     footerPolicyTitle: "Customer Care & Orders",
     footerContactTitle: "Showroom & Pickup",
     footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)",
-    ftNavFragrances: "Our Fragrances (103)",
+    ftNavFragrances: "Our Fragrances (110)",
     ftNavShowroom: "Showroom & Pickup",
     ftNavAbout: "About Aromatix Oslo",
     ftPolicyAbout: "About Aromatix Oslo",
@@ -7061,7 +7309,13 @@ const TAG_TRANSLATIONS = {
   "Ekstrem Friskhet": "Extreme Freshness",
   "⚡ Tilbud 49 kr · Før 100 kr": "⚡ Sale 49 kr · Was 100 kr",
   "Limited Edition Stor Eske": "Limited Edition Big Box",
-  "Blå Skinneske · Flip Top": "Blue Leather Case · Flip Top"
+  "Blå Skinneske · Flip Top": "Blue Leather Case · Flip Top",
+  "Nyhet · 899 kr": "New · 899 kr",
+  "150 ml Extrait · 899 kr": "150 ml Extrait · 899 kr",
+  "Tobakk & Bourbon · 899 kr": "Tobacco & Bourbon · 899 kr",
+  "140 ml Luksus · 899 kr": "140 ml Luxury · 899 kr",
+  "140 ml Friskhet · 899 kr": "140 ml Freshness · 899 kr",
+  "Viral Nisjefavoritt · 649 kr": "Viral Niche Favorite · 649 kr"
 };
 
 function translateTag(tag, lang) {
@@ -7189,7 +7443,9 @@ function renderStore() {
                            b === 'Bujairami' ? 'Bujairami Perfumes' :
                            b === 'Daniel Hechter' ? 'Daniel Hechter Paris' :
                            b === 'Sergio Tacchini' ? 'Sergio Tacchini Milano' :
-                           b === 'So...?' ? 'Miss So...? London' : b;
+                           b === 'So...?' ? 'Miss So...? London' :
+                           b === 'Surrati' ? 'Surrati Perfumes (Makkah)' :
+                           b === 'Risala' ? 'Risala / Le Falconé Dubai' : b;
       brandHtml += `<option value="${escapeHtml(b)}">${escapeHtml(displayLabel)} (${brandCounts[b]})</option>`;
     });
     brandSelect.innerHTML = brandHtml;
@@ -7918,7 +8174,7 @@ const POLICIES = {
       body: `
         <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi & Utvalg</h4>
-        <p>Vi tilbyr et håndplukket utvalg av over 100 virale og legendariske mesterverk fra hus som Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
+        <p>Vi tilbyr et håndplukket utvalg av 110 virale og legendariske mesterverk fra hus som Surrati (Mekka), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt emballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
@@ -7943,7 +8199,7 @@ const POLICIES = {
       body: `
         <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy & Collection</h4>
-        <p>We curate over 100 viral and legendary fragrance masterpieces from houses including Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
+        <p>We curate 110 viral and legendary fragrance masterpieces from houses including Surrati (Makkah), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
@@ -8193,7 +8449,7 @@ function setLanguage(lang) {
 
   // Mobile nav
   if ($('#mobNavCatalogText')) {
-    $('#mobNavCatalogText').textContent = (LANG === 'en') ? 'All Fragrances (103 items)' : 'Alle Parfymer (103 stk)';
+    $('#mobNavCatalogText').textContent = (LANG === 'en') ? 'All Fragrances (110 items)' : 'Alle Parfymer (110 stk)';
   }
   const navToggleBtn = $('#navToggleBtn');
   if (navToggleBtn) {
@@ -8754,7 +9010,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v48', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -8816,7 +9072,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v48', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -8892,7 +9148,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v48', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -8907,7 +9163,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
-    localStorage.removeItem('arx_custom_catalog_v47');
+    localStorage.removeItem('arx_custom_catalog_v48');
     localStorage.removeItem('arx_custom_catalog_v46');
     localStorage.removeItem('arx_custom_catalog_v45');
     localStorage.removeItem('arx_custom_catalog_v44');
@@ -8924,7 +9180,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v47', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v48', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
