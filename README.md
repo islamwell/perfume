@@ -1,10 +1,10 @@
-# AROMATIX OSLO (v1.0.48) — Parfymehus & Kuratert Parfymeri
+# AROMATIX OSLO (v1.0.49) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.48 Høydepunkter
+## 🌟 Versjon 1.0.49 Høydepunkter
 
 1. **Surrati Perfumes Makkah & Risala Autograph (110 Utvalgte Flakonger)**:
    - Nytt luksusutvalg fra det ærverdige dufthuset **Surrati** fra Mekka:
@@ -29,5 +29,5 @@ Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i T
 ---
 
 ## 🚀 Versjonering
-`v1.0.48 (updated 2026-10-31 22:05)`
+`v1.0.49 (updated 2026-11-02 06:14)`
 
