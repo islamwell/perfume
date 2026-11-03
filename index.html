@@ -255,6 +255,65 @@ try {
   .hero-bestsellers-grid { grid-template-columns: 1fr; }
 }
 
+/* Hero Brand Pills Bar */
+.hero-brand-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin: .9rem 0 1.35rem;
+  padding: .65rem .95rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(201,169,110,0.22);
+  border-radius: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.hero-brand-pills-bar::-webkit-scrollbar { display: none; }
+.hero-brand-pills-label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.hero-brand-pills-scroll {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  flex-wrap: nowrap;
+}
+.hero-brand-pill {
+  font-size: .8rem;
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,169,110,0.28);
+  border-radius: 999px;
+  padding: .35rem .85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: all .2s ease;
+}
+.hero-brand-pill:hover, .hero-brand-pill:focus-visible {
+  background: rgba(201,169,110,0.22);
+  border-color: var(--gold);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201,169,110,0.25);
+}
+.hero-brand-pill.highlight {
+  background: rgba(201,169,110,0.16);
+  border-color: rgba(201,169,110,0.55);
+  color: var(--gold-bright);
+}
+
 .hero-best-card {
   width: 100%;
   max-width: 100%;
@@ -300,6 +359,15 @@ try {
 }
 .hero-best-badge.purple {
   background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+}
+.hero-best-badge.black {
+  background: linear-gradient(135deg, #1e293b 0%, #090d16 100%);
+  border: 1px solid rgba(201,169,110,0.5);
+  color: var(--gold-bright);
+}
+.hero-best-badge.blue {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #fff;
 }
 .hero-best-img-wrap {
   width: 100%;
@@ -936,6 +1004,33 @@ nav.main-nav{display:none;align-items:center;gap:1.3rem}
 @media(min-width:54rem){nav.main-nav{display:flex}}
 nav.main-nav a, nav.main-nav .nav-dropdown-trigger, nav.main-nav button{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit}
 nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav button:hover, .nav-dropdown:hover .nav-dropdown-trigger, .nav-dropdown.active .nav-dropdown-trigger{color:var(--gold)}
+
+.nav-quick-brand{
+  font-size:.76rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--gold);
+  background:rgba(201,169,110,0.1);
+  border:1px solid rgba(201,169,110,0.32);
+  border-radius:999px;
+  padding:.28rem .75rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  cursor:pointer;
+  font-family:inherit;
+  transition:all .2s ease;
+  white-space:nowrap;
+}
+.nav-quick-brand:hover{
+  background:rgba(201,169,110,0.22);
+  border-color:var(--gold);
+  color:#fff;
+  transform:translateY(-1px);
+}
+@media(max-width:1080px){
+  .nav-quick-brand{display:none}
+}
 
 /* Top Nav Search Bar */
 .top-nav-search{
@@ -2092,7 +2187,7 @@ footer{
 
 <!-- ================= 2. HEADER BAR ================= -->
 <div class="top-banner">
-  <span id="bannerOffer">📍 <b>Showroom & Henting:</b> Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 <b>+47 955 50 199</b> · 🎁 <b>Nyhet:</b> Luksus Islamsk Gavesett (600 kr)</span>
+  <span id="bannerOffer">📍 <b>Showroom:</b> Tøyengata 3, Oslo (PakStar) · 🕋 <b>Nyhet:</b> Surrati Perfumes (Mekka) · 🖋️ <b>Viral:</b> Risala Autograph · 📞 <b>+47 955 50 199</b></span>
 </div>
 
 <header>
@@ -2112,26 +2207,26 @@ footer{
         <div class="nav-dropdown-panel" id="navBrandsPanel">
           <div class="nav-dropdown-header" id="navBrandsHeader">Top Brands Online — Click to filter</div>
           <div class="nav-dropdown-list">
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Lattafa')">
-              <span class="nav-item-icon">🌟</span> <span class="nav-item-name">Lattafa Perfumes</span>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Surrati')">
+              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes (Makkah)</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Risala')">
+              <span class="nav-item-icon">🖋️</span> <span class="nav-item-name">Risala / Le Falconé</span>
+            </button>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Swiss Arabian')">
+              <span class="nav-item-icon">🌙</span> <span class="nav-item-name">Swiss Arabian</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Armaf')">
               <span class="nav-item-icon">👑</span> <span class="nav-item-name">Armaf / Sterling</span>
             </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Surrati')">
-              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Risala')">
-              <span class="nav-item-icon">🖋️</span> <span class="nav-item-name">Risala / Le Falconé</span>
+            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Lattafa')">
+              <span class="nav-item-icon">🌟</span> <span class="nav-item-name">Lattafa Perfumes</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Maison Alhambra')">
               <span class="nav-item-icon">🏛️</span> <span class="nav-item-name">Maison Alhambra</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Reef')">
               <span class="nav-item-icon">💎</span> <span class="nav-item-name">Reef Perfumes</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Swiss Arabian')">
-              <span class="nav-item-icon">🌙</span> <span class="nav-item-name">Swiss Arabian</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
               <span class="nav-item-icon">⚜️</span> <span class="nav-item-name">Ahmed Al Maghribi</span>
@@ -2157,6 +2252,8 @@ footer{
           </div>
         </div>
       </div>
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati')" title="Utforsk Surrati Perfumes (Mekka)"><span aria-hidden="true">🕋</span> Surrati</button>
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Risala')" title="Utforsk Risala / Le Falconé"><span aria-hidden="true">🖋️</span> Risala</button>
       <a href="#showroom" id="navShowroom">Showroom</a>
       <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Om & Kontakt</button>
       <div class="top-nav-search" id="topNavSearchWrap">
@@ -2188,6 +2285,10 @@ footer{
     <a href="#kjop" onclick="toggleMobileNav()" id="mobNavCatalog" style="font-weight:600;color:var(--gold);display:flex;align-items:center;gap:.5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,0.06)">
       <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (117 stk)</span>
     </a>
+    <div style="display:flex;gap:.5rem;padding:.4rem 0 .6rem;border-bottom:1px solid rgba(255,255,255,0.06)">
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();" style="flex:1;justify-content:center"><span aria-hidden="true">🕋</span> Surrati (Mekka)</button>
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Risala'); toggleMobileNav();" style="flex:1;justify-content:center"><span aria-hidden="true">🖋️</span> Risala Autograph</button>
+    </div>
     <div class="mob-dropdown" id="mobBrandsDropdown">
       <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances" aria-expanded="false">
         <span id="mobNavFragrancesText">Top Brands</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
@@ -2195,13 +2296,13 @@ footer{
       <div class="mob-dropdown-panel" id="mobBrandsPanel" style="display:none">
         <div class="mob-dropdown-header" id="mobBrandsHeader">Top Brands Online — Click to filter</div>
         <div class="mob-brands-list">
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav();"><span>🌟</span> Lattafa Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav();"><span>👑</span> Armaf / Sterling</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();"><span>🕋</span> Surrati Perfumes</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Risala'); toggleMobileNav();"><span>🖋️</span> Risala / Le Falconé</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav();"><span>🌙</span> Swiss Arabian</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav();"><span>👑</span> Armaf / Sterling</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav();"><span>🌟</span> Lattafa Perfumes</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav();"><span>🏛️</span> Maison Alhambra</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav();"><span>💎</span> Reef Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav();"><span>🌙</span> Swiss Arabian</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi'); toggleMobileNav();"><span>⚜️</span> Ahmed Al Maghribi</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('French Avenue'); toggleMobileNav();"><span>🍸</span> French Avenue</button>
           <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav();"><span>🇦🇺</span> Bujairami Perfumes</button>
@@ -2243,6 +2344,40 @@ footer{
       </a>
     </div>
 
+    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Smooth Touch Scroll on Mobile) -->
+    <div class="hero-brand-pills-bar" aria-label="Hurtigvalg for merkehus">
+      <span class="hero-brand-pills-label" id="heroPillsLabel">Utvalgte Dufthus:</span>
+      <div class="hero-brand-pills-scroll">
+        <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Surrati')">
+          <span>🕋</span> <b>Surrati</b> <small style="opacity:.85;font-weight:400">(Mekka)</small>
+        </button>
+        <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Risala')">
+          <span>🖋️</span> <b>Risala</b> <small style="opacity:.85;font-weight:400">(Autograph)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
+          <span>🌙</span> <b>Swiss Arabian</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
+          <span>👑</span> <b>Armaf / Sterling</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
+          <span>🌟</span> <b>Lattafa</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('French Avenue')">
+          <span>🍸</span> <b>French Avenue</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Bujairami')">
+          <span>🇦🇺</span> <b>Bujairami</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Reef')">
+          <span>💎</span> <b>Reef Perfumes</b>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ibraq')">
+          <span>💠</span> <b>IBRAQ</b>
+        </button>
+      </div>
+    </div>
+
     <div class="hero-bestsellers-grid">
       <!-- 1. Armaf Club de Nuit Intense Man -->
       <article class="hero-best-card">
@@ -2259,105 +2394,150 @@ footer{
         </div>
       </article>
 
-      <!-- 2. Lattafa Khamrah -->
+      <!-- 2. Surrati Gray Oud (Grey Oud) -->
       <article class="hero-best-card">
-        <span class="hero-best-badge" id="heroBadge2">⚡ TikTok Viral</span>
+        <span class="hero-best-badge black" id="heroBadge2">🕋 Surrati Makkah</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('surrati-gray-oud')">
+          <img class="hero-best-img" src="images/surrati-gray-oud.png" alt="Surrati Gray Oud (Grey Oud)" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Surrati Perfumes (Mekka)</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('surrati-gray-oud')">Surrati Gray Oud (Grey Oud)</h3>
+        <div class="hero-best-vol" id="heroVol2">150 ml Extrait · Magnetkork</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">899 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('surrati-gray-oud')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 3. Le Falconé Risala Autograph -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge blue" id="heroBadge3">🖋️ Viral Nisjefavoritt</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('risala-autograph')">
+          <img class="hero-best-img" src="images/risala-autograph.png" alt="Le Falconé Risala Autograph" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Risala / Le Falconé</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('risala-autograph')">Le Falconé Risala Autograph</h3>
+        <div class="hero-best-vol" id="heroVol3">100 ml · Isola Blu DNA</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">649 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('risala-autograph')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 4. Swiss Arabian Detour Noir (Dectour) -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge gold" id="heroBadge4">🌙 Viral Layton DNA</span>
+        <div class="hero-best-img-wrap" onclick="openProductDetail('swiss-arabian-detour-noir')">
+          <img class="hero-best-img" src="images/detour-noir.png" alt="Swiss Arabian Detour Noir (Dectour)" loading="lazy">
+        </div>
+        <span class="hero-best-brand">Swiss Arabian</span>
+        <h3 class="hero-best-name" onclick="openProductDetail('swiss-arabian-detour-noir')">Swiss Arabian Detour Noir (Dectour)</h3>
+        <div class="hero-best-vol" id="heroVol4">100 ml · Eple, Vanilje & Krydder</div>
+        <div class="hero-best-bottom">
+          <span class="hero-best-price">499 kr</span>
+          <button type="button" class="hero-best-cta" onclick="quickAddToCart('swiss-arabian-detour-noir')">Kjøp nå</button>
+        </div>
+      </article>
+
+      <!-- 5. Lattafa Khamrah -->
+      <article class="hero-best-card">
+        <span class="hero-best-badge" id="heroBadge5">⚡ TikTok Viral</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
           <img class="hero-best-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-khamrah')">Lattafa Khamrah</h3>
-        <div class="hero-best-vol" id="heroVol2">100 ml · Kanel & Gourmand Vanilje</div>
+        <div class="hero-best-vol" id="heroVol5">100 ml · Kanel & Gourmand Vanilje</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-khamrah')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 3. Lattafa Asad -->
+      <!-- 6. Lattafa Asad -->
       <article class="hero-best-card">
-        <span class="hero-best-badge gold" id="heroBadge3">🔥 Bestselger Herre</span>
+        <span class="hero-best-badge gold" id="heroBadge6">🔥 Bestselger Herre</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
           <img class="hero-best-img" src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-asad')">Lattafa Asad (Black Dragon)</h3>
-        <div class="hero-best-vol" id="heroVol3">100 ml · Sort Pepper, Tobakk & Amber</div>
+        <div class="hero-best-vol" id="heroVol6">100 ml · Sort Pepper, Tobakk & Amber</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">490 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-asad')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 4. Lattafa Yara Pink -->
+      <!-- 7. Lattafa Yara Pink -->
       <article class="hero-best-card">
-        <span class="hero-best-badge purple" id="heroBadge4">💖 #1 Damefavoritt</span>
+        <span class="hero-best-badge purple" id="heroBadge7">💖 #1 Damefavoritt</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
           <img class="hero-best-img" src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-yara-pink')">Lattafa Yara (Pink)</h3>
-        <div class="hero-best-vol" id="heroVol4">100 ml · Heliotrop, Vanilje & Tropisk</div>
+        <div class="hero-best-vol" id="heroVol7">100 ml · Heliotrop, Vanilje & Tropisk</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">450 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-yara-pink')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 5. Lattafa Ana Abiyedh Rouge -->
+      <!-- 8. Lattafa Ana Abiyedh Rouge -->
       <article class="hero-best-card">
-        <span class="hero-best-badge" id="heroBadge5">💎 BR540 Sensation</span>
+        <span class="hero-best-badge" id="heroBadge8">💎 BR540 Sensation</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">
           <img class="hero-best-img" src="images/lattafa-ana-abiyedh-rouge.png" alt="Lattafa Ana Abiyedh Rouge" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-ana-abiyedh-rouge')">Lattafa Ana Abiyedh Rouge</h3>
-        <div class="hero-best-vol" id="heroVol5">100 ml · Safran, Karamell & Ambra</div>
+        <div class="hero-best-vol" id="heroVol8">100 ml · Safran, Karamell & Ambra</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-ana-abiyedh-rouge')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 6. French Avenue Spectre Ghost -->
+      <!-- 9. French Avenue Spectre Ghost -->
       <article class="hero-best-card">
-        <span class="hero-best-badge gold" id="heroBadge6">🍸 Nisje-Mesterverk</span>
+        <span class="hero-best-badge gold" id="heroBadge9">🍸 Nisje-Mesterverk</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('french-avenue-spectre-ghost')">
           <img class="hero-best-img" src="images/french-avenue-spectre-ghost.png" alt="French Avenue Spectre Ghost" loading="lazy">
         </div>
         <span class="hero-best-brand">French Avenue</span>
         <h3 class="hero-best-name" onclick="openProductDetail('french-avenue-spectre-ghost')">French Avenue Spectre Ghost</h3>
-        <div class="hero-best-vol" id="heroVol6">80 ml · Ingefær & Madagaskar Vanilje</div>
+        <div class="hero-best-vol" id="heroVol9">80 ml · Ingefær & Madagaskar Vanilje</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">500 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('french-avenue-spectre-ghost')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 7. Lattafa Oud Mood -->
+      <!-- 10. Lattafa Oud Mood -->
       <article class="hero-best-card">
-        <span class="hero-best-badge" id="heroBadge7">📦 Sylinder-eske m/ snor</span>
+        <span class="hero-best-badge" id="heroBadge10">📦 Sylinder-eske m/ snor</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-oud-mood')">
           <img class="hero-best-img" src="images/lattafa-oud-mood.png" alt="Lattafa Oud Mood" loading="lazy">
         </div>
         <span class="hero-best-brand">Lattafa</span>
         <h3 class="hero-best-name" onclick="openProductDetail('lattafa-oud-mood')">Lattafa Oud Mood</h3>
-        <div class="hero-best-vol" id="heroVol7">100 ml · Safran, Karamell & Oud</div>
+        <div class="hero-best-vol" id="heroVol10">100 ml · Safran, Karamell & Oud</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">400 kr</span>
           <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-oud-mood')">Kjøp nå</button>
         </div>
       </article>
 
-      <!-- 8. Buhara Esans 7ml Supertilbud -->
+      <!-- 11. Buhara Esans 7ml Supertilbud -->
       <article class="hero-best-card">
-        <span class="hero-best-badge green" id="heroBadge8">⚡ Tidsbegrenset tilbud · Før 100 kr</span>
+        <span class="hero-best-badge green" id="heroBadge11">⚡ Tidsbegrenset tilbud · Før 100 kr</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
           <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esans 7ml Roll-on (1 stk)" loading="lazy">
         </div>
         <span class="hero-best-brand">Buhara Esans · 1 stk roll-on</span>
         <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esans (7 ml Roll-on · 1 flaske)</h3>
-        <div class="hero-best-vol" id="heroVol8">7 ml · 1 stk valgfri duft (Før 100 kr)</div>
+        <div class="hero-best-vol" id="heroVol11">7 ml · 1 stk valgfri duft (Før 100 kr)</div>
         <div class="hero-best-bottom">
           <div style="display:flex;align-items:baseline;gap:.45rem">
             <span class="hero-best-price" style="color:#4ade80">49 kr</span>
@@ -2367,15 +2547,15 @@ footer{
         </div>
       </article>
 
-      <!-- 9. Luksus Islamsk Gavesett 4-i-1 -->
+      <!-- 12. Luksus Islamsk Gavesett 4-i-1 -->
       <article class="hero-best-card">
-        <span class="hero-best-badge green" id="heroBadge9">✨ Nyhet · Komplett Gavesett</span>
+        <span class="hero-best-badge green" id="heroBadge12">✨ Nyhet · Komplett Gavesett</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('quran-prayer-gift-box')">
           <img class="hero-best-img" src="images/quran-prayer-gift-box.png" alt="Luksus Islamsk Gavesett (Koran, Bønnematte, Tasbeeh & Itar)" loading="lazy">
         </div>
         <span class="hero-best-brand">Gavesett · 4-i-1 Komplett</span>
         <h3 class="hero-best-name" onclick="openProductDetail('quran-prayer-gift-box')">Luksus Islamsk Gavesett (Koran, Matte, Tasbeeh, Itar)</h3>
-        <div class="hero-best-vol" id="heroVol9">4-i-1 Gaveeske · Grønn, Hvit & Rød</div>
+        <div class="hero-best-vol" id="heroVol12">4-i-1 Gaveeske · Grønn, Hvit & Rød</div>
         <div class="hero-best-bottom">
           <span class="hero-best-price">600 kr</span>
           <button type="button" class="hero-best-cta hero-best-variant-btn" onclick="openProductDetail('quran-prayer-gift-box')">Velg farge</button>
@@ -2992,7 +3172,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.50 (updated 2026-11-02 19:48)
+        v1.0.51 (updated 2026-11-03 13:58)
       </div>
     </div>
   </div>
@@ -7088,7 +7268,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v50');
+  const custom = localStorage.getItem('arx_custom_catalog_v51');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -7104,7 +7284,7 @@ const I18N = {
     introHint: "Feel As Good As You Smell · 117 Utvalgte Flakonger",
     skipIntro: "Hopp over",
     replayIntro: "Intro",
-    banner: "📍 Showroom & Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar) · 📞 +47 955 50 199",
+    banner: "📍 <b>Showroom:</b> Tøyengata 3, Oslo (PakStar) · 🕋 <b>Nyhet:</b> Surrati Perfumes (Mekka) · 🖋️ <b>Viral:</b> Risala Autograph · 📞 +47 955 50 199",
     tagline: "",
     navFragrances: "Topp Merker",
     navShowroom: "Showroom",
@@ -7115,6 +7295,7 @@ const I18N = {
     topSearchPlaceholder: "Søk parfyme...",
     mobNavFragrances: "Topp Merker",
     navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
+    heroPillsLabel: "Utvalgte Dufthus:",
     btnShowAll: "Vis alle",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "Om",
@@ -7134,22 +7315,28 @@ const I18N = {
     heroBuyNow: "Kjøp nå",
     heroBadge1: "🔥 #1 på Nettet",
     heroVol1: "100 ml · Woody Spicy Beast",
-    heroBadge2: "⚡ TikTok Viral",
-    heroVol2: "100 ml · Kanel & Gourmand Vanilje",
-    heroBadge3: "🔥 Bestselger Herre",
-    heroVol3: "100 ml · Sort Pepper, Tobakk & Amber",
-    heroBadge4: "💖 #1 Damefavoritt",
-    heroVol4: "100 ml · Heliotrop, Vanilje & Tropisk",
-    heroBadge5: "💎 BR540 Sensation",
-    heroVol5: "100 ml · Safran, Karamell & Ambra",
-    heroBadge6: "🍸 Nisje-Mesterverk",
-    heroVol6: "80 ml · Ingefær & Madagaskar Vanilje",
-    heroBadge7: "📦 Sylinder-eske m/ snor",
-    heroVol7: "100 ml · Safran, Karamell & Oud",
-    heroBadge8: "⚡ Supertilbud 49 kr",
-    heroVol8: "7 ml · Alkoholfri Esans (Før 100 kr)",
-    heroBadge9: "✨ Nyhet · Komplett Gavesett",
-    heroVol9: "4-i-1 Gaveeske · Grønn, Hvit & Rød",
+    heroBadge2: "🕋 Surrati Makkah",
+    heroVol2: "150 ml Extrait · Magnetkork",
+    heroBadge3: "🖋️ Viral Nisjefavoritt",
+    heroVol3: "100 ml · Isola Blu DNA",
+    heroBadge4: "🌙 Viral Layton DNA",
+    heroVol4: "100 ml · Eple, Vanilje & Krydder",
+    heroBadge5: "⚡ TikTok Viral",
+    heroVol5: "100 ml · Kanel & Gourmand Vanilje",
+    heroBadge6: "🔥 Bestselger Herre",
+    heroVol6: "100 ml · Sort Pepper, Tobakk & Amber",
+    heroBadge7: "💖 #1 Damefavoritt",
+    heroVol7: "100 ml · Heliotrop, Vanilje & Tropisk",
+    heroBadge8: "💎 BR540 Sensation",
+    heroVol8: "100 ml · Safran, Karamell & Ambra",
+    heroBadge9: "🍸 Nisje-Mesterverk",
+    heroVol9: "80 ml · Ingefær & Madagaskar Vanilje",
+    heroBadge10: "📦 Sylinder-eske m/ snor",
+    heroVol10: "100 ml · Safran, Karamell & Oud",
+    heroBadge11: "⚡ Supertilbud 49 kr",
+    heroVol11: "7 ml · Alkoholfri Esans (Før 100 kr)",
+    heroBadge12: "✨ Nyhet · Komplett Gavesett",
+    heroVol12: "4-i-1 Gaveeske · Grønn, Hvit & Rød",
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
     colSub: "117 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
@@ -7282,7 +7469,7 @@ const I18N = {
     introHint: "Feel As Good As You Smell · 117 Selected Bottles",
     skipIntro: "Skip intro",
     replayIntro: "Intro",
-    banner: "📍 Showroom & Pickup: Tøyengata 3, 0190 Oslo (inside PakStar) · 📞 +47 955 50 199",
+    banner: "📍 <b>Showroom:</b> Tøyengata 3, Oslo (inside PakStar) · 🕋 <b>New:</b> Surrati Perfumes (Makkah) · 🖋️ <b>Viral:</b> Risala Autograph · 📞 +47 955 50 199",
     tagline: "",
     navFragrances: "Top Brands",
     navShowroom: "Showroom",
@@ -7293,6 +7480,7 @@ const I18N = {
     topSearchPlaceholder: "Search perfume...",
     mobNavFragrances: "Top Brands",
     navBrandsHeader: "Top Brands Online — Click to filter",
+    heroPillsLabel: "Featured Houses:",
     btnShowAll: "Show All",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "About",
@@ -7312,22 +7500,28 @@ const I18N = {
     heroBuyNow: "Buy now",
     heroBadge1: "🔥 #1 Online",
     heroVol1: "100 ml · Woody Spicy Beast",
-    heroBadge2: "⚡ TikTok Viral",
-    heroVol2: "100 ml · Cinnamon & Gourmand Vanilla",
-    heroBadge3: "🔥 Men's Bestseller",
-    heroVol3: "100 ml · Black Pepper, Tobacco & Amber",
-    heroBadge4: "💖 #1 Women's Pick",
-    heroVol4: "100 ml · Heliotrope, Vanilla & Tropical",
-    heroBadge5: "💎 BR540 Sensation",
-    heroVol5: "100 ml · Saffron, Caramel & Amber",
-    heroBadge6: "🍸 Niche Masterpiece",
-    heroVol6: "80 ml · Ginger & Madagascar Vanilla",
-    heroBadge7: "📦 Cylinder Box w/ Rope",
-    heroVol7: "100 ml · Saffron, Caramel & Oud",
-    heroBadge8: "⚡ Super Deal 49 kr",
-    heroVol8: "7 ml · Alcohol-Free Essence (Was 100 kr)",
-    heroBadge9: "✨ New · Complete Gift Box",
-    heroVol9: "4-in-1 Luxury Box · Green, White & Red",
+    heroBadge2: "🕋 Surrati Makkah",
+    heroVol2: "150 ml Extrait · Magnetic Cap",
+    heroBadge3: "🖋️ Viral Niche Pick",
+    heroVol3: "100 ml · Isola Blu DNA",
+    heroBadge4: "🌙 Viral Layton DNA",
+    heroVol4: "100 ml · Crisp Apple, Vanilla & Spice",
+    heroBadge5: "⚡ TikTok Viral",
+    heroVol5: "100 ml · Cinnamon & Gourmand Vanilla",
+    heroBadge6: "🔥 Men's Bestseller",
+    heroVol6: "100 ml · Black Pepper, Tobacco & Amber",
+    heroBadge7: "💖 #1 Women's Pick",
+    heroVol7: "100 ml · Heliotrope, Vanilla & Tropical",
+    heroBadge8: "💎 BR540 Sensation",
+    heroVol8: "100 ml · Saffron, Caramel & Amber",
+    heroBadge9: "🍸 Niche Masterpiece",
+    heroVol9: "80 ml · Ginger & Madagascar Vanilla",
+    heroBadge10: "📦 Cylinder Box w/ Rope",
+    heroVol10: "100 ml · Saffron, Caramel & Oud",
+    heroBadge11: "⚡ Super Deal 49 kr",
+    heroVol11: "7 ml · Alcohol-Free Essence (Was 100 kr)",
+    heroBadge12: "✨ New · Complete Gift Box",
+    heroVol12: "4-in-1 Luxury Box · Green, White & Red",
     colTag: "Find Your Signature Scent",
     colTitle: "Smell Amazing. Feel Confident.",
     colSub: "117 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
@@ -8728,8 +8922,9 @@ function setLanguage(lang) {
   if ($('#heroBestsellersTitle')) $('#heroBestsellersTitle').textContent = t.heroBestsellersTitle;
   if ($('#heroBestsellersSub')) $('#heroBestsellersSub').textContent = t.heroBestsellersSub;
   if ($('#heroBestsellersLink')) $('#heroBestsellersLink').textContent = t.heroBestsellersLink;
+  if ($('#heroPillsLabel')) $('#heroPillsLabel').textContent = t.heroPillsLabel || (LANG === 'en' ? 'Featured Houses:' : 'Utvalgte Dufthus:');
 
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 1; i <= 12; i++) {
     const badgeEl = $(`#heroBadge${i}`);
     if (badgeEl && t[`heroBadge${i}`]) badgeEl.textContent = t[`heroBadge${i}`];
     const volEl = $(`#heroVol${i}`);
@@ -9257,7 +9452,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v50', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v51', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -9319,7 +9514,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v50', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v51', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -9395,7 +9590,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v50', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v51', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -9410,6 +9605,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v51');
     localStorage.removeItem('arx_custom_catalog_v50');
     localStorage.removeItem('arx_custom_catalog_v49');
     localStorage.removeItem('arx_custom_catalog_v48');
@@ -9429,7 +9625,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v50', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v51', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
