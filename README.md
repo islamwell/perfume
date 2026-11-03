@@ -1,28 +1,33 @@
-# AROMATIX OSLO (v1.0.51) — Parfymehus & Kuratert Parfymeri
+# AROMATIX OSLO (v1.0.52) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.51 Høydepunkter
+## 🌟 Versjon 1.0.52 Høydepunkter
 
-1. **Surrati & Risala Fremhevet på Toppen av Nettstedet**:
-   - **Toppbanner & Kunngjøring**: Direkte fremheving av Surrati Perfumes (Mekka) og Risala Autograph i den øverste meldingslinjen for maksimal synlighet umiddelbart ved innlasting.
-   - **Direkte Hurtigknapper i Navigasjon**: Én-klikks merke-knapper for `🕋 Surrati` og `🖋️ Risala` integrert i både desktop-hovedmenyen og mobilmenyen for umiddelbar filtrering.
-   - **Utvalgte Dufthus Hurtigvalg (Brand Pills Bar)**: Luksuriøs horisontal filterlinje under Hero-tittelen med `Surrati (Mekka)`, `Risala (Autograph)`, `Swiss Arabian`, `Armaf`, `Lattafa`, `French Avenue`, `Bujairami` og `Reef`.
-   - **Hero Bestsellers Topprad (12 Utvalgte Cards)**: **Surrati Gray Oud** (150 ml Extrait m/ magnetkork), **Le Falconé Risala Autograph** (100 ml EDP) og **Swiss Arabian Detour Noir (Dectour)** løftet opp til den fremste raden over mest solgte dufter.
-   - Full tospråklig støtte (norsk og engelsk) for alle toppelementer, badges og filterpiller.
+1. **Korreksjon: Al Haramain Detour Noir (Dectour)**:
+   - Riktig produsenttilhørighet oppdatert til **Al Haramain Perfumes Dubai** (UAE).
+   - Katalog-ID korrigert til `al-haramain-detour-noir` (`brand: "Al Haramain"`, `house: "Al Haramain Perfumes Dubai"`).
+   - Dynamisk merkeoversikt og filtersystem oppdatert (4 Al Haramain, 4 Swiss Arabian).
 
-2. **Detour Noir (Dectour) & Surrati 150ml Magnetkork-samling (117 Utvalgte Flakonger)**:
-   - **Detour Noir (Dectour)** (100 ml Eau de Parfum) – 499 kr (Layton DNA).
-   - **Surrati 150ml Extrait de Parfum Magnetkork-serie** (899 kr): Gray Oud, Italian Tobacco, Cuban Latte, Habaytak, Gold Musk, Rose Gold, Fabrica og Rosso Ombré.
+2. **Visuell Promotering av Surrati & Bujairami på Toppen**:
+   - **Kuratert Niche Spotlight-banner**: Ny to-kolonners visuell spotlight rett under hero-overskriften med høyoppløselige bilder og direkte filterknapper for:
+     - `🕋 Surrati Perfumes (Mekka)`: 150 ml Extrait de Parfum m/ magnetkork og luksusoljer (12 dufter).
+     - `🇦🇺 Bujairami Perfumes (Sydney)`: Eksklusive extrait-mesterverk i blå flip-top skinneske (8 dufter).
+   - **Hero Bestsellers Topprad**: De 4 øverste plassene i bestselger-rutenettet er reservert for Surrati og Bujairami:
+     1. **Surrati Gray Oud** (150 ml Extrait · Magnetkork · 899 kr)
+     2. **Bujairami Hectic** (100 ml Extrait · Blå Skinneske · LV Imagination DNA · 899 kr)
+     3. **Surrati Oud Honey** (140 ml EDP · Honning & Oud · 899 kr)
+     4. **Bujairami Date Night** (100 ml Extrait · Spiced Apple · Layton DNA · 899 kr)
+     5. **Al Haramain Detour Noir (Dectour)** (100 ml EDP · 499 kr)
+   - **Toppbanner & Hurtigvalg**: Oppdatert kunngjøringslinje, desktop- og mobilnavigasjon med direkte snarveier for Surrati, Bujairami og Risala.
 
-3. **Direkte Telegram-Varsling ved Bestilling**:
-   - Backend Cloudflare-funksjon (`/functions/api/orders.js`) sender automatisk ordrekvittering til butikkeiers Telegram ved bestilling.
-   - Ordre- & Telegram-kontrollpanel i Kurator Atelier (Admin).
+3. **Full Tospråklig Integrasjon (NO / EN)**:
+   - Spotlight-titler, knapper og alle 12 hero-badges/volumtekster synkronisert på norsk og engelsk.
+   - Lokal buffer oppgradert til `arx_custom_catalog_v52`.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.51 (updated 2026-11-03 13:58)`
-
+`v1.0.52 (updated 2026-11-03 19:56)`
