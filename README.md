@@ -1,33 +1,20 @@
-# AROMATEK OSLO (v1.0.54) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.55) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.54 Høydepunkter
+## 🌟 Versjon 1.0.55 Høydepunkter
 
-1. **Nytt Merkenavn — Aromatek Oslo & Aromatek Perfumes**:
-   - Rebranding gjennomført på tvers av hele nettstedet: tittel, metadata, OpenGraph, Twitter Cards, Schema.org JSON-LD, introduksjonsanimasjon, header, footer, retningslinjemodaler, Vipps-informasjon og kvitteringsgenerator.
+1. **Optimalisert Toppmeny & Mindre Trengsel**:
+   - Fjernet «Showroom» fra toppmenyen (`nav.main-nav`) på desktop for å gi mer pusterom og unngå at navigasjonslinjen blir overfylt. Showroom-informasjon er fortsatt tilgjengelig via Kontakt-modalen, seksjonen lenger ned på siden, og bunnteksten.
+   - Forenklet «Om & Kontakt» / «About & Contact» til et rent og konsist **«Kontakt»** (NO) og **«Contact»** (EN) i både desktop-toppmenyen og mobilskuffen.
 
-2. **Ny Offisiell Logo (`images/aromatek-logo.jpeg`)**:
-   - Lagt til `images/aromatek-logo.jpeg` som hovedlogo i:
-     - Åpningsanimasjon (med gullinnrammet luksusmedaljong og glødeffekt).
-     - Klebrig toppheader (responsivt tilpasset mobil og desktop).
-     - Bunntekst (footer) og forhåndsvisninger.
-   - Generert oppdaterte favicons og touch-ikoner (`favicon.png` og `apple-touch-icon.png`) direkte fra det nye emblemet.
-
-3. **Fullverdig Lys Modus (Light Mode) etter Moderne Web-standarder**:
-   - Lagt til temavelger i header (`#themeToggleBtn` med ☀️ / 🌙) og i mobilskuffen (`#mobNavTheme`).
-   - Deklarert `<meta name="color-scheme" content="light dark">` og tidlig inline FOUC-hindringsskript i `<head>`.
-   - Støtter automatisk gjenkjenning av operativsystemets fargevalg (`prefers-color-scheme`) samt lagring av brukerens manuelle valg i `localStorage` (`arx_theme`).
-   - Automatisk synkronisering på tvers av faner via `storage`-hendelser.
-   - Nøye avstemt kontrast og fargepalett i lys modus for alle 120 produktkort, filter- og søkefelt, modal-dialoger, handlekurvskuff, showroom og bunntekst.
-
-4. **Lokal Buffer & Versjonering**:
-   - Cache-nøkkel bumpet til `arx_custom_catalog_v54`.
-   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.54`.
+2. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v55` med automatisk opprydding av eldre buffere.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.55`.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.54 (updated 2026-11-04 12:25)`
+`v1.0.55 (updated 2026-11-04 14:58)`

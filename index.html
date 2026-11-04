@@ -2530,8 +2530,7 @@ footer{
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati')" title="Utforsk Surrati Perfumes (Mekka)"><span aria-hidden="true">🕋</span> Surrati</button>
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Bujairami')" title="Utforsk Bujairami Perfumes (Australia)"><span aria-hidden="true">🇦🇺</span> Bujairami</button>
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Risala')" title="Utforsk Risala / Le Falconé"><span aria-hidden="true">🖋️</span> Risala</button>
-      <a href="#showroom" id="navShowroom">Showroom</a>
-      <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Om & Kontakt</button>
+      <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Kontakt</button>
       <div class="top-nav-search" id="topNavSearchWrap">
         <span class="top-search-icon" aria-hidden="true">🔍</span>
         <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen">
@@ -2603,7 +2602,7 @@ footer{
       </div>
     </div>
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAboutContact">Om & Kontakt</button>
+    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAboutContact">Kontakt</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Intro</button>
     <button type="button" onclick="toggleTheme();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavTheme">
       <span id="mobThemeToggleIcon">☀️</span> <span id="mobNavThemeText">Lys modus (Light mode)</span>
@@ -3482,7 +3481,7 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.54 (updated 2026-11-04 12:25)
+        v1.0.55 (updated 2026-11-04 14:58)
       </div>
     </div>
   </div>
@@ -7680,7 +7679,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v54');
+  const custom = localStorage.getItem('arx_custom_catalog_v55');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -7702,8 +7701,8 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "Om",
     navContact: "Kontakt",
-    navAboutContact: "Om & Kontakt",
-    mobNavAboutContact: "Om & Kontakt",
+    navAboutContact: "Kontakt",
+    mobNavAboutContact: "Kontakt",
     topSearchPlaceholder: "Søk parfyme...",
     mobNavFragrances: "Topp Merker",
     navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
@@ -7895,8 +7894,8 @@ const I18N = {
     navShowroom: "Showroom",
     navAbout: "About",
     navContact: "Contact",
-    navAboutContact: "About & Contact",
-    mobNavAboutContact: "About & Contact",
+    navAboutContact: "Contact",
+    mobNavAboutContact: "Contact",
     topSearchPlaceholder: "Search perfume...",
     mobNavFragrances: "Top Brands",
     navBrandsHeader: "Top Brands Online — Click to filter",
@@ -9399,7 +9398,7 @@ function setLanguage(lang) {
   if ($('#navAbout')) $('#navAbout').textContent = t.navAbout;
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
-  if ($('#navAboutContact')) $('#navAboutContact').textContent = t.navAboutContact || (LANG === 'en' ? 'About & Contact' : 'Om & Kontakt');
+  if ($('#navAboutContact')) $('#navAboutContact').textContent = t.navAboutContact || (LANG === 'en' ? 'Contact' : 'Kontakt');
   if ($('#topNavSearchInput')) $('#topNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
   const cartToggleBtn = $('#cartToggleBtn');
@@ -9433,7 +9432,7 @@ function setLanguage(lang) {
   if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
   if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
   if ($('#mobNavContact')) $('#mobNavContact').textContent = t.mobNavContact || t.navContact;
-  if ($('#mobNavAboutContact')) $('#mobNavAboutContact').textContent = t.mobNavAboutContact || (LANG === 'en' ? 'About & Contact' : 'Om & Kontakt');
+  if ($('#mobNavAboutContact')) $('#mobNavAboutContact').textContent = t.mobNavAboutContact || (LANG === 'en' ? 'Contact' : 'Kontakt');
   if ($('#mobNavSearchInput')) $('#mobNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#mobNavReplay')) $('#mobNavReplay').textContent = `✨ ${t.replayIntro}`;
 
@@ -9989,7 +9988,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v55', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -10051,7 +10050,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v55', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -10127,7 +10126,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v55', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -10142,6 +10141,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v55');
     localStorage.removeItem('arx_custom_catalog_v54');
     localStorage.removeItem('arx_custom_catalog_v53');
     localStorage.removeItem('arx_custom_catalog_v52');
@@ -10165,7 +10165,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v55', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
