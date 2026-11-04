@@ -3,33 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title id="metaTitle">Aromatix Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger</title>
+<title id="metaTitle">Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger</title>
+<meta name="color-scheme" content="light dark">
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('arx_theme');
+    var isLight = saved === 'light' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+    if (isLight) {
+      document.documentElement.classList.add('theme-light');
+      var meta = document.querySelector('meta[name="color-scheme"]');
+      if (meta) meta.setAttribute('content', 'light');
+    }
+  } catch(e){}
+})();
+</script>
 <meta name="theme-color" content="#05070b">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<meta name="description" id="metaDesc" content="Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale flakonger, luksus gavesett og oljer fra Surrati, Risala, French Avenue, Bujairami, Armaf, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
+<meta name="description" id="metaDesc" content="Aromatek Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale flakonger, luksus gavesett og oljer fra Surrati, Risala, French Avenue, Bujairami, Armaf, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
 <link rel="canonical" href="https://aromatix-oslo.pages.dev/">
 
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
-<meta property="og:title" id="ogTitle" content="Aromatix Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
+<meta property="og:title" id="ogTitle" content="Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
 <meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
-<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
+<meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatek-logo.jpeg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aromatix Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
+<meta name="twitter:title" content="Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
 <meta name="twitter:description" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
-<meta name="twitter:image" content="https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png">
+<meta name="twitter:image" content="https://aromatix-oslo.pages.dev/images/aromatek-logo.jpeg">
 
 <!-- Schema.org JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Store",
-  "name": "Aromatix Oslo",
-  "image": "https://aromatix-oslo.pages.dev/images/aromatix-logo-dark.png",
+  "name": "Aromatek Oslo",
+  "image": "https://aromatix-oslo.pages.dev/images/aromatek-logo.jpeg",
   "url": "https://aromatix-oslo.pages.dev/",
   "telephone": "+47 955 50 199",
   "priceRange": "49 NOK - 1500 NOK",
@@ -892,6 +906,7 @@ try {
 @property --glow{syntax:'<number>';inherits:true;initial-value:0}
 
 :root{
+  color-scheme: light dark;
   --sans:'Inter Tight',system-ui,-apple-system,sans-serif;
   --serif:'Cormorant Garamond',Georgia,serif;
   --bg:#05070b;
@@ -912,6 +927,172 @@ try {
   --E:cubic-bezier(.62,.02,.2,1);
 }
 
+/* ═══ LIGHT MODE THEME OVERRIDES ═══ */
+html.theme-light,
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  --bg:#f8fafc;
+  --void:#ffffff;
+  --card:#ffffff;
+  --line:rgba(15,23,42,0.1);
+  --gold:#a0782d;
+  --gold-bright:#825f1e;
+  --ice:#0f172a;
+  --dim:#475569;
+  --a1:#0284c7;
+  --a2:#0369a1;
+  --a3:#b45309;
+  --ember:#c2410c;
+}
+
+html.theme-light body { background: var(--bg); color: var(--ice); }
+html.theme-light .top-banner { background: #f1f5f9; border-bottom: 1px solid rgba(15,23,42,0.08); color: #475569; }
+html.theme-light header { background: rgba(255,255,255,0.94); border-bottom: 1px solid rgba(15,23,42,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+html.theme-light .main-nav a, html.theme-light .main-nav button, html.theme-light .main-nav .nav-dropdown-trigger { color: #334155; }
+html.theme-light .main-nav a:hover, html.theme-light .main-nav button:hover, html.theme-light .main-nav .nav-dropdown-trigger:hover { color: var(--gold); }
+html.theme-light .nav-dropdown-panel { background: #ffffff; border: 1px solid rgba(160,120,45,0.32); box-shadow: 0 16px 40px rgba(15,23,42,0.12), 0 0 16px rgba(160,120,45,0.1); }
+html.theme-light .nav-dropdown-item { color: #1e293b; }
+html.theme-light .nav-dropdown-item:hover { background: rgba(160,120,45,0.12); color: #0f172a; }
+html.theme-light .nav-quick-brand { background: rgba(160,120,45,0.08); border-color: rgba(160,120,45,0.35); color: var(--gold); }
+html.theme-light .nav-quick-brand:hover { background: rgba(160,120,45,0.18); color: #0f172a; }
+html.theme-light .top-nav-search { background: rgba(15,23,42,0.04); border-color: rgba(160,120,45,0.35); }
+html.theme-light .top-nav-search:focus-within { background: #ffffff; box-shadow: 0 0 14px rgba(160,120,45,0.22), 0 4px 12px rgba(15,23,42,0.06); }
+html.theme-light .top-nav-search-input { color: #0f172a; }
+html.theme-light .top-nav-search-input::placeholder { color: #64748b; }
+html.theme-light .action-btn, html.theme-light .cartbtn, html.theme-light .lang-flag-btn, html.theme-light .theme-toggle-btn { background: rgba(15,23,42,0.05); border-color: rgba(15,23,42,0.12); color: #0f172a; }
+html.theme-light .action-btn:hover, html.theme-light .cartbtn:hover, html.theme-light .lang-flag-btn:hover, html.theme-light .theme-toggle-btn:hover { background: rgba(160,120,45,0.12); border-color: var(--gold); }
+html.theme-light .nav-toggle { border-color: rgba(15,23,42,0.15); color: #0f172a; }
+html.theme-light .mobile-nav { background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(15,23,42,0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+html.theme-light .mobile-nav a, html.theme-light .mobile-nav button { color: #334155; }
+html.theme-light .mob-brand-item { background: #f1f5f9; border-color: rgba(15,23,42,0.08); color: #1e293b; }
+html.theme-light .hero-bestsellers-section { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,169,110,0.16), transparent 70%), radial-gradient(ellipse 60% 40% at 85% 20%, rgba(99,102,241,0.05), transparent 60%), #ffffff; border: 1px solid rgba(160,120,45,0.22); box-shadow: 0 6px 24px rgba(15,23,42,0.04); }
+html.theme-light .hero-title { color: #0f172a; }
+html.theme-light .hero-title span { background: linear-gradient(135deg, #0f172a 35%, var(--gold) 80%, #825f1e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+html.theme-light .hero-subtitle { color: #475569; }
+html.theme-light .hero-trust-item b { color: #0f172a; }
+html.theme-light .hero-bestsellers-header { border-bottom-color: rgba(15,23,42,0.08); }
+html.theme-light .hero-bestsellers-header h2 { color: #0f172a; }
+html.theme-light .hero-brand-pills-bar { background: rgba(15,23,42,0.02); border-color: rgba(160,120,45,0.22); }
+html.theme-light .hero-brand-pill { background: #ffffff; border-color: rgba(160,120,45,0.32); color: #1e293b; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+html.theme-light .hero-brand-pill:hover { background: rgba(160,120,45,0.15); border-color: var(--gold); color: #0f172a; }
+html.theme-light .hero-brand-pill.highlight { background: rgba(160,120,45,0.1); border-color: var(--gold); color: var(--gold); }
+html.theme-light .niche-spotlight-card { background: #ffffff; border-color: rgba(160,120,45,0.28); box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
+html.theme-light .niche-spotlight-card:hover { box-shadow: 0 12px 30px rgba(15,23,42,0.1), 0 0 16px rgba(160,120,45,0.18); }
+html.theme-light .niche-spotlight-title { color: #0f172a; }
+html.theme-light .niche-spotlight-sub { color: #475569; }
+html.theme-light .hero-best-card { background: #ffffff; border-color: rgba(160,120,45,0.25); box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
+html.theme-light .hero-best-card:hover { box-shadow: 0 16px 36px rgba(15,23,42,0.12), 0 0 20px rgba(160,120,45,0.2); }
+html.theme-light .hero-best-card .hero-best-name, html.theme-light .hero-best-name { color: #0f172a; }
+html.theme-light .hero-best-card .hero-best-price, html.theme-light .hero-best-price { color: #0f172a; }
+html.theme-light .hero-best-notes { color: #475569; }
+html.theme-light .perfume-card { background: #ffffff; border-color: rgba(15,23,42,0.1); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
+html.theme-light .perfume-card:hover { box-shadow: 0 16px 36px rgba(15,23,42,0.1), 0 0 18px rgba(160,120,45,0.15); }
+html.theme-light .card-name { color: #0f172a; }
+html.theme-light .card-price { color: #0f172a; }
+html.theme-light .card-vol { color: #64748b; }
+html.theme-light .btn-details { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
+html.theme-light .btn-details:hover { background: #e2e8f0; border-color: var(--gold); }
+html.theme-light .btn-add { background: var(--gold); border-color: var(--gold); color: #ffffff; }
+html.theme-light .filter-container { background: #ffffff; border-color: rgba(15,23,42,0.1); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
+html.theme-light .filter-select, html.theme-light .search-input { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+html.theme-light .filter-select:focus, html.theme-light .search-input:focus { background: #ffffff; border-color: var(--gold); }
+html.theme-light .dialog-box { background: rgba(255,255,255,0.98); border-color: rgba(15,23,42,0.12); color: #0f172a; box-shadow: 0 25px 60px rgba(15,23,42,0.2); }
+html.theme-light dialog.sheet { background: #ffffff; border-left-color: rgba(15,23,42,0.12); color: #0f172a; box-shadow: -15px 0 40px rgba(15,23,42,0.15); }
+html.theme-light .dialog-box input, html.theme-light .dialog-box select { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+html.theme-light .dialog-box input:focus, html.theme-light .dialog-box select:focus { background: #ffffff; border-color: var(--gold); }
+html.theme-light .cart-item-thumb { background: #f1f5f9; }
+html.theme-light .cart-item-info b { color: #0f172a; }
+html.theme-light .cart-qty-ctrl { background: #f1f5f9; border-color: #cbd5e1; }
+html.theme-light .cqty-btn { color: #0f172a; }
+html.theme-light .checkout-notice-box { background: #f8fafc; border-color: rgba(160,120,45,0.3); }
+html.theme-light #showroom { background: #f1f5f9; border-top-color: rgba(15,23,42,0.08); }
+html.theme-light .newsletter-section { background: #ffffff; border-top-color: rgba(15,23,42,0.08); }
+html.theme-light .newsletter-input { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+html.theme-light footer { background: #f1f5f9; border-top-color: rgba(15,23,42,0.08); }
+html.theme-light .version-pill { background: rgba(15,23,42,0.06); border-color: rgba(15,23,42,0.12); color: var(--gold); }
+html.theme-light .stat-box { background: #ffffff; border-color: rgba(15,23,42,0.08); box-shadow: 0 2px 10px rgba(15,23,42,0.03); }
+html.theme-light .pyramid-card { background: #ffffff; border-color: rgba(15,23,42,0.08); box-shadow: 0 2px 10px rgba(15,23,42,0.03); }
+html.theme-light .pyramid-card h3 { color: #0f172a; }
+html.theme-light .svartfjord-section { background: #f8fafc; border-top-color: rgba(15,23,42,0.08); }
+html.theme-light .svartfjord-hero h2 { color: #0f172a; }
+html.theme-light .back-to-top { background: rgba(255,255,255,0.95); border-color: var(--gold); color: var(--gold); box-shadow: 0 4px 18px rgba(15,23,42,0.15); }
+html.theme-light .back-to-top:hover { background: var(--gold); color: #ffffff; }
+
+/* Theme Toggle Button Styles */
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  color: var(--ice);
+  border-radius: 99px;
+  padding: .35rem .65rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.theme-toggle-btn:hover {
+  background: rgba(201, 169, 110, 0.14);
+  border-color: var(--gold);
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(201, 169, 110, 0.25);
+}
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+@media(max-width:54rem){
+  .theme-toggle-btn {
+    padding: .35rem .45rem;
+    min-width: 35px;
+    height: 35px;
+  }
+}
+@media(max-width:370px){
+  .theme-toggle-btn {
+    min-width: 32px;
+    height: 32px;
+  }
+}
+
+/* Brand Medallion Logo Styles */
+.intro-logo-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.55);
+  margin: 0 auto;
+  z-index: 4;
+  animation: tighten 1.8s 2s var(--E) both;
+  background: #ffffff;
+}
+.brand-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold);
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(201, 169, 110, 0.35);
+  flex-shrink: 0;
+}
+.footer-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(201, 169, 110, 0.3);
+  flex-shrink: 0;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-family:var(--sans);background:var(--bg);color:var(--ice);scroll-behavior:smooth;overflow-x:clip;max-width:100vw}
 body{min-height:100vh;display:flex;flex-direction:column;line-height:1.5;overflow-x:clip;max-width:100vw;background:var(--bg)}
@@ -922,7 +1103,7 @@ a{color:inherit;text-decoration:none}
 .skip-link{position:absolute;top:-100px;left:1rem;background:var(--gold);color:#000;padding:.6rem 1.2rem;font-weight:600;border-radius:4px;z-index:10000;transition:top .2s}
 .skip-link:focus{top:1rem}
 
-/* ═══ OPENING ANIMATED INTRO (Aromatix Oslo) ═══ */
+/* ═══ OPENING ANIMATED INTRO (Aromatek Oslo) ═══ */
 html.booting{overflow:clip;overscroll-behavior:none}
 html.ready .intro{display:none!important}
 
@@ -2242,7 +2423,7 @@ footer{
 
 <a href="#kjop" class="skip-link" id="skipLink">Hopp til parfymer (100 ml)</a>
 
-<!-- ================= 1. OPENING ANIMATED INTRO (Aromatix Oslo) ================= -->
+<!-- ================= 1. OPENING ANIMATED INTRO (Aromatek Oslo) ================= -->
 <div id="intro" class="intro" role="region" aria-label="Introduksjon">
   <div class="ice-screen" aria-hidden="true">
     <div class="frost-crystals"></div>
@@ -2270,8 +2451,8 @@ footer{
     </g>
     <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
   </svg>
-  <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="width:68px;height:auto;margin:0 auto;z-index:4;filter:drop-shadow(0 0 16px rgba(201,169,110,0.6));animation:tighten 1.8s 2s var(--E) both">
-  <p class="mark"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">PERFUMES</b></p>
+  <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="intro-logo-img">
+  <p class="mark"><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">PERFUMES</b></p>
   <p class="hint" id="introHint">Feel As Good As You Smell · 120 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
@@ -2284,9 +2465,9 @@ footer{
 <header>
   <div class="header-inner">
     <div class="brand-group">
-      <a href="#kjop" class="brand-title" aria-label="Aromatix Perfumes">
-        <img src="images/aromatix-emblem.png" alt="Aromatix Logo" class="brand-logo-img" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.45))">
-        <span><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">PERFUMES</b></span>
+      <a href="#kjop" class="brand-title" aria-label="Aromatek Perfumes">
+        <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="brand-logo-img">
+        <span><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">PERFUMES</b></span>
       </a>
     </div>
 
@@ -2359,6 +2540,11 @@ footer{
     </nav>
 
     <div class="header-actions">
+      <!-- Theme Switcher Button (Dark / Light Mode) -->
+      <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Bytt fargetema / Switch theme" title="Bytt fargetema (Lys / Mørk) · Switch theme">
+        <span id="themeToggleIcon" aria-hidden="true">☀️</span>
+      </button>
+
       <!-- Single Flag Language Switcher (toggles Norwegian / English) -->
       <button type="button" class="lang-flag-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Bytt språk / Switch language" title="Bytt språk (Norsk / English)">
         <span id="langFlagEmoji">🇳🇴</span>
@@ -2419,6 +2605,9 @@ footer{
     <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
     <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAboutContact">Om & Kontakt</button>
     <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Intro</button>
+    <button type="button" onclick="toggleTheme();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavTheme">
+      <span id="mobThemeToggleIcon">☀️</span> <span id="mobNavThemeText">Lys modus (Light mode)</span>
+    </button>
     <button type="button" onclick="toggleLanguage();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavLang">
       <span id="mobLangFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
     </button>
@@ -3032,7 +3221,7 @@ footer{
 <!-- ================= 9. POLICY DETAILS MODAL ================= -->
 <dialog id="policyModal" class="dialog-box policy-modal" aria-labelledby="policyHeading">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="tagline-small" id="policyCategory">Aromatix Oslo</p>
+    <p class="tagline-small" id="policyCategory">Aromatek Oslo</p>
     <button type="button" class="clear-search-btn" onclick="closePolicy()" style="font-size:1.2rem;display:block" aria-label="Lukk">✕</button>
   </div>
   <h3 id="policyHeading" style="font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:1rem">Retningslinjer</h3>
@@ -3102,7 +3291,7 @@ footer{
       <div style="font-size:.78rem;color:#cbd5e1;background:#03060a;padding:.75rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.08);line-height:1.6">
         <b>Slik setter du det opp på 1 minutt:</b><br>
         1. Åpne Telegram på mobilen eller PC og søk etter <b style="color:var(--gold)">@BotFather</b>.<br>
-        2. Send <code>/newbot</code>, gi boten din et navn (f.eks. <i>Aromatix Oslo Ordrer</i>), og kopier den genererte <b>HTTP API Token</b>.<br>
+        2. Send <code>/newbot</code>, gi boten din et navn (f.eks. <i>Aromatek Oslo Ordrer</i>), og kopier den genererte <b>HTTP API Token</b>.<br>
         3. Start en samtale med din nye bot i Telegram ved å klikke «Start».<br>
         4. Søk etter <b style="color:var(--gold)">@userinfobot</b> i Telegram for å se din egen <b>Id</b> (tallrekke, f.eks. <code>123456789</code>).<br>
         5. Lim inn verdiene nedenfor, klikk «Lagre», og test med «⚡ Send Testmelding».
@@ -3246,8 +3435,8 @@ footer{
   <div class="footer-inner">
     <div class="footer-col">
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
-        <img src="images/aromatix-emblem.png" alt="Aromatix Logo" style="height:38px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,169,110,0.4))">
-        <div class="brand-title"><span class="brand-name-gold">AROMATIX</span> <b class="brand-city-red">OSLO</b></div>
+        <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="footer-logo-img">
+        <div class="brand-title"><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">OSLO</b></div>
       </div>
       <p style="font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="footerAboutText">
         Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger, luksus gavesett og oljer fra fremragende nisjehus. Makspris 1 500 kr.
@@ -3259,7 +3448,7 @@ footer{
       <ul>
         <li><a href="#kjop" id="ftNavFragrances">Våre Parfymer (120)</a></li>
         <li><a href="#showroom" id="ftNavShowroom">Showroom & Henting</a></li>
-        <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatix Oslo</button></li>
+        <li><button type="button" onclick="openPolicy('om')" style="background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font:inherit" id="ftNavAbout">Om Aromatek Oslo</button></li>
         <li><button type="button" onclick="replayIntro()" id="ftNavReplay">✨ Se intro på nytt</button></li>
       </ul>
     </div>
@@ -3267,7 +3456,7 @@ footer{
     <div class="footer-col">
       <h4 id="footerPolicyTitle">Kundeservice & Kjøp</h4>
       <ul>
-        <li><button type="button" onclick="openPolicy('om')" id="ftPolicyAbout">Om Aromatix Oslo</button></li>
+        <li><button type="button" onclick="openPolicy('om')" id="ftPolicyAbout">Om Aromatek Oslo</button></li>
         <li><button type="button" onclick="openPolicy('frakt')" id="ftPolicyShipping">Frakt & Levering</button></li>
         <li><button type="button" onclick="openPolicy('retur')" id="ftPolicyReturns">Retur & 14 dagers angrerett</button></li>
         <li><button type="button" onclick="openPolicy('vilkar')" id="ftPolicyTerms">Kjøpsbetingelser & MVA</button></li>
@@ -3282,18 +3471,18 @@ footer{
         🕒 <span id="ftHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
         📞 <a href="tel:+4795550199" style="color:var(--gold)">+47 955 50 199</a><br>
         ✉️ <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a><br>
-        📱 Vipps Bedrift: Aromatix Oslo
+        📱 Vipps Bedrift: Aromatek Oslo
       </p>
     </div>
   </div>
 
   <div class="footer-bottom">
     <p id="footerDisclaimer" style="font-size:.76rem;color:var(--dim);margin-bottom:.5rem;text-align:center">⚠️ 100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</p>
-    <p id="footerCopyright">© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)</p>
+    <p id="footerCopyright">© 2026 Aromatek Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)</p>
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.53 (updated 2026-11-03 21:52)
+        v1.0.54 (updated 2026-11-04 12:25)
       </div>
     </div>
   </div>
@@ -3380,7 +3569,7 @@ const DEFAULT_CATALOG = [
     "image": "images/quran-prayer-gift-box.png",
     "image_box": "images/quran-prayer-gift-box.png",
     "brand": "Gavesett",
-    "house": "Aromatix Atelier · Luksus Gavesett",
+    "house": "Aromatek Atelier · Luksus Gavesett",
     "name": "Luksus Islamsk Gavesett (Koran, Bønnematte, Tasbeeh & Itar)",
     "name_en": "Luxury Islamic Gift Box (Quran, Prayer Rug, Tasbeeh & Itar)",
     "edition": "4-i-1 Komplett Luksuseske",
@@ -7491,7 +7680,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v53');
+  const custom = localStorage.getItem('arx_custom_catalog_v54');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -7501,8 +7690,8 @@ try {
 // ── BILINGUAL TRANSLATION DICTIONARY (nb / en) ──
 const I18N = {
   nb: {
-    pageTitle: "Aromatix Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger",
-    metaDesc: "Aromatix Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale parfymer, luksus gavesett og oljer. Makspris 1 500 kr.",
+    pageTitle: "Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger",
+    metaDesc: "Aromatek Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale parfymer, luksus gavesett og oljer. Makspris 1 500 kr.",
     skipLink: "Hopp til parfymer",
     introHint: "Feel As Good As You Smell · 120 Utvalgte Flakonger",
     skipIntro: "Hopp over",
@@ -7682,11 +7871,11 @@ const I18N = {
     footerNavTitle: "Navigasjon",
     footerPolicyTitle: "Kundeservice & Kjøp",
     footerContactTitle: "Showroom & Henting",
-    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)",
+    footerCopyright: "© 2026 Aromatek Oslo · Tøyengata 3, 0190 Oslo (inne hos PakStar)",
     ftNavFragrances: "Våre Parfymer (120)",
     ftNavShowroom: "Showroom & Henting",
-    ftNavAbout: "Om Aromatix Oslo",
-    ftPolicyAbout: "Om Aromatix Oslo",
+    ftNavAbout: "Om Aromatek Oslo",
+    ftPolicyAbout: "Om Aromatek Oslo",
     ftPolicyShipping: "Frakt & Levering",
     ftPolicyReturns: "Retur & 14 dagers angrerett",
     ftPolicyTerms: "Kjøpsbetingelser & MVA",
@@ -7694,8 +7883,8 @@ const I18N = {
     adminOpenBtn: "Kurator Atelier (Admin)"
   },
   en: {
-    pageTitle: "Aromatix Oslo · Curated Perfumery & 120 Selected Bottles",
-    metaDesc: "Aromatix Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 120 authentic fragrances, luxury gift sets and oils. Maximum price 1 500 kr.",
+    pageTitle: "Aromatek Oslo · Curated Perfumery & 120 Selected Bottles",
+    metaDesc: "Aromatek Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 120 authentic fragrances, luxury gift sets and oils. Maximum price 1 500 kr.",
     skipLink: "Skip to fragrances",
     introHint: "Feel As Good As You Smell · 120 Selected Bottles",
     skipIntro: "Skip intro",
@@ -7875,11 +8064,11 @@ const I18N = {
     footerNavTitle: "Navigation",
     footerPolicyTitle: "Customer Care & Orders",
     footerContactTitle: "Showroom & Pickup",
-    footerCopyright: "© 2026 Aromatix Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)",
+    footerCopyright: "© 2026 Aromatek Oslo · Tøyengata 3, 0190 Oslo (inside PakStar)",
     ftNavFragrances: "Our Fragrances (120)",
     ftNavShowroom: "Showroom & Pickup",
-    ftNavAbout: "About Aromatix Oslo",
-    ftPolicyAbout: "About Aromatix Oslo",
+    ftNavAbout: "About Aromatek Oslo",
+    ftPolicyAbout: "About Aromatek Oslo",
     ftPolicyShipping: "Shipping & Delivery",
     ftPolicyReturns: "Returns & 14-Day Right of Withdrawal",
     ftPolicyTerms: "Terms of Sale & VAT",
@@ -8774,7 +8963,7 @@ window.handleCheckout = function(e) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newOrder)
     }).then(r => r.json()).then(res => {
-      console.log('Aromatix ordre-respons (Sky/Telegram):', res);
+      console.log('Aromatek ordre-respons (Sky/Telegram):', res);
     }).catch(err => {
       console.warn('Sky-/Telegram-innsending feilet:', err.message);
     });
@@ -8822,44 +9011,44 @@ window.handleCheckout = function(e) {
 const POLICIES = {
   om: {
     nb: {
-      cat: "Om Aromatix Oslo",
+      cat: "Om Aromatek Oslo",
       heading: "Kuratert Parfymeri i Oslo",
       body: `
-        <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
+        <p><b>Aromatek Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi</h4>
         <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati (Mekka), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt originalemballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
-        <p>Hos Aromatix Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
       `
     },
     en: {
-      cat: "About Aromatix Oslo",
+      cat: "About Aromatek Oslo",
       heading: "Curated Perfumery in Oslo",
       body: `
-        <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
+        <p><b>Aromatek Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy</h4>
         <p>We offer a hand-picked collection of 120 viral and legendary olfactory masterworks from prestigious perfume houses including Surrati (Makkah), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq, and Reef.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
-        <p>At Aromatix Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+        <p>At Aromatek Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
       `
     }
   },
   om_kontakt: {
     nb: {
       cat: "Om Oss & Kontakt",
-      heading: "Aromatix Oslo — Kuratert Parfymeri & Showroom",
+      heading: "Aromatek Oslo — Kuratert Parfymeri & Showroom",
       body: `
-        <p><b>Aromatix Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
+        <p><b>Aromatek Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi & Utvalg</h4>
         <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati (Mekka), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt emballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
-        <p>Hos Aromatix Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
         <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
         <h4>Besøk Showroomet i Oslo</h4>
         <p>
@@ -8870,21 +9059,21 @@ const POLICIES = {
         <p>
           ✉️ E-post: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Svar innen 24 timer på virkedager)<br>
           📞 Telefon: +47 955 50 199<br>
-          📱 Vipps Bedrift: Aromatix Oslo
+          📱 Vipps Bedrift: Aromatek Oslo
         </p>
       `
     },
     en: {
       cat: "About Us & Contact",
-      heading: "Aromatix Oslo — Curated Perfumery & Showroom",
+      heading: "Aromatek Oslo — Curated Perfumery & Showroom",
       body: `
-        <p><b>Aromatix Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
+        <p><b>Aromatek Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy & Collection</h4>
         <p>We curate 120 viral and legendary fragrance masterpieces from houses including Surrati (Makkah), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
-        <p>At Aromatix Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+        <p>At Aromatek Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
         <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
         <h4>Visit Our Oslo Showroom</h4>
         <p>
@@ -8895,7 +9084,7 @@ const POLICIES = {
         <p>
           ✉️ Email: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Response within 24h on business days)<br>
           📞 Phone: +47 955 50 199<br>
-          📱 Vipps Business: Aromatix Oslo
+          📱 Vipps Business: Aromatek Oslo
         </p>
       `
     }
@@ -8995,7 +9184,7 @@ const POLICIES = {
       cat: "Kontakt & Showroom",
       heading: "Besøk Oss i Oslo",
       body: `
-        <h4>Aromatix Oslo Showroom</h4>
+        <h4>Aromatek Oslo Showroom</h4>
         <p>
           📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
           Åpningstider: Mandag – Lørdag kl. 11:00 – 18:00
@@ -9004,7 +9193,7 @@ const POLICIES = {
         <p>
           E-post: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Svar innen 24 timer på virkedager)<br>
           Telefon: +47 955 50 199<br>
-          Vipps Bedrift: Aromatix Oslo
+          Vipps Bedrift: Aromatek Oslo
         </p>
       `
     },
@@ -9012,7 +9201,7 @@ const POLICIES = {
       cat: "Contact & Showroom",
       heading: "Visit Us in Oslo",
       body: `
-        <h4>Aromatix Oslo Showroom</h4>
+        <h4>Aromatek Oslo Showroom</h4>
         <p>
           📍 <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b><br>
           Opening Hours: Monday – Saturday 11:00 – 18:00
@@ -9021,7 +9210,7 @@ const POLICIES = {
         <p>
           Email: <a href="mailto:aromatixoslo@gmail.com" style="color:var(--gold)">aromatixoslo@gmail.com</a> (Response within 24h on business days)<br>
           Phone: +47 955 50 199<br>
-          Vipps Business: Aromatix Oslo
+          Vipps Business: Aromatek Oslo
         </p>
       `
     }
@@ -9053,6 +9242,85 @@ window.handleNewsletter = function(e) {
   input.value = '';
 };
 
+// ── THEME SWITCHING SYSTEM (Light / Dark Mode) ──
+function getEffectiveTheme() {
+  const saved = localStorage.getItem('arx_theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+}
+
+function applyTheme(theme) {
+  const isLight = (theme === 'light');
+  if (isLight) {
+    document.documentElement.classList.add('theme-light');
+  } else {
+    document.documentElement.classList.remove('theme-light');
+  }
+  const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+  if (metaColorScheme) {
+    metaColorScheme.setAttribute('content', isLight ? 'light' : 'dark');
+  }
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', isLight ? '#f8fafc' : '#05070b');
+  }
+  // Toggle button icons
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+  if (themeToggleIcon) {
+    themeToggleIcon.textContent = isLight ? '🌙' : '☀️';
+  }
+  const mobThemeToggleIcon = document.getElementById('mobThemeToggleIcon');
+  if (mobThemeToggleIcon) {
+    mobThemeToggleIcon.textContent = isLight ? '🌙' : '☀️';
+  }
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (themeToggleBtn) {
+    const isEn = (typeof LANG !== 'undefined' && LANG === 'en');
+    const titleText = isEn
+      ? (isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode')
+      : (isLight ? 'Bytt til mørk modus' : 'Bytt til lys modus');
+    themeToggleBtn.title = titleText;
+    themeToggleBtn.setAttribute('aria-label', titleText);
+  }
+  const mobNavThemeText = document.getElementById('mobNavThemeText');
+  if (mobNavThemeText) {
+    const isEn = (typeof LANG !== 'undefined' && LANG === 'en');
+    if (isEn) {
+      mobNavThemeText.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    } else {
+      mobNavThemeText.textContent = isLight ? 'Mørk modus' : 'Lys modus';
+    }
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.classList.contains('theme-light') ? 'light' : 'dark';
+  const next = (current === 'light') ? 'dark' : 'light';
+  try {
+    localStorage.setItem('arx_theme', next);
+  } catch(e) {}
+  applyTheme(next);
+}
+
+function initTheme() {
+  const theme = getEffectiveTheme();
+  applyTheme(theme);
+  // Cross-tab sync
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'arx_theme') {
+      applyTheme(e.newValue || getEffectiveTheme());
+    }
+  });
+  // OS preference change listener
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('arx_theme')) {
+        applyTheme(e.matches ? 'light' : 'dark');
+      }
+    });
+  }
+}
+
 // ── LANGUAGE SWITCHING SYSTEM ──
 function setLanguage(lang) {
   LANG = (lang === 'en') ? 'en' : 'nb';
@@ -9079,6 +9347,25 @@ function setLanguage(lang) {
   const mobLangText = $('#mobNavLangText');
   if (mobLangText) {
     mobLangText.textContent = (LANG === 'en') ? 'Bytt til Norsk (Switch to Norwegian)' : 'Bytt til English (Switch to English)';
+  }
+
+  // Update theme toggle buttons according to current language
+  const isLight = document.documentElement.classList.contains('theme-light');
+  const themeToggleBtn = $('#themeToggleBtn');
+  if (themeToggleBtn) {
+    const themeTitle = (LANG === 'en')
+      ? (isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode')
+      : (isLight ? 'Bytt til mørk modus' : 'Bytt til lys modus');
+    themeToggleBtn.title = themeTitle;
+    themeToggleBtn.setAttribute('aria-label', themeTitle);
+  }
+  const mobNavThemeText = $('#mobNavThemeText');
+  if (mobNavThemeText) {
+    if (LANG === 'en') {
+      mobNavThemeText.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    } else {
+      mobNavThemeText.textContent = isLight ? 'Mørk modus' : 'Lys modus';
+    }
   }
 
   const t = I18N[LANG];
@@ -9511,7 +9798,7 @@ window.loadAdminOrders = async function() {
 };
 
 window.copyVippsRequestText = function(orderId, name, phone, total) {
-  const text = `Hei ${name}! Takk for din bestilling #${orderId} hos Aromatix Oslo. Totalbeløp å betale via Vipps er ${total} kr. Hilsen Aromatix Oslo.`;
+  const text = `Hei ${name}! Takk for din bestilling #${orderId} hos Aromatek Oslo. Totalbeløp å betale via Vipps er ${total} kr. Hilsen Aromatek Oslo.`;
   navigator.clipboard.writeText(text).then(() => {
     alert(`✓ Vipps-forespørselstekst for #${orderId} kopiert til utklippstavlen!\n\n"${text}"`);
   }).catch(() => {
@@ -9702,7 +9989,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v53', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -9764,7 +10051,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v53', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -9840,13 +10127,13 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v53', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
         renderAdminPanel();
       }
-      console.log('Aromatix sky-katalog lastet (' + CATALOG.length + ' parfymer).');
+      console.log('Aromatek sky-katalog lastet (' + CATALOG.length + ' parfymer).');
     }
   } catch (err) {
     console.warn('Bruker lokal katalog-buffer:', err.message);
@@ -9855,6 +10142,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v54');
     localStorage.removeItem('arx_custom_catalog_v53');
     localStorage.removeItem('arx_custom_catalog_v52');
     localStorage.removeItem('arx_custom_catalog_v51');
@@ -9877,7 +10165,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v53', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v54', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -10011,6 +10299,8 @@ document.addEventListener('keydown', e => {
 // Flacon uncork removed with Svartfjord section
 
 // ── STARTUP & INITIALIZATION SEQUENCE ──
+// 0. Initialize theme (Light / Dark mode according to saved preference / OS)
+initTheme();
 // 1. Load cart
 loadCart();
 // 2. Set language (resolves text before intro/store display)

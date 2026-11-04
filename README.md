@@ -1,29 +1,33 @@
-# AROMATIX OSLO (v1.0.53) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.54) — Parfymehus & Kuratert Parfymeri
 
-Eksklusiv e-handels- og kunstopplevelse for **Aromatix Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.53 Høydepunkter
+## 🌟 Versjon 1.0.54 Høydepunkter
 
-1. **Le Falconé Risala Kolleksjon Lagt Til (120 Utvalgte Flakonger)**:
-   - Lagt til de offisielle parfymene fra Le Falconé Risala-serien (utenom Qasida):
-     - **Le Falconé Risala For You** (100 ml EDP · 649 kr) — Romantisk, intim floral-orientalsk komposisjon med appelsinblomst, neroli, jasmin, iris, edel rose og varm vanilje-labdanum moskus.
-     - **Le Falconé Risala Forever** (100 ml EDP · 649 kr) — Forførende og fyldig gourmand med karamell, kremet kokos, varm kanel, karamellisert sukker og madagaskarvanilje.
-     - **Le Falconé Risala Signature** (100 ml EDP · 649 kr) — Livlig og selvsikker fruktig-floral komposisjon med mandarin, eksotisk pasjonsfrukt, freesia, liljekonvall og gylden ambra/mose.
-     - **Le Falconé Risala Autograph** (100 ml EDP · 649 kr) — Oppdatert med separat originalemballasje-bilde (`images/risala-autograph-box.png`).
-   - Ekskluderte spesifikt Risala Qasida etter instruks fra bruker.
-   - Alle 4 Risala-parfymer er utstyrt med autentiske høyoppløselige flaske- og eske-bilder (`image` og `image_box`), tospråklige duftnoter (NO/EN) og detaljert bakgrunnshistorie.
+1. **Nytt Merkenavn — Aromatek Oslo & Aromatek Perfumes**:
+   - Rebranding gjennomført på tvers av hele nettstedet: tittel, metadata, OpenGraph, Twitter Cards, Schema.org JSON-LD, introduksjonsanimasjon, header, footer, retningslinjemodaler, Vipps-informasjon og kvitteringsgenerator.
 
-2. **Oppdatert Total Katalogoversikt (120 Parfymer)**:
-   - Hele katalogen, søkeindikatorer, metatagger, statuslinjer og språkordbøker er synkronisert fra 117 til 120 håndplukkede luksusflakonger.
-   - Risala-hurtigknapper og filtre er oppdatert til å vise `Risala / Le Falconé (Dubai · 4)`.
+2. **Ny Offisiell Logo (`images/aromatek-logo.jpeg`)**:
+   - Lagt til `images/aromatek-logo.jpeg` som hovedlogo i:
+     - Åpningsanimasjon (med gullinnrammet luksusmedaljong og glødeffekt).
+     - Klebrig toppheader (responsivt tilpasset mobil og desktop).
+     - Bunntekst (footer) og forhåndsvisninger.
+   - Generert oppdaterte favicons og touch-ikoner (`favicon.png` og `apple-touch-icon.png`) direkte fra det nye emblemet.
 
-3. **Lokal Buffer & Versjonering**:
-   - Cache-nøkkel bumpet til `arx_custom_catalog_v53`.
-   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.53`.
+3. **Fullverdig Lys Modus (Light Mode) etter Moderne Web-standarder**:
+   - Lagt til temavelger i header (`#themeToggleBtn` med ☀️ / 🌙) og i mobilskuffen (`#mobNavTheme`).
+   - Deklarert `<meta name="color-scheme" content="light dark">` og tidlig inline FOUC-hindringsskript i `<head>`.
+   - Støtter automatisk gjenkjenning av operativsystemets fargevalg (`prefers-color-scheme`) samt lagring av brukerens manuelle valg i `localStorage` (`arx_theme`).
+   - Automatisk synkronisering på tvers av faner via `storage`-hendelser.
+   - Nøye avstemt kontrast og fargepalett i lys modus for alle 120 produktkort, filter- og søkefelt, modal-dialoger, handlekurvskuff, showroom og bunntekst.
+
+4. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v54`.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.54`.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.53 (updated 2026-11-03 21:52)`
+`v1.0.54 (updated 2026-11-04 12:25)`
