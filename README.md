@@ -1,6 +1,19 @@
-# AROMATEK OSLO (v1.0.56) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.57) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+
+---
+
+## 🌟 Versjon 1.0.57 Høydepunkter
+
+1. **Automatisk Tilbakestilling av Filtre ved Toppsøk**:
+   - Når brukeren søker i toppnavigasjonen (både på desktop `#topNavSearchInput` og i mobilmenyen `#mobNavSearchInput`), tilbakestilles merkefilteret (`activeBrand = 'all'`) og duftfamiliefilteret (`activeScent = 'all'`) automatisk.
+   - Forhindrer at søk blokkeres av tidligere valgte merker eller duftnoter, slik at kunden umiddelbart finner enhver parfyme på tvers av hele katalogen på 120 produkter.
+   - Forstørrelsesglass-ikonet i toppmenyen kan nå også klikkes for umiddelbart fokus og søk i katalogen.
+
+2. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v57` med automatisk opprydding av eldre versjoner.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.57`.
 
 ---
 
@@ -33,4 +46,4 @@ Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i T
 ---
 
 ## 🚀 Versjonering
-`v1.0.56 (updated 2026-11-05 17:22)`
+`v1.0.57 (updated 2026-11-05 17:36)`
