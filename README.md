@@ -1,20 +1,36 @@
-# AROMATEK OSLO (v1.0.55) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.56) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
 
 ---
 
-## 🌟 Versjon 1.0.55 Høydepunkter
+## 🌟 Versjon 1.0.56 Høydepunkter
 
-1. **Optimalisert Toppmeny & Mindre Trengsel**:
-   - Fjernet «Showroom» fra toppmenyen (`nav.main-nav`) på desktop for å gi mer pusterom og unngå at navigasjonslinjen blir overfylt. Showroom-informasjon er fortsatt tilgjengelig via Kontakt-modalen, seksjonen lenger ned på siden, og bunnteksten.
-   - Forenklet «Om & Kontakt» / «About & Contact» til et rent og konsist **«Kontakt»** (NO) og **«Contact»** (EN) i både desktop-toppmenyen og mobilskuffen.
+1. **PakStar (`pakstaras.no`) E-handelsfunksjoner**:
+   - **Dynamisk Kjøp-knapp & Inline Antallsvelger**: Hvert produktkort og topp-bestselgerkort har nå en integrert mengdestyrer (`.card-qty-stepper` med `−`, antall, `+`). Når et produkt legges i kurven, skifter kortet umiddelbart til `.in`-tilstand og viser steppertall. Redusering til 0 tilbakestiller kortet sømløst til «Kjøp»-knappen.
+   - **Uforstyrret Handleflyt**: Hurtigkjøp fra kort legger varen rett i kurven uten å tvinge opp hele sideskuffen, slik at kunden kan handle uavbrutt akkurat som på PakStar.
+   - **Handlekurv «Bump»-Mikroanimasjon**: Header-kurven spretter dynamisk (`@keyframes bump`) ved hver oppdatering.
+   - **Luksus Gull Toast-Pille**: Elegant svevende varselpille (`#toastNotification.toast-pill`) med gullkant og hvit/mørk frostet glass som bekrefter at varen er lagt til eller oppdatert.
+   - **Taktil Haptisk Respons**: Diskret vibrasjon (`navigator.vibrate(12)`) ved trykk på mobil.
 
-2. **Lokal Buffer & Versjonering**:
-   - Cache-nøkkel bumpet til `arx_custom_catalog_v55` med automatisk opprydding av eldre buffere.
-   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.55`.
+2. **Prisjustering på Buhara Esans**:
+   - Prisen for **Buhara Esans · 1 stk roll-on (7 ml)** er oppdatert til **99** (før 100) i både katalog, søk og heltekort 11.
+
+3. **Fjerning av «kr»-tekst etter priser**:
+   - Formatfunksjonen `nok` returnerer nå kun rent, formatert tall uten etterfølgende «kr» (f.eks. `899`, `499`, `99`), og hardkodet `kr`-tekst er fjernet fra heltekort, kjøpslinje og handlekurvoppsummering for et mer minimalistisk og eksklusivt uttrykk.
+
+4. **Forbedrede Duftpiller & Merker (Hovedduft / Akkord)**:
+   - Alle merkelapper på flakongene er løftet med luksuriøst frostet glass, gullkant og en lysende aksentprikk (`.badge-dot`).
+   - All pris- og emballasjetekst (f.eks. «899 kr», «Magnetkork», «Sylinder-eske», «Slangeflakong») er erstattet med **parfymens faktiske hovedduftnoter** (f.eks. «Villhonning & Mørk Oud», «Grå Oud & Safran», «Kirsebær & Røkt Lær», «Sort Te & Ambroxan», «Krydret Eple & Kardemomme»).
+
+5. **Fjerning av «Holy Makkah»**:
+   - All forekomst av «Holy Makkah» er fjernet fra produsentfelt, bildebeskrivelser og spotlight-bannere for et renere merkevareuttrykk.
+
+6. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v56` med automatisk opprydding av eldre versjoner.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.56`.
 
 ---
 
 ## 🚀 Versjonering
-`v1.0.55 (updated 2026-11-04 14:58)`
+`v1.0.56 (updated 2026-11-05 17:22)`

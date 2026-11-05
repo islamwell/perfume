@@ -3,3 +3,7 @@ node_modules/
 .wrangler/
 .DS_Store
 *.log
+
+# Personal files
+*.pdf
+
