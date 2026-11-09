@@ -1,6 +1,30 @@
-# AROMATEK OSLO (v1.0.60) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.61) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+
+---
+
+## 🌟 Versjon 1.0.61 Høydepunkter (Komplett Mobiloverhaling & Fjerning av Rot)
+
+1. **Konsolidering av Søk og Filtre på Mobil**:
+   - Eliminerte forvirrende duplikatsøkefelter. Hurtigsøket i Mobile Quick Hub øverst fungerer nå som det sentrale, synkroniserte søket på mobil.
+   - Erstattet de 4 store, stablede filterboksene over katalogen på mobil med en elegant, sammenleggbar filterverktøylinje (`#mobileFilterBar`) med aktiv filterindikator (`Filter (X)`-teller) og hurtigtilbakestillingsknapp (`✕ Nullstill`).
+
+2. **Kompakte Produsenter med Hurtigutvidelse**:
+   - I stedet for 16 enorme produsentbokser som tidligere spiste 650px med vertikal scrolling, vises nå de 4 mest populære dufthusene (Surrati, Bujairami, Al Haramain, Risala) i et ryddig, kompakt format.
+   - Lagt til en taktil knapp («Se alle 16 produsenter (120 dufter) ▾») som umiddelbart bretter ut resten ved behov, og kan lukkes med «Vis færre ▴».
+
+3. **Strømlinjeformede Bestselgere på Mobil**:
+   - Begrenset standardvisningen av bestselgere i helten til de 4 fremste virale favorittene på telefon (`Surrati Gray Oud`, `Bujairami Hectic`, `Surrati Oud Honey`, `Bujairami Date Night`).
+   - Resterende 8 bestselgere ligger bak en ren utvidelsesknapp («Vis alle 12 bestselgere ▾») sammen med en direkte snarvei («Hopp rett til katalogen (120) ↓»), noe som eliminerer over 1 200px unødvendig scrolling før kunden når katalogen.
+
+4. **Ryddige Kjøpshandlinger på Produktkort (Fullbredde Knapper & Stepper)**:
+   - Fjernet den overflødige «Detaljer»-knappen på mobil, siden hele produktkortet (bilde og tittel) allerede åpner den komplette flakongvisningen og zoombart høyoppløselig bilde.
+   - Kjøpsknappen («+ Kjøp» / «Velg duft») og mengdestyreren (`− 1 +`) strekker seg nå over hele kortets bredde i behagelig 42px touch-høyde for uanstrengt enhåndsbruk.
+
+5. **Organisering av Prosjektfiler**:
+   - Opprettet `archive/`-katalogen og flyttet utdaterte reservekopier og råbilder (`aromatix.html`, `force.jpg`, `reef pictures/`) bort fra rotkatalogen, slik at prosjektet er ryddig og oversiktlig.
+   - Oppdatert buffer til `arx_custom_catalog_v61` og bunntekst til `v1.0.61 (updated 2026-11-09 21:58)`.
 
 ---
 

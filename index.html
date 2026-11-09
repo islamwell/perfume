@@ -415,6 +415,30 @@ try {
   color: var(--gold-bright);
 }
 
+.hero-brand-toggle-btn,
+.hero-best-mobile-actions,
+.mobile-filter-bar {
+  display: none;
+}
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-brand-pill-extra,
+  .hero-best-card-extra,
+  .filter-container {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Curated Niche Spotlight (Surrati & Bujairami) */
 .niche-spotlight-wrap {
   display: grid;
@@ -1948,45 +1972,45 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     font-size: 1.05rem;
   }
 
-  /* Vertical Manufacturers Layout (Zero Horizontal Scroll) */
+  /* Compact Manufacturers Layout (Zero Horizontal Scroll with on-demand expansion) */
   .hero-brand-pills-bar {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     overflow-x: visible !important;
-    padding: 1.15rem 1rem !important;
-    margin: 1.25rem 0 1.85rem !important;
-    border-radius: 1.25rem !important;
+    padding: .85rem .85rem !important;
+    margin: .85rem 0 1.25rem !important;
+    border-radius: 1.15rem !important;
     background: rgba(12, 17, 28, 0.95) !important;
     border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
-    gap: .85rem !important;
+    gap: .65rem !important;
   }
   .hero-brand-pills-header {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: .6rem;
+    gap: .5rem;
     width: 100%;
   }
   .hero-brand-pills-label {
-    font-size: 1.02rem !important;
+    font-size: .92rem !important;
     font-weight: 700 !important;
     letter-spacing: .06em !important;
     color: var(--gold) !important;
     text-transform: uppercase !important;
     display: flex !important;
     align-items: center !important;
-    gap: .4rem !important;
+    gap: .35rem !important;
   }
   .hero-brand-reset-btn {
-    font-size: .84rem !important;
-    padding: .4rem .85rem !important;
+    font-size: .8rem !important;
+    padding: .32rem .75rem !important;
     border-radius: 999px !important;
   }
   .hero-brand-pills-scroll {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: .75rem !important;
+    gap: .55rem !important;
     overflow-x: visible !important;
     flex-wrap: wrap !important;
     width: 100% !important;
@@ -1997,46 +2021,187 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    padding: .8rem .95rem !important;
-    min-height: 54px !important;
-    border-radius: .9rem !important;
-    font-size: 1.05rem !important;
+    padding: .55rem .7rem !important;
+    min-height: 44px !important;
+    border-radius: .75rem !important;
+    font-size: .9rem !important;
     font-weight: 600 !important;
     white-space: normal !important;
     text-align: left !important;
-    gap: .65rem !important;
+    gap: .5rem !important;
     background: rgba(255, 255, 255, 0.06) !important;
-    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
+    border: 1.5px solid rgba(201, 169, 110, 0.3) !important;
   }
   .hero-brand-pill b {
-    font-size: 1.02rem !important;
+    font-size: .88rem !important;
     color: #fff !important;
     display: block !important;
-    line-height: 1.25 !important;
+    line-height: 1.2 !important;
   }
   .hero-brand-pill span {
-    font-size: 1.45rem !important;
+    font-size: 1.15rem !important;
     flex-shrink: 0 !important;
   }
   .hero-brand-pill small {
     display: block !important;
-    font-size: .82rem !important;
+    font-size: .72rem !important;
     color: var(--gold) !important;
     font-weight: 500 !important;
-    margin-top: 2px !important;
+    margin-top: 1px !important;
+  }
+  .hero-brand-pills-bar:not(.expanded) .hero-brand-pill-extra {
+    display: none !important;
+  }
+  .hero-brand-pills-bar.expanded .hero-brand-pill-extra {
+    display: flex !important;
+    animation: fadeInSlide .25s ease both;
+  }
+  .hero-brand-toggle-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .4rem !important;
+    width: 100% !important;
+    padding: .6rem .8rem !important;
+    font-size: .84rem !important;
+    font-weight: 600 !important;
+    color: var(--gold-bright) !important;
+    background: rgba(201, 169, 110, 0.1) !important;
+    border: 1px solid rgba(201, 169, 110, 0.35) !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
+    margin-top: .3rem !important;
+    transition: all .2s ease !important;
+  }
+  .hero-brand-toggle-btn:active {
+    background: var(--gold) !important;
+    color: #060a10 !important;
   }
 
-  /* Catalog Filter Bar on Mobile */
+  /* Streamline Hero Bestsellers (Show top 4 with expansion toggle) */
+  .hero-bestsellers-grid:not(.expanded) .hero-best-card-extra {
+    display: none !important;
+  }
+  .hero-bestsellers-grid.expanded .hero-best-card-extra {
+    display: flex !important;
+    animation: fadeInSlide .25s ease both;
+  }
+  .hero-best-mobile-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: .6rem !important;
+    width: 100% !important;
+    margin: .85rem 0 1.25rem !important;
+  }
+  .hero-best-toggle-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: .4rem !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    padding: .7rem 1.1rem !important;
+    font-size: .88rem !important;
+    font-weight: 700 !important;
+    color: var(--gold-bright) !important;
+    background: rgba(201, 169, 110, 0.12) !important;
+    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
+    transition: all .2s ease !important;
+  }
+  .hero-best-toggle-btn:active {
+    background: var(--gold) !important;
+    color: #060a10 !important;
+  }
+  .hero-best-jump-btn {
+    font-size: .82rem !important;
+    color: var(--dim) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    padding: .3rem .6rem !important;
+    transition: color .2s ease !important;
+  }
+  .hero-best-jump-btn:active {
+    color: var(--gold) !important;
+  }
+
+  /* Mobile Consolidated Filter Toolbar & Collapsible Filter Drawer */
+  .mobile-filter-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: .5rem !important;
+    margin-bottom: .85rem !important;
+  }
+  .mobile-filter-toggle-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    padding: .65rem 1.1rem !important;
+    background: linear-gradient(135deg, rgba(17,24,39,0.9) 0%, rgba(10,15,26,0.95) 100%) !important;
+    border: 1.5px solid rgba(201,169,110,0.4) !important;
+    border-radius: 999px !important;
+    color: var(--ice) !important;
+    font-size: .9rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all .2s ease !important;
+  }
+  .mobile-filter-toggle-btn:active {
+    border-color: var(--gold) !important;
+    background: rgba(201,169,110,0.18) !important;
+  }
+  .mobile-filter-count-badge {
+    background: var(--gold) !important;
+    color: #060a10 !important;
+    font-size: .75rem !important;
+    font-weight: 800 !important;
+    padding: 1px 7px !important;
+    border-radius: 999px !important;
+    line-height: 1.4 !important;
+  }
+  .mobile-filter-reset-quick {
+    background: none !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    border-radius: 999px !important;
+    color: var(--dim) !important;
+    font-size: .8rem !important;
+    font-weight: 600 !important;
+    padding: .4rem .8rem !important;
+    cursor: pointer !important;
+    transition: all .2s ease !important;
+  }
+  .mobile-filter-reset-quick:hover, .mobile-filter-reset-quick:active {
+    color: #ef4444 !important;
+    border-color: #ef4444 !important;
+  }
   .filter-container {
-    padding: 1.15rem 1rem !important;
-    gap: 1rem !important;
+    padding: 1rem .9rem !important;
+    gap: .85rem !important;
+    background: rgba(10,14,22,0.95) !important;
+    border: 1.5px solid rgba(201,169,110,0.3) !important;
+    border-radius: 1.1rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .filter-container:not(.mobile-open) {
+    display: none !important;
+  }
+  .filter-container.mobile-open {
+    display: flex !important;
+    flex-direction: column !important;
+    animation: fadeInSlide .25s ease both !important;
+  }
+  .filter-field-search {
+    display: none !important; /* Unified into top Mobile Quick Hub */
   }
   .filter-field label {
     font-size: .82rem !important;
     font-weight: 700 !important;
     letter-spacing: .08em !important;
   }
-  .filter-select, .search-input {
+  .filter-select {
     font-size: 16px !important;
     min-height: 48px !important;
     padding: .75rem .95rem !important;
@@ -2175,15 +2340,28 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     font-weight:700 !important;
     margin-bottom:.7rem;
   }
+  .perfume-card .btn-details {
+    display: none !important;
+  }
+  .perfume-card .card-actions {
+    width: 100% !important;
+  }
+  .perfume-card .card-btn-wrap {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+  }
   .card-btn{
-    font-size:0.86rem !important;
+    font-size:0.88rem !important;
     font-weight:700 !important;
     min-height:42px !important;
     padding:.55rem .5rem !important;
+    width:100% !important;
+    justify-content:center !important;
   }
   .card-qty-stepper{
     height:42px !important;
-    grid-template-columns:36px 1fr 36px !important;
+    width:100% !important;
+    grid-template-columns:42px 1fr 42px !important;
   }
   .cqty-step-btn{
     font-size:1.3rem !important;
@@ -2251,19 +2429,30 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     color:#fff;
     margin-bottom:.65rem;
   }
+  .perfume-card .btn-details{
+    display:none !important;
+  }
   .card-actions{
-    gap:.4rem;
+    gap:0 !important;
+    width:100% !important;
+  }
+  .perfume-card .card-btn-wrap{
+    width:100% !important;
+    flex:1 1 100% !important;
   }
   .card-btn{
-    font-size:0.84rem !important;
+    font-size:0.86rem !important;
     font-weight:700 !important;
-    padding:.52rem .35rem !important;
-    min-height:40px !important;
+    padding:.52rem .4rem !important;
+    min-height:42px !important;
     border-radius:8px !important;
+    width:100% !important;
+    justify-content:center !important;
   }
   .card-qty-stepper{
-    height:40px !important;
-    grid-template-columns:32px 1fr 32px !important;
+    height:42px !important;
+    width:100% !important;
+    grid-template-columns:38px 1fr 38px !important;
     border-radius:8px !important;
   }
   .cqty-step-btn{
@@ -2272,7 +2461,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   .card-qty-output{
     font-size:0.95rem !important;
     font-weight:700 !important;
-    line-height:40px;
+    line-height:42px;
   }
 }
 @media(max-width:350px){
@@ -3414,43 +3603,46 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Risala')">
           <span>🖋️</span> <b>Risala</b> <small>(Dubai · 4 dufter)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Lattafa')">
           <span>🌟</span> <b>Lattafa</b> <small>(25 bestselgere)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Maison Alhambra')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Maison Alhambra')">
           <span>🏛️</span> <b>Maison Alhambra</b> <small>(7 luksusutgaver)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Swiss Arabian')">
           <span>🌙</span> <b>Swiss Arabian</b> <small>(4 signaturer)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('French Avenue')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('French Avenue')">
           <span>🍸</span> <b>French Avenue</b> <small>(5 extrait)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Reef')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Reef')">
           <span>💎</span> <b>Reef Perfumes</b> <small>(9 luksusdufter)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ibraq')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Ibraq')">
           <span>💠</span> <b>IBRAQ</b> <small>(Ibrahim Al Qurashi · 8)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Hamidi')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Hamidi')">
           <span>🪔</span> <b>Hamidi Oud</b> <small>(10 signaturer)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Armaf')">
           <span>👑</span> <b>Armaf / Sterling</b> <small>(Club de Nuit)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Bespoke London')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Bespoke London')">
           <span>🇬🇧</span> <b>Bespoke London</b> <small>(9 parfymer)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Buhara Esans')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Buhara Esans')">
           <span>🇹🇷</span> <b>Buhara Esans</b> <small>(Roll-on olje · 99)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
           <span>⚜️</span> <b>Ahmed Al Maghribi</b> <small>(2 parfymer)</small>
         </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Gavesett')">
+        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Gavesett')">
           <span>🎁</span> <b>Luksus Gavesett</b> <small>(4-i-1 Komplett)</small>
         </button>
       </div>
+      <button type="button" class="hero-brand-toggle-btn" id="heroBrandToggleBtn" onclick="toggleManufacturersMobile()" aria-expanded="false">
+        <span id="heroBrandToggleText">Se alle 16 produsenter (120 dufter)</span> <span id="heroBrandToggleArrow">▾</span>
+      </button>
     </div>
 
     <div class="hero-bestsellers-grid">
@@ -3543,7 +3735,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 5. Al Haramain Detour Noir (Dectour) -->
-      <article class="hero-best-card" data-id="al-haramain-detour-noir">
+      <article class="hero-best-card hero-best-card-extra" data-id="al-haramain-detour-noir">
         <span class="hero-best-badge gold" id="heroBadge5">Krydret Eple, Mandel & Vanilje</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('al-haramain-detour-noir')">
           <img class="hero-best-img" src="images/detour-noir.png" alt="Al Haramain Detour Noir (Dectour)" loading="lazy">
@@ -3565,7 +3757,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 6. Le Falconé Risala Autograph -->
-      <article class="hero-best-card" data-id="risala-autograph">
+      <article class="hero-best-card hero-best-card-extra" data-id="risala-autograph">
         <span class="hero-best-badge blue" id="heroBadge6">Sitrus, Einerbær & Frisk Ambra</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('risala-autograph')">
           <img class="hero-best-img" src="images/risala-autograph.png" alt="Le Falconé Risala Autograph" loading="lazy">
@@ -3587,7 +3779,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 7. Armaf Club de Nuit Intense Man -->
-      <article class="hero-best-card" data-id="armaf-club-de-nuit-intense">
+      <article class="hero-best-card hero-best-card-extra" data-id="armaf-club-de-nuit-intense">
         <span class="hero-best-badge gold" id="heroBadge7">Røkt Bjørk & Sitron</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('armaf-club-de-nuit-intense')">
           <img class="hero-best-img" src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
@@ -3609,7 +3801,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 8. Lattafa Khamrah -->
-      <article class="hero-best-card" data-id="lattafa-khamrah">
+      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-khamrah">
         <span class="hero-best-badge" id="heroBadge8">Kanel, Dadler & Praline</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
           <img class="hero-best-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
@@ -3631,7 +3823,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 9. Lattafa Asad -->
-      <article class="hero-best-card" data-id="lattafa-asad">
+      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-asad">
         <span class="hero-best-badge gold" id="heroBadge9">Sort Pepper, Tobakk & Amber</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
           <img class="hero-best-img" src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
@@ -3653,7 +3845,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 10. Lattafa Yara Pink -->
-      <article class="hero-best-card" data-id="lattafa-yara-pink">
+      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-yara-pink">
         <span class="hero-best-badge purple" id="heroBadge10">Heliotrop, Vanilje & Tropisk Frukt</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
           <img class="hero-best-img" src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
@@ -3675,7 +3867,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 11. Buhara Esans 7ml -->
-      <article class="hero-best-card" data-id="buhara-esans-7ml">
+      <article class="hero-best-card hero-best-card-extra" data-id="buhara-esans-7ml">
         <span class="hero-best-badge green" id="heroBadge11">Isparta Rose & Hvit Moskus</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
           <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esans 7ml Roll-on (1 stk)" loading="lazy">
@@ -3700,7 +3892,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </article>
 
       <!-- 12. Luksus Islamsk Gavesett 4-i-1 -->
-      <article class="hero-best-card" data-id="quran-prayer-gift-box">
+      <article class="hero-best-card hero-best-card-extra" data-id="quran-prayer-gift-box">
         <span class="hero-best-badge green" id="heroBadge12">Luksus Gavesett · 4-i-1</span>
         <div class="hero-best-img-wrap" onclick="openProductDetail('quran-prayer-gift-box')">
           <img class="hero-best-img" src="images/quran-prayer-gift-box.png" alt="Luksus Islamsk Gavesett (Koran, Bønnematte, Tasbeeh & Itar)" loading="lazy">
@@ -3720,6 +3912,12 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
           </div>
         </div>
       </article>
+    </div>
+    <div class="hero-best-mobile-actions" id="heroBestMobileActions">
+      <button type="button" class="hero-best-toggle-btn" id="heroBestToggleBtn" onclick="toggleBestsellersMobile()" aria-expanded="false">
+        <span id="heroBestToggleText">Vis alle 12 bestselgere</span> <span id="heroBestToggleArrow">▾</span>
+      </button>
+      <a href="#kjop" class="hero-best-jump-btn" id="heroBestJumpBtn">Hopp rett til katalogen (120) ↓</a>
     </div></section>
 
   <!-- ================= 3. COLLECTION GRID AT THE VERY TOP ================= -->
@@ -3737,8 +3935,21 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </div>
     </div>
 
-    <!-- Dropdown Filter Bar (Zero Horizontal Scroll) -->
-    <div class="filter-container">
+    <!-- Mobile Filter Toolbar (Consolidated Filter Trigger) -->
+    <div class="mobile-filter-bar" id="mobileFilterBar">
+      <button type="button" class="mobile-filter-toggle-btn" id="mobileFilterToggleBtn" onclick="toggleMobileFilters()" aria-expanded="false">
+        <span class="mft-icon">⚙️</span>
+        <span id="mobileFilterToggleLabel">Filter & Sortering</span>
+        <span class="mobile-filter-count-badge" id="mobileFilterCountBadge" style="display:none">0</span>
+        <span class="mft-arrow" id="mobileFilterArrow">▾</span>
+      </button>
+      <button type="button" class="mobile-filter-reset-quick" id="mobileFilterResetQuick" onclick="resetAllFilters()" style="display:none">
+        ✕ Nullstill
+      </button>
+    </div>
+
+    <!-- Dropdown Filter Bar -->
+    <div class="filter-container" id="filterContainer">
       <div class="filter-field">
         <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
@@ -3777,7 +3988,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
         </select>
       </div>
 
-      <div class="filter-field">
+      <div class="filter-field filter-field-search">
         <label for="catalogSearchInput" id="lblFilterSearch">Søk i katalogen</label>
         <div class="search-wrap">
           <input type="text" id="catalogSearchInput" class="search-input" placeholder="Søk parfyme, merke, duftnote...">
@@ -4330,7 +4541,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.60 (updated 2026-11-09 16:15)
+        v1.0.61 (updated 2026-11-09 21:58)
       </div>
     </div>
   </div>
@@ -8546,7 +8757,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v60');
+  const custom = localStorage.getItem('arx_custom_catalog_v61');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -9223,6 +9434,7 @@ function renderStore() {
   if ($('#collectionCount')) {
     $('#collectionCount').textContent = t.showingCount(filtered.length, CATALOG.length);
   }
+  updateMobileFilterBadge();
   const brandSelect = $('#filterBrand');
   if (brandSelect) {
     const currentVal = activeBrand || 'all';
@@ -10514,6 +10726,27 @@ function setLanguage(lang) {
   if ($('#mobQuickBtnBrands .mob-qbtn-text')) $('#mobQuickBtnBrands .mob-qbtn-text').textContent = t.mobQuickBtnBrands || (LANG === 'en' ? 'Brands' : 'Produsenter');
   if ($('#mobQuickBtnBest .mob-qbtn-text')) $('#mobQuickBtnBest .mob-qbtn-text').textContent = t.mobQuickBtnBest || (LANG === 'en' ? 'Bestsellers' : 'Bestselgere');
   if ($('#mobQuickBtnAll .mob-qbtn-text')) $('#mobQuickBtnAll .mob-qbtn-text').textContent = t.mobQuickBtnAll || (LANG === 'en' ? 'All (120)' : 'Alle (120)');
+  if ($('#heroBrandToggleText')) {
+    const isExpanded = $('#manufacturersBar')?.classList.contains('expanded');
+    $('#heroBrandToggleText').textContent = isExpanded
+      ? (LANG === 'en' ? 'Show fewer brands' : 'Vis færre produsenter')
+      : (LANG === 'en' ? 'View all 16 brands (120 perfumes)' : 'Se alle 16 produsenter (120 dufter)');
+  }
+  if ($('#heroBestToggleText')) {
+    const isExpanded = document.querySelector('.hero-bestsellers-grid')?.classList.contains('expanded');
+    $('#heroBestToggleText').textContent = isExpanded
+      ? (LANG === 'en' ? 'Show fewer bestsellers' : 'Vis færre bestselgere')
+      : (LANG === 'en' ? 'View all 12 bestsellers' : 'Vis alle 12 bestselgere');
+  }
+  if ($('#heroBestJumpBtn')) {
+    $('#heroBestJumpBtn').textContent = (LANG === 'en' ? 'Jump straight to catalog (120) ↓' : 'Hopp rett til katalogen (120) ↓');
+  }
+  if ($('#mobileFilterToggleLabel')) {
+    $('#mobileFilterToggleLabel').textContent = (LANG === 'en' ? 'Filter & Sorting' : 'Filter & Sortering');
+  }
+  if ($('#mobileFilterResetQuick')) {
+    $('#mobileFilterResetQuick').textContent = (LANG === 'en' ? '✕ Reset' : '✕ Nullstill');
+  }
 
   // Curated Niche Spotlight
   if ($('#spotlightSurratiBadge')) $('#spotlightSurratiBadge').textContent = t.spotlightSurratiBadge;
@@ -10718,6 +10951,71 @@ window.toggleMobileNav = function(forceClose = false) {
     btn.title = label;
   }
 };
+
+window.toggleManufacturersMobile = function() {
+  const bar = document.getElementById('manufacturersBar');
+  const btn = document.getElementById('heroBrandToggleBtn');
+  const txt = document.getElementById('heroBrandToggleText');
+  const arrow = document.getElementById('heroBrandToggleArrow');
+  if (!bar) return;
+  const isExpanded = bar.classList.toggle('expanded');
+  if (btn) btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  if (txt) {
+    txt.textContent = isExpanded
+      ? (LANG === 'en' ? 'Show fewer brands' : 'Vis færre produsenter')
+      : (LANG === 'en' ? 'View all 16 brands (120 perfumes)' : 'Se alle 16 produsenter (120 dufter)');
+  }
+  if (arrow) arrow.textContent = isExpanded ? '▴' : '▾';
+};
+
+window.toggleBestsellersMobile = function() {
+  const grid = document.querySelector('.hero-bestsellers-grid');
+  const btn = document.getElementById('heroBestToggleBtn');
+  const txt = document.getElementById('heroBestToggleText');
+  const arrow = document.getElementById('heroBestToggleArrow');
+  if (!grid) return;
+  const isExpanded = grid.classList.toggle('expanded');
+  if (btn) btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  if (txt) {
+    txt.textContent = isExpanded
+      ? (LANG === 'en' ? 'Show fewer bestsellers' : 'Vis færre bestselgere')
+      : (LANG === 'en' ? 'View all 12 bestsellers' : 'Vis alle 12 bestselgere');
+  }
+  if (arrow) arrow.textContent = isExpanded ? '▴' : '▾';
+};
+
+window.toggleMobileFilters = function() {
+  const container = document.getElementById('filterContainer');
+  const btn = document.getElementById('mobileFilterToggleBtn');
+  const arrow = document.getElementById('mobileFilterArrow');
+  if (!container) return;
+  const isOpen = container.classList.toggle('mobile-open');
+  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (arrow) arrow.textContent = isOpen ? '▴' : '▾';
+};
+
+function updateMobileFilterBadge() {
+  let count = 0;
+  if (activeBrand && activeBrand !== 'all') count++;
+  if (activeScent && activeScent !== 'all') count++;
+  if (activeSort && activeSort !== 'featured') count++;
+  if (searchQuery) count++;
+
+  const badge = document.getElementById('mobileFilterCountBadge');
+  const resetBtn = document.getElementById('mobileFilterResetQuick');
+  if (badge) {
+    if (count > 0) {
+      badge.textContent = count;
+      badge.style.display = 'inline-flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+  if (resetBtn) {
+    resetBtn.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+}
+window.updateMobileFilterBadge = updateMobileFilterBadge;
 
 // ── ADMIN PANEL & CLOUD SYNCHRONIZATION ──
 const ADMIN_PASSWORD = 'readquran2344';
@@ -11053,7 +11351,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v61', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -11115,7 +11413,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v61', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -11191,7 +11489,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v61', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -11206,6 +11504,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v60');
     localStorage.removeItem('arx_custom_catalog_v59');
     localStorage.removeItem('arx_custom_catalog_v58');
     localStorage.removeItem('arx_custom_catalog_v54');
@@ -11231,7 +11530,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v61', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
