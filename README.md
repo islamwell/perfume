@@ -1,6 +1,29 @@
-# AROMATEK OSLO (v1.0.57) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.58) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+
+---
+
+## 🌟 Versjon 1.0.58 Høydepunkter (Pre-Launch UI/UX Audit & Polish)
+
+1. **2-Kolonners Responsivt Rutenett på Mobil**:
+   - Optimalisert produktvisningen på mobilskjermer (`max-width: 439px`) fra en massiv 1-kolonne til et elegant, moderne 2-kolonners rutenett (`repeat(2, 1fr)` med 0.75rem mellomrom), tilsvarende bransjeledende e-handelsapper. Gjør blaing, produktsammenligning og kjøp vesentlig raskere og mer behagelig på telefon.
+
+2. **Native Modal «Light-Dismiss» & Scroll-Inneslutning**:
+   - Alle 9 modal-dialoger (`<dialog>`) er oppgradert med `closedby="any"` (moderne standard) samt en dedikert fallback for Safari, slik at brukeren enkelt kan lukke modaler ved å trykke på bakgrunnen utenfor boksen.
+   - Lagt til `overscroll-behavior: contain;` på `dialog:modal` og `dialog::backdrop` (`overflow: hidden`) som hindrer uønsket rulling av bakgrunnssiden når en modal er åpen, uten layout shift.
+
+3. **Tilgjengelighet & Taktil Ergonomi**:
+   - Innført WCAG AA `:focus-visible` gullfokusramme (`outline: 2px solid var(--gold); outline-offset: 2px;`) for tastaturnavigasjon.
+   - Taktile berøringsmål (`@media (pointer: coarse)`) på minst 32–44px for stepperknapper, fjern-knapper og lukk-ikoner for feilfrie trykk på berøringsskjermer.
+
+4. **Komplett Fjerning av Steds- og Emballasjetekst**:
+   - Ryddet bort alle gjenværende forekomster av «Mekka» og «Makkah» fra merkevelgere, spotlight-kort, dropdown-menyer og beskrivelser til fordel for et helhetlig «Surrati Perfumes».
+   - Fjernet alle etterfølgende «kr»-tekster fra underoverskrifter og garantitekster («Maks 1 500»).
+
+5. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v58` med automatisk opprydding av eldre versjoner.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.58`.
 
 ---
 
@@ -46,4 +69,4 @@ Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i T
 ---
 
 ## 🚀 Versjonering
-`v1.0.57 (updated 2026-11-05 17:36)`
+`v1.0.58 (updated 2026-11-09 08:38)`

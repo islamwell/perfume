@@ -27,14 +27,14 @@
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
 <meta property="og:title" id="ogTitle" content="Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
-<meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
+<meta property="og:description" id="ogDesc" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500. Showroom i Tøyengata 3, 0190 Oslo.">
 <meta property="og:url" content="https://aromatix-oslo.pages.dev/">
 <meta property="og:image" content="https://aromatix-oslo.pages.dev/images/aromatek-logo.jpeg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger">
-<meta name="twitter:description" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500 kr. Showroom i Tøyengata 3, 0190 Oslo.">
+<meta name="twitter:description" content="Kuratert parfymeri i Oslo. 100% ekte flakonger, luksus gavesett og attarer. Makspris 1 500. Showroom i Tøyengata 3, 0190 Oslo.">
 <meta name="twitter:image" content="https://aromatix-oslo.pages.dev/images/aromatek-logo.jpeg">
 
 <!-- Schema.org JSON-LD Structured Data -->
@@ -709,7 +709,12 @@ try {
 .image-zoom-dialog:not([open]) {
   display: none !important;
 }
-.image-zoom-dialog::backdrop {
+.image-zoom-dialog:modal {
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
   background: rgba(3, 5, 8, 0.92);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -1819,7 +1824,73 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
 }
 @media(max-width:439px){
-  .products-grid{grid-template-columns:1fr}
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:.75rem;
+  }
+  .perfume-card{
+    padding:.85rem .6rem .75rem;
+    border-radius:.95rem;
+  }
+  .card-img-wrap{
+    height:135px;
+    margin-bottom:.55rem;
+  }
+  .card-img{
+    max-height:120px;
+    max-width:92%;
+  }
+  .card-tag-badge{
+    font-size:0.62rem;
+    padding:2px 6px;
+    top:6px;
+    left:6px;
+  }
+  .card-brand{
+    font-size:.6rem;
+    margin-bottom:.2rem;
+  }
+  .card-name{
+    font-size:.85rem;
+    line-height:1.2;
+    margin-bottom:.25rem;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:2.1em;
+  }
+  .card-vol{
+    font-size:.68rem;
+    margin-bottom:.3rem;
+  }
+  .card-price{
+    font-size:1.05rem;
+    margin-bottom:.65rem;
+  }
+  .card-actions{
+    gap:.35rem;
+  }
+  .card-btn{
+    font-size:.66rem;
+    padding:.48rem .25rem;
+  }
+  .card-qty-stepper{
+    height:30px;
+    grid-template-columns:26px 1fr 26px;
+  }
+  .cqty-step-btn{
+    font-size:1rem;
+  }
+  .card-qty-output{
+    font-size:.8rem;
+    line-height:30px;
+  }
+}
+@media(max-width:320px){
+  .products-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 /* Card Design */
@@ -2606,6 +2677,42 @@ html.theme-light .toast-pill {
   box-shadow: 0 12px 30px rgba(0,0,0,0.12), 0 0 20px rgba(184,134,11,0.25);
 }
 
+
+/* ── ACCESSIBLE FOCUS-VISIBLE & COARSE POINTER TARGETS ── */
+:where(a, button, input, select, textarea, [tabindex="0"]):focus-visible {
+  outline: 2px solid var(--gold, #c9a96e) !important;
+  outline-offset: 2px !important;
+}
+html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focus-visible {
+  outline: 2px solid #b8860b !important;
+  outline-offset: 2px !important;
+}
+
+@media (pointer: coarse) {
+  .cqty-step-btn {
+    min-width: 32px;
+    min-height: 32px;
+  }
+  .cqty-btn {
+    min-width: 36px;
+    min-height: 36px;
+  }
+  .cart-remove-btn {
+    min-width: 32px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .top-nav-clear-btn {
+    min-width: 32px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2669,7 +2776,7 @@ html.theme-light .toast-pill {
           <div class="nav-dropdown-header" id="navBrandsHeader">Top Brands Online — Click to filter</div>
           <div class="nav-dropdown-list">
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Surrati')">
-              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes (Makkah)</span>
+              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes</span>
             </button>
             <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Bujairami')">
               <span class="nav-item-icon">🇦🇺</span> <span class="nav-item-name">Bujairami Perfumes (Sydney)</span>
@@ -2716,7 +2823,7 @@ html.theme-light .toast-pill {
           </div>
         </div>
       </div>
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati')" title="Utforsk Surrati Perfumes (Mekka)"><span aria-hidden="true">🕋</span> Surrati</button>
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati')" title="Utforsk Surrati Perfumes"><span aria-hidden="true">🕋</span> Surrati</button>
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Bujairami')" title="Utforsk Bujairami Perfumes (Australia)"><span aria-hidden="true">🇦🇺</span> Bujairami</button>
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Risala')" title="Utforsk Risala / Le Falconé"><span aria-hidden="true">🖋️</span> Risala</button>
       <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Kontakt</button>
@@ -2755,7 +2862,7 @@ html.theme-light .toast-pill {
       <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (120 stk)</span>
     </a>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:.4rem 0 .6rem;border-bottom:1px solid rgba(255,255,255,0.06)">
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();" style="justify-content:center"><span aria-hidden="true">🕋</span> Surrati (Mekka)</button>
+      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();" style="justify-content:center"><span aria-hidden="true">🕋</span> Surrati</button>
       <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav();" style="justify-content:center"><span aria-hidden="true">🇦🇺</span> Bujairami (Sydney)</button>
     </div>
     <div class="mob-dropdown" id="mobBrandsDropdown">
@@ -2817,13 +2924,13 @@ html.theme-light .toast-pill {
       </a>
     </div>
 
-    <!-- Curated Visual Spotlight: Surrati Makkah & Bujairami Australia -->
+    <!-- Curated Visual Spotlight: Surrati & Bujairami Australia -->
     <div class="niche-spotlight-wrap" aria-label="Utvalgt Nisjefokus">
       <div class="niche-spotlight-card" onclick="filterByBrandFromHero('Surrati')">
         <img src="images/surrati-gray-oud.png" alt="Surrati Perfumes" class="niche-spotlight-img" loading="lazy">
         <div class="niche-spotlight-info">
-          <span class="niche-spotlight-badge" id="spotlightSurratiBadge">🕋 Flaggskip fra Mekka</span>
-          <h3 class="niche-spotlight-title" id="spotlightSurratiTitle">Surrati Perfumes (Mekka)</h3>
+          <span class="niche-spotlight-badge" id="spotlightSurratiBadge">🕋 Flaggskip fra Surrati</span>
+          <h3 class="niche-spotlight-title" id="spotlightSurratiTitle">Surrati Perfumes</h3>
           <p class="niche-spotlight-sub" id="spotlightSurratiSub">150 ml Extrait de Parfum m/ magnetkork & luksusoljer</p>
           <span class="niche-spotlight-btn" id="spotlightSurratiBtn">Se alle 12 Surrati dufter →</span>
         </div>
@@ -2844,7 +2951,7 @@ html.theme-light .toast-pill {
       <span class="hero-brand-pills-label" id="heroPillsLabel">Utvalgte Dufthus:</span>
       <div class="hero-brand-pills-scroll">
         <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Surrati')">
-          <span>🕋</span> <b>Surrati</b> <small style="opacity:.85;font-weight:400">(Mekka · 12)</small>
+          <span>🕋</span> <b>Surrati</b> <small style="opacity:.85;font-weight:400">(12)</small>
         </button>
         <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Bujairami')">
           <span>🇦🇺</span> <b>Bujairami</b> <small style="opacity:.85;font-weight:400">(Sydney · 8)</small>
@@ -3150,7 +3257,7 @@ html.theme-light .toast-pill {
     <div class="collection-header">
       <p class="tagline-small" id="colTag">Finn Din Signaturduft</p>
       <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
-      <p class="sub" id="colSub">120 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag</p>
+      <p class="sub" id="colSub">120 Håndplukkede luksusparfymer og oljer · Maks 1 500 · Unn deg en ny favoritt i dag</p>
       <div class="collection-status-bar">
         <div class="status-bar-left">
           <span id="collectionCount">Viser 120 av 120 parfymer — Finn din favoritt i dag</span>
@@ -3167,7 +3274,7 @@ html.theme-light .toast-pill {
         <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
           <option value="all" id="optBrandAll">Alle merker (120)</option>
           <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
-          <option value="Surrati" id="optBrandSurrati">Surrati Perfumes (Makkah) (12)</option>
+          <option value="Surrati" id="optBrandSurrati">Surrati Perfumes (12)</option>
           <option value="Risala" id="optBrandRisala">Risala / Le Falconé Dubai (4)</option>
           <option value="Lattafa" id="optBrandLattafa">Lattafa (14)</option>
           <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (1)</option>
@@ -3257,7 +3364,7 @@ html.theme-light .toast-pill {
 </main>
 
 <!-- ================= 5. PRODUCT DETAIL MODAL DIALOG ================= -->
-<dialog id="productDetailModal" class="dialog-box product-modal" aria-labelledby="detailModalTitle">
+<dialog id="productDetailModal" class="dialog-box product-modal" closedby="any" aria-labelledby="detailModalTitle">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
     <p class="tagline-small" id="detailModalBrand">PRODUSENT</p>
     <button type="button" class="clear-search-btn" onclick="closeProductDetail()" style="font-size:1.3rem;display:block" aria-label="Lukk produktdetaljer">✕</button>
@@ -3360,7 +3467,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 5b. ZOOMED-IN PICTURE MODAL (Lightbox) ================= -->
-<dialog id="imageZoomModal" class="image-zoom-dialog" onclick="if(event.target===this)closeImageZoom()" aria-labelledby="zoomModalCaption">
+<dialog id="imageZoomModal" class="image-zoom-dialog" closedby="any" onclick="if(event.target===this)closeImageZoom()" aria-labelledby="zoomModalCaption">
   <div class="zoom-modal-content">
     <button type="button" class="zoom-modal-close" onclick="closeImageZoom()" aria-label="Lukk forstørret bilde">✕</button>
     <div class="zoom-img-wrap" onclick="closeImageZoom()" title="Klikk for å lukke / Click to close">
@@ -3377,7 +3484,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 6. CART DRAWER (Modal Dialog) ================= -->
-<dialog id="cart" class="sheet" aria-labelledby="cartHeading">
+<dialog id="cart" class="sheet" closedby="any" aria-labelledby="cartHeading">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <h3 id="cartHeading" style="font-size:1.4rem">Handlekurv</h3>
     <button type="button" class="clear-search-btn" onclick="closeCart()" style="font-size:1.2rem;display:block" aria-label="Lukk kurv">✕</button>
@@ -3403,7 +3510,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 7. CHECKOUT MODAL (Order Inquiry) ================= -->
-<dialog id="checkoutModal" class="dialog-box" aria-labelledby="checkoutHeading">
+<dialog id="checkoutModal" class="dialog-box" closedby="any" aria-labelledby="checkoutHeading">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
     <p class="tagline-small" id="checkoutEye">Bestilling & Reservasjon</p>
     <button type="button" class="clear-search-btn" onclick="closeCheckout()" style="font-size:1.2rem;display:block" aria-label="Lukk kasse">✕</button>
@@ -3468,7 +3575,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 8. CONFIRMATION RECEIPT MODAL ================= -->
-<dialog id="confirmationModal" class="dialog-box" style="text-align:center" aria-labelledby="confHeading">
+<dialog id="confirmationModal" class="dialog-box" closedby="any" style="text-align:center" aria-labelledby="confHeading">
   <div style="font-size:2.4rem;margin-bottom:.3rem">✨</div>
   <p class="tagline-small" style="color:#4ade80" id="confBadge">Bestillingsforespørsel Mottatt</p>
   <h3 id="confHeading" style="font-size:1.8rem;margin:.4rem 0">Takk for din bestilling!</h3>
@@ -3490,7 +3597,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 9. POLICY DETAILS MODAL ================= -->
-<dialog id="policyModal" class="dialog-box policy-modal" aria-labelledby="policyHeading">
+<dialog id="policyModal" class="dialog-box policy-modal" closedby="any" aria-labelledby="policyHeading">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
     <p class="tagline-small" id="policyCategory">Aromatek Oslo</p>
     <button type="button" class="clear-search-btn" onclick="closePolicy()" style="font-size:1.2rem;display:block" aria-label="Lukk">✕</button>
@@ -3501,7 +3608,7 @@ html.theme-light .toast-pill {
 </dialog>
 
 <!-- ================= 10. ADMIN AUTH & PANEL ================= -->
-<dialog id="adminPinModal" class="dialog-box" style="max-width:26rem">
+<dialog id="adminPinModal" class="dialog-box" closedby="any" style="max-width:26rem">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
     <p class="tagline-small">Atelier Sikkerhet</p>
     <button type="button" class="clear-search-btn" onclick="document.getElementById('adminPinModal').close()" style="font-size:1.2rem;display:block">✕</button>
@@ -3518,7 +3625,7 @@ html.theme-light .toast-pill {
   </form>
 </dialog>
 
-<dialog id="adminPanelModal" class="dialog-box" style="max-width:58rem;max-height:92vh;overflow-y:auto">
+<dialog id="adminPanelModal" class="dialog-box" closedby="any" style="max-width:58rem;max-height:92vh;overflow-y:auto">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem;flex-wrap:wrap">
     <div>
       <p class="tagline-small">Kurator Atelier (Admin)</p>
@@ -3616,7 +3723,7 @@ html.theme-light .toast-pill {
   </div>
 </dialog>
 
-<dialog id="adminEditDetailModal" class="dialog-box" style="max-width:44rem;max-height:90vh;overflow-y:auto">
+<dialog id="adminEditDetailModal" class="dialog-box" closedby="any" style="max-width:44rem;max-height:90vh;overflow-y:auto">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem">
     <div>
       <p class="tagline-small">Admin Redigering</p>
@@ -3710,7 +3817,7 @@ html.theme-light .toast-pill {
         <div class="brand-title"><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">OSLO</b></div>
       </div>
       <p style="font-size:.78rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="footerAboutText">
-        Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger, luksus gavesett og oljer fra fremragende nisjehus. Makspris 1 500 kr.
+        Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger, luksus gavesett og oljer fra fremragende nisjehus. Makspris 1 500.
       </p>
     </div>
 
@@ -3753,7 +3860,7 @@ html.theme-light .toast-pill {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.57 (updated 2026-11-05 17:36)
+        v1.0.58 (updated 2026-11-09 08:38)
       </div>
     </div>
   </div>
@@ -7373,8 +7480,8 @@ const DEFAULT_CATALOG = [
     "edition_en": "Heritage Collection · 140 ml",
     "subtitle": "Golden Honey, Rich Cambodian Oud & Velvet Florals",
     "scentFamily": "oud",
-    "desc": "En uimotståelig og eksklusiv orientalsk luksusduft fra det ærverdige dufthuset Surrati i Mekka. Ekte, gyllen villhonning forenes i perfekt harmoni med dypt kambodsjansk agarwood (oud), krydret kardemomme, fløyelsmyk rose og varm ambra.",
-    "desc_en": "An irresistible oriental luxury masterpiece from the historic Surrati perfume house of Makkah. Real wild golden honey blended seamlessly with deep Cambodian agarwood (oud), warm cardamom, velvety rose, and rich amber.",
+    "desc": "En uimotståelig og eksklusiv orientalsk luksusduft fra det ærverdige dufthuset Surrati. Ekte, gyllen villhonning forenes i perfekt harmoni med dypt kambodsjansk agarwood (oud), krydret kardemomme, fløyelsmyk rose og varm ambra.",
+    "desc_en": "An irresistible oriental luxury masterpiece from the historic Surrati perfume house. Real wild golden honey blended seamlessly with deep Cambodian agarwood (oud), warm cardamom, velvety rose, and rich amber.",
     "story": "Surrati Honey Oud er en av merkets mest ettertraktede kreasjoner verden over. Den sjenerøse 140 ml flakongen byr på ekstraordinær projeksjon og en gyllen, forførende sødme som omsvøper sansene hele dagen.",
     "story_en": "Surrati Honey Oud is globally acclaimed as one of the house's most sought-after treasures. The generous 140 ml presentation bottle offers phenomenal sillage and a golden, intoxicating warmth that lingers effortlessly.",
     "price": 899,
@@ -7951,7 +8058,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v57');
+  const custom = localStorage.getItem('arx_custom_catalog_v58');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -7962,7 +8069,7 @@ try {
 const I18N = {
   nb: {
     pageTitle: "Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger",
-    metaDesc: "Aromatek Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale parfymer, luksus gavesett og oljer. Makspris 1 500 kr.",
+    metaDesc: "Aromatek Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale parfymer, luksus gavesett og oljer. Makspris 1 500.",
     skipLink: "Hopp til parfymer",
     introHint: "Feel As Good As You Smell · 120 Utvalgte Flakonger",
     skipIntro: "Hopp over",
@@ -7990,14 +8097,14 @@ const I18N = {
     heroTrust1: "100% Originale fabrikkutgaver",
     heroTrust2: "Showroom: Tøyengata 3, Oslo",
     heroTrust3: "Lynrask Vipps-bestilling",
-    heroTrust4: "Maks 1 500 kr",
+    heroTrust4: "Maks 1 500",
     heroBrandsLabel: "Topp Merkehus på Nettet — Klikk for å filtrere",
     heroBestsellersTitle: "Mest Solgte på Nettet",
     heroBestsellersSub: "De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser",
     heroBestsellersLink: "Se hele katalogen (120) ↓",
     heroBuyNow: "Kjøp nå",
     spotlightSurratiBadge: "🕋 Flaggskip fra Surrati",
-    spotlightSurratiTitle: "Surrati Perfumes (Mekka)",
+    spotlightSurratiTitle: "Surrati Perfumes",
     spotlightSurratiSub: "150 ml Extrait de Parfum m/ magnetkork & luksusoljer",
     spotlightSurratiBtn: "Se alle 12 Surrati dufter →",
     spotlightBujairamiBadge: "🇦🇺 Viral Australsk Nisje",
@@ -8030,7 +8137,7 @@ const I18N = {
     heroVol12: "4-i-1 Gaveeske · Grønn, Hvit & Rød",
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
-    colSub: "120 Håndplukkede luksusparfymer og oljer · Maks 1 500 kr · Unn deg en ny favoritt i dag",
+    colSub: "120 Håndplukkede luksusparfymer og oljer · Maks 1 500 · Unn deg en ny favoritt i dag",
     showingCount: (count, total) => `Viser ${count} av ${total} parfymer — Finn din favoritt i dag`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
@@ -8138,7 +8245,7 @@ const I18N = {
     confNextSteps: "Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.",
     btnPrintReceipt: "Skriv ut kvittering",
     btnCloseConf: "Fortsett å handle",
-    footerAboutText: "Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger, luksus gavesett og oljer fra fremragende nisjehus. Makspris 1 500 kr.",
+    footerAboutText: "Kuratert parfymeri i Oslo. Vi leverer 100% originale fabrikkforseglede flakonger, luksus gavesett og oljer fra fremragende nisjehus. Makspris 1 500.",
     footerNavTitle: "Navigasjon",
     footerPolicyTitle: "Kundeservice & Kjøp",
     footerContactTitle: "Showroom & Henting",
@@ -8155,7 +8262,7 @@ const I18N = {
   },
   en: {
     pageTitle: "Aromatek Oslo · Curated Perfumery & 120 Selected Bottles",
-    metaDesc: "Aromatek Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 120 authentic fragrances, luxury gift sets and oils. Maximum price 1 500 kr.",
+    metaDesc: "Aromatek Oslo — curated perfumery at Tøyengata 3, 0190 Oslo (inside PakStar). 120 authentic fragrances, luxury gift sets and oils. Maximum price 1 500.",
     skipLink: "Skip to fragrances",
     introHint: "Feel As Good As You Smell · 120 Selected Bottles",
     skipIntro: "Skip intro",
@@ -8183,14 +8290,14 @@ const I18N = {
     heroTrust1: "100% Authentic Factory Editions",
     heroTrust2: "Showroom: Tøyengata 3, Oslo",
     heroTrust3: "Swift Vipps & Reservation",
-    heroTrust4: "Max 1 500 kr Guarantee",
+    heroTrust4: "Max 1 500 Guarantee",
     heroBrandsLabel: "Top Brands Online — Click to filter",
     heroBestsellersTitle: "Best Sellers Online",
     heroBestsellersSub: "The absolute crowd favorites with the highest views, sales, and top ratings",
     heroBestsellersLink: "View full collection (120) ↓",
     heroBuyNow: "Buy now",
     spotlightSurratiBadge: "🕋 Flagship from Surrati",
-    spotlightSurratiTitle: "Surrati Perfumes (Makkah)",
+    spotlightSurratiTitle: "Surrati Perfumes",
     spotlightSurratiSub: "150 ml Extrait de Parfum w/ magnetic cap & luxury oils",
     spotlightSurratiBtn: "View all 12 Surrati perfumes →",
     spotlightBujairamiBadge: "🇦🇺 Viral Australian Niche",
@@ -8223,7 +8330,7 @@ const I18N = {
     heroVol12: "4-in-1 Luxury Box · Green, White & Red",
     colTag: "Find Your Signature Scent",
     colTitle: "Smell Amazing. Feel Confident.",
-    colSub: "120 Handpicked luxury fragrances & oils · Max 1 500 kr · Treat yourself today",
+    colSub: "120 Handpicked luxury fragrances & oils · Max 1 500 · Treat yourself today",
     showingCount: (count, total) => `Showing ${count} of ${total} fragrances — Find your perfect match`,
     colGuaranteeBadge: "● 100% Original factory-sealed bottles",
     lblFilterBrand: "Brand / House",
@@ -8331,7 +8438,7 @@ const I18N = {
     confNextSteps: "We will send an order confirmation to your email and a Vipps payment request to your mobile number prior to fulfillment.",
     btnPrintReceipt: "Print Receipt",
     btnCloseConf: "Continue Shopping",
-    footerAboutText: "Curated perfumery in Oslo. We supply 100% original factory-sealed bottles, luxury gift sets and oils from premier niche houses. Maximum price 1 500 kr.",
+    footerAboutText: "Curated perfumery in Oslo. We supply 100% original factory-sealed bottles, luxury gift sets and oils from premier niche houses. Maximum price 1 500.",
     footerNavTitle: "Navigation",
     footerPolicyTitle: "Customer Care & Orders",
     footerContactTitle: "Showroom & Pickup",
@@ -8637,7 +8744,7 @@ function renderStore() {
                            b === 'Daniel Hechter' ? 'Daniel Hechter Paris' :
                            b === 'Sergio Tacchini' ? 'Sergio Tacchini Milano' :
                            b === 'So...?' ? 'Miss So...? London' :
-                           b === 'Surrati' ? 'Surrati Perfumes (Makkah)' :
+                           b === 'Surrati' ? 'Surrati Perfumes' :
                            b === 'Al Haramain' ? 'Al Haramain Perfumes Dubai' :
                            b === 'Risala' ? 'Risala / Le Falconé Dubai' : b;
       brandHtml += `<option value="${escapeHtml(b)}">${escapeHtml(displayLabel)} (${brandCounts[b]})</option>`;
@@ -9468,11 +9575,11 @@ const POLICIES = {
       body: `
         <p><b>Aromatek Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi</h4>
-        <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati (Mekka), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
+        <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati, Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq og Reef.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt originalemballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
-        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
       `
     },
     en: {
@@ -9481,11 +9588,11 @@ const POLICIES = {
       body: `
         <p><b>Aromatek Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy</h4>
-        <p>We offer a hand-picked collection of 120 viral and legendary olfactory masterworks from prestigious perfume houses including Surrati (Makkah), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq, and Reef.</p>
+        <p>We offer a hand-picked collection of 120 viral and legendary olfactory masterworks from prestigious perfume houses including Surrati, Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ibraq, and Reef.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
-        <p>At Aromatek Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+        <p>At Aromatek Oslo, no fragrance is priced above 1 500. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
       `
     }
   },
@@ -9496,11 +9603,11 @@ const POLICIES = {
       body: `
         <p><b>Aromatek Oslo</b> er et uavhengig, kuratert parfymeri med base i Oslo. Vårt showroom og hentepunkt ligger sentralt plassert i <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b>.</p>
         <h4>Vår Filosofi & Utvalg</h4>
-        <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati (Mekka), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
+        <p>Vi tilbyr et håndplukket utvalg av 120 virale og legendariske mesterverk fra hus som Surrati, Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef og Hamidi.</p>
         <h4>100% Original Produsentgaranti</h4>
         <p>Alle våre parfymer leveres som originale, fabrikkforseglede utgaver direkte fra produsent. Ingen dekanter, ingen etterfylling — kun urørte originalflakonger i ubrutt emballasje med sporbare batchkoder.</p>
         <h4>Maksprisgaranti</h4>
-        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500 kr. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
+        <p>Hos Aromatek Oslo er maksimal pris for en parfyme 1 500. Vi mener eksepsjonell luksus skal være tilgjengelig og ærlig priset.</p>
         <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
         <h4>Besøk Showroomet i Oslo</h4>
         <p>
@@ -9521,11 +9628,11 @@ const POLICIES = {
       body: `
         <p><b>Aromatek Oslo</b> is an independent, curated perfumery based in Oslo. Our showroom and pickup point is centrally located at <b>Tøyengata 3, 0190 Oslo (inside PakStar)</b>.</p>
         <h4>Our Philosophy & Collection</h4>
-        <p>We curate 120 viral and legendary fragrance masterpieces from houses including Surrati (Makkah), Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
+        <p>We curate 120 viral and legendary fragrance masterpieces from houses including Surrati, Le Falconé / Risala, Armaf by Sterling Perfumes, Lattafa, French Avenue, Bujairami, Swiss Arabian, Maison Alhambra, Ahmed Al Maghribi, Reef, and Hamidi.</p>
         <h4>100% Original Manufacturer Guarantee</h4>
         <p>All our fragrances are supplied as original, factory-sealed bottles directly from trusted producers. No decants, no refills — only untouched bottles in sealed presentation boxes with verifiable batch codes.</p>
         <h4>Maximum Price Guarantee</h4>
-        <p>At Aromatek Oslo, no fragrance is priced above 1 500 kr. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
+        <p>At Aromatek Oslo, no fragrance is priced above 1 500. We believe exceptional olfactory luxury should remain accessible and honestly priced.</p>
         <hr style="border:none;border-top:1px solid var(--line);margin:1.2rem 0">
         <h4>Visit Our Oslo Showroom</h4>
         <p>
@@ -9611,7 +9718,7 @@ const POLICIES = {
       heading: "Kjøpsvilkår & Forbrukervern",
       body: `
         <h4>Priser og Betaling</h4>
-        <p>Alle priser i butikken er oppgitt i norske kroner (NOK) inkludert 25 % merverdiavgift (MVA). Butikken garanterer at ingen parfyme koster mer enn 1 500 kr.</p>
+        <p>Alle priser i butikken er oppgitt i norske kroner (NOK) inkludert 25 % merverdiavgift (MVA). Butikken garanterer at ingen parfyme koster mer enn 1 500.</p>
         <h4>Trygg Reservasjon & Betaling</h4>
         <p>I forhåndsvisningsperioden opprettes bestillinger som reservasjonsordre. Betaling avtales og gjøres trygt med Vipps før varen overleveres eller sendes.</p>
         <h4>Personvern (GDPR)</h4>
@@ -9623,7 +9730,7 @@ const POLICIES = {
       heading: "Purchase Terms & Consumer Protection",
       body: `
         <h4>Pricing & Currency</h4>
-        <p>All prices in the store are quoted in Norwegian Kroner (NOK), inclusive of 25% VAT (MVA). No fragrance exceeds 1 500 kr.</p>
+        <p>All prices in the store are quoted in Norwegian Kroner (NOK), inclusive of 25% VAT (MVA). No fragrance exceeds 1 500.</p>
         <h4>Reservation Inquiries</h4>
         <p>During the current store phase, orders are created as reservation inquiries. Payment is settled securely via Vipps prior to handover or parcel dispatch.</p>
         <h4>Data Privacy (GDPR)</h4>
@@ -10441,7 +10548,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v57', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -10503,7 +10610,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v57', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -10579,7 +10686,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v57', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -10594,7 +10701,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
-    localStorage.removeItem('arx_custom_catalog_v57');
+    localStorage.removeItem('arx_custom_catalog_v58');
     localStorage.removeItem('arx_custom_catalog_v54');
     localStorage.removeItem('arx_custom_catalog_v53');
     localStorage.removeItem('arx_custom_catalog_v52');
@@ -10618,7 +10725,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v57', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -10637,6 +10744,26 @@ window.resetAdminCatalogToDefaults = async function() {
     alert('Katalogen er tilbakestilt til standardkatalogen både lokalt og i skyen.');
   }
 };
+
+
+// ── NATIVE DIALOG LIGHT-DISMISS FALLBACK (Safari & Older Engines) ──
+if (!('closedBy' in HTMLDialogElement.prototype)) {
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const isInside = (
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+      );
+      if (!isInside) {
+        dialog.close();
+      }
+    });
+  });
+}
 
 // ── EVENT LISTENERS INITIALIZATION ──
 $('#filterBrand')?.addEventListener('change', e => {
