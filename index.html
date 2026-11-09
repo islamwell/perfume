@@ -269,13 +269,15 @@ try {
     border-radius: 1.05rem;
   }
   .hero-best-img-wrap {
-    height: 145px;
-    max-height: 145px;
+    height: 155px;
+    max-height: 155px;
     margin-bottom: .6rem;
   }
   .hero-best-img-wrap img, .hero-best-img {
-    max-height: 130px;
-    max-width: 92%;
+    max-height: 100%;
+    max-width: 98%;
+    height: 100%;
+    width: auto;
   }
   .hero-best-badge {
     font-size: 0.74rem !important;
@@ -327,7 +329,7 @@ try {
 @media(max-width: 359px) {
   .hero-bestsellers-grid { grid-template-columns: 1fr; gap: 1rem; }
   .hero-best-img-wrap { height: 180px; max-height: 180px; }
-  .hero-best-img-wrap img, .hero-best-img { max-height: 165px; }
+  .hero-best-img-wrap img, .hero-best-img { max-height: 100%; max-width: 98%; height: 100%; width: auto; }
 }
 
 /* Hero Brand Pills Bar (Zero Horizontal Scroll - Adaptive Layout) */
@@ -561,8 +563,8 @@ try {
 }
 .hero-best-img-wrap {
   width: 100%;
-  height: 175px;
-  max-height: 175px;
+  height: 195px;
+  max-height: 195px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -574,10 +576,10 @@ try {
 }
 .hero-best-img-wrap img,
 .hero-best-img {
-  max-height: 155px;
-  max-width: 86%;
+  max-height: 100%;
+  max-width: 98%;
   width: auto;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -699,16 +701,18 @@ try {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: 0.25rem;
+  padding: 0;
 }
 
 .modal-img-container {
   width: 100%;
-  max-width: 280px;
-  height: 250px;
+  max-width: 320px;
+  height: 290px;
   position: relative;
   overflow: hidden;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   border-radius: 1rem;
   background: radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
@@ -768,11 +772,13 @@ try {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: 0.5rem;
+  padding: 0;
 }
 .modal-packshot-img {
-  max-height: 260px;
-  max-width: 90%;
+  max-height: 100%;
+  max-width: 98%;
+  height: 100%;
+  width: auto;
   object-fit: contain;
   filter: drop-shadow(0 16px 32px rgba(0,0,0,0.9));
   transition: transform 0.4s ease;
@@ -2131,11 +2137,14 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     border-radius:1.15rem;
   }
   .card-img-wrap{
-    height:160px;
+    height:165px;
     margin-bottom:.65rem;
   }
   .card-img{
-    max-height:145px;
+    max-height:100%;
+    max-width:98%;
+    height:100%;
+    width:auto;
   }
   .card-tag-badge{
     font-size:0.75rem !important;
@@ -2195,12 +2204,14 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     border-radius:1rem;
   }
   .card-img-wrap{
-    height:142px;
+    height:150px;
     margin-bottom:.6rem;
   }
   .card-img{
-    max-height:128px;
-    max-width:94%;
+    max-height:100%;
+    max-width:98%;
+    height:100%;
+    width:auto;
   }
   .card-tag-badge{
     font-size:0.74rem !important;
@@ -2273,7 +2284,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     height:180px;
   }
   .card-img{
-    max-height:165px;
+    max-height:100%;
+    max-width:98%;
+    height:100%;
+    width:auto;
   }
 }
 
@@ -2298,18 +2312,22 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 
 .card-img-wrap{
   width:100%;
-  height:180px;
+  height:195px;
   position:relative;
   overflow:hidden;
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   margin-bottom:.8rem;
   cursor:pointer;
   border-radius:.8rem;
   background:radial-gradient(circle at 50% 60%, rgba(201,169,110,0.06), transparent 70%);
 }
 .card-img{
-  max-height:165px;
-  max-width:88%;
+  max-height:100%;
+  max-width:98%;
+  height:100%;
+  width:auto;
   object-fit:contain;
   filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));
   transition:transform .3s;
@@ -2404,10 +2422,12 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   text-align:center;
 }
 .modal-img-container{
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   width:100%;
-  max-width:280px;
-  height:250px;
+  max-width:320px;
+  height:290px;
   position:relative;
   overflow:hidden;
   margin:0 auto;
@@ -2415,8 +2435,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   background:radial-gradient(circle at 50% 55%, rgba(201,169,110,0.06), transparent 70%);
 }
 .modal-packshot-img{
-  max-height:230px;
-  max-width:88%;
+  max-height:100%;
+  max-width:98%;
+  height:100%;
+  width:auto;
   object-fit:contain;
   filter:drop-shadow(0 16px 32px rgba(0,0,0,0.9));
   transition:transform 0.4s ease;
@@ -4308,7 +4330,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.59 (updated 2026-11-09 15:45)
+        v1.0.60 (updated 2026-11-09 16:15)
       </div>
     </div>
   </div>
@@ -8524,7 +8546,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v59');
+  const custom = localStorage.getItem('arx_custom_catalog_v60');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -11031,7 +11053,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -11093,7 +11115,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -11169,7 +11191,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -11209,7 +11231,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v60', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();

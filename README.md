@@ -1,6 +1,29 @@
-# AROMATEK OSLO (v1.0.59) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.60) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+
+---
+
+## 🌟 Versjon 1.0.60 Høydepunkter (Full-Frame Flakongvisning & Fjerning av Hvitrom)
+
+1. **Komplett Fjerning av Hvite Padding-Kanter og Hvitrom på Alle Produktbilder**:
+   - Gjennomført en presis, automatisk bildebehandling på samtlige 120 produktbilder med unødig hvit/gjennomsiktig bakgrunn eller marger (blant annet Risala, Bujairami, Surrati, Lattafa, Maison Alhambra, Swiss Arabian, French Avenue, Reef og IBRAQ).
+   - Tidligere produsentbilder levert i 1:1 firkantformat (f.eks. 1020x1020 eller 2000x2000) der slanke flakonger kun utgjorde 20–42 % av bredden omgitt av tomme hvite felter, er nå beskåret nøyaktig til flakongens og eskens reelle pikselgrenser med ren RGBA-gjennomsiktighet og 1,5 % pustemargin.
+   - For eksempel:
+     - `risala-for-you.png`: Beskåret fra 1020x1020 til 456x837 (flakongutnyttelse økt fra 41,8 % til **97,4 %**).
+     - `risala-forever.png`: Beskåret fra 1020x1020 til 486x835 (**97,1 %** bildeflate).
+     - `risala-signature.png`: Beskåret fra 2048x2048 til 989x1650 (**97,2 %** bildeflate).
+     - `bujairami-hectic.png`: Beskåret fra 2000x2000 til 448x1320 (fra 22 % til **97 %** bildeflate).
+     - `surrati-gray-oud.png`: Beskåret fra 1200x1200 til 333x1069 (fra 27 % til **97 %** bildeflate).
+
+2. **Full-Frame Bildebeholdere i Produktkort, Bestselgere og Modaler**:
+   - Fjernet kunstige CSS-begrensninger (`max-height: 165px; max-width: 88%`) som krympet flakongene ytterligere inne i kortene.
+   - Oppgradert `.card-img`, `.hero-best-img` og `.modal-packshot-img` til `max-height: 100%; max-width: 98%; height: 100%; width: auto; object-fit: contain;` med `display: flex; align-items: center; justify-content: center;`.
+   - Økt bildebeholderhøyde på desktop (`195px`) og mobil (`150px – 165px`) slik at hver flakong fyller hele bildevinduet vertikalt og horisontalt uten pikselering, forvrengning eller tomme marger.
+
+3. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v60` med automatisk opprydding av eldre versjoner.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.60 (updated 2026-11-09 16:15)`.
 
 ---
 
