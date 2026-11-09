@@ -1,6 +1,36 @@
-# AROMATEK OSLO (v1.0.58) — Parfymehus & Kuratert Parfymeri
+# AROMATEK OSLO (v1.0.59) — Parfymehus & Kuratert Parfymeri
 
 Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i Tøyengata 3, 0190 Oslo (inne hos PakStar).
+
+---
+
+## 🌟 Versjon 1.0.59 Høydepunkter (Mobilvisning & Brukeropplevelse Optimalisering)
+
+1. **Fjerning av «Perfume» i Mobilvisning av Aromatek**:
+   - I mobil- og nettbrettvisning (`max-width: 54rem`) er ordet «PERFUMES» i logoen/merketittelen (`.brand-perfume-word`) skjult, slik at kun det rene og kraftfulle **AROMATEK** vises ved siden av logomedaljongen. Dette frigjør verdifull plass i toppmenyen, eliminerer visuell tranghet og forhindrer tekstbryting på små skjermer.
+
+2. **Null Horisontal Scrolling & Ren Vertikal Visning av Produsenter**:
+   - Den tidligere horisontale rullelinjen for produsentpiller (`overflow-x: auto; flex-wrap: nowrap;`) er fullstendig erstattet med et adaptivt, vertikalt 2-kolonners rutenett (`grid-template-columns: repeat(2, 1fr)`) på mobil.
+   - Alle 16 sentrale dufthus (Surrati, Bujairami, Al Haramain, Risala, Lattafa, Maison Alhambra, Swiss Arabian, French Avenue, Reef, IBRAQ, Hamidi, Armaf, Bespoke London, Buhara Esans, Ahmed Al Maghribi og Luksus Gavesett) vises nå ryddig og vertikalt med full lesbarhet, nøyaktige antall og direkte filtrering uten sidesveiping.
+   - Inkluderer en dedikert «Vis alle (120)»-knapp for umiddelbar tilbakestilling av filter.
+
+3. **Betydelig Større og Mer Lettleste Fonter på Mobil**:
+   - **Produktnavn (`.card-name`)**: Økt fra 0.85rem til **0.98rem – 1.02rem** med forbedret linjehøyde og kontrast.
+   - **Produsentnavn (`.card-brand`)**: Økt fra 0.6rem til **0.78rem – 0.80rem** i fet gullskrift (`var(--gold)`).
+   - **Priser (`.card-price`)**: Økt fra 1.05rem til **1.28rem – 1.35rem** i markant hvit skrift.
+   - **Akkord-/Duftpiller (`.card-tag-badge`)**: Økt fra 0.62rem til **0.74rem** med romsligere polstring.
+   - **Kjøp-knapper & Mengdestyrere**: Økt berøringshøyde til **40–42px** (oppfyller WCAG AA og Modern Web Guidance) med store, tydelige `+`/`−`-ikoner (`1.25rem – 1.3rem`).
+   - **Filtere og Søkefelter**: Satt til standard **16px (1rem)** for å eliminere automatisk zoom på iOS Safari og gi maksimal lesbarhet.
+
+4. **Mobil Quick-Finder Hub (Lynrask Finning av Varer & Produsenter)**:
+   - Lagt til en dedikert, brukervennlig snarveishub (`#mobileQuickHub`) øverst på mobilvisningen med et fremtredende søkefelt («Søk blant 120 parfymer og merker...») og tre store, taktile hurtigknapper:
+     - 🏛️ **Produsenter** (scroller direkte til den vertikale merkeoversikten)
+     - ✨ **Bestselgere** (scroller til internettets mest solgte dufter)
+     - 🛍️ **Alle (120)** (tilbakestiller filtre og scroller til hele flakongkatalogen)
+
+5. **Lokal Buffer & Versjonering**:
+   - Cache-nøkkel bumpet til `arx_custom_catalog_v59` med automatisk migrering og opprydding.
+   - Bunntekst og systemdokumentasjon oppdatert til `v1.0.59 (updated 2026-11-09 15:45)`.
 
 ---
 
@@ -69,4 +99,4 @@ Eksklusiv e-handels- og kunstopplevelse for **Aromatek Oslo** — lokalisert i T
 ---
 
 ## 🚀 Versjonering
-`v1.0.58 (updated 2026-11-09 08:38)`
+`v1.0.59 (updated 2026-11-09 15:45)`

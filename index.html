@@ -263,43 +263,128 @@ try {
   .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
 @media(max-width: 519px) {
-  .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+  .hero-bestsellers-grid { grid-template-columns: repeat(2, 1fr); gap: .85rem; }
+  .hero-best-card {
+    padding: .95rem .75rem .85rem;
+    border-radius: 1.05rem;
+  }
+  .hero-best-img-wrap {
+    height: 145px;
+    max-height: 145px;
+    margin-bottom: .6rem;
+  }
+  .hero-best-img-wrap img, .hero-best-img {
+    max-height: 130px;
+    max-width: 92%;
+  }
+  .hero-best-badge {
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+    padding: 3px 8px !important;
+    top: 6px;
+    left: 6px;
+  }
+  .hero-best-brand {
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: var(--gold) !important;
+    letter-spacing: .04em;
+    margin-bottom: .2rem;
+  }
+  .hero-best-name {
+    font-size: 1.02rem !important;
+    font-weight: 600 !important;
+    line-height: 1.28 !important;
+    height: 2.65rem;
+    margin-bottom: .25rem;
+  }
+  .hero-best-vol {
+    font-size: 0.76rem !important;
+    margin-bottom: .45rem;
+  }
+  .hero-best-price {
+    font-size: 1.32rem !important;
+    font-weight: 700 !important;
+  }
+  .hero-best-cta {
+    font-size: 0.84rem !important;
+    font-weight: 700 !important;
+    min-height: 40px !important;
+    padding: .5rem .9rem !important;
+  }
+  .hero-qty-stepper {
+    height: 40px !important;
+    grid-template-columns: 32px 1fr 32px !important;
+  }
+  .hero-qty-stepper .cqty-step-btn {
+    font-size: 1.25rem !important;
+  }
+  .hero-qty-stepper .card-qty-output {
+    font-size: 0.95rem !important;
+    line-height: 40px;
+  }
 }
 @media(max-width: 359px) {
-  .hero-bestsellers-grid { grid-template-columns: 1fr; }
+  .hero-bestsellers-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .hero-best-img-wrap { height: 180px; max-height: 180px; }
+  .hero-best-img-wrap img, .hero-best-img { max-height: 165px; }
 }
 
-/* Hero Brand Pills Bar */
+/* Hero Brand Pills Bar (Zero Horizontal Scroll - Adaptive Layout) */
 .hero-brand-pills-bar {
   display: flex;
-  align-items: center;
-  gap: .8rem;
-  margin: .9rem 0 1.35rem;
-  padding: .65rem .95rem;
+  flex-direction: column;
+  gap: .75rem;
+  margin: 1rem 0 1.5rem;
+  padding: .95rem 1.15rem;
   background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(201,169,110,0.22);
-  border-radius: 1rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 1.15rem;
+  overflow-x: visible;
 }
-.hero-brand-pills-bar::-webkit-scrollbar { display: none; }
+.hero-brand-pills-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  width: 100%;
+}
 .hero-brand-pills-label {
-  font-size: .78rem;
-  font-weight: 600;
+  font-size: .88rem;
+  font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--dim);
-  white-space: nowrap;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.hero-brand-reset-btn {
+  background: rgba(201,169,110,0.14);
+  border: 1px solid var(--gold);
+  color: var(--gold-bright);
+  padding: .32rem .8rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s ease;
+}
+.hero-brand-reset-btn:hover, .hero-brand-reset-btn:focus-visible {
+  background: var(--gold);
+  color: #06090e;
 }
 .hero-brand-pills-scroll {
   display: flex;
   align-items: center;
-  gap: .55rem;
-  flex-wrap: nowrap;
+  gap: .6rem;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-x: visible;
 }
 .hero-brand-pill {
-  font-size: .8rem;
+  font-size: .82rem;
   font-family: inherit;
   font-weight: 500;
   letter-spacing: .03em;
@@ -307,12 +392,12 @@ try {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(201,169,110,0.28);
   border-radius: 999px;
-  padding: .35rem .85rem;
+  padding: .4rem .9rem;
   cursor: pointer;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: .4rem;
+  gap: .45rem;
   transition: all .2s ease;
 }
 .hero-brand-pill:hover, .hero-brand-pill:focus-visible {
@@ -976,8 +1061,10 @@ html.theme-light .hero-subtitle { color: #475569; }
 html.theme-light .hero-trust-item b { color: #0f172a; }
 html.theme-light .hero-bestsellers-header { border-bottom-color: rgba(15,23,42,0.08); }
 html.theme-light .hero-bestsellers-header h2 { color: #0f172a; }
-html.theme-light .hero-brand-pills-bar { background: rgba(15,23,42,0.02); border-color: rgba(160,120,45,0.22); }
+html.theme-light .hero-brand-pills-bar { background: #f8fafc; border-color: rgba(160,120,45,0.28); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
+html.theme-light .hero-brand-reset-btn { background: rgba(160,120,45,0.12); border-color: var(--gold); color: #825f1e; }
 html.theme-light .hero-brand-pill { background: #ffffff; border-color: rgba(160,120,45,0.32); color: #1e293b; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+html.theme-light .hero-brand-pill b { color: #0f172a; }
 html.theme-light .hero-brand-pill:hover { background: rgba(160,120,45,0.15); border-color: var(--gold); color: #0f172a; }
 html.theme-light .hero-brand-pill.highlight { background: rgba(160,120,45,0.1); border-color: var(--gold); color: var(--gold); }
 html.theme-light .niche-spotlight-card { background: #ffffff; border-color: rgba(160,120,45,0.28); box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
@@ -1492,6 +1579,9 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 
 /* ── Mobile Header & Top Menu Optimization ── */
 @media(max-width:54rem){
+  .brand-perfume-word{
+    display:none !important;
+  }
   .header-inner{
     padding:.5rem var(--pad, .75rem);
     padding-left:max(0.6rem, env(safe-area-inset-left));
@@ -1503,10 +1593,11 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     min-width:0;
   }
   .brand-title{
-    font-size:clamp(0.85rem, 3.2vw, 1.05rem);
+    font-size:clamp(0.95rem, 3.8vw, 1.15rem);
+    font-weight:700;
     gap:.4rem;
     white-space:nowrap;
-    letter-spacing:.06em;
+    letter-spacing:.08em;
   }
   .brand-logo-img{
     height:28px !important;
@@ -1569,9 +1660,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     gap:.25rem;
   }
   .brand-title{
-    font-size:.8rem;
+    font-size:.92rem;
+    font-weight:700;
     gap:.25rem;
-    letter-spacing:.03em;
+    letter-spacing:.05em;
   }
   .brand-logo-img{
     height:24px !important;
@@ -1745,6 +1837,218 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     height:42px;
     font-size:1.2rem;
   }
+
+  /* Mobile Quick-Finder Hub */
+  .mobile-quick-hub {
+    display: block !important;
+    margin: .85rem 0 1.25rem;
+    padding: 0;
+  }
+  .mobile-quick-hub-inner {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(10, 15, 26, 0.98) 100%);
+    border: 1.5px solid rgba(201, 169, 110, 0.35);
+    border-radius: 1.25rem;
+    padding: 1rem .95rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+  .mobile-search-bar-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .mobile-search-icon {
+    position: absolute;
+    left: .95rem;
+    font-size: 1.15rem;
+    pointer-events: none;
+    color: var(--gold);
+  }
+  .mobile-hub-search-input {
+    width: 100%;
+    height: 48px;
+    padding: .75rem 2.6rem .75rem 2.75rem;
+    font-size: 16px !important;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1.5px solid rgba(201, 169, 110, 0.35);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: all .2s ease;
+    box-sizing: border-box;
+  }
+  .mobile-hub-search-input:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 16px rgba(201, 169, 110, 0.25);
+  }
+  .mobile-hub-clear-btn {
+    position: absolute;
+    right: .75rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s ease;
+  }
+  .mobile-hub-clear-btn:active {
+    background: rgba(201, 169, 110, 0.4);
+  }
+  .mobile-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .55rem;
+  }
+  .mob-quick-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    padding: .65rem .4rem;
+    min-height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .15s ease;
+    text-align: center;
+  }
+  .mob-quick-btn:active, .mob-quick-btn:focus-visible {
+    background: rgba(201, 169, 110, 0.25);
+    border-color: var(--gold);
+  }
+  .mob-quick-btn.highlight {
+    background: rgba(201, 169, 110, 0.18);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .mob-qbtn-icon {
+    font-size: 1.05rem;
+  }
+
+  /* Vertical Manufacturers Layout (Zero Horizontal Scroll) */
+  .hero-brand-pills-bar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    overflow-x: visible !important;
+    padding: 1.15rem 1rem !important;
+    margin: 1.25rem 0 1.85rem !important;
+    border-radius: 1.25rem !important;
+    background: rgba(12, 17, 28, 0.95) !important;
+    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
+    gap: .85rem !important;
+  }
+  .hero-brand-pills-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: .6rem;
+    width: 100%;
+  }
+  .hero-brand-pills-label {
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .06em !important;
+    color: var(--gold) !important;
+    text-transform: uppercase !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: .4rem !important;
+  }
+  .hero-brand-reset-btn {
+    font-size: .84rem !important;
+    padding: .4rem .85rem !important;
+    border-radius: 999px !important;
+  }
+  .hero-brand-pills-scroll {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: .75rem !important;
+    overflow-x: visible !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+  }
+  .hero-brand-pill {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: .8rem .95rem !important;
+    min-height: 54px !important;
+    border-radius: .9rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    white-space: normal !important;
+    text-align: left !important;
+    gap: .65rem !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
+  }
+  .hero-brand-pill b {
+    font-size: 1.02rem !important;
+    color: #fff !important;
+    display: block !important;
+    line-height: 1.25 !important;
+  }
+  .hero-brand-pill span {
+    font-size: 1.45rem !important;
+    flex-shrink: 0 !important;
+  }
+  .hero-brand-pill small {
+    display: block !important;
+    font-size: .82rem !important;
+    color: var(--gold) !important;
+    font-weight: 500 !important;
+    margin-top: 2px !important;
+  }
+
+  /* Catalog Filter Bar on Mobile */
+  .filter-container {
+    padding: 1.15rem 1rem !important;
+    gap: 1rem !important;
+  }
+  .filter-field label {
+    font-size: .82rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .08em !important;
+  }
+  .filter-select, .search-input {
+    font-size: 16px !important;
+    min-height: 48px !important;
+    padding: .75rem .95rem !important;
+    border-radius: 10px !important;
+  }
+}
+@media(max-width:360px){
+  .mobile-quick-actions {
+    grid-template-columns: 1fr;
+    gap: .4rem;
+  }
+  .mob-quick-btn {
+    justify-content: flex-start;
+    padding-left: .9rem;
+  }
+  .hero-brand-pills-scroll {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Filter & Search Bar (Zero Horizontal Scrolling) */
@@ -1822,74 +2126,154 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 }
 @media(min-width:440px) and (max-width:767px){
   .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .perfume-card{
+    padding:1rem .85rem .95rem;
+    border-radius:1.15rem;
+  }
+  .card-img-wrap{
+    height:160px;
+    margin-bottom:.65rem;
+  }
+  .card-img{
+    max-height:145px;
+  }
+  .card-tag-badge{
+    font-size:0.75rem !important;
+    font-weight:600 !important;
+    padding:3px 8px !important;
+    border-radius:6px;
+  }
+  .card-brand{
+    font-size:0.8rem !important;
+    font-weight:700 !important;
+    color:var(--gold) !important;
+    letter-spacing:.04em;
+    margin-bottom:.25rem;
+  }
+  .card-name{
+    font-size:1.02rem !important;
+    font-weight:600 !important;
+    line-height:1.28 !important;
+    margin-bottom:.35rem;
+    min-height:2.6em;
+  }
+  .card-vol{
+    font-size:0.78rem !important;
+    margin-bottom:.4rem;
+  }
+  .card-price{
+    font-size:1.32rem !important;
+    font-weight:700 !important;
+    margin-bottom:.7rem;
+  }
+  .card-btn{
+    font-size:0.86rem !important;
+    font-weight:700 !important;
+    min-height:42px !important;
+    padding:.55rem .5rem !important;
+  }
+  .card-qty-stepper{
+    height:42px !important;
+    grid-template-columns:36px 1fr 36px !important;
+  }
+  .cqty-step-btn{
+    font-size:1.3rem !important;
+  }
+  .card-qty-output{
+    font-size:1rem !important;
+    font-weight:700 !important;
+    line-height:42px;
+  }
 }
 @media(max-width:439px){
   .products-grid{
     grid-template-columns:repeat(2,1fr);
-    gap:.75rem;
+    gap:.85rem;
   }
   .perfume-card{
-    padding:.85rem .6rem .75rem;
-    border-radius:.95rem;
+    padding:.95rem .7rem .85rem;
+    border-radius:1rem;
   }
   .card-img-wrap{
-    height:135px;
-    margin-bottom:.55rem;
+    height:142px;
+    margin-bottom:.6rem;
   }
   .card-img{
-    max-height:120px;
-    max-width:92%;
+    max-height:128px;
+    max-width:94%;
   }
   .card-tag-badge{
-    font-size:0.62rem;
-    padding:2px 6px;
+    font-size:0.74rem !important;
+    font-weight:600 !important;
+    padding:3px 8px !important;
     top:6px;
     left:6px;
+    border-radius:6px;
   }
   .card-brand{
-    font-size:.6rem;
-    margin-bottom:.2rem;
+    font-size:0.78rem !important;
+    font-weight:700 !important;
+    color:var(--gold) !important;
+    letter-spacing:.04em;
+    margin-bottom:.25rem;
   }
   .card-name{
-    font-size:.85rem;
-    line-height:1.2;
-    margin-bottom:.25rem;
+    font-size:0.98rem !important;
+    font-weight:600 !important;
+    line-height:1.28 !important;
+    margin-bottom:.3rem;
     display:-webkit-box;
     -webkit-line-clamp:2;
     -webkit-box-orient:vertical;
     overflow:hidden;
-    min-height:2.1em;
+    min-height:2.55em;
   }
   .card-vol{
-    font-size:.68rem;
-    margin-bottom:.3rem;
+    font-size:0.76rem !important;
+    font-weight:500 !important;
+    color:var(--dim);
+    margin-bottom:.35rem;
   }
   .card-price{
-    font-size:1.05rem;
+    font-size:1.28rem !important;
+    font-weight:700 !important;
+    color:#fff;
     margin-bottom:.65rem;
   }
   .card-actions{
-    gap:.35rem;
+    gap:.4rem;
   }
   .card-btn{
-    font-size:.66rem;
-    padding:.48rem .25rem;
+    font-size:0.84rem !important;
+    font-weight:700 !important;
+    padding:.52rem .35rem !important;
+    min-height:40px !important;
+    border-radius:8px !important;
   }
   .card-qty-stepper{
-    height:30px;
-    grid-template-columns:26px 1fr 26px;
+    height:40px !important;
+    grid-template-columns:32px 1fr 32px !important;
+    border-radius:8px !important;
   }
   .cqty-step-btn{
-    font-size:1rem;
+    font-size:1.25rem !important;
   }
   .card-qty-output{
-    font-size:.8rem;
-    line-height:30px;
+    font-size:0.95rem !important;
+    font-weight:700 !important;
+    line-height:40px;
   }
 }
-@media(max-width:320px){
+@media(max-width:350px){
   .products-grid{
     grid-template-columns:1fr;
+    gap:1rem;
+  }
+  .card-img-wrap{
+    height:180px;
+  }
+  .card-img{
+    max-height:165px;
   }
 }
 
@@ -2748,7 +3132,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <path class="edge" pathLength="1" d="M30 92C30 79 38 74 100 74C162 74 170 79 170 92C170 160 170 240 170 288C170 300 160 308 100 308C38 308 30 300 30 288C30 240 30 160 30 92Z"/>
   </svg>
   <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="intro-logo-img">
-  <p class="mark"><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">PERFUMES</b></p>
+  <p class="mark"><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red brand-perfume-word">PERFUMES</b></p>
   <p class="hint" id="introHint">Feel As Good As You Smell · 120 Utvalgte Flakonger</p>
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
@@ -2763,7 +3147,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div class="brand-group">
       <a href="#kjop" class="brand-title" aria-label="Aromatek Perfumes">
         <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="brand-logo-img">
-        <span><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red">PERFUMES</b></span>
+        <span><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red brand-perfume-word">PERFUMES</b></span>
       </a>
     </div>
 
@@ -2911,6 +3295,49 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
 
 <main id="top">
 
+  <!-- ================= MOBILE QUICK-FINDER HUB (Mobile-Only Fast Item & Brand Search) ================= -->
+  <section class="mobile-quick-hub" id="mobileQuickHub" aria-label="Hurtigsøk og snarveier på mobil">
+    <div class="mobile-quick-hub-inner">
+      <div class="mobile-search-bar-wrap">
+        <span class="mobile-search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="search"
+          id="mobileHubSearchInput"
+          class="mobile-hub-search-input"
+          placeholder="Søk blant 120 parfymer og merker..."
+          aria-label="Hurtigsøk i katalogen"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          oninput="syncSearch(this.value, 'hub', true)"
+        >
+        <button
+          type="button"
+          id="mobileHubClearBtn"
+          class="mobile-hub-clear-btn"
+          aria-label="Tøm søk"
+          onclick="syncSearch('', 'hub', false); this.style.display='none'; const el = document.getElementById('mobileHubSearchInput'); if(el) el.value='';"
+          style="display:none"
+        >✕</button>
+      </div>
+
+      <div class="mobile-quick-actions" aria-label="Hurtignavigasjon">
+        <a href="#manufacturersBar" class="mob-quick-btn" id="mobQuickBtnBrands">
+          <span class="mob-qbtn-icon">🏛️</span>
+          <span class="mob-qbtn-text">Produsenter</span>
+        </a>
+        <a href="#heroBestsellersTitle" class="mob-quick-btn" id="mobQuickBtnBest">
+          <span class="mob-qbtn-icon">✨</span>
+          <span class="mob-qbtn-text">Bestselgere</span>
+        </a>
+        <button type="button" class="mob-quick-btn highlight" id="mobQuickBtnAll" onclick="resetAllFilters(); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
+          <span class="mob-qbtn-icon">🛍️</span>
+          <span class="mob-qbtn-text">Alle (120)</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= 3. HERO: BEST SELLERS ON THE INTERNET ================= -->
   <section id="heroSection" class="hero-bestsellers-section" aria-label="Internettets bestselgende parfymer">
     <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
@@ -2946,39 +3373,60 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
       </div>
     </div>
 
-    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Smooth Touch Scroll on Mobile) -->
-    <div class="hero-brand-pills-bar" aria-label="Hurtigvalg for merkehus">
-      <span class="hero-brand-pills-label" id="heroPillsLabel">Utvalgte Dufthus:</span>
+    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Vertical Adaptive Layout on Mobile) -->
+    <div class="hero-brand-pills-bar" id="manufacturersBar" aria-label="Hurtigvalg for produsenter og dufthus">
+      <div class="hero-brand-pills-header">
+        <span class="hero-brand-pills-label" id="heroPillsLabel">🏛️ Produsenter & Dufthus:</span>
+        <button type="button" class="hero-brand-reset-btn" id="heroBrandResetBtn" onclick="resetAllFilters()">Vis alle (120)</button>
+      </div>
       <div class="hero-brand-pills-scroll">
         <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Surrati')">
-          <span>🕋</span> <b>Surrati</b> <small style="opacity:.85;font-weight:400">(12)</small>
+          <span>🕋</span> <b>Surrati</b> <small>(Mekka · 12 dufter)</small>
         </button>
         <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Bujairami')">
-          <span>🇦🇺</span> <b>Bujairami</b> <small style="opacity:.85;font-weight:400">(Sydney · 8)</small>
+          <span>🇦🇺</span> <b>Bujairami</b> <small>(Sydney · 8 extrait)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Al Haramain')">
-          <span>🌙</span> <b>Al Haramain</b> <small style="opacity:.85;font-weight:400">(Detour)</small>
+          <span>🌙</span> <b>Al Haramain</b> <small>(Detour Noir & Rouge)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Risala')">
-          <span>🖋️</span> <b>Risala</b> <small style="opacity:.85;font-weight:400">(Dubai · 4)</small>
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
-          <span>🌙</span> <b>Swiss Arabian</b>
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
-          <span>👑</span> <b>Armaf / Sterling</b>
+          <span>🖋️</span> <b>Risala</b> <small>(Dubai · 4 dufter)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Lattafa')">
-          <span>🌟</span> <b>Lattafa</b>
+          <span>🌟</span> <b>Lattafa</b> <small>(25 bestselgere)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Maison Alhambra')">
+          <span>🏛️</span> <b>Maison Alhambra</b> <small>(7 luksusutgaver)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Swiss Arabian')">
+          <span>🌙</span> <b>Swiss Arabian</b> <small>(4 signaturer)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('French Avenue')">
-          <span>🍸</span> <b>French Avenue</b>
+          <span>🍸</span> <b>French Avenue</b> <small>(5 extrait)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Reef')">
-          <span>💎</span> <b>Reef Perfumes</b>
+          <span>💎</span> <b>Reef Perfumes</b> <small>(9 luksusdufter)</small>
         </button>
         <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ibraq')">
-          <span>💠</span> <b>IBRAQ</b>
+          <span>💠</span> <b>IBRAQ</b> <small>(Ibrahim Al Qurashi · 8)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Hamidi')">
+          <span>🪔</span> <b>Hamidi Oud</b> <small>(10 signaturer)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Armaf')">
+          <span>👑</span> <b>Armaf / Sterling</b> <small>(Club de Nuit)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Bespoke London')">
+          <span>🇬🇧</span> <b>Bespoke London</b> <small>(9 parfymer)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Buhara Esans')">
+          <span>🇹🇷</span> <b>Buhara Esans</b> <small>(Roll-on olje · 99)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
+          <span>⚜️</span> <b>Ahmed Al Maghribi</b> <small>(2 parfymer)</small>
+        </button>
+        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Gavesett')">
+          <span>🎁</span> <b>Luksus Gavesett</b> <small>(4-i-1 Komplett)</small>
         </button>
       </div>
     </div>
@@ -3860,7 +4308,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.58 (updated 2026-11-09 08:38)
+        v1.0.59 (updated 2026-11-09 15:45)
       </div>
     </div>
   </div>
@@ -3929,10 +4377,28 @@ window.addEventListener('scroll', function() {
 window.filterByBrandFromHero = function(brandName) {
   closeNavDropdown();
   activeBrand = brandName;
+  activeScent = 'all';
+  searchQuery = '';
   const brandSelect = document.getElementById('filterBrand');
   if (brandSelect) {
     brandSelect.value = brandName;
   }
+  const scentSelect = document.getElementById('filterScent');
+  if (scentSelect) {
+    scentSelect.value = 'all';
+  }
+  const searchInput = document.getElementById('catalogSearchInput');
+  if (searchInput) searchInput.value = '';
+  const topInput = document.getElementById('topNavSearchInput');
+  if (topInput) topInput.value = '';
+  const mobInput = document.getElementById('mobNavSearchInput');
+  if (mobInput) mobInput.value = '';
+  const hubInput = document.getElementById('mobileHubSearchInput');
+  if (hubInput) hubInput.value = '';
+  if (document.getElementById('clearSearchBtn')) document.getElementById('clearSearchBtn').style.display = 'none';
+  if (document.getElementById('topNavClearSearchBtn')) document.getElementById('topNavClearSearchBtn').style.display = 'none';
+  if (document.getElementById('mobNavClearSearchBtn')) document.getElementById('mobNavClearSearchBtn').style.display = 'none';
+  if (document.getElementById('mobileHubClearBtn')) document.getElementById('mobileHubClearBtn').style.display = 'none';
   renderStore();
   const kjopEl = document.getElementById('kjop');
   if (kjopEl) {
@@ -8058,7 +8524,7 @@ const DEFAULT_CATALOG = [
 
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v58');
+  const custom = localStorage.getItem('arx_custom_catalog_v59');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -8085,7 +8551,12 @@ const I18N = {
     topSearchPlaceholder: "Søk parfyme...",
     mobNavFragrances: "Topp Merker",
     navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
-    heroPillsLabel: "Utvalgte Dufthus:",
+    heroPillsLabel: "🏛️ Produsenter & Dufthus:",
+    heroBrandResetBtn: "Vis alle (120)",
+    mobileHubSearchPlaceholder: "Søk blant 120 parfymer og merker...",
+    mobQuickBtnBrands: "Produsenter",
+    mobQuickBtnBest: "Bestselgere",
+    mobQuickBtnAll: "Alle (120)",
     btnShowAll: "Vis alle",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "Om",
@@ -8278,7 +8749,12 @@ const I18N = {
     topSearchPlaceholder: "Search perfume...",
     mobNavFragrances: "Top Brands",
     navBrandsHeader: "Top Brands Online — Click to filter",
-    heroPillsLabel: "Featured Houses:",
+    heroPillsLabel: "🏛️ Perfume Houses & Brands:",
+    heroBrandResetBtn: "Show all (120)",
+    mobileHubSearchPlaceholder: "Search 120 perfumes and brands...",
+    mobQuickBtnBrands: "Brands",
+    mobQuickBtnBest: "Bestsellers",
+    mobQuickBtnAll: "All (120)",
     btnShowAll: "Show All",
     mobNavShowroom: "Showroom (Tøyengata 3)",
     mobNavAbout: "About",
@@ -8828,9 +9304,11 @@ window.resetAllFilters = function() {
   if ($('#catalogSearchInput')) $('#catalogSearchInput').value = '';
   if ($('#topNavSearchInput')) $('#topNavSearchInput').value = '';
   if ($('#mobNavSearchInput')) $('#mobNavSearchInput').value = '';
+  if ($('#mobileHubSearchInput')) $('#mobileHubSearchInput').value = '';
   if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = 'none';
   if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = 'none';
   if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = 'none';
+  if ($('#mobileHubClearBtn')) $('#mobileHubClearBtn').style.display = 'none';
   renderStore();
 };
 
@@ -10008,7 +10486,12 @@ function setLanguage(lang) {
   if ($('#heroBestsellersTitle')) $('#heroBestsellersTitle').textContent = t.heroBestsellersTitle;
   if ($('#heroBestsellersSub')) $('#heroBestsellersSub').textContent = t.heroBestsellersSub;
   if ($('#heroBestsellersLink')) $('#heroBestsellersLink').textContent = t.heroBestsellersLink;
-  if ($('#heroPillsLabel')) $('#heroPillsLabel').textContent = t.heroPillsLabel || (LANG === 'en' ? 'Featured Houses:' : 'Utvalgte Dufthus:');
+  if ($('#heroPillsLabel')) $('#heroPillsLabel').textContent = t.heroPillsLabel || (LANG === 'en' ? '🏛️ Perfume Houses & Brands:' : '🏛️ Produsenter & Dufthus:');
+  if ($('#heroBrandResetBtn')) $('#heroBrandResetBtn').textContent = t.heroBrandResetBtn || (LANG === 'en' ? 'Show all (120)' : 'Vis alle (120)');
+  if ($('#mobileHubSearchInput')) $('#mobileHubSearchInput').placeholder = t.mobileHubSearchPlaceholder || (LANG === 'en' ? 'Search 120 perfumes and brands...' : 'Søk blant 120 parfymer og merker...');
+  if ($('#mobQuickBtnBrands .mob-qbtn-text')) $('#mobQuickBtnBrands .mob-qbtn-text').textContent = t.mobQuickBtnBrands || (LANG === 'en' ? 'Brands' : 'Produsenter');
+  if ($('#mobQuickBtnBest .mob-qbtn-text')) $('#mobQuickBtnBest .mob-qbtn-text').textContent = t.mobQuickBtnBest || (LANG === 'en' ? 'Bestsellers' : 'Bestselgere');
+  if ($('#mobQuickBtnAll .mob-qbtn-text')) $('#mobQuickBtnAll .mob-qbtn-text').textContent = t.mobQuickBtnAll || (LANG === 'en' ? 'All (120)' : 'Alle (120)');
 
   // Curated Niche Spotlight
   if ($('#spotlightSurratiBadge')) $('#spotlightSurratiBadge').textContent = t.spotlightSurratiBadge;
@@ -10548,7 +11031,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -10610,7 +11093,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -10686,7 +11169,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -10701,6 +11184,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v59');
     localStorage.removeItem('arx_custom_catalog_v58');
     localStorage.removeItem('arx_custom_catalog_v54');
     localStorage.removeItem('arx_custom_catalog_v53');
@@ -10725,7 +11209,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v58', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v59', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -10782,8 +11266,8 @@ function syncSearch(val, source, shouldScrollToCatalog = false) {
   searchQuery = (val || '').trim();
   const rawVal = val || '';
 
-  // When doing search on top (desktop or mobile header), reset brands and scent family to 'all'
-  if ((source === 'top' || source === 'mob') && searchQuery.length > 0) {
+  // When doing search on top (desktop, mobile header, or mobile quick hub), reset brands and scent family to 'all'
+  if ((source === 'top' || source === 'mob' || source === 'hub') && searchQuery.length > 0) {
     activeBrand = 'all';
     activeScent = 'all';
     if ($('#filterBrand')) $('#filterBrand').value = 'all';
@@ -10793,11 +11277,13 @@ function syncSearch(val, source, shouldScrollToCatalog = false) {
   if (source !== 'catalog' && $('#catalogSearchInput')) $('#catalogSearchInput').value = rawVal;
   if (source !== 'top' && $('#topNavSearchInput')) $('#topNavSearchInput').value = rawVal;
   if (source !== 'mob' && $('#mobNavSearchInput')) $('#mobNavSearchInput').value = rawVal;
+  if (source !== 'hub' && $('#mobileHubSearchInput')) $('#mobileHubSearchInput').value = rawVal;
 
   const hasVal = rawVal.length > 0;
   if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = hasVal ? 'block' : 'none';
   if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
   if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
+  if ($('#mobileHubClearBtn')) $('#mobileHubClearBtn').style.display = hasVal ? 'block' : 'none';
 
   renderStore();
 
@@ -10846,6 +11332,15 @@ $('#mobNavSearchInput')?.addEventListener('keydown', e => {
 });
 $('#mobNavClearSearchBtn')?.addEventListener('click', () => {
   syncSearch('', 'all');
+});
+
+// Mobile Hub Search Input (Quick-Finder)
+$('#mobileHubSearchInput')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    syncSearch(e.target.value, 'hub', true);
+    $('#mobileHubSearchInput').blur();
+  }
 });
 
 $('#cartToggleBtn')?.addEventListener('click', e => {
