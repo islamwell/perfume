@@ -2,23 +2,29 @@
 <html lang="nb" class="booting">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <title id="metaTitle">Aromatek Oslo · Kuratert Parfymeri & 120 Utvalgte Flakonger</title>
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f0e0c">
 <script>
 (function(){
   try {
     var saved = localStorage.getItem('arx_theme');
     var isLight = saved === 'light' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+    var mScheme = document.querySelector('meta[name="color-scheme"]');
+    var mTheme = document.querySelector('meta[name="theme-color"]');
     if (isLight) {
       document.documentElement.classList.add('theme-light');
-      var meta = document.querySelector('meta[name="color-scheme"]');
-      if (meta) meta.setAttribute('content', 'light');
+      document.documentElement.dataset.theme = 'light';
+      if (mScheme) mScheme.setAttribute('content', 'light');
+      if (mTheme) mTheme.setAttribute('content', '#faf8f4');
+    } else {
+      document.documentElement.dataset.theme = 'dark';
+      if (mScheme && saved === 'dark') mScheme.setAttribute('content', 'dark');
     }
   } catch(e){}
 })();
 </script>
-<meta name="theme-color" content="#05070b">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <meta name="description" id="metaDesc" content="Aromatek Oslo — kuratert parfymeri i Tøyengata 3, 0190 Oslo (inne hos PakStar). 120 originale flakonger, luksus gavesett og oljer fra Surrati, Risala, French Avenue, Bujairami, Armaf, Lattafa, Swiss Arabian, Maison Alhambra, Ibraq og Reef.">
@@ -456,26 +462,26 @@ try {
   display: flex;
   align-items: center;
   gap: 1.15rem;
-  background: linear-gradient(135deg, rgba(20,29,48,0.75) 0%, rgba(8,13,22,0.95) 100%);
-  border: 1px solid rgba(201,169,110,0.3);
+  background: var(--sf);
+  border: 1px solid var(--ln);
   border-radius: 1.1rem;
   padding: 1.05rem 1.25rem;
   position: relative;
   overflow: hidden;
-  transition: all .25s ease;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
   cursor: pointer;
 }
 .niche-spotlight-card:hover {
   transform: translateY(-3px);
-  border-color: var(--gold);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 20px rgba(201,169,110,0.22);
+  border-color: var(--ac);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 .niche-spotlight-img {
   width: 86px;
   height: 98px;
   object-fit: contain;
   flex-shrink: 0;
-  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.75));
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.55));
   transition: transform .3s ease;
 }
 .niche-spotlight-card:hover .niche-spotlight-img {
@@ -490,7 +496,7 @@ try {
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--ac);
   margin-bottom: .2rem;
   display: flex;
   align-items: center;
@@ -499,7 +505,7 @@ try {
 .niche-spotlight-title {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--tx);
   margin: 0 0 .25rem;
   white-space: nowrap;
   overflow: hidden;
@@ -507,16 +513,16 @@ try {
 }
 .niche-spotlight-sub {
   font-size: .78rem;
-  color: var(--dim);
+  color: var(--mu);
   line-height: 1.35;
   margin: 0 0 .55rem;
 }
 .niche-spotlight-btn {
   font-size: .74rem;
   font-weight: 600;
-  color: var(--gold-bright);
-  background: rgba(201,169,110,0.14);
-  border: 1px solid rgba(201,169,110,0.35);
+  color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ac) 35%, transparent);
   border-radius: 999px;
   padding: .3rem .8rem;
   display: inline-flex;
@@ -526,60 +532,62 @@ try {
   transition: all .2s ease;
 }
 .niche-spotlight-btn:hover {
-  background: var(--gold);
-  color: #000;
+  background: var(--ac);
+  color: var(--on);
 }
 
 .hero-best-card {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(6,10,16,0.98) 100%);
-  border: 1px solid rgba(201,169,110,0.25);
-  border-radius: 1.2rem;
-  padding: 1.15rem 1rem 1rem;
+  background: var(--sf);
+  border: 1px solid var(--ln);
+  border-radius: 16px;
+  padding: 1.05rem .95rem .95rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
-  transition: all .28s cubic-bezier(0.16,1,0.3,1);
+  transition: transform .25s cubic-bezier(0.16,1,0.3,1), border-color .25s ease, box-shadow .25s ease;
   overflow: hidden;
 }
 .hero-best-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--gold);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.85), 0 0 28px rgba(201,169,110,0.25);
+  transform: translateY(-4px);
+  border-color: var(--ac);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.35);
 }
 .hero-best-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #dc2626;
-  color: #fff;
+  background: var(--ac);
+  color: var(--on);
   font-size: .68rem;
   font-weight: 700;
-  letter-spacing: .03em;
+  letter-spacing: .04em;
   padding: 3px 9px;
   border-radius: 999px;
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
   pointer-events: none;
 }
 .hero-best-badge.gold {
-  background: linear-gradient(135deg, #d4af37 0%, #b45309 100%);
-  color: #fff;
+  background: var(--ac);
+  color: var(--on);
 }
 .hero-best-badge.green {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: var(--ok);
+  color: #06140c;
 }
 .hero-best-badge.purple {
   background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+  color: #fff;
 }
 .hero-best-badge.black {
-  background: linear-gradient(135deg, #1e293b 0%, #090d16 100%);
-  border: 1px solid rgba(201,169,110,0.5);
-  color: var(--gold-bright);
+  background: var(--sf2);
+  border: 1px solid var(--ac);
+  color: var(--ac);
 }
 .hero-best-badge.blue {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
@@ -592,10 +600,10 @@ try {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: .8rem;
+  margin-bottom: .75rem;
   cursor: pointer;
-  background: radial-gradient(circle at 50% 60%, rgba(201,169,110,0.08), transparent 70%);
-  border-radius: .8rem;
+  background: var(--sf2);
+  border-radius: 12px;
   overflow: hidden;
 }
 .hero-best-img-wrap img,
@@ -607,25 +615,26 @@ try {
   object-fit: contain;
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 14px 22px rgba(0,0,0,0.85));
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
   transition: transform .32s cubic-bezier(0.16,1,0.3,1);
 }
 .hero-best-card:hover .hero-best-img-wrap img,
 .hero-best-card:hover .hero-best-img {
-  transform: scale(1.07);
+  transform: scale(1.06);
 }
 .hero-best-brand {
-  font-size: .74rem;
-  letter-spacing: .08em;
+  font-size: .72rem;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--ac);
+  font-weight: 700;
   margin-bottom: .25rem;
 }
 .hero-best-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.22rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--tx);
   margin: 0 0 .35rem;
   line-height: 1.25;
   cursor: pointer;
@@ -633,12 +642,12 @@ try {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 3.1rem;
+  height: 3.05rem;
 }
 .hero-best-vol {
-  font-size: .74rem;
-  color: var(--dim);
-  margin-bottom: .6rem;
+  font-size: .76rem;
+  color: var(--mu);
+  margin-bottom: .55rem;
 }
 .hero-best-bottom {
   margin-top: auto;
@@ -648,28 +657,31 @@ try {
   align-items: center;
   gap: .6rem;
   padding-top: .6rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid var(--ln);
 }
 .hero-best-price {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--tx);
+  font-variant-numeric: tabular-nums;
 }
 .hero-best-cta {
-  background: linear-gradient(135deg, var(--gold) 0%, #b8860b 100%);
-  color: #05070b;
+  background: var(--ac);
+  color: var(--on);
   border: none;
-  border-radius: 999px;
-  padding: .45rem 1.15rem;
-  font-size: .8rem;
+  border-radius: 12px;
+  padding: .48rem 1.05rem;
+  min-height: 40px;
+  font-size: .82rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: transform .1s ease, filter .2s ease;
 }
 .hero-best-cta:hover {
-  transform: scale(1.05);
-  filter: brightness(1.15);
-  box-shadow: 0 4px 16px rgba(201,169,110,0.45);
+  filter: brightness(1.08);
+}
+.hero-best-cta:active {
+  transform: scale(0.97);
 }
 
 /* ── DUAL VIEW SWITCHER & HARDWARE-ACCELERATED SLIDING CAROUSEL ── */
@@ -1029,14 +1041,24 @@ dialog::backdrop {
   color-scheme: light dark;
   --sans:'Inter Tight',system-ui,-apple-system,sans-serif;
   --serif:'Cormorant Garamond',Georgia,serif;
-  --bg:#05070b;
-  --void:#020407;
-  --card:#080d15;
-  --line:rgba(255,255,255,0.08);
-  --gold:#c9a96e;
-  --gold-bright:#e5c98e;
-  --ice:#e8f4fc;
-  --dim:rgba(232,244,252,0.65);
+  /* Warm Obsidian Luxury Theme (Default) */
+  --bg:#0f0e0c;
+  --void:#080706;
+  --card:#1a1814;
+  --sf:#1a1814;
+  --sf2:#26231e;
+  --tx:#f3eee6;
+  --ice:#f3eee6;
+  --mu:#aaa398;
+  --dim:#aaa398;
+  --line:#3a352e;
+  --ln:#3a352e;
+  --gold:#d4af6a;
+  --gold-bright:#e7c98f;
+  --ac:#d4af6a;
+  --on:#1a1408;
+  --ok:#5bd49a;
+  --er:#ff8a80;
   --a1:#9fd8ec;
   --a2:#6da5c0;
   --a3:#d48459;
@@ -1045,99 +1067,111 @@ dialog::backdrop {
   --radius:1.2rem;
   --T:5.8s;
   --E:cubic-bezier(.62,.02,.2,1);
+  accent-color: var(--ac);
+}
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  color-scheme: dark;
+}
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  color-scheme: light;
 }
 
-/* ═══ LIGHT MODE THEME OVERRIDES ═══ */
+/* ═══ LIGHT MODE THEME OVERRIDES (Warm Ivory & Bronze-Gold) ═══ */
 html.theme-light,
 :root:has(> head > meta[name="color-scheme"][content="light"]) {
-  --bg:#f8fafc;
+  --bg:#faf8f4;
   --void:#ffffff;
   --card:#ffffff;
-  --line:rgba(15,23,42,0.1);
-  --gold:#a0782d;
-  --gold-bright:#825f1e;
-  --ice:#0f172a;
-  --dim:#475569;
+  --sf:#ffffff;
+  --sf2:#f2eee6;
+  --tx:#1a1714;
+  --ice:#1a1714;
+  --mu:#5e574d;
+  --dim:#5e574d;
+  --line:#e3ddd2;
+  --ln:#e3ddd2;
+  --gold:#7a5c24;
+  --gold-bright:#5e4518;
+  --ac:#7a5c24;
+  --on:#ffffff;
+  --ok:#1f7a4d;
+  --er:#b3261e;
   --a1:#0284c7;
   --a2:#0369a1;
   --a3:#b45309;
   --ember:#c2410c;
+  accent-color: var(--ac);
 }
 
-html.theme-light body { background: var(--bg); color: var(--ice); }
-html.theme-light .top-banner { background: #f1f5f9; border-bottom: 1px solid rgba(15,23,42,0.08); color: #475569; }
-html.theme-light header { background: rgba(255,255,255,0.94); border-bottom: 1px solid rgba(15,23,42,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-html.theme-light .main-nav a, html.theme-light .main-nav button, html.theme-light .main-nav .nav-dropdown-trigger { color: #334155; }
-html.theme-light .main-nav a:hover, html.theme-light .main-nav button:hover, html.theme-light .main-nav .nav-dropdown-trigger:hover { color: var(--gold); }
-html.theme-light .nav-dropdown-panel { background: #ffffff; border: 1px solid rgba(160,120,45,0.32); box-shadow: 0 16px 40px rgba(15,23,42,0.12), 0 0 16px rgba(160,120,45,0.1); }
-html.theme-light .nav-dropdown-item { color: #1e293b; }
-html.theme-light .nav-dropdown-item:hover { background: rgba(160,120,45,0.12); color: #0f172a; }
-html.theme-light .nav-quick-brand { background: rgba(160,120,45,0.08); border-color: rgba(160,120,45,0.35); color: var(--gold); }
-html.theme-light .nav-quick-brand:hover { background: rgba(160,120,45,0.18); color: #0f172a; }
-html.theme-light .top-nav-search { background: rgba(15,23,42,0.04); border-color: rgba(160,120,45,0.35); }
-html.theme-light .top-nav-search:focus-within { background: #ffffff; box-shadow: 0 0 14px rgba(160,120,45,0.22), 0 4px 12px rgba(15,23,42,0.06); }
-html.theme-light .top-nav-search-input { color: #0f172a; }
-html.theme-light .top-nav-search-input::placeholder { color: #64748b; }
-html.theme-light .action-btn, html.theme-light .cartbtn, html.theme-light .lang-flag-btn, html.theme-light .theme-toggle-btn { background: rgba(15,23,42,0.05); border-color: rgba(15,23,42,0.12); color: #0f172a; }
-html.theme-light .action-btn:hover, html.theme-light .cartbtn:hover, html.theme-light .lang-flag-btn:hover, html.theme-light .theme-toggle-btn:hover { background: rgba(160,120,45,0.12); border-color: var(--gold); }
-html.theme-light .nav-toggle { border-color: rgba(15,23,42,0.15); color: #0f172a; }
-html.theme-light .mobile-nav { background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(15,23,42,0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-html.theme-light .mobile-nav a, html.theme-light .mobile-nav button { color: #334155; }
-html.theme-light .mob-brand-item { background: #f1f5f9; border-color: rgba(15,23,42,0.08); color: #1e293b; }
-html.theme-light .hero-bestsellers-section { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,169,110,0.16), transparent 70%), radial-gradient(ellipse 60% 40% at 85% 20%, rgba(99,102,241,0.05), transparent 60%), #ffffff; border: 1px solid rgba(160,120,45,0.22); box-shadow: 0 6px 24px rgba(15,23,42,0.04); }
-html.theme-light .hero-title { color: #0f172a; }
-html.theme-light .hero-title span { background: linear-gradient(135deg, #0f172a 35%, var(--gold) 80%, #825f1e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-html.theme-light .hero-subtitle { color: #475569; }
-html.theme-light .hero-trust-item b { color: #0f172a; }
-html.theme-light .hero-bestsellers-header { border-bottom-color: rgba(15,23,42,0.08); }
-html.theme-light .hero-bestsellers-header h2 { color: #0f172a; }
-html.theme-light .hero-brand-pills-bar { background: #f8fafc; border-color: rgba(160,120,45,0.28); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
-html.theme-light .hero-brand-reset-btn { background: rgba(160,120,45,0.12); border-color: var(--gold); color: #825f1e; }
-html.theme-light .hero-brand-pill { background: #ffffff; border-color: rgba(160,120,45,0.32); color: #1e293b; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
-html.theme-light .hero-brand-pill b { color: #0f172a; }
-html.theme-light .hero-brand-pill:hover { background: rgba(160,120,45,0.15); border-color: var(--gold); color: #0f172a; }
-html.theme-light .hero-brand-pill.highlight { background: rgba(160,120,45,0.1); border-color: var(--gold); color: var(--gold); }
-html.theme-light .niche-spotlight-card { background: #ffffff; border-color: rgba(160,120,45,0.28); box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
-html.theme-light .niche-spotlight-card:hover { box-shadow: 0 12px 30px rgba(15,23,42,0.1), 0 0 16px rgba(160,120,45,0.18); }
-html.theme-light .niche-spotlight-title { color: #0f172a; }
-html.theme-light .niche-spotlight-sub { color: #475569; }
-html.theme-light .hero-best-card { background: #ffffff; border-color: rgba(160,120,45,0.25); box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
-html.theme-light .hero-best-card:hover { box-shadow: 0 16px 36px rgba(15,23,42,0.12), 0 0 20px rgba(160,120,45,0.2); }
-html.theme-light .hero-best-card .hero-best-name, html.theme-light .hero-best-name { color: #0f172a; }
-html.theme-light .hero-best-card .hero-best-price, html.theme-light .hero-best-price { color: #0f172a; }
-html.theme-light .hero-best-notes { color: #475569; }
-html.theme-light .perfume-card { background: #ffffff; border-color: rgba(15,23,42,0.1); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
-html.theme-light .perfume-card:hover { box-shadow: 0 16px 36px rgba(15,23,42,0.1), 0 0 18px rgba(160,120,45,0.15); }
-html.theme-light .card-name { color: #0f172a; }
-html.theme-light .card-price { color: #0f172a; }
-html.theme-light .card-vol { color: #64748b; }
-html.theme-light .btn-details { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
-html.theme-light .btn-details:hover { background: #e2e8f0; border-color: var(--gold); }
-html.theme-light .btn-add { background: var(--gold); border-color: var(--gold); color: #ffffff; }
-html.theme-light .filter-container { background: #ffffff; border-color: rgba(15,23,42,0.1); box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
-html.theme-light .filter-select, html.theme-light .search-input { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
-html.theme-light .filter-select:focus, html.theme-light .search-input:focus { background: #ffffff; border-color: var(--gold); }
-html.theme-light .dialog-box { background: rgba(255,255,255,0.98); border-color: rgba(15,23,42,0.12); color: #0f172a; box-shadow: 0 25px 60px rgba(15,23,42,0.2); }
-html.theme-light dialog.sheet { background: #ffffff; border-left-color: rgba(15,23,42,0.12); color: #0f172a; box-shadow: -15px 0 40px rgba(15,23,42,0.15); }
-html.theme-light .dialog-box input, html.theme-light .dialog-box select { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
-html.theme-light .dialog-box input:focus, html.theme-light .dialog-box select:focus { background: #ffffff; border-color: var(--gold); }
-html.theme-light .cart-item-thumb { background: #f1f5f9; }
-html.theme-light .cart-item-info b { color: #0f172a; }
-html.theme-light .cart-qty-ctrl { background: #f1f5f9; border-color: #cbd5e1; }
-html.theme-light .cqty-btn { color: #0f172a; }
-html.theme-light .checkout-notice-box { background: #f8fafc; border-color: rgba(160,120,45,0.3); }
-html.theme-light #showroom { background: #f1f5f9; border-top-color: rgba(15,23,42,0.08); }
-html.theme-light .newsletter-section { background: #ffffff; border-top-color: rgba(15,23,42,0.08); }
-html.theme-light .newsletter-input { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
-html.theme-light footer { background: #f1f5f9; border-top-color: rgba(15,23,42,0.08); }
-html.theme-light .version-pill { background: rgba(15,23,42,0.06); border-color: rgba(15,23,42,0.12); color: var(--gold); }
-html.theme-light .stat-box { background: #ffffff; border-color: rgba(15,23,42,0.08); box-shadow: 0 2px 10px rgba(15,23,42,0.03); }
-html.theme-light .pyramid-card { background: #ffffff; border-color: rgba(15,23,42,0.08); box-shadow: 0 2px 10px rgba(15,23,42,0.03); }
-html.theme-light .pyramid-card h3 { color: #0f172a; }
-html.theme-light .svartfjord-section { background: #f8fafc; border-top-color: rgba(15,23,42,0.08); }
-html.theme-light .svartfjord-hero h2 { color: #0f172a; }
-html.theme-light .back-to-top { background: rgba(255,255,255,0.95); border-color: var(--gold); color: var(--gold); box-shadow: 0 4px 18px rgba(15,23,42,0.15); }
-html.theme-light .back-to-top:hover { background: var(--gold); color: #ffffff; }
+html.theme-light body { background: var(--bg); color: var(--tx); }
+html.theme-light .top-banner { background: var(--sf2); border-bottom: 1px solid var(--ln); color: var(--mu); }
+html.theme-light header { background: color-mix(in srgb, var(--bg) 90%, transparent); border-bottom: 1px solid var(--ln); box-shadow: 0 2px 12px rgba(26,23,20,0.04); }
+html.theme-light .main-nav a, html.theme-light .main-nav button, html.theme-light .main-nav .nav-dropdown-trigger { color: var(--mu); }
+html.theme-light .main-nav a:hover, html.theme-light .main-nav button:hover, html.theme-light .main-nav .nav-dropdown-trigger:hover { color: var(--ac); }
+html.theme-light .nav-dropdown-panel { background: var(--sf); border: 1px solid var(--ln); box-shadow: 0 16px 40px rgba(26,23,20,0.12); }
+html.theme-light .nav-dropdown-item { color: var(--tx); }
+html.theme-light .nav-dropdown-item:hover { background: var(--sf2); color: var(--ac); }
+html.theme-light .nav-quick-brand { background: var(--sf2); border-color: var(--ln); color: var(--ac); }
+html.theme-light .nav-quick-brand:hover { background: color-mix(in srgb, var(--ac) 14%, transparent); border-color: var(--ac); color: var(--tx); }
+html.theme-light .top-nav-search { background: var(--sf); border-color: var(--ln); }
+html.theme-light .top-nav-search:focus-within { background: var(--sf); border-color: var(--ac); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 20%, transparent); }
+html.theme-light .top-nav-search-input { color: var(--tx); }
+html.theme-light .top-nav-search-input::placeholder { color: var(--mu); }
+html.theme-light .action-btn, html.theme-light .cartbtn, html.theme-light .lang-flag-btn, html.theme-light .theme-toggle-btn { background: var(--sf2); border-color: var(--ln); color: var(--tx); }
+html.theme-light .action-btn:hover, html.theme-light .cartbtn:hover, html.theme-light .lang-flag-btn:hover, html.theme-light .theme-toggle-btn:hover { background: color-mix(in srgb, var(--ac) 12%, var(--sf2)); border-color: var(--ac); }
+html.theme-light .nav-toggle { border-color: var(--ln); color: var(--tx); background: var(--sf2); }
+html.theme-light .mobile-nav { background: var(--sf); border-bottom: 1px solid var(--ln); box-shadow: 0 10px 25px rgba(26,23,20,0.1); }
+html.theme-light .mobile-nav a, html.theme-light .mobile-nav button { color: var(--tx); }
+html.theme-light .mob-brand-item { background: var(--sf2); border-color: var(--ln); color: var(--tx); }
+html.theme-light .hero-bestsellers-section { background: radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 70%), var(--sf); border: 1px solid var(--ln); box-shadow: 0 6px 24px rgba(26,23,20,0.04); }
+html.theme-light .hero-title { color: var(--tx); }
+html.theme-light .hero-title span { background: linear-gradient(135deg, var(--tx) 30%, var(--ac) 85%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+html.theme-light .hero-subtitle { color: var(--mu); }
+html.theme-light .hero-trust-item b { color: var(--tx); }
+html.theme-light .hero-bestsellers-header { border-bottom-color: var(--ln); }
+html.theme-light .hero-bestsellers-header h2 { color: var(--tx); }
+html.theme-light .hero-brand-pills-bar { background: var(--sf2); border-color: var(--ln); box-shadow: 0 4px 16px rgba(26,23,20,0.04); }
+html.theme-light .hero-brand-reset-btn { background: var(--sf); border-color: var(--ac); color: var(--ac); }
+html.theme-light .hero-brand-pill { background: var(--sf); border-color: var(--ln); color: var(--tx); box-shadow: 0 2px 6px rgba(26,23,20,0.04); }
+html.theme-light .hero-brand-pill b { color: var(--tx); }
+html.theme-light .hero-brand-pill:hover { background: color-mix(in srgb, var(--ac) 12%, var(--sf)); border-color: var(--ac); color: var(--tx); }
+html.theme-light .hero-brand-pill.highlight { background: color-mix(in srgb, var(--ac) 10%, var(--sf)); border-color: var(--ac); color: var(--ac); }
+html.theme-light .niche-spotlight-card { background: var(--sf); border-color: var(--ln); box-shadow: 0 4px 18px rgba(26,23,20,0.05); }
+html.theme-light .niche-spotlight-card:hover { box-shadow: 0 12px 30px rgba(26,23,20,0.1); border-color: var(--ac); }
+html.theme-light .niche-spotlight-title { color: var(--tx); }
+html.theme-light .niche-spotlight-sub { color: var(--mu); }
+html.theme-light .hero-best-card { background: var(--sf); border-color: var(--ln); box-shadow: 0 4px 18px rgba(26,23,20,0.04); }
+html.theme-light .hero-best-card:hover { box-shadow: 0 12px 28px rgba(26,23,20,0.1); border-color: var(--ac); }
+html.theme-light .hero-best-card .hero-best-name, html.theme-light .hero-best-name { color: var(--tx); }
+html.theme-light .hero-best-card .hero-best-price, html.theme-light .hero-best-price { color: var(--tx); }
+html.theme-light .hero-best-notes { color: var(--mu); }
+html.theme-light .perfume-card { background: var(--sf); border-color: var(--ln); box-shadow: 0 4px 16px rgba(26,23,20,0.04); }
+html.theme-light .perfume-card:hover { box-shadow: 0 12px 28px rgba(26,23,20,0.1); border-color: var(--ac); }
+html.theme-light .card-name { color: var(--tx); }
+html.theme-light .card-price { color: var(--tx); }
+html.theme-light .card-vol { color: var(--mu); }
+html.theme-light .btn-details { background: var(--sf2); border-color: var(--ln); color: var(--tx); }
+html.theme-light .btn-details:hover { background: color-mix(in srgb, var(--ac) 14%, var(--sf2)); border-color: var(--ac); }
+html.theme-light .btn-add { background: var(--ac); border-color: var(--ac); color: var(--on); }
+html.theme-light .filter-container { background: var(--sf); border-color: var(--ln); box-shadow: 0 4px 16px rgba(26,23,20,0.04); }
+html.theme-light .filter-select, html.theme-light .search-input { background: var(--bg); border-color: var(--ln); color: var(--tx); }
+html.theme-light .filter-select:focus, html.theme-light .search-input:focus { background: var(--sf); border-color: var(--ac); }
+html.theme-light .dialog-box { background: var(--sf); border-color: var(--ln); color: var(--tx); box-shadow: 0 25px 60px rgba(26,23,20,0.18); }
+html.theme-light .dialog-box input, html.theme-light .dialog-box select { background: var(--bg); border-color: var(--ln); color: var(--tx); }
+html.theme-light .dialog-box input:focus, html.theme-light .dialog-box select:focus { background: var(--sf); border-color: var(--ac); }
+html.theme-light .checkout-notice-box { background: var(--sf2); border-color: var(--ln); }
+html.theme-light #showroom { background: var(--sf2); border-top-color: var(--ln); }
+html.theme-light .newsletter-section { background: var(--sf); border-top-color: var(--ln); }
+html.theme-light .newsletter-input { background: var(--bg); border-color: var(--ln); color: var(--tx); }
+html.theme-light footer { background: var(--sf2); border-top-color: var(--ln); }
+html.theme-light .version-pill { background: var(--sf); border-color: var(--ln); color: var(--ac); }
+html.theme-light .stat-box { background: var(--sf); border-color: var(--ln); box-shadow: 0 2px 10px rgba(26,23,20,0.03); }
+html.theme-light .pyramid-card { background: var(--sf); border-color: var(--ln); box-shadow: 0 2px 10px rgba(26,23,20,0.03); }
+html.theme-light .pyramid-card h3 { color: var(--tx); }
+html.theme-light .svartfjord-section { background: var(--sf2); border-top-color: var(--ln); }
+html.theme-light .svartfjord-hero h2 { color: var(--tx); }
+html.theme-light .back-to-top { background: var(--sf); border-color: var(--ac); color: var(--ac); box-shadow: 0 4px 18px rgba(26,23,20,0.12); }
+html.theme-light .back-to-top:hover { background: var(--ac); color: var(--on); }
 
 /* Theme Toggle Button Styles */
 .theme-toggle-btn {
@@ -1238,7 +1272,7 @@ html.ready .intro{display:none!important}
   justify-items:center;
   gap:1.2rem;
   text-align:center;
-  background:radial-gradient(130% 90% at 50% 50%,#0b131e,var(--void) 76%);
+  background:radial-gradient(130% 90% at 50% 50%, color-mix(in srgb, var(--ac) 12%, var(--sf2)), var(--bg) 78%);
   cursor:pointer;
 }
 .intro:not(.go) *{animation-play-state:paused!important}
@@ -1323,10 +1357,10 @@ html.ready .intro{display:none!important}
   position:absolute;
   bottom:2.2rem;
   z-index:10;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.18);
+  background:color-mix(in srgb,var(--sf) 78%,transparent);
+  border:1px solid var(--ln);
   border-radius:99px;
-  color:var(--ice);
+  color:var(--tx);
   font:500 .75rem/1 var(--sans);
   letter-spacing:.16em;
   text-transform:uppercase;
@@ -1336,7 +1370,7 @@ html.ready .intro{display:none!important}
   pointer-events:auto;
   backdrop-filter:blur(10px);
 }
-.intro .skip-btn:hover{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,169,110,0.12)}
+.intro .skip-btn:hover{border-color:var(--ac);color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,var(--sf))}
 
 @keyframes morph{
   0%{d:path("M6 168C36 168 68 168 100 168C132 168 164 168 194 168C194 169 194 171 194 172C164 172 132 172 100 172C68 172 36 172 6 172C6 171 6 169 6 168Z")}
@@ -1861,10 +1895,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 }
 @media(max-width:54rem){
   .back-to-top{
-    bottom:calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    bottom:max(1.2rem, env(safe-area-inset-bottom, 1.2rem));
     right:max(1.2rem, env(safe-area-inset-right, 1.2rem));
-    width:42px;
-    height:42px;
+    width:44px;
+    height:44px;
     font-size:1.2rem;
   }
 
@@ -1872,17 +1906,17 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   .mobile-quick-hub {
     display: block !important;
     margin: .85rem 0 1.25rem;
-    padding: 0;
+    padding: 0 1rem;
   }
   .mobile-quick-hub-inner {
     display: flex;
     flex-direction: column;
     gap: .75rem;
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(10, 15, 26, 0.98) 100%);
-    border: 1.5px solid rgba(201, 169, 110, 0.35);
-    border-radius: 1.25rem;
-    padding: 1rem .95rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    border-radius: 16px;
+    padding: .95rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
   .mobile-search-bar-wrap {
     position: relative;
@@ -1895,36 +1929,38 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     left: .95rem;
     font-size: 1.15rem;
     pointer-events: none;
-    color: var(--gold);
+    color: var(--ac);
   }
   .mobile-hub-search-input {
     width: 100%;
-    height: 48px;
+    height: 50px;
     padding: .75rem 2.6rem .75rem 2.75rem;
     font-size: 16px !important;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1.5px solid rgba(201, 169, 110, 0.35);
+    background: var(--bg);
+    border: 1px solid var(--ln);
     border-radius: 12px;
-    color: #fff;
+    color: var(--tx);
     font-family: inherit;
     outline: none;
     transition: all .2s ease;
     box-sizing: border-box;
   }
+  .mobile-hub-search-input::placeholder {
+    color: var(--mu);
+  }
   .mobile-hub-search-input:focus {
-    border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 16px rgba(201, 169, 110, 0.25);
+    border-color: var(--ac);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 24%, transparent);
   }
   .mobile-hub-clear-btn {
     position: absolute;
-    right: .75rem;
-    width: 32px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.12);
+    right: .65rem;
+    width: 36px;
+    height: 36px;
+    background: var(--sf2);
     border: 0;
     border-radius: 50%;
-    color: #fff;
+    color: var(--tx);
     font-size: 0.95rem;
     cursor: pointer;
     display: flex;
@@ -1933,7 +1969,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     transition: background .15s ease;
   }
   .mobile-hub-clear-btn:active {
-    background: rgba(201, 169, 110, 0.4);
+    background: color-mix(in srgb, var(--ac) 30%, var(--sf2));
   }
   .mobile-quick-actions {
     display: grid;
@@ -1947,26 +1983,26 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     gap: .4rem;
     padding: .65rem .4rem;
     min-height: 44px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(201, 169, 110, 0.25);
-    color: #fff;
+    border-radius: 12px;
+    background: var(--sf2);
+    border: 1px solid var(--ln);
+    color: var(--tx);
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
-    transition: all .15s ease;
+    transition: transform .1s ease, background .15s ease, border-color .15s ease;
     text-align: center;
   }
   .mob-quick-btn:active, .mob-quick-btn:focus-visible {
-    background: rgba(201, 169, 110, 0.25);
-    border-color: var(--gold);
+    transform: scale(0.97);
+    border-color: var(--ac);
   }
   .mob-quick-btn.highlight {
-    background: rgba(201, 169, 110, 0.18);
-    border-color: var(--gold);
-    color: var(--gold-bright);
+    background: color-mix(in srgb, var(--ac) 14%, var(--sf2));
+    border-color: var(--ac);
+    color: var(--ac);
   }
   .mob-qbtn-icon {
     font-size: 1.05rem;
@@ -1978,11 +2014,11 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     flex-direction: column !important;
     align-items: stretch !important;
     overflow-x: visible !important;
-    padding: .85rem .85rem !important;
+    padding: .85rem !important;
     margin: .85rem 0 1.25rem !important;
-    border-radius: 1.15rem !important;
-    background: rgba(12, 17, 28, 0.95) !important;
-    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
+    border-radius: 16px !important;
+    background: var(--sf) !important;
+    border: 1px solid var(--ln) !important;
     gap: .65rem !important;
   }
   .hero-brand-pills-header {
@@ -1996,7 +2032,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     font-size: .92rem !important;
     font-weight: 700 !important;
     letter-spacing: .06em !important;
-    color: var(--gold) !important;
+    color: var(--ac) !important;
     text-transform: uppercase !important;
     display: flex !important;
     align-items: center !important;
@@ -2004,7 +2040,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   }
   .hero-brand-reset-btn {
     font-size: .8rem !important;
-    padding: .32rem .75rem !important;
+    padding: .35rem .8rem !important;
     border-radius: 999px !important;
   }
   .hero-brand-pills-scroll {
@@ -2023,18 +2059,19 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     justify-content: flex-start !important;
     padding: .55rem .7rem !important;
     min-height: 44px !important;
-    border-radius: .75rem !important;
+    border-radius: 12px !important;
     font-size: .9rem !important;
     font-weight: 600 !important;
     white-space: normal !important;
     text-align: left !important;
     gap: .5rem !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1.5px solid rgba(201, 169, 110, 0.3) !important;
+    background: var(--sf2) !important;
+    border: 1px solid var(--ln) !important;
+    color: var(--tx) !important;
   }
   .hero-brand-pill b {
     font-size: .88rem !important;
-    color: #fff !important;
+    color: var(--tx) !important;
     display: block !important;
     line-height: 1.2 !important;
   }
@@ -2045,7 +2082,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   .hero-brand-pill small {
     display: block !important;
     font-size: .72rem !important;
-    color: var(--gold) !important;
+    color: var(--ac) !important;
     font-weight: 500 !important;
     margin-top: 1px !important;
   }
@@ -2062,20 +2099,22 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     justify-content: center !important;
     gap: .4rem !important;
     width: 100% !important;
+    min-height: 44px !important;
     padding: .6rem .8rem !important;
     font-size: .84rem !important;
     font-weight: 600 !important;
-    color: var(--gold-bright) !important;
-    background: rgba(201, 169, 110, 0.1) !important;
-    border: 1px solid rgba(201, 169, 110, 0.35) !important;
-    border-radius: 999px !important;
+    color: var(--ac) !important;
+    background: color-mix(in srgb, var(--ac) 10%, var(--sf2)) !important;
+    border: 1px solid color-mix(in srgb, var(--ac) 35%, transparent) !important;
+    border-radius: 14px !important;
     cursor: pointer !important;
     margin-top: .3rem !important;
-    transition: all .2s ease !important;
+    transition: transform .1s ease, background .2s ease !important;
   }
   .hero-brand-toggle-btn:active {
-    background: var(--gold) !important;
-    color: #060a10 !important;
+    transform: scale(0.97);
+    background: var(--ac) !important;
+    color: var(--on) !important;
   }
 
   /* Streamline Hero Bestsellers (Show top 4 with expansion toggle) */
@@ -2101,30 +2140,32 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     gap: .4rem !important;
     width: 100% !important;
     max-width: 320px !important;
+    min-height: 44px !important;
     padding: .7rem 1.1rem !important;
     font-size: .88rem !important;
     font-weight: 700 !important;
-    color: var(--gold-bright) !important;
-    background: rgba(201, 169, 110, 0.12) !important;
-    border: 1.5px solid rgba(201, 169, 110, 0.35) !important;
-    border-radius: 999px !important;
+    color: var(--ac) !important;
+    background: color-mix(in srgb, var(--ac) 12%, var(--sf2)) !important;
+    border: 1px solid color-mix(in srgb, var(--ac) 35%, transparent) !important;
+    border-radius: 14px !important;
     cursor: pointer !important;
-    transition: all .2s ease !important;
+    transition: transform .1s ease, background .2s ease !important;
   }
   .hero-best-toggle-btn:active {
-    background: var(--gold) !important;
-    color: #060a10 !important;
+    transform: scale(0.97);
+    background: var(--ac) !important;
+    color: var(--on) !important;
   }
   .hero-best-jump-btn {
     font-size: .82rem !important;
-    color: var(--dim) !important;
+    color: var(--mu) !important;
     text-decoration: none !important;
     font-weight: 500 !important;
-    padding: .3rem .6rem !important;
+    padding: .4rem .6rem !important;
     transition: color .2s ease !important;
   }
   .hero-best-jump-btn:active {
-    color: var(--gold) !important;
+    color: var(--ac) !important;
   }
 
   /* Mobile Consolidated Filter Toolbar & Collapsible Filter Drawer */
@@ -2139,23 +2180,24 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     display: inline-flex !important;
     align-items: center !important;
     gap: .5rem !important;
+    min-height: 44px !important;
     padding: .65rem 1.1rem !important;
-    background: linear-gradient(135deg, rgba(17,24,39,0.9) 0%, rgba(10,15,26,0.95) 100%) !important;
-    border: 1.5px solid rgba(201,169,110,0.4) !important;
-    border-radius: 999px !important;
-    color: var(--ice) !important;
+    background: var(--sf) !important;
+    border: 1px solid var(--ln) !important;
+    border-radius: 14px !important;
+    color: var(--tx) !important;
     font-size: .9rem !important;
     font-weight: 700 !important;
     cursor: pointer !important;
-    transition: all .2s ease !important;
+    transition: transform .1s ease, border-color .2s ease !important;
   }
   .mobile-filter-toggle-btn:active {
-    border-color: var(--gold) !important;
-    background: rgba(201,169,110,0.18) !important;
+    transform: scale(0.97);
+    border-color: var(--ac) !important;
   }
   .mobile-filter-count-badge {
-    background: var(--gold) !important;
-    color: #060a10 !important;
+    background: var(--ac) !important;
+    color: var(--on) !important;
     font-size: .75rem !important;
     font-weight: 800 !important;
     padding: 1px 7px !important;
@@ -2163,26 +2205,27 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     line-height: 1.4 !important;
   }
   .mobile-filter-reset-quick {
-    background: none !important;
-    border: 1px solid rgba(255,255,255,0.18) !important;
-    border-radius: 999px !important;
-    color: var(--dim) !important;
+    background: var(--sf2) !important;
+    border: 1px solid var(--ln) !important;
+    border-radius: 12px !important;
+    color: var(--mu) !important;
     font-size: .8rem !important;
     font-weight: 600 !important;
-    padding: .4rem .8rem !important;
+    min-height: 44px !important;
+    padding: .4rem .85rem !important;
     cursor: pointer !important;
     transition: all .2s ease !important;
   }
   .mobile-filter-reset-quick:hover, .mobile-filter-reset-quick:active {
-    color: #ef4444 !important;
-    border-color: #ef4444 !important;
+    color: var(--er) !important;
+    border-color: var(--er) !important;
   }
   .filter-container {
     padding: 1rem .9rem !important;
     gap: .85rem !important;
-    background: rgba(10,14,22,0.95) !important;
-    border: 1.5px solid rgba(201,169,110,0.3) !important;
-    border-radius: 1.1rem !important;
+    background: var(--sf) !important;
+    border: 1px solid var(--ln) !important;
+    border-radius: 16px !important;
     margin-bottom: 1.25rem !important;
   }
   .filter-container:not(.mobile-open) {
@@ -2203,7 +2246,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   }
   .filter-select {
     font-size: 16px !important;
-    min-height: 48px !important;
+    min-height: 50px !important;
     padding: .75rem .95rem !important;
     border-radius: 10px !important;
   }
@@ -2482,21 +2525,21 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 
 /* Card Design */
 .perfume-card{
-  background:#060a10;
-  border:1px solid var(--line);
-  border-radius:1.1rem;
-  padding:1.2rem 1rem 1rem;
+  background:var(--sf);
+  border:1px solid var(--ln);
+  border-radius:16px;
+  padding:1.1rem .9rem .95rem;
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
-  transition:transform .28s cubic-bezier(0.16,1,0.3,1),box-shadow .28s,border-color .28s;
+  transition:transform .25s cubic-bezier(0.16,1,0.3,1),box-shadow .25s,border-color .25s;
   position:relative;
 }
 .perfume-card:hover{
   transform:translateY(-4px);
-  border-color:var(--gold);
-  box-shadow:0 16px 36px rgba(0,0,0,0.8),0 0 20px rgba(201,169,110,0.15);
+  border-color:var(--ac);
+  box-shadow:0 14px 32px rgba(0,0,0,0.35);
 }
 
 .card-img-wrap{
@@ -2507,10 +2550,10 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom:.8rem;
+  margin-bottom:.75rem;
   cursor:pointer;
-  border-radius:.8rem;
-  background:radial-gradient(circle at 50% 60%, rgba(201,169,110,0.06), transparent 70%);
+  border-radius:12px;
+  background:var(--sf2);
 }
 .card-img{
   max-height:100%;
@@ -2518,38 +2561,39 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   height:100%;
   width:auto;
   object-fit:contain;
-  filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,0.45));
   transition:transform .3s;
 }
 .perfume-card:hover .card-img{transform:scale(1.05)}
 
 .card-brand{
-  font-size:.65rem;
-  letter-spacing:.18em;
+  font-size:.68rem;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:.3rem;
-  font-weight:600;
+  color:var(--ac);
+  margin-bottom:.25rem;
+  font-weight:700;
 }
 .card-name{
-  font-size:.96rem;
-  font-weight:500;
-  color:var(--ice);
+  font-size:.98rem;
+  font-weight:600;
+  color:var(--tx);
   line-height:1.25;
   margin-bottom:.3rem;
   cursor:pointer;
 }
 .card-vol{
-  font-size:.72rem;
-  color:var(--dim);
+  font-size:.74rem;
+  color:var(--mu);
   margin-bottom:.4rem;
 }
 .card-price{
   font-family:var(--serif);
-  font-size:1.24rem;
-  color:var(--ice);
-  margin-bottom:.9rem;
-  font-weight:300;
+  font-size:1.3rem;
+  color:var(--tx);
+  margin-bottom:.85rem;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
 }
 
 .card-actions{
@@ -2560,28 +2604,30 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   margin-top:auto;
 }
 .card-btn{
-  padding:.55rem .4rem;
-  border-radius:99px;
+  padding:.55rem .45rem;
+  border-radius:12px;
   font:inherit;
-  font-size:.72rem;
-  letter-spacing:.04em;
+  font-size:.76rem;
+  font-weight:600;
+  letter-spacing:.03em;
   cursor:pointer;
-  transition:all .2s;
+  transition:transform .1s ease, background .2s, border-color .2s;
   text-align:center;
 }
+.card-btn:active{transform:scale(.97)}
 .btn-details{
-  background:rgba(255,255,255,0.06);
-  border:1px solid var(--line);
-  color:var(--ice);
+  background:var(--sf2);
+  border:1px solid var(--ln);
+  color:var(--tx);
 }
-.btn-details:hover{background:rgba(255,255,255,0.12);border-color:var(--gold)}
+.btn-details:hover{border-color:var(--ac)}
 .btn-add{
-  background:var(--gold);
-  border:1px solid var(--gold);
-  color:#06090e;
-  font-weight:600;
+  background:var(--ac);
+  border:1px solid var(--ac);
+  color:var(--on);
+  font-weight:700;
 }
-.btn-add:hover{background:var(--gold-bright);box-shadow:0 0 16px rgba(201,169,110,0.35)}
+.btn-add:hover{filter:brightness(1.08)}
 
 /* ═══ PRODUCT DETAIL MODAL DIALOG ═══ */
 .product-modal{
@@ -2809,76 +2855,555 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 }
 .newsletter-input:focus{border-color:var(--gold)}
 
-/* ── Sticky Mobile Buy Bar ── */
-.buybar{
-  position:fixed;
-  bottom:0;
-  inset-inline:0;
-  background:rgba(5,7,11,0.95);
-  backdrop-filter:blur(20px);
-  padding:.75rem var(--pad) calc(.75rem + env(safe-area-inset-bottom, 0px));
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-top:1px solid var(--line);
-  z-index:40;
+/* ── BOTTOM SHEETS (MOBILE) & CENTERED MODALS (DESKTOP) ── */
+dialog:modal {
+  overscroll-behavior: contain;
 }
-@media (min-width:54rem){.buybar{display:none}}
-.buybar small{font-size:.78rem;line-height:1.2;color:var(--dim)}
-.buybar .cta{width:auto;padding:.75rem 1.4rem;font-size:.75rem}
-
-/* ── MODALS AND DRAWERS ── */
-dialog.sheet{
-  position:fixed;
-  inset-block:0;
-  inset-inline-start:auto;
-  inset-inline-end:0;
-  margin:0 0 0 auto;
-  width:min(94vw,28rem);
-  height:100dvh;
-  max-height:100dvh;
-  background:#070b12;
-  border:0;
-  border-left:1px solid var(--line);
-  color:var(--ice);
-  padding:1.8rem var(--pad);
-  display:flex;
-  flex-direction:column;
-  box-shadow:-20px 0 60px #000c;
-  z-index:100;
-  box-sizing:border-box;
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
-dialog.sheet:not([open]){display:none!important}
-dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
+dialog.sheet-dialog {
+  position: fixed;
+  inset: auto 0 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  max-height: 92vh;
+  max-height: 92dvh;
+  overflow: hidden;
+  border: 0;
+  border-radius: 22px 22px 0 0;
+  background: var(--sf);
+  color: var(--tx);
+  box-shadow: 0 -12px 44px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s ease;
+  padding: 0;
+  z-index: 100;
+}
+dialog.sheet-dialog:not([open]) {
+  display: none !important;
+}
+dialog.sheet-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: sheetUp 0.32s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.96); }
+}
+.sheet-hd {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px 12px;
+  border-bottom: 1px solid var(--ln);
+  touch-action: none;
+  flex-shrink: 0;
+}
+.sheet-hd::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: calc(50% - 18px);
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ln);
+}
+.sheet-hd h2,
+.sheet-hd h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--tx);
+  margin: 0;
+}
+.sheet-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin: 0;
+}
+.sheet-x {
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  border-radius: 50%;
+  border: 0;
+  background: var(--sf2);
+  color: var(--tx);
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.sheet-x:active {
+  transform: scale(0.94);
+}
+.sheet-bd {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  list-style: none;
+}
+.sheet-ft {
+  display: grid;
+  gap: 12px;
+  padding: 12px 16px max(12px, env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--ln);
+  background: var(--sf);
+  flex-shrink: 0;
+}
+#productDetailModal .sheet-ft {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+@media (min-width: 720px) {
+  dialog.sheet-dialog {
+    inset: 0;
+    margin: auto;
+    max-width: 480px;
+    border: 1px solid var(--ln);
+    border-radius: 22px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  }
+  #productDetailModal.sheet-dialog {
+    max-width: 540px;
+  }
+  #policyModal.sheet-dialog {
+    max-width: 660px;
+  }
+  dialog.sheet-dialog[open] {
+    animation-name: modalPop;
+  }
+  .sheet-hd {
+    padding: 16px 20px 12px;
+  }
+  .sheet-hd::before {
+    display: none;
+  }
+  .sheet-bd {
+    padding: 18px 20px;
+  }
+  .sheet-ft {
+    padding: 14px 20px;
+  }
+}
 
-.cart-items-list{flex:1;overflow-y:auto;display:grid;gap:1rem;margin:1.4rem 0;padding-right:.4rem}
-.cart-item-row{display:grid;grid-template-columns:55px 1fr auto;gap:.8rem;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.85rem}
-.cart-item-thumb{width:55px;height:55px;object-fit:contain;background:#ffffff05;border-radius:8px;padding:.2rem}
-.cart-item-info b{display:block;font-size:.88rem;color:var(--ice)}
-.cart-item-info small{display:block;font-size:.74rem;color:var(--dim);margin:.15rem 0 .4rem}
-.cart-qty-ctrl{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px;background:#ffffff08}
-.cqty-btn{background:none;border:0;color:var(--ice);padding:.2rem .5rem;cursor:pointer;font-size:.8rem}
-.cqty-num{padding:0 .4rem;font-size:.78rem;min-width:1.2rem;text-align:center}
-.cart-item-right{text-align:right}
-.cart-item-total{font-family:var(--serif);font-size:1.05rem;color:var(--gold);display:block}
-.cart-remove-btn{background:none;border:0;color:var(--dim);cursor:pointer;font-size:.75rem;margin-top:.3rem;padding:.2rem}
-.cart-remove-btn:hover{color:#ef4444}
+/* Tactile Sheet Buttons & Steppers */
+.sheet-btn {
+  min-height: 50px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--ac);
+  color: var(--on);
+  font-weight: 700;
+  font-size: 0.96rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.1s ease, filter 0.15s ease;
+  touch-action: manipulation;
+}
+.sheet-btn:hover {
+  filter: brightness(1.07);
+}
+.sheet-btn:active {
+  transform: scale(0.97);
+}
+.sheet-btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.sheet-btn.ghost {
+  background: var(--sf2);
+  color: var(--tx);
+  border: 1px solid var(--ln);
+}
+.sheet-btn.vipps {
+  background: #ff5b24;
+  color: #ffffff;
+}
+.qty-box {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  background: var(--bg);
+}
+.qty-box button {
+  width: 44px;
+  height: 100%;
+  border: 0;
+  background: none;
+  color: var(--tx);
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  touch-action: manipulation;
+}
+.qty-box button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.qty-box output {
+  min-width: 26px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--tx);
+  font-variant-numeric: tabular-nums;
+}
 
+/* Swipeable Product Gallery (.gal) & Product Info inside Sheet */
+.gal {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin-bottom: 12px;
+  border-radius: 14px;
+}
+.gal::-webkit-scrollbar {
+  display: none;
+}
+.gal-slide {
+  flex: 0 0 100%;
+  height: min(74vw, 34dvh);
+  min-height: 210px;
+  scroll-snap-align: center;
+  background: var(--sf2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 12px;
+  cursor: zoom-in;
+}
+.gal-slide img {
+  max-height: 100%;
+  max-width: 96%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+}
+.gal-slide-label {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  background: color-mix(in srgb, var(--sf) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--ln);
+  color: var(--tx);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.sheet-prod-name {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--tx);
+  margin: 0 0 8px;
+}
+.sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--mu);
+}
+.stock-pill {
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 14%, transparent);
+}
+.sheet-price {
+  margin: 10px 0;
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ac);
+  font-variant-numeric: tabular-nums;
+}
+.sheet-price s {
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--mu);
+}
+.sheet-offer,
+.sheet-note {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--sf2);
+  font-size: 14px;
+  color: var(--tx);
+  line-height: 1.45;
+}
+.sheet-offer {
+  margin-bottom: 14px;
+  border: 1px solid var(--ac);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sheet-notes {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0;
+}
+.sheet-notes div {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--sf2);
+  font-size: 14px;
+}
+.sheet-notes dt {
+  color: var(--ac);
+  font-weight: 600;
+}
+.sheet-notes dd {
+  color: var(--tx);
+  margin: 0;
+}
+.sheet-info {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  font-size: 13px;
+  color: var(--mu);
+  margin-top: 10px;
+}
+
+/* Cart Sheet Items & Summary */
+.cart-items-ul {
+  list-style: none;
+  margin: 0;
+}
+.cart-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ln);
+}
+.cart-item-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: var(--sf2);
+  object-fit: contain;
+  padding: 4px;
+}
+.cart-item-meta {
+  min-width: 0;
+}
+.cart-item-meta b {
+  display: block;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--tx);
+}
+.cart-item-meta small {
+  display: block;
+  font-size: 13px;
+  color: var(--mu);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.cart-item .qty-box {
+  height: 40px;
+  border-radius: 12px;
+}
+.cart-item .qty-box button {
+  width: 36px;
+  font-size: 16px;
+}
+.cart-empty {
+  padding: 44px 12px;
+  text-align: center;
+  color: var(--mu);
+}
+.sum-dl {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--mu);
+  margin: 0;
+}
+.sum-dl div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.sum-dl dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.sum-dl .tot {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tx);
+  padding-top: 4px;
+  margin-top: 2px;
+  border-top: 1px solid var(--ln);
+}
+
+/* Checkout Form, Choice Cards & Deferred Validation Styling */
+.sheet-form {
+  display: grid;
+  gap: 14px;
+}
+.sheet-form fieldset {
+  display: grid;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.sheet-form legend {
+  padding-bottom: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tx);
+}
+.sheet-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tx);
+}
+.sheet-input,
+.sheet-select {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--tx);
+  font: inherit;
+  font-size: 16px !important;
+  font-weight: 400;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.sheet-select {
+  appearance: none;
+  padding-right: 40px;
+  background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 16px center/12px;
+  cursor: pointer;
+}
+.sheet-input:focus,
+.sheet-select:focus {
+  outline: 0;
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 28%, transparent);
+}
+.sheet-input:user-invalid,
+.sheet-select:user-invalid,
+.sheet-input.user-invalid-fallback,
+.sheet-select.user-invalid-fallback {
+  border-color: var(--er) !important;
+}
+.sheet-form label:has(:user-invalid) .field-err,
+.sheet-form .field-err.visible {
+  display: block;
+}
+.field-err {
+  display: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--er);
+}
+.opt {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 12px !important;
+  padding: 14px;
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  font-weight: 400 !important;
+  cursor: pointer;
+  background: var(--bg);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.opt:has(:checked) {
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 10%, transparent);
+}
+.opt input[type="radio"] {
+  flex: none;
+  width: 22px;
+  min-height: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+  accent-color: var(--ac);
+}
+.opt small {
+  display: block;
+  font-size: 13px;
+  color: var(--mu);
+  margin-top: 2px;
+}
+.addr[disabled] {
+  display: none !important;
+}
+.g2 {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 10px;
+}
+
+/* Legacy / Admin Dialogs */
 .dialog-box{
-  border:1px solid var(--line);
+  border:1px solid var(--ln);
   border-radius:1.4rem;
   padding:2rem;
-  background:#0a0e16fa;
-  backdrop-filter:blur(24px);
-  color:var(--ice);
+  background:var(--sf);
+  color:var(--tx);
   max-width:34rem;
   width:92vw;
   max-height:90vh;
   max-height:90dvh;
   overflow-y:auto;
+  overscroll-behavior:contain;
   -webkit-overflow-scrolling:touch;
   margin:auto;
-  box-shadow:0 30px 80px #000e;
+  box-shadow:0 30px 80px rgba(0,0,0,0.65);
 }
 @media(max-width:54rem){
   .dialog-box{
@@ -2888,44 +3413,42 @@ dialog.sheet::backdrop{background:#00000088;backdrop-filter:blur(8px)}
   }
 }
 .dialog-box:not([open]){display:none!important}
-.dialog-box::backdrop{background:#00000099;backdrop-filter:blur(8px)}
 .dialog-box input,.dialog-box select{
   width:100%;
   padding:.8rem 1rem;
   margin:.3rem 0 .85rem;
-  background:#ffffff08;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:var(--ice);
+  background:var(--bg);
+  border:1px solid var(--ln);
+  border-radius:12px;
+  color:var(--tx);
   font:inherit;
   font-size:16px!important;
 }
-.dialog-box input:focus,.dialog-box select:focus{outline:none;border-color:var(--gold)}
+.dialog-box input:focus,.dialog-box select:focus{outline:none;border-color:var(--ac)}
 
 .checkout-notice-box{
-  background:#ffffff06;
-  border:1px solid rgba(201,169,110,0.25);
-  border-radius:10px;
-  padding:1rem;
-  margin-bottom:1.2rem;
+  background:var(--sf2);
+  border:1px solid var(--ln);
+  border-radius:12px;
+  padding:12px 14px;
+  margin-bottom:12px;
   display:flex;
-  gap:.8rem;
+  gap:10px;
   align-items:flex-start;
 }
 
-/* Policy Modal */
-.policy-modal{max-width:44rem;max-height:85vh;overflow-y:auto}
-.policy-content{font-size:.86rem;color:var(--dim);line-height:1.65;display:grid;gap:1.2rem}
-.policy-content h4{color:var(--ice);font-size:1rem;margin-top:.4rem}
+/* Policy Content inside Sheet */
+.policy-content{font-size:14px;color:var(--mu);line-height:1.65;display:grid;gap:1.1rem}
+.policy-content h4{color:var(--tx);font-size:1rem;margin-top:.3rem}
 .policy-content ul{padding-left:1.2rem;display:grid;gap:.35rem}
 
 /* Footer */
 footer{
-  border-top:1px solid var(--line);
-  padding:4rem var(--pad) 7rem;
-  background:#020508;
+  border-top:1px solid var(--ln);
+  padding:4rem var(--pad) 5.5rem;
+  background:var(--void);
   font-size:.82rem;
-  color:var(--dim);
+  color:var(--mu);
 }
 .footer-inner{
   max-width:82rem;
@@ -2935,10 +3458,10 @@ footer{
   gap:2.5rem;
   margin-bottom:3rem;
 }
-.footer-col h4{font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-col h4{font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:1rem}
 .footer-col ul{list-style:none;display:grid;gap:.55rem}
 .footer-col a,.footer-col button{
-  color:var(--dim);
+  color:var(--mu);
   transition:color .2s;
   background:none;
   border:0;
@@ -2947,13 +3470,13 @@ footer{
   text-align:left;
   padding:0;
 }
-.footer-col a:hover,.footer-col button:hover{color:var(--gold)}
+.footer-col a:hover,.footer-col button:hover{color:var(--ac)}
 
 .footer-bottom{
   max-width:82rem;
   margin:0 auto;
   padding-top:1.5rem;
-  border-top:1px solid var(--line);
+  border-top:1px solid var(--ln);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -2963,11 +3486,11 @@ footer{
 }
 .version-pill{
   font-family:monospace;
-  color:var(--gold);
-  background:rgba(255,255,255,0.06);
+  color:var(--ac);
+  background:var(--sf2);
   padding:.35rem .85rem;
   border-radius:99px;
-  border:1px solid var(--line);
+  border:1px solid var(--ln);
 }
 
 /* ── DUAL VIEW SWITCHER (Bottle & Box) ── */
@@ -2977,9 +3500,9 @@ footer{
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  background: rgba(8, 13, 21, 0.88);
+  background: color-mix(in srgb, var(--sf) 90%, transparent);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(201, 169, 110, 0.35);
+  border: 1px solid var(--ln);
   border-radius: 999px;
   padding: 2px;
   gap: 2px;
@@ -2988,7 +3511,7 @@ footer{
 .view-toggle-btn {
   background: transparent;
   border: none;
-  color: var(--dim);
+  color: var(--mu);
   font-size: 0.68rem;
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
@@ -3000,18 +3523,18 @@ footer{
   gap: 0.25rem;
 }
 .view-toggle-btn:hover {
-  color: #fff;
+  color: var(--tx);
 }
 .view-toggle-btn.active {
-  background: var(--gold);
-  color: #03060a;
+  background: var(--ac);
+  color: var(--on);
   font-weight: 700;
 }
 .modal-gallery-thumbs {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
 }
 .thumb-btn {
   flex: 1;
@@ -3019,31 +3542,31 @@ footer{
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  background: #09101b;
-  border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+  border-radius: 10px;
   padding: 0.45rem 0.6rem;
-  color: var(--ice);
-  font-size: 0.76rem;
+  color: var(--tx);
+  font-size: 0.78rem;
+  min-height: 40px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .thumb-btn:hover {
-  border-color: rgba(201, 169, 110, 0.5);
-  color: #fff;
+  border-color: var(--ac);
 }
 .thumb-btn.active {
-  border-color: var(--gold);
-  background: rgba(201, 169, 110, 0.15);
-  color: #fff;
-  font-weight: 600;
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 16%, var(--sf2));
+  color: var(--ac);
+  font-weight: 700;
 }
 .packaging-guarantee-badge {
   font-size: 0.74rem;
-  color: var(--gold);
-  background: rgba(201, 169, 110, 0.08);
-  border: 1px dashed rgba(201, 169, 110, 0.35);
-  border-radius: 0.4rem;
+  color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 8%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--ac) 35%, transparent);
+  border-radius: 8px;
   padding: 0.45rem 0.6rem;
   margin-top: 0.6rem;
   text-align: center;
@@ -3054,7 +3577,7 @@ footer{
 .admin-tab-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: var(--dim);
+  color: var(--mu);
   padding: .45rem .95rem;
   border-radius: 8px;
   font: inherit;
@@ -3063,28 +3586,27 @@ footer{
   transition: all .2s ease;
 }
 .admin-tab-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--tx);
+  background: var(--sf2);
 }
 .admin-tab-btn.active {
-  background: rgba(201, 169, 110, 0.15);
-  border-color: rgba(201, 169, 110, 0.45);
-  color: var(--gold);
+  background: color-mix(in srgb, var(--ac) 15%, transparent);
+  border-color: var(--ac);
+  color: var(--ac);
   font-weight: 600;
 }
 .admin-order-card {
-  background: #070b12;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
   padding: 1rem;
   transition: border-color .2s;
 }
 .admin-order-card:hover {
-  border-color: rgba(201, 169, 110, 0.3);
+  border-color: var(--ac);
 }
 
-
-/* ── PAKSTAR BEST FEATURES & LUXURY SCENT PILL BADGES ── */
+/* ── PAKSTAR BEST FEATURES & NEW PILL BADGES ── */
 .card-tag-badge {
   position: absolute;
   top: 10px;
@@ -3092,15 +3614,15 @@ footer{
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: rgba(8, 12, 20, 0.88);
+  background: color-mix(in srgb, var(--sf) 92%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(201, 169, 110, 0.45);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  color: #f5eedc;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: .025em;
+  border: 1px solid color-mix(in srgb, var(--ac) 45%, transparent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: var(--tx);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: .03em;
   padding: 3px 9px;
   border-radius: 99px;
   z-index: 3;
@@ -3109,26 +3631,13 @@ footer{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .card-tag-badge .badge-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--gold, #c9a96e);
-  box-shadow: 0 0 6px var(--gold, #c9a96e);
+  background: var(--ac);
   flex-shrink: 0;
-}
-html.theme-light .card-tag-badge {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(184, 134, 11, 0.45);
-  color: #1e293b;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  text-shadow: none;
-}
-html.theme-light .card-tag-badge .badge-dot {
-  background: #b8860b;
-  box-shadow: 0 0 5px rgba(184, 134, 11, 0.7);
 }
 
 /* Card Button Wrappers & Quantity Stepper */
@@ -3146,21 +3655,20 @@ html.theme-light .card-tag-badge .badge-dot {
 
 .card-qty-stepper {
   display: none;
-  grid-template-columns: 28px 1fr 28px;
+  grid-template-columns: 32px 1fr 32px;
   align-items: center;
   width: 100%;
-  height: 32px;
-  border-radius: 99px;
-  background: rgba(201, 169, 110, 0.12);
-  border: 1.5px solid var(--gold);
-  color: #fff;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--sf2);
+  border: 1.5px solid var(--ac);
+  color: var(--tx);
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   transition: all .2s ease;
 }
 .hero-qty-stepper {
-  width: 104px;
-  height: 31px;
+  width: 108px;
+  height: 40px;
 }
 
 .perfume-card.in .btn-add,
@@ -3175,7 +3683,7 @@ html.theme-light .card-tag-badge .badge-dot {
 .cqty-step-btn {
   border: 0;
   background: transparent;
-  color: var(--gold);
+  color: var(--ac);
   font-size: 1.1rem;
   font-weight: 800;
   cursor: pointer;
@@ -3189,8 +3697,7 @@ html.theme-light .card-tag-badge .badge-dot {
   user-select: none;
 }
 .cqty-step-btn:hover {
-  background: rgba(201, 169, 110, 0.28);
-  color: #fff;
+  background: color-mix(in srgb, var(--ac) 20%, transparent);
 }
 .cqty-step-btn:active {
   transform: scale(0.9);
@@ -3198,30 +3705,13 @@ html.theme-light .card-tag-badge .badge-dot {
 
 .card-qty-output {
   display: block;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
-  color: #fff;
+  color: var(--tx);
   font-variant-numeric: tabular-nums;
-  line-height: 32px;
+  line-height: 36px;
   user-select: none;
-}
-
-html.theme-light .card-qty-stepper {
-  background: #f8fafc;
-  border-color: #b8860b;
-  color: #0f172a;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-html.theme-light .card-qty-output {
-  color: #0f172a;
-}
-html.theme-light .cqty-step-btn {
-  color: #b8860b;
-}
-html.theme-light .cqty-step-btn:hover {
-  background: rgba(184, 134, 11, 0.15);
-  color: #785303;
 }
 
 /* Header Cart Bump Animation */
@@ -3235,41 +3725,56 @@ html.theme-light .cqty-step-btn:hover {
   animation: bump 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* PakStar Luxury Toast Notification Pill */
-.toast-pill {
+/* Actionable Toast Notification Bar */
+.toast-bar {
   position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translate(-50%, 25px);
-  opacity: 0;
-  visibility: hidden;
-  background: rgba(10, 15, 24, 0.95);
-  border: 1.5px solid var(--gold);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 25px rgba(201,169,110,0.3);
-  color: #f1f5f9;
-  padding: 0.65rem 1.4rem;
-  border-radius: 99px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
   z-index: 999999;
-  pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  inset: auto 12px max(12px, env(safe-area-inset-bottom, 0px));
+  max-width: 460px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 6px 6px 16px;
+  border-radius: 14px;
+  background: var(--tx);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  transform: translateY(160%);
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0.3s ease;
 }
-.toast-pill.show {
-  transform: translate(-50%, 0);
-  opacity: 1;
+.toast-bar.on {
+  transform: translateY(0);
   visibility: visible;
 }
-html.theme-light .toast-pill {
-  background: rgba(255, 255, 255, 0.98);
-  color: #0f172a;
-  border-color: #b8860b;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12), 0 0 20px rgba(184,134,11,0.25);
+.toast-bar button {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--tx);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.1s ease;
+}
+.toast-bar button:active {
+  transform: scale(0.96);
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog.sheet-dialog,
+  dialog.sheet-dialog::backdrop,
+  .toast-bar {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 
@@ -3515,10 +4020,11 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
           type="search"
           id="mobileHubSearchInput"
           class="mobile-hub-search-input"
-          placeholder="Søk blant 120 parfymer og merker..."
+          placeholder="Søk parfymer og merker..."
           aria-label="Hurtigsøk i katalogen"
           autocomplete="off"
           autocorrect="off"
+          autocapitalize="off"
           spellcheck="false"
           oninput="syncSearch(this.value, 'hub', true)"
         >
@@ -4036,106 +4542,97 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
   </section>
 </main>
 
-<!-- ================= 5. PRODUCT DETAIL MODAL DIALOG ================= -->
-<dialog id="productDetailModal" class="dialog-box product-modal" closedby="any" aria-labelledby="detailModalTitle">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="tagline-small" id="detailModalBrand">PRODUSENT</p>
-    <button type="button" class="clear-search-btn" onclick="closeProductDetail()" style="font-size:1.3rem;display:block" aria-label="Lukk produktdetaljer">✕</button>
+<!-- ================= 5. PRODUCT DETAIL BOTTOM SHEET / MODAL ================= -->
+<dialog id="productDetailModal" class="sheet-dialog" closedby="any" aria-labelledby="detailModalTitle">
+  <div class="sheet-hd">
+    <p class="sheet-eyebrow" id="detailModalBrand">PRODUSENT</p>
+    <button type="button" class="sheet-x" data-close onclick="closeProductDetail()" aria-label="Lukk produktdetaljer">✕</button>
   </div>
 
-  <div class="product-modal-grid">
-    <div class="modal-packshot-wrap">
-      <div class="modal-img-container" onclick="openImageZoom()" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom()" role="button" tabindex="0" title="Klikk for å forstørre bildet / Click to zoom" aria-label="Klikk for å forstørre bildet">
-        <div class="modal-slider-track" id="modalSliderTrack">
-          <div class="modal-slide">
-            <img id="detailModalImgBottle" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Flakong"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-          </div>
-          <div class="modal-slide">
-            <img id="detailModalImgBox" class="modal-packshot-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Presentasjonseske"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23080d15\'/ %3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-          </div>
-        </div>
-        <div class="modal-zoom-badge">
-          <span>🔍</span> <span id="lblModalZoomBadge">Klikk for å forstørre</span>
-        </div>
+  <div class="sheet-bd" id="productDetailBody">
+    <div class="gal" id="detailModalGallery" aria-label="Produktbilder">
+      <div class="gal-slide" onclick="openImageZoom('bottle')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('bottle')" role="button" tabindex="0" title="Klikk for å forstørre bildet / Click to zoom">
+        <img id="detailModalImgBottle" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Flakong"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231a1814\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+        <span class="gal-slide-label" id="lblModalZoomBadge">🔍 Flakong · Klikk for å forstørre</span>
       </div>
-      <div id="detailSetBtnWrap" style="display:none;margin-top:0.6rem;text-align:center">
-        <button type="button" class="zoom-switch-btn" onclick="openImageZoom('set')" style="background:rgba(201,169,110,0.15);border:1px solid var(--gold);color:var(--gold);padding:0.35rem 0.95rem;border-radius:999px;font-size:0.76rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem">
-          <span>🎁</span> <span id="detailSetBtnText">Se Luksus Gavesett</span>
-        </button>
+      <div class="gal-slide" id="detailSlideBox" onclick="openImageZoom('box')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('box')" role="button" tabindex="0">
+        <img id="detailModalImgBox" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Presentasjonseske"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231a1814\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
+        <span class="gal-slide-label" id="lblModalBoxLabel">📦 Eske</span>
+      </div>
+      <div class="gal-slide" id="detailSlideSet" style="display:none" onclick="openImageZoom('set')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('set')" role="button" tabindex="0">
+        <img id="detailModalImgSet" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Gavesett">
+        <span class="gal-slide-label" id="detailSetBtnText">🎁 Luksus Gavesett</span>
       </div>
     </div>
 
-    <div class="modal-info-wrap">
-      <h2 id="detailModalTitle" style="font-family:var(--serif);font-size:1.65rem;font-weight:400;line-height:1.25">Parfymenavn</h2>
-      <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
-        <span class="version-pill" id="detailModalVol">100 ml</span>
-        <span style="font-size:.74rem;color:#4ade80" id="detailModalStock">● På lager (Oslo · Tøyengata 3)</span>
-      </div>
+    <div id="detailSetBtnWrap" style="display:none;margin-bottom:10px"></div>
 
-      <!-- Price & Add Button Row Side-by-Side -->
-      <div class="modal-price-action-row" style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:.2rem 0;padding:.4rem 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="display:flex;align-items:baseline;gap:.6rem">
-          <div style="font-family:var(--serif);font-size:1.9rem;color:var(--gold);font-weight:300" id="detailModalPrice">0 kr</div>
-          <span id="detailModalOldPrice" style="font-size:1.05rem;color:var(--dim);text-decoration:line-through;display:none">100 kr</span>
-        </div>
-        <div style="display:flex;gap:.6rem;align-items:center">
-          <div class="cart-qty-ctrl" style="padding:.2rem">
-            <button type="button" class="cqty-btn" onclick="adjustModalQty(-1)">–</button>
-            <span class="cqty-num" id="modalQtyNum">1</span>
-            <button type="button" class="cqty-btn" onclick="adjustModalQty(1)">+</button>
-          </div>
-          <button type="button" class="cta" id="detailModalAddBtn" onclick="addModalProductToCart()" style="padding:.55rem 1.4rem">Legg til</button>
-        </div>
-      </div>
+    <h2 class="sheet-prod-name" id="detailModalTitle">Parfymenavn</h2>
+    <div class="sheet-meta">
+      <span id="detailModalVol">100 ml</span>
+      <span class="stock-pill" id="detailModalStock">● På lager · Oslo</span>
+    </div>
 
-      <!-- Sale Banner (Shown for items on sale with originalPrice) -->
-      <div id="detailModalSaleBanner" class="modal-sale-banner" style="display:none">
-        <span class="sale-icon">⚡</span>
-        <div class="sale-text-wrap">
-          <strong id="detailModalSaleTitle">Tidsbegrenset tilbud — Kun 49 kr</strong>
-          <span id="detailModalSaleSub" style="color:var(--dim);font-size:.76rem">Ordinær pris 100 kr · Gjelder per 1 stk flaske</span>
-        </div>
-      </div>
+    <p class="sheet-price">
+      <span id="detailModalPrice">0</span>
+      <s id="detailModalOldPrice" style="display:none">100</s>
+    </p>
 
-      <!-- Scent Option Selector (Shown when product has scents array) -->
-      <div id="detailModalScentWrap" class="modal-scent-wrap" style="display:none">
-        <label for="detailScentSelect" class="scent-select-label" id="lblDetailScent">
-          <span id="lblDetailScentText">Velg ønsket duft (1 stk rulleflaske):</span>
-          <span class="required-indicator">*</span>
-        </label>
-        <select id="detailScentSelect" class="scent-select-input" onchange="onScentSelectChange(this.value)" aria-required="true">
-          <option value="">-- Velg duft --</option>
+    <!-- Sale Banner -->
+    <div id="detailModalSaleBanner" class="sheet-offer" style="display:none">
+      <span>⚡</span>
+      <div>
+        <strong id="detailModalSaleTitle">Tidsbegrenset tilbud</strong>
+        <small id="detailModalSaleSub">Ordinær pris</small>
+      </div>
+    </div>
+
+    <!-- Scent / Variant Selector -->
+    <div id="detailModalScentWrap" class="sheet-form" style="display:none;margin:12px 0">
+      <label for="detailScentSelect" id="lblDetailScent">
+        <span id="lblDetailScentText">Velg ønsket duft *</span>
+        <select id="detailScentSelect" class="sheet-select" onchange="onScentSelectChange(this.value)" aria-required="true" aria-errormessage="detailScentError" aria-describedby="detailScentError">
+          <option value="">— Velg duft —</option>
         </select>
-        <div id="detailScentError" class="scent-error-msg" style="display:none">Vennligst velg en duft før du legger i handlekurven.</div>
-      </div>
-
-      <p id="detailModalDesc" style="font-size:.85rem;color:var(--dim);line-height:1.55"></p>
-
-      <!-- 3-Tier Scent Pyramid -->
-      <div class="notes-pyramid">
-        <div class="note-row">
-          <span class="note-tier-lbl" id="lblTopNotes">Toppnoter</span>
-          <span class="note-tier-val" id="detailModalTop"></span>
-        </div>
-        <div class="note-row">
-          <span class="note-tier-lbl" id="lblHeartNotes">Hjertenoter</span>
-          <span class="note-tier-val" id="detailModalHeart"></span>
-        </div>
-        <div class="note-row">
-          <span class="note-tier-lbl" id="lblBaseNotes">Bunnoter</span>
-          <span class="note-tier-val" id="detailModalBase"></span>
-        </div>
-      </div>
-
-      <p id="detailModalStory" style="font-size:.8rem;color:var(--dim);font-style:italic;line-height:1.5"></p>
-
-      <div style="border-top:1px solid var(--line);margin-top:.4rem;padding-top:.8rem;font-size:.74rem;color:var(--dim);line-height:1.4">
-        🚚 <span id="detailShippingText">Sendes innen 24t fra vårt showroom i Tøyengata 3, 0190 Oslo (inne hos PakStar).</span><br>
-        🛡️ <span id="detailGuaranteeText">100% original, og produsenten endrer eske- og flakongdesign fra tid til annen</span>
-      </div>
+        <span id="detailScentError" class="field-err" role="alert">Vennligst velg en duft først.</span>
+      </label>
     </div>
+
+    <p id="detailModalDesc" style="font-size:14px;color:var(--mu);line-height:1.55;margin:10px 0"></p>
+
+    <!-- 3-Tier Scent Pyramid -->
+    <dl class="sheet-notes">
+      <div>
+        <dt id="lblTopNotes">Topp</dt>
+        <dd id="detailModalTop"></dd>
+      </div>
+      <div>
+        <dt id="lblHeartNotes">Hjerte</dt>
+        <dd id="detailModalHeart"></dd>
+      </div>
+      <div>
+        <dt id="lblBaseNotes">Bunn</dt>
+        <dd id="detailModalBase"></dd>
+      </div>
+    </dl>
+
+    <p id="detailModalStory" style="font-size:13px;color:var(--mu);font-style:italic;line-height:1.5;margin-bottom:8px"></p>
+
+    <ul class="sheet-info">
+      <li>🚚 <span id="detailShippingText">Sendes innen 24 t fra Tøyengata 3, Oslo (inne hos PakStar)</span></li>
+      <li>🛡️ <span id="detailGuaranteeText">100 % original – eske/flakong-design kan variere</span></li>
+    </ul>
+  </div>
+
+  <div class="sheet-ft">
+    <div class="qty-box" id="detailQtyBox" aria-label="Antall">
+      <button type="button" id="modalQtyMinus" onclick="adjustModalQty(-1)" aria-label="Færre" disabled>−</button>
+      <output id="modalQtyNum">1</output>
+      <button type="button" id="modalQtyPlus" onclick="adjustModalQty(1)" aria-label="Flere">+</button>
+    </div>
+    <button type="button" class="sheet-btn" id="detailModalAddBtn" onclick="addModalProductToCart()">Legg til</button>
   </div>
 </dialog>
 
@@ -4156,128 +4653,152 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
   </div>
 </dialog>
 
-<!-- ================= 6. CART DRAWER (Modal Dialog) ================= -->
-<dialog id="cart" class="sheet" closedby="any" aria-labelledby="cartHeading">
-  <div style="display:flex;justify-content:space-between;align-items:center">
-    <h3 id="cartHeading" style="font-size:1.4rem">Handlekurv</h3>
-    <button type="button" class="clear-search-btn" onclick="closeCart()" style="font-size:1.2rem;display:block" aria-label="Lukk kurv">✕</button>
+<!-- ================= 6. CART BOTTOM SHEET / MODAL ================= -->
+<dialog id="cart" class="sheet-dialog" closedby="any" aria-labelledby="cartHeading">
+  <div class="sheet-hd">
+    <h2 id="cartHeading">Handlekurv</h2>
+    <button type="button" class="sheet-x" data-close onclick="closeCart()" aria-label="Lukk handlekurv">✕</button>
   </div>
-  
-  <div class="cart-items-list" id="cartList"></div>
 
-  <div style="border-top:1px solid var(--line);padding-top:1rem;margin-top:auto">
-    <div style="display:flex;justify-content:space-between;margin-bottom:.4rem;font-size:.85rem">
-      <span id="cartSubtotalLabel">Delsum</span>
-      <span id="csub">0</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:.8rem;font-size:.85rem">
-      <span id="cartShippingLabel">Frakt</span>
-      <span id="cship">Gratis</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:1.2rem;font-size:1.1rem;font-weight:600">
-      <span id="cartTotalLabel">Totalbeløp:</span>
-      <span id="ctot" style="color:var(--gold);font-family:var(--serif)">0</span>
-    </div>
-    <button type="button" class="cta" id="openCheckout" onclick="openCheckout()" style="width:100%">Gå til kassen (Reservasjon)</button>
+  <ul class="sheet-bd cart-items-ul" id="cartList"></ul>
+
+  <div class="sheet-ft">
+    <dl class="sum-dl">
+      <div><dt id="cartSubtotalLabel">Delsum</dt><dd id="csub">0</dd></div>
+      <div><dt id="cartShippingLabel">Frakt</dt><dd id="cship">Gratis</dd></div>
+      <div class="tot"><dt id="cartTotalLabel">Totalt</dt><dd id="ctot">0</dd></div>
+    </dl>
+    <button type="button" class="sheet-btn" id="openCheckout" onclick="openCheckout()">Gå til kassen</button>
   </div>
 </dialog>
 
-<!-- ================= 7. CHECKOUT MODAL (Order Inquiry) ================= -->
-<dialog id="checkoutModal" class="dialog-box" closedby="any" aria-labelledby="checkoutHeading">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
-    <p class="tagline-small" id="checkoutEye">Bestilling & Reservasjon</p>
-    <button type="button" class="clear-search-btn" onclick="closeCheckout()" style="font-size:1.2rem;display:block" aria-label="Lukk kasse">✕</button>
-  </div>
-  
-  <h3 id="checkoutHeading" style="font-size:1.5rem;margin-bottom:.8rem">Fullfør din bestillingsforespørsel</h3>
-  
-  <div class="checkout-notice-box">
-    <span style="font-size:1.4rem">🧪</span>
+<!-- ================= 7. CHECKOUT BOTTOM SHEET / MODAL ================= -->
+<dialog id="checkoutModal" class="sheet-dialog" closedby="any" aria-labelledby="checkoutHeading">
+  <div class="sheet-hd">
     <div>
-      <b style="color:var(--gold);display:block;margin-bottom:.2rem" id="noticeBoxTitle">Forhåndsvisningsbutikk & Reservasjon</b>
-      <p style="font-size:.78rem;color:var(--ice);line-height:1.45" id="noticeBoxText">
-        Nettbutikken klargjøres for ordinær kortbetaling. Når du sender bestillingen, reserveres dine originale 100 ml flakonger umiddelbart. Oppgjør gjøres trygt med Vipps ved bekreftelse eller overlevering i Tøyengata 3. Ingen penger trekkes nå.
-      </p>
+      <p class="sheet-eyebrow" id="checkoutEye">Bestilling & Reservasjon</p>
+      <h2 id="checkoutHeading">Fullfør bestilling</h2>
     </div>
+    <button type="button" class="sheet-x" data-close onclick="closeCheckout()" aria-label="Lukk kasse">✕</button>
   </div>
 
-  <form id="orderForm" onsubmit="handleCheckout(event)">
-    <label for="orderName" class="tagline-small" id="lblOrderName">Fullt navn</label>
-    <input type="text" id="orderName" name="name" autocomplete="name" required placeholder="f.eks. Astrid Lind">
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
-      <div>
-        <label for="orderEmail" class="tagline-small" id="lblOrderEmail">E-postadresse</label>
-        <input type="email" id="orderEmail" name="email" autocomplete="email" required placeholder="astrid@eksempel.no">
+  <div class="sheet-bd" id="checkoutBody">
+    <form id="orderForm" class="sheet-form" onsubmit="handleCheckout(event)">
+      <div class="sheet-note">
+        <b style="color:var(--ac);display:block;margin-bottom:2px" id="noticeBoxTitle">🧪 Ingen penger trekkes nå</b>
+        <span id="noticeBoxText">Flakongene reserveres umiddelbart, og du betaler trygt med <b>Vipps</b> ved bekreftelse eller henting i Tøyengata 3.</span>
       </div>
-      <div>
-        <label for="orderPhone" class="tagline-small" id="lblOrderPhone">Mobilnummer (Vipps)</label>
-        <input type="tel" id="orderPhone" name="tel" autocomplete="tel" required placeholder="+47 912 34 567">
-      </div>
-    </div>
 
-    <label for="orderDelivery" class="tagline-small" id="lblOrderDelivery">Leveringsmetode</label>
-    <select id="orderDelivery" required onchange="onDeliveryChange(this.value)">
-      <option value="pickup" id="optDeliveryPickup" selected>Gratis henting: Tøyengata 3, 0190 Oslo (inne hos PakStar)</option>
-      <option value="posten" id="optDeliveryPosten">Posten / Bring Norgespakke (1–3 virkedager)</option>
-    </select>
+      <label for="orderName">
+        <span id="lblOrderName">Fullt navn</span>
+        <input type="text" id="orderName" class="sheet-input" name="name" autocomplete="name" required aria-errormessage="errOrderName" aria-describedby="errOrderName">
+        <span class="field-err" id="errOrderName">Vennligst oppgi fullt navn.</span>
+      </label>
 
-    <div id="deliveryAddressFields" style="display:none">
-      <label for="orderStreet" class="tagline-small" id="lblOrderStreet">Gateadresse</label>
-      <input type="text" id="orderStreet" name="street" autocomplete="street-address" placeholder="Gateadresse og leilighetsnummer">
+      <label for="orderEmail">
+        <span id="lblOrderEmail">E-postadresse</span>
+        <input type="email" id="orderEmail" class="sheet-input" name="email" inputmode="email" autocomplete="email" autocorrect="off" autocapitalize="off" spellcheck="false" required aria-errormessage="errOrderEmail" aria-describedby="errOrderEmail">
+        <span class="field-err" id="errOrderEmail">Skriv inn en gyldig e-postadresse.</span>
+      </label>
 
-      <div style="display:grid;grid-template-columns:110px 1fr;gap:.8rem">
-        <div>
-          <label for="orderPostal" class="tagline-small" id="lblOrderPostal">Postnr.</label>
-          <input type="text" id="orderPostal" name="postal" autocomplete="postal-code" pattern="[0-9]{4}" placeholder="0190">
+      <label for="orderPhone">
+        <span id="lblOrderPhone">Mobilnummer (Vipps)</span>
+        <small style="color:var(--mu);font-weight:400;margin-top:-2px">F.eks. 955 50 199</small>
+        <input type="tel" id="orderPhone" class="sheet-input" name="tel" inputmode="tel" autocomplete="tel" placeholder="955 50 199" pattern="(\+?47[\s\-]?)?[2-9][\d\s\-]{6,12}|\+[\d\s\-]{7,16}" required aria-errormessage="errOrderPhone" aria-describedby="errOrderPhone">
+        <span class="field-err" id="errOrderPhone">Oppgi et gyldig telefonnummer for Vipps.</span>
+      </label>
+
+      <fieldset>
+        <legend id="lblOrderDelivery">Leveringsmetode</legend>
+        <label class="opt">
+          <input type="radio" name="lev" id="radPickup" value="pickup" checked onchange="onDeliveryChange('pickup')">
+          <span>
+            <b id="optDeliveryPickup">Gratis henting</b>
+            <small id="optDeliveryPickupSub">Tøyengata 3, 0190 Oslo (PakStar) · Man–lør 11–18</small>
+          </span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="lev" id="radPosten" value="posten" onchange="onDeliveryChange('posten')">
+          <span>
+            <b id="optDeliveryPosten">Posten / Bring Norgespakke</b>
+            <small id="optDeliveryPostenSub">1–3 virkedager m/ sporing</small>
+          </span>
+        </label>
+      </fieldset>
+
+      <fieldset class="addr" id="deliveryAddressFields" disabled>
+        <label for="orderStreet">
+          <span id="lblOrderStreet">Gateadresse</span>
+          <input type="text" id="orderStreet" class="sheet-input" name="street" autocomplete="street-address" required>
+        </label>
+        <div class="g2">
+          <label for="orderPostal">
+            <span id="lblOrderPostal">Postnr.</span>
+            <input type="text" id="orderPostal" class="sheet-input" name="postal" inputmode="numeric" autocomplete="postal-code" pattern="\d{4}" maxlength="4" required>
+          </label>
+          <label for="orderCity">
+            <span id="lblOrderCity">Poststed</span>
+            <input type="text" id="orderCity" class="sheet-input" name="city" autocomplete="address-level2" required>
+          </label>
         </div>
-        <div>
-          <label for="orderCity" class="tagline-small" id="lblOrderCity">Poststed</label>
-          <input type="text" id="orderCity" name="city" autocomplete="address-level2" placeholder="Oslo">
-        </div>
-      </div>
-    </div>
+      </fieldset>
 
-    <!-- Order summary box -->
-    <div id="checkoutOrderSummary" style="background:#070b12;border:1px solid var(--line);border-radius:10px;padding:.85rem;margin:.5rem 0;font-size:.82rem"></div>
+      <!-- Order summary box -->
+      <div id="checkoutOrderSummary" style="background:var(--sf2);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;font-size:14px"></div>
+    </form>
+  </div>
 
-    <button type="submit" class="cta" style="width:100%;margin-top:.4rem;background:#ff5b24;color:#fff;box-shadow:0 10px 30px rgba(255,91,36,0.35)" id="btnSubmitOrder">
-      Send Bestillingsforespørsel (Vipps-oppgjør)
+  <div class="sheet-ft">
+    <dl class="sum-dl">
+      <div class="tot"><dt id="coTotalLabel">Totalt</dt><dd id="coTot">0</dd></div>
+    </dl>
+    <button type="submit" class="sheet-btn vipps" form="orderForm" id="btnSubmitOrder">
+      Send bestilling (Vipps-oppgjør)
     </button>
-  </form>
-</dialog>
-
-<!-- ================= 8. CONFIRMATION RECEIPT MODAL ================= -->
-<dialog id="confirmationModal" class="dialog-box" closedby="any" style="text-align:center" aria-labelledby="confHeading">
-  <div style="font-size:2.4rem;margin-bottom:.3rem">✨</div>
-  <p class="tagline-small" style="color:#4ade80" id="confBadge">Bestillingsforespørsel Mottatt</p>
-  <h3 id="confHeading" style="font-size:1.8rem;margin:.4rem 0">Takk for din bestilling!</h3>
-  <p style="font-size:.84rem;color:var(--dim)" id="confSub">Dine 100 ml flakonger er nå reservert i Tøyengata 3, Oslo.</p>
-
-  <div class="notes-pyramid" id="confirmationReceiptBox" style="text-align:left;margin:1.4rem 0"></div>
-
-  <div class="checkout-notice-box" style="margin:1rem 0;text-align:left">
-    <span>📱</span>
-    <p style="font-size:.8rem;color:var(--ice)" id="confNextSteps">
-      Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.
-    </p>
-  </div>
-
-  <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-    <button type="button" class="cta" onclick="window.print()" style="flex:1;background:rgba(255,255,255,0.08);color:#fff;box-shadow:none" id="btnPrintReceipt">Skriv ut kvittering</button>
-    <button type="button" class="cta" onclick="closeConfirm()" style="flex:1" id="btnCloseConf">Fortsett å handle</button>
   </div>
 </dialog>
 
-<!-- ================= 9. POLICY DETAILS MODAL ================= -->
-<dialog id="policyModal" class="dialog-box policy-modal" closedby="any" aria-labelledby="policyHeading">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <p class="tagline-small" id="policyCategory">Aromatek Oslo</p>
-    <button type="button" class="clear-search-btn" onclick="closePolicy()" style="font-size:1.2rem;display:block" aria-label="Lukk">✕</button>
+<!-- ================= 8. CONFIRMATION RECEIPT SHEET / MODAL ================= -->
+<dialog id="confirmationModal" class="sheet-dialog" closedby="any" aria-labelledby="confHeading">
+  <div class="sheet-hd">
+    <p class="sheet-eyebrow" style="color:var(--ok)" id="confBadge">Bestilling Mottatt</p>
+    <button type="button" class="sheet-x" data-close onclick="closeConfirm()" aria-label="Lukk bekreftelse">✕</button>
   </div>
-  <h3 id="policyHeading" style="font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:1rem">Retningslinjer</h3>
-  <div class="policy-content" id="policyBody"></div>
-  <button type="button" class="cta" onclick="closePolicy()" style="width:100%;margin-top:1.6rem" id="policyCloseBtn">Lukk vindu</button>
+
+  <div class="sheet-bd" style="text-align:center">
+    <div style="font-size:2.6rem;margin-bottom:6px">✨</div>
+    <h2 id="confHeading" style="font-family:var(--serif);font-size:1.8rem;margin:4px 0;color:var(--tx)">Takk for din bestilling!</h2>
+    <p style="font-size:14px;color:var(--mu);margin-bottom:14px" id="confSub">Dine flakonger er nå reservert i Tøyengata 3, Oslo.</p>
+
+    <div class="sheet-notes" id="confirmationReceiptBox" style="text-align:left"></div>
+
+    <div class="sheet-note" style="text-align:left;margin-top:12px">
+      <span>📱</span>
+      <span id="confNextSteps">
+        Vi sender ordrebekreftelse til din e-post og en Vipps-betalingsforespørsel til ditt mobilnummer før klargjøring og forsendelse.
+      </span>
+    </div>
+  </div>
+
+  <div class="sheet-ft" style="grid-template-columns:1fr 1fr">
+    <button type="button" class="sheet-btn ghost" onclick="window.print()" id="btnPrintReceipt">Skriv ut</button>
+    <button type="button" class="sheet-btn" onclick="closeConfirm()" id="btnCloseConf">Fortsett å handle</button>
+  </div>
+</dialog>
+
+<!-- ================= 9. POLICY DETAILS SHEET / MODAL ================= -->
+<dialog id="policyModal" class="sheet-dialog" closedby="any" aria-labelledby="policyHeading">
+  <div class="sheet-hd">
+    <p class="sheet-eyebrow" id="policyCategory">Aromatek Oslo</p>
+    <button type="button" class="sheet-x" data-close onclick="closePolicy()" aria-label="Lukk">✕</button>
+  </div>
+  <div class="sheet-bd">
+    <h2 id="policyHeading" style="font-family:var(--serif);font-size:1.85rem;font-weight:500;margin-bottom:14px;color:var(--tx)">Retningslinjer</h2>
+    <div class="policy-content" id="policyBody"></div>
+  </div>
+  <div class="sheet-ft">
+    <button type="button" class="sheet-btn ghost" onclick="closePolicy()" id="policyCloseBtn">Lukk vindu</button>
+  </div>
 </dialog>
 
 <!-- ================= 10. ADMIN AUTH & PANEL ================= -->
@@ -4533,7 +5054,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.62 (updated 2026-11-09 22:50)
+        v1.0.64 (updated 2026-11-10 07:55)
       </div>
     </div>
   </div>
@@ -4543,12 +5064,6 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
 <button type="button" class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" aria-label="Tilbake til toppen / Back to top" title="Tilbake til toppen">
   ↑
 </button>
-
-<!-- Sticky Mobile Buy Bar -->
-<div class="buybar" id="mobileBuyBar">
-  <small id="bname">Armaf Club de Nuit Intense Man · 100 ml<br><b id="bprice" style="color:#fff">499</b></small>
-  <button type="button" class="cta" id="add2" onclick="quickAddToCart(S.currentProductId)">Legg til</button>
-</div>
 
 <script>
 
@@ -8645,7 +9160,7 @@ const DEFAULT_CATALOG = [
 ];
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v62');
+  const custom = localStorage.getItem('arx_custom_catalog_v64');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -8674,7 +9189,7 @@ const I18N = {
     navBrandsHeader: "Topp Merkehus på Nettet — Klikk for å filtrere",
     heroPillsLabel: "🏛️ Produsenter & Dufthus:",
     heroBrandResetBtn: "Vis alle (120)",
-    mobileHubSearchPlaceholder: "Søk blant 120 parfymer og merker...",
+    mobileHubSearchPlaceholder: "Søk parfymer og merker...",
     mobQuickBtnBrands: "Produsenter",
     mobQuickBtnBest: "Bestselgere",
     mobQuickBtnAll: "Alle (120)",
@@ -8864,7 +9379,7 @@ const I18N = {
     navBrandsHeader: "Top Brands Online — Click to filter",
     heroPillsLabel: "🏛️ Perfume Houses & Brands:",
     heroBrandResetBtn: "Show all (120)",
-    mobileHubSearchPlaceholder: "Search 120 perfumes and brands...",
+    mobileHubSearchPlaceholder: "Search perfumes & brands...",
     mobQuickBtnBrands: "Brands",
     mobQuickBtnBest: "Bestsellers",
     mobQuickBtnAll: "All (120)",
@@ -9436,9 +9951,6 @@ function applyViewMode(mode) {
       track.classList.remove('slide-box');
     }
   });
-
-  // Slide modal if open
-  setModalView(mode);
 }
 
 function startAutoLoop() {
@@ -9455,13 +9967,11 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 window.setModalView = function(view) {
-  const track = document.getElementById('modalSliderTrack');
-  if (track) {
-    if (view === 'box') {
-      track.classList.add('slide-box');
-    } else {
-      track.classList.remove('slide-box');
-    }
+  const gal = document.getElementById('detailModalGallery');
+  if (!gal) return;
+  const slide = view === 'box' ? document.getElementById('detailSlideBox') : gal.firstElementChild;
+  if (slide && slide.style.display !== 'none') {
+    gal.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
   }
 };
 
@@ -9471,7 +9981,46 @@ window.togglePackshotView = function() {
 };
 
 
-// ── PRODUCT DETAIL MODAL DIALOG ──
+// ── UNIFIED SHEET / MODAL LIFECYCLE (Bottom sheet on mobile, centered dialog on desktop) ──
+let pendingBackPops = 0;
+
+function showSheetDialog(d, opts = {}) {
+  if (!d) return;
+  if (document.documentElement.classList.contains('booting')) finishIntro();
+  $$('dialog[open]').forEach(x => {
+    if (x !== d) x.close('swap');
+  });
+  d.returnValue = '';
+  d.showModal();
+  const bd = d.querySelector('.sheet-bd');
+  if (bd) bd.scrollTop = 0;
+
+  if (opts.pushUrl) {
+    try {
+      const url = new URL(window.location);
+      if (opts.prodId) url.searchParams.set('prod', opts.prodId);
+      window.history.pushState({ s: 1, prod: opts.prodId || null }, '', url);
+    } catch(e) {}
+  } else if (!window.history.state?.s && !opts.skipHistory) {
+    try {
+      window.history.pushState({ s: 1 }, '', window.location.href);
+    } catch(e) {}
+  }
+}
+
+function updateModalQtyUI() {
+  const p = CATALOG.find(item => item.id === S.currentProductId);
+  if (!p) return;
+  const isEn = LANG === 'en';
+  if ($('#modalQtyNum')) $('#modalQtyNum').value = S.modalQty;
+  if ($('#modalQtyMinus')) $('#modalQtyMinus').disabled = S.modalQty < 2;
+  if ($('#detailModalAddBtn')) {
+    const label = isEn ? 'Add to cart' : 'Legg til';
+    $('#detailModalAddBtn').textContent = `${label} · ${nok(p.price * S.modalQty)}`;
+  }
+}
+
+// ── PRODUCT DETAIL BOTTOM SHEET / DIALOG ──
 window.openProductDetail = function(id, pushUrl = true) {
   const p = CATALOG.find(item => item.id === id);
   if (!p) return;
@@ -9479,19 +10028,8 @@ window.openProductDetail = function(id, pushUrl = true) {
   S.modalQty = 1;
   S.selectedScent = '';
 
-  if (pushUrl) {
-    try {
-      const url = new URL(window.location);
-      url.searchParams.set('prod', id);
-      window.history.pushState({ prod: id }, '', url);
-    } catch(e) {}
-  }
-
   updateProductDetailModalContent(p);
-  $('#productDetailModal')?.showModal();
-
-  // Also sync mobile buybar
-  updateMobileBuyBar(p);
+  showSheetDialog($('#productDetailModal'), { pushUrl, prodId: id, skipHistory: !pushUrl });
 };
 
 function updateProductDetailModalContent(p) {
@@ -9518,13 +10056,13 @@ function updateProductDetailModalContent(p) {
       const saleTitle = document.getElementById('detailModalSaleTitle');
       const saleSub = document.getElementById('detailModalSaleSub');
       if (saleTitle) {
-        saleTitle.textContent = isEn 
-          ? `Limited Time Offer — Only ${nok(p.price)}` 
+        saleTitle.textContent = isEn
+          ? `Limited Time Offer — Only ${nok(p.price)}`
           : `Tidsbegrenset tilbud — Kun ${nok(p.price)}`;
       }
       if (saleSub) {
-        saleSub.textContent = isEn 
-          ? `Regular price ${nok(p.originalPrice)} · Valid per 1 bottle` 
+        saleSub.textContent = isEn
+          ? `Regular price ${nok(p.originalPrice)} · Valid per 1 bottle`
           : `Ordinær pris ${nok(p.originalPrice)} · Gjelder per 1 stk flaske`;
       }
     }
@@ -9537,8 +10075,11 @@ function updateProductDetailModalContent(p) {
   const scentWrap = document.getElementById('detailModalScentWrap');
   const scentSelect = document.getElementById('detailScentSelect');
   const scentError = document.getElementById('detailScentError');
-  if (scentError) scentError.style.display = 'none';
-  if (scentSelect) scentSelect.classList.remove('has-error');
+  if (scentError) scentError.classList.remove('visible');
+  if (scentSelect) {
+    scentSelect.classList.remove('user-invalid-fallback');
+    scentSelect.removeAttribute('aria-invalid');
+  }
 
   if (p.scents && Array.isArray(p.scents) && p.scents.length > 0) {
     if (scentWrap) scentWrap.style.display = 'block';
@@ -9547,7 +10088,7 @@ function updateProductDetailModalContent(p) {
       if (p.variantLabel) {
         scentLabelEl.textContent = isEn ? (p.variantLabel_en || p.variantLabel) : p.variantLabel;
       } else {
-        scentLabelEl.textContent = t.lblDetailScent || (isEn ? 'Choose desired scent (1 roll-on bottle):' : 'Velg ønsket duft (1 stk rulleflaske):');
+        scentLabelEl.textContent = t.lblDetailScent || (isEn ? 'Choose desired scent *' : 'Velg ønsket duft *');
       }
     }
     if (scentSelect) {
@@ -9565,34 +10106,49 @@ function updateProductDetailModalContent(p) {
     if (scentSelect) scentSelect.innerHTML = '';
     S.selectedScent = '';
   }
-  
+
+  // Swipeable Scroll-Snap Gallery slides
   const mImgBottle = document.getElementById('detailModalImgBottle');
   const mImgBox = document.getElementById('detailModalImgBox');
+  const mImgSet = document.getElementById('detailModalImgSet');
+  const slideBox = document.getElementById('detailSlideBox');
+  const slideSet = document.getElementById('detailSlideSet');
+  const galEl = document.getElementById('detailModalGallery');
+
   if (mImgBottle) {
     mImgBottle.src = p.image;
     mImgBottle.alt = isEn ? `${p.name} bottle` : `${p.name} flakong`;
   }
-  if (mImgBox) {
-    mImgBox.src = p.image_box || p.image;
-    mImgBox.alt = isEn ? `${p.name} presentation box` : `${p.name} presentasjonseske`;
+  if ($('#lblModalZoomBadge')) {
+    $('#lblModalZoomBadge').textContent = isEn ? '🔍 Bottle · Tap to zoom' : '🔍 Flakong · Klikk for å forstørre';
   }
-  setModalView(currentViewMode);
+  if (slideBox && mImgBox) {
+    if (p.image_box && p.image_box !== p.image) {
+      slideBox.style.display = 'flex';
+      mImgBox.src = p.image_box;
+      mImgBox.alt = isEn ? `${p.name} presentation box` : `${p.name} presentasjonseske`;
+      if ($('#lblModalBoxLabel')) $('#lblModalBoxLabel').textContent = isEn ? '📦 Presentation Box' : '📦 Eske';
+    } else {
+      slideBox.style.display = 'none';
+    }
+  }
+  if (slideSet && mImgSet) {
+    if (p.image_set) {
+      slideSet.style.display = 'flex';
+      mImgSet.src = p.image_set;
+      mImgSet.alt = isEn ? `${p.name} luxury gift set` : `${p.name} luksus gavesett`;
+      if ($('#detailSetBtnText')) $('#detailSetBtnText').textContent = isEn ? '🎁 Gift Set (150 ml + Spray)' : '🎁 Luksus Gavesett';
+    } else {
+      slideSet.style.display = 'none';
+    }
+  }
+  if (galEl) galEl.scrollLeft = 0;
 
   if ($('#detailModalTop')) $('#detailModalTop').textContent = isEn ? (p.notes?.top_en || p.notes?.top) : p.notes?.top;
   if ($('#detailModalHeart')) $('#detailModalHeart').textContent = isEn ? (p.notes?.heart_en || p.notes?.heart) : p.notes?.heart;
   if ($('#detailModalBase')) $('#detailModalBase').textContent = isEn ? (p.notes?.base_en || p.notes?.base) : p.notes?.base;
-  if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
 
-  const setWrap = document.getElementById('detailSetBtnWrap');
-  const setText = document.getElementById('detailSetBtnText');
-  if (setWrap) {
-    if (p.image_set) {
-      setWrap.style.display = 'block';
-      if (setText) setText.textContent = isEn ? 'View Luxury Gift Set (150 ml + Spray)' : 'Se Luksus Gavesett (150 ml + Spray)';
-    } else {
-      setWrap.style.display = 'none';
-    }
-  }
+  updateModalQtyUI();
 
   if ($('#imageZoomModal')?.open) {
     updateZoomModalContent(p);
@@ -9603,8 +10159,11 @@ window.onScentSelectChange = function(val) {
   S.selectedScent = val;
   const scentError = document.getElementById('detailScentError');
   const scentSelect = document.getElementById('detailScentSelect');
-  if (scentError) scentError.style.display = 'none';
-  if (scentSelect) scentSelect.classList.remove('has-error');
+  if (scentError) scentError.classList.remove('visible');
+  if (scentSelect) {
+    scentSelect.classList.remove('user-invalid-fallback');
+    scentSelect.removeAttribute('aria-invalid');
+  }
 };
 
 let currentZoomMode = 'bottle';
@@ -9657,8 +10216,8 @@ function updateZoomModalContent(p) {
 
   if (zoomImg) {
     zoomImg.src = imgSrc;
-    const modeLabel = currentZoomMode === 'set' 
-      ? (isEn ? 'Gift Set' : 'Gavesett') 
+    const modeLabel = currentZoomMode === 'set'
+      ? (isEn ? 'Gift Set' : 'Gavesett')
       : (currentZoomMode === 'box' ? (isEn ? 'Box' : 'Eske') : (isEn ? 'Bottle' : 'Flakong'));
     zoomImg.alt = `${p.name} - ${modeLabel}`;
   }
@@ -9699,57 +10258,53 @@ function updateZoomModalContent(p) {
 
 window.closeImageZoom = function() {
   const modal = document.getElementById('imageZoomModal');
-  if (modal) modal.close();
+  if (modal && modal.open) modal.close();
 };
 
 window.closeProductDetail = function() {
-  $('#imageZoomModal')?.close();
-  $('#productDetailModal')?.close();
-  try {
-    const url = new URL(window.location);
-    if (url.searchParams.has('prod')) {
-      url.searchParams.delete('prod');
-      window.history.pushState({}, '', url);
-    }
-  } catch(e) {}
+  $('#imageZoomModal')?.open && $('#imageZoomModal').close();
+  const d = $('#productDetailModal');
+  if (d && d.open) d.close();
 };
 
 window.adjustModalQty = function(delta) {
-  S.modalQty = Math.max(1, S.modalQty + delta);
-  if ($('#modalQtyNum')) $('#modalQtyNum').textContent = S.modalQty;
+  S.modalQty = Math.min(10, Math.max(1, S.modalQty + delta));
+  updateModalQtyUI();
 };
 
 window.addModalProductToCart = function() {
   const p = CATALOG.find(item => item.id === S.currentProductId);
   if (!p) return;
-  if (p.scents && p.scents.length > 0) {
-    if (!S.selectedScent) {
-      const scentError = document.getElementById('detailScentError');
-      const scentSelect = document.getElementById('detailScentSelect');
-      if (scentError) {
-        scentError.textContent = p.variantBtn
-          ? (LANG === 'en' ? 'Please choose an option before adding to cart.' : 'Vennligst velg en utgave før du legger i handlekurven.')
-          : (LANG === 'en' ? 'Please choose a scent before adding to cart.' : 'Vennligst velg en duft før du legger i handlekurven.');
-        scentError.style.display = 'block';
-      }
-      if (scentSelect) {
-        scentSelect.classList.add('has-error');
-        scentSelect.focus();
-      }
-      return;
+  const isEn = LANG === 'en';
+  if (p.scents && p.scents.length > 0 && !S.selectedScent) {
+    const scentError = document.getElementById('detailScentError');
+    const scentSelect = document.getElementById('detailScentSelect');
+    if (scentError) {
+      scentError.textContent = p.variantBtn
+        ? (isEn ? 'Please choose an option first.' : 'Vennligst velg en utgave først.')
+        : (isEn ? 'Please choose a scent first.' : 'Vennligst velg en duft først.');
+      scentError.classList.add('visible');
     }
+    if (scentSelect) {
+      scentSelect.classList.add('user-invalid-fallback');
+      scentSelect.setAttribute('aria-invalid', 'true');
+      scentSelect.focus();
+    }
+    return;
   }
   addToCartWithQty(p, S.modalQty, S.selectedScent);
+  triggerHaptic();
+  bumpCartBadge();
   closeProductDetail();
-  openCart();
+  const displayName = S.selectedScent ? `${p.name} (${S.selectedScent})` : p.name;
+  showToast(isEn ? `${displayName} added to cart` : `${displayName} lagt i kurven`);
 };
 
-
-// ── PAKSTAR SHOPPING ENHANCEMENTS (Vibration, Bump, Toast, Stepper) ──
+// ── PAKSTAR SHOPPING ENHANCEMENTS (Vibration, Bump, Actionable Toast, Stepper) ──
 function triggerHaptic() {
   try {
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
-      navigator.vibrate(12);
+      navigator.vibrate(10);
     }
   } catch(e) {}
 }
@@ -9765,20 +10320,24 @@ function bumpCartBadge() {
 
 let toastTimer = null;
 function showToast(message) {
-  let toast = document.getElementById('toastNotification');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'toastNotification';
-    toast.className = 'toast-pill';
-    document.body.appendChild(toast);
-  }
-  toast.innerHTML = `<span style="color:var(--gold);font-weight:700">✓</span> <span>${escapeHtml(message)}</span>`;
-  toast.classList.add('show');
+  const toast = document.getElementById('toastNotification');
+  if (!toast) return;
+  const msgEl = document.getElementById('toastMsgText');
+  const btnEl = document.getElementById('toastCartBtn');
+  if (msgEl) msgEl.textContent = message;
+  if (btnEl) btnEl.textContent = (LANG === 'en') ? 'View cart' : 'Se kurv';
+  toast.classList.add('on');
   if (toastTimer) clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2200);
+    toast.classList.remove('on');
+  }, 4000);
 }
+
+window.dismissToastAndOpenCart = function() {
+  const toast = document.getElementById('toastNotification');
+  if (toast) toast.classList.remove('on');
+  openCart();
+};
 
 function syncCardQuantities() {
   const qtyMap = {};
@@ -9786,7 +10345,6 @@ function syncCardQuantities() {
     qtyMap[item.id] = (qtyMap[item.id] || 0) + item.qty;
   });
 
-  // Store grid cards
   document.querySelectorAll('.perfume-card').forEach(card => {
     const id = card.dataset.id;
     const qty = qtyMap[id] || 0;
@@ -9801,7 +10359,6 @@ function syncCardQuantities() {
     }
   });
 
-  // Hero bestsellers cards
   document.querySelectorAll('.hero-best-card').forEach(card => {
     const id = card.dataset.id;
     if (id) {
@@ -9837,10 +10394,10 @@ window.quickUpdateCardQty = function(id, delta) {
       addToCartWithQty(p, 1);
       triggerHaptic();
       bumpCartBadge();
-      showToast(isEn ? `Added ${p.name}` : `${p.name} lagt i handlekurv`);
+      showToast(isEn ? `${p.name} added to cart` : `${p.name} lagt i kurven`);
       return;
     }
-    showToast(isEn ? `Added ${p.name}` : `Oppdatert: ${p.name} (+1)`);
+    showToast(isEn ? `${p.name} updated (+1)` : `Oppdatert: ${p.name} (+1)`);
   } else {
     if (existingItems.length > 0) {
       const target = existingItems[existingItems.length - 1];
@@ -9864,16 +10421,14 @@ window.quickAddToCart = function(id) {
   if (p.scents && p.scents.length > 0) {
     openProductDetail(id);
     const select = document.getElementById('detailScentSelect');
-    if (select) {
-      setTimeout(() => select.focus(), 150);
-    }
+    if (select) setTimeout(() => select.focus(), 180);
     return;
   }
   addToCartWithQty(p, 1);
   triggerHaptic();
   bumpCartBadge();
   const isEn = LANG === 'en';
-  showToast(isEn ? `Added ${p.name} to cart` : `${p.name} lagt i handlekurv`);
+  showToast(isEn ? `${p.name} added to cart` : `${p.name} lagt i kurven`);
 };
 
 function addToCartWithQty(p, qty, scent = '') {
@@ -9900,23 +10455,6 @@ function addToCartWithQty(p, qty, scent = '') {
   renderCart();
 }
 
-function updateMobileBuyBar(p) {
-  if ($('#bname')) {
-    $('#bname').innerHTML = `${escapeHtml(p.name)} · ${escapeHtml(p.size || '100 ml')}<br><b id="bprice" style="color:#fff">${nok(p.price)}</b>`;
-  }
-}
-
-// ── BACK / FORWARD NAVIGATION (History) ──
-window.addEventListener('popstate', e => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('prod')) {
-    const id = params.get('prod');
-    openProductDetail(id, false);
-  } else {
-    $('#productDetailModal')?.close();
-  }
-});
-
 // ── CART OPERATIONS ──
 function renderCart() {
   syncCardQuantities();
@@ -9924,57 +10462,52 @@ function renderCart() {
   const t = I18N[LANG];
   const totalCount = S.lines.reduce((sum, item) => sum + item.qty, 0);
   if ($('#cartBadge')) $('#cartBadge').textContent = totalCount;
+  if ($('#cartHeading')) $('#cartHeading').textContent = totalCount > 0 ? `${t.cartTitle} (${totalCount})` : t.cartTitle;
 
-  const totals = calculateTotals(S.lines, 'pickup');
+  const totals = calculateTotals(S.lines, getSelectedDelivery());
 
   if (S.lines.length === 0) {
     if ($('#cartList')) {
       $('#cartList').innerHTML = `
-        <div style="text-align:center;padding:3rem 1rem;color:var(--dim)">
-          <div style="font-size:2.2rem;margin-bottom:.5rem">🛍️</div>
+        <li class="cart-empty">
+          <div style="font-size:2.2rem;margin-bottom:8px">🛍️</div>
           <p>${t.emptyCart}</p>
-          <a href="#kjop" onclick="closeCart()" class="cta" style="margin-top:1.2rem;display:inline-block">
+          <a href="#kjop" onclick="closeCart()" class="sheet-btn ghost" style="margin-top:16px;min-height:44px;display:inline-flex">
             ${t.browseBtn}
           </a>
-        </div>
+        </li>
       `;
     }
     if ($('#csub')) $('#csub').textContent = '0';
     if ($('#cship')) $('#cship').textContent = t.cartFree;
     if ($('#ctot')) $('#ctot').textContent = '0';
-    if ($('#openCheckout')) {
-      $('#openCheckout').disabled = true;
-      $('#openCheckout').style.opacity = '0.4';
-    }
+    if ($('#coTot')) $('#coTot').textContent = '0';
+    if ($('#openCheckout')) $('#openCheckout').disabled = true;
     return;
   }
 
-  if ($('#openCheckout')) {
-    $('#openCheckout').disabled = false;
-    $('#openCheckout').style.opacity = '1';
-  }
+  if ($('#openCheckout')) $('#openCheckout').disabled = false;
 
   if ($('#cartList')) {
     $('#cartList').innerHTML = S.lines.map(item => {
       const lineTotal = item.price * item.qty;
       const lineKey = item.cartLineId || item.id;
+      const minusLabel = item.qty > 1 ? (isEn ? 'Decrease quantity' : 'Færre') : (isEn ? 'Remove item' : 'Fjern');
+      const minusIcon = item.qty > 1 ? '−' : '🗑';
       return `
-        <div class="cart-item-row">
-          <img class="cart-item-thumb" src="${item.image}" alt="${escapeHtml(item.name)}">
-          <div class="cart-item-info">
-            <b>${escapeHtml(item.name)}</b>
-            <small>${escapeHtml(item.brand)} · ${escapeHtml(item.size || '100 ml')} · ${nok(item.price)}</small>
-            <div class="cart-qty-ctrl">
-              <button type="button" class="cqty-btn" onclick="updateCartItem('${escapeHtml(lineKey)}', -1)">–</button>
-              <span class="cqty-num">${item.qty}</span>
-              <button type="button" class="cqty-btn" onclick="updateCartItem('${escapeHtml(lineKey)}', 1)">+</button>
-            </div>
+        <li class="cart-item">
+          <img class="cart-item-img" src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy">
+          <div class="cart-item-meta">
+            <b>${escapeHtml(item.originalName || item.name)}</b>
+            <small>${escapeHtml(item.size || '100 ml')}${item.scent ? ' · ' + escapeHtml(item.scent) : ''}</small>
+            <small style="color:var(--ac);font-weight:600">${nok(lineTotal)}</small>
           </div>
-          <div class="cart-item-right">
-            <span class="cart-item-total">${nok(lineTotal)}</span>
-            <button type="button" class="cart-remove-btn" onclick="removeCartItem('${escapeHtml(lineKey)}')" aria-label="Fjern vare">✕</button>
+          <div class="qty-box" aria-label="${isEn ? 'Quantity' : 'Antall'}">
+            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', -1)" aria-label="${minusLabel}">${minusIcon}</button>
+            <output>${item.qty}</output>
+            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', 1)" aria-label="${isEn ? 'Increase quantity' : 'Flere'}">+</button>
           </div>
-        </div>
+        </li>
       `;
     }).join('');
   }
@@ -9982,6 +10515,7 @@ function renderCart() {
   if ($('#csub')) $('#csub').textContent = nok(totals.subtotal);
   if ($('#cship')) $('#cship').textContent = totals.shipping === 0 ? t.cartFree : nok(totals.shipping);
   if ($('#ctot')) $('#ctot').textContent = nok(totals.total);
+  if ($('#coTot')) $('#coTot').textContent = nok(totals.total);
 }
 
 window.updateCartItem = function(key, delta) {
@@ -10004,7 +10538,7 @@ window.removeCartItem = function(key) {
 window.openCart = function() {
   if ($('#mobileNav')?.classList.contains('open')) window.toggleMobileNav(true);
   const c = $('#cart');
-  if (c && !c.open) c.showModal();
+  if (c && !c.open) showSheetDialog(c);
 };
 window.closeCart = function() {
   const c = $('#cart');
@@ -10016,62 +10550,71 @@ window.toggleCart = function() {
   if (c.open) {
     c.close();
   } else {
-    if ($('#mobileNav')?.classList.contains('open')) window.toggleMobileNav(true);
-    c.showModal();
+    openCart();
   }
 };
 
 // ── CHECKOUT & ORDER INQUIRY ──
+function getSelectedDelivery() {
+  return document.querySelector('input[name="lev"]:checked')?.value || 'pickup';
+}
+
 window.openCheckout = function() {
   if (!S.lines.length) return;
-  window.closeCart();
+  onDeliveryChange(getSelectedDelivery());
   updateCheckoutSummary();
-  $('#checkoutModal')?.showModal();
+  showSheetDialog($('#checkoutModal'));
 };
 window.closeCheckout = function() {
-  $('#checkoutModal')?.close();
+  const m = $('#checkoutModal');
+  if (m && m.open) m.close();
 };
 window.closeConfirm = function() {
-  $('#confirmationModal')?.close();
+  const m = $('#confirmationModal');
+  if (m && m.open) m.close();
 };
 
 function onDeliveryChange(method) {
   const isPosten = method === 'posten';
-  const group = $('#deliveryAddressFields');
-  if (group) group.style.display = isPosten ? 'block' : 'none';
-  if ($('#orderStreet')) $('#orderStreet').required = isPosten;
-  if ($('#orderPostal')) $('#orderPostal').required = isPosten;
-  if ($('#orderCity')) $('#orderCity').required = isPosten;
+  const addrFieldset = $('#deliveryAddressFields');
+  if (addrFieldset) addrFieldset.disabled = !isPosten;
   updateCheckoutSummary();
 }
 window.onDeliveryChange = onDeliveryChange;
 
 function updateCheckoutSummary() {
-  const delivery = $('#orderDelivery')?.value || 'pickup';
+  const delivery = getSelectedDelivery();
   const totals = calculateTotals(S.lines, delivery);
   const isEn = LANG === 'en';
 
+  if ($('#coTot')) $('#coTot').textContent = nok(totals.total);
   if ($('#checkoutOrderSummary')) {
     $('#checkoutOrderSummary').innerHTML = `
-      <div style="font-weight:600;margin-bottom:.5rem">${isEn ? 'Order Summary:' : 'Ordresammendrag:'}</div>
+      <div style="font-weight:700;margin-bottom:6px;color:var(--tx)">${isEn ? 'Order Summary:' : 'Ordresammendrag:'}</div>
       ${S.lines.map(i => `
-        <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
-          <span>${escapeHtml(i.name)} (${i.qty}x ${escapeHtml(i.size || '100 ml')})</span>
-          <span>${nok(i.price * i.qty)}</span>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px;color:var(--mu)">
+          <span>${escapeHtml(i.name)} (${i.qty}× ${escapeHtml(i.size || '100 ml')})</span>
+          <span style="color:var(--tx);font-variant-numeric:tabular-nums">${nok(i.price * i.qty)}</span>
         </div>
       `).join('')}
-      <div style="border-top:1px solid var(--line);margin-top:.4rem;padding-top:.4rem">
+      <div style="border-top:1px solid var(--ln);margin-top:6px;padding-top:6px;display:grid;gap:2px;font-size:13px">
         <div style="display:flex;justify-content:space-between"><span>${isEn ? 'Subtotal:' : 'Delsum:'}</span><span>${nok(totals.subtotal)}</span></div>
         <div style="display:flex;justify-content:space-between"><span>${isEn ? 'Shipping:' : 'Frakt:'}</span><span>${totals.shipping === 0 ? (isEn ? 'Free' : 'Gratis') : nok(totals.shipping)}</span></div>
-        <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gold);margin-top:.2rem"><span>${isEn ? 'Total (VAT incl.):' : 'Totalt (MVA inkl.):'}</span><span>${nok(totals.total)}</span></div>
       </div>
     `;
   }
 }
 
-window.handleCheckout = function(e) {
+window.handleCheckout = async function(e) {
   if (e && e.preventDefault) e.preventDefault();
-  const delivery = $('#orderDelivery')?.value || 'pickup';
+  const submitBtn = $('#btnSubmitOrder');
+  const isEn = LANG === 'en';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = isEn ? 'Sending…' : 'Sender…';
+  }
+
+  const delivery = getSelectedDelivery();
   const totals = calculateTotals(S.lines, delivery);
 
   const orderId = 'ARX-' + Date.now().toString().slice(-6);
@@ -10100,55 +10643,51 @@ window.handleCheckout = function(e) {
     localStorage.setItem('arx_orders_v10', JSON.stringify(existing));
   } catch(err) {}
 
-  // Dispatch order to Cloud backend & Telegram
   try {
-    fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newOrder)
-    }).then(r => r.json()).then(res => {
-      console.log('Aromatek ordre-respons (Sky/Telegram):', res);
-    }).catch(err => {
-      console.warn('Sky-/Telegram-innsending feilet:', err.message);
-    });
-  } catch(e) {}
+    await Promise.race([
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newOrder)
+      }).then(r => r.json()).then(res => {
+        console.log('Aromatek ordre-respons (Sky/Telegram):', res);
+      }).catch(err => {
+        console.warn('Sky-/Telegram-innsending feilet:', err.message);
+      }),
+      new Promise(r => setTimeout(r, 1500))
+    ]);
+  } catch(err) {}
 
-  // Empty Cart
   S.lines = [];
   saveCart();
   renderCart();
 
-  $('#checkoutModal')?.close();
+  const orderForm = $('#orderForm');
+  if (orderForm) {
+    orderForm.reset();
+    orderForm.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+    if ($('#deliveryAddressFields')) $('#deliveryAddressFields').disabled = true;
+  }
 
-  // Populate Receipt
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = I18N[LANG]?.btnSubmitOrder || (isEn ? 'Submit Order Inquiry (Vipps)' : 'Send bestilling (Vipps-oppgjør)');
+  }
+
   if ($('#confirmationReceiptBox')) {
-    const isEn = LANG === 'en';
     const deliveryDisplay = newOrder.customer.delivery === 'pickup'
-      ? (isEn ? 'Free Pickup: Tøyengata 3, 0190 Oslo (inside PakStar)' : 'Gratis Henting: Tøyengata 3, 0190 Oslo (inne hos PakStar)')
+      ? (isEn ? 'Free Pickup: Tøyengata 3, 0190 Oslo (PakStar)' : 'Gratis Henting: Tøyengata 3, 0190 Oslo (PakStar)')
       : `${escapeHtml(newOrder.customer.street)}, ${escapeHtml(newOrder.customer.postal)} ${escapeHtml(newOrder.customer.city)} (Posten Norgespakke)`;
 
     $('#confirmationReceiptBox').innerHTML = `
-      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:.5rem;margin-bottom:.5rem">
-        <b>${isEn ? 'Order Reference:' : 'Ordrenummer:'}</b>
-        <span style="color:var(--gold);font-family:monospace;font-weight:600">#${orderId}</span>
-      </div>
-      <div style="font-size:.78rem;color:var(--dim);margin-bottom:.6rem;line-height:1.45">
-        <b>${isEn ? 'Customer:' : 'Kunde:'}</b> ${escapeHtml(newOrder.customer.name)} (${escapeHtml(newOrder.customer.email)} · ${escapeHtml(newOrder.customer.phone)})<br>
-        <b>${isEn ? 'Delivery:' : 'Levering:'}</b> ${deliveryDisplay}
-      </div>
-      ${newOrder.items.map(i => `
-        <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.2rem">
-          <span>${escapeHtml(i.name)} (${escapeHtml(i.size || '100 ml')} x ${i.qty})</span>
-          <span>${nok(i.price * i.qty)}</span>
-        </div>
-      `).join('')}
-      <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gold);border-top:1px solid var(--line);padding-top:.4rem;margin-top:.4rem">
-        <span>${isEn ? 'Total Amount:' : 'Totalbeløp:'}</span>
-        <span>${nok(totals.total)}</span>
-      </div>
+      <div><dt>${isEn ? 'Order ID' : 'Ordrenr'}</dt><dd style="color:var(--ac);font-family:monospace;font-weight:700">#${orderId}</dd></div>
+      <div><dt>${isEn ? 'Customer' : 'Kunde'}</dt><dd>${escapeHtml(newOrder.customer.name)} · ${escapeHtml(newOrder.customer.phone)}</dd></div>
+      <div><dt>${isEn ? 'Delivery' : 'Levering'}</dt><dd>${deliveryDisplay}</dd></div>
+      <div><dt>${isEn ? 'Items' : 'Varer'}</dt><dd>${newOrder.items.map(i => `${escapeHtml(i.name)} (${i.qty}×)`).join(', ')}</dd></div>
+      <div><dt>${isEn ? 'Total' : 'Totalt'}</dt><dd style="color:var(--ac);font-weight:700">${nok(totals.total)}</dd></div>
     `;
   }
-  $('#confirmationModal')?.showModal();
+  showSheetDialog($('#confirmationModal'));
 };
 
 // ── POLICY MODALS (100% BILINGUAL) ──
@@ -10368,10 +10907,11 @@ window.openPolicy = function(type) {
   if ($('#policyCategory')) $('#policyCategory').textContent = content.cat;
   if ($('#policyHeading')) $('#policyHeading').textContent = content.heading;
   if ($('#policyBody')) $('#policyBody').innerHTML = content.body;
-  $('#policyModal')?.showModal();
+  showSheetDialog($('#policyModal'));
 };
 window.closePolicy = function() {
-  $('#policyModal')?.close();
+  const m = $('#policyModal');
+  if (m && m.open) m.close();
 };
 
 // ── NEWSLETTER HANDLER ──
@@ -10395,6 +10935,7 @@ function getEffectiveTheme() {
 
 function applyTheme(theme) {
   const isLight = (theme === 'light');
+  document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
   if (isLight) {
     document.documentElement.classList.add('theme-light');
   } else {
@@ -10406,7 +10947,7 @@ function applyTheme(theme) {
   }
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', isLight ? '#f8fafc' : '#05070b');
+    metaThemeColor.setAttribute('content', isLight ? '#faf8f4' : '#0f0e0c');
   }
   // Toggle button icons
   const themeToggleIcon = document.getElementById('themeToggleIcon');
@@ -10595,7 +11136,7 @@ function setLanguage(lang) {
   if ($('#heroBestsellersLink')) $('#heroBestsellersLink').textContent = t.heroBestsellersLink;
   if ($('#heroPillsLabel')) $('#heroPillsLabel').textContent = t.heroPillsLabel || (LANG === 'en' ? '🏛️ Perfume Houses & Brands:' : '🏛️ Produsenter & Dufthus:');
   if ($('#heroBrandResetBtn')) $('#heroBrandResetBtn').textContent = t.heroBrandResetBtn || (LANG === 'en' ? 'Show all (120)' : 'Vis alle (120)');
-  if ($('#mobileHubSearchInput')) $('#mobileHubSearchInput').placeholder = t.mobileHubSearchPlaceholder || (LANG === 'en' ? 'Search 120 perfumes and brands...' : 'Søk blant 120 parfymer og merker...');
+  if ($('#mobileHubSearchInput')) $('#mobileHubSearchInput').placeholder = t.mobileHubSearchPlaceholder || (LANG === 'en' ? 'Search perfumes & brands...' : 'Søk parfymer og merker...');
   if ($('#mobQuickBtnBrands .mob-qbtn-text')) $('#mobQuickBtnBrands .mob-qbtn-text').textContent = t.mobQuickBtnBrands || (LANG === 'en' ? 'Brands' : 'Produsenter');
   if ($('#mobQuickBtnBest .mob-qbtn-text')) $('#mobQuickBtnBest .mob-qbtn-text').textContent = t.mobQuickBtnBest || (LANG === 'en' ? 'Bestsellers' : 'Bestselgere');
   if ($('#mobQuickBtnAll .mob-qbtn-text')) $('#mobQuickBtnAll .mob-qbtn-text').textContent = t.mobQuickBtnAll || (LANG === 'en' ? 'All (120)' : 'Alle (120)');
@@ -10730,8 +11271,14 @@ function setLanguage(lang) {
   if ($('#lblOrderEmail')) $('#lblOrderEmail').textContent = t.lblOrderEmail;
   if ($('#lblOrderPhone')) $('#lblOrderPhone').textContent = t.lblOrderPhone;
   if ($('#lblOrderDelivery')) $('#lblOrderDelivery').textContent = t.lblOrderDelivery;
-  if ($('#optDeliveryPickup')) $('#optDeliveryPickup').textContent = t.optDeliveryPickup;
-  if ($('#optDeliveryPosten')) $('#optDeliveryPosten').textContent = t.optDeliveryPosten;
+  if ($('#optDeliveryPickup')) $('#optDeliveryPickup').textContent = (LANG === 'en') ? 'Free Pickup' : 'Gratis henting';
+  if ($('#optDeliveryPickupSub')) $('#optDeliveryPickupSub').textContent = (LANG === 'en') ? 'Tøyengata 3, 0190 Oslo (PakStar) · Mon–Sat 11–18' : 'Tøyengata 3, 0190 Oslo (PakStar) · Man–lør 11–18';
+  if ($('#optDeliveryPosten')) $('#optDeliveryPosten').textContent = (LANG === 'en') ? 'Posten / Bring Parcel' : 'Posten / Bring Norgespakke';
+  if ($('#optDeliveryPostenSub')) $('#optDeliveryPostenSub').textContent = (LANG === 'en') ? '1–3 business days w/ tracking' : '1–3 virkedager m/ sporing';
+  if ($('#coTotalLabel')) $('#coTotalLabel').textContent = t.cartTotal || ((LANG === 'en') ? 'Total' : 'Totalt');
+  if ($('#errOrderName')) $('#errOrderName').textContent = (LANG === 'en') ? 'Please enter your full name.' : 'Vennligst oppgi fullt navn.';
+  if ($('#errOrderEmail')) $('#errOrderEmail').textContent = (LANG === 'en') ? 'Enter a valid email address.' : 'Skriv inn en gyldig e-postadresse.';
+  if ($('#errOrderPhone')) $('#errOrderPhone').textContent = (LANG === 'en') ? 'Enter a valid phone number for Vipps.' : 'Oppgi et gyldig telefonnummer for Vipps.';
   if ($('#lblOrderStreet')) $('#lblOrderStreet').textContent = t.lblOrderStreet;
   if ($('#lblOrderPostal')) $('#lblOrderPostal').textContent = t.lblOrderPostal;
   if ($('#lblOrderCity')) $('#lblOrderCity').textContent = t.lblOrderCity;
@@ -10746,18 +11293,17 @@ function setLanguage(lang) {
   if ($('#btnCloseConf')) $('#btnCloseConf').textContent = t.btnCloseConf;
 
   // Product detail modal labels
-  if ($('#lblTopNotes')) $('#lblTopNotes').textContent = t.lblTopNotes;
-  if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = t.lblHeartNotes;
-  if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = t.lblBaseNotes;
-  if ($('#detailModalAddBtn')) $('#detailModalAddBtn').textContent = t.detailAddBtn;
+  if ($('#lblTopNotes')) $('#lblTopNotes').textContent = (LANG === 'en') ? 'Top' : 'Topp';
+  if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = (LANG === 'en') ? 'Heart' : 'Hjerte';
+  if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = (LANG === 'en') ? 'Base' : 'Bunn';
+  updateModalQtyUI();
   if ($('#detailModalStock')) $('#detailModalStock').textContent = t.detailModalStock;
-  if ($('#lblModalZoomBadge')) $('#lblModalZoomBadge').textContent = t.lblModalZoomBadge || 'Klikk for å forstørre';
-  if ($('#add2')) $('#add2').textContent = t.cardAddBtn;
-  if ($('#boxGuaranteeBadge')) $('#boxGuaranteeBadge').textContent = t.boxGuaranteeBadge;
+  if ($('#lblModalZoomBadge')) $('#lblModalZoomBadge').textContent = (LANG === 'en') ? '🔍 Bottle · Tap to zoom' : '🔍 Flakong · Klikk for å forstørre';
+  if ($('#toastCartBtn')) $('#toastCartBtn').textContent = (LANG === 'en') ? 'View cart' : 'Se kurv';
   if ($('#detailShippingText')) $('#detailShippingText').textContent = t.detailShippingText;
   if ($('#detailGuaranteeText')) $('#detailGuaranteeText').textContent = t.detailGuaranteeText;
-  if ($('#lblDetailScentText')) $('#lblDetailScentText').textContent = t.lblDetailScent || (LANG === 'en' ? 'Choose desired scent (1 roll-on bottle):' : 'Velg ønsket duft (1 stk rulleflaske):');
-  if ($('#detailScentError')) $('#detailScentError').textContent = t.errSelectScent || (LANG === 'en' ? 'Please choose a scent before adding to cart.' : 'Vennligst velg en duft før du legger i handlekurven.');
+  if ($('#lblDetailScentText')) $('#lblDetailScentText').textContent = t.lblDetailScent || (LANG === 'en' ? 'Choose desired scent *' : 'Velg ønsket duft *');
+  if ($('#detailScentError')) $('#detailScentError').textContent = t.errSelectScent || (LANG === 'en' ? 'Please choose a scent first.' : 'Vennligst velg en duft først.');
   if ($('#policyCloseBtn')) $('#policyCloseBtn').textContent = (LANG === 'en') ? 'Close window' : 'Lukk vindu';
 
   // Footer
@@ -11224,7 +11770,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v62', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -11286,7 +11832,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v62', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -11362,7 +11908,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v62', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -11403,7 +11949,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v62', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
@@ -11424,24 +11970,91 @@ window.resetAdminCatalogToDefaults = async function() {
 };
 
 
-// ── NATIVE DIALOG LIGHT-DISMISS FALLBACK (Safari & Older Engines) ──
-if (!('closedBy' in HTMLDialogElement.prototype)) {
-  document.querySelectorAll('dialog').forEach(dialog => {
-    dialog.addEventListener('click', event => {
-      if (event.target !== dialog) return;
-      const rect = dialog.getBoundingClientRect();
-      const isInside = (
-        rect.top <= event.clientY &&
-        event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width
-      );
-      if (!isInside) {
-        dialog.close();
-      }
+// ── NATIVE DIALOG LIFECYCLE: SWIPE DISMISS, HISTORY SYNC & SAFARI FALLBACK ──
+$$('dialog').forEach(dialog => {
+  const hd = dialog.querySelector('.sheet-hd');
+  if (hd) {
+    let y0 = 0, dy = 0;
+    hd.addEventListener('touchstart', e => {
+      y0 = e.touches[0].clientY;
+      dialog.style.transition = 'none';
+    }, { passive: true });
+    hd.addEventListener('touchmove', e => {
+      dy = Math.max(0, e.touches[0].clientY - y0);
+      dialog.style.transform = `translateY(${dy}px)`;
+    }, { passive: true });
+    hd.addEventListener('touchend', () => {
+      dialog.style.cssText = '';
+      if (dy > 80) dialog.close();
+      dy = 0;
     });
+  }
+
+  dialog.addEventListener('close', () => {
+    const rv = dialog.returnValue;
+    dialog.returnValue = '';
+    if (!['swap', 'pop'].includes(rv) && history.state?.s) {
+      pendingBackPops++;
+      history.back();
+    } else if (dialog.id === 'productDetailModal' && rv !== 'swap') {
+      try {
+        const u = new URL(window.location);
+        if (u.searchParams.has('prod')) {
+          u.searchParams.delete('prod');
+          history.replaceState(history.state, '', u);
+        }
+      } catch(e) {}
+    }
   });
-}
+
+  if (!('closedBy' in HTMLDialogElement.prototype) && dialog.getAttribute('closedby') === 'any') {
+    const outside = (e) => {
+      const r = dialog.getBoundingClientRect();
+      return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    };
+    let pressedOutside = false;
+    dialog.addEventListener('pointerdown', e => { pressedOutside = outside(e); });
+    dialog.addEventListener('pointerup', e => {
+      if (pressedOutside && outside(e)) dialog.close();
+      pressedOutside = false;
+    });
+  }
+});
+
+window.addEventListener('popstate', () => {
+  if (pendingBackPops > 0) {
+    pendingBackPops--;
+    if ($$('dialog[open]').length && !history.state?.s) {
+      try { history.pushState({ s: 1 }, '', window.location.href); } catch(e) {}
+    }
+    return;
+  }
+  const openDialogs = $$('dialog[open]');
+  if (openDialogs.length) {
+    openDialogs.forEach(x => x.close('pop'));
+  } else {
+    const p = new URLSearchParams(window.location.search).get('prod');
+    if (p) openProductDetail(p, false);
+  }
+});
+
+// Sync programmatic aria-invalid strictly after user interaction (:user-invalid)
+const syncFormAria = (el) => {
+  if (!el?.matches?.('input, select, textarea')) return;
+  if (el.matches(':user-invalid')) {
+    el.setAttribute('aria-invalid', 'true');
+  } else {
+    el.removeAttribute('aria-invalid');
+  }
+};
+document.addEventListener('blur', e => syncFormAria(e.target), true);
+document.addEventListener('invalid', e => {
+  queueMicrotask(() => syncFormAria(e.target));
+}, true);
+document.addEventListener('change', e => syncFormAria(e.target), true);
+document.addEventListener('input', e => {
+  if (e.target?.hasAttribute?.('aria-invalid')) syncFormAria(e.target);
+});
 
 // ── EVENT LISTENERS INITIALIZATION ──
 $('#filterBrand')?.addEventListener('change', e => {
@@ -11542,18 +12155,6 @@ $('#cartToggleBtn')?.addEventListener('click', e => {
   window.toggleCart();
 });
 
-// Backdrop Dismiss on all dialogs
-$$('dialog').forEach(d => {
-  d.addEventListener('click', e => {
-    const rect = d.getBoundingClientRect();
-    const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-      rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-    if (!isInDialog) {
-      d.close();
-    }
-  });
-});
-
 // Dismiss mobileNav when clicking outside or pressing Escape
 document.addEventListener('click', e => {
   const nav = document.getElementById('mobileNav');
@@ -11574,8 +12175,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Flacon uncork removed with Svartfjord section
-
 // ── STARTUP & INITIALIZATION SEQUENCE ──
 // 0. Initialize theme (Light / Dark mode according to saved preference / OS)
 initTheme();
@@ -11585,7 +12184,9 @@ loadCart();
 setLanguage(LANG);
 // 3. Load cloud catalog from Cloudflare KV for multi-device sync
 loadCloudCatalog();
-// 3. Decide whether intro should play
+// 4. Clear stale modal history if left over on fresh load
+if (history.state?.s) history.replaceState(null, '');
+// 5. Decide whether intro should play
 const params = new URLSearchParams(window.location.search);
 const forceIntro = params.get('intro') === '1' || params.get('replay') === '1';
 const skipIntro = params.get('nointro') === '1';
@@ -11604,12 +12205,16 @@ if (skipIntro || (!forceIntro && (seen || reducedMotion))) {
   }
 }
 
-// 4. Handle direct product URL parameter without pushing new history state
+// 6. Handle direct product URL parameter without pushing new history state
 if (params.has('prod')) {
   const prodId = params.get('prod');
+  history.replaceState(null, '', window.location.pathname);
   openProductDetail(prodId, false);
 }
 </script>
-  <div id="toastNotification" class="toast-pill" role="status" aria-live="polite"></div>
+  <div id="toastNotification" class="toast-bar" role="status" aria-live="polite">
+    <span id="toastMsgText"></span>
+    <button type="button" id="toastCartBtn" onclick="dismissToastAndOpenCart()">Se kurv</button>
+  </div>
 </body>
 </html>
