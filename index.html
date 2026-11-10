@@ -1583,13 +1583,20 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 .nav-toggle{
   background:var(--sf2);
   border:1px solid var(--ln);
-  border-radius:50%;
+  border-radius:99px;
   color:var(--tx);
-  font-size:1.1rem;
-  padding:.4rem;
+  font:600 .74rem/1 var(--sans);
+  letter-spacing:.06em;
+  padding:.48rem .9rem;
+  text-transform:uppercase;
   cursor:pointer;
+  transition:transform .15s ease, border-color .2s ease, background .2s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  white-space:nowrap;
 }
-@media(min-width:54rem){.nav-toggle{display:none}}
+.nav-toggle:hover{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,var(--sf2))}
 
 /* ── Mobile Header & Top Menu Optimization ── */
 @media(max-width:54rem){
@@ -1709,7 +1716,8 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   }
 }
 
-/* Mobile Nav Drawer */
+/* Unified Navigation Menu Drawer (Mobile full-width / Desktop floating popover) */
+[hidden]{display:none !important}
 .mobile-nav{
   display:none;
   background:var(--sf);
@@ -1718,7 +1726,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   border-bottom:1px solid var(--ln);
   padding:1.1rem var(--pad, .75rem);
   flex-direction:column;
-  gap:.85rem;
+  gap:.65rem;
   max-height:calc(100vh - 56px);
   max-height:calc(100dvh - 56px);
   overflow-y:auto;
@@ -1727,7 +1735,126 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 .mobile-nav.open{display:flex}
 .mobile-nav a{font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
 .mobile-nav a:hover{color:var(--ac)}
-@media(min-width:54rem){.mobile-nav{display:none !important}}
+@media(min-width:54rem){
+  .mobile-nav{
+    position:absolute;
+    top:calc(100% + 6px);
+    right:max(1.25rem, calc((100vw - 86rem) / 2 + var(--pad)));
+    width:min(365px, 92vw);
+    max-height:calc(100dvh - 96px);
+    border:1px solid var(--ln);
+    border-radius:18px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.45);
+    padding:1rem;
+    z-index:1150;
+  }
+  .mobile-nav .mob-search-wrap{display:none !important}
+}
+.menu-head-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:.45rem;
+  border-bottom:1px solid var(--ln);
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ac);
+}
+.menu-close-x{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:var(--sf2);
+  border:1px solid var(--ln);
+  color:var(--tx);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  font-size:.85rem;
+}
+.menu-feature-btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.6rem;
+  width:100%;
+  padding:.68rem .85rem;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--ac) 11%,var(--sf2));
+  border:1px solid color-mix(in srgb,var(--ac) 35%,transparent);
+  color:var(--tx);
+  font:inherit;
+  font-size:.88rem;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .14s ease, border-color .2s ease, background .2s ease;
+}
+.menu-feature-btn:hover{
+  border-color:var(--ac);
+  background:color-mix(in srgb,var(--ac) 18%,var(--sf2));
+  transform:translateY(-1px);
+}
+.menu-feature-btn .mfb-left{display:flex;align-items:center;gap:.55rem}
+.menu-feature-btn .mfb-arrow{color:var(--ac);font-weight:800}
+.menu-settings-group{
+  display:grid;
+  gap:.45rem;
+  padding-top:.65rem;
+  border-top:1px solid var(--ln);
+}
+.menu-settings-label{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--mu);
+}
+.menu-setting-btn{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:.65rem;
+  width:100%;
+  min-height:42px;
+  padding:.5rem .75rem;
+  border-radius:11px;
+  background:var(--sf2);
+  border:1px solid var(--ln);
+  color:var(--tx);
+  font:inherit;
+  font-size:.84rem;
+  font-weight:600;
+  text-align:left;
+  cursor:pointer;
+  transition:border-color .18s ease, background .18s ease;
+}
+.menu-setting-btn:hover{
+  border-color:var(--ac);
+  background:color-mix(in srgb,var(--ac) 10%,var(--sf2));
+}
+.menu-revealed-section[hidden]{display:none !important}
+.hero-header-actions{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.section-close-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  padding:.4rem .85rem;
+  min-height:36px;
+  border-radius:999px;
+  background:var(--sf2);
+  border:1px solid var(--ln);
+  color:var(--tx);
+  font:600 .78rem/1 var(--sans);
+  cursor:pointer;
+  transition:border-color .18s ease, background .18s ease, color .18s ease;
+}
+.section-close-btn:hover{
+  border-color:var(--ac);
+  color:var(--ac);
+}
 
 /* ═══ TOP MAIN SECTION: COLLECTION GRID (#kjop) ═══ */
 #kjop{
@@ -1925,8 +2052,8 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   }
   .mobile-quick-actions {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .45rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
   }
   .mob-quick-btn {
     display: flex;
@@ -2009,32 +2136,34 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     min-width: 0 !important;
     box-sizing: border-box !important;
     display: flex !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: flex-start !important;
     padding: .55rem .7rem !important;
     min-height: 44px !important;
     border-radius: 12px !important;
-    font-size: .9rem !important;
+    font-size: .88rem !important;
     font-weight: 600 !important;
     white-space: normal !important;
     text-align: left !important;
-    gap: .5rem !important;
+    gap: .25rem .45rem !important;
     background: var(--sf2) !important;
     border: 1px solid var(--ln) !important;
     color: var(--tx) !important;
   }
   .hero-brand-pill b {
-    font-size: .88rem !important;
+    font-size: .86rem !important;
     color: var(--tx) !important;
-    display: block !important;
+    display: inline-block !important;
     line-height: 1.2 !important;
   }
   .hero-brand-pill span {
-    font-size: 1.15rem !important;
+    font-size: 1.1rem !important;
     flex-shrink: 0 !important;
   }
   .hero-brand-pill small {
     display: block !important;
+    flex: 1 0 100% !important;
     font-size: .72rem !important;
     color: var(--ac) !important;
     font-weight: 500 !important;
@@ -4858,64 +4987,8 @@ body {
     </div>
 
     <nav class="main-nav">
-      <div class="nav-dropdown" id="navBrandsDropdown">
-        <button type="button" class="nav-dropdown-trigger" id="navBrandsTrigger" onclick="toggleNavDropdown(event)" aria-expanded="false" aria-haspopup="true">
-          <span id="navFragrancesText">Top Brands</span> <span class="nav-arrow">▾</span>
-        </button>
-        <div class="nav-dropdown-panel" id="navBrandsPanel">
-          <div class="nav-dropdown-header" id="navBrandsHeader">Top Brands Online — Click to filter</div>
-          <div class="nav-dropdown-list">
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Surrati')">
-              <span class="nav-item-icon">🕋</span> <span class="nav-item-name">Surrati Perfumes</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Bujairami')">
-              <span class="nav-item-icon">🇦🇺</span> <span class="nav-item-name">Bujairami Perfumes (Sydney)</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Al Haramain')">
-              <span class="nav-item-icon">🌙</span> <span class="nav-item-name">Al Haramain (Detour Noir)</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Risala')">
-              <span class="nav-item-icon">🖋️</span> <span class="nav-item-name">Risala / Le Falconé</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Swiss Arabian')">
-              <span class="nav-item-icon">🌙</span> <span class="nav-item-name">Swiss Arabian</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Armaf')">
-              <span class="nav-item-icon">👑</span> <span class="nav-item-name">Armaf / Sterling</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Lattafa')">
-              <span class="nav-item-icon">🌟</span> <span class="nav-item-name">Lattafa Perfumes</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Maison Alhambra')">
-              <span class="nav-item-icon">🏛️</span> <span class="nav-item-name">Maison Alhambra</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Reef')">
-              <span class="nav-item-icon">💎</span> <span class="nav-item-name">Reef Perfumes</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
-              <span class="nav-item-icon">⚜️</span> <span class="nav-item-name">Ahmed Al Maghribi</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('French Avenue')">
-              <span class="nav-item-icon">🍸</span> <span class="nav-item-name">French Avenue</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Hamidi')">
-              <span class="nav-item-icon">🪔</span> <span class="nav-item-name">Hamidi Oud</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Ibraq')">
-              <span class="nav-item-icon">💠</span> <span class="nav-item-name">Ibrahim Al Qurashi (IBRAQ)</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Bespoke London')">
-              <span class="nav-item-icon">🇬🇧</span> <span class="nav-item-name">Bespoke London</span>
-            </button>
-            <button type="button" class="nav-dropdown-item" onclick="filterByBrandFromHero('Buhara Esans')">
-              <span class="nav-item-icon">🇹🇷</span> <span class="nav-item-name">Buhara Esans</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati')" title="Utforsk Surrati Perfumes"><span aria-hidden="true">🕋</span> Surrati</button>
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Bujairami')" title="Utforsk Bujairami Perfumes (Australia)"><span aria-hidden="true">🇦🇺</span> Bujairami</button>
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Risala')" title="Utforsk Risala / Le Falconé"><span aria-hidden="true">🖋️</span> Risala</button>
+      <a href="#kjop" id="navCatalogLink">Katalog (120)</a>
+      <a href="#showroom" id="navShowroomLink">Showroom</a>
       <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Kontakt</button>
       <div class="top-nav-search" id="topNavSearchWrap">
         <span class="top-search-icon" aria-hidden="true" style="cursor:pointer" onclick="$('#topNavSearchInput')?.focus(); if ($('#topNavSearchInput')?.value) syncSearch($('#topNavSearchInput').value, 'top', true);">🔍</span>
@@ -4926,61 +4999,62 @@ body {
     </nav>
 
     <div class="header-actions">
-      <!-- Theme Switcher Button (Dark / Light Mode) -->
-      <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Bytt fargetema / Switch theme" title="Bytt fargetema (Lys / Mørk) · Switch theme">
-        <span id="themeToggleIcon" aria-hidden="true">☀️</span>
-      </button>
-
-      <!-- Single Flag Language Switcher (toggles Norwegian / English) -->
-      <button type="button" class="lang-flag-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Bytt språk / Switch language" title="Bytt språk (Norsk / English)">
-        <span id="langFlagEmoji">🇳🇴</span>
-      </button>
-
-      <button type="button" class="action-btn" id="replayIntroHeaderBtn" onclick="replayIntro()" title="Intro" aria-label="Spill intro på nytt / Replay intro">
-        <span class="action-btn-icon" aria-hidden="true">✨</span> <span id="lblReplayHeader" class="header-btn-text">Intro</span>
-      </button>
-
       <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv / Open cart" title="Handlekurv / Cart">
         <span class="cart-icon" aria-hidden="true">🛒</span> <span id="cartLabel" class="header-btn-text">Kurv</span> <b id="cartBadge">0</b>
       </button>
 
-      <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne mobilmeny" aria-expanded="false" aria-controls="mobileNav" title="Meny / Menu">☰</button>
+      <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne meny / Open menu" aria-expanded="false" aria-controls="mobileNav" title="Meny / Menu">
+        <span id="navToggleGlyph" aria-hidden="true">☰</span> <span id="menuBtnLabel" class="header-btn-text">Meny</span>
+      </button>
     </div>
   </div>
 
-  <div class="mobile-nav" id="mobileNav" aria-label="Mobil navigasjon">
-    <a href="#kjop" onclick="toggleMobileNav()" id="mobNavCatalog" style="font-weight:600;color:var(--ac);display:flex;align-items:center;gap:.5rem;padding-bottom:.4rem;border-bottom:1px solid var(--ln)">
+  <div class="mobile-nav" id="mobileNav" aria-label="Navigasjonsmeny">
+    <div class="menu-head-row">
+      <span id="menuDrawerTitle">Meny & Innstillinger</span>
+      <button type="button" class="menu-close-x" onclick="toggleMobileNav(true)" aria-label="Lukk meny">✕</button>
+    </div>
+
+    <button type="button" class="menu-feature-btn" id="menuBtnBestSellers" onclick="openMenuSection('bestsellers')">
+      <span class="mfb-left"><span>🔥</span> <span id="menuBtnBestSellersText">Mest Solgte på Nettet (Bestselgere)</span></span>
+      <span class="mfb-arrow">→</span>
+    </button>
+
+    <button type="button" class="menu-feature-btn" id="menuBtnBrandsSection" onclick="openMenuSection('brands')">
+      <span class="mfb-left"><span>🏛️</span> <span id="menuBtnBrandsText">Produsenter & Dufthus (16)</span></span>
+      <span class="mfb-arrow">→</span>
+    </button>
+
+    <a href="#kjop" onclick="toggleMobileNav(true)" id="mobNavCatalog" style="font-weight:600;color:var(--ac);display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid var(--ln)">
       <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (120 stk)</span>
     </a>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:.4rem 0 .6rem;border-bottom:1px solid var(--ln)">
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();" style="justify-content:center"><span aria-hidden="true">🕋</span> Surrati</button>
-      <button type="button" class="nav-quick-brand" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav();" style="justify-content:center"><span aria-hidden="true">🇦🇺</span> Bujairami (Sydney)</button>
-    </div>
+
     <div class="mob-dropdown" id="mobBrandsDropdown">
       <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances" aria-expanded="false">
-        <span id="mobNavFragrancesText">Top Brands</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
+        <span id="mobNavFragrancesText">Hurtigfilter: Velg Merke</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
       </button>
       <div class="mob-dropdown-panel" id="mobBrandsPanel" style="display:none">
-        <div class="mob-dropdown-header" id="mobBrandsHeader">Top Brands Online — Click to filter</div>
+        <div class="mob-dropdown-header" id="mobBrandsHeader">Topp Merkehus — Klikk for å filtrere</div>
         <div class="mob-brands-list">
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav();"><span>🕋</span> Surrati Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav();"><span>🇦🇺</span> Bujairami Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Al Haramain'); toggleMobileNav();"><span>🌙</span> Al Haramain Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Risala'); toggleMobileNav();"><span>🖋️</span> Risala / Le Falconé</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav();"><span>🌙</span> Swiss Arabian</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav();"><span>👑</span> Armaf / Sterling</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav();"><span>🌟</span> Lattafa Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav();"><span>🏛️</span> Maison Alhambra</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav();"><span>💎</span> Reef Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi'); toggleMobileNav();"><span>⚜️</span> Ahmed Al Maghribi</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('French Avenue'); toggleMobileNav();"><span>🍸</span> French Avenue</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Hamidi'); toggleMobileNav();"><span>🪔</span> Hamidi Oud</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ibraq'); toggleMobileNav();"><span>💠</span> Ibrahim Al Qurashi (IBRAQ)</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bespoke London'); toggleMobileNav();"><span>🇬🇧</span> Bespoke London</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Buhara Esans'); toggleMobileNav();"><span>🇹🇷</span> Buhara Esans</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav(true);"><span>🕋</span> Surrati Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav(true);"><span>🇦🇺</span> Bujairami Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Al Haramain'); toggleMobileNav(true);"><span>🌙</span> Al Haramain Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Risala'); toggleMobileNav(true);"><span>🖋️</span> Risala / Le Falconé</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav(true);"><span>🌙</span> Swiss Arabian</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav(true);"><span>👑</span> Armaf / Sterling</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav(true);"><span>🌟</span> Lattafa Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav(true);"><span>🏛️</span> Maison Alhambra</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav(true);"><span>💎</span> Reef Perfumes</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi'); toggleMobileNav(true);"><span>⚜️</span> Ahmed Al Maghribi</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('French Avenue'); toggleMobileNav(true);"><span>🍸</span> French Avenue</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Hamidi'); toggleMobileNav(true);"><span>🪔</span> Hamidi Oud</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ibraq'); toggleMobileNav(true);"><span>💠</span> Ibrahim Al Qurashi (IBRAQ)</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bespoke London'); toggleMobileNav(true);"><span>🇬🇧</span> Bespoke London</button>
+          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Buhara Esans'); toggleMobileNav(true);"><span>🇹🇷</span> Buhara Esans</button>
         </div>
       </div>
     </div>
+
     <div class="mob-search-wrap">
       <div class="top-nav-search" style="width:100%;max-width:100%;display:flex">
         <span class="top-search-icon" aria-hidden="true">🔍</span>
@@ -4988,15 +5062,22 @@ body {
         <button type="button" id="mobNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
       </div>
     </div>
-    <a href="#showroom" onclick="toggleMobileNav()" id="mobNavShowroom">Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav()" style="background:none;border:0;color:var(--dim);font:inherit;text-align:left;cursor:pointer" id="mobNavAboutContact">Kontakt</button>
-    <button type="button" onclick="replayIntro();toggleMobileNav()" style="background:none;border:0;color:var(--gold);font:inherit;text-align:left;cursor:pointer" id="mobNavReplay">✨ Intro</button>
-    <button type="button" onclick="toggleTheme();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavTheme">
-      <span id="mobThemeToggleIcon">☀️</span> <span id="mobNavThemeText">Lys modus (Light mode)</span>
-    </button>
-    <button type="button" onclick="toggleLanguage();toggleMobileNav()" style="background:none;border:0;color:var(--ice);font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)" id="mobNavLang">
-      <span id="mobLangFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
-    </button>
+
+    <a href="#showroom" onclick="toggleMobileNav(true)" id="mobNavShowroom">📍 Showroom (Tøyengata 3)</a>
+    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav(true)" style="background:none;border:0;color:var(--mu);font:inherit;text-align:left;cursor:pointer;padding:.2rem 0" id="mobNavAboutContact">✉️ Kontakt & Om Oss</button>
+
+    <div class="menu-settings-group">
+      <span class="menu-settings-label" id="menuSettingsLabel">Visning, Språk & Intro</span>
+      <button type="button" class="menu-setting-btn" id="replayIntroHeaderBtn" onclick="replayIntro();toggleMobileNav(true)">
+        <span aria-hidden="true">✨</span> <span id="lblReplayHeader">Intro</span>
+      </button>
+      <button type="button" class="menu-setting-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Bytt fargetema / Switch theme">
+        <span id="themeToggleIcon" aria-hidden="true">☀️</span> <span id="mobNavThemeText">Lys modus (Light mode)</span>
+      </button>
+      <button type="button" class="menu-setting-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Bytt språk / Switch language">
+        <span id="langFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -5030,14 +5111,10 @@ body {
       </div>
 
       <div class="mobile-quick-actions" aria-label="Hurtignavigasjon">
-        <a href="#manufacturersBar" class="mob-quick-btn" id="mobQuickBtnBrands">
-          <span class="mob-qbtn-icon">🏛️</span>
-          <span class="mob-qbtn-text">Produsenter</span>
-        </a>
-        <a href="#heroBestsellersTitle" class="mob-quick-btn" id="mobQuickBtnBest">
-          <span class="mob-qbtn-icon">✨</span>
-          <span class="mob-qbtn-text">Bestselgere</span>
-        </a>
+        <button type="button" class="mob-quick-btn" id="mobQuickBtnMenu" onclick="event.stopPropagation(); toggleMobileNav()">
+          <span class="mob-qbtn-icon">☰</span>
+          <span class="mob-qbtn-text">Meny</span>
+        </button>
         <button type="button" class="mob-quick-btn highlight" id="mobQuickBtnAll" onclick="resetAllFilters(); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
           <span class="mob-qbtn-icon">🛍️</span>
           <span class="mob-qbtn-text">Alle (120)</span>
@@ -5289,17 +5366,19 @@ body {
     </div>
   </section>
 
-  <!-- ================= 3. HERO: BEST SELLERS ON THE INTERNET ================= -->
-  <section id="heroSection" class="hero-bestsellers-section" aria-label="Internettets bestselgende parfymer">
-    <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
+  <!-- ================= PERFUME HOUSES & BRANDS (Revealed from Menu Only) ================= -->
+  <section id="brandsSection" class="hero-bestsellers-section menu-revealed-section" hidden aria-label="Produsenter og Dufthus">
     <div class="hero-bestsellers-header">
       <div>
-        <h2 id="heroBestsellersTitle">Mest Solgte på Nettet</h2>
-        <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
+        <h2 id="brandsSectionTitle">Produsenter & Dufthus</h2>
+        <p id="brandsSectionSub">Alle 16 utvalgte parfymehus fra Mekka, Sydney, Dubai og Europa — klikk for å filtrere</p>
       </div>
-      <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
-        Se hele katalogen (120) ↓
-      </a>
+      <div class="hero-header-actions">
+        <a href="#kjop" id="brandsSectionCatalogLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
+          Se hele katalogen (120) ↓
+        </a>
+        <button type="button" class="section-close-btn" id="closeBrandsSectionBtn" onclick="closeMenuSection('brands')">✕ Skjul</button>
+      </div>
     </div>
 
     <!-- Curated Visual Spotlight: Surrati & Bujairami Australia -->
@@ -5324,8 +5403,8 @@ body {
       </div>
     </div>
 
-    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Vertical Adaptive Layout on Mobile) -->
-    <div class="hero-brand-pills-bar" id="manufacturersBar" aria-label="Hurtigvalg for produsenter og dufthus">
+    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Expanded inside Brands Menu View) -->
+    <div class="hero-brand-pills-bar expanded" id="manufacturersBar" aria-label="Hurtigvalg for produsenter og dufthus">
       <div class="hero-brand-pills-header">
         <span class="hero-brand-pills-label" id="heroPillsLabel">🏛️ Produsenter & Dufthus:</span>
         <button type="button" class="hero-brand-reset-btn" id="heroBrandResetBtn" onclick="resetAllFilters()">Vis alle (120)</button>
@@ -5380,12 +5459,29 @@ body {
           <span>🎁</span> <b>Luksus Gavesett</b> <small>(4-i-1 Komplett)</small>
         </button>
       </div>
-      <button type="button" class="hero-brand-toggle-btn" id="heroBrandToggleBtn" onclick="toggleManufacturersMobile()" aria-expanded="false">
-        <span id="heroBrandToggleText">Se alle 16 produsenter (120 dufter)</span> <span id="heroBrandToggleArrow">▾</span>
+      <button type="button" class="hero-brand-toggle-btn" id="heroBrandToggleBtn" onclick="toggleManufacturersMobile()" aria-expanded="true">
+        <span id="heroBrandToggleText">Vis færre produsenter</span> <span id="heroBrandToggleArrow">▴</span>
       </button>
     </div>
+  </section>
 
-    <div class="hero-bestsellers-grid">
+  <!-- ================= 3. HERO: BEST SELLERS ON THE INTERNET (Revealed from Menu Only) ================= -->
+  <section id="heroSection" class="hero-bestsellers-section menu-revealed-section" hidden aria-label="Internettets bestselgende parfymer">
+    <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
+    <div class="hero-bestsellers-header">
+      <div>
+        <h2 id="heroBestsellersTitle">Mest Solgte på Nettet</h2>
+        <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
+      </div>
+      <div class="hero-header-actions">
+        <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
+          Se hele katalogen (120) ↓
+        </a>
+        <button type="button" class="section-close-btn" id="closeBestSellersBtn" onclick="closeMenuSection('bestsellers')">✕ Skjul</button>
+      </div>
+    </div>
+
+    <div class="hero-bestsellers-grid expanded">
       <!-- 1. Surrati Gray Oud (Grey Oud) -->
       <article class="hero-best-card" data-id="surrati-gray-oud">
         <span class="hero-best-badge gold" id="heroBadge1">Nyhet</span>
@@ -6307,7 +6403,7 @@ body {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.68 (updated 2026-11-10 16:40)
+        v1.0.69 (updated 2026-11-10 17:28)
       </div>
     </div>
   </div>
@@ -6406,8 +6502,40 @@ window.addEventListener('scroll', function() {
   }
 }, { passive: true });
 
+window.openMenuSection = function(which) {
+  if (typeof window.toggleMobileNav === 'function') window.toggleMobileNav(true);
+  const heroSec = document.getElementById('heroSection');
+  const brandsSec = document.getElementById('brandsSection');
+  if (which === 'bestsellers') {
+    if (brandsSec) brandsSec.hidden = true;
+    if (heroSec) {
+      heroSec.hidden = false;
+      heroSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else if (which === 'brands') {
+    if (heroSec) heroSec.hidden = true;
+    if (brandsSec) {
+      brandsSec.hidden = false;
+      const bar = document.getElementById('manufacturersBar');
+      if (bar) bar.classList.add('expanded');
+      brandsSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+};
+
+window.closeMenuSection = function(which) {
+  if (which === 'bestsellers') {
+    const heroSec = document.getElementById('heroSection');
+    if (heroSec) heroSec.hidden = true;
+  } else if (which === 'brands') {
+    const brandsSec = document.getElementById('brandsSection');
+    if (brandsSec) brandsSec.hidden = true;
+  }
+};
+
 window.filterByBrandFromHero = function(brandName) {
   closeNavDropdown();
+  if (typeof window.toggleMobileNav === 'function') window.toggleMobileNav(true);
   activeBrand = brandName;
   activeScent = 'all';
   searchQuery = '';
@@ -6431,6 +6559,7 @@ window.filterByBrandFromHero = function(brandName) {
   if (document.getElementById('topNavClearSearchBtn')) document.getElementById('topNavClearSearchBtn').style.display = 'none';
   if (document.getElementById('mobNavClearSearchBtn')) document.getElementById('mobNavClearSearchBtn').style.display = 'none';
   if (document.getElementById('mobileHubClearBtn')) document.getElementById('mobileHubClearBtn').style.display = 'none';
+  if (typeof syncCatalogChipsUI === 'function') syncCatalogChipsUI();
   renderStore();
   const kjopEl = document.getElementById('kjop');
   if (kjopEl) {
@@ -12466,26 +12595,54 @@ function setLanguage(lang) {
     replayBtn.setAttribute('aria-label', rTitle);
   }
 
+  // Mobile / Unified Menu & Section Reveals
+  const isEn = (LANG === 'en');
+  if ($('#navCatalogLink')) $('#navCatalogLink').textContent = isEn ? 'Catalog (120)' : 'Katalog (120)';
+  if ($('#navShowroomLink')) $('#navShowroomLink').textContent = t.navShowroom || 'Showroom';
+  if ($('#rtbPill')) $('#rtbPill').textContent = isEn ? '✨ 120 Selected Bottles' : '✨ 120 Utvalgte Flakonger';
+  if ($('#rtbCta')) $('#rtbCta').textContent = isEn ? 'View catalog (120) →' : 'Se katalog (120) →';
+  if ($('#catsSecTitle')) $('#catsSecTitle').textContent = isEn ? 'Explore by Scent Family & Style' : 'Utforsk etter Duftfamilie & Stil';
+  if ($('#catsSecSub')) $('#catsSecSub').textContent = isEn ? 'Tap a scent family or flagship house to filter our 120 original bottles' : 'Trykk på en duftfamilie eller et flaggskiphus for å filtrere blant våre 120 originale flakonger';
+  if ($('#trustItem1')) $('#trustItem1').textContent = t.heroTrust1;
+  if ($('#trustItem2')) $('#trustItem2').textContent = t.heroTrust2;
+  if ($('#trustItem3')) $('#trustItem3').textContent = t.heroTrust3;
+  if ($('#trustItem4')) $('#trustItem4').textContent = t.heroTrust4;
+  if ($('#menuBtnLabel')) $('#menuBtnLabel').textContent = $('#mobileNav')?.classList.contains('open') ? (isEn ? 'Close' : 'Lukk') : (isEn ? 'Menu' : 'Meny');
+  if ($('#menuDrawerTitle')) $('#menuDrawerTitle').textContent = isEn ? 'Menu & Settings' : 'Meny & Innstillinger';
+  if ($('#menuBtnBestSellersText')) $('#menuBtnBestSellersText').textContent = isEn ? 'Best Sellers Online' : 'Mest Solgte på Nettet (Bestselgere)';
+  if ($('#menuBtnBrandsText')) $('#menuBtnBrandsText').textContent = isEn ? 'Perfume Houses & Brands (16)' : 'Produsenter & Dufthus (16)';
+  if ($('#menuSettingsLabel')) $('#menuSettingsLabel').textContent = isEn ? 'Display, Language & Intro' : 'Visning, Språk & Intro';
+  if ($('#brandsSectionTitle')) $('#brandsSectionTitle').textContent = isEn ? 'Perfume Houses & Brands' : 'Produsenter & Dufthus';
+  if ($('#brandsSectionSub')) $('#brandsSectionSub').textContent = isEn ? 'All 16 curated perfume houses from Mecca, Sydney, Dubai & Europe — click to filter' : 'Alle 16 utvalgte parfymehus fra Mekka, Sydney, Dubai og Europa — klikk for å filtrere';
+  if ($('#brandsSectionCatalogLink')) $('#brandsSectionCatalogLink').textContent = t.heroBestsellersLink;
+  if ($('#closeBrandsSectionBtn')) $('#closeBrandsSectionBtn').textContent = isEn ? '✕ Hide' : '✕ Skjul';
+  if ($('#closeBestSellersBtn')) $('#closeBestSellersBtn').textContent = isEn ? '✕ Hide' : '✕ Skjul';
+  if ($('#mobQuickBtnMenu .mob-qbtn-text')) $('#mobQuickBtnMenu .mob-qbtn-text').textContent = isEn ? 'Menu' : 'Meny';
+  if ($('#tabLblHome')) $('#tabLblHome').textContent = isEn ? 'Home' : 'Hjem';
+  if ($('#tabLblExplore')) $('#tabLblExplore').textContent = isEn ? 'Explore' : 'Utforsk';
+  if ($('#tabLblWish')) $('#tabLblWish').textContent = isEn ? 'Wishlist' : 'Ønsker';
+  if ($('#tabLblShowroom')) $('#tabLblShowroom').textContent = 'Showroom';
+
   // Mobile nav
   if ($('#mobNavCatalogText')) {
-    $('#mobNavCatalogText').textContent = (LANG === 'en') ? 'All Fragrances (120 items)' : 'Alle Parfymer (120 stk)';
+    $('#mobNavCatalogText').textContent = isEn ? 'All Fragrances (120 items)' : 'Alle Parfymer (120 stk)';
   }
   const navToggleBtn = $('#navToggleBtn');
   if (navToggleBtn) {
     const isOpen = $('#mobileNav')?.classList.contains('open');
     const navTitle = isOpen
-      ? (LANG === 'en' ? 'Close mobile menu' : 'Lukk mobilmeny')
-      : (LANG === 'en' ? 'Open mobile menu' : 'Åpne mobilmeny');
+      ? (isEn ? 'Close menu' : 'Lukk meny')
+      : (isEn ? 'Open menu' : 'Åpne meny');
     navToggleBtn.setAttribute('aria-label', navTitle);
     navToggleBtn.title = navTitle;
   }
-  if ($('#mobNavFragrancesText')) $('#mobNavFragrancesText').textContent = t.mobNavFragrances || t.navFragrances;
-  else if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = t.mobNavFragrances || t.navFragrances;
-  if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = t.mobNavShowroom || t.navShowroom;
+  if ($('#mobNavFragrancesText')) $('#mobNavFragrancesText').textContent = isEn ? 'Quick Filter: Choose Brand' : 'Hurtigfilter: Velg Merke';
+  else if ($('#mobNavFragrances')) $('#mobNavFragrances').textContent = isEn ? 'Quick Filter: Choose Brand' : 'Hurtigfilter: Velg Merke';
+  if ($('#mobNavShowroom')) $('#mobNavShowroom').textContent = `📍 ${t.mobNavShowroom || t.navShowroom}`;
   if ($('#mobNavAbout')) $('#mobNavAbout').textContent = t.mobNavAbout || t.navAbout;
   if ($('#mobNavContact')) $('#mobNavContact').textContent = t.mobNavContact || t.navContact;
-  if ($('#mobNavAboutContact')) $('#mobNavAboutContact').textContent = t.mobNavAboutContact || (LANG === 'en' ? 'Contact' : 'Kontakt');
-  if ($('#mobNavSearchInput')) $('#mobNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
+  if ($('#mobNavAboutContact')) $('#mobNavAboutContact').textContent = isEn ? '✉️ Contact & About' : '✉️ Kontakt & Om Oss';
+  if ($('#mobNavSearchInput')) $('#mobNavSearchInput').placeholder = t.topSearchPlaceholder || (isEn ? 'Search perfume...' : 'Søk parfyme...');
   if ($('#mobNavReplay')) $('#mobNavReplay').textContent = `✨ ${t.replayIntro}`;
 
   // Hero Section
@@ -12715,6 +12872,8 @@ window.toggleLanguage = function() {
 window.toggleMobileNav = function(forceClose = false) {
   const nav = $('#mobileNav');
   const btn = $('#navToggleBtn');
+  const glyph = $('#navToggleGlyph');
+  const menuLbl = $('#menuBtnLabel');
   if (!nav) return;
   const isCurrentlyOpen = nav.classList.contains('open');
   const willBeOpen = forceClose ? false : !isCurrentlyOpen;
@@ -12731,12 +12890,13 @@ window.toggleMobileNav = function(forceClose = false) {
     if (mobFrag) mobFrag.setAttribute('aria-expanded', 'false');
   }
 
+  if (glyph) glyph.textContent = willBeOpen ? '✕' : '☰';
+  if (menuLbl) menuLbl.textContent = willBeOpen ? (LANG === 'en' ? 'Close' : 'Lukk') : (LANG === 'en' ? 'Menu' : 'Meny');
   if (btn) {
-    btn.textContent = willBeOpen ? '✕' : '☰';
     btn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
     const label = willBeOpen
-      ? (LANG === 'en' ? 'Close mobile menu' : 'Lukk mobilmeny')
-      : (LANG === 'en' ? 'Open mobile menu' : 'Åpne mobilmeny');
+      ? (LANG === 'en' ? 'Close menu' : 'Lukk meny')
+      : (LANG === 'en' ? 'Open menu' : 'Åpne meny');
     btn.setAttribute('aria-label', label);
     btn.title = label;
   }
@@ -13641,8 +13801,9 @@ $('#cartToggleBtn')?.addEventListener('click', e => {
 document.addEventListener('click', e => {
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('navToggleBtn');
+  const quickBtn = document.getElementById('mobQuickBtnMenu');
   if (nav && nav.classList.contains('open')) {
-    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+    if (!nav.contains(e.target) && !btn?.contains(e.target) && !quickBtn?.contains(e.target)) {
       window.toggleMobileNav(true);
     }
   }
