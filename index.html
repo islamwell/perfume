@@ -96,7 +96,7 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Canvas Confetti CDN (deferred) -->
 <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -1593,6 +1593,8 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
 
 /* ── Mobile Header & Top Menu Optimization ── */
 @media(max-width:54rem){
+  .brand-title > span,
+  .brand-title .brand-name-gold,
   .brand-perfume-word{
     display:none !important;
   }
@@ -1603,19 +1605,19 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
     gap:.4rem;
   }
   .brand-group{
-    flex-shrink:1;
+    flex-shrink:0;
     min-width:0;
   }
   .brand-title{
     font-size:clamp(0.95rem, 3.8vw, 1.12rem);
     font-weight:700;
-    gap:.4rem;
+    gap:0;
     white-space:nowrap;
     letter-spacing:.09em;
   }
   .brand-logo-img{
-    width:30px !important;
-    height:30px !important;
+    width:38px !important;
+    height:38px !important;
   }
   .header-actions{
     display:flex;
@@ -1685,12 +1687,12 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   }
   .brand-title{
     font-size:.88rem;
-    gap:.3rem;
+    gap:0;
     letter-spacing:.06em;
   }
   .brand-logo-img{
-    width:26px !important;
-    height:26px !important;
+    width:34px !important;
+    height:34px !important;
   }
   .header-actions{
     gap:.24rem;
@@ -3814,6 +3816,979 @@ footer{
   }
 }
 
+/* ================= PAK-STAR UI DESIGN SYSTEM INTEGRATION ================= */
+:root {
+  --font-d: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-b: 'Manrope', 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --nav-h: 4.25rem;
+}
+
+body {
+  font-family: var(--font-b);
+  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 1rem);
+}
+
+/* 1. Dismissible Top Flagship Banner (.rice-top-banner) */
+.rice-top-banner {
+  background: linear-gradient(95deg, #0b1812 0%, #162920 45%, #241b0c 100%);
+  color: #f9f6f0;
+  border-bottom: 1px solid rgba(212,175,106,.32);
+  padding: .42rem clamp(.75rem,3vw,2rem);
+  position: relative;
+  z-index: 41;
+  font-size: .78rem;
+}
+.rice-top-banner[hidden] { display: none !important; }
+.rtb-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem;
+  flex-wrap: wrap;
+}
+.rtb-left {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.rtb-pill {
+  background: linear-gradient(135deg, #f3d48b, #c59b27);
+  color: #1a1204;
+  font-weight: 800;
+  font-size: .64rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .18rem .52rem;
+  border-radius: 99px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(197,155,39,.35);
+}
+.rtb-title {
+  font-weight: 700;
+  color: #fff;
+  font-size: .78rem;
+}
+.rtb-title strong { color: #f3d48b; }
+.rtb-packs {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  flex-wrap: wrap;
+}
+.rtb-pack {
+  display: inline-flex;
+  align-items: center;
+  gap: .32rem;
+  background: rgba(255,255,255,.1) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  color: #fff !important;
+  padding: .22rem .58rem;
+  border-radius: 99px;
+  font-size: .72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .18s, transform .18s, border-color .18s;
+  white-space: nowrap;
+}
+.rtb-pack:hover {
+  background: rgba(243,212,139,.22) !important;
+  border-color: #f3d48b !important;
+  transform: translateY(-1px);
+}
+.rtb-pack b { color: #f3d48b !important; font-weight: 800; }
+.rtb-right {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-left: auto;
+}
+.rtb-cta {
+  background: #f3d48b !important;
+  border: 0 !important;
+  color: #141008 !important;
+  font-weight: 800;
+  font-size: .72rem;
+  padding: .28rem .72rem;
+  border-radius: 99px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .18s, background .18s;
+}
+.rtb-cta:hover { background: #ffe29e !important; transform: translateY(-1px); }
+.rtb-close {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  display: grid;
+  place-items: center;
+  color: #fff !important;
+  font-size: .75rem;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+}
+.rtb-close:hover { background: rgba(255,255,255,.24) !important; color: #fff !important; }
+@media (max-width: 640px) {
+  .rtb-packs { display: none; }
+  .rtb-title { font-size: .73rem; }
+}
+
+/* 2. Live Search Dropdown Popover (.search-pop) */
+.top-nav-search {
+  position: relative;
+}
+.search-pop {
+  position: absolute;
+  top: calc(100% + .45rem);
+  left: 0;
+  right: 0;
+  min-width: min(350px, 92vw);
+  background: var(--sf);
+  border: 1px solid var(--ln);
+  border-radius: 1rem;
+  box-shadow: 0 20px 48px rgba(0,0,0,.45);
+  max-height: min(68vh, 420px);
+  overflow-y: auto;
+  z-index: 1200;
+  padding: .4rem;
+}
+.search-pop[hidden] { display: none !important; }
+.sp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .35rem .6rem;
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--mu);
+}
+.sp-item {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  gap: .65rem;
+  align-items: center;
+  padding: .42rem .55rem;
+  border-radius: .7rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.sp-item:hover, .sp-item.active {
+  background: color-mix(in srgb, var(--ac) 12%, var(--sf2));
+}
+.sp-thumb {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: .55rem;
+  background: var(--sf2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--ln);
+}
+.sp-thumb img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+}
+.sp-meta { min-width: 0; text-align: left; }
+.sp-title {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--tx);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sp-sub {
+  font-size: .7rem;
+  color: var(--mu);
+}
+.sp-right {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+.sp-price {
+  font-family: var(--font-d);
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--ac);
+  white-space: nowrap;
+}
+.sp-add {
+  padding: .32rem .62rem;
+  border-radius: 99px;
+  background: var(--ac);
+  color: var(--on);
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.sp-empty {
+  padding: 1.1rem .8rem;
+  text-align: center;
+  color: var(--mu);
+  font-size: .82rem;
+}
+
+/* 3. Diagonal Marquee Ticker (.band / .marq) */
+.band {
+  background: linear-gradient(90deg, #12100d, #1d1912, #12100d);
+  color: #f3eee6;
+  padding: .62rem 0;
+  overflow: hidden;
+  border-block: 1px solid rgba(212,175,106,.28);
+  margin: 0 0 1.1rem;
+}
+.marq {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marq 42s linear infinite;
+  font-family: var(--font-d);
+  font-size: .86rem;
+  letter-spacing: .03em;
+  align-items: center;
+}
+.band:hover .marq { animation-play-state: paused; }
+.marq span, .marq button {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  white-space: nowrap;
+  color: #f3eee6 !important;
+  font: inherit;
+}
+.marq button {
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(212,175,106,.28) !important;
+  cursor: pointer;
+  padding: .24rem .72rem;
+  border-radius: 99px;
+  transition: background .2s, transform .2s, border-color .2s;
+}
+.marq button:hover {
+  background: rgba(212,175,106,.22) !important;
+  border-color: #f3d48b !important;
+  transform: scale(1.03);
+}
+.marq i {
+  color: #f3d48b !important;
+  font-style: normal;
+}
+@keyframes marq { to { transform: translateX(-50%); } }
+
+/* 4. PakStar Flagship Showcase Carousel (.ps-carousel) */
+.ps-carousel {
+  max-width: 1400px;
+  margin: 0 auto 1.35rem;
+  position: relative;
+}
+.ps-viewport {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 44px -16px rgba(0,0,0,.45);
+}
+.ps-track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: transform;
+}
+.ps-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+.ps-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(46rem 24rem at 92% 12%, rgba(212,175,106,.2), transparent 60%),
+    radial-gradient(36rem 22rem at 8% 95%, rgba(31,122,77,.18), transparent 60%),
+    linear-gradient(128deg, #0c1712 0%, #14241c 52%, #1d160b 100%);
+  color: #f9f6f0;
+  padding: clamp(1rem, 2.4vw, 1.65rem) clamp(1rem, 2.8vw, 2rem);
+  border: 1px solid rgba(212,175,106,.32);
+  display: grid;
+  grid-template-columns: 1.05fr 1.25fr;
+  gap: clamp(.9rem, 2.2vw, 1.75rem);
+  align-items: center;
+  min-height: 250px;
+}
+.ps-card--bujairami {
+  background:
+    radial-gradient(46rem 24rem at 90% 15%, rgba(56,189,248,.22), transparent 60%),
+    radial-gradient(36rem 22rem at 10% 95%, rgba(212,175,106,.18), transparent 60%),
+    linear-gradient(128deg, #081524 0%, #0f253d 52%, #19150d 100%);
+}
+.ps-card--viral {
+  background:
+    radial-gradient(46rem 24rem at 90% 15%, rgba(217,119,6,.22), transparent 60%),
+    radial-gradient(36rem 22rem at 10% 95%, rgba(185,28,28,.16), transparent 60%),
+    linear-gradient(128deg, #180d0b 0%, #271510 52%, #16120c 100%);
+}
+.ps-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.04) 50%, transparent 65%);
+}
+.ps-copy { position: relative; z-index: 1; }
+.ps-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .24rem .68rem;
+  border-radius: 99px;
+  background: rgba(243,212,139,.14);
+  border: 1px solid rgba(243,212,139,.4);
+  color: #f3d48b;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .55rem;
+}
+.ps-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.3rem, 2.6vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin-bottom: .45rem;
+  color: #fff;
+}
+.ps-title em {
+  font-style: italic;
+  color: #f3d48b;
+  font-weight: 600;
+}
+.ps-sub {
+  font-size: clamp(.78rem, 1.15vw, .9rem);
+  color: rgba(249,246,240,.82);
+  max-width: 48ch;
+  line-height: 1.45;
+  margin-bottom: .75rem;
+}
+.ps-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .38rem;
+  margin-bottom: .8rem;
+}
+.ps-badge {
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .22rem .56rem;
+  border-radius: .45rem;
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #f4efe6;
+}
+.ps-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+.ps-btn-main {
+  background: linear-gradient(135deg, #f3d48b, #c59b27) !important;
+  border: 0 !important;
+  color: #171104 !important;
+  font-weight: 800;
+  font-size: .8rem;
+  padding: .58rem 1.05rem;
+  border-radius: 99px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -6px rgba(197,155,39,.55);
+  transition: transform .18s;
+}
+.ps-btn-main:hover { transform: translateY(-2px); }
+.ps-btn-ghost {
+  background: rgba(255,255,255,.1) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: .78rem;
+  padding: .55rem .95rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background .18s;
+}
+.ps-btn-ghost:hover { background: rgba(255,255,255,.18) !important; }
+.ps-packs {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .6rem;
+}
+.ps-pack {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 1rem;
+  padding: .65rem .6rem .6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: transform .22s, border-color .22s, background .22s;
+  cursor: pointer;
+}
+.ps-pack:hover {
+  transform: translateY(-3px);
+  border-color: #f3d48b;
+  background: rgba(255,255,255,.13);
+}
+.ps-pack.featured {
+  background: linear-gradient(180deg, rgba(243,212,139,.2), rgba(255,255,255,.09));
+  border-color: #f3d48b;
+  box-shadow: 0 10px 24px -10px rgba(243,212,139,.4);
+}
+.ps-pack-ribbon {
+  position: absolute;
+  top: -.48rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f3d48b;
+  color: #181204;
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .12rem .48rem;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.ps-pack-img {
+  width: 68px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.4));
+  margin-bottom: .3rem;
+}
+.ps-pack-size {
+  font-family: var(--font-d);
+  font-size: .92rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ps-pack-sub {
+  font-size: .65rem;
+  color: rgba(249,246,240,.72);
+  margin-bottom: .3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.ps-pack-price {
+  font-family: var(--font-d);
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #f3d48b;
+  margin-bottom: .4rem;
+}
+.ps-pack-btn {
+  width: 100%;
+  background: #f3d48b !important;
+  border: 0 !important;
+  color: #171104 !important;
+  font-weight: 800;
+  font-size: .7rem;
+  padding: .36rem .45rem;
+  border-radius: .55rem;
+  cursor: pointer;
+  transition: background .18s, transform .15s;
+}
+.ps-pack-btn:hover { background: #ffe39f !important; }
+.ps-pack-btn:active { transform: scale(.97); }
+.ps-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: .55rem;
+  padding: 0 .25rem;
+}
+.ps-dots {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.ps-dot {
+  height: .48rem;
+  width: 1.5rem;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  border-radius: 99px;
+  background: var(--ln) !important;
+  border: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: width .25s, background .25s;
+}
+.ps-dot.on {
+  width: 2.5rem;
+  background: color-mix(in srgb, var(--ac) 32%, var(--ln)) !important;
+}
+.ps-dot.on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ac);
+  border-radius: 99px;
+}
+.ps-arrows {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+.ps-arrow {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--sf) !important;
+  border: 1px solid var(--ln) !important;
+  color: var(--tx) !important;
+  display: grid;
+  place-items: center;
+  font-size: .85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .18s, transform .18s, border-color .18s;
+}
+.ps-arrow:hover {
+  background: var(--ac) !important;
+  color: var(--on) !important;
+  border-color: var(--ac) !important;
+  transform: scale(1.05);
+}
+.ps-prog {
+  height: 3px;
+  background: var(--ln);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: .4rem;
+}
+.ps-prog-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--ac), #f3d48b);
+  transition: width .1s linear;
+}
+@media (max-width: 900px) {
+  .ps-card { grid-template-columns: 1fr; padding: .9rem; gap: .75rem; min-height: 0; }
+  .ps-sub, .ps-badges { display: none; }
+}
+@media (max-width: 560px) {
+  .ps-card { padding: .75rem .7rem; border-radius: 1.15rem; gap: .6rem; }
+  .ps-viewport { border-radius: 1.15rem; }
+  .ps-kicker { font-size: .58rem; padding: .16rem .5rem; margin-bottom: .3rem; }
+  .ps-title { font-size: 1.12rem; margin-bottom: .4rem; }
+  .ps-btn-main, .ps-btn-ghost { font-size: .72rem; padding: .42rem .78rem; }
+  .ps-packs { gap: .38rem; }
+  .ps-pack { padding: .45rem .32rem .4rem; border-radius: .75rem; }
+  .ps-pack-img { width: 46px; height: 54px; margin-bottom: .15rem; }
+  .ps-pack-size { font-size: .72rem; }
+  .ps-pack-sub { display: none; }
+  .ps-pack-price { font-size: .82rem; margin-bottom: .25rem; }
+  .ps-pack-btn { font-size: .62rem; padding: .28rem .25rem; }
+}
+
+/* 5. PakStar 3D Category / Scent Cards & Trust List (.cats-sec, .cat-grid, .cat-card, .trust-list) */
+.cats-sec {
+  max-width: 1400px;
+  margin: 0 auto 1.6rem;
+}
+.sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .9rem;
+  flex-wrap: wrap;
+}
+.sec-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.35rem, 2.6vw, 1.95rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  color: var(--tx);
+}
+.sec-sub {
+  font-size: .84rem;
+  color: var(--mu);
+  margin-top: .18rem;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
+}
+@media (min-width: 640px) { .cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .cat-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+
+.cat-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  padding: .9rem .65rem;
+  border-radius: 1.15rem;
+  background: var(--sf) !important;
+  border: 1px solid var(--ln) !important;
+  text-align: center;
+  cursor: pointer;
+  transform: perspective(600px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .25s var(--ease-out), border-color .25s, box-shadow .25s, background .25s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+}
+.cat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--tint, rgba(212,175,106,.18)), transparent 70%);
+  opacity: .85;
+  pointer-events: none;
+}
+.cat-card:hover, .cat-card.active {
+  border-color: var(--ac);
+  box-shadow: 0 10px 26px -10px rgba(0,0,0,.35);
+}
+.cat-card.active {
+  background: color-mix(in srgb, var(--ac) 14%, var(--sf));
+}
+.cat-card .ico {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto .25rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.45rem;
+  background: var(--sf2);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  border-radius: 42% 58% 63% 37% / 45% 42% 58% 55%;
+  transition: border-radius .5s var(--ease-spring), transform .3s var(--ease-spring);
+  position: relative;
+  z-index: 1;
+}
+.cat-card:hover .ico {
+  border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%;
+  transform: scale(1.08) rotate(-4deg);
+}
+.cat-card b {
+  display: block;
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--tx);
+  position: relative;
+  z-index: 1;
+}
+.cat-card small {
+  font-size: .68rem;
+  color: var(--mu);
+  position: relative;
+  z-index: 1;
+}
+.trust-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+  margin-top: .85rem;
+}
+@media (min-width: 820px) { .trust-list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .58rem .8rem;
+  border-radius: .85rem;
+  background: var(--sf);
+  border: 1px solid var(--ln);
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--tx);
+}
+.trust-item i {
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ac) 18%, transparent);
+  color: var(--ac);
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: .74rem;
+  flex-shrink: 0;
+}
+
+/* 6. PakStar Filter Chips Rail (.chips-rail / .cat-chip) & Countdown Timer (.timer) */
+.chips-rail {
+  display: flex;
+  gap: .45rem;
+  overflow-x: auto;
+  padding: .25rem 0 .75rem;
+  scrollbar-width: none;
+}
+.chips-rail::-webkit-scrollbar { display: none; }
+.cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .38rem;
+  padding: .46rem .88rem;
+  border-radius: 99px;
+  font-size: .78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--sf) !important;
+  border: 1px solid var(--ln) !important;
+  color: var(--mu) !important;
+  cursor: pointer;
+  transition: all .2s var(--ease-out);
+  flex-shrink: 0;
+}
+.cat-chip:hover {
+  border-color: var(--ac) !important;
+  color: var(--tx) !important;
+}
+.cat-chip.on {
+  background: var(--ac) !important;
+  color: var(--on) !important;
+  border-color: var(--ac) !important;
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--ac) 65%, transparent);
+}
+.timer {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .35rem .72rem;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ac) 14%, var(--sf2));
+  border: 1px solid color-mix(in srgb, var(--ac) 35%, transparent);
+  color: var(--ac);
+  font-weight: 800;
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+}
+.timer b {
+  background: var(--sf);
+  color: var(--tx);
+  padding: .12rem .36rem;
+  border-radius: .35rem;
+  border: 1px solid var(--ln);
+}
+
+/* 7. PakStar Product Card Enhancements (.wish heart, .stock bar, Fraunces price) */
+.perfume-card {
+  border-radius: 1.25rem !important;
+  transition: transform .28s var(--ease-out), box-shadow .28s var(--ease-out), border-color .25s !important;
+}
+.perfume-card:hover {
+  transform: translateY(-3px);
+}
+.card-wish-btn {
+  position: absolute;
+  top: .55rem;
+  right: .55rem;
+  z-index: 4;
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0 !important;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--sf) 86%, transparent) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--ln) !important;
+  display: grid;
+  place-items: center;
+  color: var(--mu) !important;
+  cursor: pointer;
+  transition: transform .22s var(--ease-spring), color .18s, border-color .18s, background .18s;
+}
+.card-wish-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--ac) !important;
+}
+.card-wish-btn.on {
+  color: #e11d48 !important;
+  border-color: rgba(225,29,72,.35) !important;
+  background: rgba(225,29,72,.12) !important;
+}
+.card-wish-btn svg {
+  width: 1.02rem;
+  height: 1.02rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: fill .2s, transform .25s var(--ease-spring);
+}
+.card-wish-btn.on svg {
+  fill: currentColor;
+  transform: scale(1.12);
+}
+.card-unit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .35rem;
+  font-size: .74rem;
+  color: var(--mu);
+  margin-bottom: .2rem;
+}
+.card-more-hint {
+  color: var(--ac);
+  font-weight: 700;
+  font-size: .71rem;
+  cursor: pointer;
+}
+.card-stock-row {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--ok);
+  margin: .15rem 0 .35rem;
+}
+.card-stock-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--sf2);
+  overflow: hidden;
+  border: 1px solid var(--ln);
+}
+.card-stock-fill {
+  height: 100%;
+  width: 88%;
+  background: var(--ok);
+  border-radius: 99px;
+}
+.card-price {
+  font-family: var(--font-d) !important;
+  font-weight: 800 !important;
+}
+
+/* 8. PakStar Fixed Bottom Thumb-Zone Navigation (.tabs) */
+.tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: color-mix(in srgb, var(--sf) 94%, transparent) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--ln);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  max-width: 100%;
+}
+@media (min-width: 900px) {
+  .tabs {
+    max-width: 34rem;
+    margin: 0 auto;
+    bottom: .85rem;
+    border-radius: 99px;
+    border: 1px solid var(--ln);
+    box-shadow: 0 18px 44px -10px rgba(0,0,0,.45);
+    height: 3.9rem;
+    padding-bottom: 0;
+  }
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .16rem;
+  height: 100%;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--mu);
+  font-size: .66rem;
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  transition: color .2s, transform .15s;
+}
+.tab:active { transform: scale(.93); }
+.tab svg {
+  width: 1.28rem;
+  height: 1.28rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .25s var(--ease-spring);
+}
+.tab.active { color: var(--ac); }
+.tab.active svg { transform: translateY(-2px) scale(1.06); }
+.tab.cart-tab {
+  position: relative;
+}
+.tab.cart-tab .pill-wrap {
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--ac), #9e782f);
+  color: var(--on);
+  display: grid;
+  place-items: center;
+  margin-top: -1rem;
+  box-shadow: 0 8px 20px -4px color-mix(in srgb, var(--ac) 65%, transparent);
+  border: 3px solid var(--bg);
+}
+.tab.cart-tab svg { stroke: var(--on); width: 1.22rem; height: 1.22rem; }
+.t-badge {
+  position: absolute;
+  top: .15rem;
+  right: calc(50% - 1.35rem);
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 .26rem;
+  border-radius: 99px;
+  background: var(--ac);
+  color: var(--on);
+  font-size: .62rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+.t-badge[hidden] { display: none !important; }
+.back-to-top {
+  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 1rem) !important;
+}
 </style>
 </head>
 <body>
@@ -3854,9 +4829,23 @@ footer{
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
-<!-- ================= 2. HEADER BAR ================= -->
-<div class="top-banner">
-  <span id="bannerOffer">📍 <b>Showroom:</b> Tøyengata 3, Oslo (PakStar) · 🕋 <b>Surrati:</b> 150ml Extrait · 🇦🇺 <b>Bujairami:</b> Australsk Luksusnisje · ✉️ <b>aromatekoslo@outlook.com</b></span>
+<!-- ================= 2. HEADER BAR & PAK-STAR TOP BANNER ================= -->
+<div class="rice-top-banner" id="riceTopBanner" role="region" aria-label="Flaggskip og Showroom">
+  <div class="rtb-inner">
+    <div class="rtb-left">
+      <span class="rtb-pill" id="rtbPill">✨ 120 Utvalgte Flakonger</span>
+      <span class="rtb-title" id="bannerOffer">📍 <strong>Showroom:</strong> Tøyengata 3, Oslo (PakStar) · ✉️ <strong>aromatekoslo@outlook.com</strong></span>
+      <div class="rtb-packs">
+        <button type="button" class="rtb-pack" onclick="filterByBrandFromHero('Surrati')">🕋 Surrati <b>150 ml</b></button>
+        <button type="button" class="rtb-pack" onclick="filterByBrandFromHero('Bujairami')">🇦🇺 Bujairami <b>Extrait</b></button>
+        <button type="button" class="rtb-pack" onclick="openProductDetail('buhara-esans-7ml')">🇹🇷 Buhara Olje <b>99</b></button>
+      </div>
+    </div>
+    <div class="rtb-right">
+      <button type="button" class="rtb-cta" id="rtbCta" onclick="document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'})">Se katalog (120) →</button>
+      <button type="button" class="rtb-close" id="rtbClose" aria-label="Skjul toppbanner" title="Skjul" onclick="dismissTopBanner()">✕</button>
+    </div>
+  </div>
 </div>
 
 <header>
@@ -3930,8 +4919,9 @@ footer{
       <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Kontakt</button>
       <div class="top-nav-search" id="topNavSearchWrap">
         <span class="top-search-icon" aria-hidden="true" style="cursor:pointer" onclick="$('#topNavSearchInput')?.focus(); if ($('#topNavSearchInput')?.value) syncSearch($('#topNavSearchInput').value, 'top', true);">🔍</span>
-        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen">
+        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen" autocomplete="off">
         <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+        <div class="search-pop" id="searchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
       </div>
     </nav>
 
@@ -4053,6 +5043,249 @@ footer{
           <span class="mob-qbtn-text">Alle (120)</span>
         </button>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= PAK-STAR MARQUEE BAND ================= -->
+  <div class="band" aria-label="Hurtigvalg til populære parfymer">
+    <div class="marq">
+      <button type="button" onclick="openProductDetail('surrati-gray-oud')"><i>★</i> <span data-i18n-marq="1">🕋 Surrati Gray Oud 150 ml · 899</span></button>
+      <button type="button" onclick="openProductDetail('bujairami-hectic')"><i>★</i> <span data-i18n-marq="2">🇦🇺 Bujairami Hectic (Sydney) · 899</span></button>
+      <button type="button" onclick="openProductDetail('surrati-oud-honey')"><i>★</i> <span data-i18n-marq="3">🍯 Surrati Oud Honey 140 ml · 899</span></button>
+      <button type="button" onclick="openProductDetail('bujairami-date-night')"><i>★</i> <span data-i18n-marq="4">🍎 Bujairami Date Night · 899</span></button>
+      <button type="button" onclick="openProductDetail('al-haramain-detour-noir')"><i>★</i> <span data-i18n-marq="5">🌙 Al Haramain Detour Noir · 499</span></button>
+      <button type="button" onclick="openProductDetail('risala-autograph')"><i>★</i> <span data-i18n-marq="6">🖋️ Le Falconé Risala Autograph · 649</span></button>
+      <button type="button" onclick="openProductDetail('armaf-club-de-nuit-intense')"><i>★</i> <span data-i18n-marq="7">👑 Armaf Club de Nuit Intense · 499</span></button>
+      <button type="button" onclick="openProductDetail('lattafa-khamrah')"><i>★</i> <span data-i18n-marq="8">🥃 Lattafa Khamrah 100 ml · 400</span></button>
+      <button type="button" onclick="openProductDetail('buhara-esans-7ml')"><i>★</i> <span data-i18n-marq="9">🇹🇷 Buhara Esans Roll-on · 99</span></button>
+      <button type="button" onclick="openProductDetail('quran-prayer-gift-box')"><i>★</i> <span data-i18n-marq="10">🎁 Luksus Islamsk Gavesett 4-i-1 · 600</span></button>
+      <!-- Duplicated for seamless marquee loop -->
+      <button type="button" onclick="openProductDetail('surrati-gray-oud')"><i>★</i> <span>🕋 Surrati Gray Oud 150 ml · 899</span></button>
+      <button type="button" onclick="openProductDetail('bujairami-hectic')"><i>★</i> <span>🇦🇺 Bujairami Hectic (Sydney) · 899</span></button>
+      <button type="button" onclick="openProductDetail('surrati-oud-honey')"><i>★</i> <span>🍯 Surrati Oud Honey 140 ml · 899</span></button>
+      <button type="button" onclick="openProductDetail('bujairami-date-night')"><i>★</i> <span>🍎 Bujairami Date Night · 899</span></button>
+      <button type="button" onclick="openProductDetail('al-haramain-detour-noir')"><i>★</i> <span>🌙 Al Haramain Detour Noir · 499</span></button>
+      <button type="button" onclick="openProductDetail('risala-autograph')"><i>★</i> <span>🖋️ Le Falconé Risala Autograph · 649</span></button>
+      <button type="button" onclick="openProductDetail('armaf-club-de-nuit-intense')"><i>★</i> <span>👑 Armaf Club de Nuit Intense · 499</span></button>
+      <button type="button" onclick="openProductDetail('lattafa-khamrah')"><i>★</i> <span>🥃 Lattafa Khamrah 100 ml · 400</span></button>
+    </div>
+  </div>
+
+  <!-- ================= PAK-STAR FLAGSHIP SHOWCASE CAROUSEL ================= -->
+  <section class="ps-carousel" id="psCarousel" aria-roledescription="carousel" aria-label="Utvalgte Flaggskiphus og Bestselgere">
+    <div class="ps-viewport">
+      <div class="ps-track" id="psTrack">
+
+        <!-- SLIDE 1: SURRATI PERFUMES (MECCA FLAGSHIP) -->
+        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="1 av 3: Surrati Perfumes">
+          <div class="ps-card">
+            <div class="ps-copy">
+              <span class="ps-kicker" id="psKicker1">🕋 Flaggskip fra Mekka · 150 ml Extrait</span>
+              <h2 class="ps-title" id="psTitle1">Surrati Perfumes <em>140–150 ml Luksus</em></h2>
+              <p class="ps-sub" id="psSub1">Kongelige saudiarabiske parfymer med ekstrem sillage, lagret oud, villhonning og edle krydder i tunge samlerflakonger.</p>
+              <div class="ps-badges">
+                <span class="ps-badge">✓ 140–150 ml Extrait</span>
+                <span class="ps-badge">✓ 100 % Original</span>
+                <span class="ps-badge">✓ Showroom Tøyengata 3</span>
+              </div>
+              <div class="ps-actions">
+                <button type="button" class="ps-btn-main" id="psBtnMain1" onclick="filterByBrandFromHero('Surrati')">Se alle 12 Surrati →</button>
+                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('surrati-gray-oud')">Utforsk Gray Oud</button>
+              </div>
+            </div>
+            <div class="ps-packs">
+              <div class="ps-pack featured" onclick="openProductDetail('surrati-gray-oud')">
+                <span class="ps-pack-ribbon">Mest solgt</span>
+                <img class="ps-pack-img" src="images/surrati-gray-oud.png" alt="Surrati Gray Oud" loading="lazy">
+                <div class="ps-pack-size">Gray Oud</div>
+                <div class="ps-pack-sub">150 ml Extrait</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-gray-oud')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('surrati-oud-honey')">
+                <img class="ps-pack-img" src="images/surrati-oud-honey.png" alt="Surrati Oud Honey" loading="lazy">
+                <div class="ps-pack-size">Oud Honey</div>
+                <div class="ps-pack-sub">140 ml EDP</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-oud-honey')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('surrati-rosso-ombre')">
+                <img class="ps-pack-img" src="images/surrati-rosso-ombre.png" alt="Surrati Rosso Ombré" loading="lazy">
+                <div class="ps-pack-size">Rosso Ombré</div>
+                <div class="ps-pack-sub">150 ml Extrait</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-rosso-ombre')">+ Legg i kurv</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: BUJAIRAMI PERFUMES (SYDNEY AUSTRALIA) -->
+        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="2 av 3: Bujairami Perfumes Sydney">
+          <div class="ps-card ps-card--bujairami">
+            <div class="ps-copy">
+              <span class="ps-kicker" id="psKicker2">🇦🇺 Australsk Nisjeluksus · Sydney</span>
+              <h2 class="ps-title" id="psTitle2">Bujairami Perfumes <em>Extrait i Blå Skinneske</em></h2>
+              <p class="ps-sub" id="psSub2">Australias mest ettertraktede parfymehus — håndtappede Extrait de Parfum-utgaver levert i signatur blå flip-top skinneske.</p>
+              <div class="ps-badges">
+                <span class="ps-badge">✓ 100 ml Extrait</span>
+                <span class="ps-badge">✓ Blå Flip-Top Skinneske</span>
+                <span class="ps-badge">✓ På lager i Oslo</span>
+              </div>
+              <div class="ps-actions">
+                <button type="button" class="ps-btn-main" id="psBtnMain2" onclick="filterByBrandFromHero('Bujairami')">Se alle 8 Bujairami →</button>
+                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('bujairami-hectic')">Utforsk Hectic</button>
+              </div>
+            </div>
+            <div class="ps-packs">
+              <div class="ps-pack featured" onclick="openProductDetail('bujairami-hectic')">
+                <span class="ps-pack-ribbon">TikTok #1</span>
+                <img class="ps-pack-img" src="images/bujairami-hectic.png" alt="Bujairami Hectic" loading="lazy">
+                <div class="ps-pack-size">Hectic</div>
+                <div class="ps-pack-sub">100 ml Extrait</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-hectic')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('bujairami-date-night')">
+                <img class="ps-pack-img" src="images/bujairami-date-night.png" alt="Bujairami Date Night" loading="lazy">
+                <div class="ps-pack-size">Date Night</div>
+                <div class="ps-pack-sub">100 ml Extrait</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-date-night')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('bujairami-psycho')">
+                <img class="ps-pack-img" src="images/bujairami-psycho.png" alt="Bujairami Psycho" loading="lazy">
+                <div class="ps-pack-size">Psycho</div>
+                <div class="ps-pack-sub">100 ml Extrait</div>
+                <div class="ps-pack-price">899</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-psycho')">+ Legg i kurv</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: VIRAL ARABIAN ICONS & GIFT SETS -->
+        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="3 av 3: Virale Ikoner">
+          <div class="ps-card ps-card--viral">
+            <div class="ps-copy">
+              <span class="ps-kicker" id="psKicker3">🔥 Globale Bestselgere · Makspris 1 500</span>
+              <h2 class="ps-title" id="psTitle3">Virale Ikoner <em>Fra Dubai & Arabia</em></h2>
+              <p class="ps-sub" id="psSub3">Detour Noir, Le Falconé Risala Autograph, Club de Nuit Intense, Lattafa Khamrah og komplette 4-i-1 gavesett.</p>
+              <div class="ps-badges">
+                <span class="ps-badge">✓ 120 Utvalgte Dufter</span>
+                <span class="ps-badge">✓ Vipps ved Henting</span>
+                <span class="ps-badge">✓ Maks 1 500</span>
+              </div>
+              <div class="ps-actions">
+                <button type="button" class="ps-btn-main" id="psBtnMain3" onclick="document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'})">Utforsk alle 120 →</button>
+                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('al-haramain-detour-noir')">Se Detour Noir</button>
+              </div>
+            </div>
+            <div class="ps-packs">
+              <div class="ps-pack featured" onclick="openProductDetail('al-haramain-detour-noir')">
+                <span class="ps-pack-ribbon">Viral Favoritt</span>
+                <img class="ps-pack-img" src="images/detour-noir.png" alt="Al Haramain Detour Noir" loading="lazy">
+                <div class="ps-pack-size">Detour Noir</div>
+                <div class="ps-pack-sub">100 ml EDP</div>
+                <div class="ps-pack-price">499</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('al-haramain-detour-noir')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('risala-autograph')">
+                <img class="ps-pack-img" src="images/risala-autograph.png" alt="Risala Autograph" loading="lazy">
+                <div class="ps-pack-size">Autograph</div>
+                <div class="ps-pack-sub">100 ml EDP</div>
+                <div class="ps-pack-price">649</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('risala-autograph')">+ Legg i kurv</button>
+              </div>
+              <div class="ps-pack" onclick="openProductDetail('lattafa-khamrah')">
+                <img class="ps-pack-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
+                <div class="ps-pack-size">Khamrah</div>
+                <div class="ps-pack-sub">100 ml EDP</div>
+                <div class="ps-pack-price">400</div>
+                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('lattafa-khamrah')">+ Legg i kurv</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ps-controls">
+      <div class="ps-dots" role="tablist" aria-label="Velg lysbilde">
+        <button type="button" class="ps-dot on" data-slide="0" role="tab" aria-selected="true" aria-label="Surrati Perfumes"></button>
+        <button type="button" class="ps-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Bujairami Perfumes"></button>
+        <button type="button" class="ps-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Virale Ikoner"></button>
+      </div>
+      <div class="ps-arrows">
+        <button type="button" class="ps-arrow" id="psPrev" aria-label="Forrige lysbilde">‹</button>
+        <button type="button" class="ps-arrow" id="psNext" aria-label="Neste lysbilde">›</button>
+      </div>
+    </div>
+    <div class="ps-prog" aria-hidden="true"><div class="ps-prog-bar" id="psProgBar"></div></div>
+  </section>
+
+  <!-- ================= PAK-STAR 3D SCENT FAMILIES & TRUST PILLARS ================= -->
+  <section class="cats-sec" id="kategorier" aria-label="Duftfamilier og garantier">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" id="catsSecTitle">Utforsk etter Duftfamilie & Stil</h2>
+        <p class="sec-sub" id="catsSecSub">Trykk på en duftfamilie eller et flaggskiphus for å filtrere blant våre 120 originale flakonger</p>
+      </div>
+      <div class="timer" aria-label="Showroom og tilbud">
+        <span>⚡ Oslo Lager</span>
+        <b id="timerH">12</b>:<b id="timerM">45</b>:<b id="timerS">00</b>
+      </div>
+    </div>
+
+    <div class="cat-grid" id="catGrid3D">
+      <button type="button" class="cat-card" data-scent="oud" style="--tint:rgba(212,175,106,.22)" onclick="selectPakStarCategory('scent','oud',this)">
+        <div class="ico">🪵</div>
+        <b id="catLblOud">Oud & Treaktig</b>
+        <small id="catSubOud">Røkt & Kongelig</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="amber" style="--tint:rgba(217,119,6,.22)" onclick="selectPakStarCategory('scent','amber',this)">
+        <div class="ico">🔥</div>
+        <b id="catLblAmber">Amber & Krydret</b>
+        <small id="catSubAmber">Varm & Intens</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="gourmand" style="--tint:rgba(180,83,9,.22)" onclick="selectPakStarCategory('scent','gourmand',this)">
+        <div class="ico">🍯</div>
+        <b id="catLblGourmand">Gourmand & Kaffe</b>
+        <small id="catSubGourmand">Vanilje & Dadler</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="citrus" style="--tint:rgba(56,189,248,.22)" onclick="selectPakStarCategory('scent','citrus',this)">
+        <div class="ico">🍋</div>
+        <b id="catLblCitrus">Frisk & Sitrus</b>
+        <small id="catSubCitrus">Bergamott & Hav</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="musk" style="--tint:rgba(148,163,184,.22)" onclick="selectPakStarCategory('scent','musk',this)">
+        <div class="ico">❄️</div>
+        <b id="catLblMusk">Arktisk & Moskus</b>
+        <small id="catSubMusk">Ren & Krystallklar</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="floral" style="--tint:rgba(244,63,94,.22)" onclick="selectPakStarCategory('scent','floral',this)">
+        <div class="ico">🌸</div>
+        <b id="catLblFloral">Blomstret & Søt</b>
+        <small id="catSubFloral">Taif-rose & Frukt</small>
+      </button>
+      <button type="button" class="cat-card" data-brand="Surrati" style="--tint:rgba(31,122,77,.25)" onclick="selectPakStarCategory('brand','Surrati',this)">
+        <div class="ico">🕋</div>
+        <b>Surrati (12)</b>
+        <small>150 ml Extrait</small>
+      </button>
+      <button type="button" class="cat-card" data-brand="Bujairami" style="--tint:rgba(37,99,235,.25)" onclick="selectPakStarCategory('brand','Bujairami',this)">
+        <div class="ico">🇦🇺</div>
+        <b>Bujairami (8)</b>
+        <small>Sydney Nisje</small>
+      </button>
+    </div>
+
+    <div class="trust-list">
+      <div class="trust-item"><i>✓</i> <span id="trustItem1">100 % Originale fabrikkutgaver</span></div>
+      <div class="trust-item"><i>📍</i> <span id="trustItem2">Showroom: Tøyengata 3, Oslo</span></div>
+      <div class="trust-item"><i>⚡</i> <span id="trustItem3">Enkel Vipps-reservasjon</span></div>
+      <div class="trust-item"><i>💎</i> <span id="trustItem4">Maksprisgaranti 1 500</span></div>
     </div>
   </section>
 
@@ -4431,6 +5664,22 @@ footer{
           <button type="button" class="btn-show-all" id="btnShowAll" onclick="resetAllFilters()" title="Vis alle parfymer / Reset filters">Show All</button>
         </div>
         <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
+      </div>
+
+      <!-- PakStar Horizontal Filter Chips Rail -->
+      <div class="chips-rail" id="cats" role="tablist" aria-label="Hurtigfilter for dufter og merker">
+        <button type="button" class="cat-chip on" data-chip-type="all" data-chip-val="all" onclick="selectCatalogChip('all','all',this)">✨ Alle (120)</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Surrati" onclick="selectCatalogChip('brand','Surrati',this)">🕋 Surrati (12)</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Bujairami" onclick="selectCatalogChip('brand','Bujairami',this)">🇦🇺 Bujairami (8)</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Lattafa" onclick="selectCatalogChip('brand','Lattafa',this)">🌟 Lattafa (25)</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Al Haramain" onclick="selectCatalogChip('brand','Al Haramain',this)">🌙 Al Haramain</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Risala" onclick="selectCatalogChip('brand','Risala',this)">🖋️ Risala</button>
+        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="oud" onclick="selectCatalogChip('scent','oud',this)">🪵 Oud & Tre</button>
+        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="amber" onclick="selectCatalogChip('scent','amber',this)">🔥 Amber & Krydder</button>
+        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">🍯 Gourmand</button>
+        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">🍋 Frisk & Sitrus</button>
+        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="floral" onclick="selectCatalogChip('scent','floral',this)">🌸 Blomstret</button>
+        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Gavesett" onclick="selectCatalogChip('brand','Gavesett',this)">🎁 Gavesett</button>
       </div>
     </div>
 
@@ -5058,11 +6307,50 @@ footer{
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.67 (updated 2026-11-10 15:25)
+        v1.0.68 (updated 2026-11-10 16:40)
       </div>
     </div>
   </div>
 </footer>
+
+<!-- ================= PAK-STAR WISHLIST BOTTOM SHEET / MODAL ================= -->
+<dialog id="wishlistModal" class="sheet-dialog" closedby="any" aria-labelledby="wishHeading">
+  <div class="sheet-hd">
+    <h2 id="wishHeading">Lagrede Favoritter</h2>
+    <button type="button" class="sheet-x" data-close onclick="closeWishlist()" aria-label="Lukk ønskeliste">✕</button>
+  </div>
+  <ul class="sheet-bd cart-items-ul" id="wishlistList"></ul>
+  <div class="sheet-ft">
+    <button type="button" class="sheet-btn" onclick="closeWishlist(); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});" id="wishBrowseBtn">Utforsk alle 120 parfymer</button>
+  </div>
+</dialog>
+
+<!-- ================= PAK-STAR THUMB-ZONE BOTTOM NAVIGATION (.tabs) ================= -->
+<nav class="tabs" aria-label="Hovednavigasjon">
+  <button type="button" class="tab active" data-tab="home" onclick="handleBottomTab('home', this)">
+    <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    <span id="tabLblHome">Hjem</span>
+  </button>
+  <button type="button" class="tab" data-tab="explore" onclick="handleBottomTab('explore', this)">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    <span id="tabLblExplore">Utforsk</span>
+  </button>
+  <button type="button" class="tab cart-tab" data-tab="cart" onclick="handleBottomTab('cart', this)" aria-label="Handlekurv">
+    <div class="pill-wrap">
+      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+    <span class="t-badge" id="navCartCount" hidden>0</span>
+  </button>
+  <button type="button" class="tab" data-tab="wish" onclick="handleBottomTab('wish', this)">
+    <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    <span id="tabLblWish">Ønsker</span>
+    <span class="t-badge" id="navWishCount" hidden>0</span>
+  </button>
+  <button type="button" class="tab" data-tab="showroom" onclick="handleBottomTab('showroom', this)">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span id="tabLblShowroom">Showroom</span>
+  </button>
+</nav>
 
 <!-- Floating Small Circle Back-to-Top Button -->
 <button type="button" class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" aria-label="Tilbake til toppen / Back to top" title="Tilbake til toppen">
@@ -9868,10 +11156,15 @@ function renderStore() {
     return;
   }
 
-  grid.innerHTML = filtered.map(p => `
+  grid.innerHTML = filtered.map(p => {
+    const isWished = typeof isProductWished === 'function' && isProductWished(p.id);
+    return `
     <article class="perfume-card" data-id="${p.id}" tabindex="0">
       <div class="card-img-wrap" onclick="openProductDetail('${p.id}')">
         ${p.tag ? `<span class="card-tag-badge"><span class="badge-dot"></span>${escapeHtml(translateTag(p.tag, LANG))}</span>` : ''}
+        <button type="button" class="card-wish-btn ${isWished ? 'on' : ''}" data-wish="${p.id}" onclick="event.stopPropagation(); toggleWish('${p.id}')" aria-label="${isEn ? 'Save to wishlist' : 'Lagre som favoritt'}" aria-pressed="${isWished}">
+          <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </button>
         <div class="card-slider-track ${currentViewMode === 'box' ? 'slide-box' : ''}">
           <div class="card-slide">
             <img class="card-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
@@ -9885,7 +11178,14 @@ function renderStore() {
       </div>
       <span class="card-brand">${escapeHtml(p.house || p.brand)}</span>
       <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</h3>
-      <div class="card-vol">${escapeHtml(p.size || '100 ml')}</div>
+      <div class="card-unit-row">
+        <span class="card-vol" style="margin:0">${escapeHtml(p.size || '100 ml')}</span>
+        <span class="card-more-hint" onclick="openProductDetail('${p.id}')">${isEn ? 'Details ›' : 'Se detaljer ›'}</span>
+      </div>
+      <div class="card-stock-row">
+        <span>${isEn ? 'In stock · Oslo' : 'På lager · Oslo'}</span>
+        <div class="card-stock-track"><div class="card-stock-fill"></div></div>
+      </div>
       <div class="card-price">
         ${nok(p.price)}
         ${p.originalPrice ? `<span style="font-size:0.75rem;color:var(--dim);text-decoration:line-through;margin-left:0.35rem">${nok(p.originalPrice)}</span>` : ''}
@@ -9902,7 +11202,8 @@ function renderStore() {
         </div>
       </div>
     </article>
-  `).join('');
+  `;
+  }).join('');
 
   // Keyboard accessibility on cards
   grid.querySelectorAll('.perfume-card').forEach(card => {
@@ -12357,6 +13658,323 @@ document.addEventListener('keydown', e => {
 });
 
 // ── STARTUP & INITIALIZATION SEQUENCE ──
+// ── PAK-STAR UI INTERACTIVE CONTROLLERS ──
+let WISHLIST = [];
+try {
+  WISHLIST = JSON.parse(localStorage.getItem('arx_wish_v1') || '[]');
+  if (!Array.isArray(WISHLIST)) WISHLIST = [];
+} catch(e) { WISHLIST = []; }
+
+function saveWishlist() {
+  try { localStorage.setItem('arx_wish_v1', JSON.stringify(WISHLIST)); } catch(e) {}
+}
+
+window.isProductWished = function(id) {
+  return WISHLIST.includes(id);
+};
+
+function updateWishBadges() {
+  const b = document.getElementById('navWishCount');
+  if (b) {
+    b.textContent = WISHLIST.length;
+    b.hidden = WISHLIST.length === 0;
+  }
+}
+
+window.toggleWish = function(id) {
+  const idx = WISHLIST.indexOf(id);
+  const isEn = LANG === 'en';
+  const p = CATALOG.find(x => x.id === id);
+  if (idx >= 0) {
+    WISHLIST.splice(idx, 1);
+    showToast(isEn ? 'Removed from favorites' : 'Fjernet fra favoritter');
+  } else {
+    WISHLIST.push(id);
+    triggerHaptic();
+    showToast(isEn ? `${p ? p.name : 'Perfume'} saved to favorites ♥` : `${p ? p.name : 'Parfyme'} lagret i favoritter ♥`);
+  }
+  saveWishlist();
+  updateWishBadges();
+  document.querySelectorAll(`[data-wish="${id}"]`).forEach(btn => {
+    const on = WISHLIST.includes(id);
+    btn.classList.toggle('on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  if (document.getElementById('wishlistModal')?.open) renderWishlistModal();
+};
+
+function renderWishlistModal() {
+  const list = document.getElementById('wishlistList');
+  const head = document.getElementById('wishHeading');
+  const isEn = LANG === 'en';
+  if (head) head.textContent = isEn ? `Saved Favorites (${WISHLIST.length})` : `Lagrede Favoritter (${WISHLIST.length})`;
+  if (!list) return;
+  const items = WISHLIST.map(id => CATALOG.find(p => p.id === id)).filter(Boolean);
+  if (!items.length) {
+    list.innerHTML = `
+      <li class="cart-empty">
+        <div style="font-size:2.2rem;margin-bottom:8px">🤍</div>
+        <p>${isEn ? 'No saved favorites yet. Tap the heart ♥ on any bottle to save it here.' : 'Ingen lagrede favoritter ennå. Trykk på hjertet ♥ på et produktkort for å lagre dine favoritter.'}</p>
+      </li>
+    `;
+    return;
+  }
+  list.innerHTML = items.map(p => `
+    <li class="cart-item">
+      <img class="cart-item-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onclick="closeWishlist(); openProductDetail('${p.id}')" style="cursor:pointer">
+      <div class="cart-item-meta" onclick="closeWishlist(); openProductDetail('${p.id}')" style="cursor:pointer">
+        <b>${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</b>
+        <small>${escapeHtml(p.house || p.brand)} · ${escapeHtml(p.size || '100 ml')}</small>
+        <small style="color:var(--ac);font-weight:700">${nok(p.price)}</small>
+      </div>
+      <div style="display:flex;align-items:center;gap:.4rem">
+        <button type="button" class="sheet-btn" style="min-height:38px;padding:0 12px;font-size:13px" onclick="closeWishlist(); ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">${isEn ? 'Buy' : 'Kjøp'}</button>
+        <button type="button" class="sheet-x" style="width:36px;height:36px" onclick="toggleWish('${p.id}')" aria-label="Fjern">✕</button>
+      </div>
+    </li>
+  `).join('');
+}
+
+window.openWishlist = function() {
+  renderWishlistModal();
+  const m = document.getElementById('wishlistModal');
+  if (m && !m.open) showSheetDialog(m);
+};
+window.closeWishlist = function() {
+  const m = document.getElementById('wishlistModal');
+  if (m && m.open) m.close();
+};
+
+// Sync bottom nav cart badge whenever cart updates
+const _origRenderCartPak = renderCart;
+renderCart = function() {
+  _origRenderCartPak();
+  const totalCount = S.lines.reduce((sum, item) => sum + item.qty, 0);
+  const navB = document.getElementById('navCartCount');
+  if (navB) {
+    navB.textContent = totalCount;
+    navB.hidden = totalCount === 0;
+  }
+};
+
+// Dismissible Top Banner
+window.dismissTopBanner = function() {
+  const b = document.getElementById('riceTopBanner');
+  if (b) b.hidden = true;
+};
+
+// PakStar Live Search Popover (#searchPop)
+function renderSearchPop(q) {
+  const pop = document.getElementById('searchPop');
+  if (!pop) return;
+  const query = (q || '').trim().toLowerCase();
+  if (!query) {
+    pop.hidden = true;
+    return;
+  }
+  const isEn = LANG === 'en';
+  const matches = CATALOG.filter(p => {
+    return p.name.toLowerCase().includes(query) ||
+           p.brand.toLowerCase().includes(query) ||
+           (p.house || '').toLowerCase().includes(query) ||
+           (p.subtitle || '').toLowerCase().includes(query);
+  });
+  const topMatches = matches.slice(0, 7);
+  if (!topMatches.length) {
+    pop.innerHTML = `<div class="sp-empty">${isEn ? 'No matching fragrances for' : 'Ingen treff for'} «${escapeHtml(q)}»</div>`;
+    pop.hidden = false;
+    return;
+  }
+  pop.innerHTML = `
+    <div class="sp-head">
+      <span>${matches.length} ${isEn ? 'matches' : 'treff'}</span>
+      <button type="button" style="color:var(--ac);font-weight:800;cursor:pointer" onclick="document.getElementById('searchPop').hidden=true; document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">${isEn ? 'See all →' : 'Se alle →'}</button>
+    </div>
+    ${topMatches.map(p => `
+      <div class="sp-item" onclick="document.getElementById('searchPop').hidden=true; openProductDetail('${p.id}')">
+        <div class="sp-thumb"><img src="${p.image}" alt="" loading="lazy"></div>
+        <div class="sp-meta">
+          <div class="sp-title">${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</div>
+          <div class="sp-sub">${escapeHtml(p.house || p.brand)} · ${escapeHtml(p.size || '100 ml')}</div>
+        </div>
+        <div class="sp-right">
+          <span class="sp-price">${nok(p.price)}</span>
+          <button type="button" class="sp-add" onclick="event.stopPropagation(); document.getElementById('searchPop').hidden=true; ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">+ ${isEn ? 'Buy' : 'Kjøp'}</button>
+        </div>
+      </div>
+    `).join('')}
+  `;
+  pop.hidden = false;
+}
+
+$('#topNavSearchInput')?.addEventListener('input', e => {
+  renderSearchPop(e.target.value);
+});
+$('#topNavSearchInput')?.addEventListener('focus', e => {
+  if (e.target.value.trim()) renderSearchPop(e.target.value);
+});
+document.addEventListener('click', e => {
+  const pop = document.getElementById('searchPop');
+  const wrap = document.getElementById('topNavSearchWrap');
+  if (pop && !pop.hidden && wrap && !wrap.contains(e.target)) {
+    pop.hidden = true;
+  }
+});
+
+// PakStar 3D Category Cards & Chips Rail Selection
+window.selectPakStarCategory = function(type, val, btnEl) {
+  document.querySelectorAll('#catGrid3D .cat-card').forEach(c => c.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  if (type === 'scent') {
+    activeBrand = 'all';
+    activeScent = val;
+    if ($('#filterBrand')) $('#filterBrand').value = 'all';
+    if ($('#filterScent')) $('#filterScent').value = val;
+  } else if (type === 'brand') {
+    activeScent = 'all';
+    activeBrand = val;
+    if ($('#filterScent')) $('#filterScent').value = 'all';
+    if ($('#filterBrand')) $('#filterBrand').value = val;
+  }
+  syncCatalogChipsUI();
+  renderStore();
+  document.getElementById('kjop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+window.selectCatalogChip = function(type, val, chipEl) {
+  if (type === 'all') {
+    resetAllFilters();
+  } else if (type === 'brand') {
+    activeScent = 'all';
+    activeBrand = val;
+    if ($('#filterScent')) $('#filterScent').value = 'all';
+    if ($('#filterBrand')) $('#filterBrand').value = val;
+    renderStore();
+  } else if (type === 'scent') {
+    activeBrand = 'all';
+    activeScent = val;
+    if ($('#filterBrand')) $('#filterBrand').value = 'all';
+    if ($('#filterScent')) $('#filterScent').value = val;
+    renderStore();
+  }
+  syncCatalogChipsUI();
+};
+
+function syncCatalogChipsUI() {
+  document.querySelectorAll('#cats .cat-chip').forEach(ch => {
+    const t = ch.dataset.chipType;
+    const v = ch.dataset.chipVal;
+    const isOn = (t === 'all' && activeBrand === 'all' && activeScent === 'all') ||
+                 (t === 'brand' && activeBrand === v) ||
+                 (t === 'scent' && activeScent === v);
+    ch.classList.toggle('on', isOn);
+  });
+}
+
+// 3D Tilt on .cat-card
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.cat-card').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
+      el.style.setProperty('--rx', (-y * 10).toFixed(2) + 'deg');
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.setProperty('--ry', '0deg');
+      el.style.setProperty('--rx', '0deg');
+    });
+  });
+}
+
+// PakStar Showcase Carousel (#psCarousel)
+(function initPakStarCarousel() {
+  const root = document.getElementById('psCarousel');
+  const track = document.getElementById('psTrack');
+  if (!root || !track) return;
+  const dots = root.querySelectorAll('.ps-dot');
+  const prev = document.getElementById('psPrev');
+  const next = document.getElementById('psNext');
+  const bar = document.getElementById('psProgBar');
+  const total = 3;
+  const DURATION = 6000;
+  let idx = 0, startTs = performance.now(), paused = false;
+
+  function goTo(n) {
+    idx = (n + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle('on', i === idx);
+      d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+    });
+    startTs = performance.now();
+    if (bar) bar.style.width = '0%';
+  }
+  dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.slide) || 0)));
+  prev?.addEventListener('click', () => goTo(idx - 1));
+  next?.addEventListener('click', () => goTo(idx + 1));
+  root.addEventListener('pointerenter', () => { paused = true; });
+  root.addEventListener('pointerleave', () => { paused = false; startTs = performance.now(); });
+
+  let sx = 0, dx = 0;
+  root.addEventListener('touchstart', e => { sx = e.touches[0].clientX; dx = 0; paused = true; }, { passive: true });
+  root.addEventListener('touchmove', e => { dx = e.touches[0].clientX - sx; }, { passive: true });
+  root.addEventListener('touchend', () => {
+    if (Math.abs(dx) > 42) goTo(dx < 0 ? idx + 1 : idx - 1);
+    paused = false;
+    startTs = performance.now();
+  });
+
+  function tick(now) {
+    if (!paused && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const pct = Math.min(100, ((now - startTs) / DURATION) * 100);
+      if (bar) bar.style.width = pct + '%';
+      if (pct >= 100) goTo(idx + 1);
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// Countdown Timer (.timer)
+(function initPakStarTimer() {
+  const hEl = document.getElementById('timerH');
+  const mEl = document.getElementById('timerM');
+  const sEl = document.getElementById('timerS');
+  if (!hEl || !mEl || !sEl) return;
+  const end = Date.now() + (11 * 3600 + 42 * 60 + 19) * 1000;
+  const pad = n => String(n).padStart(2, '0');
+  setInterval(() => {
+    const d = Math.max(0, Math.floor((end - Date.now()) / 1000));
+    hEl.textContent = pad(Math.floor(d / 3600));
+    mEl.textContent = pad(Math.floor((d % 3600) / 60));
+    sEl.textContent = pad(d % 60);
+  }, 1000);
+})();
+
+// Bottom Navigation Tabs (.tabs)
+window.handleBottomTab = function(tab, btnEl) {
+  document.querySelectorAll('.tabs .tab').forEach(t => {
+    if (!t.classList.contains('cart-tab')) t.classList.remove('active');
+  });
+  if (btnEl && !btnEl.classList.contains('cart-tab')) btnEl.classList.add('active');
+
+  if (tab === 'home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (tab === 'explore') {
+    document.getElementById('kjop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (tab === 'cart') {
+    openCart();
+  } else if (tab === 'wish') {
+    openWishlist();
+  } else if (tab === 'showroom') {
+    document.getElementById('showroom')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
+updateWishBadges();
+
 // 0. Initialize theme (Light / Dark mode according to saved preference / OS)
 initTheme();
 // 1. Load cart
