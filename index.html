@@ -721,7 +721,9 @@ try {
 /* Hardware-accelerated sliding packshot carousel */
 .card-slider-track {
   display: flex;
+  flex: 0 0 200%;
   width: 200%;
+  min-width: 200%;
   height: 100%;
   transform: translate3d(0, 0, 0);
   transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
@@ -731,8 +733,11 @@ try {
   transform: translate3d(-50%, 0, 0);
 }
 .card-slide {
+  flex: 0 0 50%;
   width: 50%;
+  min-width: 50%;
   height: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2547,9 +2552,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   height:195px;
   position:relative;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:block;
   margin-bottom:.75rem;
   cursor:pointer;
   border-radius:12px;
@@ -5054,7 +5057,7 @@ html.theme-light :where(a, button, input, select, textarea, [tabindex="0"]):focu
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.64 (updated 2026-11-10 07:55)
+        v1.0.65 (updated 2026-11-10 08:26)
       </div>
     </div>
   </div>
@@ -5359,7 +5362,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "lattafa-khamrah-dukhan",
     "image": "images/lattafa-khamrah-dukhan.png",
-    "image_box": "images/lattafa-khamrah-dukhan-box.png",
+    "image_box": "images/lattafa-khamrah-dukhan.png",
     "brand": "Lattafa",
     "house": "Lattafa Perfumes",
     "name": "Lattafa Khamrah Dukhan",
@@ -5689,7 +5692,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "lattafa-mayar",
     "image": "images/lattafa-mayar.png",
-    "image_box": "images/lattafa-mayar-box.png",
+    "image_box": "images/lattafa-mayar.png",
     "brand": "Lattafa",
     "house": "Lattafa Perfumes",
     "name": "Lattafa Mayar",
@@ -5887,7 +5890,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "ibraq-greek-tobacco",
     "image": "images/ibraq-greek-tobacco.png",
-    "image_box": "images/ibraq-greek-tobacco-box.png",
+    "image_box": "images/ibraq-greek-tobacco.png",
     "brand": "Ibraq",
     "house": "Ibrahim Al Qurashi (IBRAQ)",
     "name": "Ibrahim Al Qurashi Greek Tobacco",
@@ -5953,7 +5956,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "ibraq-nude-coral",
     "image": "images/ibraq-nude-coral.png",
-    "image_box": "images/ibraq-nude-coral-box.png",
+    "image_box": "images/ibraq-nude-coral.png",
     "brand": "Ibraq",
     "house": "Ibrahim Al Qurashi (IBRAQ)",
     "name": "Ibrahim Al Qurashi Nude Coral Diamond",
@@ -6052,7 +6055,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "ibraq-cullinan-diamond-iris",
     "image": "images/ibraq-cullinan-diamond-iris.png",
-    "image_box": "images/ibraq-cullinan-diamond-iris-box.png",
+    "image_box": "images/ibraq-cullinan-diamond-iris.png",
     "brand": "Ibraq",
     "house": "Ibrahim Al Qurashi (IBRAQ)",
     "name": "Ibrahim Al Qurashi Cullinan Diamond Iris",
@@ -6151,7 +6154,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "reef-aurum",
     "image": "images/reef-aurum.png",
-    "image_box": "images/reef-aurum-box.png",
+    "image_box": "images/reef-aurum.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Aurum",
@@ -6877,7 +6880,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "french-avenue-spectre-ghost",
     "image": "images/french-avenue-spectre-ghost.png",
-    "image_box": "images/french-avenue-spectre-ghost-box.png",
+    "image_box": "images/french-avenue-spectre-ghost.png",
     "brand": "French Avenue",
     "house": "Fragrance World Prestige",
     "name": "French Avenue Spectre Ghost",
@@ -7306,7 +7309,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "alhambra-jean-lowe-immortal",
     "image": "images/alhambra-jean-lowe-immortal.png",
-    "image_box": "images/alhambra-jean-lowe-immortal.png",
+    "image_box": "images/alhambra-jean-lowe-immortal-box.png",
     "brand": "Maison Alhambra",
     "house": "Maison Alhambra",
     "name": "Maison Alhambra Jean Lowe Immortal",
@@ -7439,7 +7442,6 @@ const DEFAULT_CATALOG = [
     "id": "reef-blanc-nomad",
     "image": "images/reef-blanc-nomad.png",
     "image_box": "images/reef-blanc-nomad-box.png",
-    "image_set": "images/reef-blanc-nomad-set.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Blanc Nomad",
@@ -7473,7 +7475,6 @@ const DEFAULT_CATALOG = [
     "id": "reef-blanc-ash",
     "image": "images/reef-blanc-ash.png",
     "image_box": "images/reef-blanc-ash-box.png",
-    "image_set": "images/reef-blanc-ash-set.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Blanc Ash",
@@ -7704,7 +7705,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "reef-pesca",
     "image": "images/reef-pesca.png",
-    "image_box": "images/reef-pesca.png",
+    "image_box": "images/reef-pesca-box.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Pesca",
@@ -7737,7 +7738,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "reef-bluest",
     "image": "images/reef-bluest.png",
-    "image_box": "images/reef-bluest.png",
+    "image_box": "images/reef-bluest-box.png",
     "brand": "Reef",
     "house": "Reef Perfumes",
     "name": "Reef Bluest",
@@ -8779,7 +8780,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "risala-autograph",
     "image": "images/risala-autograph.png",
-    "image_box": "images/risala-autograph-box.png",
+    "image_box": "images/risala-autograph.png",
     "brand": "Risala",
     "house": "Le Falconé · Dubai UAE",
     "name": "Le Falconé Risala Autograph",
@@ -8813,7 +8814,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "risala-for-you",
     "image": "images/risala-for-you.png",
-    "image_box": "images/risala-for-you-box.png",
+    "image_box": "images/risala-for-you.png",
     "brand": "Risala",
     "house": "Le Falconé · Dubai UAE",
     "name": "Le Falconé Risala For You",
@@ -8847,7 +8848,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "risala-forever",
     "image": "images/risala-forever.png",
-    "image_box": "images/risala-forever-box.png",
+    "image_box": "images/risala-forever.png",
     "brand": "Risala",
     "house": "Le Falconé · Dubai UAE",
     "name": "Le Falconé Risala Forever",
@@ -8881,7 +8882,7 @@ const DEFAULT_CATALOG = [
   {
     "id": "risala-signature",
     "image": "images/risala-signature.png",
-    "image_box": "images/risala-signature-box.png",
+    "image_box": "images/risala-signature.png",
     "brand": "Risala",
     "house": "Le Falconé · Dubai UAE",
     "name": "Le Falconé Risala Signature",
@@ -9160,7 +9161,7 @@ const DEFAULT_CATALOG = [
 ];
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v64');
+  const custom = localStorage.getItem('arx_custom_catalog_v65');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -10122,6 +10123,7 @@ function updateProductDetailModalContent(p) {
   if ($('#lblModalZoomBadge')) {
     $('#lblModalZoomBadge').textContent = isEn ? '🔍 Bottle · Tap to zoom' : '🔍 Flakong · Klikk for å forstørre';
   }
+  const emptySvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
   if (slideBox && mImgBox) {
     if (p.image_box && p.image_box !== p.image) {
       slideBox.style.display = 'flex';
@@ -10130,6 +10132,7 @@ function updateProductDetailModalContent(p) {
       if ($('#lblModalBoxLabel')) $('#lblModalBoxLabel').textContent = isEn ? '📦 Presentation Box' : '📦 Eske';
     } else {
       slideBox.style.display = 'none';
+      mImgBox.src = emptySvg;
     }
   }
   if (slideSet && mImgSet) {
@@ -10140,6 +10143,7 @@ function updateProductDetailModalContent(p) {
       if ($('#detailSetBtnText')) $('#detailSetBtnText').textContent = isEn ? '🎁 Gift Set (150 ml + Spray)' : '🎁 Luksus Gavesett';
     } else {
       slideSet.style.display = 'none';
+      mImgSet.src = emptySvg;
     }
   }
   if (galEl) galEl.scrollLeft = 0;
@@ -11770,7 +11774,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -11832,7 +11836,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -11908,7 +11912,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -11949,7 +11953,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v64', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
