@@ -4089,6 +4089,12 @@ body {
   padding: .4rem;
 }
 .search-pop[hidden] { display: none !important; }
+.mobile-search-bar-wrap .search-pop {
+  min-width: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
 .sp-head {
   display: flex;
   justify-content: space-between;
@@ -5098,16 +5104,17 @@ body {
           autocorrect="off"
           autocapitalize="off"
           spellcheck="false"
-          oninput="syncSearch(this.value, 'hub', true)"
+          oninput="syncSearch(this.value, 'hub', false)"
         >
         <button
           type="button"
           id="mobileHubClearBtn"
           class="mobile-hub-clear-btn"
           aria-label="Tøm søk"
-          onclick="syncSearch('', 'hub', false); this.style.display='none'; const el = document.getElementById('mobileHubSearchInput'); if(el) el.value='';"
+          onclick="syncSearch('', 'hub', false); this.style.display='none'; const el = document.getElementById('mobileHubSearchInput'); if(el) el.value=''; const mp = document.getElementById('mobileHubSearchPop'); if(mp) mp.hidden=true;"
           style="display:none"
         >✕</button>
+        <div class="search-pop" id="mobileHubSearchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
       </div>
 
       <div class="mobile-quick-actions" aria-label="Hurtignavigasjon">
@@ -5300,70 +5307,6 @@ body {
       </div>
     </div>
     <div class="ps-prog" aria-hidden="true"><div class="ps-prog-bar" id="psProgBar"></div></div>
-  </section>
-
-  <!-- ================= PAK-STAR 3D SCENT FAMILIES & TRUST PILLARS ================= -->
-  <section class="cats-sec" id="kategorier" aria-label="Duftfamilier og garantier">
-    <div class="sec-head">
-      <div>
-        <h2 class="sec-title" id="catsSecTitle">Utforsk etter Duftfamilie & Stil</h2>
-        <p class="sec-sub" id="catsSecSub">Trykk på en duftfamilie eller et flaggskiphus for å filtrere blant våre 120 originale flakonger</p>
-      </div>
-      <div class="timer" aria-label="Showroom og tilbud">
-        <span>⚡ Oslo Lager</span>
-        <b id="timerH">12</b>:<b id="timerM">45</b>:<b id="timerS">00</b>
-      </div>
-    </div>
-
-    <div class="cat-grid" id="catGrid3D">
-      <button type="button" class="cat-card" data-scent="oud" style="--tint:rgba(212,175,106,.22)" onclick="selectPakStarCategory('scent','oud',this)">
-        <div class="ico">🪵</div>
-        <b id="catLblOud">Oud & Treaktig</b>
-        <small id="catSubOud">Røkt & Kongelig</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="amber" style="--tint:rgba(217,119,6,.22)" onclick="selectPakStarCategory('scent','amber',this)">
-        <div class="ico">🔥</div>
-        <b id="catLblAmber">Amber & Krydret</b>
-        <small id="catSubAmber">Varm & Intens</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="gourmand" style="--tint:rgba(180,83,9,.22)" onclick="selectPakStarCategory('scent','gourmand',this)">
-        <div class="ico">🍯</div>
-        <b id="catLblGourmand">Gourmand & Kaffe</b>
-        <small id="catSubGourmand">Vanilje & Dadler</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="citrus" style="--tint:rgba(56,189,248,.22)" onclick="selectPakStarCategory('scent','citrus',this)">
-        <div class="ico">🍋</div>
-        <b id="catLblCitrus">Frisk & Sitrus</b>
-        <small id="catSubCitrus">Bergamott & Hav</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="musk" style="--tint:rgba(148,163,184,.22)" onclick="selectPakStarCategory('scent','musk',this)">
-        <div class="ico">❄️</div>
-        <b id="catLblMusk">Arktisk & Moskus</b>
-        <small id="catSubMusk">Ren & Krystallklar</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="floral" style="--tint:rgba(244,63,94,.22)" onclick="selectPakStarCategory('scent','floral',this)">
-        <div class="ico">🌸</div>
-        <b id="catLblFloral">Blomstret & Søt</b>
-        <small id="catSubFloral">Taif-rose & Frukt</small>
-      </button>
-      <button type="button" class="cat-card" data-brand="Surrati" style="--tint:rgba(31,122,77,.25)" onclick="selectPakStarCategory('brand','Surrati',this)">
-        <div class="ico">🕋</div>
-        <b>Surrati (12)</b>
-        <small>150 ml Extrait</small>
-      </button>
-      <button type="button" class="cat-card" data-brand="Bujairami" style="--tint:rgba(37,99,235,.25)" onclick="selectPakStarCategory('brand','Bujairami',this)">
-        <div class="ico">🇦🇺</div>
-        <b>Bujairami (8)</b>
-        <small>Sydney Nisje</small>
-      </button>
-    </div>
-
-    <div class="trust-list">
-      <div class="trust-item"><i>✓</i> <span id="trustItem1">100 % Originale fabrikkutgaver</span></div>
-      <div class="trust-item"><i>📍</i> <span id="trustItem2">Showroom: Tøyengata 3, Oslo</span></div>
-      <div class="trust-item"><i>⚡</i> <span id="trustItem3">Enkel Vipps-reservasjon</span></div>
-      <div class="trust-item"><i>💎</i> <span id="trustItem4">Maksprisgaranti 1 500</span></div>
-    </div>
   </section>
 
   <!-- ================= PERFUME HOUSES & BRANDS (Revealed from Menu Only) ================= -->
@@ -5843,6 +5786,70 @@ body {
 
     <!-- 30 Product Cards Grid -->
     <div class="products-grid" id="flaconGalleryGrid"></div>
+  </section>
+
+  <!-- ================= PAK-STAR 3D SCENT FAMILIES & TRUST PILLARS ================= -->
+  <section class="cats-sec" id="kategorier" aria-label="Duftfamilier og garantier" style="padding:0 var(--pad)">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" id="catsSecTitle">Utforsk etter Duftfamilie & Stil</h2>
+        <p class="sec-sub" id="catsSecSub">Trykk på en duftfamilie eller et flaggskiphus for å filtrere blant våre 120 originale flakonger</p>
+      </div>
+      <div class="timer" aria-label="Showroom og tilbud">
+        <span>⚡ Oslo Lager</span>
+        <b id="timerH">12</b>:<b id="timerM">45</b>:<b id="timerS">00</b>
+      </div>
+    </div>
+
+    <div class="cat-grid" id="catGrid3D">
+      <button type="button" class="cat-card" data-scent="oud" style="--tint:rgba(212,175,106,.22)" onclick="selectPakStarCategory('scent','oud',this)">
+        <div class="ico">🪵</div>
+        <b id="catLblOud">Oud & Treaktig</b>
+        <small id="catSubOud">Røkt & Kongelig</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="amber" style="--tint:rgba(217,119,6,.22)" onclick="selectPakStarCategory('scent','amber',this)">
+        <div class="ico">🔥</div>
+        <b id="catLblAmber">Amber & Krydret</b>
+        <small id="catSubAmber">Varm & Intens</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="gourmand" style="--tint:rgba(180,83,9,.22)" onclick="selectPakStarCategory('scent','gourmand',this)">
+        <div class="ico">🍯</div>
+        <b id="catLblGourmand">Gourmand & Kaffe</b>
+        <small id="catSubGourmand">Vanilje & Dadler</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="citrus" style="--tint:rgba(56,189,248,.22)" onclick="selectPakStarCategory('scent','citrus',this)">
+        <div class="ico">🍋</div>
+        <b id="catLblCitrus">Frisk & Sitrus</b>
+        <small id="catSubCitrus">Bergamott & Hav</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="musk" style="--tint:rgba(148,163,184,.22)" onclick="selectPakStarCategory('scent','musk',this)">
+        <div class="ico">❄️</div>
+        <b id="catLblMusk">Arktisk & Moskus</b>
+        <small id="catSubMusk">Ren & Krystallklar</small>
+      </button>
+      <button type="button" class="cat-card" data-scent="floral" style="--tint:rgba(244,63,94,.22)" onclick="selectPakStarCategory('scent','floral',this)">
+        <div class="ico">🌸</div>
+        <b id="catLblFloral">Blomstret & Søt</b>
+        <small id="catSubFloral">Taif-rose & Frukt</small>
+      </button>
+      <button type="button" class="cat-card" data-brand="Surrati" style="--tint:rgba(31,122,77,.25)" onclick="selectPakStarCategory('brand','Surrati',this)">
+        <div class="ico">🕋</div>
+        <b>Surrati (12)</b>
+        <small>150 ml Extrait</small>
+      </button>
+      <button type="button" class="cat-card" data-brand="Bujairami" style="--tint:rgba(37,99,235,.25)" onclick="selectPakStarCategory('brand','Bujairami',this)">
+        <div class="ico">🇦🇺</div>
+        <b>Bujairami (8)</b>
+        <small>Sydney Nisje</small>
+      </button>
+    </div>
+
+    <div class="trust-list">
+      <div class="trust-item"><i>✓</i> <span id="trustItem1">100 % Originale fabrikkutgaver</span></div>
+      <div class="trust-item"><i>📍</i> <span id="trustItem2">Showroom: Tøyengata 3, Oslo</span></div>
+      <div class="trust-item"><i>⚡</i> <span id="trustItem3">Enkel Vipps-reservasjon</span></div>
+      <div class="trust-item"><i>💎</i> <span id="trustItem4">Maksprisgaranti 1 500</span></div>
+    </div>
   </section>
 
   <!-- Showroom & Pickup Section -->
@@ -6403,7 +6410,7 @@ body {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.69 (updated 2026-11-10 17:28)
+        v1.0.70 (updated 2026-11-16 15:21)
       </div>
     </div>
   </div>
@@ -13787,6 +13794,8 @@ $('#mobNavClearSearchBtn')?.addEventListener('click', () => {
 $('#mobileHubSearchInput')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
+    const mp = document.getElementById('mobileHubSearchPop');
+    if (mp) mp.hidden = true;
     syncSearch(e.target.value, 'hub', true);
     $('#mobileHubSearchInput').blur();
   }
@@ -13924,9 +13933,9 @@ window.dismissTopBanner = function() {
   if (b) b.hidden = true;
 };
 
-// PakStar Live Search Popover (#searchPop)
-function renderSearchPop(q) {
-  const pop = document.getElementById('searchPop');
+// PakStar Live Search Popover (#searchPop & #mobileHubSearchPop)
+function renderSearchPop(q, popId = 'searchPop') {
+  const pop = document.getElementById(popId);
   if (!pop) return;
   const query = (q || '').trim().toLowerCase();
   if (!query) {
@@ -13935,10 +13944,14 @@ function renderSearchPop(q) {
   }
   const isEn = LANG === 'en';
   const matches = CATALOG.filter(p => {
+    const notesStr = p.notes ? Object.values(p.notes).join(' ') : '';
     return p.name.toLowerCase().includes(query) ||
+           (p.name_en || '').toLowerCase().includes(query) ||
            p.brand.toLowerCase().includes(query) ||
            (p.house || '').toLowerCase().includes(query) ||
-           (p.subtitle || '').toLowerCase().includes(query);
+           (p.subtitle || '').toLowerCase().includes(query) ||
+           (p.tag || '').toLowerCase().includes(query) ||
+           notesStr.toLowerCase().includes(query);
   });
   const topMatches = matches.slice(0, 7);
   if (!topMatches.length) {
@@ -13949,10 +13962,10 @@ function renderSearchPop(q) {
   pop.innerHTML = `
     <div class="sp-head">
       <span>${matches.length} ${isEn ? 'matches' : 'treff'}</span>
-      <button type="button" style="color:var(--ac);font-weight:800;cursor:pointer" onclick="document.getElementById('searchPop').hidden=true; document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">${isEn ? 'See all →' : 'Se alle →'}</button>
+      <button type="button" style="color:var(--ac);font-weight:800;cursor:pointer" onclick="document.getElementById('${popId}').hidden=true; document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">${isEn ? 'See all →' : 'Se alle →'}</button>
     </div>
     ${topMatches.map(p => `
-      <div class="sp-item" onclick="document.getElementById('searchPop').hidden=true; openProductDetail('${p.id}')">
+      <div class="sp-item" onclick="document.getElementById('${popId}').hidden=true; openProductDetail('${p.id}')">
         <div class="sp-thumb"><img src="${p.image}" alt="" loading="lazy"></div>
         <div class="sp-meta">
           <div class="sp-title">${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</div>
@@ -13960,7 +13973,7 @@ function renderSearchPop(q) {
         </div>
         <div class="sp-right">
           <span class="sp-price">${nok(p.price)}</span>
-          <button type="button" class="sp-add" onclick="event.stopPropagation(); document.getElementById('searchPop').hidden=true; ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">+ ${isEn ? 'Buy' : 'Kjøp'}</button>
+          <button type="button" class="sp-add" onclick="event.stopPropagation(); document.getElementById('${popId}').hidden=true; ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">+ ${isEn ? 'Buy' : 'Kjøp'}</button>
         </div>
       </div>
     `).join('')}
@@ -13969,16 +13982,27 @@ function renderSearchPop(q) {
 }
 
 $('#topNavSearchInput')?.addEventListener('input', e => {
-  renderSearchPop(e.target.value);
+  renderSearchPop(e.target.value, 'searchPop');
 });
 $('#topNavSearchInput')?.addEventListener('focus', e => {
-  if (e.target.value.trim()) renderSearchPop(e.target.value);
+  if (e.target.value.trim()) renderSearchPop(e.target.value, 'searchPop');
+});
+$('#mobileHubSearchInput')?.addEventListener('input', e => {
+  renderSearchPop(e.target.value, 'mobileHubSearchPop');
+});
+$('#mobileHubSearchInput')?.addEventListener('focus', e => {
+  if (e.target.value.trim()) renderSearchPop(e.target.value, 'mobileHubSearchPop');
 });
 document.addEventListener('click', e => {
   const pop = document.getElementById('searchPop');
   const wrap = document.getElementById('topNavSearchWrap');
   if (pop && !pop.hidden && wrap && !wrap.contains(e.target)) {
     pop.hidden = true;
+  }
+  const mPop = document.getElementById('mobileHubSearchPop');
+  const mWrap = document.querySelector('.mobile-search-bar-wrap');
+  if (mPop && !mPop.hidden && mWrap && !mWrap.contains(e.target)) {
+    mPop.hidden = true;
   }
 });
 
