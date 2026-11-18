@@ -6410,7 +6410,7 @@ body {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.71 (updated 2026-11-16 15:23)
+        v1.0.72 (updated 2026-11-18 15:00)
       </div>
     </div>
   </div>
@@ -6667,7 +6667,7 @@ const DEFAULT_CATALOG = [
     "desc_en": "A commanding signature from Reef Perfumes housed in an iconic, six-sided (hexagonal) long slim bottle. Pink pepper, lemon, and bergamot over lavender, agarwood, white amber, and musk.",
     "story": "Reef Force representerer styrke, karisma og moderne eleganse. Leveres i et markant sølvkabinett med matchende metallisk luksuspresentasjonseske.",
     "story_en": "Reef Force embodies poise, charisma, and modern elegance. Encased in a commanding silver flacon with a matching metallic presentation box.",
-    "price": 1390,
+    "price": 1200,
     "size": "100 ml",
     "notes": {
       "top": "Røde bær, granateple, yuzu, karamell",
@@ -10656,7 +10656,7 @@ const DEFAULT_CATALOG = [
 ];
 let CATALOG = [];
 try {
-  const custom = localStorage.getItem('arx_custom_catalog_v65');
+  const custom = localStorage.getItem('arx_custom_catalog_v66');
   CATALOG = custom ? JSON.parse(custom) : DEFAULT_CATALOG;
   if (!Array.isArray(CATALOG) || CATALOG.length < DEFAULT_CATALOG.length) CATALOG = DEFAULT_CATALOG;
 } catch(e) {
@@ -13378,7 +13378,7 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
     }
 
     // Save locally
-    localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v66', JSON.stringify(CATALOG));
 
     // Sync to Cloudflare KV cloud
     const cloudRes = await syncCatalogToCloud();
@@ -13440,7 +13440,7 @@ window.saveAdminProductDetails = async function(e) {
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
 
-  localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
+  localStorage.setItem('arx_custom_catalog_v66', JSON.stringify(CATALOG));
   renderStore();
   renderCart();
   renderAdminPanel();
@@ -13516,7 +13516,7 @@ async function loadCloudCatalog() {
     const data = await res.json();
     if (data && data.success && Array.isArray(data.catalog) && data.catalog.length >= DEFAULT_CATALOG.length) {
       CATALOG = data.catalog;
-      localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
+      localStorage.setItem('arx_custom_catalog_v66', JSON.stringify(CATALOG));
       renderStore();
       renderCart();
       if ($('#adminPanelModal')?.open) {
@@ -13531,6 +13531,7 @@ async function loadCloudCatalog() {
 
 window.resetAdminCatalogToDefaults = async function() {
   if (confirm('Er du sikker på at du vil tilbakestille alle parfymer og priser til standardkatalogen?')) {
+    localStorage.removeItem('arx_custom_catalog_v65');
     localStorage.removeItem('arx_custom_catalog_v60');
     localStorage.removeItem('arx_custom_catalog_v59');
     localStorage.removeItem('arx_custom_catalog_v58');
@@ -13557,7 +13558,7 @@ window.resetAdminCatalogToDefaults = async function() {
     localStorage.removeItem('arx_custom_catalog_v21');
     localStorage.removeItem('arx_custom_catalog_v17');
     CATALOG = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
-    localStorage.setItem('arx_custom_catalog_v65', JSON.stringify(CATALOG));
+    localStorage.setItem('arx_custom_catalog_v66', JSON.stringify(CATALOG));
     renderStore();
     renderCart();
     renderAdminPanel();
