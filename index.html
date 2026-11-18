@@ -5151,14 +5151,21 @@ nav.main-nav a.is-active::after {
   border-radius: 999px !important;
   color: var(--tx) !important;
   font-family: var(--sans);
-  font-size: 0.88rem !important;
-  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
   letter-spacing: 0.01em !important;
   text-transform: none !important;
-  padding: 0.45rem 0.9rem !important;
+  min-height: 38px;
+  padding: 0.38rem 0.78rem !important;
   display: inline-flex;
   align-items: center;
-  gap: 0.42rem;
+  gap: 0.36rem;
+}
+.cartbtn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: currentColor;
 }
 .cartbtn:hover {
   background: var(--sf2) !important;
@@ -5167,6 +5174,8 @@ nav.main-nav a.is-active::after {
 .cartbtn b {
   color: var(--ac);
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 .nav-toggle {
   display: inline-flex;
@@ -5185,31 +5194,136 @@ nav.main-nav a.is-active::after {
 }
 .nav-toggle:hover { background: var(--sf2); }
 
-/* Header Expandable Search Bar Drawer */
+/* Header Expandable Search Bar Overlay Drawer (Zero layout shift + smooth entry/exit) */
 .hdr-search-drawer {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 120;
   border-top: 1px solid var(--ln);
-  background: var(--bg);
-  padding: 0.75rem var(--pad);
+  border-bottom: 1px solid var(--ln);
+  background: color-mix(in srgb, var(--bg) 97%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 36px -16px rgba(59, 35, 20, 0.24);
+  padding: 0.75rem var(--pad) 0.9rem;
+  opacity: 0;
+  transform: translate3d(0, -8px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition-behavior: allow-discrete;
 }
 .hdr-search-drawer.open {
   display: block;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@starting-style {
+  .hdr-search-drawer.open {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+}
+.hdr-search-drawer[data-closing] {
+  opacity: 0;
+  transform: translate3d(0, -8px, 0);
 }
 .hdr-search-drawer-inner {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.hdr-search-drawer search {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .hdr-search-drawer .top-nav-search {
+  position: static !important;
   max-width: 100%;
   width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  flex: 1 1 auto;
   background: var(--sf);
-  padding: 0.55rem 1rem;
+  padding: 0.45rem 0.9rem;
+  min-height: 46px;
   border-radius: 999px;
   border: 1px solid var(--ln);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.hdr-search-drawer .top-nav-search:focus-within {
+  flex-basis: auto;
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 20%, transparent);
+}
+.hdr-search-drawer .top-nav-search-input,
+.mobile-shop-search-input,
+.sb-search-input {
+  font-size: 1rem !important;
+  line-height: 1.35;
+}
+.hdr-search-drawer .top-nav-search-input::placeholder {
+  font-size: 0.92rem;
+}
+.hdr-search-drawer .top-nav-clear-btn {
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+.hdr-search-close-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  color: var(--tx);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.hdr-search-close-btn:hover {
+  background: var(--sf2);
+  border-color: var(--ac);
+}
+.hdr-search-drawer .search-pop {
+  min-width: 0 !important;
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% + 0.5rem);
+  max-height: min(56dvh, 370px);
+  overscroll-behavior: contain;
+  border-radius: 16px;
+  box-shadow: 0 20px 42px -12px rgba(59, 35, 20, 0.25);
+}
+.sp-head button {
+  background: none;
+  border: 0;
+  font: inherit;
+  padding: 0.2rem 0.4rem;
+}
+.sp-price {
+  font-family: var(--sans) !important;
+}
+.sp-add {
+  border: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  min-height: 32px;
 }
 
-/* ── Editorial Hero (Picture 1) ── */
+/* ── Editorial Hero (Picture 1 + Animated Transparent Bottle Showcase) ── */
 .editorial-hero {
   max-width: 1260px;
   margin: clamp(1rem, 2.5vw, 2rem) auto clamp(2rem, 4vw, 3.25rem);
@@ -5223,8 +5337,8 @@ nav.main-nav a.is-active::after {
   gap: 1.5rem;
   border-radius: 20px;
   overflow: hidden;
-  min-height: clamp(290px, 36vw, 410px);
-  padding: clamp(1.75rem, 4.5vw, 4rem);
+  min-height: clamp(310px, 37vw, 430px);
+  padding: clamp(1.75rem, 4.5vw, 3.6rem) clamp(1.75rem, 4.5vw, 4rem) clamp(3.3rem, 5vw, 4.25rem);
   background: linear-gradient(108deg, #f3e6d3 0%, #e4cda9 52%, #7d4c26 100%);
   border: 1px solid var(--ln);
 }
@@ -5235,33 +5349,41 @@ html.theme-dark .hero-chapter-card {
   position: relative;
   z-index: 2;
   max-width: 30rem;
+  transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-chapter-copy.is-swapping {
+  opacity: 0;
+  transform: translate3d(-12px, 0, 0);
 }
 .hero-chapter-kicker {
-  font-family: var(--serif);
-  font-size: clamp(1.65rem, 3.8vw, 2.9rem);
-  font-weight: 500;
-  color: #5b3416;
-  line-height: 1.08;
-  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b3b16;
+  line-height: 1.2;
+  margin: 0 0 0.45rem;
 }
 html.theme-dark .hero-chapter-kicker { color: #e2c58e; }
 .hero-chapter-title {
   font-family: var(--serif);
-  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-size: clamp(2.5rem, 6vw, 4.65rem);
   font-weight: 700;
   color: #462610;
-  line-height: 0.92;
-  margin: 0.1rem 0 0.75rem;
+  line-height: 0.96;
+  margin: 0 0 0.75rem;
   letter-spacing: -0.02em;
 }
 html.theme-dark .hero-chapter-title { color: #fff6e6; }
 .hero-chapter-sub {
   font-family: var(--sans);
-  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.12rem);
   color: #5a3c24;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.45rem;
   font-weight: 400;
   line-height: 1.45;
+  min-height: 2.9em;
 }
 html.theme-dark .hero-chapter-sub { color: #d5cbbd; }
 .hero-chapter-cta {
@@ -5272,7 +5394,7 @@ html.theme-dark .hero-chapter-sub { color: #d5cbbd; }
   color: #ffffff;
   border: 0;
   border-radius: 999px;
-  padding: 0.8rem 1.75rem;
+  padding: 0.8rem 1.7rem;
   font-family: var(--sans);
   font-size: 0.92rem;
   font-weight: 600;
@@ -5293,50 +5415,207 @@ html.theme-dark .hero-chapter-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  min-height: 220px;
+  height: clamp(220px, 28vw, 330px);
+  cursor: pointer;
 }
 .hero-chapter-glow {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: clamp(210px, 26vw, 310px);
+  height: clamp(210px, 26vw, 310px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 224, 178, 0.65) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 224, 178, 0.72) 0%, rgba(228, 205, 169, 0.28) 46%, transparent 72%);
   pointer-events: none;
+  animation: heroGlowPulse 5s ease-in-out infinite;
 }
-.hero-chapter-img {
+@keyframes heroGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+.hero-bottle-shadow {
+  position: absolute;
+  bottom: 4%;
+  width: clamp(110px, 14vw, 175px);
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(46, 24, 9, 0.36) 0%, transparent 72%);
+  pointer-events: none;
+  animation: heroShadowFloat 4.4s ease-in-out infinite;
+}
+@keyframes heroShadowFloat {
+  0%, 100% { transform: scaleX(1); opacity: 0.85; }
+  50% { transform: scaleX(0.86); opacity: 0.55; }
+}
+.hero-chapter-stage {
   position: relative;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  max-height: clamp(200px, 28vw, 330px);
-  max-width: 100%;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 32px rgba(34, 18, 6, 0.38));
+  animation: heroBottleFloat 4.4s ease-in-out infinite;
 }
+@keyframes heroBottleFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+.hero-stage-bottle {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-height: 100%;
+  max-width: 92%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: translate3d(34px, 8px, 0) scale(0.92);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  filter: drop-shadow(0 18px 28px rgba(34, 18, 6, 0.38));
+}
+.hero-stage-bottle.is-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.hero-stage-bottle.is-leaving {
+  opacity: 0;
+  transform: translate3d(-34px, -4px, 0) scale(0.94);
+}
+html.theme-dark .hero-stage-bottle {
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.55));
+}
+
+/* Bottom Sliding Progress Line & Carousel Controls */
+.hero-carousel-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.hero-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.75rem, 4.5vw, 4rem);
+}
+.hero-slide-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+.hero-slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: color-mix(in srgb, var(--tx) 26%, transparent);
+  cursor: pointer;
+  transition: width 0.28s ease, background 0.25s ease;
+}
+.hero-slide-dot[aria-selected="true"] {
+  width: 26px;
+  background: #5b3314;
+}
+html.theme-dark .hero-slide-dot {
+  background: rgba(255, 246, 230, 0.28);
+}
+html.theme-dark .hero-slide-dot[aria-selected="true"] {
+  background: var(--ac);
+}
+.hero-pause-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--tx) 18%, transparent);
+  background: color-mix(in srgb, var(--sf) 70%, transparent);
+  color: var(--tx);
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+.hero-pause-btn:hover {
+  background: var(--sf);
+  border-color: var(--ac);
+}
+.hero-sliding-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: color-mix(in srgb, var(--tx) 12%, transparent);
+  overflow: hidden;
+}
+.hero-sliding-line {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #a66a36 0%, #5b3314 60%, #d4af6a 100%);
+  animation: heroLineSlide 4.8s linear forwards;
+}
+html.theme-dark .hero-sliding-line {
+  background: linear-gradient(90deg, #9d7533 0%, #d4af6a 65%, #fff2d6 100%);
+}
+.hero-chapter-card.is-paused .hero-sliding-line {
+  animation-play-state: paused;
+}
+@keyframes heroLineSlide {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-chapter-glow,
+  .hero-bottle-shadow,
+  .hero-chapter-stage {
+    animation: none !important;
+  }
+  .hero-sliding-line {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
+}
+
 @media (max-width: 720px) {
   .hero-chapter-card {
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 0.75rem;
-    padding: 1.5rem 1.25rem;
-    min-height: 215px;
+    padding: 1.45rem 1.2rem 2.9rem;
+    min-height: 235px;
+  }
+  .hero-carousel-controls {
+    padding: 0 1.2rem;
+  }
+  .hero-chapter-title {
+    font-size: clamp(1.95rem, 8.5vw, 2.7rem);
+    margin-bottom: 0.45rem;
   }
   .hero-chapter-sub {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     margin-bottom: 1rem;
+    min-height: 0;
   }
   .hero-chapter-cta {
     padding: 0.65rem 1.2rem;
     font-size: 0.84rem;
   }
-  .hero-chapter-visual { min-height: 150px; }
-  .hero-chapter-img { max-height: 165px; }
+  .hero-chapter-visual { height: 175px; }
 }
 @media (max-width: 440px) {
   .hero-chapter-card {
-    grid-template-columns: 1fr 0.72fr;
-    padding: 1.35rem 1.1rem;
+    grid-template-columns: 1.05fr 0.85fr;
+    padding: 1.35rem 1.05rem 2.75rem;
   }
-  .hero-chapter-img { max-height: 145px; }
+  .hero-carousel-controls {
+    padding: 0 1.05rem;
+  }
+  .hero-chapter-visual { height: 155px; }
 }
 
 /* Split Chapters Row (II Musk & III Amber) */
@@ -5469,18 +5748,18 @@ main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
     gap: 0.4rem !important;
   }
   .hdr-icon-btn {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 0.95rem !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.98rem !important;
   }
   .cartbtn {
     width: auto !important;
-    min-width: 0 !important;
-    height: 34px !important;
-    padding: 0 0.65rem !important;
+    min-width: 44px !important;
+    height: 38px !important;
+    padding: 0 0.68rem !important;
     border-radius: 999px !important;
-    font-size: 0.82rem !important;
-    gap: 0.25rem !important;
+    font-size: 0.86rem !important;
+    gap: 0.32rem !important;
   }
   .cartbtn b {
     position: static !important;
@@ -5493,16 +5772,13 @@ main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
     display: inline !important;
   }
   .nav-toggle {
-    width: 34px !important;
-    min-width: 34px !important;
-    height: 34px !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
     padding: 0 !important;
     border-radius: 50% !important;
     font-size: 0.95rem !important;
   }
-}
-@media (max-width: 400px) {
-  #cartLabel { display: none; }
 }
 
 /* ── Editorial Shop Layout (Picture 2) ── */
@@ -5524,23 +5800,73 @@ main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
   }
 }
 
-/* Mobile-Only Quick Scent Strip + Filter Trigger */
+/* Mobile-Only Inline Search Bar + Quick Scent Strip + Filter Trigger */
 .shop-mobile-controls {
   display: none;
 }
 @media (max-width: 919px) {
   .shop-mobile-controls {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+  .shop-mobile-search-wrap {
+    display: flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
+    gap: 0.5rem;
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem 0.25rem 0.95rem;
+    min-height: 44px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .shop-mobile-search-wrap:focus-within {
+    border-color: var(--ac);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 18%, transparent);
+  }
+  .mobile-shop-search-input {
+    border: 0;
+    background: transparent;
+    color: var(--tx);
+    font-family: var(--sans);
+    outline: none;
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 0%;
+  }
+  .mobile-shop-search-input::placeholder {
+    color: var(--mu);
+    font-size: 0.92rem;
+  }
+  .mobile-shop-clear-btn {
+    border: 0;
+    background: var(--sf2);
+    color: var(--tx);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .shop-mobile-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
   }
   .shop-mobile-filter-btn {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.55rem 0.95rem;
+    padding: 0.5rem 0.9rem;
     border-radius: 999px;
     border: 1px solid var(--ln);
     background: var(--sf2);
@@ -5550,6 +5876,23 @@ main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
     cursor: pointer;
     min-height: 40px;
   }
+  .shop-mobile-show-all-pill {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--ac);
+    background: var(--ac);
+    color: var(--on);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 40px;
+    white-space: nowrap;
+  }
+  .shop-mobile-show-all-pill[hidden] { display: none !important; }
   .shop-mobile-scents {
     display: flex;
     gap: 0.45rem;
@@ -5757,11 +6100,82 @@ main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
   margin: 0;
   line-height: 1.05;
 }
+.sb-search-box .clear-search-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.55rem;
+  min-width: 30px;
+  min-height: 30px;
+}
 .shop-head-right {
   display: flex;
   align-items: center;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+.shop-show-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 38px;
+  padding: 0.42rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--ac);
+  background: var(--ac);
+  color: var(--on);
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.14s ease;
+}
+.shop-show-all-btn:hover {
+  background: var(--ac-warm);
+  border-color: var(--ac-warm);
+  transform: translateY(-1px);
+}
+.shop-show-all-btn[hidden] {
+  display: none !important;
+}
+.filtered-show-all-banner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  margin-top: 0.5rem;
+  border-radius: 16px;
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+}
+.filtered-show-all-text {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--tx);
+  margin: 0;
+}
+.filtered-show-all-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ac);
+  color: var(--on);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s ease;
+}
+.filtered-show-all-cta:hover {
+  background: var(--ac-warm);
+  transform: translateY(-1px);
 }
 .shop-count-label {
   font-size: 0.88rem;
@@ -6433,9 +6847,12 @@ footer {
       </button>
 
       <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv / Open cart" title="Handlekurv / Cart">
-        <span aria-hidden="true">🛒</span>
-        <span id="cartLabel">Cart</span>
-        (<b id="cartBadge">0</b>)
+        <svg class="cartbtn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1.5"></circle>
+          <circle cx="19" cy="21" r="1.5"></circle>
+          <path d="M2.5 3h2.8l2.2 11.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 1.95-1.55L22 7H6.2"></path>
+        </svg>
+        <b id="cartBadge">0</b>
       </button>
 
       <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne meny / Open menu" aria-expanded="false" aria-controls="mobileNav" title="Meny / Menu">
@@ -6444,15 +6861,18 @@ footer {
     </div>
   </div>
 
-  <!-- Expandable Clean Search Bar Drawer -->
-  <div class="hdr-search-drawer" id="hdrSearchDrawer">
+  <!-- Expandable Clean Search Bar Overlay Drawer -->
+  <div class="hdr-search-drawer" id="hdrSearchDrawer" hidden>
     <div class="hdr-search-drawer-inner">
-      <div class="top-nav-search" id="topNavSearchWrap">
-        <span class="top-search-icon" aria-hidden="true">🔍</span>
-        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme, merke eller duftnote..." aria-label="Søk i katalogen" autocomplete="off">
-        <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
-        <div class="search-pop" id="searchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
-      </div>
+      <search>
+        <div class="top-nav-search" id="topNavSearchWrap">
+          <span class="top-search-icon" aria-hidden="true">🔍</span>
+          <input type="search" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme, merke eller duftnote..." aria-label="Søk i katalogen" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+          <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+          <div class="search-pop" id="searchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
+        </div>
+      </search>
+      <button type="button" class="hdr-search-close-btn" id="hdrSearchCloseBtn" onclick="toggleHeaderSearch(true)" aria-label="Lukk søk / Close search" title="Lukk / Close">✕</button>
     </div>
   </div>
 
@@ -6499,29 +6919,49 @@ footer {
 
   <!-- ================= EDITORIAL HERO SHOWCASE (Picture 1) ================= -->
   <section class="editorial-hero" aria-label="Utvalgte dufter">
-    <div class="hero-chapter-card">
-      <div class="hero-chapter-copy">
-        <p class="hero-chapter-kicker" id="heroChapterKicker">Kapittel I:</p>
-        <h1 class="hero-chapter-title" id="heroChapterTitle">Oud</h1>
-        <p class="hero-chapter-sub" id="heroChapterSub">Røkt oud, varm harpiks og edle noter</p>
-        <button type="button" class="hero-chapter-cta" id="heroChapterCta" onclick="selectCatalogChip('scent','oud',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
-          Utforsk Oud →
+    <div class="hero-chapter-card" id="heroChapterCard">
+      <div class="hero-chapter-copy" id="heroChapterCopy">
+        <p class="hero-chapter-kicker" id="heroChapterKicker">SURRATI · OUD</p>
+        <h1 class="hero-chapter-title" id="heroChapterTitle">Gray Oud</h1>
+        <p class="hero-chapter-sub" id="heroChapterSub">Røkt oud, varm harpiks og edle tresorter</p>
+        <button type="button" class="hero-chapter-cta" id="heroChapterCta" onclick="openProductDetail(window.HERO_SLIDES ? window.HERO_SLIDES[window.heroSlideIdx || 0].id : 'surrati-gray-oud')">
+          Utforsk Gray Oud →
         </button>
       </div>
-      <div class="hero-chapter-visual" onclick="openProductDetail('surrati-gray-oud')" style="cursor:pointer" title="Surrati Gray Oud">
-        <div class="hero-chapter-glow"></div>
-        <img class="hero-chapter-img" src="images/surrati-gray-oud.png" alt="Signature Oud Flacon">
+      <div class="hero-chapter-visual" id="heroChapterVisual" role="button" tabindex="0" onclick="openProductDetail(window.HERO_SLIDES ? window.HERO_SLIDES[window.heroSlideIdx || 0].id : 'surrati-gray-oud')" aria-label="Vis produktdetaljer" title="Surrati Gray Oud">
+        <div class="hero-chapter-glow" aria-hidden="true"></div>
+        <div class="hero-bottle-shadow" aria-hidden="true"></div>
+        <div class="hero-chapter-stage" id="heroChapterStage">
+          <img class="hero-stage-bottle is-active" src="images/surrati-gray-oud.png" alt="Surrati Gray Oud" decoding="async">
+          <img class="hero-stage-bottle" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" decoding="async" loading="lazy">
+          <img class="hero-stage-bottle" src="images/bujairami-hectic.png" alt="Bujairami Hectic" decoding="async" loading="lazy">
+          <img class="hero-stage-bottle" src="images/nusuk-ateeq.png" alt="Nusuk Ateeq" decoding="async" loading="lazy">
+          <img class="hero-stage-bottle" src="images/khadlaj-island.png" alt="Khadlaj Island" decoding="async" loading="lazy">
+          <img class="hero-stage-bottle" src="images/reef-blanc-ash.png" alt="Reef Blanc Ash" decoding="async" loading="lazy">
+        </div>
+      </div>
+
+      <div class="hero-carousel-bar">
+        <div class="hero-carousel-controls">
+          <div class="hero-slide-dots" id="heroSlideDots" role="tablist" aria-label="Utvalgte flakonger"></div>
+          <button type="button" class="hero-pause-btn" id="heroPauseBtn" aria-label="Pause karusell" aria-pressed="false" title="Pause / Spill">
+            <span id="heroPauseIcon" aria-hidden="true">❚❚</span>
+          </button>
+        </div>
+        <div class="hero-sliding-track" aria-hidden="true">
+          <div class="hero-sliding-line" id="heroSlidingLine"></div>
+        </div>
       </div>
     </div>
 
     <div class="hero-chapters-split">
       <button type="button" class="hero-split-tile musk-tile" onclick="selectCatalogChip('scent','musk',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
-        <h2 class="hero-split-title" id="heroTileMusk">II Moskus</h2>
+        <h2 class="hero-split-title" id="heroTileMusk">Moskus</h2>
         <img class="hero-split-img" src="images/reef-pure-musk.png" alt="Musk Perfume" loading="lazy">
       </button>
 
       <button type="button" class="hero-split-tile amber-tile" onclick="selectCatalogChip('scent','amber',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
-        <h2 class="hero-split-title" id="heroTileAmber">III Amber</h2>
+        <h2 class="hero-split-title" id="heroTileAmber">Amber</h2>
         <img class="hero-split-img" src="images/lattafa-khamrah.png" alt="Amber Perfume" loading="lazy">
       </button>
     </div>
@@ -6537,31 +6977,39 @@ footer {
 
   <!-- ================= EDITORIAL SHOP LAYOUT (Picture 2) ================= -->
   <section id="kjop">
-    <!-- Mobile Only Controls Bar -->
+    <!-- Mobile Only Controls Bar (Inline Search + Filter + Show All + Quick Scent Strip) -->
     <div class="shop-mobile-controls">
-      <button type="button" class="shop-mobile-filter-btn" id="mobileFilterToggleBtn" onclick="toggleMobileFilters()" aria-expanded="false">
-        <span>⚙️</span>
-        <span id="mobileFilterToggleLabel">Filter</span>
-        <span class="mobile-filter-count-badge" id="mobileFilterCountBadge" style="display:none">0</span>
-      </button>
-      <div class="shop-mobile-scents" id="mobScentRail" role="tablist" aria-label="Duftfamilie hurtigvalg">
-        <button type="button" class="sb-scent-pill on" data-scent-val="all" onclick="selectCatalogChip('all','all',this)">Alle</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="oud" onclick="selectCatalogChip('scent','oud',this)">Oud</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="amber" onclick="selectCatalogChip('scent','amber',this)">Amber</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">Gourmand</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">Sitrus</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="musk" onclick="selectCatalogChip('scent','musk',this)">Moskus</button>
-        <button type="button" class="sb-scent-pill" data-scent-val="floral" onclick="selectCatalogChip('scent','floral',this)">Blomst</button>
+      <search class="shop-mobile-search-wrap" aria-label="Søk i katalogen">
+        <span aria-hidden="true">🔍</span>
+        <input type="search" id="mobileShopSearchInput" class="mobile-shop-search-input" placeholder="Søk parfyme, merke eller note..." aria-label="Søk parfyme" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+        <button type="button" id="mobileShopClearBtn" class="mobile-shop-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+      </search>
+      <div class="shop-mobile-controls-row">
+        <button type="button" class="shop-mobile-filter-btn" id="mobileFilterToggleBtn" onclick="toggleMobileFilters()" aria-expanded="false">
+          <span>⚙️</span>
+          <span id="mobileFilterToggleLabel">Filter</span>
+          <span class="mobile-filter-count-badge" id="mobileFilterCountBadge" style="display:none">0</span>
+        </button>
+        <button type="button" class="shop-mobile-show-all-pill" id="mobileFilterResetQuick" onclick="resetAllFilters()" hidden>Vis alle</button>
+        <div class="shop-mobile-scents" id="mobScentRail" role="tablist" aria-label="Duftfamilie hurtigvalg">
+          <button type="button" class="sb-scent-pill on" data-scent-val="all" onclick="selectCatalogChip('all','all',this)">Alle</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="oud" onclick="selectCatalogChip('scent','oud',this)">Oud</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="amber" onclick="selectCatalogChip('scent','amber',this)">Amber</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">Gourmand</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">Sitrus</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="musk" onclick="selectCatalogChip('scent','musk',this)">Moskus</button>
+          <button type="button" class="sb-scent-pill" data-scent-val="floral" onclick="selectCatalogChip('scent','floral',this)">Blomst</button>
+        </div>
       </div>
     </div>
 
     <div class="shop-layout">
       <!-- Left Sand Filter Sidebar -->
       <aside class="shop-sidebar" id="filterContainer" aria-label="Katalogfilter">
-        <div class="sb-search-box">
-          <input type="text" id="catalogSearchInput" class="sb-search-input" placeholder="Søk parfyme...">
+        <search class="sb-search-box" aria-label="Søk i katalogen">
+          <input type="search" id="catalogSearchInput" class="sb-search-input" placeholder="Søk parfyme..." autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
           <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Tøm søk">✕</button>
-        </div>
+        </search>
 
         <div class="sb-group">
           <div class="sb-group-head">
@@ -6620,6 +7068,7 @@ footer {
           <h2 class="shop-main-title" id="colTitle">Shop</h2>
           <div class="shop-head-right">
             <span class="shop-count-label" id="collectionCount">131 produkter</span>
+            <button type="button" class="shop-show-all-btn" id="shopHeadShowAllBtn" onclick="resetAllFilters()" hidden>Vis alle (131)</button>
             <select id="filterSort" class="shop-sort-select" aria-label="Sortering">
               <option value="featured" id="optSortFeatured">Anbefalt</option>
               <option value="price-asc" id="optSortPriceAsc">Pris: Lav – Høy</option>
@@ -7258,7 +7707,7 @@ footer {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.75 (updated 2026-11-18 19:21)
+        v1.0.76 (updated 2026-11-18 21:49)
       </div>
     </div>
   </div>
@@ -7364,6 +7813,7 @@ window.closeMenuSection = function(which) {
 window.filterByBrandFromHero = function(brandName) {
   closeNavDropdown();
   if (typeof window.toggleMobileNav === 'function') window.toggleMobileNav(true);
+  if (typeof window.toggleHeaderSearch === 'function') window.toggleHeaderSearch(true);
   selectedBrands.clear();
   activeBrand = brandName;
   activeScent = 'all';
@@ -7380,12 +7830,15 @@ window.filterByBrandFromHero = function(brandName) {
   if (searchInput) searchInput.value = '';
   const topInput = document.getElementById('topNavSearchInput');
   if (topInput) topInput.value = '';
+  const mobShopInput = document.getElementById('mobileShopSearchInput');
+  if (mobShopInput) mobShopInput.value = '';
   const mobInput = document.getElementById('mobNavSearchInput');
   if (mobInput) mobInput.value = '';
   const hubInput = document.getElementById('mobileHubSearchInput');
   if (hubInput) hubInput.value = '';
   if (document.getElementById('clearSearchBtn')) document.getElementById('clearSearchBtn').style.display = 'none';
   if (document.getElementById('topNavClearSearchBtn')) document.getElementById('topNavClearSearchBtn').style.display = 'none';
+  if (document.getElementById('mobileShopClearBtn')) document.getElementById('mobileShopClearBtn').style.display = 'none';
   if (document.getElementById('mobNavClearSearchBtn')) document.getElementById('mobNavClearSearchBtn').style.display = 'none';
   if (document.getElementById('mobileHubClearBtn')) document.getElementById('mobileHubClearBtn').style.display = 'none';
   if (typeof syncCatalogChipsUI === 'function') syncCatalogChipsUI();
@@ -12491,12 +12944,56 @@ window.onPriceSliderInput = function(val) {
   renderStore();
 };
 
-window.toggleHeaderSearch = function() {
+let hdrSearchCloseTimer = null;
+window.toggleHeaderSearch = function(forceClose = false) {
   const drawer = document.getElementById('hdrSearchDrawer');
+  const toggleBtn = document.getElementById('hdrSearchToggleBtn');
   if (!drawer) return;
-  const isOpen = drawer.classList.toggle('open');
-  if (isOpen) {
-    setTimeout(() => document.getElementById('topNavSearchInput')?.focus(), 50);
+  const currentlyOpen = drawer.classList.contains('open') && !drawer.hidden;
+  const shouldOpen = forceClose === true ? false : !currentlyOpen;
+
+  if (hdrSearchCloseTimer) {
+    clearTimeout(hdrSearchCloseTimer);
+    hdrSearchCloseTimer = null;
+  }
+
+  if (shouldOpen) {
+    drawer.removeAttribute('data-closing');
+    drawer.hidden = false;
+    requestAnimationFrame(() => {
+      drawer.classList.add('open');
+      const input = document.getElementById('topNavSearchInput');
+      if (input) {
+        try {
+          input.focus({ preventScroll: true });
+        } catch(err) {
+          input.focus();
+        }
+        if (input.value.trim()) renderSearchPop(input.value, 'searchPop');
+      }
+    });
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+  } else {
+    const pop = document.getElementById('searchPop');
+    if (pop) pop.hidden = true;
+    const input = document.getElementById('topNavSearchInput');
+    if (input) input.blur();
+    if (!currentlyOpen) {
+      drawer.classList.remove('open');
+      drawer.hidden = true;
+      drawer.removeAttribute('data-closing');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    drawer.setAttribute('data-closing', 'true');
+    drawer.classList.remove('open');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    const finishClose = () => {
+      drawer.removeAttribute('data-closing');
+      drawer.hidden = true;
+    };
+    drawer.addEventListener('transitionend', finishClose, { once: true });
+    hdrSearchCloseTimer = setTimeout(finishClose, 220);
   }
 };
 
@@ -12550,9 +13047,22 @@ function renderStore() {
   else if (activeSort === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
   else if (activeSort === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
 
-  // Count (based on visible catalog)
+  // Count & active filter Show All state
+  const isFilterActive = selectedBrands.size > 0 ||
+    (activeBrand && activeBrand !== 'all') ||
+    (activeScent && activeScent !== 'all') ||
+    maxPriceFilter < 1500 ||
+    searchQuery.length > 0;
+
   if ($('#collectionCount')) {
     $('#collectionCount').textContent = t.showingCount(filtered.length, visibleCatalog.length);
+  }
+  const headShowAllBtn = document.getElementById('shopHeadShowAllBtn');
+  if (headShowAllBtn) {
+    headShowAllBtn.hidden = !isFilterActive;
+    headShowAllBtn.textContent = isEn
+      ? `Show All (${visibleCatalog.length})`
+      : `Vis alle (${visibleCatalog.length})`;
   }
   updateMobileFilterBadge();
   const brandSelect = $('#filterBrand');
@@ -12592,17 +13102,20 @@ function renderStore() {
   if (!grid) return;
 
   if (filtered.length === 0) {
+    const showAllLabel = isEn
+      ? `Show All (${visibleCatalog.length})`
+      : `Vis alle (${visibleCatalog.length})`;
     grid.innerHTML = `
       <div class="empty-results-box">
         <h3>${t.emptyTitle}</h3>
         <p>${t.emptyDesc}</p>
-        <button type="button" class="cta" onclick="resetAllFilters()">${t.resetFilters}</button>
+        <button type="button" class="filtered-show-all-cta" onclick="resetAllFilters()">${showAllLabel}</button>
       </div>
     `;
     return;
   }
 
-  grid.innerHTML = filtered.map(p => {
+  const cardsHtml = filtered.map(p => {
     const isWished = typeof isProductWished === 'function' && isProductWished(p.id);
     const displayName = escapeHtml(isEn ? (p.name_en || p.name) : p.name);
     const displayBrand = escapeHtml(p.brand || p.house);
@@ -12634,6 +13147,15 @@ function renderStore() {
     </article>
   `;
   }).join('');
+
+  const showAllBannerHtml = (isFilterActive && filtered.length < visibleCatalog.length) ? `
+    <div class="filtered-show-all-banner">
+      <p class="filtered-show-all-text">${isEn ? "Didn't find the right perfume in this filter?" : 'Fant du ikke den rette parfymen med dette filteret?'}</p>
+      <button type="button" class="filtered-show-all-cta" onclick="resetAllFilters()">${isEn ? `Show All (${visibleCatalog.length}) Perfumes` : `Vis alle (${visibleCatalog.length}) parfymer`}</button>
+    </div>
+  ` : '';
+
+  grid.innerHTML = cardsHtml + showAllBannerHtml;
 
   // Keyboard accessibility on cards
   grid.querySelectorAll('.perfume-card').forEach(card => {
@@ -12667,12 +13189,16 @@ window.resetAllFilters = function() {
   if ($('#filterSort')) $('#filterSort').value = 'featured';
   if ($('#catalogSearchInput')) $('#catalogSearchInput').value = '';
   if ($('#topNavSearchInput')) $('#topNavSearchInput').value = '';
+  if ($('#mobileShopSearchInput')) $('#mobileShopSearchInput').value = '';
   if ($('#mobNavSearchInput')) $('#mobNavSearchInput').value = '';
   if ($('#mobileHubSearchInput')) $('#mobileHubSearchInput').value = '';
   if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = 'none';
   if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = 'none';
+  if ($('#mobileShopClearBtn')) $('#mobileShopClearBtn').style.display = 'none';
   if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = 'none';
   if ($('#mobileHubClearBtn')) $('#mobileHubClearBtn').style.display = 'none';
+  const sp = document.getElementById('searchPop');
+  if (sp) sp.hidden = true;
   if (typeof syncCatalogChipsUI === 'function') syncCatalogChipsUI();
   renderStore();
 };
@@ -13931,8 +14457,8 @@ function setLanguage(lang) {
   if ($('#navShowroom')) $('#navShowroom').textContent = t.navShowroom;
   if ($('#navContact')) $('#navContact').textContent = t.navContact;
   if ($('#navAboutContact')) $('#navAboutContact').textContent = t.navAboutContact || (LANG === 'en' ? 'Contact' : 'Kontakt');
-  if ($('#topNavSearchInput')) $('#topNavSearchInput').placeholder = t.topSearchPlaceholder || (LANG === 'en' ? 'Search perfume...' : 'Søk parfyme...');
-  if ($('#cartLabel')) $('#cartLabel').textContent = t.cartLabel;
+  if ($('#topNavSearchInput')) $('#topNavSearchInput').placeholder = (LANG === 'en') ? 'Search perfume, brand or note...' : 'Søk parfyme, merke eller duftnote...';
+  if ($('#mobileShopSearchInput')) $('#mobileShopSearchInput').placeholder = (LANG === 'en') ? 'Search perfume, brand or note...' : 'Søk parfyme, merke eller duftnote...';
   const cartToggleBtn = $('#cartToggleBtn');
   if (cartToggleBtn) {
     const cTitle = (LANG === 'en') ? 'Shopping Cart' : 'Handlekurv';
@@ -14215,16 +14741,18 @@ function setLanguage(lang) {
   if ($('#navCatalogLink')) $('#navCatalogLink').textContent = isEn ? 'Shop' : 'Katalog';
   if ($('#navFragrances')) $('#navFragrances').textContent = isEn ? 'Brands' : 'Merker';
   if ($('#navGiftSetsLink')) $('#navGiftSetsLink').textContent = isEn ? 'Gift sets' : 'Gavesett';
-  if ($('#heroChapterKicker')) $('#heroChapterKicker').textContent = isEn ? 'Chapter I:' : 'Kapittel I:';
-  if ($('#heroChapterSub')) $('#heroChapterSub').textContent = isEn ? 'Smoke, resin and midnight' : 'Røkt oud, varm harpiks og edle noter';
-  if ($('#heroChapterCta')) $('#heroChapterCta').textContent = isEn ? 'Shop Oud →' : 'Utforsk Oud →';
-  if ($('#heroTileMusk')) $('#heroTileMusk').textContent = isEn ? 'II Musk' : 'II Moskus';
+  if ($('#heroTileMusk')) $('#heroTileMusk').textContent = isEn ? 'Musk' : 'Moskus';
+  if ($('#heroTileAmber')) $('#heroTileAmber').textContent = 'Amber';
+  if (typeof window.renderHeroSlide === 'function') {
+    window.renderHeroSlide(window.heroSlideIdx || 0, false);
+  }
   if ($('#colTitle')) $('#colTitle').textContent = isEn ? 'Shop' : 'Katalog';
   if ($('#lblFilterBrand')) $('#lblFilterBrand').textContent = isEn ? 'Brands' : 'Merker';
   if ($('#lblFilterScent')) $('#lblFilterScent').textContent = isEn ? 'Scent Family' : 'Duftfamilie';
   if ($('#lblFilterPrice')) $('#lblFilterPrice').textContent = isEn ? 'Price' : 'Pris';
   if ($('#btnShowAll')) $('#btnShowAll').textContent = isEn ? 'Reset filters' : 'Nullstill filtre';
   if ($('#mobileFilterToggleLabel')) $('#mobileFilterToggleLabel').textContent = 'Filter';
+  if ($('#mobileFilterResetQuick')) $('#mobileFilterResetQuick').textContent = isEn ? '✕ Show All' : '✕ Vis alle';
   if ($('#cartBackToShop')) $('#cartBackToShop').textContent = isEn ? 'Back to shop' : 'Tilbake til butikk';
   if ($('#cartSummaryTitle')) $('#cartSummaryTitle').textContent = isEn ? 'Order Summary' : 'Ordresammendrag';
   if ($('#cartVippsHint')) $('#cartVippsHint').textContent = isEn ? 'Reserve online · Safe Vipps settlement' : 'Vipps-betaling ved henting eller sending';
@@ -14348,7 +14876,7 @@ function updateMobileFilterBadge() {
     }
   }
   if (resetBtn) {
-    resetBtn.style.display = count > 0 ? 'inline-flex' : 'none';
+    resetBtn.hidden = count === 0;
   }
 }
 window.updateMobileFilterBadge = updateMobileFilterBadge;
@@ -15278,59 +15806,108 @@ $('#filterSort')?.addEventListener('change', e => {
   activeSort = e.target.value;
   renderStore();
 });
-function syncSearch(val, source, shouldScrollToCatalog = false) {
+let searchDebounceTimer = null;
+function syncSearch(val, source, shouldScrollToCatalog = false, immediate = false) {
   searchQuery = (val || '').trim();
   const rawVal = val || '';
 
-  // When doing search on top (desktop, mobile header, or mobile quick hub), reset brands and scent family to 'all'
-  if ((source === 'top' || source === 'mob' || source === 'hub') && searchQuery.length > 0) {
+  // When doing search from top header or mobile controls, clear brand/scent constraints cleanly if entering a query
+  if ((source === 'top' || source === 'mob' || source === 'hub' || source === 'mobshop') && searchQuery.length > 0) {
     activeBrand = 'all';
+    selectedBrands.clear();
     activeScent = 'all';
     if ($('#filterBrand')) $('#filterBrand').value = 'all';
     if ($('#filterScent')) $('#filterScent').value = 'all';
+    if (typeof syncCatalogChipsUI === 'function') syncCatalogChipsUI();
   }
 
   if (source !== 'catalog' && $('#catalogSearchInput')) $('#catalogSearchInput').value = rawVal;
   if (source !== 'top' && $('#topNavSearchInput')) $('#topNavSearchInput').value = rawVal;
+  if (source !== 'mobshop' && $('#mobileShopSearchInput')) $('#mobileShopSearchInput').value = rawVal;
   if (source !== 'mob' && $('#mobNavSearchInput')) $('#mobNavSearchInput').value = rawVal;
   if (source !== 'hub' && $('#mobileHubSearchInput')) $('#mobileHubSearchInput').value = rawVal;
 
   const hasVal = rawVal.length > 0;
   if ($('#clearSearchBtn')) $('#clearSearchBtn').style.display = hasVal ? 'block' : 'none';
-  if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
+  if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = hasVal ? 'inline-flex' : 'none';
+  if ($('#mobileShopClearBtn')) $('#mobileShopClearBtn').style.display = hasVal ? 'inline-flex' : 'none';
   if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = hasVal ? 'block' : 'none';
   if ($('#mobileHubClearBtn')) $('#mobileHubClearBtn').style.display = hasVal ? 'block' : 'none';
 
-  renderStore();
-
-  if (shouldScrollToCatalog) {
-    const kjopSection = document.getElementById('kjop');
-    if (kjopSection) {
-      kjopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+  const runStoreUpdate = () => {
+    renderStore();
+    if (shouldScrollToCatalog) {
+      const kjopSection = document.getElementById('kjop');
+      if (kjopSection) {
+        kjopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
+  };
+
+  if (immediate || shouldScrollToCatalog || rawVal === '') {
+    runStoreUpdate();
+  } else {
+    const delay = source === 'top' ? 150 : 95;
+    searchDebounceTimer = setTimeout(runStoreUpdate, delay);
   }
 }
 
-// Catalog Filter Search Input
+// Catalog Sidebar Search Input
 $('#catalogSearchInput')?.addEventListener('input', e => {
   syncSearch(e.target.value, 'catalog');
 });
+$('#catalogSearchInput')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    syncSearch(e.target.value, 'catalog', false, true);
+    $('#catalogSearchInput')?.blur();
+  }
+});
 $('#clearSearchBtn')?.addEventListener('click', () => {
-  syncSearch('', 'all');
+  syncSearch('', 'all', false, true);
 });
 
-// Top Navigation Search Input (Desktop)
+// Inline Mobile Shop Search Input
+$('#mobileShopSearchInput')?.addEventListener('input', e => {
+  syncSearch(e.target.value, 'mobshop');
+});
+$('#mobileShopSearchInput')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    syncSearch(e.target.value, 'mobshop', false, true);
+    $('#mobileShopSearchInput')?.blur();
+  }
+});
+$('#mobileShopClearBtn')?.addEventListener('click', () => {
+  syncSearch('', 'all', false, true);
+  $('#mobileShopSearchInput')?.focus({ preventScroll: true });
+});
+
+// Top Header Search Overlay Input (Desktop & Mobile)
 $('#topNavSearchInput')?.addEventListener('input', e => {
+  renderSearchPop(e.target.value, 'searchPop');
   syncSearch(e.target.value, 'top');
+});
+$('#topNavSearchInput')?.addEventListener('focus', e => {
+  if (e.target.value.trim()) renderSearchPop(e.target.value, 'searchPop');
 });
 $('#topNavSearchInput')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    syncSearch(e.target.value, 'top', true);
+    const pop = document.getElementById('searchPop');
+    if (pop) pop.hidden = true;
+    syncSearch(e.target.value, 'top', true, true);
+    window.toggleHeaderSearch(true);
+  } else if (e.key === 'Escape') {
+    window.toggleHeaderSearch(true);
   }
 });
 $('#topNavClearSearchBtn')?.addEventListener('click', () => {
-  syncSearch('', 'all');
+  const pop = document.getElementById('searchPop');
+  if (pop) pop.hidden = true;
+  syncSearch('', 'all', false, true);
+  $('#topNavSearchInput')?.focus({ preventScroll: true });
 });
 
 // Mobile Navigation Search Input
@@ -15340,14 +15917,14 @@ $('#mobNavSearchInput')?.addEventListener('input', e => {
 $('#mobNavSearchInput')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    syncSearch(e.target.value, 'mob', true);
+    syncSearch(e.target.value, 'mob', true, true);
     if ($('#mobileNav')?.classList.contains('open')) {
       window.toggleMobileNav(true);
     }
   }
 });
 $('#mobNavClearSearchBtn')?.addEventListener('click', () => {
-  syncSearch('', 'all');
+  syncSearch('', 'all', false, true);
 });
 
 // Mobile Hub Search Input (Quick-Finder)
@@ -15356,7 +15933,7 @@ $('#mobileHubSearchInput')?.addEventListener('keydown', e => {
     e.preventDefault();
     const mp = document.getElementById('mobileHubSearchPop');
     if (mp) mp.hidden = true;
-    syncSearch(e.target.value, 'hub', true);
+    syncSearch(e.target.value, 'hub', true, true);
     $('#mobileHubSearchInput').blur();
   }
 });
@@ -15366,7 +15943,7 @@ $('#cartToggleBtn')?.addEventListener('click', e => {
   window.toggleCart();
 });
 
-// Dismiss mobileNav when clicking outside or pressing Escape
+// Dismiss mobileNav & hdrSearchDrawer when clicking outside or pressing Escape
 document.addEventListener('click', e => {
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('navToggleBtn');
@@ -15376,6 +15953,13 @@ document.addEventListener('click', e => {
       window.toggleMobileNav(true);
     }
   }
+  const hdrDrawer = document.getElementById('hdrSearchDrawer');
+  const hdrSearchBtn = document.getElementById('hdrSearchToggleBtn');
+  if (hdrDrawer && hdrDrawer.classList.contains('open') && !hdrDrawer.hidden) {
+    if (!hdrDrawer.contains(e.target) && !hdrSearchBtn?.contains(e.target)) {
+      window.toggleHeaderSearch(true);
+    }
+  }
 });
 
 document.addEventListener('keydown', e => {
@@ -15383,6 +15967,10 @@ document.addEventListener('keydown', e => {
     const nav = document.getElementById('mobileNav');
     if (nav && nav.classList.contains('open')) {
       window.toggleMobileNav(true);
+    }
+    const hdrDrawer = document.getElementById('hdrSearchDrawer');
+    if (hdrDrawer && hdrDrawer.classList.contains('open') && !hdrDrawer.hidden) {
+      window.toggleHeaderSearch(true);
     }
   }
 });
@@ -15496,7 +16084,14 @@ window.dismissTopBanner = function() {
   if (b) b.hidden = true;
 };
 
-// PakStar Live Search Popover (#searchPop & #mobileHubSearchPop)
+// Live Search Popover (#searchPop & #mobileHubSearchPop)
+window.closeSearchPopAndScroll = function(popId) {
+  const pop = document.getElementById(popId);
+  if (pop) pop.hidden = true;
+  if (typeof window.toggleHeaderSearch === 'function') window.toggleHeaderSearch(true);
+  document.getElementById('kjop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 function renderSearchPop(q, popId = 'searchPop') {
   const pop = document.getElementById(popId);
   if (!pop) return;
@@ -15526,18 +16121,18 @@ function renderSearchPop(q, popId = 'searchPop') {
   pop.innerHTML = `
     <div class="sp-head">
       <span>${matches.length} ${isEn ? 'matches' : 'treff'}</span>
-      <button type="button" style="color:var(--ac);font-weight:800;cursor:pointer" onclick="document.getElementById('${popId}').hidden=true; document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">${isEn ? 'See all →' : 'Se alle →'}</button>
+      <button type="button" style="color:var(--ac);font-weight:700;cursor:pointer" onclick="closeSearchPopAndScroll('${popId}')">${isEn ? 'See all →' : 'Se alle →'}</button>
     </div>
     ${topMatches.map(p => `
-      <div class="sp-item" onclick="document.getElementById('${popId}').hidden=true; openProductDetail('${p.id}')">
+      <div class="sp-item" onclick="document.getElementById('${popId}').hidden=true; if(typeof window.toggleHeaderSearch==='function') window.toggleHeaderSearch(true); openProductDetail('${p.id}')">
         <div class="sp-thumb"><img src="${p.image}" alt="" loading="lazy"></div>
         <div class="sp-meta">
           <div class="sp-title">${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</div>
           <div class="sp-sub">${escapeHtml(p.house || p.brand)} · ${escapeHtml(p.size || '100 ml')}</div>
         </div>
         <div class="sp-right">
-          <span class="sp-price">${nok(p.price)}</span>
-          <button type="button" class="sp-add" onclick="event.stopPropagation(); document.getElementById('${popId}').hidden=true; ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">+ ${isEn ? 'Buy' : 'Kjøp'}</button>
+          <span class="sp-price">${nok(p.price)} kr</span>
+          <button type="button" class="sp-add" onclick="event.stopPropagation(); document.getElementById('${popId}').hidden=true; if(typeof window.toggleHeaderSearch==='function') window.toggleHeaderSearch(true); ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">+ ${isEn ? 'Buy' : 'Kjøp'}</button>
         </div>
       </div>
     `).join('')}
@@ -15545,12 +16140,6 @@ function renderSearchPop(q, popId = 'searchPop') {
   pop.hidden = false;
 }
 
-$('#topNavSearchInput')?.addEventListener('input', e => {
-  renderSearchPop(e.target.value, 'searchPop');
-});
-$('#topNavSearchInput')?.addEventListener('focus', e => {
-  if (e.target.value.trim()) renderSearchPop(e.target.value, 'searchPop');
-});
 $('#mobileHubSearchInput')?.addEventListener('input', e => {
   renderSearchPop(e.target.value, 'mobileHubSearchPop');
 });
@@ -15569,6 +16158,194 @@ document.addEventListener('click', e => {
     mPop.hidden = true;
   }
 });
+
+// ── HERO ANIMATED TRANSPARENT BOTTLE CAROUSEL & SLIDING PROGRESS LINE ──
+window.HERO_SLIDES = [
+  {
+    id: 'surrati-gray-oud',
+    brand: 'SURRATI · OUD',
+    title: 'Gray Oud',
+    sub_nb: 'Røkt oud, varm harpiks og edle tresorter',
+    sub_en: 'Smoke, resin and noble dark woods'
+  },
+  {
+    id: 'lattafa-khamrah',
+    brand: 'LATTAFA · GOURMAND',
+    title: 'Khamrah',
+    sub_nb: 'Kanel, søte dadler, pralin og varm vanilje',
+    sub_en: 'Cinnamon, sweet dates, praline and warm vanilla'
+  },
+  {
+    id: 'bujairami-hectic',
+    brand: 'BUJAIRAMI · CITRUS',
+    title: 'Hectic',
+    sub_nb: 'Sort te, siciliansk bergamott og frisk ambroxan',
+    sub_en: 'Black tea, Sicilian bergamot and crisp ambroxan'
+  },
+  {
+    id: 'nusuk-ateeq',
+    brand: 'NUSUK · AMBER',
+    title: 'Ateeq',
+    sub_nb: 'Gylden honning, varm tobakk, kanel og vaniljeorkidé',
+    sub_en: 'Golden honey, warm tobacco, cinnamon and vanilla orchid'
+  },
+  {
+    id: 'khadlaj-island',
+    brand: 'KHADLAJ · CITRUS',
+    title: 'Island',
+    sub_nb: 'Saftig ananas, kremet kokos, iris og gylden amber',
+    sub_en: 'Juicy pineapple, creamy coconut, iris and golden amber'
+  },
+  {
+    id: 'reef-blanc-ash',
+    brand: 'REEF · MUSK',
+    title: 'Blanc Ash',
+    sub_nb: 'Rimfrossen skog, ren hvit moskus og edle tresorter',
+    sub_en: 'Frosted forest, crisp white musk and noble woods'
+  }
+];
+window.heroSlideIdx = 0;
+
+(function initHeroBottleCarousel() {
+  const card = document.getElementById('heroChapterCard');
+  const stage = document.getElementById('heroChapterStage');
+  const visual = document.getElementById('heroChapterVisual');
+  const copy = document.getElementById('heroChapterCopy');
+  const kickerEl = document.getElementById('heroChapterKicker');
+  const titleEl = document.getElementById('heroChapterTitle');
+  const subEl = document.getElementById('heroChapterSub');
+  const ctaEl = document.getElementById('heroChapterCta');
+  const dotsWrap = document.getElementById('heroSlideDots');
+  const pauseBtn = document.getElementById('heroPauseBtn');
+  const pauseIcon = document.getElementById('heroPauseIcon');
+  const lineEl = document.getElementById('heroSlidingLine');
+  if (!card || !stage || !dotsWrap) return;
+
+  const bottles = Array.from(stage.querySelectorAll('.hero-stage-bottle'));
+  const slides = window.HERO_SLIDES;
+  const DURATION_MS = 4800;
+  let timer = null;
+  let userPaused = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Build accessible clickable dots
+  dotsWrap.innerHTML = slides.map((s, idx) => `
+    <button type="button" class="hero-slide-dot" role="tab" aria-selected="${idx === 0 ? 'true' : 'false'}" aria-label="${escapeHtml(s.title)}" data-hero-slide="${idx}"></button>
+  `).join('');
+
+  const dotEls = Array.from(dotsWrap.querySelectorAll('.hero-slide-dot'));
+
+  function restartProgressLine() {
+    if (!lineEl || reducedMotion) return;
+    lineEl.style.animation = 'none';
+    void lineEl.offsetWidth;
+    lineEl.style.animation = '';
+  }
+
+  function applySlideText(slide) {
+    const isEn = LANG === 'en';
+    if (kickerEl) kickerEl.textContent = slide.brand;
+    if (titleEl) titleEl.textContent = slide.title;
+    if (subEl) subEl.textContent = isEn ? slide.sub_en : slide.sub_nb;
+    if (ctaEl) ctaEl.textContent = isEn ? `Shop ${slide.title} →` : `Utforsk ${slide.title} →`;
+    if (visual) visual.setAttribute('title', slide.title);
+  }
+
+  window.renderHeroSlide = function(targetIdx, animate = true) {
+    const prevIdx = window.heroSlideIdx || 0;
+    const nextIdx = ((targetIdx % slides.length) + slides.length) % slides.length;
+    const slide = slides[nextIdx];
+    window.heroSlideIdx = nextIdx;
+
+    if (animate && nextIdx !== prevIdx && copy && !reducedMotion) {
+      copy.classList.add('is-swapping');
+      setTimeout(() => {
+        applySlideText(slide);
+        copy.classList.remove('is-swapping');
+      }, 170);
+    } else {
+      applySlideText(slide);
+    }
+
+    bottles.forEach((img, idx) => {
+      img.classList.remove('is-leaving');
+      if (idx === nextIdx) {
+        img.classList.add('is-active');
+      } else {
+        if (animate && idx === prevIdx && nextIdx !== prevIdx) {
+          img.classList.add('is-leaving');
+          setTimeout(() => img.classList.remove('is-leaving'), 680);
+        }
+        img.classList.remove('is-active');
+      }
+    });
+
+    dotEls.forEach((d, idx) => {
+      d.setAttribute('aria-selected', idx === nextIdx ? 'true' : 'false');
+    });
+
+    if (animate) restartProgressLine();
+  };
+
+  function startCycle() {
+    if (timer) clearInterval(timer);
+    if (userPaused || reducedMotion) return;
+    restartProgressLine();
+    timer = setInterval(() => {
+      window.renderHeroSlide((window.heroSlideIdx + 1) % slides.length, true);
+    }, DURATION_MS);
+  }
+
+  function stopCycle() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  dotEls.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.heroSlide, 10) || 0;
+      window.renderHeroSlide(idx, true);
+      if (!userPaused) startCycle();
+    });
+  });
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      userPaused = !userPaused;
+      card.classList.toggle('is-paused', userPaused);
+      pauseBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+      if (pauseIcon) pauseIcon.textContent = userPaused ? '▶' : '❚❚';
+      if (userPaused) stopCycle();
+      else startCycle();
+    });
+  }
+
+  // Keyboard support on bottle stage
+  visual?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openProductDetail(slides[window.heroSlideIdx || 0].id);
+    }
+  });
+
+  // Touch swipe on hero card
+  let touchStartX = 0;
+  card.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  card.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 48) {
+      window.renderHeroSlide(dx < 0 ? window.heroSlideIdx + 1 : window.heroSlideIdx - 1, true);
+      if (!userPaused) startCycle();
+    }
+  }, { passive: true });
+
+  window.renderHeroSlide(0, false);
+  startCycle();
+})();
 
 // PakStar 3D Category Cards & Chips Rail Selection
 window.selectPakStarCategory = function(type, val, btnEl) {
