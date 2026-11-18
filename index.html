@@ -3741,6 +3741,48 @@ footer{
   border-color: var(--ac);
 }
 
+/* Admin Visibility Toggle Switch & Image Upload Preview */
+.admin-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.admin-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.admin-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--bg);
+  border: 1px solid var(--ln);
+  transition: .25s ease;
+  border-radius: 26px;
+}
+.admin-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--mu);
+  transition: .25s ease;
+  border-radius: 50%;
+}
+.admin-toggle-switch input:checked + .admin-toggle-slider {
+  background-color: color-mix(in srgb, var(--ac) 25%, var(--bg));
+  border-color: var(--ac);
+}
+.admin-toggle-switch input:checked + .admin-toggle-slider:before {
+  transform: translateX(22px);
+  background-color: var(--ac);
+}
+
 /* ── PAKSTAR BEST FEATURES & NEW PILL BADGES ── */
 .card-tag-badge {
   position: absolute;
@@ -6298,6 +6340,26 @@ body {
   <form id="adminEditDetailForm" onsubmit="saveAdminProductDetails(event)" style="display:flex;flex-direction:column;gap:1rem">
     <input type="hidden" id="editAdmId">
 
+    <!-- ── Product Visibility (Hide / Unhide Toggle) ── -->
+    <div style="display:flex;align-items:center;justify-content:space-between;background:var(--sf2);border:1px solid var(--ln);border-radius:12px;padding:.85rem 1rem;gap:.9rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <span id="editAdmVisIcon" style="font-size:1.4rem">👁️</span>
+        <div>
+          <div style="font-size:.86rem;font-weight:700;color:var(--tx)" id="editAdmVisHeading">Synlighet i butikken / Store Visibility</div>
+          <div id="editAdmVisStatusText" style="font-size:.75rem;color:var(--ac)">Synlig for kunder i butikken (Aktiv)</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <button type="button" id="editAdmVisQuickBtn" class="card-btn" onclick="toggleEditAdmVisibilityState()" style="padding:.45rem .85rem;font-size:.76rem;font-weight:600;border-radius:8px;cursor:pointer">
+          Skjul produkt
+        </button>
+        <label class="admin-toggle-switch" title="Slå av for å skjule produktet / Slå på for å vise i butikken">
+          <input type="checkbox" id="editAdmHiddenToggle" onchange="updateAdminVisToggleDisplay(this.checked)">
+          <span class="admin-toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
       <div>
         <label style="display:block;font-size:.76rem;color:var(--ac);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em">Parfymenavn</label>
@@ -6353,14 +6415,48 @@ body {
       <textarea id="editAdmStory" rows="3" style="width:100%;padding:.6rem .8rem;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:10px;font:inherit;font-size:.84rem;line-height:1.5;resize:vertical"></textarea>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+    <!-- ── Picture Upload & Paths with Live Previews ── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;background:var(--sf2);border:1px solid var(--ln);border-radius:12px;padding:1rem">
+      <!-- Main Flacon Image Upload & Path -->
       <div>
-        <label style="display:block;font-size:.72rem;color:var(--mu);margin-bottom:.2rem">Flakong-bilde (URL / sti)</label>
-        <input type="text" id="editAdmImage" style="width:100%;padding:.5rem .7rem;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:8px;font:inherit;font-size:.82rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;flex-wrap:wrap;gap:.3rem">
+          <label style="font-size:.76rem;color:var(--ac);text-transform:uppercase;letter-spacing:.06em;font-weight:700">Flakong-bilde (Hovedbilde)</label>
+          <button type="button" class="card-btn" onclick="document.getElementById('editAdmImageFileInput').click()" style="padding:.32rem .7rem;font-size:.74rem;display:inline-flex;align-items:center;gap:.35rem;background:var(--bg);border:1px solid var(--ac);color:var(--ac);border-radius:7px;cursor:pointer;font-weight:600">
+            📁 Last opp bilde / Upload picture
+          </button>
+          <input type="file" id="editAdmImageFileInput" accept="image/*" style="display:none" onchange="handleAdminImageUpload(event, 'image')">
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:center">
+          <div style="width:58px;height:58px;background:var(--bg);border:1px solid var(--ln);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">
+            <img id="editAdmImagePreview" src="" alt="Forhåndsvisning" style="max-width:100%;max-height:100%;object-fit:contain;display:none" onerror="this.style.display='none'; document.getElementById('editAdmImagePlaceholder').style.display='block';" onload="this.style.display='block'; document.getElementById('editAdmImagePlaceholder').style.display='none';">
+            <span id="editAdmImagePlaceholder" style="font-size:1.4rem;color:var(--mu)">🖼️</span>
+          </div>
+          <div style="flex:1">
+            <input type="text" id="editAdmImage" placeholder="images/... eller trykk Last opp" style="width:100%;padding:.5rem .7rem;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:8px;font:inherit;font-size:.82rem" oninput="updateAdminImagePreview('image')">
+            <div style="font-size:.68rem;color:var(--mu);margin-top:.2rem">Last opp fil fra enhet eller oppgi bildesti</div>
+          </div>
+        </div>
       </div>
+
+      <!-- Box Image Upload & Path -->
       <div>
-        <label style="display:block;font-size:.72rem;color:var(--mu);margin-bottom:.2rem">Eske-bilde (URL / sti)</label>
-        <input type="text" id="editAdmImageBox" style="width:100%;padding:.5rem .7rem;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:8px;font:inherit;font-size:.82rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;flex-wrap:wrap;gap:.3rem">
+          <label style="font-size:.76rem;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;font-weight:700">Eske-bilde (Valgfritt)</label>
+          <button type="button" class="card-btn" onclick="document.getElementById('editAdmImageBoxFileInput').click()" style="padding:.32rem .7rem;font-size:.74rem;display:inline-flex;align-items:center;gap:.35rem;background:var(--bg);border:1px solid var(--ln);color:var(--mu);border-radius:7px;cursor:pointer">
+            📁 Last opp eske
+          </button>
+          <input type="file" id="editAdmImageBoxFileInput" accept="image/*" style="display:none" onchange="handleAdminImageUpload(event, 'image_box')">
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:center">
+          <div style="width:58px;height:58px;background:var(--bg);border:1px solid var(--ln);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">
+            <img id="editAdmImageBoxPreview" src="" alt="Eske forhåndsvisning" style="max-width:100%;max-height:100%;object-fit:contain;display:none" onerror="this.style.display='none'; document.getElementById('editAdmImageBoxPlaceholder').style.display='block';" onload="this.style.display='block'; document.getElementById('editAdmImageBoxPlaceholder').style.display='none';">
+            <span id="editAdmImageBoxPlaceholder" style="font-size:1.4rem;color:var(--mu)">📦</span>
+          </div>
+          <div style="flex:1">
+            <input type="text" id="editAdmImageBox" placeholder="images/... eller trykk Last opp" style="width:100%;padding:.5rem .7rem;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:8px;font:inherit;font-size:.82rem" oninput="updateAdminImagePreview('image_box')">
+            <div style="font-size:.68rem;color:var(--mu);margin-top:.2rem">Valgfritt bilde av parfymeemballasje</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -6422,7 +6518,7 @@ body {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.73 (updated 2026-11-18 15:15)
+        v1.0.74 (updated 2026-11-18 15:25)
       </div>
     </div>
   </div>
@@ -11616,8 +11712,10 @@ function renderStore() {
   const isEn = LANG === 'en';
   const t = I18N[LANG];
 
-  // Filter Catalog
+  // Filter Catalog (exclude hidden products from public storefront)
+  const visibleCatalog = CATALOG.filter(p => !p.hidden);
   let filtered = CATALOG.filter(p => {
+    if (p.hidden) return false;
     if (activeBrand !== 'all' && p.brand !== activeBrand) return false;
     if (activeScent !== 'all' && p.scentFamily !== activeScent) return false;
     if (searchQuery) {
@@ -11641,21 +11739,21 @@ function renderStore() {
   else if (activeSort === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
   else if (activeSort === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
 
-  // Count
+  // Count (based on visible catalog)
   if ($('#collectionCount')) {
-    $('#collectionCount').textContent = t.showingCount(filtered.length, CATALOG.length);
+    $('#collectionCount').textContent = t.showingCount(filtered.length, visibleCatalog.length);
   }
   updateMobileFilterBadge();
   const brandSelect = $('#filterBrand');
   if (brandSelect) {
     const currentVal = activeBrand || 'all';
     const brandCounts = {};
-    CATALOG.forEach(p => {
+    visibleCatalog.forEach(p => {
       const b = p.brand || 'Andre';
       brandCounts[b] = (brandCounts[b] || 0) + 1;
     });
     const sortedBrands = Object.keys(brandCounts).sort((a, b) => a.localeCompare(b));
-    let brandHtml = `<option value="all">${isEn ? `All brands (${CATALOG.length})` : `Alle merker (${CATALOG.length})`}</option>`;
+    let brandHtml = `<option value="all">${isEn ? `All brands (${visibleCatalog.length})` : `Alle merker (${visibleCatalog.length})`}</option>`;
     sortedBrands.forEach(b => {
       const displayLabel = b === 'Armaf' ? 'Armaf / Sterling Perfumes' :
                            b === 'Ibraq' ? 'Ibrahim Al Qurashi (IBRAQ)' :
@@ -13652,17 +13750,28 @@ function renderAdminPanel() {
   }
 
   list.innerHTML = items.map(p => `
-    <div style="background:var(--sf2);border:1px solid var(--ln);border-radius:10px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="background:var(--sf2);border:1px solid ${p.hidden ? 'color-mix(in srgb, var(--er) 45%, transparent)' : 'var(--ln)'};border-radius:10px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;${p.hidden ? 'opacity:.82;' : ''}">
       <div style="display:flex;align-items:center;gap:.9rem;min-width:240px;flex:1">
-        <img src="${p.image}" alt="${escapeHtml(p.name)}" style="width:44px;height:44px;object-fit:contain;background:var(--bg);border-radius:8px;padding:2px;border:1px solid var(--ln)"
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'44\' height=\'44\' viewBox=\'0 0 44 44\'%3E%3Crect width=\'44\' height=\'44\' fill=\'%2326231e\'/%3E%3C/svg%3E'">
+        <div style="position:relative">
+          <img src="${p.image}" alt="${escapeHtml(p.name)}" style="width:46px;height:46px;object-fit:contain;background:var(--bg);border-radius:8px;padding:2px;border:1px solid var(--ln)"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'44\' height=\'44\' viewBox=\'0 0 44 44\'%3E%3Crect width=\'44\' height=\'44\' fill=\'%2326231e\'/%3E%3C/svg%3E'">
+          ${p.hidden ? '<span style="position:absolute;top:-5px;right:-5px;background:#ef4444;color:#fff;font-size:.58rem;padding:1px 4px;border-radius:4px;font-weight:700">SKJULT</span>' : ''}
+        </div>
         <div>
-          <b style="color:var(--tx);font-size:.92rem">${escapeHtml(p.name)}</b>
+          <div style="display:flex;align-items:center;gap:.45rem;flex-wrap:wrap">
+            <b style="color:var(--tx);font-size:.92rem">${escapeHtml(p.name)}</b>
+            ${p.hidden 
+              ? '<span style="font-size:.68rem;background:rgba(239,68,68,.14);color:#ef4444;padding:1px 6px;border-radius:4px;border:1px solid rgba(239,68,68,.3);font-weight:600">🙈 Skjult / Hidden</span>' 
+              : '<span style="font-size:.68rem;background:rgba(16,185,129,.12);color:#10b981;padding:1px 6px;border-radius:4px;border:1px solid rgba(16,185,129,.3);font-weight:600">👁️ Synlig</span>'}
+          </div>
           <div style="font-size:.75rem;color:var(--mu)">${escapeHtml(p.house || p.brand)} · 100 ml</div>
           <div style="color:var(--ac);font-size:.82rem;margin-top:.1rem" id="admPriceDisplay_${p.id}">${nok(p.price)}</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+        <button type="button" class="card-btn" style="padding:.45rem .75rem;font-size:.74rem;display:flex;align-items:center;gap:.3rem;background:${p.hidden ? 'rgba(16,185,129,.12)' : 'rgba(239,68,68,.1)'};color:${p.hidden ? '#10b981' : '#f87171'};border-color:${p.hidden ? 'rgba(16,185,129,.35)' : 'rgba(239,68,68,.35)'}" onclick="toggleAdminProductVisibility('${p.id}')" title="${p.hidden ? 'Gjør synlig for kunder i butikken' : 'Skjul produkt fra butikken'}">
+          ${p.hidden ? '👁️ Gjør synlig' : '🙈 Skjul'}
+        </button>
         <div style="display:flex;align-items:center;gap:.35rem;background:var(--bg);border:1px solid var(--ln);padding:.25rem .5rem;border-radius:8px">
           <span style="font-size:.78rem;color:var(--ac);font-weight:600">kr</span>
           <input type="number" min="100" max="1500" value="${p.price}" id="admPrice_${p.id}"
@@ -13730,6 +13839,161 @@ window.handlePriceAutoSave = function(id, val, immediate = false) {
   }
 };
 
+// ── Admin Visibility & Image Upload Utilities ──
+window.updateAdminVisToggleDisplay = function(isVisible) {
+  const icon = $('#editAdmVisIcon');
+  const text = $('#editAdmVisStatusText');
+  const btn = $('#editAdmVisQuickBtn');
+  const toggle = $('#editAdmHiddenToggle');
+  if (toggle) toggle.checked = isVisible;
+
+  if (isVisible) {
+    if (icon) icon.textContent = '👁️';
+    if (text) {
+      text.textContent = 'Synlig for kunder i butikken (Aktiv / Visible)';
+      text.style.color = 'var(--ac)';
+    }
+    if (btn) {
+      btn.textContent = '🙈 Skjul produkt';
+      btn.style.color = 'var(--er)';
+      btn.style.borderColor = 'color-mix(in srgb, var(--er) 40%, transparent)';
+    }
+  } else {
+    if (icon) icon.textContent = '🙈';
+    if (text) {
+      text.textContent = 'Skjult for kunder (vises kun i admin / Hidden)';
+      text.style.color = 'var(--er)';
+    }
+    if (btn) {
+      btn.textContent = '👁️ Gjør synlig';
+      btn.style.color = 'var(--ac)';
+      btn.style.borderColor = 'var(--ac)';
+    }
+  }
+};
+
+window.toggleEditAdmVisibilityState = function() {
+  const toggle = $('#editAdmHiddenToggle');
+  if (!toggle) return;
+  toggle.checked = !toggle.checked;
+  updateAdminVisToggleDisplay(toggle.checked);
+};
+
+window.toggleAdminProductVisibility = async function(id) {
+  const p = CATALOG.find(item => item.id === id);
+  if (!p) return;
+  p.hidden = !p.hidden;
+  localStorage.setItem('arx_custom_catalog_v67', JSON.stringify(CATALOG));
+  renderStore();
+  renderAdminPanel();
+  await syncCatalogToCloud();
+};
+
+window.updateAdminImagePreview = function(type) {
+  if (type === 'image') {
+    const val = $('#editAdmImage')?.value?.trim();
+    const preview = $('#editAdmImagePreview');
+    const placeholder = $('#editAdmImagePlaceholder');
+    if (val && preview) {
+      preview.src = val;
+      preview.style.display = 'block';
+      if (placeholder) placeholder.style.display = 'none';
+    } else {
+      if (preview) preview.style.display = 'none';
+      if (placeholder) placeholder.style.display = 'block';
+    }
+  } else if (type === 'image_box') {
+    const val = $('#editAdmImageBox')?.value?.trim();
+    const preview = $('#editAdmImageBoxPreview');
+    const placeholder = $('#editAdmImageBoxPlaceholder');
+    if (val && preview) {
+      preview.src = val;
+      preview.style.display = 'block';
+      if (placeholder) placeholder.style.display = 'none';
+    } else {
+      if (preview) preview.style.display = 'none';
+      if (placeholder) placeholder.style.display = 'block';
+    }
+  }
+};
+
+window.handleAdminImageUpload = function(event, fieldType) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  if (file.size > 10 * 1024 * 1024) {
+    alert('Bildet er for stort (maks 10 MB). Vennligst velg et mindre bilde.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      // Scale down to max 1000px dimension if necessary to keep localStorage fast & clean
+      const maxDim = 1000;
+      let width = img.width;
+      let height = img.height;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const isPng = file.type === 'image/png';
+        const outputType = isPng ? 'image/png' : 'image/jpeg';
+        const dataUrl = canvas.toDataURL(outputType, 0.9);
+
+        if (fieldType === 'image') {
+          const inp = $('#editAdmImage');
+          if (inp) inp.value = dataUrl;
+          updateAdminImagePreview('image');
+        } else if (fieldType === 'image_box') {
+          const inp = $('#editAdmImageBox');
+          if (inp) inp.value = dataUrl;
+          updateAdminImagePreview('image_box');
+        }
+      } catch (err) {
+        // Fallback: use raw dataUrl if canvas operations are restricted
+        const dataUrl = e.target.result;
+        if (fieldType === 'image') {
+          const inp = $('#editAdmImage');
+          if (inp) inp.value = dataUrl;
+          updateAdminImagePreview('image');
+        } else if (fieldType === 'image_box') {
+          const inp = $('#editAdmImageBox');
+          if (inp) inp.value = dataUrl;
+          updateAdminImagePreview('image_box');
+        }
+      }
+    };
+    img.onerror = function() {
+      const dataUrl = e.target.result;
+      if (fieldType === 'image') {
+        const inp = $('#editAdmImage');
+        if (inp) inp.value = dataUrl;
+        updateAdminImagePreview('image');
+      } else if (fieldType === 'image_box') {
+        const inp = $('#editAdmImageBox');
+        if (inp) inp.value = dataUrl;
+        updateAdminImagePreview('image_box');
+      }
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+
 window.openAdminProductEdit = function(id) {
   const p = CATALOG.find(item => item.id === id);
   if (!p) return;
@@ -13745,6 +14009,15 @@ window.openAdminProductEdit = function(id) {
   $('#editAdmStory').value = p.story || p.desc || '';
   $('#editAdmImage').value = p.image || '';
   $('#editAdmImageBox').value = p.image_box || '';
+
+  // Setup Visibility Toggle
+  const isVisible = !p.hidden;
+  updateAdminVisToggleDisplay(isVisible);
+
+  // Setup Image Previews
+  updateAdminImagePreview('image');
+  updateAdminImagePreview('image_box');
+
   $('#adminEditDetailModal')?.showModal();
 };
 
@@ -13770,6 +14043,10 @@ window.saveAdminProductDetails = async function(e) {
   p.desc = p.story;
   if ($('#editAdmImage').value.trim()) p.image = $('#editAdmImage').value.trim();
   if ($('#editAdmImageBox').value.trim()) p.image_box = $('#editAdmImageBox').value.trim();
+
+  // Save visibility state
+  const toggle = $('#editAdmHiddenToggle');
+  p.hidden = toggle ? !toggle.checked : false;
 
   localStorage.setItem('arx_custom_catalog_v67', JSON.stringify(CATALOG));
   renderStore();
@@ -14347,6 +14624,7 @@ function renderSearchPop(q, popId = 'searchPop') {
   }
   const isEn = LANG === 'en';
   const matches = CATALOG.filter(p => {
+    if (p.hidden) return false;
     const notesStr = p.notes ? Object.values(p.notes).join(' ') : '';
     return p.name.toLowerCase().includes(query) ||
            (p.name_en || '').toLowerCase().includes(query) ||
