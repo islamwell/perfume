@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="nb" class="booting">
+<html lang="nb" class="ready theme-light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <title id="metaTitle">Aromatek Oslo · Kuratert Parfymeri & 131 Utvalgte Flakonger</title>
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0f0e0c">
+<meta name="theme-color" content="#faf5ec">
 <script>
 (function(){
   try {
     var saved = localStorage.getItem('arx_theme');
-    var sysLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    var isLight = saved ? (saved === 'light') : sysLight;
+    var isDark = (saved === 'dark');
     var mScheme = document.querySelector('meta[name="color-scheme"]');
     var mTheme = document.querySelector('meta[name="theme-color"]');
-    if (mScheme) mScheme.setAttribute('content', saved ? saved : 'light dark');
-    if (isLight) {
-      document.documentElement.classList.add('theme-light');
-      document.documentElement.dataset.theme = 'light';
-      if (mTheme) mTheme.setAttribute('content', '#faf8f4');
-    } else {
+    if (isDark) {
+      document.documentElement.classList.remove('theme-light');
+      document.documentElement.classList.add('theme-dark');
       document.documentElement.dataset.theme = 'dark';
+      if (mScheme) mScheme.setAttribute('content', 'dark');
+      if (mTheme) mTheme.setAttribute('content', '#0f0e0c');
+    } else {
+      document.documentElement.classList.add('theme-light');
+      document.documentElement.classList.remove('theme-dark');
+      document.documentElement.dataset.theme = 'light';
+      if (mScheme) mScheme.setAttribute('content', 'light');
+      if (mTheme) mTheme.setAttribute('content', '#faf5ec');
     }
   } catch(e){}
 })();
@@ -113,7 +117,8 @@ try {
   }
 } catch(e) {}
 </script>
-<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style></noscript>
+<noscript><style>html.booting{overflow:visible}.intro{display:none!important}</style>
+</noscript>
 
 <style>
 /* ================= HERO BESTSELLERS SECTION ================= */
@@ -1603,7 +1608,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   .brand-title > span,
   .brand-title .brand-name-gold,
   .brand-perfume-word{
-    display:none !important;
+    display:inline !important;
   }
   .header-inner{
     padding:.48rem var(--pad, .75rem);
@@ -2903,7 +2908,7 @@ nav.main-nav a:hover, nav.main-nav .nav-dropdown-trigger:hover, nav.main-nav but
   max-width:64rem;
   margin:0 auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
   gap:2.5rem;
   align-items:center;
 }
@@ -3589,7 +3594,7 @@ footer{
   max-width:82rem;
   margin:0 auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));
   gap:2.5rem;
   margin-bottom:3rem;
 }
@@ -4966,6 +4971,1404 @@ body {
 .back-to-top {
   bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 1rem) !important;
 }
+
+/* ================= EDITORIAL LUXURY DESIGN SYSTEM (DESKTOP & MOBILE) ================= */
+:root,
+html.theme-light {
+  color-scheme: light;
+  --bg: #faf5ec;
+  --void: #f2e8d7;
+  --card: #fffdf9;
+  --sf: #fffdf9;
+  --sf2: #f2e8d7;
+  --stage-bg: radial-gradient(circle at 50% 44%, #f7efe2 0%, #e7d6bc 100%);
+  --tx: #3b2314;
+  --ice: #3b2314;
+  --mu: #6b533f;
+  --dim: #6b533f;
+  --line: #e5d7c2;
+  --ln: #e5d7c2;
+  --gold: #734119;
+  --gold-bright: #5e3415;
+  --ac: #734119;
+  --ac-warm: #a66a36;
+  --on: #ffffff;
+  --ok: #1f7a4d;
+  --er: #b3261e;
+  --pad: clamp(1rem, 3.5vw, 3rem);
+  accent-color: #734119;
+}
+
+html.theme-dark {
+  color-scheme: dark;
+  --bg: #0f0e0c;
+  --void: #080706;
+  --card: #1a1814;
+  --sf: #1a1814;
+  --sf2: #24201b;
+  --stage-bg: radial-gradient(circle at 50% 44%, #2b251c 0%, #16130f 100%);
+  --tx: #f3eee6;
+  --ice: #f3eee6;
+  --mu: #b5ada0;
+  --dim: #b5ada0;
+  --line: #3a352e;
+  --ln: #3a352e;
+  --gold: #d4af6a;
+  --gold-bright: #e7c98f;
+  --ac: #d4af6a;
+  --ac-warm: #c79850;
+  --on: #1a1408;
+  --ok: #5bd49a;
+  --er: #ff8a80;
+  accent-color: #d4af6a;
+}
+
+body {
+  background: var(--bg) !important;
+  color: var(--tx) !important;
+  padding-bottom: 0 !important;
+}
+
+/* Keep fixed bottom tab bar removed & back-to-top cleanly positioned */
+nav.tabs { display: none !important; }
+.back-to-top {
+  bottom: 1.25rem !important;
+  right: 1.25rem !important;
+}
+
+/* ── Minimal Editorial Header ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 95;
+  background: color-mix(in srgb, var(--bg) 92%, transparent) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--ln);
+  box-shadow: none !important;
+}
+.header-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0.85rem var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+.brand-title {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--tx);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+}
+.brand-name-gold { color: var(--tx); }
+.brand-city-red, .brand-perfume-word { color: #c92a2a !important; font-weight: 700; }
+.brand-logo-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--ln);
+}
+
+nav.main-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  flex: 1 1 auto;
+}
+@media (min-width: 54rem) {
+  nav.main-nav { display: flex; }
+}
+nav.main-nav a,
+nav.main-nav button.nav-text-link {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--mu);
+  padding: 0.35rem 0;
+  position: relative;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+nav.main-nav a:hover,
+nav.main-nav button.nav-text-link:hover,
+nav.main-nav a[aria-current="page"],
+nav.main-nav a.is-active {
+  color: var(--tx);
+  font-weight: 600;
+}
+nav.main-nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ac);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.hdr-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--tx);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.hdr-icon-btn:hover {
+  background: var(--sf2);
+  border-color: var(--ln);
+}
+.cartbtn {
+  background: transparent !important;
+  border: 1px solid var(--ln) !important;
+  border-radius: 999px !important;
+  color: var(--tx) !important;
+  font-family: var(--sans);
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  padding: 0.45rem 0.9rem !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+.cartbtn:hover {
+  background: var(--sf2) !important;
+  border-color: var(--ac) !important;
+}
+.cartbtn b {
+  color: var(--ac);
+  font-weight: 700;
+}
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--ln);
+  background: transparent;
+  color: var(--tx);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.nav-toggle:hover { background: var(--sf2); }
+
+/* Header Expandable Search Bar Drawer */
+.hdr-search-drawer {
+  display: none;
+  border-top: 1px solid var(--ln);
+  background: var(--bg);
+  padding: 0.75rem var(--pad);
+}
+.hdr-search-drawer.open {
+  display: block;
+}
+.hdr-search-drawer-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+.hdr-search-drawer .top-nav-search {
+  max-width: 100%;
+  width: 100%;
+  background: var(--sf);
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--ln);
+}
+
+/* ── Editorial Hero (Picture 1) ── */
+.editorial-hero {
+  max-width: 1260px;
+  margin: clamp(1rem, 2.5vw, 2rem) auto clamp(2rem, 4vw, 3.25rem);
+  padding: 0 var(--pad);
+}
+.hero-chapter-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: clamp(290px, 36vw, 410px);
+  padding: clamp(1.75rem, 4.5vw, 4rem);
+  background: linear-gradient(108deg, #f3e6d3 0%, #e4cda9 52%, #7d4c26 100%);
+  border: 1px solid var(--ln);
+}
+html.theme-dark .hero-chapter-card {
+  background: linear-gradient(108deg, #211a13 0%, #2e2317 55%, #4d3219 100%);
+}
+.hero-chapter-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 30rem;
+}
+.hero-chapter-kicker {
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 3.8vw, 2.9rem);
+  font-weight: 500;
+  color: #5b3416;
+  line-height: 1.08;
+  margin: 0;
+}
+html.theme-dark .hero-chapter-kicker { color: #e2c58e; }
+.hero-chapter-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 700;
+  color: #462610;
+  line-height: 0.92;
+  margin: 0.1rem 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+html.theme-dark .hero-chapter-title { color: #fff6e6; }
+.hero-chapter-sub {
+  font-family: var(--sans);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  color: #5a3c24;
+  margin: 0 0 1.5rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+html.theme-dark .hero-chapter-sub { color: #d5cbbd; }
+.hero-chapter-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5b3314;
+  color: #ffffff;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 24px -8px rgba(59, 35, 20, 0.45);
+}
+.hero-chapter-cta:hover {
+  transform: translateY(-2px);
+  background: #46260d;
+}
+html.theme-dark .hero-chapter-cta {
+  background: var(--ac);
+  color: var(--on);
+}
+.hero-chapter-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 220px;
+}
+.hero-chapter-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 224, 178, 0.65) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-chapter-img {
+  position: relative;
+  z-index: 2;
+  max-height: clamp(200px, 28vw, 330px);
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 32px rgba(34, 18, 6, 0.38));
+}
+@media (max-width: 720px) {
+  .hero-chapter-card {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem;
+    min-height: 215px;
+  }
+  .hero-chapter-sub {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .hero-chapter-cta {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.84rem;
+  }
+  .hero-chapter-visual { min-height: 150px; }
+  .hero-chapter-img { max-height: 165px; }
+}
+@media (max-width: 440px) {
+  .hero-chapter-card {
+    grid-template-columns: 1fr 0.72fr;
+    padding: 1.35rem 1.1rem;
+  }
+  .hero-chapter-img { max-height: 145px; }
+}
+
+/* Split Chapters Row (II Musk & III Amber) */
+.hero-chapters-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.hero-split-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(1.25rem, 3.5vw, 2.5rem);
+  min-height: clamp(120px, 16vw, 175px);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--ln);
+  text-align: left;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.hero-split-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(59, 35, 20, 0.2);
+}
+.hero-split-tile.musk-tile {
+  background: linear-gradient(125deg, #f8f3eb 0%, #e7dac6 100%);
+  color: #462610;
+}
+html.theme-dark .hero-split-tile.musk-tile {
+  background: linear-gradient(125deg, #211d18 0%, #2b241c 100%);
+  color: #f3eee6;
+}
+.hero-split-tile.amber-tile {
+  background: linear-gradient(125deg, #8b5426 0%, #582f10 100%);
+  color: #ffffff;
+  border-color: transparent;
+}
+.hero-split-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+.hero-split-img {
+  height: clamp(78px, 12vw, 145px);
+  max-width: 48%;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 12px 20px rgba(34, 18, 6, 0.28));
+}
+@media (max-width: 540px) {
+  .hero-chapters-split {
+    gap: 0.65rem;
+  }
+  .hero-split-tile {
+    padding: 0.95rem 0.85rem;
+    min-height: 98px;
+  }
+  .hero-split-title {
+    font-size: 1.18rem;
+  }
+  .hero-split-img {
+    height: 76px;
+  }
+}
+
+/* Minimal Editorial Brand Wordmarks Strip */
+.hero-brand-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.75rem 1.5rem;
+  padding: 1.6rem 0;
+  margin-top: 0.75rem;
+  border-bottom: 1px solid var(--ln);
+}
+.brand-wordmark-btn {
+  background: none;
+  border: 0;
+  color: #4a2d18;
+  cursor: pointer;
+  padding: 0.4rem 0.9rem;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  opacity: 0.85;
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
+}
+html.theme-dark .brand-wordmark-btn { color: #e8dcc8; }
+.brand-wordmark-btn:hover {
+  opacity: 1;
+  color: var(--ac);
+  transform: translateY(-1px);
+}
+.bw-lattafa { font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; }
+.bw-surrati { font-family: var(--serif); font-weight: 700; letter-spacing: 0.04em; }
+.bw-bujairami { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.15em; }
+.bw-haramain { font-family: var(--sans); font-weight: 600; letter-spacing: 0.01em; }
+.bw-armaf { font-family: var(--serif); font-weight: 700; letter-spacing: 0.06em; }
+
+/* Prevent horizontal viewport blowout without breaking sticky positioning */
+html, body {
+  max-width: 100%;
+  overflow-x: clip !important;
+}
+main, .editorial-hero, #kjop, .shop-layout, .shop-main, .shop-mobile-controls,
+.hero-chapter-card, .hero-chapters-split, .hero-split-tile, .perfume-card {
+  min-width: 0;
+}
+
+/* Mobile Header Overrides (Clean single-bar look matching Picture 1) */
+@media (max-width: 54rem) {
+  .header-inner {
+    padding: 0.65rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+  .brand-logo-img {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .brand-title {
+    font-size: clamp(1rem, 4.3vw, 1.25rem) !important;
+    letter-spacing: 0.01em !important;
+    gap: 0.4rem !important;
+  }
+  .hdr-icon-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
+  }
+  .cartbtn {
+    width: auto !important;
+    min-width: 0 !important;
+    height: 34px !important;
+    padding: 0 0.65rem !important;
+    border-radius: 999px !important;
+    font-size: 0.82rem !important;
+    gap: 0.25rem !important;
+  }
+  .cartbtn b {
+    position: static !important;
+    background: none !important;
+    color: var(--ac) !important;
+    min-width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: inline !important;
+  }
+  .nav-toggle {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    font-size: 0.95rem !important;
+  }
+}
+@media (max-width: 400px) {
+  #cartLabel { display: none; }
+}
+
+/* ── Editorial Shop Layout (Picture 2) ── */
+#kjop {
+  max-width: 1260px;
+  margin: 0 auto 4.5rem;
+  padding: 0 var(--pad);
+}
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 919px) {
+  .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+/* Mobile-Only Quick Scent Strip + Filter Trigger */
+.shop-mobile-controls {
+  display: none;
+}
+@media (max-width: 919px) {
+  .shop-mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .shop-mobile-filter-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid var(--ln);
+    background: var(--sf2);
+    color: var(--tx);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 40px;
+  }
+  .shop-mobile-scents {
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.15rem 0;
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+  .shop-mobile-scents::-webkit-scrollbar { display: none; }
+}
+
+/* Left Sand Filter Sidebar */
+.shop-sidebar {
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+  border-radius: 18px;
+  padding: 1.4rem;
+  position: sticky;
+  top: 86px;
+  max-height: calc(100dvh - 106px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+@media (max-width: 919px) {
+  .shop-sidebar {
+    position: static;
+    max-height: none;
+    display: none;
+    margin-bottom: 1rem;
+  }
+  .shop-sidebar.mobile-open {
+    display: block;
+  }
+}
+.sb-search-box {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+.sb-search-input {
+  width: 100%;
+  padding: 0.65rem 2.2rem 0.65rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.86rem;
+}
+.sb-search-input:focus {
+  outline: 2px solid var(--ac);
+  outline-offset: 1px;
+}
+.sb-divider {
+  border: 0;
+  border-top: 1px solid var(--ln);
+  margin: 1.1rem 0;
+}
+.sb-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 0.75rem;
+}
+.sb-brands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.48rem;
+}
+.sb-brand-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--tx);
+  cursor: pointer;
+  padding: 0.15rem 0;
+  user-select: none;
+}
+.sb-brand-label input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--ac);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.sb-brand-count {
+  margin-left: auto;
+  font-size: 0.76rem;
+  color: var(--mu);
+}
+.sb-show-more-btn {
+  background: none;
+  border: 0;
+  color: var(--ac);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Tactile Scent Pills */
+.sb-scents-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: balance;
+  gap: 0.45rem;
+}
+.sb-scent-pill {
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  color: var(--tx);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.16s ease;
+}
+.sb-scent-pill:hover {
+  border-color: var(--ac);
+}
+.sb-scent-pill.on {
+  background: var(--ac-warm);
+  border-color: var(--ac-warm);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Price Range Slider + Progressive Enhancement Fallback */
+.sb-price-readout {
+  font-size: 0.88rem;
+  color: var(--tx);
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+  font-variant-numeric: tabular-nums;
+}
+.sb-price-slider {
+  width: 100%;
+  accent-color: var(--ac-warm);
+  cursor: pointer;
+}
+@supports not (accent-color: var(--ac-warm)) {
+  .sb-price-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+  .sb-price-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, var(--ac-warm) var(--range-pct, 100%), var(--ln) var(--range-pct, 100%));
+    border-radius: 4px;
+  }
+  .sb-price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--sf);
+    border: 2px solid var(--ac-warm);
+    margin-top: -6px;
+  }
+}
+
+.sb-reset-btn {
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  color: var(--tx);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sb-reset-btn:hover { border-color: var(--ac); color: var(--ac); }
+
+/* Shop Header Row */
+.shop-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.shop-main-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 700;
+  color: var(--tx);
+  margin: 0;
+  line-height: 1.05;
+}
+.shop-head-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.shop-count-label {
+  font-size: 0.88rem;
+  color: var(--mu);
+  font-weight: 500;
+}
+.shop-sort-select {
+  appearance: none;
+  min-height: 40px;
+  padding: 0.4rem 2.2rem 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--ln);
+  background: var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b533f' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 14px center / 10px;
+  color: var(--tx);
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ── Minimalist Editorial Product Cards Grid (Picture 2) ── */
+.products-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1.65rem !important;
+}
+@media (max-width: 1120px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+}
+@media (max-width: 639px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.85rem !important;
+  }
+}
+@media (max-width: 340px) {
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+.perfume-card {
+  background: var(--card) !important;
+  border: 1px solid var(--ln) !important;
+  border-radius: 16px !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  text-align: left !important;
+  align-items: stretch !important;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.2s ease !important;
+  box-shadow: 0 4px 16px rgba(59, 35, 20, 0.04) !important;
+}
+.perfume-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ac-warm) !important;
+  box-shadow: 0 14px 28px -10px rgba(59, 35, 20, 0.14) !important;
+}
+
+.perfume-card .card-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--stage-bg);
+  border-radius: 0;
+  margin: 0 !important;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 639px) {
+  .perfume-card .card-img-wrap {
+    aspect-ratio: 1 / 1;
+    padding: 0.65rem;
+  }
+}
+.perfume-card .card-img {
+  max-height: 100%;
+  max-width: 92%;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 10px 16px rgba(34, 18, 6, 0.22));
+}
+
+.perfume-card .card-wish-btn {
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 32px;
+  height: 32px;
+  background: color-mix(in srgb, var(--sf) 78%, transparent) !important;
+  border: 1px solid var(--ln) !important;
+  opacity: 0.85;
+}
+.perfume-card:hover .card-wish-btn,
+.perfume-card .card-wish-btn.on {
+  opacity: 1;
+}
+
+.card-meta-footer {
+  padding: 0.95rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+@media (max-width: 639px) {
+  .card-meta-footer {
+    padding: 0.72rem 0.8rem 0.85rem;
+  }
+}
+.card-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.card-meta-top .card-brand {
+  font-family: var(--sans);
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  color: var(--mu) !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-meta-top .card-price {
+  font-family: var(--sans) !important;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: var(--tx) !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.card-meta-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+}
+.card-meta-title-wrap {
+  min-width: 0;
+  flex: 1;
+}
+.card-meta-bottom .card-name {
+  font-family: var(--serif);
+  font-size: 1.22rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  color: var(--tx) !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 639px) {
+  .card-meta-bottom .card-name {
+    font-size: 1.02rem !important;
+  }
+}
+.card-meta-bottom .card-vol {
+  display: block;
+  font-size: 0.76rem !important;
+  color: var(--mu) !important;
+  margin: 0.22rem 0 0 !important;
+}
+
+/* Circular Cart Icon Button (Picture 2) */
+.card-circle-cart-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--ac);
+  color: var(--on);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.15s ease, background 0.18s ease;
+}
+.card-circle-cart-btn:hover {
+  transform: scale(1.07);
+  background: var(--ac-warm);
+}
+.card-circle-cart-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.perfume-card.in .card-circle-cart-btn {
+  background: var(--ac-warm);
+  color: #ffffff;
+}
+.card-cart-qty-pill {
+  display: none;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 99px;
+  background: var(--tx);
+  color: var(--bg);
+  font-size: 0.68rem;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--card);
+}
+.perfume-card.in .card-cart-qty-pill {
+  display: inline-flex;
+}
+
+/* ── Editorial Product Detail Dialog (Picture 3) ── */
+@media (min-width: 720px) {
+  #productDetailModal.sheet-dialog {
+    max-width: 58rem !important;
+    width: 92vw !important;
+    border-radius: 22px !important;
+    background: var(--bg) !important;
+  }
+}
+#productDetailModal .sheet-hd {
+  background: var(--bg);
+  border-bottom: 1px solid var(--ln);
+  padding: 1rem 1.5rem;
+}
+.detail-breadcrumb-btn {
+  background: none;
+  border: 0;
+  color: var(--mu);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+.detail-breadcrumb-btn:hover { color: var(--tx); }
+
+#productDetailModal .sheet-bd {
+  padding: clamp(1.1rem, 3vw, 2.25rem) !important;
+}
+.detail-editorial-grid {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+@media (max-width: 719px) {
+  .detail-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+.detail-thumb-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+@media (max-width: 719px) {
+  .detail-thumb-rail {
+    flex-direction: row;
+    order: 2;
+    justify-content: center;
+  }
+}
+.detail-thumb-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  border: 2px solid var(--ln);
+  background: var(--stage-bg);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+.detail-thumb-btn.active {
+  border-color: var(--ac);
+}
+.detail-thumb-btn img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.detail-main-stage {
+  border-radius: 18px;
+  background: var(--stage-bg);
+  border: 1px solid var(--ln);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  cursor: zoom-in;
+}
+@media (max-width: 719px) {
+  .detail-main-stage {
+    order: 1;
+    aspect-ratio: 4 / 3;
+    padding: 1rem;
+  }
+}
+.detail-main-stage img {
+  max-height: 100%;
+  max-width: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(34, 18, 6, 0.3));
+}
+.detail-info-col {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 719px) {
+  .detail-info-col { order: 3; }
+}
+.detail-brand-lbl {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--mu);
+  margin: 0 0 0.25rem;
+}
+.detail-ed-title {
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  color: var(--tx);
+  line-height: 1.08;
+  margin: 0 0 0.55rem;
+}
+.detail-ed-price {
+  font-family: var(--sans);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--tx);
+  margin: 0 0 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+.detail-ed-price s {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--mu);
+  margin-left: 0.45rem;
+}
+.detail-ed-sub {
+  font-size: 0.94rem;
+  color: var(--mu);
+  line-height: 1.45;
+  margin: 0 0 1.25rem;
+}
+.detail-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.15rem;
+}
+.detail-vol-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: var(--ac-warm);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.detail-cta-row {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.detail-cta-primary {
+  min-height: 48px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ac);
+  color: var(--on);
+  font-weight: 600;
+  font-size: 0.94rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+.detail-cta-primary:hover { background: var(--ac-warm); }
+.detail-cta-secondary {
+  min-height: 48px;
+  border-radius: 999px;
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  color: var(--tx);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.detail-cta-secondary:hover,
+.detail-cta-secondary.on {
+  border-color: var(--ac);
+  background: var(--sf2);
+}
+
+/* 3-Column Scent Pyramid with vertical dividers (Picture 3) */
+.detail-notes-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+  padding: 1rem 0;
+  margin-bottom: 1.15rem;
+}
+.detail-note-col {
+  padding: 0 0.75rem;
+}
+.detail-note-col:first-child { padding-left: 0; }
+.detail-note-col + .detail-note-col {
+  border-left: 1px solid var(--ln);
+}
+.detail-note-col dt {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 0.25rem;
+}
+.detail-note-col dd {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--mu);
+  line-height: 1.45;
+}
+@media (max-width: 480px) {
+  .detail-notes-columns {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+  .detail-note-col {
+    padding: 0;
+  }
+  .detail-note-col + .detail-note-col {
+    border-left: 0;
+    border-top: 1px solid var(--ln);
+    padding-top: 0.65rem;
+  }
+}
+
+/* ── Editorial Cart Dialog (Picture 4) ── */
+@media (min-width: 720px) {
+  #cart.sheet-dialog {
+    max-width: 56rem !important;
+    width: 92vw !important;
+    border-radius: 22px !important;
+    background: var(--bg) !important;
+  }
+}
+#cart .sheet-hd {
+  background: var(--bg);
+  border-bottom: 1px solid var(--ln);
+  padding: 1.15rem 1.5rem;
+}
+.cart-editorial-layout {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+@media (max-width: 719px) {
+  .cart-editorial-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+#cart .cart-items-ul {
+  padding: 0 !important;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+#cart .cart-item {
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  background: var(--sf);
+  padding: 0.85rem 1rem;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 0.9rem;
+}
+@media (max-width: 520px) {
+  #cart .cart-item {
+    grid-template-columns: 52px 1fr auto;
+    gap: 0.65rem;
+  }
+  .cart-item-price-col { grid-column: 2; }
+  .cart-item-trash { grid-column: 3; }
+}
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: var(--stage-bg);
+  object-fit: contain;
+  padding: 5px;
+}
+.cart-item-trash {
+  background: none;
+  border: 0;
+  color: var(--mu);
+  cursor: pointer;
+  font-size: 1.05rem;
+  padding: 0.35rem;
+  border-radius: 8px;
+}
+.cart-item-trash:hover { color: var(--er); background: var(--sf2); }
+
+.cart-summary-card {
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+  border-radius: 16px;
+  padding: 1.4rem;
+}
+.cart-summary-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--tx);
+  margin: 0 0 1rem;
+}
+.cart-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  border-top: 1px solid var(--ln);
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  background: var(--bg);
+}
+.cart-trust-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--tx);
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .cart-trust-strip { grid-template-columns: 1fr; gap: 0.45rem; }
+}
+
+/* Spacious Showroom & Footer */
+#showroom {
+  max-width: 1260px;
+  margin: 3rem auto;
+  padding: 0 var(--pad);
+}
+.showroom-inner {
+  background: var(--sf2);
+  border: 1px solid var(--ln);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+footer {
+  background: var(--sf2) !important;
+  border-top: 1px solid var(--ln) !important;
+  margin-top: 4rem !important;
+  padding-bottom: 2.5rem !important;
+}
+
 </style>
 </head>
 <body>
@@ -5006,124 +6409,87 @@ body {
   <button type="button" class="skip-btn" id="skipIntroBtn" onclick="finishIntro()">Hopp over</button>
 </div>
 
-<!-- ================= 2. HEADER BAR & PAK-STAR TOP BANNER ================= -->
-<div class="rice-top-banner" id="riceTopBanner" role="region" aria-label="Flaggskip og Showroom">
-  <div class="rtb-inner">
-    <div class="rtb-left">
-      <span class="rtb-pill" id="rtbPill">✨ 131 Utvalgte Flakonger</span>
-      <span class="rtb-title" id="bannerOffer">📍 <strong>Showroom:</strong> Tøyengata 3, Oslo (PakStar) · ✉️ <strong>aromatekoslo@outlook.com</strong></span>
-      <div class="rtb-packs">
-        <button type="button" class="rtb-pack" onclick="filterByBrandFromHero('Surrati')">🕋 Surrati <b>150 ml</b></button>
-        <button type="button" class="rtb-pack" onclick="filterByBrandFromHero('Bujairami')">🇦🇺 Bujairami <b>Extrait</b></button>
-        <button type="button" class="rtb-pack" onclick="openProductDetail('buhara-esans-7ml')">🇹🇷 Buhara Olje <b>99</b></button>
-      </div>
-    </div>
-    <div class="rtb-right">
-      <button type="button" class="rtb-cta" id="rtbCta" onclick="document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'})">Se katalog (131) →</button>
-      <button type="button" class="rtb-close" id="rtbClose" aria-label="Skjul toppbanner" title="Skjul" onclick="dismissTopBanner()">✕</button>
-    </div>
-  </div>
-</div>
-
+<!-- ================= 2. MINIMAL EDITORIAL HEADER ================= -->
 <header>
   <div class="header-inner">
     <div class="brand-group">
       <a href="#kjop" class="brand-title" aria-label="Aromatek Perfumes">
         <img src="images/aromatek-logo.jpeg" alt="Aromatek Logo" class="brand-logo-img">
-        <span><span class="brand-name-gold">AROMATEK</span> <b class="brand-city-red brand-perfume-word">PERFUMES</b></span>
+        <span><span class="brand-name-gold">Aromatek</span> <b class="brand-city-red brand-perfume-word">Perfumes</b></span>
       </a>
     </div>
 
-    <nav class="main-nav">
-      <a href="#kjop" id="navCatalogLink">Katalog (131)</a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#kjop" id="navCatalogLink" class="is-active">Shop</a>
+      <button type="button" class="nav-text-link" id="navFragrances" onclick="focusBrandsSidebar()">Brands</button>
+      <button type="button" class="nav-text-link" id="navGiftSetsLink" onclick="filterByBrandFromHero('Gavesett')">Gift sets</button>
       <a href="#showroom" id="navShowroomLink">Showroom</a>
-      <button type="button" onclick="openPolicy('om_kontakt')" style="background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap" id="navAboutContact">Kontakt</button>
-      <div class="top-nav-search" id="topNavSearchWrap">
-        <span class="top-search-icon" aria-hidden="true" style="cursor:pointer" onclick="$('#topNavSearchInput')?.focus(); if ($('#topNavSearchInput')?.value) syncSearch($('#topNavSearchInput').value, 'top', true);">🔍</span>
-        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen" autocomplete="off">
-        <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
-        <div class="search-pop" id="searchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
-      </div>
+      <button type="button" class="nav-text-link" id="navAboutContact" onclick="openPolicy('om_kontakt')">Contact</button>
     </nav>
 
     <div class="header-actions">
+      <button type="button" class="hdr-icon-btn" id="hdrSearchToggleBtn" onclick="toggleHeaderSearch()" aria-label="Søk i katalogen / Search" title="Søk">
+        🔍
+      </button>
+
       <button type="button" class="cartbtn" id="cartToggleBtn" aria-label="Åpne handlekurv / Open cart" title="Handlekurv / Cart">
-        <span class="cart-icon" aria-hidden="true">🛒</span> <span id="cartLabel" class="header-btn-text">Kurv</span> <b id="cartBadge">0</b>
+        <span aria-hidden="true">🛒</span>
+        <span id="cartLabel">Cart</span>
+        (<b id="cartBadge">0</b>)
       </button>
 
       <button type="button" class="nav-toggle" id="navToggleBtn" onclick="toggleMobileNav()" aria-label="Åpne meny / Open menu" aria-expanded="false" aria-controls="mobileNav" title="Meny / Menu">
-        <span id="navToggleGlyph" aria-hidden="true">☰</span> <span id="menuBtnLabel" class="header-btn-text">Meny</span>
+        <span id="navToggleGlyph" aria-hidden="true">☰</span>
       </button>
     </div>
   </div>
 
+  <!-- Expandable Clean Search Bar Drawer -->
+  <div class="hdr-search-drawer" id="hdrSearchDrawer">
+    <div class="hdr-search-drawer-inner">
+      <div class="top-nav-search" id="topNavSearchWrap">
+        <span class="top-search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="topNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme, merke eller duftnote..." aria-label="Søk i katalogen" autocomplete="off">
+        <button type="button" id="topNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
+        <div class="search-pop" id="searchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unified Menu Drawer (Settings, Wishlist, Gift Sets, Admin) -->
   <div class="mobile-nav" id="mobileNav" aria-label="Navigasjonsmeny">
     <div class="menu-head-row">
       <span id="menuDrawerTitle">Meny & Innstillinger</span>
       <button type="button" class="menu-close-x" onclick="toggleMobileNav(true)" aria-label="Lukk meny">✕</button>
     </div>
 
-    <button type="button" class="menu-feature-btn" id="menuBtnBestSellers" onclick="openMenuSection('bestsellers')">
-      <span class="mfb-left"><span>🔥</span> <span id="menuBtnBestSellersText">Mest Solgte på Nettet (Bestselgere)</span></span>
-      <span class="mfb-arrow">→</span>
-    </button>
-
-    <button type="button" class="menu-feature-btn" id="menuBtnBrandsSection" onclick="openMenuSection('brands')">
-      <span class="mfb-left"><span>🏛️</span> <span id="menuBtnBrandsText">Produsenter & Dufthus (26)</span></span>
-      <span class="mfb-arrow">→</span>
-    </button>
-
-    <a href="#kjop" onclick="toggleMobileNav(true)" id="mobNavCatalog" style="font-weight:600;color:var(--ac);display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid var(--ln)">
-      <span>💎</span> <span id="mobNavCatalogText">Alle Parfymer (131 stk)</span>
+    <a href="#kjop" onclick="resetAllFilters(); toggleMobileNav(true)" id="mobNavCatalog" style="font-weight:600;color:var(--ac);display:flex;align-items:center;gap:.5rem;padding:.45rem 0;border-bottom:1px solid var(--ln)">
+      <span>🛍️</span> <span id="mobNavCatalogText">Alle Parfymer (131)</span>
     </a>
 
-    <div class="mob-dropdown" id="mobBrandsDropdown">
-      <button type="button" class="mob-dropdown-trigger" onclick="toggleMobBrandsDropdown()" id="mobNavFragrances" aria-expanded="false">
-        <span id="mobNavFragrancesText">Hurtigfilter: Velg Merke</span> <span class="mob-arrow" id="mobBrandsArrow">▾</span>
-      </button>
-      <div class="mob-dropdown-panel" id="mobBrandsPanel" style="display:none">
-        <div class="mob-dropdown-header" id="mobBrandsHeader">Topp Merkehus — Klikk for å filtrere</div>
-        <div class="mob-brands-list">
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Surrati'); toggleMobileNav(true);"><span>🕋</span> Surrati Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bujairami'); toggleMobileNav(true);"><span>🇦🇺</span> Bujairami Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Al Haramain'); toggleMobileNav(true);"><span>🌙</span> Al Haramain Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Risala'); toggleMobileNav(true);"><span>🖋️</span> Risala / Le Falconé</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Swiss Arabian'); toggleMobileNav(true);"><span>🌙</span> Swiss Arabian</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Armaf'); toggleMobileNav(true);"><span>👑</span> Armaf / Sterling</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Lattafa'); toggleMobileNav(true);"><span>🌟</span> Lattafa Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Maison Alhambra'); toggleMobileNav(true);"><span>🏛️</span> Maison Alhambra</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Reef'); toggleMobileNav(true);"><span>💎</span> Reef Perfumes</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ahmed Al Maghribi'); toggleMobileNav(true);"><span>⚜️</span> Ahmed Al Maghribi</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('French Avenue'); toggleMobileNav(true);"><span>🍸</span> French Avenue</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Hamidi'); toggleMobileNav(true);"><span>🪔</span> Hamidi Oud</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Ibraq'); toggleMobileNav(true);"><span>💠</span> Ibrahim Al Qurashi (IBRAQ)</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Bespoke London'); toggleMobileNav(true);"><span>🇬🇧</span> Bespoke London</button>
-          <button type="button" class="mob-brand-item" onclick="filterByBrandFromHero('Buhara Esans'); toggleMobileNav(true);"><span>🇹🇷</span> Buhara Esans</button>
-        </div>
-      </div>
-    </div>
+    <button type="button" class="menu-feature-btn" onclick="toggleMobileNav(true); openWishlist();">
+      <span class="mfb-left"><span>♥️</span> <span id="mobNavWishText">Lagrede Favoritter (<b id="navWishCount">0</b>)</span></span>
+      <span class="mfb-arrow">→</span>
+    </button>
 
-    <div class="mob-search-wrap">
-      <div class="top-nav-search" style="width:100%;max-width:100%;display:flex">
-        <span class="top-search-icon" aria-hidden="true">🔍</span>
-        <input type="text" id="mobNavSearchInput" class="top-nav-search-input" placeholder="Søk parfyme..." aria-label="Søk i katalogen">
-        <button type="button" id="mobNavClearSearchBtn" class="top-nav-clear-btn" aria-label="Tøm søk" style="display:none">✕</button>
-      </div>
-    </div>
+    <button type="button" class="menu-feature-btn" onclick="filterByBrandFromHero('Gavesett'); toggleMobileNav(true);">
+      <span class="mfb-left"><span>🎁</span> <span id="mobNavGiftText">Gavesett / Gift sets</span></span>
+      <span class="mfb-arrow">→</span>
+    </button>
 
-    <a href="#showroom" onclick="toggleMobileNav(true)" id="mobNavShowroom">📍 Showroom (Tøyengata 3)</a>
-    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav(true)" style="background:none;border:0;color:var(--mu);font:inherit;text-align:left;cursor:pointer;padding:.2rem 0" id="mobNavAboutContact">✉️ Kontakt & Om Oss</button>
+    <a href="#showroom" onclick="toggleMobileNav(true)" id="mobNavShowroom" style="padding:.4rem 0">📍 Showroom (Tøyengata 3)</a>
+    <button type="button" onclick="openPolicy('om_kontakt');toggleMobileNav(true)" style="background:none;border:0;color:var(--mu);font:inherit;text-align:left;cursor:pointer;padding:.3rem 0" id="mobNavAboutContact">✉️ Kontakt & Om Oss</button>
 
     <div class="menu-settings-group">
       <span class="menu-settings-label" id="menuSettingsLabel">Visning, Språk & Intro</span>
-      <button type="button" class="menu-setting-btn" id="replayIntroHeaderBtn" onclick="replayIntro();toggleMobileNav(true)">
-        <span aria-hidden="true">✨</span> <span id="lblReplayHeader">Intro</span>
-      </button>
       <button type="button" class="menu-setting-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Bytt fargetema / Switch theme">
-        <span id="themeToggleIcon" aria-hidden="true">☀️</span> <span id="mobNavThemeText">Lys modus (Light mode)</span>
+        <span id="themeToggleIcon" aria-hidden="true">🌙</span> <span id="mobNavThemeText">Mørk modus</span>
       </button>
       <button type="button" class="menu-setting-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Bytt språk / Switch language">
-        <span id="langFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Bytt språk (Switch to English)</span>
+        <span id="langFlagEmoji">🇳🇴</span> <span id="mobNavLangText">Switch to English</span>
+      </button>
+      <button type="button" class="menu-setting-btn" id="replayIntroHeaderBtn" onclick="replayIntro();toggleMobileNav(true)">
+        <span aria-hidden="true">✨</span> <span id="lblReplayHeader">Intro</span>
       </button>
     </div>
   </div>
@@ -5131,915 +6497,270 @@ body {
 
 <main id="top">
 
-  <!-- ================= MOBILE QUICK-FINDER HUB (Mobile-Only Fast Item & Brand Search) ================= -->
-  <section class="mobile-quick-hub" id="mobileQuickHub" aria-label="Hurtigsøk og snarveier på mobil">
-    <div class="mobile-quick-hub-inner">
-      <div class="mobile-search-bar-wrap">
-        <span class="mobile-search-icon" aria-hidden="true">🔍</span>
-        <input
-          type="search"
-          id="mobileHubSearchInput"
-          class="mobile-hub-search-input"
-          placeholder="Søk parfymer og merker..."
-          aria-label="Hurtigsøk i katalogen"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-          oninput="syncSearch(this.value, 'hub', false)"
-        >
-        <button
-          type="button"
-          id="mobileHubClearBtn"
-          class="mobile-hub-clear-btn"
-          aria-label="Tøm søk"
-          onclick="syncSearch('', 'hub', false); this.style.display='none'; const el = document.getElementById('mobileHubSearchInput'); if(el) el.value=''; const mp = document.getElementById('mobileHubSearchPop'); if(mp) mp.hidden=true;"
-          style="display:none"
-        >✕</button>
-        <div class="search-pop" id="mobileHubSearchPop" role="listbox" aria-label="Søkeresultater" hidden></div>
-      </div>
-
-      <div class="mobile-quick-actions" aria-label="Hurtignavigasjon">
-        <button type="button" class="mob-quick-btn" id="mobQuickBtnMenu" onclick="event.stopPropagation(); toggleMobileNav()">
-          <span class="mob-qbtn-icon">☰</span>
-          <span class="mob-qbtn-text">Meny</span>
-        </button>
-        <button type="button" class="mob-quick-btn highlight" id="mobQuickBtnAll" onclick="resetAllFilters(); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
-          <span class="mob-qbtn-icon">🛍️</span>
-          <span class="mob-qbtn-text">Alle (131)</span>
+  <!-- ================= EDITORIAL HERO SHOWCASE (Picture 1) ================= -->
+  <section class="editorial-hero" aria-label="Utvalgte dufter">
+    <div class="hero-chapter-card">
+      <div class="hero-chapter-copy">
+        <p class="hero-chapter-kicker" id="heroChapterKicker">Kapittel I:</p>
+        <h1 class="hero-chapter-title" id="heroChapterTitle">Oud</h1>
+        <p class="hero-chapter-sub" id="heroChapterSub">Røkt oud, varm harpiks og edle noter</p>
+        <button type="button" class="hero-chapter-cta" id="heroChapterCta" onclick="selectCatalogChip('scent','oud',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
+          Utforsk Oud →
         </button>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= PAK-STAR MARQUEE BAND ================= -->
-  <div class="band" aria-label="Hurtigvalg til populære parfymer">
-    <div class="marq">
-      <button type="button" onclick="openProductDetail('surrati-gray-oud')"><i>★</i> <span data-i18n-marq="1">🕋 Surrati Gray Oud 150 ml · 899</span></button>
-      <button type="button" onclick="openProductDetail('bujairami-hectic')"><i>★</i> <span data-i18n-marq="2">🇦🇺 Bujairami Hectic (Sydney) · 899</span></button>
-      <button type="button" onclick="openProductDetail('surrati-oud-honey')"><i>★</i> <span data-i18n-marq="3">🍯 Surrati Oud Honey 140 ml · 899</span></button>
-      <button type="button" onclick="openProductDetail('bujairami-date-night')"><i>★</i> <span data-i18n-marq="4">🍎 Bujairami Date Night · 899</span></button>
-      <button type="button" onclick="openProductDetail('al-haramain-detour-noir')"><i>★</i> <span data-i18n-marq="5">🌙 Al Haramain Detour Noir · 499</span></button>
-      <button type="button" onclick="openProductDetail('risala-autograph')"><i>★</i> <span data-i18n-marq="6">🖋️ Le Falconé Risala Autograph · 649</span></button>
-      <button type="button" onclick="openProductDetail('armaf-club-de-nuit-intense')"><i>★</i> <span data-i18n-marq="7">👑 Armaf Club de Nuit Intense · 499</span></button>
-      <button type="button" onclick="openProductDetail('lattafa-khamrah')"><i>★</i> <span data-i18n-marq="8">🥃 Lattafa Khamrah 100 ml · 400</span></button>
-      <button type="button" onclick="openProductDetail('buhara-esans-7ml')"><i>★</i> <span data-i18n-marq="9">🇹🇷 Buhara Esans Roll-on · 99</span></button>
-      <button type="button" onclick="openProductDetail('quran-prayer-gift-box')"><i>★</i> <span data-i18n-marq="10">🎁 Luksus Islamsk Gavesett 4-i-1 · 600</span></button>
-      <!-- Duplicated for seamless marquee loop -->
-      <button type="button" onclick="openProductDetail('surrati-gray-oud')"><i>★</i> <span>🕋 Surrati Gray Oud 150 ml · 899</span></button>
-      <button type="button" onclick="openProductDetail('bujairami-hectic')"><i>★</i> <span>🇦🇺 Bujairami Hectic (Sydney) · 899</span></button>
-      <button type="button" onclick="openProductDetail('surrati-oud-honey')"><i>★</i> <span>🍯 Surrati Oud Honey 140 ml · 899</span></button>
-      <button type="button" onclick="openProductDetail('bujairami-date-night')"><i>★</i> <span>🍎 Bujairami Date Night · 899</span></button>
-      <button type="button" onclick="openProductDetail('al-haramain-detour-noir')"><i>★</i> <span>🌙 Al Haramain Detour Noir · 499</span></button>
-      <button type="button" onclick="openProductDetail('risala-autograph')"><i>★</i> <span>🖋️ Le Falconé Risala Autograph · 649</span></button>
-      <button type="button" onclick="openProductDetail('armaf-club-de-nuit-intense')"><i>★</i> <span>👑 Armaf Club de Nuit Intense · 499</span></button>
-      <button type="button" onclick="openProductDetail('lattafa-khamrah')"><i>★</i> <span>🥃 Lattafa Khamrah 100 ml · 400</span></button>
-    </div>
-  </div>
-
-  <!-- ================= PAK-STAR FLAGSHIP SHOWCASE CAROUSEL ================= -->
-  <section class="ps-carousel" id="psCarousel" aria-roledescription="carousel" aria-label="Utvalgte Flaggskiphus og Bestselgere">
-    <div class="ps-viewport">
-      <div class="ps-track" id="psTrack">
-
-        <!-- SLIDE 1: SURRATI PERFUMES (MECCA FLAGSHIP) -->
-        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="1 av 3: Surrati Perfumes">
-          <div class="ps-card">
-            <div class="ps-copy">
-              <span class="ps-kicker" id="psKicker1">🕋 Flaggskip fra Mekka · 150 ml Extrait</span>
-              <h2 class="ps-title" id="psTitle1">Surrati Perfumes <em>140–150 ml Luksus</em></h2>
-              <p class="ps-sub" id="psSub1">Kongelige saudiarabiske parfymer med ekstrem sillage, lagret oud, villhonning og edle krydder i tunge samlerflakonger.</p>
-              <div class="ps-badges">
-                <span class="ps-badge">✓ 140–150 ml Extrait</span>
-                <span class="ps-badge">✓ 100 % Original</span>
-                <span class="ps-badge">✓ Showroom Tøyengata 3</span>
-              </div>
-              <div class="ps-actions">
-                <button type="button" class="ps-btn-main" id="psBtnMain1" onclick="filterByBrandFromHero('Surrati')">Se alle 12 Surrati →</button>
-                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('surrati-gray-oud')">Utforsk Gray Oud</button>
-              </div>
-            </div>
-            <div class="ps-packs">
-              <div class="ps-pack featured" onclick="openProductDetail('surrati-gray-oud')">
-                <span class="ps-pack-ribbon">Mest solgt</span>
-                <img class="ps-pack-img" src="images/surrati-gray-oud.png" alt="Surrati Gray Oud" loading="lazy">
-                <div class="ps-pack-size">Gray Oud</div>
-                <div class="ps-pack-sub">150 ml Extrait</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-gray-oud')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('surrati-oud-honey')">
-                <img class="ps-pack-img" src="images/surrati-oud-honey.png" alt="Surrati Oud Honey" loading="lazy">
-                <div class="ps-pack-size">Oud Honey</div>
-                <div class="ps-pack-sub">140 ml EDP</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-oud-honey')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('surrati-rosso-ombre')">
-                <img class="ps-pack-img" src="images/surrati-rosso-ombre.png" alt="Surrati Rosso Ombré" loading="lazy">
-                <div class="ps-pack-size">Rosso Ombré</div>
-                <div class="ps-pack-sub">150 ml Extrait</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('surrati-rosso-ombre')">+ Legg i kurv</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 2: BUJAIRAMI PERFUMES (SYDNEY AUSTRALIA) -->
-        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="2 av 3: Bujairami Perfumes Sydney">
-          <div class="ps-card ps-card--bujairami">
-            <div class="ps-copy">
-              <span class="ps-kicker" id="psKicker2">🇦🇺 Australsk Nisjeluksus · Sydney</span>
-              <h2 class="ps-title" id="psTitle2">Bujairami Perfumes <em>Extrait i Blå Skinneske</em></h2>
-              <p class="ps-sub" id="psSub2">Australias mest ettertraktede parfymehus — håndtappede Extrait de Parfum-utgaver levert i signatur blå flip-top skinneske.</p>
-              <div class="ps-badges">
-                <span class="ps-badge">✓ 100 ml Extrait</span>
-                <span class="ps-badge">✓ Blå Flip-Top Skinneske</span>
-                <span class="ps-badge">✓ På lager i Oslo</span>
-              </div>
-              <div class="ps-actions">
-                <button type="button" class="ps-btn-main" id="psBtnMain2" onclick="filterByBrandFromHero('Bujairami')">Se alle 8 Bujairami →</button>
-                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('bujairami-hectic')">Utforsk Hectic</button>
-              </div>
-            </div>
-            <div class="ps-packs">
-              <div class="ps-pack featured" onclick="openProductDetail('bujairami-hectic')">
-                <span class="ps-pack-ribbon">TikTok #1</span>
-                <img class="ps-pack-img" src="images/bujairami-hectic.png" alt="Bujairami Hectic" loading="lazy">
-                <div class="ps-pack-size">Hectic</div>
-                <div class="ps-pack-sub">100 ml Extrait</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-hectic')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('bujairami-date-night')">
-                <img class="ps-pack-img" src="images/bujairami-date-night.png" alt="Bujairami Date Night" loading="lazy">
-                <div class="ps-pack-size">Date Night</div>
-                <div class="ps-pack-sub">100 ml Extrait</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-date-night')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('bujairami-psycho')">
-                <img class="ps-pack-img" src="images/bujairami-psycho.png" alt="Bujairami Psycho" loading="lazy">
-                <div class="ps-pack-size">Psycho</div>
-                <div class="ps-pack-sub">100 ml Extrait</div>
-                <div class="ps-pack-price">899</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('bujairami-psycho')">+ Legg i kurv</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 3: VIRAL ARABIAN ICONS & GIFT SETS -->
-        <div class="ps-slide" role="group" aria-roledescription="slide" aria-label="3 av 3: Virale Ikoner">
-          <div class="ps-card ps-card--viral">
-            <div class="ps-copy">
-              <span class="ps-kicker" id="psKicker3">🔥 Globale Bestselgere · Makspris 1 500</span>
-              <h2 class="ps-title" id="psTitle3">Virale Ikoner <em>Fra Dubai & Arabia</em></h2>
-              <p class="ps-sub" id="psSub3">Detour Noir, Le Falconé Risala Autograph, Club de Nuit Intense, Lattafa Khamrah og komplette 4-i-1 gavesett.</p>
-              <div class="ps-badges">
-                <span class="ps-badge">✓ 131 Utvalgte Dufter</span>
-                <span class="ps-badge">✓ Vipps ved Henting</span>
-                <span class="ps-badge">✓ Maks 1 500</span>
-              </div>
-              <div class="ps-actions">
-                <button type="button" class="ps-btn-main" id="psBtnMain3" onclick="document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'})">Utforsk alle 131 →</button>
-                <button type="button" class="ps-btn-ghost" onclick="openProductDetail('al-haramain-detour-noir')">Se Detour Noir</button>
-              </div>
-            </div>
-            <div class="ps-packs">
-              <div class="ps-pack featured" onclick="openProductDetail('al-haramain-detour-noir')">
-                <span class="ps-pack-ribbon">Viral Favoritt</span>
-                <img class="ps-pack-img" src="images/detour-noir.png" alt="Al Haramain Detour Noir" loading="lazy">
-                <div class="ps-pack-size">Detour Noir</div>
-                <div class="ps-pack-sub">100 ml EDP</div>
-                <div class="ps-pack-price">499</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('al-haramain-detour-noir')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('risala-autograph')">
-                <img class="ps-pack-img" src="images/risala-autograph.png" alt="Risala Autograph" loading="lazy">
-                <div class="ps-pack-size">Autograph</div>
-                <div class="ps-pack-sub">100 ml EDP</div>
-                <div class="ps-pack-price">649</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('risala-autograph')">+ Legg i kurv</button>
-              </div>
-              <div class="ps-pack" onclick="openProductDetail('lattafa-khamrah')">
-                <img class="ps-pack-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
-                <div class="ps-pack-size">Khamrah</div>
-                <div class="ps-pack-sub">100 ml EDP</div>
-                <div class="ps-pack-price">400</div>
-                <button type="button" class="ps-pack-btn" onclick="event.stopPropagation(); quickAddToCart('lattafa-khamrah')">+ Legg i kurv</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="hero-chapter-visual" onclick="openProductDetail('surrati-gray-oud')" style="cursor:pointer" title="Surrati Gray Oud">
+        <div class="hero-chapter-glow"></div>
+        <img class="hero-chapter-img" src="images/surrati-gray-oud.png" alt="Signature Oud Flacon">
       </div>
     </div>
 
-    <div class="ps-controls">
-      <div class="ps-dots" role="tablist" aria-label="Velg lysbilde">
-        <button type="button" class="ps-dot on" data-slide="0" role="tab" aria-selected="true" aria-label="Surrati Perfumes"></button>
-        <button type="button" class="ps-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Bujairami Perfumes"></button>
-        <button type="button" class="ps-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Virale Ikoner"></button>
-      </div>
-      <div class="ps-arrows">
-        <button type="button" class="ps-arrow" id="psPrev" aria-label="Forrige lysbilde">‹</button>
-        <button type="button" class="ps-arrow" id="psNext" aria-label="Neste lysbilde">›</button>
-      </div>
-    </div>
-    <div class="ps-prog" aria-hidden="true"><div class="ps-prog-bar" id="psProgBar"></div></div>
-  </section>
+    <div class="hero-chapters-split">
+      <button type="button" class="hero-split-tile musk-tile" onclick="selectCatalogChip('scent','musk',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
+        <h2 class="hero-split-title" id="heroTileMusk">II Moskus</h2>
+        <img class="hero-split-img" src="images/reef-pure-musk.png" alt="Musk Perfume" loading="lazy">
+      </button>
 
-  <!-- ================= PERFUME HOUSES & BRANDS (Revealed from Menu Only) ================= -->
-  <section id="brandsSection" class="hero-bestsellers-section menu-revealed-section" hidden aria-label="Produsenter og Dufthus">
-    <div class="hero-bestsellers-header">
-      <div>
-        <h2 id="brandsSectionTitle">Produsenter & Dufthus</h2>
-        <p id="brandsSectionSub">Alle 26 utvalgte parfymehus fra Mekka, Sydney, Dubai og Europa — klikk for å filtrere</p>
-      </div>
-      <div class="hero-header-actions">
-        <a href="#kjop" id="brandsSectionCatalogLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
-          Se hele katalogen (131) ↓
-        </a>
-        <button type="button" class="section-close-btn" id="closeBrandsSectionBtn" onclick="closeMenuSection('brands')">✕ Skjul</button>
-      </div>
-    </div>
-
-    <!-- Curated Visual Spotlight: Surrati & Bujairami Australia -->
-    <div class="niche-spotlight-wrap" aria-label="Utvalgt Nisjefokus">
-      <div class="niche-spotlight-card" onclick="filterByBrandFromHero('Surrati')">
-        <img src="images/surrati-gray-oud.png" alt="Surrati Perfumes" class="niche-spotlight-img" loading="lazy">
-        <div class="niche-spotlight-info">
-          <span class="niche-spotlight-badge" id="spotlightSurratiBadge">🕋 Flaggskip fra Surrati</span>
-          <h3 class="niche-spotlight-title" id="spotlightSurratiTitle">Surrati Perfumes</h3>
-          <p class="niche-spotlight-sub" id="spotlightSurratiSub">150 ml Extrait de Parfum & luksusoljer</p>
-          <span class="niche-spotlight-btn" id="spotlightSurratiBtn">Se alle 12 Surrati dufter →</span>
-        </div>
-      </div>
-      <div class="niche-spotlight-card" onclick="filterByBrandFromHero('Bujairami')">
-        <img src="images/bujairami-hectic.png" alt="Bujairami Perfumes Sydney" class="niche-spotlight-img" loading="lazy">
-        <div class="niche-spotlight-info">
-          <span class="niche-spotlight-badge" id="spotlightBujairamiBadge">🇦🇺 Viral Australsk Nisje</span>
-          <h3 class="niche-spotlight-title" id="spotlightBujairamiTitle">Bujairami Perfumes (Sydney)</h3>
-          <p class="niche-spotlight-sub" id="spotlightBujairamiSub">Eksklusive extrait-mesterverk i blå flip-top skinneske</p>
-          <span class="niche-spotlight-btn" id="spotlightBujairamiBtn">Se alle 8 Bujairami dufter →</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Brand Pills Bar (Zero Horizontal Scroll on Desktop, Expanded inside Brands Menu View) -->
-    <div class="hero-brand-pills-bar expanded" id="manufacturersBar" aria-label="Hurtigvalg for produsenter og dufthus">
-      <div class="hero-brand-pills-header">
-        <span class="hero-brand-pills-label" id="heroPillsLabel">🏛️ Produsenter & Dufthus:</span>
-        <button type="button" class="hero-brand-reset-btn" id="heroBrandResetBtn" onclick="resetAllFilters()">Vis alle (131)</button>
-      </div>
-      <div class="hero-brand-pills-scroll">
-        <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Surrati')">
-          <span>🕋</span> <b>Surrati</b> <small>(Mekka · 12 dufter)</small>
-        </button>
-        <button type="button" class="hero-brand-pill highlight" onclick="filterByBrandFromHero('Bujairami')">
-          <span>🇦🇺</span> <b>Bujairami</b> <small>(Sydney · 8 extrait)</small>
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Al Haramain')">
-          <span>🌙</span> <b>Al Haramain</b> <small>(Detour Noir & Rouge)</small>
-        </button>
-        <button type="button" class="hero-brand-pill" onclick="filterByBrandFromHero('Risala')">
-          <span>🖋️</span> <b>Risala</b> <small>(Dubai · 4 dufter)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Lattafa')">
-          <span>🌟</span> <b>Lattafa</b> <small>(25 bestselgere)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Maison Alhambra')">
-          <span>🏛️</span> <b>Maison Alhambra</b> <small>(9 luksusutgaver)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Swiss Arabian')">
-          <span>🌙</span> <b>Swiss Arabian</b> <small>(4 signaturer)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('French Avenue')">
-          <span>🍸</span> <b>French Avenue</b> <small>(5 extrait)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Reef')">
-          <span>💎</span> <b>Reef Perfumes</b> <small>(9 luksusdufter)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Ibraq')">
-          <span>💠</span> <b>IBRAQ</b> <small>(Ibrahim Al Qurashi · 8)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Hamidi')">
-          <span>🪔</span> <b>Hamidi Oud</b> <small>(10 signaturer)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Armaf')">
-          <span>👑</span> <b>Armaf / Sterling</b> <small>(Club de Nuit)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Bespoke London')">
-          <span>🇬🇧</span> <b>Bespoke London</b> <small>(9 parfymer)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Buhara Esans')">
-          <span>🇹🇷</span> <b>Buhara Esans</b> <small>(Roll-on olje · 99)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Ahmed Al Maghribi')">
-          <span>⚜️</span> <b>Ahmed Al Maghribi</b> <small>(2 parfymer)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Nusuk')">
-          <span>✨</span> <b>Nusuk</b> <small>(Ateeq & Saher)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('RiiFFS')">
-          <span>👑</span> <b>RiiFFS</b> <small>(Zenith & Taif)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Rayhaan')">
-          <span>🔥</span> <b>Rayhaan</b> <small>(Crimson)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Khadlaj')">
-          <span>🏝️</span> <b>Khadlaj</b> <small>(Island & Shiyaaka)</small>
-        </button>
-        <button type="button" class="hero-brand-pill hero-brand-pill-extra" onclick="filterByBrandFromHero('Gavesett')">
-          <span>🎁</span> <b>Luksus Gavesett</b> <small>(4-i-1 Komplett)</small>
-        </button>
-      </div>
-      <button type="button" class="hero-brand-toggle-btn" id="heroBrandToggleBtn" onclick="toggleManufacturersMobile()" aria-expanded="true">
-        <span id="heroBrandToggleText">Vis færre produsenter</span> <span id="heroBrandToggleArrow">▴</span>
+      <button type="button" class="hero-split-tile amber-tile" onclick="selectCatalogChip('scent','amber',null); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});">
+        <h2 class="hero-split-title" id="heroTileAmber">III Amber</h2>
+        <img class="hero-split-img" src="images/lattafa-khamrah.png" alt="Amber Perfume" loading="lazy">
       </button>
     </div>
+
+    <div class="hero-brand-strip" aria-label="Utvalgte Merkehus">
+      <button type="button" class="brand-wordmark-btn bw-lattafa" onclick="filterByBrandFromHero('Lattafa')">Lattafa</button>
+      <button type="button" class="brand-wordmark-btn bw-surrati" onclick="filterByBrandFromHero('Surrati')">Surrati</button>
+      <button type="button" class="brand-wordmark-btn bw-bujairami" onclick="filterByBrandFromHero('Bujairami')">Bujairami</button>
+      <button type="button" class="brand-wordmark-btn bw-haramain" onclick="filterByBrandFromHero('Al Haramain')">Al Haramain</button>
+      <button type="button" class="brand-wordmark-btn bw-armaf" onclick="filterByBrandFromHero('Armaf')">Armaf</button>
+    </div>
   </section>
 
-  <!-- ================= 3. HERO: BEST SELLERS ON THE INTERNET (Revealed from Menu Only) ================= -->
-  <section id="heroSection" class="hero-bestsellers-section menu-revealed-section" hidden aria-label="Internettets bestselgende parfymer">
-    <!-- Featured Viral Bestsellers Grid (Most Likely to Sell) -->
-    <div class="hero-bestsellers-header">
-      <div>
-        <h2 id="heroBestsellersTitle">Mest Solgte på Nettet</h2>
-        <p id="heroBestsellersSub">De absolutte publikumsfavorittene med flest visninger, salg og toppanmeldelser</p>
-      </div>
-      <div class="hero-header-actions">
-        <a href="#kjop" id="heroBestsellersLink" style="color:var(--gold);font-size:.82rem;font-weight:600;text-decoration:none;letter-spacing:.04em">
-          Se hele katalogen (131) ↓
-        </a>
-        <button type="button" class="section-close-btn" id="closeBestSellersBtn" onclick="closeMenuSection('bestsellers')">✕ Skjul</button>
-      </div>
-    </div>
-
-    <div class="hero-bestsellers-grid expanded">
-      <!-- 1. Surrati Gray Oud (Grey Oud) -->
-      <article class="hero-best-card" data-id="surrati-gray-oud">
-        <span class="hero-best-badge gold" id="heroBadge1">Nyhet</span>
-        <div class="hero-best-img-wrap" onclick="openProductDetail('surrati-gray-oud')">
-          <img class="hero-best-img" src="images/surrati-gray-oud.png" alt="Surrati Gray Oud (Grey Oud)" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Surrati Perfumes</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('surrati-gray-oud')">Surrati Gray Oud (Grey Oud)</h3>
-        <div class="hero-best-vol" id="heroVol1">150 ml Extrait de Parfum</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">899</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('surrati-gray-oud')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('surrati-gray-oud', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_surrati-gray-oud">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('surrati-gray-oud', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2. Bujairami Hectic (Imagination DNA) -->
-      <article class="hero-best-card" data-id="bujairami-hectic">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('bujairami-hectic')">
-          <img class="hero-best-img" src="images/bujairami-hectic.png" alt="Bujairami Hectic" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Bujairami Perfumes</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('bujairami-hectic')">Bujairami Hectic (Imagination DNA)</h3>
-        <div class="hero-best-vol" id="heroVol2">100 ml Extrait · Blå Skinneske</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">899</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('bujairami-hectic')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('bujairami-hectic', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_bujairami-hectic">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('bujairami-hectic', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3. Surrati Oud Honey -->
-      <article class="hero-best-card" data-id="surrati-oud-honey">
-        <span class="hero-best-badge gold" id="heroBadge3">Nyhet</span>
-        <div class="hero-best-img-wrap" onclick="openProductDetail('surrati-oud-honey')">
-          <img class="hero-best-img" src="images/surrati-oud-honey.png" alt="Surrati Oud Honey" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Surrati Perfumes</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('surrati-oud-honey')">Surrati Oud Honey</h3>
-        <div class="hero-best-vol" id="heroVol3">140 ml EDP · Honning & Oud</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">899</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('surrati-oud-honey')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('surrati-oud-honey', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_surrati-oud-honey">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('surrati-oud-honey', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4. Bujairami Date Night (Layton DNA) -->
-      <article class="hero-best-card" data-id="bujairami-date-night">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('bujairami-date-night')">
-          <img class="hero-best-img" src="images/bujairami-date-night.png" alt="Bujairami Date Night" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Bujairami Perfumes</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('bujairami-date-night')">Bujairami Date Night</h3>
-        <div class="hero-best-vol" id="heroVol4">100 ml Extrait · Spiced Apple</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">899</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('bujairami-date-night')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('bujairami-date-night', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_bujairami-date-night">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('bujairami-date-night', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5. Al Haramain Detour Noir (Dectour) -->
-      <article class="hero-best-card hero-best-card-extra" data-id="al-haramain-detour-noir">
-        <span class="hero-best-badge gold" id="heroBadge5">Nyhet</span>
-        <div class="hero-best-img-wrap" onclick="openProductDetail('al-haramain-detour-noir')">
-          <img class="hero-best-img" src="images/detour-noir.png" alt="Al Haramain Detour Noir (Dectour)" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Al Haramain</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('al-haramain-detour-noir')">Al Haramain Detour Noir (Dectour)</h3>
-        <div class="hero-best-vol" id="heroVol5">100 ml · Viral Layton DNA</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">499</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('al-haramain-detour-noir')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('al-haramain-detour-noir', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_al-haramain-detour-noir">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('al-haramain-detour-noir', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6. Le Falconé Risala Autograph -->
-      <article class="hero-best-card hero-best-card-extra" data-id="risala-autograph">
-        <span class="hero-best-badge gold" id="heroBadge6">Nyhet</span>
-        <div class="hero-best-img-wrap" onclick="openProductDetail('risala-autograph')">
-          <img class="hero-best-img" src="images/risala-autograph.png" alt="Le Falconé Risala Autograph" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Risala / Le Falconé</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('risala-autograph')">Le Falconé Risala Autograph</h3>
-        <div class="hero-best-vol" id="heroVol6">100 ml · Isola Blu DNA</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">649</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('risala-autograph')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('risala-autograph', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_risala-autograph">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('risala-autograph', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 7. Armaf Club de Nuit Intense Man -->
-      <article class="hero-best-card hero-best-card-extra" data-id="armaf-club-de-nuit-intense">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('armaf-club-de-nuit-intense')">
-          <img class="hero-best-img" src="images/armaf-club-de-nuit-intense.png" alt="Armaf Club de Nuit Intense Man" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Armaf by Sterling</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('armaf-club-de-nuit-intense')">Armaf Club de Nuit Intense Man</h3>
-        <div class="hero-best-vol" id="heroVol7">100 ml · Woody Spicy Beast</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">499</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('armaf-club-de-nuit-intense')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('armaf-club-de-nuit-intense', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_armaf-club-de-nuit-intense">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('armaf-club-de-nuit-intense', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 8. Lattafa Khamrah -->
-      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-khamrah">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-khamrah')">
-          <img class="hero-best-img" src="images/lattafa-khamrah.png" alt="Lattafa Khamrah" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Lattafa</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-khamrah')">Lattafa Khamrah</h3>
-        <div class="hero-best-vol" id="heroVol8">100 ml · Kanel & Gourmand Vanilje</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">400</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-khamrah')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('lattafa-khamrah', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_lattafa-khamrah">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('lattafa-khamrah', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 9. Lattafa Asad -->
-      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-asad">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-asad')">
-          <img class="hero-best-img" src="images/lattafa-asad.png" alt="Lattafa Asad" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Lattafa</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-asad')">Lattafa Asad (Black Dragon)</h3>
-        <div class="hero-best-vol" id="heroVol9">100 ml · Sort Pepper, Tobakk & Amber</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">490</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-asad')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('lattafa-asad', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_lattafa-asad">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('lattafa-asad', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 10. Lattafa Yara Pink -->
-      <article class="hero-best-card hero-best-card-extra" data-id="lattafa-yara-pink">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('lattafa-yara-pink')">
-          <img class="hero-best-img" src="images/lattafa-yara-pink.png" alt="Lattafa Yara Pink" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Lattafa</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('lattafa-yara-pink')">Lattafa Yara (Pink)</h3>
-        <div class="hero-best-vol" id="heroVol10">100 ml · Heliotrop, Vanilje & Tropisk</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">450</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta" onclick="quickAddToCart('lattafa-yara-pink')">Kjøp nå</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('lattafa-yara-pink', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_lattafa-yara-pink">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('lattafa-yara-pink', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 11. Buhara Esans 7ml -->
-      <article class="hero-best-card hero-best-card-extra" data-id="buhara-esans-7ml">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('buhara-esans-7ml')">
-          <img class="hero-best-img" src="images/buhara-esans-7ml.png" alt="Buhara Esans 7ml Roll-on (1 stk)" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Buhara Esans · 1 stk roll-on</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('buhara-esans-7ml')">Buhara Esans (7 ml Roll-on · 1 flaske)</h3>
-        <div class="hero-best-vol" id="heroVol11">7 ml · Alkoholfri Esans (Før 100)</div>
-        <div class="hero-best-bottom">
-          <div style="display:flex;align-items:baseline;gap:.45rem">
-            <span class="hero-best-price" style="color:var(--ok)">99</span>
-            <span style="font-size:.78rem;color:var(--mu);text-decoration:line-through">100</span>
-          </div>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta hero-best-scent-btn" onclick="openProductDetail('buhara-esans-7ml')">Velg duft</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('buhara-esans-7ml', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_buhara-esans-7ml">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('buhara-esans-7ml', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 12. Luksus Islamsk Gavesett 4-i-1 -->
-      <article class="hero-best-card hero-best-card-extra" data-id="quran-prayer-gift-box">
-        <div class="hero-best-img-wrap" onclick="openProductDetail('quran-prayer-gift-box')">
-          <img class="hero-best-img" src="images/quran-prayer-gift-box.png" alt="Luksus Islamsk Gavesett (Koran, Bønnematte, Tasbeeh & Itar)" loading="lazy">
-        </div>
-        <span class="hero-best-brand">Gavesett · 4-i-1 Komplett</span>
-        <h3 class="hero-best-name" onclick="openProductDetail('quran-prayer-gift-box')">Luksus Islamsk Gavesett (Koran, Matte, Tasbeeh, Itar)</h3>
-        <div class="hero-best-vol" id="heroVol12">4-i-1 Gaveeske · Grønn, Hvit & Rød</div>
-        <div class="hero-best-bottom">
-          <span class="hero-best-price">600</span>
-          <div class="hero-btn-wrap">
-            <button type="button" class="hero-best-cta hero-best-variant-btn" onclick="openProductDetail('quran-prayer-gift-box')">Velg farge</button>
-            <div class="card-qty-stepper hero-qty-stepper" aria-label="Antall">
-              <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('quran-prayer-gift-box', -1)" aria-label="Mindre">−</button>
-              <output class="card-qty-output" id="heroCardQty_quran-prayer-gift-box">0</output>
-              <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('quran-prayer-gift-box', 1)" aria-label="Mer">+</button>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-    <div class="hero-best-mobile-actions" id="heroBestMobileActions">
-      <button type="button" class="hero-best-toggle-btn" id="heroBestToggleBtn" onclick="toggleBestsellersMobile()" aria-expanded="false">
-        <span id="heroBestToggleText">Vis alle 12 bestselgere</span> <span id="heroBestToggleArrow">▾</span>
-      </button>
-      <a href="#kjop" class="hero-best-jump-btn" id="heroBestJumpBtn">Hopp rett til katalogen (131) ↓</a>
-    </div></section>
-
-  <!-- ================= 3. COLLECTION GRID AT THE VERY TOP ================= -->
+  <!-- ================= EDITORIAL SHOP LAYOUT (Picture 2) ================= -->
   <section id="kjop">
-    <div class="collection-header">
-      <p class="tagline-small" id="colTag">Finn Din Signaturduft</p>
-      <h1 id="colTitle">Lukt Fantastisk. Føl Deg På Topp.</h1>
-      <p class="sub" id="colSub">131 Håndplukkede luksusparfymer og oljer · Maks 1 500 · Unn deg en ny favoritt i dag</p>
-      <div class="collection-status-bar">
-        <div class="status-bar-left">
-          <span id="collectionCount">Viser 131 av 131 parfymer — Finn din favoritt i dag</span>
-          <button type="button" class="btn-show-all" id="btnShowAll" onclick="resetAllFilters()" title="Vis alle parfymer / Reset filters">Show All</button>
-        </div>
-        <span style="font-size:.76rem;color:var(--dim)" id="colGuaranteeBadge">● 100% Originale fabrikkutgaver</span>
-      </div>
-
-      <!-- PakStar Horizontal Filter Chips Rail -->
-      <div class="chips-rail" id="cats" role="tablist" aria-label="Hurtigfilter for dufter og merker">
-        <button type="button" class="cat-chip on" data-chip-type="all" data-chip-val="all" onclick="selectCatalogChip('all','all',this)">✨ Alle (131)</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Surrati" onclick="selectCatalogChip('brand','Surrati',this)">🕋 Surrati (12)</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Bujairami" onclick="selectCatalogChip('brand','Bujairami',this)">🇦🇺 Bujairami (8)</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Lattafa" onclick="selectCatalogChip('brand','Lattafa',this)">🌟 Lattafa (25)</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Al Haramain" onclick="selectCatalogChip('brand','Al Haramain',this)">🌙 Al Haramain</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Risala" onclick="selectCatalogChip('brand','Risala',this)">🖋️ Risala</button>
-        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="oud" onclick="selectCatalogChip('scent','oud',this)">🪵 Oud & Tre</button>
-        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="amber" onclick="selectCatalogChip('scent','amber',this)">🔥 Amber & Krydder</button>
-        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">🍯 Gourmand</button>
-        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">🍋 Frisk & Sitrus</button>
-        <button type="button" class="cat-chip" data-chip-type="scent" data-chip-val="floral" onclick="selectCatalogChip('scent','floral',this)">🌸 Blomstret</button>
-        <button type="button" class="cat-chip" data-chip-type="brand" data-chip-val="Gavesett" onclick="selectCatalogChip('brand','Gavesett',this)">🎁 Gavesett</button>
-      </div>
-    </div>
-
-    <!-- Mobile Filter Toolbar (Consolidated Filter Trigger) -->
-    <div class="mobile-filter-bar" id="mobileFilterBar">
-      <button type="button" class="mobile-filter-toggle-btn" id="mobileFilterToggleBtn" onclick="toggleMobileFilters()" aria-expanded="false">
-        <span class="mft-icon">⚙️</span>
-        <span id="mobileFilterToggleLabel">Filter & Sortering</span>
+    <!-- Mobile Only Controls Bar -->
+    <div class="shop-mobile-controls">
+      <button type="button" class="shop-mobile-filter-btn" id="mobileFilterToggleBtn" onclick="toggleMobileFilters()" aria-expanded="false">
+        <span>⚙️</span>
+        <span id="mobileFilterToggleLabel">Filter</span>
         <span class="mobile-filter-count-badge" id="mobileFilterCountBadge" style="display:none">0</span>
-        <span class="mft-arrow" id="mobileFilterArrow">▾</span>
       </button>
-      <button type="button" class="mobile-filter-reset-quick" id="mobileFilterResetQuick" onclick="resetAllFilters()" style="display:none">
-        ✕ Nullstill
-      </button>
+      <div class="shop-mobile-scents" id="mobScentRail" role="tablist" aria-label="Duftfamilie hurtigvalg">
+        <button type="button" class="sb-scent-pill on" data-scent-val="all" onclick="selectCatalogChip('all','all',this)">Alle</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="oud" onclick="selectCatalogChip('scent','oud',this)">Oud</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="amber" onclick="selectCatalogChip('scent','amber',this)">Amber</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">Gourmand</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">Sitrus</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="musk" onclick="selectCatalogChip('scent','musk',this)">Moskus</button>
+        <button type="button" class="sb-scent-pill" data-scent-val="floral" onclick="selectCatalogChip('scent','floral',this)">Blomst</button>
+      </div>
     </div>
 
-    <!-- Dropdown Filter Bar -->
-    <div class="filter-container" id="filterContainer">
-      <div class="filter-field">
-        <label for="filterBrand" id="lblFilterBrand">Produsent / Merke</label>
-        <select id="filterBrand" class="filter-select" aria-label="Velg produsent / merke">
-          <option value="all" id="optBrandAll">Alle merker (131)</option>
-          <option value="Armaf" id="optBrandArmaf">Armaf / Sterling Perfumes (1)</option>
-          <option value="Surrati" id="optBrandSurrati">Surrati Perfumes (12)</option>
-          <option value="Risala" id="optBrandRisala">Risala / Le Falconé Dubai (4)</option>
-          <option value="Lattafa" id="optBrandLattafa">Lattafa (14)</option>
-          <option value="Maison Alhambra" id="optBrandAlhambra">Maison Alhambra (1)</option>
-          <option value="Swiss Arabian" id="optBrandSwiss">Swiss Arabian (5)</option>
-          <option value="Ibraq" id="optBrandIbraq">Ibrahim Al Qurashi (IBRAQ) (7)</option>
-          <option value="Reef" id="optBrandReef">Reef Perfumes (3)</option>
-        </select>
-      </div>
-
-      <div class="filter-field">
-        <label for="filterScent" id="lblFilterScent">Duftfamilie</label>
-        <select id="filterScent" class="filter-select" aria-label="Velg duftfamilie">
-          <option value="all" id="optScentAll">Alle duftnoter</option>
-          <option value="oud" id="optScentOud">Oud & Treaktig</option>
-          <option value="amber" id="optScentAmber">Amber & Varm</option>
-          <option value="gourmand" id="optScentGourmand">Gourmand & Kaffe</option>
-          <option value="citrus" id="optScentCitrus">Frisk & Sitrus</option>
-          <option value="musk" id="optScentMusk">Arktisk & Moskus</option>
-          <option value="floral" id="optScentFloral">Blomstret & Søt</option>
-        </select>
-      </div>
-
-      <div class="filter-field">
-        <label for="filterSort" id="lblFilterSort">Sortering</label>
-        <select id="filterSort" class="filter-select" aria-label="Sorter etter">
-          <option value="featured" id="optSortFeatured">Anbefalt utvalg</option>
-          <option value="price-asc" id="optSortPriceAsc">Pris: Lav til Høy</option>
-          <option value="price-desc" id="optSortPriceDesc">Pris: Høy til Lav</option>
-          <option value="name-asc" id="optSortNameAsc">Navn: A–Å</option>
-        </select>
-      </div>
-
-      <div class="filter-field filter-field-search">
-        <label for="catalogSearchInput" id="lblFilterSearch">Søk i katalogen</label>
-        <div class="search-wrap">
-          <input type="text" id="catalogSearchInput" class="search-input" placeholder="Søk parfyme, merke, duftnote...">
+    <div class="shop-layout">
+      <!-- Left Sand Filter Sidebar -->
+      <aside class="shop-sidebar" id="filterContainer" aria-label="Katalogfilter">
+        <div class="sb-search-box">
+          <input type="text" id="catalogSearchInput" class="sb-search-input" placeholder="Søk parfyme...">
           <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Tøm søk">✕</button>
         </div>
+
+        <div class="sb-group">
+          <div class="sb-group-head">
+            <span id="lblFilterBrand">Merker</span>
+            <span style="font-size:.8rem;color:var(--mu)">^</span>
+          </div>
+          <div class="sb-brands-list" id="sidebarBrandsList"></div>
+          <button type="button" class="sb-show-more-btn" id="sbShowAllBrandsBtn" onclick="toggleSidebarShowAllBrands()">Vis alle merker</button>
+          <select id="filterBrand" style="display:none"><option value="all">Alle</option></select>
+        </div>
+
+        <hr class="sb-divider">
+
+        <div class="sb-group">
+          <div class="sb-group-head">
+            <span id="lblFilterScent">Duftfamilie</span>
+            <span style="font-size:.8rem;color:var(--mu)">^</span>
+          </div>
+          <div class="sb-scents-wrap" id="cats">
+            <button type="button" class="sb-scent-pill on" data-chip-type="all" data-chip-val="all" onclick="selectCatalogChip('all','all',this)">Alle</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="oud" onclick="selectCatalogChip('scent','oud',this)">Oud</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="amber" onclick="selectCatalogChip('scent','amber',this)">Amber</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="gourmand" onclick="selectCatalogChip('scent','gourmand',this)">Gourmand</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="citrus" onclick="selectCatalogChip('scent','citrus',this)">Sitrus</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="musk" onclick="selectCatalogChip('scent','musk',this)">Moskus</button>
+            <button type="button" class="sb-scent-pill" data-chip-type="scent" data-chip-val="floral" onclick="selectCatalogChip('scent','floral',this)">Blomst</button>
+          </div>
+          <select id="filterScent" style="display:none">
+            <option value="all">Alle</option>
+            <option value="oud">Oud</option>
+            <option value="amber">Amber</option>
+            <option value="gourmand">Gourmand</option>
+            <option value="citrus">Sitrus</option>
+            <option value="musk">Moskus</option>
+            <option value="floral">Blomst</option>
+          </select>
+        </div>
+
+        <hr class="sb-divider">
+
+        <div class="sb-group">
+          <div class="sb-group-head">
+            <span id="lblFilterPrice">Pris</span>
+            <span style="font-size:.8rem;color:var(--mu)">^</span>
+          </div>
+          <div class="sb-price-readout" id="sbPriceReadout">99 kr – 1 500 kr</div>
+          <input type="range" id="filterPriceMax" class="sb-price-slider" min="99" max="1500" step="10" value="1500" oninput="onPriceSliderInput(this.value)" aria-label="Maks pris i NOK">
+        </div>
+
+        <button type="button" class="sb-reset-btn" id="btnShowAll" onclick="resetAllFilters()">Nullstill filtre</button>
+      </aside>
+
+      <!-- Right Shop Catalog Column -->
+      <div class="shop-main">
+        <div class="shop-head-row">
+          <h2 class="shop-main-title" id="colTitle">Shop</h2>
+          <div class="shop-head-right">
+            <span class="shop-count-label" id="collectionCount">131 produkter</span>
+            <select id="filterSort" class="shop-sort-select" aria-label="Sortering">
+              <option value="featured" id="optSortFeatured">Anbefalt</option>
+              <option value="price-asc" id="optSortPriceAsc">Pris: Lav – Høy</option>
+              <option value="price-desc" id="optSortPriceDesc">Pris: Høy – Lav</option>
+              <option value="name-asc" id="optSortNameAsc">Navn: A–Å</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid" id="flaconGalleryGrid"></div>
       </div>
     </div>
-
-    <!-- 30 Product Cards Grid -->
-    <div class="products-grid" id="flaconGalleryGrid"></div>
   </section>
 
-  <!-- ================= PAK-STAR 3D SCENT FAMILIES & TRUST PILLARS ================= -->
-  <section class="cats-sec" id="kategorier" aria-label="Duftfamilier og garantier" style="padding:0 var(--pad)">
-    <div class="sec-head">
-      <div>
-        <h2 class="sec-title" id="catsSecTitle">Utforsk etter Duftfamilie & Stil</h2>
-        <p class="sec-sub" id="catsSecSub">Trykk på en duftfamilie eller et flaggskiphus for å filtrere blant våre 131 originale flakonger</p>
-      </div>
-      <div class="timer" aria-label="Showroom og tilbud">
-        <span>⚡ Oslo Lager</span>
-        <b id="timerH">12</b>:<b id="timerM">45</b>:<b id="timerS">00</b>
-      </div>
-    </div>
-
-    <div class="cat-grid" id="catGrid3D">
-      <button type="button" class="cat-card" data-scent="oud" style="--tint:rgba(212,175,106,.22)" onclick="selectPakStarCategory('scent','oud',this)">
-        <div class="ico">🪵</div>
-        <b id="catLblOud">Oud & Treaktig</b>
-        <small id="catSubOud">Røkt & Kongelig</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="amber" style="--tint:rgba(217,119,6,.22)" onclick="selectPakStarCategory('scent','amber',this)">
-        <div class="ico">🔥</div>
-        <b id="catLblAmber">Amber & Krydret</b>
-        <small id="catSubAmber">Varm & Intens</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="gourmand" style="--tint:rgba(180,83,9,.22)" onclick="selectPakStarCategory('scent','gourmand',this)">
-        <div class="ico">🍯</div>
-        <b id="catLblGourmand">Gourmand & Kaffe</b>
-        <small id="catSubGourmand">Vanilje & Dadler</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="citrus" style="--tint:rgba(56,189,248,.22)" onclick="selectPakStarCategory('scent','citrus',this)">
-        <div class="ico">🍋</div>
-        <b id="catLblCitrus">Frisk & Sitrus</b>
-        <small id="catSubCitrus">Bergamott & Hav</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="musk" style="--tint:rgba(148,163,184,.22)" onclick="selectPakStarCategory('scent','musk',this)">
-        <div class="ico">❄️</div>
-        <b id="catLblMusk">Arktisk & Moskus</b>
-        <small id="catSubMusk">Ren & Krystallklar</small>
-      </button>
-      <button type="button" class="cat-card" data-scent="floral" style="--tint:rgba(244,63,94,.22)" onclick="selectPakStarCategory('scent','floral',this)">
-        <div class="ico">🌸</div>
-        <b id="catLblFloral">Blomstret & Søt</b>
-        <small id="catSubFloral">Taif-rose & Frukt</small>
-      </button>
-      <button type="button" class="cat-card" data-brand="Surrati" style="--tint:rgba(31,122,77,.25)" onclick="selectPakStarCategory('brand','Surrati',this)">
-        <div class="ico">🕋</div>
-        <b>Surrati (12)</b>
-        <small>150 ml Extrait</small>
-      </button>
-      <button type="button" class="cat-card" data-brand="Bujairami" style="--tint:rgba(37,99,235,.25)" onclick="selectPakStarCategory('brand','Bujairami',this)">
-        <div class="ico">🇦🇺</div>
-        <b>Bujairami (8)</b>
-        <small>Sydney Nisje</small>
-      </button>
-    </div>
-
-    <div class="trust-list">
-      <div class="trust-item"><i>✓</i> <span id="trustItem1">100 % Originale fabrikkutgaver</span></div>
-      <div class="trust-item"><i>📍</i> <span id="trustItem2">Showroom: Tøyengata 3, Oslo</span></div>
-      <div class="trust-item"><i>⚡</i> <span id="trustItem3">Enkel Vipps-reservasjon</span></div>
-      <div class="trust-item"><i>💎</i> <span id="trustItem4">Maksprisgaranti 1 500</span></div>
-    </div>
-  </section>
-
-  <!-- Showroom & Pickup Section -->
+  <!-- Showroom & Pickup Section (Calm Editorial Card) -->
   <section id="showroom">
     <div class="showroom-inner">
       <div>
         <p class="tagline-small" id="srTag">Besøk Oss i Oslo</p>
-        <h2 id="srTitle" style="font-family:var(--serif);font-size:2.2rem;font-weight:300;margin:.4rem 0 1rem">Showroom & Henting</h2>
-        <p id="srDesc" style="color:var(--dim);line-height:1.6;font-size:.9rem;margin-bottom:1.2rem">
-          Ønsker du å oppleve duftene før kjøp? Besøk vårt parfymeri og hentepunkt sentralt i Oslo. Vi tilbyr personlig duftveiledning og gratis henting av bestillinger.
+        <h2 id="srTitle" style="font-family:var(--serif);font-size:2.2rem;font-weight:600;margin:.4rem 0 1rem">Showroom & Henting</h2>
+        <p id="srDesc" style="color:var(--dim);line-height:1.65;font-size:.95rem;margin-bottom:1.25rem;max-width:34rem">
+          Opplev duftene personlig før kjøp i vårt showroom sentralt i Oslo. Vi tilbyr gratis henting av reserverte bestillinger samme dag.
         </p>
-        <p style="color:var(--ice);font-size:.9rem;line-height:1.6">
+        <p style="color:var(--tx);font-size:.92rem;line-height:1.7">
           📍 <b>Tøyengata 3, 0190 Oslo (inne hos PakStar)</b><br>
           🕒 <span id="srHours">Mandag – Lørdag: 11:00 – 18:00</span><br>
-          ✉️ <a href="mailto:aromatekoslo@outlook.com" style="color:var(--gold)">aromatekoslo@outlook.com</a>
+          ✉️ <a href="mailto:aromatekoslo@outlook.com" style="color:var(--ac);font-weight:600">aromatekoslo@outlook.com</a>
         </p>
       </div>
-      <div class="showroom-card">
-        <div style="font-size:2.4rem;margin-bottom:.8rem">🛍️</div>
-        <h3 id="srBoxTitle" style="font-size:1.2rem;margin-bottom:.5rem">Gratis Henting i Butikk</h3>
-        <p id="srBoxDesc" style="font-size:.82rem;color:var(--mu);line-height:1.5;margin-bottom:1.2rem">
-          Legg inn en bestillingsforespørsel på nettsiden og hent ferdigpakket flakong samme dag. Oppgjør med Vipps ved overlevering.
+      <div class="showroom-card" style="background:var(--sf);border:1px solid var(--ln);border-radius:16px">
+        <div style="font-size:2.2rem;margin-bottom:.75rem">🛍️</div>
+        <h3 id="srBoxTitle" style="font-family:var(--serif);font-size:1.35rem;font-weight:700;margin-bottom:.45rem">Gratis Henting i Butikk</h3>
+        <p id="srBoxDesc" style="font-size:.86rem;color:var(--mu);line-height:1.55;margin-bottom:1.25rem">
+          Reserver din favoritt på nettsiden og hent ferdigpakket flakong i Oslo. Oppgjør med Vipps ved overlevering.
         </p>
-        <a href="#kjop" class="cta" id="srBoxBtn">Utforsk Duftene</a>
+        <a href="#kjop" class="hero-chapter-cta" id="srBoxBtn" style="text-decoration:none;display:inline-flex">Utforsk Duftene</a>
       </div>
     </div>
   </section>
 
-  <!-- Newsletter Section -->
-  <section class="newsletter-section">
-    <div class="newsletter-inner">
-      <h3 id="newsTitle" style="font-family:var(--serif);font-size:2rem;font-weight:300">Atelier-Journalen</h3>
-      <p id="newsDesc" style="font-size:.85rem;color:var(--dim);margin-top:.4rem;line-height:1.5">
-        Motta invitasjoner til duftprøving, nye flakongslipp og kuratorartikler fra Oslo.
-      </p>
-      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-        <input type="email" id="newsEmail" class="newsletter-input" required placeholder="Din e-postadresse...">
-        <button type="submit" class="cta" style="padding:.75rem 1.4rem" id="newsBtn">Meld på</button>
-      </form>
-      <p id="newsFeedback" style="font-size:.78rem;color:var(--gold);margin-top:.8rem;display:none"></p>
-    </div>
-  </section>
-</main>
-
-<!-- ================= 5. PRODUCT DETAIL BOTTOM SHEET / MODAL ================= -->
+<!-- ================= 5. EDITORIAL PRODUCT DETAIL DIALOG (Picture 3) ================= -->
 <dialog id="productDetailModal" class="sheet-dialog" closedby="any" aria-labelledby="detailModalTitle">
   <div class="sheet-hd">
-    <p class="sheet-eyebrow" id="detailModalBrand">PRODUSENT</p>
+    <button type="button" class="detail-breadcrumb-btn" onclick="closeProductDetail()">
+      <span>←</span> <span id="detailBreadcrumbShop">Shop</span> / <strong id="detailBreadcrumbName" style="color:var(--tx)">...</strong>
+    </button>
     <button type="button" class="sheet-x" data-close onclick="closeProductDetail()" aria-label="Lukk produktdetaljer">✕</button>
   </div>
 
   <div class="sheet-bd" id="productDetailBody">
-    <div class="gal" id="detailModalGallery" aria-label="Produktbilder">
-      <div class="gal-slide" onclick="openImageZoom('bottle')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('bottle')" role="button" tabindex="0" title="Klikk for å forstørre bildet / Click to zoom">
+    <div class="detail-editorial-grid">
+      <!-- Left Thumbnail Rail -->
+      <div class="detail-thumb-rail" id="detailThumbRail" aria-label="Velg bilde"></div>
+
+      <!-- Main Featured Bottle Stage -->
+      <div class="detail-main-stage" id="detailMainStage" onclick="openImageZoom(detailActiveGalleryMode)" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom(detailActiveGalleryMode)" role="button" tabindex="0" title="Klikk for å forstørre">
         <img id="detailModalImgBottle" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Flakong"
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231a1814\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-        <span class="gal-slide-label" id="lblModalZoomBadge">🔍 Flakong · Klikk for å forstørre</span>
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23f2e8d7\'/%3E%3C/svg%3E'">
+        <span class="gal-slide-label" id="lblModalZoomBadge">🔍 Zoom</span>
       </div>
-      <div class="gal-slide" id="detailSlideBox" onclick="openImageZoom('box')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('box')" role="button" tabindex="0">
-        <img id="detailModalImgBox" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Presentasjonseske"
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231a1814\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-        <span class="gal-slide-label" id="lblModalBoxLabel">📦 Eske</span>
+
+      <!-- Hidden slides kept cleanly for zoom compatibility -->
+      <div style="display:none" aria-hidden="true">
+        <img id="detailModalImgBox" src="">
+        <img id="detailModalImgSet" src="">
+        <div id="detailSlideBox"></div>
+        <div id="detailSlideSet"></div>
+        <div id="detailGalNav"></div>
       </div>
-      <div class="gal-slide" id="detailSlideSet" style="display:none" onclick="openImageZoom('set')" onkeydown="if(event.key==='Enter'||event.key===' ')openImageZoom('set')" role="button" tabindex="0">
-        <img id="detailModalImgSet" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Gavesett">
-        <span class="gal-slide-label" id="detailSetBtnText">🎁 Luksus Gavesett</span>
+
+      <!-- Right Product Details Column -->
+      <div class="detail-info-col">
+        <p class="detail-brand-lbl" id="detailModalBrand">PRODUSENT</p>
+        <h2 class="detail-ed-title" id="detailModalTitle">Parfymenavn</h2>
+
+        <p class="detail-ed-price">
+          <span id="detailModalPrice">0</span>
+          <s id="detailModalOldPrice" style="display:none">100</s>
+        </p>
+
+        <p class="detail-ed-sub" id="detailModalSubtitle"></p>
+
+        <div id="detailModalSaleBanner" class="sheet-offer" style="display:none">
+          <span>⚡</span>
+          <div>
+            <strong id="detailModalSaleTitle">Tidsbegrenset tilbud</strong>
+            <small id="detailModalSaleSub">Ordinær pris</small>
+          </div>
+        </div>
+
+        <div class="detail-controls-row">
+          <span class="detail-vol-pill" id="detailModalVol">100 ml</span>
+          <div class="qty-box" id="detailQtyBox" aria-label="Antall" style="height:40px;border-radius:999px">
+            <button type="button" id="modalQtyMinus" onclick="adjustModalQty(-1)" aria-label="Færre" disabled style="width:36px">−</button>
+            <output id="modalQtyNum">1</output>
+            <button type="button" id="modalQtyPlus" onclick="adjustModalQty(1)" aria-label="Flere" style="width:36px">+</button>
+          </div>
+          <span class="stock-pill" id="detailModalStock">● På lager · Oslo</span>
+        </div>
+
+        <div id="detailModalScentWrap" class="sheet-form" style="display:none;margin:0 0 1rem">
+          <label for="detailScentSelect" id="lblDetailScent">
+            <span id="lblDetailScentText">Velg ønsket duft *</span>
+            <select id="detailScentSelect" class="sheet-select" onchange="onScentSelectChange(this.value)" aria-required="true" data-error="detailScentError">
+              <option value="">— Velg duft —</option>
+            </select>
+            <span id="detailScentError" class="field-err">Vennligst velg en duft først.</span>
+          </label>
+        </div>
+
+        <div class="detail-cta-row">
+          <button type="button" class="detail-cta-primary" id="detailModalAddBtn" onclick="addModalProductToCart()" autofocus>🛒 Legg i kurv</button>
+          <button type="button" class="detail-cta-secondary" id="detailModalWishBtn" onclick="toggleWish(S.currentProductId)">♡ Lagre</button>
+        </div>
+
+        <!-- 3-Column Scent Pyramid -->
+        <dl class="detail-notes-columns">
+          <div class="detail-note-col">
+            <dt id="lblTopNotes">Topp:</dt>
+            <dd id="detailModalTop"></dd>
+          </div>
+          <div class="detail-note-col">
+            <dt id="lblHeartNotes">Hjerte:</dt>
+            <dd id="detailModalHeart"></dd>
+          </div>
+          <div class="detail-note-col">
+            <dt id="lblBaseNotes">Bunn:</dt>
+            <dd id="detailModalBase"></dd>
+          </div>
+        </dl>
+
+        <p id="detailModalDesc" style="font-size:0.88rem;color:var(--mu);line-height:1.55;margin:0 0 0.65rem"></p>
+        <p id="detailModalStory" style="font-size:0.82rem;color:var(--mu);font-style:italic;line-height:1.5;margin:0 0 0.75rem"></p>
+
+        <ul class="sheet-info" style="margin:0;padding:0">
+          <li>🚚 <span id="detailShippingText">Sendes innen 24 t eller hentes gratis i Tøyengata 3, Oslo</span></li>
+          <li>🛡️ <span id="detailGuaranteeText">100 % original – eske/flakong-design kan variere</span></li>
+        </ul>
       </div>
     </div>
-    <div class="gal-nav" id="detailGalNav" aria-label="Velg bilde"></div>
-
-    <div id="detailSetBtnWrap" style="display:none;margin-bottom:10px"></div>
-
-    <h2 class="sheet-prod-name" id="detailModalTitle">Parfymenavn</h2>
-    <div class="sheet-meta">
-      <span id="detailModalVol">100 ml</span>
-      <span class="stock-pill" id="detailModalStock">● På lager · Oslo</span>
-    </div>
-
-    <p class="sheet-price">
-      <span id="detailModalPrice">0</span>
-      <s id="detailModalOldPrice" style="display:none">100</s>
-    </p>
-
-    <!-- Sale Banner -->
-    <div id="detailModalSaleBanner" class="sheet-offer" style="display:none">
-      <span>⚡</span>
-      <div>
-        <strong id="detailModalSaleTitle">Tidsbegrenset tilbud</strong>
-        <small id="detailModalSaleSub">Ordinær pris</small>
-      </div>
-    </div>
-
-    <!-- Scent / Variant Selector -->
-    <div id="detailModalScentWrap" class="sheet-form" style="display:none;margin:12px 0">
-      <label for="detailScentSelect" id="lblDetailScent">
-        <span id="lblDetailScentText">Velg ønsket duft *</span>
-        <select id="detailScentSelect" class="sheet-select" onchange="onScentSelectChange(this.value)" aria-required="true" data-error="detailScentError">
-          <option value="">— Velg duft —</option>
-        </select>
-        <span id="detailScentError" class="field-err">Vennligst velg en duft først.</span>
-      </label>
-    </div>
-
-    <p id="detailModalDesc" style="font-size:14px;color:var(--mu);line-height:1.55;margin:10px 0"></p>
-
-    <!-- 3-Tier Scent Pyramid -->
-    <dl class="sheet-notes">
-      <div>
-        <dt id="lblTopNotes">Topp</dt>
-        <dd id="detailModalTop"></dd>
-      </div>
-      <div>
-        <dt id="lblHeartNotes">Hjerte</dt>
-        <dd id="detailModalHeart"></dd>
-      </div>
-      <div>
-        <dt id="lblBaseNotes">Bunn</dt>
-        <dd id="detailModalBase"></dd>
-      </div>
-    </dl>
-
-    <p id="detailModalStory" style="font-size:13px;color:var(--mu);font-style:italic;line-height:1.5;margin-bottom:8px"></p>
-
-    <ul class="sheet-info">
-      <li>🚚 <span id="detailShippingText">Sendes innen 24 t fra Tøyengata 3, Oslo (inne hos PakStar)</span></li>
-      <li>🛡️ <span id="detailGuaranteeText">100 % original – eske/flakong-design kan variere</span></li>
-    </ul>
-  </div>
-
-  <div class="sheet-ft">
-    <div class="qty-box" id="detailQtyBox" aria-label="Antall">
-      <button type="button" id="modalQtyMinus" onclick="adjustModalQty(-1)" aria-label="Færre" disabled>−</button>
-      <output id="modalQtyNum">1</output>
-      <button type="button" id="modalQtyPlus" onclick="adjustModalQty(1)" aria-label="Flere">+</button>
-    </div>
-    <button type="button" class="sheet-btn" id="detailModalAddBtn" onclick="addModalProductToCart()" autofocus>Legg til</button>
   </div>
 </dialog>
 
@@ -6060,22 +6781,41 @@ body {
   </div>
 </dialog>
 
-<!-- ================= 6. CART BOTTOM SHEET / MODAL ================= -->
+<!-- ================= 6. EDITORIAL CART DIALOG (Picture 4) ================= -->
 <dialog id="cart" class="sheet-dialog" closedby="any" aria-labelledby="cartHeading">
-  <div class="sheet-hd">
-    <h2 id="cartHeading">Handlekurv</h2>
+  <div class="sheet-hd" style="align-items:flex-start">
+    <div>
+      <button type="button" class="detail-breadcrumb-btn" onclick="closeCart()" style="margin-bottom:.25rem">
+        <span>←</span> <span id="cartBackToShop">Tilbake til butikk</span>
+      </button>
+      <h2 id="cartHeading" style="font-family:var(--serif);font-size:1.75rem;font-weight:700;line-height:1.1">Din Handlekurv</h2>
+    </div>
     <button type="button" class="sheet-x" data-close onclick="closeCart()" aria-label="Lukk handlekurv">✕</button>
   </div>
 
-  <ul class="sheet-bd cart-items-ul" id="cartList"></ul>
+  <div class="sheet-bd" style="padding:0">
+    <div class="cart-editorial-layout">
+      <ul class="cart-items-ul" id="cartList"></ul>
 
-  <div class="sheet-ft">
-    <dl class="sum-dl">
-      <div><dt id="cartSubtotalLabel">Delsum</dt><dd id="csub">0</dd></div>
-      <div><dt id="cartShippingLabel">Frakt</dt><dd id="cship">Gratis</dd></div>
-      <div class="tot"><dt id="cartTotalLabel">Totalt</dt><dd id="ctot">0</dd></div>
-    </dl>
-    <button type="button" class="sheet-btn" id="openCheckout" onclick="openCheckout()" autofocus>Gå til kassen</button>
+      <div class="cart-summary-card">
+        <h3 class="cart-summary-title" id="cartSummaryTitle">Ordresammendrag</h3>
+        <div style="font-size:.82rem;color:var(--mu);margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px solid var(--ln)" id="cartVippsHint">
+          Vipps-betaling ved henting eller sending
+        </div>
+        <dl class="sum-dl" style="gap:.65rem;margin-bottom:1.25rem">
+          <div><dt id="cartSubtotalLabel">Delsum</dt><dd id="csub">0</dd></div>
+          <div><dt id="cartShippingLabel">Frakt / Henting</dt><dd id="cship">Gratis</dd></div>
+          <div class="tot" style="padding-top:.75rem;margin-top:.35rem;font-family:var(--serif);font-size:1.35rem"><dt id="cartTotalLabel">Totalt</dt><dd id="ctot">0</dd></div>
+        </dl>
+        <button type="button" class="detail-cta-primary" style="width:100%" id="openCheckout" onclick="openCheckout()" autofocus>Gå til kassen →</button>
+      </div>
+    </div>
+
+    <div class="cart-trust-strip">
+      <div class="cart-trust-col" id="cartTrust1">🛡️ 100% Originale</div>
+      <div class="cart-trust-col" id="cartTrust2">🚚 Gratis henting Tøyengata 3</div>
+      <div class="cart-trust-col" id="cartTrust3">↻ Enkel Vipps-reservasjon</div>
+    </div>
   </div>
 </dialog>
 
@@ -6518,7 +7258,7 @@ body {
     <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
       <button type="button" onclick="openAdmin()" style="background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;text-decoration:underline" id="adminOpenBtn">Kurator Atelier (Admin)</button>
       <div class="version-pill">
-        v1.0.74 (updated 2026-11-18 15:25)
+        v1.0.75 (updated 2026-11-18 19:21)
       </div>
     </div>
   </div>
@@ -6535,33 +7275,6 @@ body {
     <button type="button" class="sheet-btn" onclick="closeWishlist(); document.getElementById('kjop')?.scrollIntoView({behavior:'smooth'});" id="wishBrowseBtn">Utforsk alle 131 parfymer</button>
   </div>
 </dialog>
-
-<!-- ================= PAK-STAR THUMB-ZONE BOTTOM NAVIGATION (.tabs) ================= -->
-<nav class="tabs" aria-label="Hovednavigasjon">
-  <button type="button" class="tab active" data-tab="home" onclick="handleBottomTab('home', this)">
-    <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
-    <span id="tabLblHome">Hjem</span>
-  </button>
-  <button type="button" class="tab" data-tab="explore" onclick="handleBottomTab('explore', this)">
-    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-    <span id="tabLblExplore">Utforsk</span>
-  </button>
-  <button type="button" class="tab cart-tab" data-tab="cart" onclick="handleBottomTab('cart', this)" aria-label="Handlekurv">
-    <div class="pill-wrap">
-      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-    </div>
-    <span class="t-badge" id="navCartCount" hidden>0</span>
-  </button>
-  <button type="button" class="tab" data-tab="wish" onclick="handleBottomTab('wish', this)">
-    <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-    <span id="tabLblWish">Ønsker</span>
-    <span class="t-badge" id="navWishCount" hidden>0</span>
-  </button>
-  <button type="button" class="tab" data-tab="showroom" onclick="handleBottomTab('showroom', this)">
-    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span id="tabLblShowroom">Showroom</span>
-  </button>
-</nav>
 
 <!-- Floating Small Circle Back-to-Top Button -->
 <button type="button" class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" aria-label="Tilbake til toppen / Back to top" title="Tilbake til toppen">
@@ -6651,6 +7364,7 @@ window.closeMenuSection = function(which) {
 window.filterByBrandFromHero = function(brandName) {
   closeNavDropdown();
   if (typeof window.toggleMobileNav === 'function') window.toggleMobileNav(true);
+  selectedBrands.clear();
   activeBrand = brandName;
   activeScent = 'all';
   searchQuery = '';
@@ -11156,7 +11870,7 @@ const I18N = {
     colTag: "Finn Din Signaturduft",
     colTitle: "Lukt Fantastisk. Føl Deg På Topp.",
     colSub: "131 Håndplukkede luksusparfymer og oljer · Maks 1 500 · Unn deg en ny favoritt i dag",
-    showingCount: (count, total) => `Viser ${count} av ${total} parfymer — Finn din favoritt i dag`,
+    showingCount: (count, total) => count === total ? `${total} produkter` : `${count} av ${total} produkter`,
     colGuaranteeBadge: "● 100% Originale fabrikkutgaver",
     lblFilterBrand: "Produsent / Merke",
     optBrandAll: "Alle merker (131)",
@@ -11174,7 +11888,7 @@ const I18N = {
     optSortPriceDesc: "Pris: Høy til Lav",
     optSortNameAsc: "Navn: A–Å",
     lblFilterSearch: "Søk i katalogen",
-    searchPlaceholder: "Søk parfyme, merke, duftnote...",
+    searchPlaceholder: "Søk parfyme...",
     emptyTitle: "Ingen parfymer passer til søket ditt",
     emptyDesc: "Prøv et annet søkeord eller tilbakestill filtrene for å se alle 131 parfymer.",
     resetFilters: "Nullstill filtre",
@@ -11364,7 +12078,7 @@ const I18N = {
     optSortPriceDesc: "Price: High to Low",
     optSortNameAsc: "Name: A–Z",
     lblFilterSearch: "Search catalog",
-    searchPlaceholder: "Search fragrance, brand, notes...",
+    searchPlaceholder: "Search perfume...",
     emptyTitle: "No fragrances match your search",
     emptyDesc: "Try another search term or reset filters to browse all 131 fragrances.",
     resetFilters: "Reset filters",
@@ -11432,7 +12146,7 @@ const I18N = {
     cartShipping: "Shipping",
     cartFree: "Free",
     cartTotal: "Total:",
-    checkoutBtn: "Proceed to Checkout (Reservation)",
+    checkoutBtn: "Checkout →",
     checkoutTitle: "Complete Your Pre-Order Request",
     checkoutEye: "Order & Reservation",
     noticeBoxTitle: "Preview Store & Reservation",
@@ -11484,9 +12198,13 @@ try {
 } catch(e) {}
 
 let activeBrand = 'all';
+let selectedBrands = new Set();
+let sidebarShowAllBrands = false;
+let maxPriceFilter = 1500;
 let activeScent = 'all';
 let activeSort = 'featured';
 let searchQuery = '';
+let detailActiveGalleryMode = 'bottle';
 let S = {
   lines: [],
   currentProductId: 'armaf-club-de-nuit-intense',
@@ -11707,17 +12425,110 @@ window.addEventListener('keydown', e => {
   }
 });
 
+
+function renderSidebarBrands(visibleCatalog) {
+  const wrap = document.getElementById('sidebarBrandsList');
+  if (!wrap) return;
+  const brandCounts = {};
+  visibleCatalog.forEach(p => {
+    const b = p.brand || 'Andre';
+    brandCounts[b] = (brandCounts[b] || 0) + 1;
+  });
+  const sortedBrands = Object.keys(brandCounts).sort((a, b) => (brandCounts[b] - brandCounts[a]) || a.localeCompare(b));
+  const displayList = sidebarShowAllBrands ? sortedBrands : sortedBrands.slice(0, 7);
+
+  wrap.innerHTML = displayList.map(b => {
+    const isChecked = selectedBrands.has(b) || (selectedBrands.size === 0 && activeBrand === b);
+    return `
+      <label class="sb-brand-label">
+        <input type="checkbox" value="${escapeHtml(b)}" ${isChecked ? 'checked' : ''} onchange="toggleSidebarBrand('${escapeHtml(b)}', this.checked)">
+        <span>${escapeHtml(b)}</span>
+        <span class="sb-brand-count">${brandCounts[b]}</span>
+      </label>
+    `;
+  }).join('');
+
+  const showBtn = document.getElementById('sbShowAllBrandsBtn');
+  if (showBtn) {
+    if (sortedBrands.length <= 7) {
+      showBtn.style.display = 'none';
+    } else {
+      showBtn.style.display = 'inline-block';
+      const isEn = LANG === 'en';
+      showBtn.textContent = sidebarShowAllBrands
+        ? (isEn ? 'Show fewer brands' : 'Vis færre merker')
+        : (isEn ? `Show all ${sortedBrands.length} brands` : `Vis alle ${sortedBrands.length} merker`);
+    }
+  }
+}
+
+window.toggleSidebarBrand = function(brandName, checked) {
+  activeBrand = 'all';
+  if (checked) {
+    selectedBrands.add(brandName);
+  } else {
+    selectedBrands.delete(brandName);
+  }
+  renderStore();
+};
+
+window.toggleSidebarShowAllBrands = function() {
+  sidebarShowAllBrands = !sidebarShowAllBrands;
+  renderStore();
+};
+
+window.onPriceSliderInput = function(val) {
+  maxPriceFilter = parseInt(val, 10) || 1500;
+  const readout = document.getElementById('sbPriceReadout');
+  if (readout) {
+    readout.textContent = `99 kr – ${Number(maxPriceFilter).toLocaleString(LANG === 'nb' ? 'no-NO' : 'en-US')} kr`;
+  }
+  const slider = document.getElementById('filterPriceMax');
+  if (slider) {
+    const pct = Math.round(((maxPriceFilter - 99) / (1500 - 99)) * 100);
+    slider.style.setProperty('--range-pct', pct + '%');
+  }
+  renderStore();
+};
+
+window.toggleHeaderSearch = function() {
+  const drawer = document.getElementById('hdrSearchDrawer');
+  if (!drawer) return;
+  const isOpen = drawer.classList.toggle('open');
+  if (isOpen) {
+    setTimeout(() => document.getElementById('topNavSearchInput')?.focus(), 50);
+  }
+};
+
+window.focusBrandsSidebar = function() {
+  const kjopEl = document.getElementById('kjop');
+  if (kjopEl) kjopEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (window.innerWidth < 920) {
+    const fc = document.getElementById('filterContainer');
+    if (fc && !fc.classList.contains('mobile-open')) {
+      window.toggleMobileFilters();
+    }
+  }
+};
+
 // ── RENDER STORE & COLLECTION ──
 function renderStore() {
   const isEn = LANG === 'en';
   const t = I18N[LANG];
 
-  // Filter Catalog (exclude hidden products from public storefront)
+  // Render sidebar checkboxes cleanly synced with visible catalog
   const visibleCatalog = CATALOG.filter(p => !p.hidden);
-  let filtered = CATALOG.filter(p => {
-    if (p.hidden) return false;
-    if (activeBrand !== 'all' && p.brand !== activeBrand) return false;
+  renderSidebarBrands(visibleCatalog);
+
+  // Filter Catalog (exclude hidden products from public storefront)
+  let filtered = visibleCatalog.filter(p => {
+    if (selectedBrands.size > 0) {
+      if (!selectedBrands.has(p.brand)) return false;
+    } else if (activeBrand !== 'all' && p.brand !== activeBrand) {
+      return false;
+    }
     if (activeScent !== 'all' && p.scentFamily !== activeScent) return false;
+    if (p.price > maxPriceFilter) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const matchName = p.name.toLowerCase().includes(q);
@@ -11793,47 +12604,31 @@ function renderStore() {
 
   grid.innerHTML = filtered.map(p => {
     const isWished = typeof isProductWished === 'function' && isProductWished(p.id);
+    const displayName = escapeHtml(isEn ? (p.name_en || p.name) : p.name);
+    const displayBrand = escapeHtml(p.brand || p.house);
     return `
     <article class="perfume-card" data-id="${p.id}" tabindex="0">
       <div class="card-img-wrap" onclick="openProductDetail('${p.id}')">
-        ${p.tag ? `<span class="card-tag-badge"><span class="badge-dot"></span>${escapeHtml(translateTag(p.tag, LANG))}</span>` : ''}
         <button type="button" class="card-wish-btn ${isWished ? 'on' : ''}" data-wish="${p.id}" onclick="event.stopPropagation(); toggleWish('${p.id}')" aria-label="${isEn ? 'Save to wishlist' : 'Lagre som favoritt'}" aria-pressed="${isWished}">
           <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
         </button>
-        <div class="card-slider-track ${currentViewMode === 'box' ? 'slide-box' : ''}">
-          <div class="card-slide">
-            <img class="card-img" src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%2326231e\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-          </div>
-          <div class="card-slide">
-            <img class="card-img" src="${p.image_box || p.image}" alt="${escapeHtml(p.name)} eske" loading="lazy"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%2326231e\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d4af6a\' font-size=\'12\' font-family=\'sans-serif\'%3EBilde mangler%3C/text%3E%3C/svg%3E'">
-          </div>
+        <img class="card-img" src="${p.image}" alt="${displayName}" loading="lazy"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23f2e8d7\'/%3E%3C/svg%3E'">
+      </div>
+      <div class="card-meta-footer">
+        <div class="card-meta-top">
+          <span class="card-brand">${displayBrand}</span>
+          <div class="card-price">${nok(p.price)} kr</div>
         </div>
-      </div>
-      <span class="card-brand">${escapeHtml(p.house || p.brand)}</span>
-      <h3 class="card-name" onclick="openProductDetail('${p.id}')">${escapeHtml(isEn ? (p.name_en || p.name) : p.name)}</h3>
-      <div class="card-unit-row">
-        <span class="card-vol" style="margin:0">${escapeHtml(p.size || '100 ml')}</span>
-        <span class="card-more-hint" onclick="openProductDetail('${p.id}')">${isEn ? 'Details ›' : 'Se detaljer ›'}</span>
-      </div>
-      <div class="card-stock-row">
-        <span>${isEn ? 'In stock · Oslo' : 'På lager · Oslo'}</span>
-        <div class="card-stock-track"><div class="card-stock-fill"></div></div>
-      </div>
-      <div class="card-price">
-        ${nok(p.price)}
-        ${p.originalPrice ? `<span style="font-size:0.75rem;color:var(--dim);text-decoration:line-through;margin-left:0.35rem">${nok(p.originalPrice)}</span>` : ''}
-      </div>
-      <div class="card-actions">
-        <button type="button" class="card-btn btn-details" onclick="openProductDetail('${p.id}')">${t.cardDetailsBtn}</button>
-        <div class="card-btn-wrap">
-          <button type="button" class="card-btn btn-add" onclick="${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}">${p.scents && p.scents.length ? (isEn ? (p.variantBtn_en || 'Choose scent') : (p.variantBtn || 'Velg duft')) : t.cardAddBtn}</button>
-          <div class="card-qty-stepper" aria-label="Antall">
-            <button type="button" class="cqty-step-btn minus" onclick="quickUpdateCardQty('${p.id}', -1)" aria-label="Mindre">−</button>
-            <output class="card-qty-output" id="cardQty_${p.id}">0</output>
-            <button type="button" class="cqty-step-btn plus" onclick="quickUpdateCardQty('${p.id}', 1)" aria-label="Mer">+</button>
+        <div class="card-meta-bottom">
+          <div class="card-meta-title-wrap" onclick="openProductDetail('${p.id}')" style="cursor:pointer">
+            <h3 class="card-name">${displayName}</h3>
+            <span class="card-vol">${escapeHtml(p.size || '100 ml')}</span>
           </div>
+          <button type="button" class="card-circle-cart-btn" onclick="event.stopPropagation(); ${p.scents && p.scents.length ? `openProductDetail('${p.id}')` : `quickAddToCart('${p.id}')`}" aria-label="${isEn ? 'Add to cart' : 'Legg i handlekurv'}">
+            <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="card-cart-qty-pill card-qty-output">0</span>
+          </button>
         </div>
       </div>
     </article>
@@ -11855,9 +12650,18 @@ function renderStore() {
 
 window.resetAllFilters = function() {
   activeBrand = 'all';
+  selectedBrands.clear();
+  maxPriceFilter = 1500;
   activeScent = 'all';
   activeSort = 'featured';
   searchQuery = '';
+  const priceEl = document.getElementById('filterPriceMax');
+  if (priceEl) {
+    priceEl.value = '1500';
+    priceEl.style.setProperty('--range-pct', '100%');
+  }
+  const readout = document.getElementById('sbPriceReadout');
+  if (readout) readout.textContent = '99 kr – 1 500 kr';
   if ($('#filterBrand')) $('#filterBrand').value = 'all';
   if ($('#filterScent')) $('#filterScent').value = 'all';
   if ($('#filterSort')) $('#filterSort').value = 'featured';
@@ -11869,6 +12673,7 @@ window.resetAllFilters = function() {
   if ($('#topNavClearSearchBtn')) $('#topNavClearSearchBtn').style.display = 'none';
   if ($('#mobNavClearSearchBtn')) $('#mobNavClearSearchBtn').style.display = 'none';
   if ($('#mobileHubClearBtn')) $('#mobileHubClearBtn').style.display = 'none';
+  if (typeof syncCatalogChipsUI === 'function') syncCatalogChipsUI();
   renderStore();
 };
 
@@ -11954,7 +12759,7 @@ function updateModalQtyUI() {
   if ($('#modalQtyMinus')) $('#modalQtyMinus').disabled = S.modalQty < 2;
   if ($('#detailModalAddBtn')) {
     const label = isEn ? 'Add to cart' : 'Legg til';
-    $('#detailModalAddBtn').textContent = `${label} · ${nok(p.price * S.modalQty)}`;
+    $('#detailModalAddBtn').textContent = `🛒 ${label} · ${nok(p.price * S.modalQty)} kr`;
   }
 }
 
@@ -11973,13 +12778,42 @@ window.openProductDetail = function(id, pushUrl = true) {
 function updateProductDetailModalContent(p) {
   const isEn = LANG === 'en';
   const t = I18N[LANG];
+  const dName = isEn ? (p.name_en || p.name) : p.name;
+  if ($('#detailBreadcrumbName')) $('#detailBreadcrumbName').textContent = dName;
+  if ($('#detailBreadcrumbShop')) $('#detailBreadcrumbShop').textContent = isEn ? 'Shop' : 'Katalog';
   if ($('#detailModalBrand')) $('#detailModalBrand').textContent = p.house || p.brand;
-  if ($('#detailModalTitle')) $('#detailModalTitle').textContent = isEn ? (p.name_en || p.name) : p.name;
+  if ($('#detailModalTitle')) $('#detailModalTitle').textContent = dName;
+  if ($('#detailModalSubtitle')) $('#detailModalSubtitle').textContent = p.subtitle || (isEn ? (p.edition_en || p.edition) : p.edition) || '';
   if ($('#detailModalVol')) $('#detailModalVol').textContent = p.size || '100 ml';
   if ($('#detailModalStock')) $('#detailModalStock').textContent = t.detailModalStock;
-  if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price);
+  if ($('#detailModalPrice')) $('#detailModalPrice').textContent = nok(p.price) + ' kr';
   if ($('#detailModalDesc')) $('#detailModalDesc').textContent = isEn ? (p.desc_en || p.desc) : p.desc;
   if ($('#detailModalStory')) $('#detailModalStory').textContent = isEn ? (p.story_en || p.story) : p.story;
+
+  const wishBtn = $('#detailModalWishBtn');
+  if (wishBtn) {
+    const wished = typeof isProductWished === 'function' && isProductWished(p.id);
+    wishBtn.classList.toggle('on', wished);
+    wishBtn.setAttribute('data-wish', p.id);
+    wishBtn.innerHTML = wished ? (isEn ? '♥ Saved' : '♥ Lagret') : (isEn ? '♡ Save' : '♡ Lagre');
+  }
+
+  detailActiveGalleryMode = 'bottle';
+  const thumbRail = $('#detailThumbRail');
+  if (thumbRail) {
+    const thumbs = [{ mode: 'bottle', src: p.image, alt: isEn ? 'Bottle' : 'Flakong' }];
+    if (p.image_box && p.image_box !== p.image) {
+      thumbs.push({ mode: 'box', src: p.image_box, alt: isEn ? 'Box' : 'Eske' });
+    }
+    if (p.image_set) {
+      thumbs.push({ mode: 'set', src: p.image_set, alt: isEn ? 'Set' : 'Gavesett' });
+    }
+    thumbRail.innerHTML = thumbs.map((th, idx) => `
+      <button type="button" class="detail-thumb-btn ${idx === 0 ? 'active' : ''}" onclick="selectDetailThumbnail('${th.mode}', '${th.src.replace(/'/g, "\\'")}', this)" title="${th.alt}">
+        <img src="${th.src}" alt="${th.alt}">
+      </button>
+    `).join('');
+  }
 
   // Sale banner and strikethrough price
   const saleBanner = document.getElementById('detailModalSaleBanner');
@@ -12148,6 +12982,14 @@ window.onScentSelectChange = function(val) {
 };
 
 let currentZoomMode = 'bottle';
+
+window.selectDetailThumbnail = function(mode, src, btnEl) {
+  detailActiveGalleryMode = mode;
+  const mainImg = document.getElementById('detailModalImgBottle');
+  if (mainImg) mainImg.src = src;
+  document.querySelectorAll('#detailThumbRail .detail-thumb-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+};
 
 window.openImageZoom = function(mode) {
   const p = CATALOG.find(item => item.id === S.currentProductId);
@@ -12485,22 +13327,23 @@ function renderCart() {
           <div class="cart-item-meta">
             <b>${escapeHtml(item.originalName || item.name)}</b>
             <small>${escapeHtml(item.size || '100 ml')}${item.scent ? ' · ' + escapeHtml(item.scent) : ''}</small>
-            <small style="color:var(--ac);font-weight:600">${nok(lineTotal)}</small>
           </div>
-          <div class="qty-box" aria-label="${isEn ? 'Quantity' : 'Antall'}">
-            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', -1)" aria-label="${minusLabel}">${minusIcon}</button>
-            <output>${item.qty}</output>
-            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', 1)" aria-label="${isEn ? 'Increase quantity' : 'Flere'}">+</button>
+          <div class="qty-box" aria-label="${isEn ? 'Quantity' : 'Antall'}" style="height:36px;border-radius:999px">
+            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', -1)" aria-label="${minusLabel}" style="width:32px;font-size:15px">−</button>
+            <output style="min-width:22px;font-size:0.86rem">x${item.qty}</output>
+            <button type="button" onclick="updateCartItem('${escapeHtml(lineKey)}', 1)" aria-label="${isEn ? 'Increase quantity' : 'Flere'}" style="width:32px;font-size:15px">+</button>
           </div>
+          <div class="cart-item-price-col" style="font-weight:700;color:var(--tx);font-variant-numeric:tabular-nums;white-space:nowrap">${nok(lineTotal)} kr</div>
+          <button type="button" class="cart-item-trash" onclick="removeCartItem('${escapeHtml(lineKey)}')" aria-label="${isEn ? 'Remove item' : 'Fjern vare'}" title="${isEn ? 'Remove' : 'Fjern'}">🗑</button>
         </li>
       `;
     }).join('');
   }
 
-  if ($('#csub')) $('#csub').textContent = nok(totals.subtotal);
+  if ($('#csub')) $('#csub').textContent = nok(totals.subtotal) + ' kr';
   if ($('#cship')) $('#cship').textContent = totals.shipping === 0 ? t.cartFree : nok(totals.shipping);
-  if ($('#ctot')) $('#ctot').textContent = nok(totals.total);
-  if ($('#coTot')) $('#coTot').textContent = nok(totals.total);
+  if ($('#ctot')) $('#ctot').textContent = nok(totals.total) + ' kr';
+  if ($('#coTot')) $('#coTot').textContent = nok(totals.total) + ' kr';
 }
 
 window.updateCartItem = function(key, delta) {
@@ -12573,7 +13416,7 @@ function updateCheckoutSummary() {
   const totals = calculateTotals(S.lines, delivery);
   const isEn = LANG === 'en';
 
-  if ($('#coTot')) $('#coTot').textContent = nok(totals.total);
+  if ($('#coTot')) $('#coTot').textContent = nok(totals.total) + ' kr';
   if ($('#checkoutOrderSummary')) {
     $('#checkoutOrderSummary').innerHTML = `
       <div style="font-weight:700;margin-bottom:6px;color:var(--tx)">${isEn ? 'Order Summary:' : 'Ordresammendrag:'}</div>
@@ -12917,7 +13760,7 @@ window.handleNewsletter = function(e) {
 
 // ── THEME SWITCHING SYSTEM (Light / Dark Mode) ──
 function getSystemTheme() {
-  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+  return 'light';
 }
 
 function getEffectiveTheme() {
@@ -12931,8 +13774,10 @@ function applyTheme(theme, isSystem = false) {
   document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
   if (isLight) {
     document.documentElement.classList.add('theme-light');
+    document.documentElement.classList.remove('theme-dark');
   } else {
     document.documentElement.classList.remove('theme-light');
+    document.documentElement.classList.add('theme-dark');
   }
   const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
   if (metaColorScheme) {
@@ -13366,6 +14211,41 @@ function setLanguage(lang) {
     if (curP) updateProductDetailModalContent(curP);
   }
 
+  // Editorial Navigation, Hero, Shop & Cart Labels
+  if ($('#navCatalogLink')) $('#navCatalogLink').textContent = isEn ? 'Shop' : 'Katalog';
+  if ($('#navFragrances')) $('#navFragrances').textContent = isEn ? 'Brands' : 'Merker';
+  if ($('#navGiftSetsLink')) $('#navGiftSetsLink').textContent = isEn ? 'Gift sets' : 'Gavesett';
+  if ($('#heroChapterKicker')) $('#heroChapterKicker').textContent = isEn ? 'Chapter I:' : 'Kapittel I:';
+  if ($('#heroChapterSub')) $('#heroChapterSub').textContent = isEn ? 'Smoke, resin and midnight' : 'Røkt oud, varm harpiks og edle noter';
+  if ($('#heroChapterCta')) $('#heroChapterCta').textContent = isEn ? 'Shop Oud →' : 'Utforsk Oud →';
+  if ($('#heroTileMusk')) $('#heroTileMusk').textContent = isEn ? 'II Musk' : 'II Moskus';
+  if ($('#colTitle')) $('#colTitle').textContent = isEn ? 'Shop' : 'Katalog';
+  if ($('#lblFilterBrand')) $('#lblFilterBrand').textContent = isEn ? 'Brands' : 'Merker';
+  if ($('#lblFilterScent')) $('#lblFilterScent').textContent = isEn ? 'Scent Family' : 'Duftfamilie';
+  if ($('#lblFilterPrice')) $('#lblFilterPrice').textContent = isEn ? 'Price' : 'Pris';
+  if ($('#btnShowAll')) $('#btnShowAll').textContent = isEn ? 'Reset filters' : 'Nullstill filtre';
+  if ($('#mobileFilterToggleLabel')) $('#mobileFilterToggleLabel').textContent = 'Filter';
+  if ($('#cartBackToShop')) $('#cartBackToShop').textContent = isEn ? 'Back to shop' : 'Tilbake til butikk';
+  if ($('#cartSummaryTitle')) $('#cartSummaryTitle').textContent = isEn ? 'Order Summary' : 'Ordresammendrag';
+  if ($('#cartVippsHint')) $('#cartVippsHint').textContent = isEn ? 'Reserve online · Safe Vipps settlement' : 'Vipps-betaling ved henting eller sending';
+  if ($('#cartTrust1')) $('#cartTrust1').textContent = isEn ? '🛡️ Authentic only' : '🛡️ 100% Originale';
+  if ($('#cartTrust2')) $('#cartTrust2').textContent = isEn ? '🚚 Free pickup Oslo' : '🚚 Gratis henting Tøyengata 3';
+  if ($('#cartTrust3')) $('#cartTrust3').textContent = isEn ? '↻ Easy reservation' : '↻ Trygg Vipps-reservasjon';
+  const scentNames = isEn
+    ? { all: 'All', oud: 'Oud', amber: 'Amber', gourmand: 'Gourmand', citrus: 'Citrus', musk: 'Musk', floral: 'Floral' }
+    : { all: 'Alle', oud: 'Oud', amber: 'Amber', gourmand: 'Gourmand', citrus: 'Sitrus', musk: 'Moskus', floral: 'Blomst' };
+  document.querySelectorAll('#cats .sb-scent-pill').forEach(p => {
+    const v = p.dataset.chipVal;
+    if (scentNames[v]) p.textContent = scentNames[v];
+  });
+  document.querySelectorAll('#mobScentRail .sb-scent-pill').forEach(p => {
+    const v = p.dataset.scentVal;
+    if (scentNames[v]) p.textContent = scentNames[v];
+  });
+  if ($('#lblTopNotes')) $('#lblTopNotes').textContent = isEn ? 'Top:' : 'Topp:';
+  if ($('#lblHeartNotes')) $('#lblHeartNotes').textContent = isEn ? 'Heart:' : 'Hjerte:';
+  if ($('#lblBaseNotes')) $('#lblBaseNotes').textContent = isEn ? 'Base:' : 'Bunn:';
+
   renderStore();
   renderCart();
 }
@@ -13452,9 +14332,9 @@ window.toggleMobileFilters = function() {
 
 function updateMobileFilterBadge() {
   let count = 0;
-  if (activeBrand && activeBrand !== 'all') count++;
+  if (selectedBrands.size > 0 || (activeBrand && activeBrand !== 'all')) count++;
   if (activeScent && activeScent !== 'all') count++;
-  if (activeSort && activeSort !== 'featured') count++;
+  if (maxPriceFilter < 1500) count++;
   if (searchQuery) count++;
 
   const badge = document.getElementById('mobileFilterCountBadge');
@@ -14549,6 +15429,9 @@ window.toggleWish = function(id) {
     const on = WISHLIST.includes(id);
     btn.classList.toggle('on', on);
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (btn.id === 'detailModalWishBtn') {
+      btn.innerHTML = on ? (isEn ? '♥ Saved' : '♥ Lagret') : (isEn ? '♡ Save' : '♡ Lagre');
+    }
   });
   if (document.getElementById('wishlistModal')?.open) renderWishlistModal();
 };
@@ -14709,17 +15592,17 @@ window.selectPakStarCategory = function(type, val, btnEl) {
 
 window.selectCatalogChip = function(type, val, chipEl) {
   if (type === 'all') {
-    resetAllFilters();
+    activeScent = 'all';
+    if ($('#filterScent')) $('#filterScent').value = 'all';
+    renderStore();
   } else if (type === 'brand') {
+    selectedBrands.clear();
     activeScent = 'all';
     activeBrand = val;
-    if ($('#filterScent')) $('#filterScent').value = 'all';
-    if ($('#filterBrand')) $('#filterBrand').value = val;
     renderStore();
   } else if (type === 'scent') {
-    activeBrand = 'all';
+    if (!chipEl) { selectedBrands.clear(); activeBrand = 'all'; }
     activeScent = val;
-    if ($('#filterBrand')) $('#filterBrand').value = 'all';
     if ($('#filterScent')) $('#filterScent').value = val;
     renderStore();
   }
@@ -14727,12 +15610,15 @@ window.selectCatalogChip = function(type, val, chipEl) {
 };
 
 function syncCatalogChipsUI() {
-  document.querySelectorAll('#cats .cat-chip').forEach(ch => {
+  document.querySelectorAll('#cats .sb-scent-pill').forEach(ch => {
     const t = ch.dataset.chipType;
     const v = ch.dataset.chipVal;
-    const isOn = (t === 'all' && activeBrand === 'all' && activeScent === 'all') ||
-                 (t === 'brand' && activeBrand === v) ||
-                 (t === 'scent' && activeScent === v);
+    const isOn = (t === 'all' && activeScent === 'all') || (t === 'scent' && activeScent === v);
+    ch.classList.toggle('on', isOn);
+  });
+  document.querySelectorAll('#mobScentRail .sb-scent-pill').forEach(ch => {
+    const v = ch.dataset.scentVal;
+    const isOn = (v === 'all' && activeScent === 'all') || (v === activeScent);
     ch.classList.toggle('on', isOn);
   });
 }
@@ -14858,7 +15744,7 @@ const skipIntro = params.get('nointro') === '1';
 const seen = sessionStorage.getItem('arx_intro_seen');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (skipIntro || (!forceIntro && (seen || reducedMotion))) {
+if (!forceIntro || skipIntro || reducedMotion) {
   finishIntro();
 } else {
   const introEl = $('#intro');
